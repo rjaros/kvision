@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PolarAreaController</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>kvision</span>
+            </a>
+    </div>
+    <div>
+5.18.0    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":dokkaHtml/kvision">js</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="kvision::io.kvision.chart.js/PolarAreaController///PointingToDeclaration//978196697">
+  <div class="breadcrumbs"><a href="../../../index.html">kvision</a><span class="delimiter">/</span><a href="../index.html">io.kvision.chart.js</a><span class="delimiter">/</span><span class="current">PolarAreaController</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Polar</span><wbr></wbr><span>Area</span><wbr></wbr><span><span>Controller</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="index.html">PolarAreaController</a> : <a href="../-doughnut-controller/index.html">DoughnutController</a></div></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Types</h2>
+      <div class="table" data-togglable="Types"><a data-name="862077983%2FClasslikes%2F978196697" anchor-label="Companion" id="862077983%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="862077983%2FClasslikes%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a> : <a href="../-chart-component/index.html">ChartComponent</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="2143962099%2FFunctions%2F978196697" anchor-label="addElements" id="2143962099%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/add-elements.html"><span>add</span><wbr></wbr><span><span>Elements</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2143962099%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/add-elements.html"><span class="token function">addElements</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1430443995%2FFunctions%2F978196697" anchor-label="applyStack" id="1430443995%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/apply-stack.html"><span>apply</span><wbr></wbr><span><span>Stack</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1430443995%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/apply-stack.html"><span class="token function">applyStack</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scale<span class="token operator">: </span><a href="../-scale/index.html">Scale</a><span class="token punctuation">, </span></span><span class="parameter ">parsed<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1539274463%2FFunctions%2F978196697" anchor-label="buildOrUpdateElements" id="1539274463%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/build-or-update-elements.html"><span>build</span><wbr></wbr><span>Or</span><wbr></wbr><span>Update</span><wbr></wbr><span><span>Elements</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1539274463%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/build-or-update-elements.html"><span class="token function">buildOrUpdateElements</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">resetNewElements<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="926314838%2FFunctions%2F978196697" anchor-label="calculateCircumference" id="926314838%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-doughnut-controller/calculate-circumference.html"><span>calculate</span><wbr></wbr><span><span>Circumference</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="926314838%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-doughnut-controller/calculate-circumference.html"><span class="token function">calculateCircumference</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1399960481%2FFunctions%2F978196697" anchor-label="calculateTotal" id="1399960481%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-doughnut-controller/calculate-total.html"><span>calculate</span><wbr></wbr><span><span>Total</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1399960481%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-doughnut-controller/calculate-total.html"><span class="token function">calculateTotal</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="816816389%2FFunctions%2F978196697" anchor-label="configure" id="816816389%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/configure.html"><span><span>configure</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="816816389%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/configure.html"><span class="token function">configure</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1273362568%2FFunctions%2F978196697" anchor-label="countVisibleElements" id="1273362568%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="count-visible-elements.html"><span>count</span><wbr></wbr><span>Visible</span><wbr></wbr><span><span>Elements</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1273362568%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="count-visible-elements.html"><span class="token function">countVisibleElements</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1370813237%2FFunctions%2F978196697" anchor-label="draw" id="-1370813237%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/draw.html"><span><span>draw</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1370813237%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/draw.html"><span class="token function">draw</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1154192025%2FFunctions%2F978196697" anchor-label="getAllParsedValues" id="1154192025%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/get-all-parsed-values.html"><span>get</span><wbr></wbr><span>All</span><wbr></wbr><span>Parsed</span><wbr></wbr><span><span>Values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1154192025%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/get-all-parsed-values.html"><span class="token function">getAllParsedValues</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scale<span class="token operator">: </span><a href="../-scale/index.html">Scale</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator">&gt;</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1901452813%2FFunctions%2F978196697" anchor-label="getDataset" id="1901452813%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/get-dataset.html"><span>get</span><wbr></wbr><span><span>Dataset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1901452813%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/get-dataset.html"><span class="token function">getDataset</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html#-541987185%2FClasslikes%2F978196697">DeepPartial</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-251759659%2FFunctions%2F978196697" anchor-label="getLabelAndValue" id="-251759659%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/get-label-and-value.html"><span>get</span><wbr></wbr><span>Label</span><wbr></wbr><span>And</span><wbr></wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-251759659%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/get-label-and-value.html"><span class="token function">getLabelAndValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-t$11/index.html">T$11</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1157923007%2FFunctions%2F978196697" anchor-label="getMaxOverflow" id="1157923007%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/get-max-overflow.html"><span>get</span><wbr></wbr><span>Max</span><wbr></wbr><span><span>Overflow</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1157923007%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/get-max-overflow.html"><span class="token function">getMaxOverflow</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span>dynamic</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1991914864%2FFunctions%2F978196697" anchor-label="getMeta" id="-1991914864%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/get-meta.html"><span>get</span><wbr></wbr><span><span>Meta</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1991914864%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/get-meta.html"><span class="token function">getMeta</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html#-541987185%2FClasslikes%2F978196697">DeepPartial</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="613286429%2FFunctions%2F978196697" anchor-label="getMinMax" id="613286429%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/get-min-max.html"><span>get</span><wbr></wbr><span>Min</span><wbr></wbr><span><span>Max</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="613286429%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/get-min-max.html"><span class="token function">getMinMax</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scale<span class="token operator">: </span><a href="../-scale/index.html">Scale</a><span class="token punctuation">, </span></span><span class="parameter ">canStack<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-t$12/index.html">T$12</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1807728312%2FFunctions%2F978196697" anchor-label="getParsed" id="-1807728312%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/get-parsed.html"><span>get</span><wbr></wbr><span><span>Parsed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1807728312%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/get-parsed.html"><span class="token function">getParsed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span>dynamic</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1058498231%2FFunctions%2F978196697" anchor-label="getScaleForId" id="-1058498231%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/get-scale-for-id.html"><span>get</span><wbr></wbr><span>Scale</span><wbr></wbr><span>For</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1058498231%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/get-scale-for-id.html"><span class="token function">getScaleForId</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scaleID<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-scale/index.html">Scale</a><span class="token operator">?</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-363751241%2FFunctions%2F978196697" anchor-label="getSharedOptions" id="-363751241%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/get-shared-options.html"><span>get</span><wbr></wbr><span>Shared</span><wbr></wbr><span><span>Options</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-363751241%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/get-shared-options.html"><span class="token function">getSharedOptions</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">options<span class="token operator">: </span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a><span class="token operator">?</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2059034156%2FFunctions%2F978196697" anchor-label="getStyle" id="2059034156%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/get-style.html"><span>get</span><wbr></wbr><span><span>Style</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2059034156%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/get-style.html"><span class="token function">getStyle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">active<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-816054594%2FFunctions%2F978196697" anchor-label="includeOptions" id="-816054594%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/include-options.html"><span>include</span><wbr></wbr><span><span>Options</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-816054594%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/include-options.html"><span class="token function">includeOptions</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">mode<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter ">sharedOptions<span class="token operator">: </span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="378582655%2FFunctions%2F978196697" anchor-label="initialize" id="378582655%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/initialize.html"><span><span>initialize</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="378582655%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/initialize.html"><span class="token function">initialize</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1821974636%2FFunctions%2F978196697" anchor-label="linkScales" id="1821974636%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/link-scales.html"><span>link</span><wbr></wbr><span><span>Scales</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1821974636%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/link-scales.html"><span class="token function">linkScales</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-155819871%2FFunctions%2F978196697" anchor-label="parse" id="-155819871%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/parse.html"><span><span>parse</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-155819871%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/parse.html"><span class="token function">parse</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">start<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">count<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1513126256%2FFunctions%2F978196697" anchor-label="parseArrayData" id="1513126256%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/parse-array-data.html"><span>parse</span><wbr></wbr><span>Array</span><wbr></wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1513126256%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/parse-array-data.html"><span class="token function">parseArrayData</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">meta<span class="token operator">: </span><a href="../index.html#-541987185%2FClasslikes%2F978196697">DeepPartial</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">start<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">count<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a><span class="token operator">&gt;</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1774535712%2FFunctions%2F978196697" anchor-label="parseObjectData" id="1774535712%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/parse-object-data.html"><span>parse</span><wbr></wbr><span>Object</span><wbr></wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1774535712%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/parse-object-data.html"><span class="token function">parseObjectData</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">meta<span class="token operator">: </span><a href="../index.html#-541987185%2FClasslikes%2F978196697">DeepPartial</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">start<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">count<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a><span class="token operator">&gt;</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="572034082%2FFunctions%2F978196697" anchor-label="parsePrimitiveData" id="572034082%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/parse-primitive-data.html"><span>parse</span><wbr></wbr><span>Primitive</span><wbr></wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="572034082%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/parse-primitive-data.html"><span class="token function">parsePrimitiveData</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">meta<span class="token operator">: </span><a href="../index.html#-541987185%2FClasslikes%2F978196697">DeepPartial</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">start<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">count<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a><span class="token operator">&gt;</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1325029020%2FFunctions%2F978196697" anchor-label="removeHoverStyle" id="1325029020%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/remove-hover-style.html"><span>remove</span><wbr></wbr><span>Hover</span><wbr></wbr><span><span>Style</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1325029020%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/remove-hover-style.html"><span class="token function">removeHoverStyle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">element<span class="token operator">: </span><a href="../-element/index.html">Element</a><span class="token punctuation">, </span></span><span class="parameter ">datasetIndex<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1370301884%2FFunctions%2F978196697" anchor-label="reset" id="1370301884%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/reset.html"><span><span>reset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1370301884%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/reset.html"><span class="token function">reset</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-449023417%2FFunctions%2F978196697" anchor-label="resolveDataElementOptions" id="-449023417%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/resolve-data-element-options.html"><span>resolve</span><wbr></wbr><span>Data</span><wbr></wbr><span>Element</span><wbr></wbr><span><span>Options</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-449023417%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/resolve-data-element-options.html"><span class="token function">resolveDataElementOptions</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">mode<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-895527678%2FFunctions%2F978196697" anchor-label="resolveDatasetElementOptions" id="-895527678%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/resolve-dataset-element-options.html"><span>resolve</span><wbr></wbr><span>Dataset</span><wbr></wbr><span>Element</span><wbr></wbr><span><span>Options</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-895527678%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/resolve-dataset-element-options.html"><span class="token function">resolveDatasetElementOptions</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">mode<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1384858146%2FFunctions%2F978196697" anchor-label="setHoverStyle" id="-1384858146%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/set-hover-style.html"><span>set</span><wbr></wbr><span>Hover</span><wbr></wbr><span><span>Style</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1384858146%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/set-hover-style.html"><span class="token function">setHoverStyle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">element<span class="token operator">: </span><a href="../-element/index.html">Element</a><span class="token punctuation">, </span></span><span class="parameter ">datasetIndex<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-734476313%2FFunctions%2F978196697" anchor-label="update" id="-734476313%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/update.html"><span><span>update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-734476313%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/update.html"><span class="token function">update</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">mode<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1842803194%2FFunctions%2F978196697" anchor-label="updateElement" id="-1842803194%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/update-element.html"><span>update</span><wbr></wbr><span><span>Element</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1842803194%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/update-element.html"><span class="token function">updateElement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">element<span class="token operator">: </span><a href="../-element/index.html">Element</a><span class="token punctuation">, </span></span><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">properties<span class="token operator">: </span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a><span class="token punctuation">, </span></span><span class="parameter ">mode<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1032352331%2FFunctions%2F978196697" anchor-label="updateElements" id="-1032352331%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/update-elements.html"><span>update</span><wbr></wbr><span><span>Elements</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1032352331%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/update-elements.html"><span class="token function">updateElements</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">elements<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-element/index.html">Element</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">start<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">count<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">mode<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1236072906%2FFunctions%2F978196697" anchor-label="updateIndex" id="1236072906%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/update-index.html"><span>update</span><wbr></wbr><span><span>Index</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1236072906%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/update-index.html"><span class="token function">updateIndex</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">datasetIndex<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1486340037%2FFunctions%2F978196697" anchor-label="updateRangeFromParsed" id="1486340037%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/update-range-from-parsed.html"><span>update</span><wbr></wbr><span>Range</span><wbr></wbr><span>From</span><wbr></wbr><span><span>Parsed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1486340037%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/update-range-from-parsed.html"><span class="token function">updateRangeFromParsed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">range<span class="token operator">: </span><a href="../-t$12/index.html">T$12</a><span class="token punctuation">, </span></span><span class="parameter ">scale<span class="token operator">: </span><a href="../-scale/index.html">Scale</a><span class="token punctuation">, </span></span><span class="parameter ">parsed<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">stack<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/update-range-from-parsed.html"><span class="token function">updateRangeFromParsed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">range<span class="token operator">: </span><a href="../-t$12/index.html">T$12</a><span class="token punctuation">, </span></span><span class="parameter ">scale<span class="token operator">: </span><a href="../-scale/index.html">Scale</a><span class="token punctuation">, </span></span><span class="parameter ">parsed<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">stack<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="639374396%2FFunctions%2F978196697" anchor-label="updateSharedOptions" id="639374396%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/update-shared-options.html"><span>update</span><wbr></wbr><span>Shared</span><wbr></wbr><span><span>Options</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="639374396%2FFunctions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-dataset-controller/update-shared-options.html"><span class="token function">updateSharedOptions</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sharedOptions<span class="token operator">: </span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a><span class="token punctuation">, </span></span><span class="parameter ">mode<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter ">newOptions<span class="token operator">: </span><a href="../index.html#774284985%2FClasslikes%2F978196697">AnyObject</a></span></span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="-1721089915%2FProperties%2F978196697" anchor-label="_cachedMeta" id="-1721089915%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/_cached-meta.html"><span>_cached</span><wbr></wbr><span><span>Meta</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1721089915%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1721089915%2FProperties%2F978196697" anchor-label="_cachedMeta" id="-1721089915%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-dataset-controller/_cached-meta.html">_cachedMeta</a><span class="token operator">: </span><a href="../index.html#-541987185%2FClasslikes%2F978196697">DeepPartial</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1108731379%2FProperties%2F978196697" anchor-label="chart" id="-1108731379%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/chart.html"><span><span>chart</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1108731379%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1108731379%2FProperties%2F978196697" anchor-label="chart" id="-1108731379%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-dataset-controller/chart.html">chart</a><span class="token operator">: </span><a href="../-chart/index.html">Chart</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1595018681%2FProperties%2F978196697" anchor-label="enableOptionSharing" id="-1595018681%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/enable-option-sharing.html"><span>enable</span><wbr></wbr><span>Option</span><wbr></wbr><span><span>Sharing</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1595018681%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1595018681%2FProperties%2F978196697" anchor-label="enableOptionSharing" id="-1595018681%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-dataset-controller/enable-option-sharing.html">enableOptionSharing</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1433402471%2FProperties%2F978196697" anchor-label="index" id="-1433402471%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/--index--.html"><span><span>index</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1433402471%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1433402471%2FProperties%2F978196697" anchor-label="index" id="-1433402471%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-dataset-controller/--index--.html">index</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1639240659%2FProperties%2F978196697" anchor-label="innerRadius" id="1639240659%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-doughnut-controller/inner-radius.html"><span>inner</span><wbr></wbr><span><span>Radius</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1639240659%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1639240659%2FProperties%2F978196697" anchor-label="innerRadius" id="1639240659%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-doughnut-controller/inner-radius.html">innerRadius</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1390677462%2FProperties%2F978196697" anchor-label="offsetX" id="1390677462%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-doughnut-controller/offset-x.html"><span>offset</span><wbr></wbr><span><span>X</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1390677462%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1390677462%2FProperties%2F978196697" anchor-label="offsetX" id="1390677462%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-doughnut-controller/offset-x.html">offsetX</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1421697269%2FProperties%2F978196697" anchor-label="offsetY" id="1421697269%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-doughnut-controller/offset-y.html"><span>offset</span><wbr></wbr><span><span>Y</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1421697269%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1421697269%2FProperties%2F978196697" anchor-label="offsetY" id="1421697269%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-doughnut-controller/offset-y.html">offsetY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1507589390%2FProperties%2F978196697" anchor-label="outerRadius" id="1507589390%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-doughnut-controller/outer-radius.html"><span>outer</span><wbr></wbr><span><span>Radius</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1507589390%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="1507589390%2FProperties%2F978196697" anchor-label="outerRadius" id="1507589390%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-doughnut-controller/outer-radius.html">outerRadius</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1842261572%2FProperties%2F978196697" anchor-label="supportsDecimation" id="-1842261572%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../-dataset-controller/supports-decimation.html"><span>supports</span><wbr></wbr><span><span>Decimation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1842261572%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1842261572%2FProperties%2F978196697" anchor-label="supportsDecimation" id="-1842261572%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-dataset-controller/supports-decimation.html">supportsDecimation</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>TomSelectRenders</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>kvision</span>
+            </a>
+    </div>
+    <div>
+5.18.0    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":dokkaHtml/kvision">js</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="kvision::io.kvision.form.select/TomSelectRenders///PointingToDeclaration//978196697">
+  <div class="breadcrumbs"><a href="../../../index.html">kvision</a><span class="delimiter">/</span><a href="../index.html">io.kvision.form.select</a><span class="delimiter">/</span><span class="current">TomSelectRenders</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Tom</span><wbr></wbr><span>Select</span><wbr></wbr><span><span>Renders</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">TomSelectRenders</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>option<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>item<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>optionCreate<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>noResults<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>notLoading<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>optGroup<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>optGroupHeader<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>loading<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>dropdown<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Extensions">Extensions</button></div>
+    <div class="tabs-section-body">
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="-40083285%2FConstructors%2F978196697" anchor-label="TomSelectRenders" id="-40083285%2FConstructors%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-tom-select-renders.html"><span>Tom</span><wbr></wbr><span>Select</span><wbr></wbr><span><span>Renders</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-40083285%2FConstructors%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-tom-select-renders.html"><span class="token function">TomSelectRenders</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">option<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">item<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">optionCreate<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">noResults<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">notLoading<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">optGroup<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">optGroupHeader<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">loading<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">dropdown<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="2043892216%2FProperties%2F978196697" anchor-label="dropdown" id="2043892216%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="dropdown.html"><span><span>dropdown</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2043892216%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="2043892216%2FProperties%2F978196697" anchor-label="dropdown" id="2043892216%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="dropdown.html">dropdown</a><span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-978512074%2FProperties%2F978196697" anchor-label="item" id="-978512074%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="item.html"><span><span>item</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-978512074%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-978512074%2FProperties%2F978196697" anchor-label="item" id="-978512074%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="item.html">item</a><span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="82123605%2FProperties%2F978196697" anchor-label="loading" id="82123605%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="loading.html"><span><span>loading</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="82123605%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="82123605%2FProperties%2F978196697" anchor-label="loading" id="82123605%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="loading.html">loading</a><span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1256640836%2FProperties%2F978196697" anchor-label="noResults" id="-1256640836%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="no-results.html"><span>no</span><wbr></wbr><span><span>Results</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1256640836%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1256640836%2FProperties%2F978196697" anchor-label="noResults" id="-1256640836%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="no-results.html">noResults</a><span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2079871776%2FProperties%2F978196697" anchor-label="notLoading" id="2079871776%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="not-loading.html"><span>not</span><wbr></wbr><span><span>Loading</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2079871776%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="2079871776%2FProperties%2F978196697" anchor-label="notLoading" id="2079871776%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="not-loading.html">notLoading</a><span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-234137891%2FProperties%2F978196697" anchor-label="optGroup" id="-234137891%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="opt-group.html"><span>opt</span><wbr></wbr><span><span>Group</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-234137891%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-234137891%2FProperties%2F978196697" anchor-label="optGroup" id="-234137891%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="opt-group.html">optGroup</a><span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1505256240%2FProperties%2F978196697" anchor-label="optGroupHeader" id="-1505256240%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="opt-group-header.html"><span>opt</span><wbr></wbr><span>Group</span><wbr></wbr><span><span>Header</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1505256240%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1505256240%2FProperties%2F978196697" anchor-label="optGroupHeader" id="-1505256240%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="opt-group-header.html">optGroupHeader</a><span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-288202476%2FProperties%2F978196697" anchor-label="option" id="-288202476%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="option.html"><span><span>option</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-288202476%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-288202476%2FProperties%2F978196697" anchor-label="option" id="-288202476%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="option.html">option</a><span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1001263560%2FProperties%2F978196697" anchor-label="optionCreate" id="-1001263560%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="option-create.html"><span>option</span><wbr></wbr><span><span>Create</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1001263560%2FProperties%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted" data-togglable="Properties">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><a data-name="-1001263560%2FProperties%2F978196697" anchor-label="optionCreate" id="-1001263560%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="option-create.html">optionCreate</a><span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>dynamic<span class="token punctuation">, </span><span class="token keyword"></span>escape<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="tabbedcontent">Extensions</h2>
+      <div class="table" data-togglable="Extensions"><a data-name="-946501440%2FExtensions%2F978196697" anchor-label="toJs" id="-946501440%2FExtensions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../to-js.html"><span>to</span><wbr></wbr><span><span>Js</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-946501440%2FExtensions%2F978196697"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                  <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">TomSelectRenders</a><span class="token punctuation">.</span><a href="../to-js.html"><span class="token function">toJs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span>dynamic</div></div>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
