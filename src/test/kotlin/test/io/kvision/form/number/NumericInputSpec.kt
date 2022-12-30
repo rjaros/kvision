@@ -34,7 +34,7 @@ class NumericInputSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val ri = NumericInput(12, decimals =  3).apply {
+            val ri = NumericInput(12, decimals =  3, decimalSeparator = '.').apply {
                 name = "name"
                 id = "idri"
                 disabled = true
@@ -42,7 +42,7 @@ class NumericInputSpec : DomSpec {
             root.add(ri)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<input class=\"form-control\" id=\"idri\" type=\"text\" maxlength=\"14\" pattern=\"^-?(\\d+(,\\d{1,3})?)\$\" value=\"12\" name=\"name\" disabled=\"disabled\">",
+                "<input class=\"form-control\" id=\"idri\" type=\"text\" maxlength=\"14\" pattern=\"^-?(\\d+(\\.\\d{1,3})?)\$\" value=\"12\" name=\"name\" disabled=\"disabled\">",
                 element?.innerHTML,
                 "Should render correct numeric input control"
             )
