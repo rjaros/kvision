@@ -37,6 +37,7 @@ import io.kvision.snabbdom.VNode
  * @param placeholder the placeholder for the text input
  * @param floatLabel whether the placeholder will be animated in Material Design
  * @param inputId the ID of the input element
+ * @param maxlength maximum length of the text input
  * @param className CSS class names
  * @param init an initializer extension function
  */
@@ -46,9 +47,10 @@ open class OnsTextInput(
     placeholder: String? = null,
     floatLabel: Boolean? = null,
     inputId: String? = null,
+    maxlength: Int? = null,
     className: String? = null,
     init: (OnsTextInput.() -> Unit)? = null
-) : TextInput(type, value, (className?.let { "$it " } ?: "") + "kv-ons-form-control") {
+) : TextInput(type, value, maxlength, (className?.let { "$it " } ?: "") + "kv-ons-form-control") {
 
     /**
      * Whether the placeholder will be animated in Material Design.
@@ -104,10 +106,11 @@ fun Container.onsTextInput(
     placeholder: String? = null,
     floatLabel: Boolean? = null,
     inputId: String? = null,
+    maxlength: Int? = null,
     className: String? = null,
     init: (OnsTextInput.() -> Unit)? = null
 ): OnsTextInput {
-    val onsTextInput = OnsTextInput(type, value, placeholder, floatLabel, inputId, className, init)
+    val onsTextInput = OnsTextInput(type, value, placeholder, floatLabel, inputId, maxlength, className, init)
     this.add(onsTextInput)
     return onsTextInput
 }

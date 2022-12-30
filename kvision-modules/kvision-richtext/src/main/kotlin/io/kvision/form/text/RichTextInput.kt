@@ -41,7 +41,7 @@ open class RichTextInput(
     value: String? = null,
     className: String? = null,
     init: (RichTextInput.() -> Unit)? = null
-) : AbstractTextInput(value, (className?.let { "$it " } ?: "") + "form-control trix-control") {
+) : AbstractTextInput(value, null, (className?.let { "$it " } ?: "") + "form-control trix-control") {
 
     override var maskOptions: MaskOptions? = null
         set(value) {

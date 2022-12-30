@@ -44,7 +44,7 @@ open class Password(
     init: (Password.() -> Unit)? = null
 ) : Text(
     InputType.PASSWORD,
-    value, name, label, rich, floating
+    value, name, null, label, rich, floating
 ) {
 
     init {

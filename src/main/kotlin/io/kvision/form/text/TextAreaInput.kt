@@ -42,7 +42,7 @@ open class TextAreaInput(
     className: String? = null,
     init: (TextAreaInput.() -> Unit)? = null
 ) :
-    AbstractTextInput(value, (className?.let { "$it " } ?: "") + "form-control") {
+    AbstractTextInput(value, null, (className?.let { "$it " } ?: "") + "form-control") {
 
     /**
      * Number of columns.

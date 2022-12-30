@@ -34,16 +34,18 @@ import io.kvision.snabbdom.VNode
  * @constructor
  * @param type text input type (default "text")
  * @param value text input value
+ * @param maxlength maximum length of the text input
  * @param className CSS class names
  * @param init an initializer extension function
  */
 open class TextInput(
     type: InputType = InputType.TEXT,
     value: String? = null,
+    maxlength: Int? = null,
     className: String? = null,
     init: (TextInput.() -> Unit)? = null
 ) :
-    AbstractTextInput(value, (className?.let { "$it " } ?: "") + "form-control") {
+    AbstractTextInput(value, maxlength, (className?.let { "$it " } ?: "") + "form-control") {
 
     /**
      * Text input type.
@@ -88,10 +90,11 @@ open class TextInput(
  */
 fun Container.textInput(
     type: InputType = InputType.TEXT, value: String? = null,
+    maxlength: Int? = null,
     className: String? = null,
     init: (TextInput.() -> Unit)? = null
 ): TextInput {
-    val textInput = TextInput(type, value, className, init)
+    val textInput = TextInput(type, value, maxlength, className, init)
     this.add(textInput)
     return textInput
 }

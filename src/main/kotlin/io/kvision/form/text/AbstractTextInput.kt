@@ -37,10 +37,12 @@ import org.w3c.dom.HTMLElement
  *
  * @constructor
  * @param value text input value
+ * @param maxlength maximum length of the text input
  * @param className CSS class names
  */
 abstract class AbstractTextInput(
     value: String? = null,
+    maxlength: Int? = null,
     className: String? = null
 ) : Widget(className), GenericFormComponent<String?>, FormInput, MutableState<String?> {
 
@@ -78,7 +80,7 @@ abstract class AbstractTextInput(
     /**
      * Maximal length of the text input value.
      */
-    var maxlength: Int? by refreshOnUpdate()
+    var maxlength: Int? by refreshOnUpdate(maxlength)
 
     /**
      * Determines if the field is disabled.

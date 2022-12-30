@@ -36,6 +36,7 @@ import io.kvision.onsenui.OnsenUi
  * @param placeholder the placeholder for the text input
  * @param floatLabel whether the placeholder will be animated in Material Design
  * @param name the name attribute of the generated HTML input element
+ * @param maxlength maximum length of the text input
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param className CSS class names
@@ -47,6 +48,7 @@ open class OnsText(
     placeholder: String? = null,
     floatLabel: Boolean? = null,
     name: String? = null,
+    maxlength: Int? = null,
     label: String? = null,
     rich: Boolean = false,
     className: String? = null,
@@ -94,7 +96,7 @@ open class OnsText(
             input.autocomplete = value
         }
 
-    final override val input: OnsTextInput = OnsTextInput(type, value, placeholder, floatLabel, idc).apply {
+    final override val input: OnsTextInput = OnsTextInput(type, value, placeholder, floatLabel, idc, maxlength).apply {
         modifier = "underbar"
         this.name = name
         this.eventTarget = this@OnsText
@@ -121,13 +123,14 @@ fun Container.onsText(
     placeholder: String? = null,
     floatLabel: Boolean? = null,
     name: String? = null,
+    maxlength: Int? = null,
     label: String? = null,
     rich: Boolean = false,
     className: String? = null,
     init: (OnsText.() -> Unit)? = null
 ): OnsText {
     val onsText =
-        OnsText(type, value, placeholder, floatLabel, name, label, rich, className, init)
+        OnsText(type, value, placeholder, floatLabel, name, maxlength, label, rich, className, init)
     this.add(onsText)
     return onsText
 }

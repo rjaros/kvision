@@ -49,7 +49,7 @@ open class TomTypeaheadInput(
     options: List<String>? = null, type: InputType = InputType.TEXT, value: String? = null,
     tsCallbacks: TomSelectCallbacks? = null,
     className: String? = null, init: (TomTypeaheadInput.() -> Unit)? = null
-) : TextInput(type, value, (className?.let { "$it " } ?: "") + "kv-typeahead") {
+) : TextInput(type, value, null, (className?.let { "$it " } ?: "") + "kv-typeahead") {
 
     /**
      * A static list of options for a typeahead control

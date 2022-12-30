@@ -31,13 +31,14 @@ import io.kvision.html.InputType
  * @param type text input type (default "text")
  * @param value text input value
  * @param name the name attribute of the generated HTML input element
+ * @param maxlength maximum length of the text input
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
  * @param floating use floating label
  * @param init an initializer extension function
  */
 open class Text(
-    type: InputType = InputType.TEXT, value: String? = null, name: String? = null,
+    type: InputType = InputType.TEXT, value: String? = null, name: String? = null, maxlength: Int? = null,
     label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (Text.() -> Unit)? = null
 ) : AbstractText(label, rich, floating) {
 
@@ -59,7 +60,7 @@ open class Text(
             input.autocomplete = value
         }
 
-    final override val input: TextInput = TextInput(type, value).apply {
+    final override val input: TextInput = TextInput(type, value, maxlength).apply {
         this.id = this@Text.idc
         this.name = name
     }
@@ -87,10 +88,10 @@ open class Text(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.text(
-    type: InputType = InputType.TEXT, value: String? = null, name: String? = null,
+    type: InputType = InputType.TEXT, value: String? = null, name: String? = null, maxlength: Int? = null,
     label: String? = null, rich: Boolean = false, floating: Boolean = false, init: (Text.() -> Unit)? = null
 ): Text {
-    val text = Text(type, value, name, label, rich, floating, init)
+    val text = Text(type, value, name, maxlength, label, rich, floating, init)
     this.add(text)
     return text
 }
