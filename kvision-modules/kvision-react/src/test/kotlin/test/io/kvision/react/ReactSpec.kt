@@ -21,7 +21,6 @@
  */
 package test.io.kvision.react
 
-import dom.html.HTMLInputElement
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
 import io.kvision.react.react
@@ -29,6 +28,7 @@ import io.kvision.test.DomSpec
 import kotlinx.browser.document
 import react.RefCallback
 import react.dom.html.ReactHTML.input
+import web.html.HTMLInputElement
 import kotlin.test.Test
 
 class ReactSpec : DomSpec {
