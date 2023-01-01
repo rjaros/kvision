@@ -63,7 +63,7 @@ open class ImaskNumeric(
     label: String? = null,
     rich: Boolean = false,
     init: (ImaskNumeric.() -> Unit)? = null
-) : SimplePanel("form-group kv-mb-3"), NumberFormControl, MutableState<Number?> {
+) : SimplePanel("form-group kv-mb-3 kv-add-surr-invalid"), NumberFormControl, MutableState<Number?> {
 
     /**
      * Numeric value.
@@ -192,17 +192,6 @@ open class ImaskNumeric(
         get() = flabel.rich
         set(value) {
             flabel.rich = value
-        }
-
-    override var validatorError: String?
-        get() = super.validatorError
-        set(value) {
-            super.validatorError = value
-            if (value != null) {
-                input.addSurroundingCssClass("is-invalid")
-            } else {
-                input.removeSurroundingCssClass("is-invalid")
-            }
         }
 
     protected val idc = "kv_form_imask_numeric_$counter"
