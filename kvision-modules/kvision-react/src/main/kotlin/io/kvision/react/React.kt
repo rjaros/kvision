@@ -22,7 +22,6 @@
 
 package io.kvision.react
 
-import dom.Element
 import io.kvision.ReactModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
@@ -33,6 +32,7 @@ import react.StateSetter
 import react.createElement
 import react.dom.client.Root
 import react.dom.client.createRoot
+import web.dom.Element
 
 /**
  * React component for KVision with support for state holder.

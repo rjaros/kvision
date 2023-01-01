@@ -22,9 +22,6 @@
 
 package io.kvision.react
 
-import browser.document
-import dom.html.HTMLDivElement
-import dom.html.HTMLElement
 import io.kvision.core.Container
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
@@ -36,6 +33,9 @@ import react.createRef
 import react.dom.html.ReactHTML.div
 import react.useEffect
 import react.useState
+import web.dom.document
+import web.html.HTMLDivElement
+import web.html.HTMLElement
 
 /**
  * A helper functional component used by KVision React.
