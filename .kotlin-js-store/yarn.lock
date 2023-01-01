@@ -1230,9 +1230,9 @@ gettext-extract@^2.0.1:
     minimist "^1.2.0"
 
 gettext-extractor@^3.1.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/gettext-extractor/-/gettext-extractor-3.6.0.tgz#a05827ba7cf5baf3f4acd9b42dce75a48c5cf6d5"
-  integrity sha512-fHbvp5toU3NcMOAI7M2b99OkguzBu7v9LADF0Ad1q/ltZvNttcIB65uVIBt+fehPCgy37T+NeEcvtaI+t/+gtw==
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/gettext-extractor/-/gettext-extractor-3.6.1.tgz#ee977d6af82f0f963d6fe9d530a7fd01695ffa6a"
+  integrity sha512-s0rh9RGZRHbQAnj2vPACfWrmjYThYJf7k/5LOuyoMk9L8vv/AWBsw8ih9M6Ij3gJYVvMIkAabdB258CW7GD/vQ==
   dependencies:
     "@types/glob" "5 - 7"
     "@types/parse5" "^5"
@@ -1623,9 +1623,9 @@ json-stringify-safe@^5.0.1:
   integrity sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==
 
 json5@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.1.tgz#779fb0018604fa854eacbf6252180d83543e3dbe"
-  integrity sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.2.tgz#63d98d60f21b313b77c4d6da18bfa69d80e1d593"
+  integrity sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==
   dependencies:
     minimist "^1.2.0"
 
