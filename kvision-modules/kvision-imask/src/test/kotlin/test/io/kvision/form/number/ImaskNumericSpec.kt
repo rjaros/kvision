@@ -42,7 +42,7 @@ class ImaskNumericSpec : DomSpec {
             val element = document.getElementById("test")
             val id = numeric.input.id
             assertEqualsHtml(
-                "<div class=\"form-group kv-mb-3\" id=\"idri\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" type=\"text\" value=\"12\" name=\"name\" disabled=\"disabled\"></div>",
+                "<div class=\"form-group kv-mb-3 kv-add-surr-invalid\" id=\"idri\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" type=\"text\" value=\"12\" name=\"name\" disabled=\"disabled\"></div>",
                 element?.innerHTML,
                 "Should render correct masked numeric form control"
             )

@@ -41,7 +41,7 @@ class SpinnerSpec : DomSpec {
             val element = document.getElementById("test")
             val id = spinner.input.id
             assertEqualsHtml(
-                "<div class=\"form-group kv-mb-3\" id=\"idri\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" type=\"number\" value=\"12\" name=\"name\" min=\"10\" max=\"20\" step=\"2\" disabled=\"disabled\"></div>",
+                "<div class=\"form-group kv-mb-3 kv-add-surr-invalid\" id=\"idri\"><label class=\"form-label\" for=\"$id\">Label</label><input class=\"form-control\" id=\"$id\" type=\"number\" value=\"12\" name=\"name\" min=\"10\" max=\"20\" step=\"2\" disabled=\"disabled\"></div>",
                 element?.innerHTML,
                 "Should render correct spinner form control"
             )
