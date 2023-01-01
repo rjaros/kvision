@@ -217,6 +217,10 @@ open class ImaskNumericInput(
 
     override fun afterDestroy() {
         uninstallMask()
+        if (tempValue != null) {
+            if (this.value != tempValue) this.value = tempValue
+            tempValue = null
+        }
     }
 
     /**
