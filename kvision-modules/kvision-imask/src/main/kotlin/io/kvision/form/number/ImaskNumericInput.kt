@@ -152,8 +152,23 @@ open class ImaskNumericInput(
      */
     protected var mask: Mask? = null
 
+    /**
+     * Temporary component value.
+     */
+    protected var tempValue: Number? = null
+        get() = field
+        set(value) {
+            field = value
+            observers.forEach { ob -> ob(value) }
+        }
+
     init {
         useSnabbdomDistinctKey()
+        this.setInternalEventListener<ImaskNumericInput> {
+            blur = {
+                if (self.value != tempValue) self.value = tempValue
+            }
+        }
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
@@ -247,7 +262,7 @@ open class ImaskNumericInput(
                 )
             )
             mask!!.onChange {
-                value = it?.toDoubleOrNull()
+                tempValue = it?.toDoubleOrNull()
             }
         }
     }
