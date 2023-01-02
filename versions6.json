@@ -33,6 +33,27 @@
             ]
         },
         {
+            "name": "kvision-datetime",
+            "description": "Date and time picker form components",
+            "initializers": [
+                "DatetimeModule"
+            ]
+        },
+        {
+            "name": "kvision-richtext",
+            "description": "Rich text form component",
+            "initializers": [
+                "RichTextModule"
+            ]
+        },
+        {
+            "name": "kvision-tom-select",
+            "description": "Advanced TomSelect and TomTypeahead (autocomplete) form components",
+            "initializers": [
+                "TomSelectModule"
+            ]
+        },
+        {
             "name": "kvision-bootstrap-upload",
             "description": "Bootstrap based upload form component",
             "excludes": [
@@ -40,6 +61,27 @@
             ],
             "initializers": [
                 "BootstrapUploadModule"
+            ]
+        },
+        {
+            "name": "kvision-imask",
+            "description": "Text input mask support with Imask.js library, ImaskNumeric form component",
+            "initializers": [
+                "ImaskModule"
+            ]
+        },
+        {
+            "name": "kvision-toastify",
+            "description": "Toast messages",
+            "initializers": [
+                "ToastifyModule"
+            ]
+        },
+        {
+            "name": "kvision-fontawesome",
+            "description": "Font Awesome icons support",
+            "initializers": [
+                "FontAwesomeModule"
             ]
         },
         {
@@ -53,74 +95,23 @@
             ]
         },
         {
-            "name": "kvision-tom-select",
-            "description": "Advanced select and typeahead (autocomplete) form components",
-            "initializers": [
-                "TomSelectModule"
-            ]
-        },
-        {
-            "name": "kvision-tom-select-remote",
-            "description": "Fullstack versions of TomSelect and TomTypeahead form components",
-            "initializers": [
-                "TomSelectModule"
-            ]
-        },
-        {
-            "name": "kvision-datetime",
-            "description": "Date and time picker form components",
-            "initializers": [
-                "DatetimeModule"
-            ]
-        },
-        {
-            "name": "kvision-fontawesome",
-            "description": "Font Awesome support",
-            "initializers": [
-                "FontAwesomeModule"
-            ]
-        },
-        {
-            "name": "kvision-state",
-            "description": "State bindings and observable data structures"
-        },
-        {
-            "name": "kvision-state-flow",
-            "description": "Extensions for Kotlin coroutines Flow, StateFlow and SharedFlow"
-        },
-        {
-            "name": "kvision-ballast",
-            "description": "Extensions for Ballast state management framework"
-        },
-        {
-            "name": "kvision-rest",
-            "description": "Configurable REST/HTTP client"
-        },
-        {
-            "name": "kvision-jquery",
-            "description": "jQuery bindings, events and animations"
-        },
-        {
-            "name": "kvision-handlebars",
-            "description": "Handlebars.js templates support"
-        },
-        {
             "name": "kvision-i18n",
             "description": "Internationalization support"
         },
         {
-            "name": "kvision-imask",
-            "description": "Text input mask support with Imask.js library, ImaskNumeric form component",
+            "name": "kvision-pace",
+            "description": "Pace automatic page loader"
+        },
+        {
+            "name": "kvision-print",
+            "description": "Printing support with Print.js library",
             "initializers": [
-                "ImaskModule"
+                "PrintModule"
             ]
         },
         {
-            "name": "kvision-richtext",
-            "description": "Rich text form component",
-            "initializers": [
-                "RichTextModule"
-            ]
+            "name": "kvision-handlebars",
+            "description": "Handlebars.js templates support"
         },
         {
             "name": "kvision-chart",
@@ -138,36 +129,6 @@
             ]
         },
         {
-            "name": "kvision-tabulator-remote",
-            "description": "Fullstack version of the tabulator component",
-            "initializers": [
-                "TabulatorModule",
-                "TabulatorCssBootstrapModule"
-            ]
-        },
-        {
-            "name": "kvision-select-remote",
-            "description": "Fullstack version of the select form component"
-        },
-        {
-            "name": "kvision-pace",
-            "description": "Pace automatic page loader"
-        },
-        {
-            "name": "kvision-redux",
-            "description": "Redux state container",
-            "excludes": [
-                "kvision-redux-kotlin"
-            ]
-        },
-        {
-            "name": "kvision-redux-kotlin",
-            "description": "Redux Kotlin state container",
-            "excludes": [
-                "kvision-redux"
-            ]
-        },
-        {
             "name": "kvision-maps",
             "description": "Maps component, based on Leaflet library",
             "initializers": [
@@ -175,18 +136,12 @@
             ]
         },
         {
-            "name": "kvision-toastify",
-            "description": "Toast messages",
-            "initializers": [
-                "ToastifyModule"
-            ]
+            "name": "kvision-rest",
+            "description": "Configurable REST/HTTP client"
         },
         {
-            "name": "kvision-print",
-            "description": "Printing support with Print.js library",
-            "initializers": [
-                "PrintModule"
-            ]
+            "name": "kvision-jquery",
+            "description": "jQuery bindings, events and animations"
         },
         {
             "name": "kvision-routing-navigo",
@@ -210,6 +165,51 @@
             "excludes": [
                 "kvision-routing-navigo",
                 "kvision-routing-navigo-ng"
+            ]
+        },
+        {
+            "name": "kvision-state",
+            "description": "State bindings and observable data structures"
+        },
+        {
+            "name": "kvision-state-flow",
+            "description": "Extensions for Kotlin coroutines Flow, StateFlow and SharedFlow"
+        },
+        {
+            "name": "kvision-ballast",
+            "description": "Extensions for Ballast state management framework"
+        },
+        {
+            "name": "kvision-redux",
+            "description": "Redux state container",
+            "excludes": [
+                "kvision-redux-kotlin"
+            ]
+        },
+        {
+            "name": "kvision-redux-kotlin",
+            "description": "Redux Kotlin state container",
+            "excludes": [
+                "kvision-redux"
+            ]
+        },
+        {
+            "name": "kvision-select-remote",
+            "description": "Fullstack version of the select form component"
+        },
+        {
+            "name": "kvision-tom-select-remote",
+            "description": "Fullstack versions of TomSelect and TomTypeahead form components",
+            "initializers": [
+                "TomSelectModule"
+            ]
+        },
+        {
+            "name": "kvision-tabulator-remote",
+            "description": "Fullstack version of the tabulator component",
+            "initializers": [
+                "TabulatorModule",
+                "TabulatorCssBootstrapModule"
             ]
         },
         {
