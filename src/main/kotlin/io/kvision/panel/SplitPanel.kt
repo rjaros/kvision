@@ -103,6 +103,7 @@ open class SplitPanel(
     protected var splitJs: dynamic = null
 
     init {
+        useSnabbdomDistinctKey()
         @Suppress("LeakingThis")
         init?.invoke(this)
     }
