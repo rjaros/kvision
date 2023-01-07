@@ -35,6 +35,7 @@ import io.kvision.utils.*
 import org.w3c.dom.CustomEventInit
 import org.w3c.dom.DragEvent
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.events.Event
 import org.w3c.dom.events.MouseEvent
 import kotlin.reflect.KProperty
 
@@ -832,6 +833,28 @@ inline fun <reified T : Widget> T.onEvent(noinline block: SnOn<T>.() -> Unit): I
 inline fun <reified T : Widget> T.onClick(noinline handler: T.(MouseEvent) -> Unit): Int {
     return this.setEventListener<T> {
         click = { e ->
+            self.handler(e)
+        }
+    }
+}
+
+/**
+ * An extension function for defining on change event handlers.
+ */
+inline fun <reified T : Widget> T.onChange(noinline handler: T.(Event) -> Unit): Int {
+    return this.setEventListener<T> {
+        change = { e ->
+            self.handler(e)
+        }
+    }
+}
+
+/**
+ * An extension function for defining on change event handlers.
+ */
+inline fun <reified T : Widget> T.onInput(noinline handler: T.(Event) -> Unit): Int {
+    return this.setEventListener<T> {
+        input = { e ->
             self.handler(e)
         }
     }
