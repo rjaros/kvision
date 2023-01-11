@@ -45,7 +45,7 @@ class SwitchSpec : DomSpec {
             val element = document.getElementById("test")
             val id = si.input.id
             assertEqualsHtml(
-                "<div class=\"form-check form-check-inline form-switch\"><input class=\"form-check-input kv-check-danger kv-checkbox-circle\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
+                "<div class=\"form-check form-check-inline form-switch kv-disabled-label\"><input class=\"form-check-input kv-check-danger kv-checkbox-circle\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
                 "Should render correct Bootstrap checkbox form control rendered as a switch"
             )
@@ -53,7 +53,7 @@ class SwitchSpec : DomSpec {
             si.circled = false
             si.inline = false
             assertEqualsHtml(
-                "<div class=\"form-check form-switch\"><input class=\"form-check-input kv-check-info\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
+                "<div class=\"form-check form-switch kv-disabled-label\"><input class=\"form-check-input kv-check-info\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
                 "Should render correct Bootstrap checkbox form control rendered as a switch"
             )
