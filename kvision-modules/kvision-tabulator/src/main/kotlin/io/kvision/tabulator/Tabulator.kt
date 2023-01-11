@@ -123,6 +123,7 @@ open class Tabulator<T : Any>(
      * Native Tabulator object.
      */
     var jsTabulator: JsTabulator? = null
+    private var unsubscribe: (() -> Unit)? = null
     private var jsTabulatorInitialized = false
 
     private var pageSize: Number? = null
@@ -137,7 +138,7 @@ open class Tabulator<T : Any>(
             @Suppress("UnsafeCastFromDynamic")
             options.data = data.map { toPlainObjTabulator(it) }.toTypedArray()
             if (data is ObservableList) {
-                data.onUpdate += {
+                unsubscribe = data.subscribe {
                     replaceData(data.toTypedArray())
                 }
             }
@@ -843,6 +844,7 @@ open class Tabulator<T : Any>(
     }
 
     override fun dispose() {
+        unsubscribe?.invoke()
         jsTabulator?.destroy()
         customRoots.forEach { it.dispose() }
         customRoots.clear()
