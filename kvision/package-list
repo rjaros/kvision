@@ -6997,6 +6997,7 @@ $dokka.location:io.kvision.form.select/TomSelect/removeEventListener/#kotlin.Int
 $dokka.location:io.kvision.form.select/TomSelect/removeEventListeners/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select/remove-event-listeners.html
 $dokka.location:io.kvision.form.select/TomSelect/rich/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select/rich.html
 $dokka.location:io.kvision.form.select/TomSelect/selectSize/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select/select-size.html
+$dokka.location:io.kvision.form.select/TomSelect/selectedLabel/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select/selected-label.html
 $dokka.location:io.kvision.form.select/TomSelect/setEventListener/#kotlin.Function1[io.kvision.utils.SnOn[TypeParam(bounds=[io.kvision.core.Widget])],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select/set-event-listener.html
 $dokka.location:io.kvision.form.select/TomSelect/setState/#kotlin.String?/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select/set-state.html
 $dokka.location:io.kvision.form.select/TomSelect/subscribe/#kotlin.Function1[kotlin.String?,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select/subscribe.html
@@ -7035,6 +7036,7 @@ $dokka.location:io.kvision.form.select/TomSelectInput/options/#/PointingToDeclar
 $dokka.location:io.kvision.form.select/TomSelectInput/placeholder/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-input/placeholder.html
 $dokka.location:io.kvision.form.select/TomSelectInput/refreshState/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-input/refresh-state.html
 $dokka.location:io.kvision.form.select/TomSelectInput/selectSize/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-input/select-size.html
+$dokka.location:io.kvision.form.select/TomSelectInput/selectedLabel/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-input/selected-label.html
 $dokka.location:io.kvision.form.select/TomSelectInput/setState/#kotlin.String?/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-input/set-state.html
 $dokka.location:io.kvision.form.select/TomSelectInput/size/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-input/size.html
 $dokka.location:io.kvision.form.select/TomSelectInput/subscribe/#kotlin.Function1[kotlin.String?,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-input/subscribe.html
@@ -7107,6 +7109,7 @@ $dokka.location:io.kvision.form.select/TomSelectRemote/removeEventListener/#kotl
 $dokka.location:io.kvision.form.select/TomSelectRemote/removeEventListeners/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-remote/remove-event-listeners.html
 $dokka.location:io.kvision.form.select/TomSelectRemote/rich/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-remote/rich.html
 $dokka.location:io.kvision.form.select/TomSelectRemote/selectSize/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-remote/select-size.html
+$dokka.location:io.kvision.form.select/TomSelectRemote/selectedLabel/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-remote/selected-label.html
 $dokka.location:io.kvision.form.select/TomSelectRemote/setEventListener/#kotlin.Function1[io.kvision.utils.SnOn[TypeParam(bounds=[io.kvision.core.Widget])],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-remote/set-event-listener.html
 $dokka.location:io.kvision.form.select/TomSelectRemote/setState/#kotlin.String?/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-remote/set-state.html
 $dokka.location:io.kvision.form.select/TomSelectRemote/subscribe/#kotlin.Function1[kotlin.String?,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-remote/subscribe.html
