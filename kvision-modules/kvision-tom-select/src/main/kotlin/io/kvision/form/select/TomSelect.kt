@@ -164,6 +164,12 @@ open class TomSelect(
             flabel.rich = value
         }
 
+    /**
+     * The label of the currently selected option.
+     */
+    val selectedLabel
+        get() = input.selectedLabel
+
     private val idc = "kv_form_TomSelect_$counter"
     final override val input: TomSelectInput = TomSelectInput(
         options, value, emptyOption, multiple, selectSize, tsOptions, tsCallbacks, tsRenders,
@@ -177,6 +183,7 @@ open class TomSelect(
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
+        useSnabbdomDistinctKey()
         @Suppress("LeakingThis")
         input.eventTarget = this
         this.addPrivate(flabel)

@@ -38,6 +38,9 @@ import io.kvision.state.MutableState
 import io.kvision.utils.obj
 import kotlinx.browser.window
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLOptionElement
+import org.w3c.dom.HTMLSelectElement
+import org.w3c.dom.asList
 
 /**
  * The basic component for a select control based on Tom Select.
@@ -138,6 +141,14 @@ open class TomSelectInput(
      * The native TomSelect object instance
      */
     var tomSelectJs: TomSelectJs? = null
+
+    /**
+     * The label of the currently selected option.
+     */
+    val selectedLabel: String?
+        get() = getElement()?.unsafeCast<HTMLSelectElement>()?.options?.asList()?.find {
+            it.unsafeCast<HTMLOptionElement>().value == this.value
+        }?.textContent
 
     init {
         useSnabbdomDistinctKey()

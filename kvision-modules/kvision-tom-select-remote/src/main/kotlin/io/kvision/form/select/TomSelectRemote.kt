@@ -165,6 +165,12 @@ open class TomSelectRemote<out T : Any>(
             flabel.rich = value
         }
 
+    /**
+     * The label of the currently selected option.
+     */
+    val selectedLabel
+        get() = input.selectedLabel
+
     private val idc = "kv_form_TomSelectRemote_$counter"
     final override val input: TomSelectRemoteInput<T> = TomSelectRemoteInput(
         serviceManager, function, stateFunction, value, emptyOption, multiple, selectSize,
@@ -178,6 +184,7 @@ open class TomSelectRemote<out T : Any>(
     final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
 
     init {
+        useSnabbdomDistinctKey()
         @Suppress("LeakingThis")
         input.eventTarget = this
         this.addPrivate(flabel)
