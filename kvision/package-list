@@ -10747,6 +10747,8 @@ $dokka.location:io.kvision.remote/CallAgent///PointingToDeclaration/kvision/io.
 $dokka.location:io.kvision.remote/CallAgent/CallAgent/#/PointingToDeclaration/kvision/io.kvision.remote/-call-agent/-call-agent.html
 $dokka.location:io.kvision.remote/CallAgent/jsonRpcCall/#kotlin.String#kotlin.collections.List[kotlin.String?]#[Error type: Unresolved type for HttpMethod]#kotlin.coroutines.SuspendFunction1[[Error type: Unresolved type for RequestInit],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.remote/-call-agent/json-rpc-call.html
 $dokka.location:io.kvision.remote/CallAgent/remoteCall/#kotlin.String#kotlin.Any#[Error type: Unresolved type for HttpMethod]#kotlin.String#io.kvision.remote.ResponseBodyType#kotlin.coroutines.SuspendFunction1[[Error type: Unresolved type for RequestInit],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.remote/-call-agent/remote-call.html
+$dokka.location:io.kvision.remote/ContentTypeException///PointingToDeclaration/kvision/io.kvision.remote/-content-type-exception/index.html
+$dokka.location:io.kvision.remote/ContentTypeException/ContentTypeException/#kotlin.String/PointingToDeclaration/kvision/io.kvision.remote/-content-type-exception/-content-type-exception.html
 $dokka.location:io.kvision.remote/Credentials///PointingToDeclaration/kvision/io.kvision.remote/-credentials/index.html
 $dokka.location:io.kvision.remote/Credentials/Credentials/#kotlin.String?#kotlin.String?/PointingToDeclaration/kvision/io.kvision.remote/-credentials/-credentials.html
 $dokka.location:io.kvision.remote/Credentials/password/#/PointingToDeclaration/kvision/io.kvision.remote/-credentials/password.html
