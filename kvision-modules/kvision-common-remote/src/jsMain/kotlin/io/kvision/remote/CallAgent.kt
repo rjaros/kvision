@@ -52,6 +52,11 @@ enum class ResponseBodyType {
 }
 
 /**
+ * An exception thrown when the server returns a non-json response for a json-rpc call.
+ */
+class ContentTypeException(message: String) : Exception(message)
+
+/**
  * An agent responsible for remote calls.
  */
 open class CallAgent {
@@ -95,7 +100,7 @@ open class CallAgent {
             requestFilter?.invoke(requestInit)
             suspendCancellableCoroutine { cont ->
                 window.fetch(fetchUrl, requestInit).then { response ->
-                    if (response.ok) {
+                    if (response.ok && response.headers.get("Content-Type") == "application/json") {
                         response.json().then { data: dynamic ->
                             when {
                                 data.id != jsonRpcRequest.id -> cont.cancel(Exception("Invalid response ID"))
@@ -111,10 +116,13 @@ open class CallAgent {
                                         cont.cancel(Exception(data.error.toString()))
                                     }
                                 }
+
                                 data.result != null -> cont.resume(data.result)
                                 else -> cont.cancel(Exception("Invalid response"))
                             }
                         }
+                    } else if (response.ok) {
+                        cont.cancel(ContentTypeException("Invalid response content type: ${response.headers.get("Content-Type")}"))
                     } else {
                         if (response.status.toInt() == HTTP_UNAUTHORIZED) {
                             cont.cancel(SecurityException(response.statusText))
@@ -171,7 +179,13 @@ open class CallAgent {
                 window.fetch(fetchUrl, requestInit).then { response ->
                     if (response.ok) {
                         when (responseBodyType) {
-                            ResponseBodyType.JSON -> response.json().then { cont.resume(it) }
+                            ResponseBodyType.JSON -> {
+                                if (response.headers.get("Content-Type") == "application/json") {
+                                    response.json().then { cont.resume(it) }
+                                } else {
+                                    cont.cancel(ContentTypeException("Invalid response content type: ${response.headers.get("Content-Type")}"))
+                                }
+                            }
                             ResponseBodyType.TEXT -> response.text().then { cont.resume(it) }
                             ResponseBodyType.READABLE_STREAM -> cont.resume(response.body)
                         }
