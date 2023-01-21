@@ -99,7 +99,6 @@ kotlin {
             dependencies {
                 implementation("io.kvision:kvision:$kvisionVersion")
                 implementation("io.kvision:kvision-bootstrap:$kvisionVersion")
-                implementation("io.kvision:kvision-bootstrap-css:$kvisionVersion")
                 implementation("io.kvision:kvision-i18n:$kvisionVersion")
             }
             kotlin.srcDir("build/generated-src/frontend")

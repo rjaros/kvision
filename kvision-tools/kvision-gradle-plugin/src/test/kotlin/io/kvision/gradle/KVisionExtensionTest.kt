@@ -180,14 +180,14 @@ tasks.register("printYarnVersions") {
         context("with applied with alongside Kotlin/MPP plugin") {
 
             val projectDir: File = `gradle kts project` {
-                val kvisionVersion = "5.18.0"
+                val kvisionVersion = "6.0.5"
                 `build gradle kts`(
                     """
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     id("io.kvision")
-    kotlin("multiplatform") version "1.8.0-Beta"
+    kotlin("multiplatform") version "1.8.0"
 }
 
 repositories {
@@ -271,7 +271,6 @@ kotlin {
             dependencies {
                 implementation("io.kvision:kvision:$kvisionVersion")
                 implementation("io.kvision:kvision-bootstrap:$kvisionVersion")
-                implementation("io.kvision:kvision-bootstrap-css:$kvisionVersion")
                 implementation("io.kvision:kvision-i18n:$kvisionVersion")
             }
             kotlin.srcDir("build/generated-src/frontend")
@@ -311,22 +310,22 @@ kotlin {
     companion object {
 
         private val baseKotlinJsBuildGradleKts: String = run {
-            val kvisionVersion = "5.18.0"
+            val kvisionVersion = "6.0.5"
             //language=kotlin
             """
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     id("io.kvision")
-    kotlin("js") version "1.8.0-Beta"
+    kotlin("js") version "1.8.0"
 }
 
 repositories {
     mavenCentral()
 }
 
-val kotlinVersion: String = "1.8.0-Beta"
-val kvisionVersion: String = "5.18.0"
+val kotlinVersion: String = "1.8.0"
+val kvisionVersion: String = "6.0.5"
 
 val webDir = file("src/main/web")
 
@@ -360,7 +359,6 @@ kotlin {
     sourceSets["main"].dependencies {
         implementation("io.kvision:kvision:$kvisionVersion")
         implementation("io.kvision:kvision-bootstrap:$kvisionVersion")
-        implementation("io.kvision:kvision-bootstrap-css:$kvisionVersion")
         implementation("io.kvision:kvision-i18n:$kvisionVersion")
     }
     sourceSets["test"].dependencies {
