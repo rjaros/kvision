@@ -62,6 +62,7 @@ class Root : SimplePanel {
     private val addRow: Boolean
     private val contextMenus: MutableList<Widget> = mutableListOf()
     private var rootVnode: VNode? = null
+    private var elementName: String? = null
 
     internal var singleRenderers = 0
 
@@ -101,7 +102,9 @@ class Root : SimplePanel {
     ) : super() {
         this.containerType = containerType
         this.addRow = addRow
-        if (document.getElementById(id) != null) {
+        val element = document.getElementById(id)
+        if (element != null) {
+            elementName = element.nodeName
             rootVnode = KVManager.patch(id, this.renderVNode())
         }
         this.id = id
@@ -125,6 +128,7 @@ class Root : SimplePanel {
     ) : super() {
         this.containerType = containerType
         this.addRow = addRow
+        elementName = element.nodeName
         rootVnode = KVManager.patch(element, this.renderVNode())
         this.id = "kv_root_${counter++}"
         @Suppress("LeakingThis")
@@ -140,11 +144,11 @@ class Root : SimplePanel {
 
     override fun render(): VNode {
         return if (addRow) {
-            render("div#$id", stylesVNodes() + arrayOf(h("div", snOpt {
+            render("$elementName#$id", stylesVNodes() + arrayOf(h("div", snOpt {
                 `class` = snClasses(listOf("row" to true))
             }, childrenVNodes())) + modalsVNodes() + contextMenusVNodes())
         } else {
-            render("div#$id", stylesVNodes() + childrenVNodes() + modalsVNodes() + contextMenusVNodes())
+            render("$elementName#$id", stylesVNodes() + childrenVNodes() + modalsVNodes() + contextMenusVNodes())
         }
     }
 
