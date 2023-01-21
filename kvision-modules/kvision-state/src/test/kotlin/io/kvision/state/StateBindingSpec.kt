@@ -214,4 +214,32 @@ class StateBindingSpec : DomSpec {
             )
         }
     }
+
+    @Test
+    fun bindEachMultiple() {
+        run {
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
+                synchronousMode = true
+            }
+            val container = SimplePanel()
+            val observableList = observableListOf(1, 2, 3)
+            container.bindEach(observableList) { state ->
+                div("$state")
+                div("${state + 10}")
+            }
+            root.add(container)
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<div><div style=\"display: contents;\"><div>1</div><div>11</div></div><div style=\"display: contents;\"><div>2</div><div>12</div></div><div style=\"display: contents;\"><div>3</div><div>13</div></div></div>",
+                element?.innerHTML,
+                "Should render initial state of the list of items"
+            )
+            observableList.add(1, 4)
+            assertEqualsHtml(
+                "<div><div style=\"display: contents;\"><div>1</div><div>11</div></div><div style=\"display: contents;\"><div>4</div><div>14</div></div><div style=\"display: contents;\"><div>2</div><div>12</div></div><div style=\"display: contents;\"><div>3</div><div>13</div></div></div>",
+                element?.innerHTML,
+                "Should render changed state of the list of items"
+            )
+        }
+    }
 }

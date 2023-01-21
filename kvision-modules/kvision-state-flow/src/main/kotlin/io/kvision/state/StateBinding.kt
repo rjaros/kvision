@@ -365,20 +365,44 @@ fun <S, W : SimplePanel> W.bindEach(
     equalizer: ((S, S) -> Boolean)? = null,
     factory: (SimplePanel.(S) -> Unit)
 ): W {
-    fun getSingleComponent(state: S): Component {
-        val tempContainer = SimplePanel {
-            display = Display.CONTENTS
-            factory(state)
-        }
-        return if (tempContainer.getChildren().size == 1) {
-            val child = tempContainer.getChildren().first()
-            tempContainer.removeAll()
-            tempContainer.dispose()
-            child
-        } else {
-            tempContainer
+    fun addSingleComponent(state: S) {
+        val previousChildrenSize = this.getChildren().size
+        factory(state)
+        val newChildrenSize = this.getChildren().size
+        val newChildren = this.getChildren()
+        if (newChildrenSize != previousChildrenSize + 1) {
+            simplePanel {
+                display = Display.CONTENTS
+                for (i in newChildrenSize - 1 downTo previousChildrenSize) {
+                    val child = newChildren[i]
+                    this@bindEach.removeAt(i)
+                    add(0, child)
+                }
+            }
         }
     }
+
+    fun getSingleComponent(state: S): Component {
+        val previousChildrenSize = this.getChildren().size
+        factory(state)
+        val newChildrenSize = this.getChildren().size
+        val newChildren = this.getChildren()
+        return if (newChildrenSize == previousChildrenSize + 1) {
+            val child = newChildren.last()
+            removeAt(newChildrenSize - 1)
+            child
+        } else {
+            SimplePanel {
+                display = Display.CONTENTS
+                for (i in newChildrenSize - 1 downTo previousChildrenSize) {
+                    val child = newChildren[i]
+                    this@bindEach.removeAt(i)
+                    add(0, child)
+                }
+            }
+        }
+    }
+
     initWidgetScope(this)
     this._archivedState = null
     stateFlow.onEach {
@@ -399,7 +423,11 @@ fun <S, W : SimplePanel> W.bindEach(
                                 component.dispose()
                             }
                             delta.target.lines.forEachIndexed { i, line ->
-                                this.add(position + i, getSingleComponent(line))
+                                if (position + i == this.getChildren().size) {
+                                    addSingleComponent(line)
+                                } else {
+                                    this.add(position + i, getSingleComponent(line))
+                                }
                             }
                         }
                         is DeleteDelta -> {
@@ -413,7 +441,11 @@ fun <S, W : SimplePanel> W.bindEach(
                         is InsertDelta -> {
                             val position = delta.source.position
                             delta.target.lines.forEachIndexed { i, line ->
-                                this.add(position + i, getSingleComponent(line))
+                                if (position + i == this.getChildren().size) {
+                                    addSingleComponent(line)
+                                } else {
+                                    this.add(position + i, getSingleComponent(line))
+                                }
                             }
                         }
                         is EqualDelta -> {
