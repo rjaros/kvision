@@ -184,9 +184,6 @@ open class CheckBox(
         if (validatorError != null) {
             classSetBuilder.add("text-danger")
         }
-        if (disabled) {
-            classSetBuilder.add("kv-disabled-label")
-        }
     }
 
     /**

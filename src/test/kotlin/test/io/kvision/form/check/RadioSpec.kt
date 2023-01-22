@@ -44,7 +44,7 @@ class RadioSpec : DomSpec {
             val element = document.getElementById("test")
             val id = ci.input.id
             assertEqualsHtml(
-                "<div class=\"form-check form-check-inline kv-disabled-label\"><input class=\"form-check-input kv-check-danger\" id=\"$id\" type=\"radio\" checked=\"checked\" name=\"name\" disabled=\"disabled\" value=\"abc\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
+                "<div class=\"form-check form-check-inline\"><input class=\"form-check-input kv-check-danger\" id=\"$id\" type=\"radio\" checked=\"checked\" name=\"name\" disabled=\"disabled\" value=\"abc\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
                 "Should render correct radio button form control"
             )
@@ -52,7 +52,7 @@ class RadioSpec : DomSpec {
             ci.squared = true
             ci.inline = false
             assertEqualsHtml(
-                "<div class=\"form-check kv-disabled-label\"><input class=\"form-check-input kv-check-info kv-radio-square\" id=\"$id\" type=\"radio\" checked=\"checked\" name=\"name\" disabled=\"disabled\" value=\"abc\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
+                "<div class=\"form-check\"><input class=\"form-check-input kv-check-info kv-radio-square\" id=\"$id\" type=\"radio\" checked=\"checked\" name=\"name\" disabled=\"disabled\" value=\"abc\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
                 "Should render correct radio button form control"
             )

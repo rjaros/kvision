@@ -45,7 +45,7 @@ class CheckBoxSpec : DomSpec {
             val element = document.getElementById("test")
             val id = ci.input.id
             assertEqualsHtml(
-                "<div class=\"form-check form-check-inline kv-disabled-label\"><input class=\"form-check-input kv-check-danger kv-checkbox-circle\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
+                "<div class=\"form-check form-check-inline\"><input class=\"form-check-input kv-check-danger kv-checkbox-circle\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
                 "Should render correct checkbox form control"
             )
@@ -53,7 +53,7 @@ class CheckBoxSpec : DomSpec {
             ci.circled = false
             ci.inline = false
             assertEqualsHtml(
-                "<div class=\"form-check kv-disabled-label\"><input class=\"form-check-input kv-check-info\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
+                "<div class=\"form-check\"><input class=\"form-check-input kv-check-info\" id=\"$id\" type=\"checkbox\" checked=\"checked\" name=\"name\" disabled=\"disabled\"><label class=\"form-check-label\" for=\"$id\">Label<span></span></label></div>",
                 element?.innerHTML,
                 "Should render correct checkbox form control"
             )

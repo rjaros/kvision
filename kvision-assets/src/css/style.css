@@ -792,14 +792,13 @@ label.required-label + ons-input > span.text-input__label::after {
     padding-top: 3px;
 }
 
-.kv-disabled-label label {
-    cursor: default;
-    opacity: .5;
-}
-
-.form-check-input:disabled {
+.form-check-input:not(:checked):disabled {
     background-color: #e9ecef;
     opacity: 1;
+}
+
+.form-check-input:disabled ~ .form-check-label, .form-check-input[disabled] ~ .form-check-label {
+    opacity: unset;
 }
 
 /*!

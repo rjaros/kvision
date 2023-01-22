@@ -196,9 +196,6 @@ open class TriStateCheckBox(
         if (validatorError != null) {
             classSetBuilder.add("text-danger")
         }
-        if (disabled) {
-            classSetBuilder.add("kv-disabled-label")
-        }
     }
 
     /**
