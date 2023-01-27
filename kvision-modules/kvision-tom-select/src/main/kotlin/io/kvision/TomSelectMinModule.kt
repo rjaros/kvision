@@ -23,12 +23,12 @@
 package io.kvision
 
 /**
- * Initializer for KVision Tom Select module with Bootstrap CSS styling.
+ * Initializer for KVision Tom Select module with minimal CSS styling.
  */
-object TomSelectModule : ModuleInitializer {
+object TomSelectMinModule : ModuleInitializer {
 
     override fun initialize() {
-        require("tom-select/dist/css/tom-select.bootstrap5.min.css")
+        require("tom-select/dist/css/tom-select.min.css")
     }
 
 }
