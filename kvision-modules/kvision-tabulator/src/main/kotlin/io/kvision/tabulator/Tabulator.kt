@@ -38,12 +38,12 @@ import io.kvision.utils.obj
 import io.kvision.utils.syncWithList
 import kotlinx.browser.window
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.overwriteWith
 import kotlinx.serialization.serializer
 import org.w3c.dom.Element
-import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
 import kotlin.js.Date
 import kotlin.reflect.KClass
@@ -136,7 +136,7 @@ open class Tabulator<T : Any>(
         useSnabbdomDistinctKey()
         if (data != null) {
             @Suppress("UnsafeCastFromDynamic")
-            options.data = data.map { toPlainObjTabulator(it) }.toTypedArray()
+            options.data = data.map { toPlainObj(it) }.toTypedArray()
             if (data is ObservableList) {
                 unsubscribe = data.subscribe {
                     replaceData(data.toTypedArray())
@@ -263,21 +263,22 @@ open class Tabulator<T : Any>(
                 this.dispatchEvent("cellEditCancelledTabulator", obj { detail = cell })
             }
             jsTabulator?.on("dataLoading") { data: dynamic ->
+                @Suppress("UnsafeCastFromDynamic")
                 val fixedData = if (!data) {
                     emptyList()
                 } else {
-                    fixData(data.unsafeCast<Array<T>>().toList())!!
+                    toKotlinObjList(data.unsafeCast<Array<T>>().toList())
                 }
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("dataLoadingTabulator", obj { detail = fixedData })
             }
             jsTabulator?.on("dataLoaded") { data: Array<T> ->
-                val fixedData = if (data != undefined) fixData(data.toList())!! else emptyList()
+                val fixedData = if (data != undefined) toKotlinObjList(data.toList()) else emptyList()
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("dataLoadedTabulator", obj { detail = fixedData })
             }
             jsTabulator?.on("dataChanged") { data: Array<T> ->
-                val fixedData = if (data != undefined) fixData(data.toList())!! else emptyList()
+                val fixedData = if (data != undefined) toKotlinObjList(data.toList()) else emptyList()
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("dataEditedTabulator", obj { detail = fixedData })
                 if (dataUpdateOnEdit && this.data is MutableList<T>) {
@@ -330,7 +331,7 @@ open class Tabulator<T : Any>(
      * @param data new data
      */
     open fun replaceData(data: Array<T>) {
-        val jsData = data.map { toPlainObjTabulator(it) }.toTypedArray()
+        val jsData = data.map { toPlainObj(it) }.toTypedArray()
         options.data = jsData
         if ((getElement()?.unsafeCast<Element>()?.querySelectorAll(".tabulator-editing")?.length ?: 0) > 0) {
             this.removeCustomEditors()
@@ -343,7 +344,7 @@ open class Tabulator<T : Any>(
      * @param data new data
      */
     open fun setData(data: Array<T>) {
-        val jsData = data.map { toPlainObjTabulator(it) }.toTypedArray()
+        val jsData = data.map { toPlainObj(it) }.toTypedArray()
         options.data = jsData
         jsTabulator?.setData(jsData, null, null)
     }
@@ -356,7 +357,7 @@ open class Tabulator<T : Any>(
     @Suppress("UNCHECKED_CAST")
     open fun getData(rowRangeLookup: RowRangeLookup? = null): List<T>? {
         return if (jsTabulator != null) {
-            fixData(jsTabulator?.getData(rowRangeLookup?.set)?.toList() as? List<T>)
+            toKotlinObjList(jsTabulator!!.getData(rowRangeLookup?.set).toList())
         } else {
             data
         }
@@ -369,9 +370,9 @@ open class Tabulator<T : Any>(
     @Suppress("UNCHECKED_CAST")
     open fun getSelectedData(): List<T> {
         return if (jsTabulator != null) {
-            fixData(jsTabulator?.getSelectedData()?.toList() as List<T>)!!
+            toKotlinObjList(jsTabulator!!.getSelectedData().toList())
         } else {
-            listOf()
+            emptyList()
         }
     }
 
@@ -572,7 +573,7 @@ open class Tabulator<T : Any>(
             jsTabulator?.setFilter({ data: dynamic, _: dynamic ->
                 filter?.let {
                     @Suppress("UnsafeCastFromDynamic")
-                    it(fixData(data as T))
+                    it(toKotlinObj(data))
                 }
             }, null, null, null)
         }
@@ -795,48 +796,44 @@ open class Tabulator<T : Any>(
         EditorRoot.root = null
     }
 
-    protected open fun fixData(data: List<dynamic>?): List<T>? {
+    protected open fun toKotlinObjList(data: List<dynamic>): List<T> {
         return if (kClass != null) {
-            data?.map {
-                toKotlinObjTabulator(it, kClass)
+            if (jsonHelper == null || serializer == null) {
+                throw IllegalStateException("The data class can't be deserialized. Please provide a serializer when creating the Tabulator instance.")
+            } else {
+                jsonHelper!!.decodeFromString(ListSerializer(serializer), JSON.stringify(data))
             }
-        } else {
-            data
-        }
+        } else data
     }
 
-    protected open fun fixData(data: dynamic): T {
-        @Suppress("UnsafeCastFromDynamic")
-        return if (kClass != null) {
-            toKotlinObjTabulator(data, kClass)
-        } else {
-            data
-        }
-    }
-
+    @Deprecated("Use toKotlinObj instead", ReplaceWith("toKotlinObj(data)"))
+    @Suppress("UNUSED_PARAMETER")
     fun toKotlinObjTabulator(data: dynamic, kClass: KClass<T>): T {
-        if (data._children != null) {
-            data._children =
-                data._children.unsafeCast<Array<dynamic>>().map { toKotlinObjTabulator(it, kClass) }.toTypedArray()
-        }
-        return if (jsonHelper == null || serializer == null) {
-            throw IllegalStateException("The data class can't be deserialized. Please provide a serializer when creating the Tabulator instance.")
-        } else {
-            jsonHelper!!.decodeFromString(serializer, JSON.stringify(data))
-        }
+        return toKotlinObj(data)
     }
 
-    internal fun toPlainObjTabulator(data: T): T {
-        val obj = if (jsonHelper == null || serializer == null) {
+    /**
+     * Converts an internal (dynamic) data model to Kotlin data model
+     */
+    fun toKotlinObj(data: dynamic): T {
+        return if (kClass != null) {
+            if (jsonHelper == null || serializer == null) {
+                throw IllegalStateException("The data class can't be deserialized. Please provide a serializer when creating the Tabulator instance.")
+            } else {
+                jsonHelper!!.decodeFromString(serializer, JSON.stringify(data))
+            }
+        } else data
+    }
+
+    /**
+     * Converts a Kotlin data model to an internal (dynamic) data model
+     */
+    fun toPlainObj(data: T): dynamic {
+        return if (jsonHelper == null || serializer == null) {
             throw IllegalStateException("The data class can't be serialized. Please provide a serializer when creating the Tabulator instance.")
         } else {
-            JSON.parse<dynamic>(jsonHelper!!.encodeToString(serializer, data))
+            JSON.parse(jsonHelper!!.encodeToString(serializer, data)) as dynamic
         }
-        if (obj._children != null) {
-            obj._children = obj._children.unsafeCast<Array<T>>().map { toPlainObjTabulator(it) }.toTypedArray()
-        }
-        @Suppress("UnsafeCastFromDynamic")
-        return obj
     }
 
     internal fun addCustomRoot(root: Root) {
