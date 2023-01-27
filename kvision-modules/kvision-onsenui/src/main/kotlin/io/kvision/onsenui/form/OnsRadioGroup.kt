@@ -204,7 +204,7 @@ open class OnsRadioGroup(
 
     private fun setChildrenFromOptions() {
         val currentName = this.name
-        container.removeAll()
+        container.disposeAll()
         options?.let {
             val tname = currentName ?: this.idc
             val c = it.map {

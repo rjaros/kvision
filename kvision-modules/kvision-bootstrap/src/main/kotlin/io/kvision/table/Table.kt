@@ -151,7 +151,7 @@ open class Table(
     }
 
     private fun refreshHeaders() {
-        theadRow.removeAll()
+        theadRow.disposeAll()
         headerNames?.forEach {
             theadRow.add(HeaderCell(it, scope = Scope.COL))
         }
@@ -177,7 +177,7 @@ open class Table(
      * Removes all header cells from table.
      */
     fun removeHeaderCells() {
-        theadRow.removeAll()
+        theadRow.disposeAll()
     }
 
     override fun render(): VNode {

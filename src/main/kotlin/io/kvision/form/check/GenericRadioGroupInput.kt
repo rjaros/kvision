@@ -169,7 +169,7 @@ open class GenericRadioGroupInput<T>(
 
     private fun setChildrenFromOptions() {
         val currentName = this.name
-        super.removeAll()
+        super.disposeAll()
         options?.let {
             val tname = currentName ?: this.idc
             val tinline = this.inline

@@ -264,7 +264,7 @@ open class DropDown(
     }
 
     private fun setChildrenFromElements() {
-        menu.removeAll()
+        menu.disposeAll()
         elements?.let { elems ->
             val c = elems.map {
                 when (it.second) {

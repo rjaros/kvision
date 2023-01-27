@@ -214,7 +214,7 @@ open class GenericRadioGroup<T>(
 
     private fun setChildrenFromOptions() {
         val currentName = this.name
-        container.removeAll()
+        container.disposeAll()
         options?.let {
             val tname = currentName ?: this.idc
             val tinline = this.inline
