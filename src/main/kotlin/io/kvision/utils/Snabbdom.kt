@@ -46,9 +46,7 @@ inline fun vNodeData(): VNodeData = js("{}")
 /**
  * Helper class for defining custom events.
  */
-external class KvEvent(type: String, eventInitDict: CustomEventInit = definedExternally) : CustomEvent {
-    override val detail: Event
-}
+external class KvEvent(type: String, eventInitDict: CustomEventInit = definedExternally) : CustomEvent
 
 /**
  * @suppress
