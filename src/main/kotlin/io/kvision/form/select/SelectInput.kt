@@ -21,7 +21,6 @@
  */
 package io.kvision.form.select
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
@@ -33,11 +32,10 @@ import io.kvision.form.ValidationStatus
 import io.kvision.html.TAG
 import io.kvision.html.Tag
 import io.kvision.panel.SimplePanel
+import io.kvision.snabbdom.VNode
 import io.kvision.state.MutableState
 import org.w3c.dom.HTMLCollection
 import org.w3c.dom.asList
-
-internal const val KVNULL = "#kvnull"
 
 /**
  * Simple select component.
@@ -165,13 +163,13 @@ open class SelectInput(
         return if (this.multiple) {
             val arr = v.unsafeCast<Array<String>>()
             if (arr.isNotEmpty()) {
-                arr.filter { it != "" && it != KVNULL }.joinToString(",")
+                arr.filter { it != "" }.joinToString(",")
             } else {
                 null
             }
         } else {
             val vs = v.unsafeCast<String>()
-            if (vs != "" && vs != KVNULL) {
+            if (vs != "") {
                 vs
             } else {
                 null
@@ -202,10 +200,7 @@ open class SelectInput(
         if (emptyOption) {
             addPrivate(Tag(TAG.OPTION, "", attributes = mapOf("value" to "")))
         }
-        if (!emptyOption && placeholder == null && value == null && !options.isNullOrEmpty()) {
-            value = options?.firstOrNull()?.first
-        }
-        val valueSet = if (this.multiple) value?.split(",") ?: emptySet() else setOf(value)
+        val valueSet = if (this.multiple) value?.split(",") ?: emptySet() else value?.let { setOf(it) } ?: emptySet()
         options?.let {
             val c = it.map {
                 val attributes = if (valueSet.contains(it.first)) {
@@ -278,7 +273,10 @@ open class SelectInput(
             } else {
                 getElementD()?.value = it
             }
-        } ?: run { getElementD()?.value = null }
+        } ?: run {
+            @Suppress("UnsafeCastFromDynamic")
+            if (getElementD()?.value) getElementD()?.value = null
+        }
     }
 
     override fun getState(): String? = value
