@@ -75,7 +75,7 @@ open class SimplePanel(className: String? = null, init: (SimplePanel.() -> Unit)
     }
 
     /**
-     * Protected and final method to add given component to the current container as a private child (not removable).
+     * Protected method to add given component to the current container as a private child .
      * @param child child component
      */
     protected open fun addPrivate(child: Component) {
@@ -84,6 +84,23 @@ open class SimplePanel(className: String? = null, init: (SimplePanel.() -> Unit)
         child.parent?.remove(child)
         child.parent = this
         refresh()
+    }
+
+    /**
+     * Protected method to remove all private children.
+     */
+    protected open fun removeAllPrivate() {
+        privateChildren?.map { it.clearParent() }
+        privateChildren = null
+        refresh()
+    }
+
+    /**
+     * Protected method to remove and dispose all private children.
+     */
+    protected open fun disposeAllPrivate() {
+        privateChildren?.forEach { it.dispose() }
+        removeAllPrivate()
     }
 
     /**

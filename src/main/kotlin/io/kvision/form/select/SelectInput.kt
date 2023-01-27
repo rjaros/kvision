@@ -184,9 +184,9 @@ open class SelectInput(
     }
 
     private fun setChildrenFromOptions() {
-        super.removeAll()
+        disposeAllPrivate()
         placeholder?.let {
-            super.add(
+            addPrivate(
                 Tag(
                     TAG.OPTION,
                     it,
@@ -200,7 +200,7 @@ open class SelectInput(
             )
         }
         if (emptyOption) {
-            super.add(Tag(TAG.OPTION, "", attributes = mapOf("value" to KVNULL)))
+            addPrivate(Tag(TAG.OPTION, "", attributes = mapOf("value" to "")))
         }
         if (!emptyOption && placeholder == null && value == null && !options.isNullOrEmpty()) {
             value = options?.firstOrNull()?.first
@@ -215,13 +215,14 @@ open class SelectInput(
                 }
                 Tag(TAG.OPTION, it.second, attributes = attributes)
             }
-            super.addAll(c)
+            c.forEach { addPrivate(it) }
         }
     }
 
     private fun selectOption() {
         val valueSet = if (this.multiple) value?.split(",") ?: emptySet() else setOf(value)
-        children?.forEach { child ->
+        val allChildren = if (privateChildren != null) privateChildren!! + (children ?: emptyList()) else children
+        allChildren?.forEach { child ->
             if (child is Tag && child.type == TAG.OPTION) {
                 if (valueSet.contains(child.getAttribute("value"))) {
                     child.setAttribute("selected", "selected")
