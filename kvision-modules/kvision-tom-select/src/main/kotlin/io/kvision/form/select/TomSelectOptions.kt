@@ -43,6 +43,8 @@ data class TomSelectOptions(
     val addPrecedence: Boolean? = null,
     val selectOnTab: Boolean? = null,
     val duplicates: Boolean? = null,
+    val controlInput: dynamic = null,
+    val hideControlInput: Boolean? = null,
     val caretPosition: Boolean? = null,
     val checkboxOptions: Boolean? = null,
     val clearButtonTitle: String? = null,
@@ -132,6 +134,11 @@ fun TomSelectOptions.toJs(emptyOption: Boolean): dynamic {
         if (addPrecedence != null) this.addPrecedence = addPrecedence
         if (selectOnTab != null) this.selectOnTab = selectOnTab
         if (duplicates != null) this.duplicates = duplicates
+        if (hideControlInput == true) {
+            this.controlInput = null
+        } else if (controlInput != null) {
+            this.controlInput = controlInput
+        }
         this.plugins = plugins
         if (options != null) this.options = if (emptyOption) arrayOf(obj {
             this.value = ""

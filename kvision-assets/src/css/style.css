@@ -716,6 +716,29 @@ label.required-label + ons-input > span.text-input__label::after {
     margin-left: 5px;
 }
 
+.ts-control {
+    flex-wrap: nowrap;
+}
+
+.ts-control .item {
+    white-space: nowrap;
+}
+
+.ts-control input::placeholder {
+    color: var(--bs-secondary-color);
+    opacity: 1;
+}
+
+.disabled .ts-control {
+    background-color: var(--bs-form-control-disabled-bg);
+    opacity: 1;
+}
+
+.disabled .ts-control input::placeholder {
+    color: var(--bs-secondary-color);
+    opacity: 1;
+}
+
 .ts-wrapper.kv-typeahead .ts-control, .ts-wrapper.kv-typeahead .ts-control input {
     cursor: inherit;
 }

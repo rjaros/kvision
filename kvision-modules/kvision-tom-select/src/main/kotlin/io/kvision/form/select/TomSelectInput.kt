@@ -229,6 +229,7 @@ open class TomSelectInput(
                         this.text = translate(it.second)
                     }
                 }.toTypedArray()
+                if (placeholder == null) this.controlInput = null
             }
             if (tsOptions != null) {
                 val optionsObj = tsOptions!!.toJs(emptyOption)
@@ -270,13 +271,13 @@ open class TomSelectInput(
                 if (value != null) {
                     tomSelectJs?.setValue(value!!.split(",").toTypedArray(), true)
                 } else {
-                    tomSelectJs?.setValue(emptyArray<String>(), true)
+                    tomSelectJs?.clear(true)
                 }
             } else {
                 if (value != null) {
                     tomSelectJs?.setValue(value, true)
                 } else {
-                    tomSelectJs?.setValue("", true)
+                    tomSelectJs?.clear(true)
                 }
             }
         }
