@@ -274,8 +274,7 @@ open class SelectInput(
                 getElementD()?.value = it
             }
         } ?: run {
-            @Suppress("UnsafeCastFromDynamic")
-            if (getElementD()?.value) getElementD()?.value = null
+            getElementD()?.value = ""
         }
     }
 
