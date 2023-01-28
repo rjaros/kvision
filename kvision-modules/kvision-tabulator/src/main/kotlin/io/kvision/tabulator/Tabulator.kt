@@ -264,21 +264,17 @@ open class Tabulator<T : Any>(
             }
             jsTabulator?.on("dataLoading") { data: dynamic ->
                 @Suppress("UnsafeCastFromDynamic")
-                val fixedData = if (!data) {
-                    emptyList()
-                } else {
-                    toKotlinObjList(data.unsafeCast<Array<T>>().toList())
-                }
+                val fixedData = if (!data) emptyList() else toKotlinObjList(data.unsafeCast<Array<T>>())
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("dataLoadingTabulator", obj { detail = fixedData })
             }
             jsTabulator?.on("dataLoaded") { data: Array<T> ->
-                val fixedData = if (data != undefined) toKotlinObjList(data.toList()) else emptyList()
+                val fixedData = if (data != undefined) toKotlinObjList(data) else emptyList()
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("dataLoadedTabulator", obj { detail = fixedData })
             }
             jsTabulator?.on("dataChanged") { data: Array<T> ->
-                val fixedData = if (data != undefined) toKotlinObjList(data.toList()) else emptyList()
+                val fixedData = if (data != undefined) toKotlinObjList(data) else emptyList()
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("dataEditedTabulator", obj { detail = fixedData })
                 if (dataUpdateOnEdit && this.data is MutableList<T>) {
@@ -357,7 +353,7 @@ open class Tabulator<T : Any>(
     @Suppress("UNCHECKED_CAST")
     open fun getData(rowRangeLookup: RowRangeLookup? = null): List<T>? {
         return if (jsTabulator != null) {
-            toKotlinObjList(jsTabulator!!.getData(rowRangeLookup?.set).toList())
+            toKotlinObjList(jsTabulator!!.getData(rowRangeLookup?.set))
         } else {
             data
         }
@@ -370,7 +366,7 @@ open class Tabulator<T : Any>(
     @Suppress("UNCHECKED_CAST")
     open fun getSelectedData(): List<T> {
         return if (jsTabulator != null) {
-            toKotlinObjList(jsTabulator!!.getSelectedData().toList())
+            toKotlinObjList(jsTabulator!!.getSelectedData())
         } else {
             emptyList()
         }
@@ -796,14 +792,14 @@ open class Tabulator<T : Any>(
         EditorRoot.root = null
     }
 
-    protected open fun toKotlinObjList(data: List<dynamic>): List<T> {
+    protected open fun toKotlinObjList(data: Array<dynamic>): List<T> {
         return if (kClass != null) {
             if (jsonHelper == null || serializer == null) {
                 throw IllegalStateException("The data class can't be deserialized. Please provide a serializer when creating the Tabulator instance.")
             } else {
                 jsonHelper!!.decodeFromString(ListSerializer(serializer), JSON.stringify(data))
             }
-        } else data
+        } else data.toList()
     }
 
     @Deprecated("Use toKotlinObj instead", ReplaceWith("toKotlinObj(data)"))
