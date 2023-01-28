@@ -7047,12 +7047,13 @@ $dokka.location:io.kvision.form.select/TomSelectInput/tsRenders/#/PointingToDecl
 $dokka.location:io.kvision.form.select/TomSelectInput/validationStatus/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-input/validation-status.html
 $dokka.location:io.kvision.form.select/TomSelectInput/value/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-input/value.html
 $dokka.location:io.kvision.form.select/TomSelectOptions///PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/index.html
-$dokka.location:io.kvision.form.select/TomSelectOptions/TomSelectOptions/#kotlin.Boolean?#kotlin.Function2[kotlin.String,kotlin.Function1[[Error type: Unresolved type for Pair<String, String>][kotlin.String,kotlin.String],kotlin.Unit],kotlin.Unit]?#kotlin.Boolean?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Int?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Int?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.Boolean?#kotlin.collections.List[kotlin.Any]?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.String?/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/-tom-select-options.html
+$dokka.location:io.kvision.form.select/TomSelectOptions/TomSelectOptions/#kotlin.Boolean?#kotlin.Function2[kotlin.String,kotlin.Function1[[Error type: Unresolved type for Pair<String, String>][kotlin.String,kotlin.String],kotlin.Unit],kotlin.Unit]?#kotlin.Boolean?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Int?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Int?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.Boolean?#kotlin.collections.List[kotlin.Any]?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.String?/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/-tom-select-options.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/addPrecedence/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/add-precedence.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/caretPosition/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/caret-position.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/checkboxOptions/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/checkbox-options.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/clearButtonTitle/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/clear-button-title.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/closeAfterSelect/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/close-after-select.html
+$dokka.location:io.kvision.form.select/TomSelectOptions/controlInput/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/control-input.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/create/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/create.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/createFilter/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/create-filter.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/createFun/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/create-fun.html
@@ -7062,6 +7063,7 @@ $dokka.location:io.kvision.form.select/TomSelectOptions/disabledField/#/Pointing
 $dokka.location:io.kvision.form.select/TomSelectOptions/dropdownHeaderTitle/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/dropdown-header-title.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/dropdownInput/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/dropdown-input.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/duplicates/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/duplicates.html
+$dokka.location:io.kvision.form.select/TomSelectOptions/hideControlInput/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/hide-control-input.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/hidePlaceholder/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/hide-placeholder.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/hideSelected/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/hide-selected.html
 $dokka.location:io.kvision.form.select/TomSelectOptions/highlight/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-options/highlight.html
@@ -12830,7 +12832,9 @@ $dokka.location:io.kvision.tabulator/Tabulator/setHeight/#kotlin.Int/PointingToD
 $dokka.location:io.kvision.tabulator/Tabulator/setPage/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator/set-page.html
 $dokka.location:io.kvision.tabulator/Tabulator/setPageSize/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator/set-page-size.html
 $dokka.location:io.kvision.tabulator/Tabulator/setPageToRow/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator/set-page-to-row.html
+$dokka.location:io.kvision.tabulator/Tabulator/toKotlinObj/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator/to-kotlin-obj.html
 $dokka.location:io.kvision.tabulator/Tabulator/toKotlinObjTabulator/#kotlin.Any#kotlin.reflect.KClass[TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator/to-kotlin-obj-tabulator.html
+$dokka.location:io.kvision.tabulator/Tabulator/toPlainObj/#TypeParam(bounds=[kotlin.Any])/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator/to-plain-obj.html
 $dokka.location:io.kvision.tabulator/Tabulator/toggleSelectRow/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator/toggle-select-row.html
 $dokka.location:io.kvision.tabulator/Tabulator/types/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator/types.html
 $dokka.location:io.kvision.tabulator/Tabulator/undo/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator/undo.html
@@ -13206,7 +13210,6 @@ $dokka.location:io.kvision.utils/Intl.NumberFormat/format/#kotlin.Number/Pointin
 $dokka.location:io.kvision.utils/Intl///PointingToDeclaration/kvision/io.kvision.utils/-intl/index.html
 $dokka.location:io.kvision.utils/KvEvent///PointingToDeclaration/kvision/io.kvision.utils/-kv-event/index.html
 $dokka.location:io.kvision.utils/KvEvent/KvEvent/#kotlin.String#[Error type: Unresolved type for CustomEventInit]/PointingToDeclaration/kvision/io.kvision.utils/-kv-event/-kv-event.html
-$dokka.location:io.kvision.utils/KvEvent/detail/#/PointingToDeclaration/kvision/io.kvision.utils/-kv-event/detail.html
 $dokka.location:io.kvision.utils/LinkedList///PointingToDeclaration/kvision/io.kvision.utils/-linked-list/index.html
 $dokka.location:io.kvision.utils/LinkedList/LinkedList/#/PointingToDeclaration/kvision/io.kvision.utils/-linked-list/-linked-list.html
 $dokka.location:io.kvision.utils/LinkedList/append/#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/kvision/io.kvision.utils/-linked-list/append.html
@@ -13368,6 +13371,10 @@ $dokka.location:io.kvision/TabulatorModule/getConstructor/#/PointingToDeclaratio
 $dokka.location:io.kvision/TabulatorModule/initialize/#/PointingToDeclaration/kvision/io.kvision/-tabulator-module/initialize.html
 $dokka.location:io.kvision/ToastifyModule///PointingToDeclaration/kvision/io.kvision/-toastify-module/index.html
 $dokka.location:io.kvision/ToastifyModule/initialize/#/PointingToDeclaration/kvision/io.kvision/-toastify-module/initialize.html
+$dokka.location:io.kvision/TomSelectDefaultModule///PointingToDeclaration/kvision/io.kvision/-tom-select-default-module/index.html
+$dokka.location:io.kvision/TomSelectDefaultModule/initialize/#/PointingToDeclaration/kvision/io.kvision/-tom-select-default-module/initialize.html
+$dokka.location:io.kvision/TomSelectMinModule///PointingToDeclaration/kvision/io.kvision/-tom-select-min-module/index.html
+$dokka.location:io.kvision/TomSelectMinModule/initialize/#/PointingToDeclaration/kvision/io.kvision/-tom-select-min-module/initialize.html
 $dokka.location:io.kvision/TomSelectModule///PointingToDeclaration/kvision/io.kvision/-tom-select-module/index.html
 $dokka.location:io.kvision/TomSelectModule/initialize/#/PointingToDeclaration/kvision/io.kvision/-tom-select-module/initialize.html
 io.kvision
