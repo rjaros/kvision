@@ -89,7 +89,7 @@ open class DateTimeInput(
 
     protected val observers = mutableListOf<(Date?) -> Unit>()
 
-    private var dateTimePicker: dynamic = null
+    var dateTimePicker: dynamic = null
     private val idc = "kv_datetime_${counter}"
 
     val input = TextInput(value = value?.toStringF(format)) {
