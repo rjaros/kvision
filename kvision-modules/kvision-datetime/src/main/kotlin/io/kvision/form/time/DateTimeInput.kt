@@ -373,7 +373,11 @@ open class DateTimeInput(
                     if (inline && this@DateTimeInput.value != null) this@DateTimeInput.value else undefined
                 this.stepping = stepping
                 this.allowInputToggle = allowInputToggle
-                if (viewDate != null) this.viewDate = viewDate
+                if (viewDate != null) {
+                    this.viewDate = viewDate
+                } else {
+                    if (inline && this@DateTimeInput.value != null) this.viewDate = this@DateTimeInput.value
+                }
                 this.promptTimeOnDateChange = promptTimeOnDateChange
                 if (promptTimeOnDateChangeTransitionDelay != null) this.promptTimeOnDateChangeTransitionDelay =
                     promptTimeOnDateChangeTransitionDelay
