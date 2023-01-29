@@ -415,9 +415,9 @@ open class DateTimeInput(
                 val valueStr = this.value?.toStringF(format)
                 if (dateStr != valueStr) {
                     this.value = date
-                    @Suppress("UnsafeCastFromDynamic")
-                    this.dispatchEvent("change", obj { detail = event.asDynamic().detail })
                 }
+                @Suppress("UnsafeCastFromDynamic")
+                this.dispatchEvent("change", obj { detail = event.asDynamic().detail })
             })
             element.addEventListener("error.td", { event ->
                 this.value = null
