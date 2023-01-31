@@ -29,7 +29,6 @@ import org.reduxkotlin.applyMiddleware
 import org.reduxkotlin.createTypedStore
 import org.reduxkotlin.thunk.Thunk
 import org.reduxkotlin.thunk.createThunkMiddleware
-import org.reduxkotlin.typedReducer
 
 interface RAction
 @Deprecated("Use TypedReducer instead.", ReplaceWith("TypedReducer<S, A>"))
@@ -53,7 +52,7 @@ inline fun <S : Any, reified A : RAction> createTypedReduxStore(
     @Suppress("SpreadOperator")
     return TypedReduxStore(
         createTypedStore(
-            typedReducer(reducer),
+            reducer,
             initialState,
             applyMiddleware(createThunkMiddleware(), *middlewares)
         )
