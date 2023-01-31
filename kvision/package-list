@@ -7372,6 +7372,7 @@ $dokka.location:io.kvision.form.time/DateTimeInput/DateTimeInput/#[Error type: U
 $dokka.location:io.kvision.form.time/DateTimeInput/allowInputToggle/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/allow-input-toggle.html
 $dokka.location:io.kvision.form.time/DateTimeInput/autofocus/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/autofocus.html
 $dokka.location:io.kvision.form.time/DateTimeInput/blur/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/blur.html
+$dokka.location:io.kvision.form.time/DateTimeInput/dateTimePicker/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/date-time-picker.html
 $dokka.location:io.kvision.form.time/DateTimeInput/daysOfWeekDisabled/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/days-of-week-disabled.html
 $dokka.location:io.kvision.form.time/DateTimeInput/disabled/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/disabled.html
 $dokka.location:io.kvision.form.time/DateTimeInput/disabledDates/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/disabled-dates.html
