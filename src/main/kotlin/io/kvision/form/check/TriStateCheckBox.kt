@@ -143,14 +143,19 @@ open class TriStateCheckBox(
     private val idc = "kv_form_tristatecheckbox_$counter"
     final override val input: TriStateCheckBoxInput =
         TriStateCheckBoxInput(value ?: false).apply {
+            this.parent = this@TriStateCheckBox
             this.id = this@TriStateCheckBox.idc
             this.name = name
             this.indeterminate = value == null
         }
     final override val flabel: FieldLabel = FieldLabelCheck(idc, label, rich, className = "form-check-label") {
+        this.parent = this@TriStateCheckBox
         span()
     }
-    final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
+    final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply {
+        this.parent = this@TriStateCheckBox
+        visible = false
+    }
 
     init {
         @Suppress("LeakingThis")

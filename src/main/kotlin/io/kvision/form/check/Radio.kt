@@ -136,14 +136,19 @@ open class Radio(
 
     private val idc = "kv_form_radio_$counter"
     final override val input: RadioInput = RadioInput(value).apply {
+        this.parent = this@Radio
         this.id = this@Radio.idc
         this.extraValue = extraValue
         this.name = name
     }
     final override val flabel: FieldLabel = FieldLabelCheck(idc, label, rich, className = "form-check-label") {
+        this.parent = this@Radio
         span()
     }
-    final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
+    final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply {
+        this.parent = this@Radio
+        visible = false
+    }
 
     init {
         @Suppress("LeakingThis")

@@ -136,13 +136,18 @@ open class CheckBox(
 
     private val idc = "kv_form_checkbox_$counter"
     final override val input: CheckBoxInput = CheckBoxInput(value).apply {
+        this.parent = this@CheckBox
         this.id = this@CheckBox.idc
         this.name = name
     }
     final override val flabel: FieldLabel = FieldLabelCheck(idc, label, rich, className = "form-check-label") {
+        this.parent = this@CheckBox
         span()
     }
-    final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply { visible = false }
+    final override val invalidFeedback: InvalidFeedback = InvalidFeedback().apply {
+        this.parent = this@CheckBox
+        visible = false
+    }
 
     init {
         @Suppress("LeakingThis")
