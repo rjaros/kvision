@@ -23,32 +23,41 @@ package io.kvision.redux
 
 import io.kvision.state.ObservableState
 import org.reduxkotlin.Middleware
-import org.reduxkotlin.Store
 import org.reduxkotlin.TypedReducer
+import org.reduxkotlin.TypedStore
 import org.reduxkotlin.applyMiddleware
-import org.reduxkotlin.createStore
+import org.reduxkotlin.createTypedStore
 import org.reduxkotlin.thunk.Thunk
 import org.reduxkotlin.thunk.createThunkMiddleware
+import org.reduxkotlin.typedReducer
+
+interface RAction
+@Deprecated("Use TypedReducer instead.", ReplaceWith("TypedReducer<S, A>"))
+typealias ReducerFun<S, A> = (S, A) -> S
+typealias Dispatch<A> = (A) -> Unit
+typealias GetState<S> = () -> S
+typealias ActionCreator<A, S> = (Dispatch<A>, GetState<S>) -> Unit
 
 /**
- * A helper function for creating Redux store.
+ * An inline helper function for creating Redux store.
  *
  * @param reducer a reducer function
  * @param initialState an initial state
  * @param middlewares a list of optional Redux JS middlewares
  */
-@Deprecated(
-    "Use createTypedReduxStore instead.",
-    ReplaceWith("createTypedReduxStore(reducer, initialState, *middlewares)")
-)
-@Suppress("DEPRECATION")
-fun <S : Any, A : RAction> createReduxStore(
-    reducer: TypedReducer<S, A>,
+inline fun <S : Any, reified A : RAction> createTypedReduxStore(
+    crossinline reducer: TypedReducer<S, A>,
     initialState: S,
     vararg middlewares: Middleware<S>
-): ReduxStore<S, A> {
+): TypedReduxStore<S, A> {
     @Suppress("SpreadOperator")
-    return ReduxStore(reducer, initialState, *middlewares)
+    return TypedReduxStore(
+        createTypedStore(
+            typedReducer(reducer),
+            initialState,
+            applyMiddleware(createThunkMiddleware(), *middlewares)
+        )
+    )
 }
 
 /**
@@ -57,23 +66,12 @@ fun <S : Any, A : RAction> createReduxStore(
  * @constructor Creates a Redux store with given reducer function and initial state.
  * @param S redux state type
  * @param A redux action type
- * @param reducer a reducer function
- * @param initialState an initial state
- * @param middlewares a list of optional Redux Kotlin middlewares
+ * @param store a native typed redux store
  */
-@Deprecated("Use TypedReduxStore instead.", ReplaceWith("TypedReduxStore(store)"))
-open class ReduxStore<S : Any, A : RAction>(
-    reducer: TypedReducer<S, A>,
-    initialState: S,
-    vararg middlewares: Middleware<S>
+
+open class TypedReduxStore<S : Any, A : RAction>(
+    val store: TypedStore<S, A>
 ) : ObservableState<S> {
-    @Suppress("UNCHECKED_CAST", "SpreadOperator")
-    protected open val store: Store<S> = createStore({ s: S, a: Any ->
-        val action = a as? A
-        if (action != null) {
-            reducer(s, action)
-        } else s
-    }, initialState, applyMiddleware(createThunkMiddleware(), *middlewares))
 
     override fun getState(): S {
         return store.getState()
@@ -92,7 +90,7 @@ open class ReduxStore<S : Any, A : RAction>(
     fun dispatch(actionCreator: ActionCreator<A, S>) {
         @Suppress("UNCHECKED_CAST")
         val thunk: Thunk<S> = { dispatch, getState, _ -> actionCreator(dispatch as ((A) -> Unit), getState) }
-        store.dispatch(thunk)
+        store.store.dispatch(thunk)
     }
 
     override fun subscribe(observer: (S) -> Unit): () -> Unit {

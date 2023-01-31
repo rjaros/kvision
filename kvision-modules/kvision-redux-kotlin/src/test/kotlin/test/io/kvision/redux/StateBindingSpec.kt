@@ -21,14 +21,14 @@
  */
 package test.io.kvision.redux
 
-import kotlinx.browser.document
 import io.kvision.html.div
 import io.kvision.panel.Root
 import io.kvision.panel.SimplePanel
 import io.kvision.redux.RAction
-import io.kvision.redux.createReduxStore
+import io.kvision.redux.createTypedReduxStore
 import io.kvision.state.bind
 import io.kvision.test.DomSpec
+import kotlinx.browser.document
 import kotlin.test.Test
 
 data class State(val counter: Int)
@@ -42,6 +42,7 @@ fun stateReducer(state: State, action: StateAction): State = when (action) {
     is StateAction.Inc -> {
         state.copy(counter = state.counter + 1)
     }
+
     is StateAction.Dec -> {
         state.copy(counter = state.counter - 1)
     }
@@ -55,7 +56,7 @@ class StateBindingSpec : DomSpec {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED) {
                 synchronousMode = true
             }
-            val store = createReduxStore(::stateReducer, State(10))
+            val store = createTypedReduxStore(::stateReducer, State(10))
 
             val container = SimplePanel()
             container.bind(store) { state ->

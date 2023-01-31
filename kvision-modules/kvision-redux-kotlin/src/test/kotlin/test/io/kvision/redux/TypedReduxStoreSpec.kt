@@ -19,21 +19,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-@file:Suppress("DEPRECATION")
-
 package test.io.kvision.redux
 
-import io.kvision.redux.createReduxStore
+import io.kvision.redux.RAction
+import io.kvision.redux.createTypedReduxStore
 import io.kvision.test.SimpleSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class ReduxStoreSpec : SimpleSpec {
+data class TestState(val counter: Int, val values: List<Int>)
+
+sealed class TestAction : RAction {
+    object Inc : TestAction()
+    object Dec : TestAction()
+}
+
+fun testReducer(state: TestState, action: TestAction): TestState = when (action) {
+    is TestAction.Inc -> {
+        state.copy(counter = state.counter + 1, values = state.values + state.counter)
+    }
+    is TestAction.Dec -> {
+        state.copy(counter = state.counter - 1, values = state.values + state.counter)
+    }
+}
+
+class TypedReduxStoreSpec : SimpleSpec {
 
     @Test
     fun getState() {
         run {
-            val store = createReduxStore(::testReducer, TestState(10, listOf()))
+            val store = createTypedReduxStore(::testReducer, TestState(10, listOf()))
             assertEquals(TestState(10, listOf()), store.getState())
         }
     }
@@ -41,7 +56,7 @@ class ReduxStoreSpec : SimpleSpec {
     @Test
     fun dispatch() {
         run {
-            val store = createReduxStore(::testReducer, TestState(10, listOf()))
+            val store = createTypedReduxStore(::testReducer, TestState(10, listOf()))
             store.dispatch(TestAction.Inc)
             store.dispatch(TestAction.Inc)
             store.dispatch(TestAction.Inc)
@@ -55,7 +70,7 @@ class ReduxStoreSpec : SimpleSpec {
     fun subscribe() {
         run {
             var counter = 0
-            val store = createReduxStore(::testReducer, TestState(10, listOf()))
+            val store = createTypedReduxStore(::testReducer, TestState(10, listOf()))
             store.subscribe {
                 counter++
             }
