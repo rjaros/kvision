@@ -212,6 +212,7 @@ open class SelectInput(
             }
             c.forEach { addPrivate(it) }
         }
+        refreshState()
     }
 
     private fun selectOption() {
