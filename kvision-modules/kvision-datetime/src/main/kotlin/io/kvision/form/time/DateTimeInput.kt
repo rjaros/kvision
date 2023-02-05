@@ -290,11 +290,17 @@ open class DateTimeInput(
 
     private fun refreshState() {
         if (dateTimePicker != null) {
-            if (value != null) {
-                val internalDateTime = dateTimePicker.dates.parseInput(value!!.toStringF(format))
-                dateTimePicker.dates.setValue(internalDateTime)
-            } else {
-                dateTimePicker.dates.setValue(null)
+            @Suppress("UnsafeCastFromDynamic")
+            val currentPickerArray: Array<Date> = dateTimePicker.dates.picked
+            val currentPickerValueStr = currentPickerArray.getOrNull(0)?.toStringF(format)
+            val currentValueStr = value?.toStringF(format)
+            if (currentPickerValueStr != currentValueStr) {
+                if (value != null) {
+                    val internalDateTime = dateTimePicker.dates.parseInput(currentValueStr)
+                    dateTimePicker.dates.setValue(internalDateTime)
+                } else {
+                    dateTimePicker.dates.setValue(null)
+                }
             }
         }
     }
