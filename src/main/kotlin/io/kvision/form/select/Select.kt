@@ -159,6 +159,12 @@ open class Select(
             input.selectedIndex = value
         }
 
+    /**
+     * The label of the currently selected option.
+     */
+    val selectedLabel
+        get() = input.selectedLabel
+
     private val idc = "kv_form_select_$counter"
     final override val input: SelectInput = SelectInput(
         options, value, emptyOption, multiple, selectSize

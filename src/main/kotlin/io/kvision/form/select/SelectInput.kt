@@ -35,6 +35,7 @@ import io.kvision.panel.SimplePanel
 import io.kvision.snabbdom.VNode
 import io.kvision.state.MutableState
 import org.w3c.dom.HTMLCollection
+import org.w3c.dom.HTMLSelectElement
 import org.w3c.dom.asList
 
 /**
@@ -127,17 +128,27 @@ open class SelectInput(
      */
     @Suppress("UnsafeCastFromDynamic")
     var selectedIndex: Int
-        get() = getElementD()?.selectedIndex
+        get() = getElement()?.unsafeCast<HTMLSelectElement>()?.selectedIndex
             ?: value?.let { v ->
                 val emptyIndex = if (emptyOption) 1 else 0
                 options?.map(StringPair::first)?.indexOf(v)?.let { it + emptyIndex }
             } ?: -1
         set(value) {
-            getElementD()?.selectedIndex = value
+            getElement()?.unsafeCast<HTMLSelectElement>()?.selectedIndex = value
             if (value == -1) this.value = null
             options?.getOrNull(value)?.let {
                 this.value = it.first
             }
+        }
+
+    /**
+     * The label of the currently selected option.
+     */
+    val selectedLabel: String?
+        get() = this.getElement()?.let {
+            it.unsafeCast<HTMLSelectElement>().selectedOptions.asList().getOrNull(0)?.textContent
+        } ?: value?.let { v ->
+            options?.find { it.first == v }?.second
         }
 
     init {
