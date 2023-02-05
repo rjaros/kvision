@@ -3,7 +3,6 @@ package io.kvision.gradle
 import io.kvision.gradle.tasks.KVConvertPoTask
 import io.kvision.gradle.tasks.KVGeneratePotTask
 import io.kvision.gradle.tasks.KVWorkerBundleTask
-import javax.inject.Inject
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Plugin
@@ -22,6 +21,7 @@ import org.gradle.internal.os.OperatingSystem
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
@@ -34,6 +34,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
+import javax.inject.Inject
 
 abstract class KVisionPlugin @Inject constructor(
     private val providers: ProviderFactory
@@ -228,6 +229,12 @@ abstract class KVisionPlugin @Inject constructor(
                 }
                 kotlinMppExtension.sourceSets.getByName("commonMain").kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
                 kotlinMppExtension.sourceSets.getByName("frontendMain").kotlin.srcDir("build/generated/ksp/frontend/frontendMain/kotlin")
+                // Workaround KSP 1.0.9 issues
+                configurations.filter { it.name.startsWith("frontend") && it.name.endsWith("DependenciesMetadata") }
+                    .forEach {
+                        configurations.remove(it)
+                    }
+                configurations["backendRuntimeClasspath"].files
             }
 
             tasks.all.kspKotlinFrontend.configureEach {
