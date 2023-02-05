@@ -50,7 +50,7 @@ open class Upload(
     label: String? = null,
     rich: Boolean = false,
     init: (Upload.() -> Unit)? = null
-) : SimplePanel("form-group kv-mb-3 kv-add-surr-invalid"), KFilesFormControl, MutableState<List<KFile>?> {
+) : SimplePanel("form-group kv-mb-3"), KFilesFormControl, MutableState<List<KFile>?> {
 
     /**
      * File input value.
@@ -122,6 +122,17 @@ open class Upload(
         get() = flabel.rich
         set(value) {
             flabel.rich = value
+        }
+
+    override var validatorError: String?
+        get() = super.validatorError
+        set(value) {
+            super.validatorError = value
+            if (value != null) {
+                input.addSurroundingCssClass("is-invalid")
+            } else {
+                input.removeSurroundingCssClass("is-invalid")
+            }
         }
 
     protected val idc = "kv_form_upload_$counter"

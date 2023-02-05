@@ -175,7 +175,7 @@ interface FormControl : Component {
             invalidFeedback.content = value
             invalidFeedback.visible = value != null
             input.validationStatus = if (value != null) ValidationStatus.INVALID else null
-            if (hasCssClass("kv-control-horiz") || hasCssClass("kv-add-surr-invalid")) {
+            if (hasCssClass("kv-control-horiz")) {
                 if (value != null) {
                     input.addSurroundingCssClass("is-invalid")
                 } else {

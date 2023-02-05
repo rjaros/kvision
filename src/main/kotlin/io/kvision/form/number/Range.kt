@@ -48,7 +48,7 @@ import io.kvision.utils.SnOn
 open class Range(
     value: Number? = null, name: String? = null, min: Number = 0, max: Number = 100, step: Number = RANGE_DEFAULT_STEP,
     label: String? = null, rich: Boolean = false, init: (Range.() -> Unit)? = null
-) : SimplePanel("form-group kv-mb-3 kv-add-surr-invalid"), NumberFormControl, MutableState<Number?> {
+) : SimplePanel("form-group kv-mb-3"), NumberFormControl, MutableState<Number?> {
 
     /**
      * Range input value.
@@ -132,6 +132,17 @@ open class Range(
         get() = flabel.rich
         set(value) {
             flabel.rich = value
+        }
+
+    override var validatorError: String?
+        get() = super.validatorError
+        set(value) {
+            super.validatorError = value
+            if (value != null) {
+                input.addSurroundingCssClass("is-invalid")
+            } else {
+                input.removeSurroundingCssClass("is-invalid")
+            }
         }
 
     protected val idc = "kv_form_range_$counter"

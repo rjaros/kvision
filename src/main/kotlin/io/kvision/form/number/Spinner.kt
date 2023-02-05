@@ -54,7 +54,7 @@ open class Spinner(
     label: String? = null,
     rich: Boolean = false,
     init: (Spinner.() -> Unit)? = null
-) : SimplePanel("form-group kv-mb-3 kv-add-surr-invalid"), NumberFormControl, MutableState<Number?> {
+) : SimplePanel("form-group kv-mb-3"), NumberFormControl, MutableState<Number?> {
 
     /**
      * Spinner value.
@@ -147,6 +147,17 @@ open class Spinner(
         get() = flabel.rich
         set(value) {
             flabel.rich = value
+        }
+
+    override var validatorError: String?
+        get() = super.validatorError
+        set(value) {
+            super.validatorError = value
+            if (value != null) {
+                input.addSurroundingCssClass("is-invalid")
+            } else {
+                input.removeSurroundingCssClass("is-invalid")
+            }
         }
 
     protected val idc = "kv_form_spinner_$counter"
