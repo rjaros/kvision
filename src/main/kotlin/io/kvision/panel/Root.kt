@@ -21,18 +21,20 @@
  */
 package io.kvision.panel
 
-import io.kvision.snabbdom.VNode
-import io.kvision.snabbdom.h
 import io.kvision.Application
 import io.kvision.KVManager
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Style
 import io.kvision.core.Widget
+import io.kvision.snabbdom.VNode
+import io.kvision.snabbdom.h
 import io.kvision.utils.snClasses
 import io.kvision.utils.snOpt
 import kotlinx.browser.document
 import kotlinx.browser.window
+import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.asList
 
 /**
  * Root container types.
@@ -104,7 +106,7 @@ class Root : SimplePanel {
         this.addRow = addRow
         val element = document.getElementById(id)
         if (element != null) {
-            elementName = element.nodeName
+            getPropertiesFromElement(element)
             rootVnode = KVManager.patch(id, this.renderVNode())
         }
         this.id = id
@@ -128,7 +130,7 @@ class Root : SimplePanel {
     ) : super() {
         this.containerType = containerType
         this.addRow = addRow
-        elementName = element.nodeName
+        getPropertiesFromElement(element)
         rootVnode = KVManager.patch(element, this.renderVNode())
         this.id = "kv_root_${counter++}"
         @Suppress("LeakingThis")
@@ -139,6 +141,18 @@ class Root : SimplePanel {
         roots.add(this)
         if (isFirstRoot) {
             modals.forEach { it.parent = this }
+        }
+    }
+
+    private fun getPropertiesFromElement(element: Element) {
+        elementName = element.nodeName
+        element.attributes.asList().forEach {
+            if (it.name != "id") {
+                this.setAttribute(it.name, it.value)
+            }
+        }
+        element.classList.asList().forEach {
+            this.addCssClass(it)
         }
     }
 
