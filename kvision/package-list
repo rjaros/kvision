@@ -6667,6 +6667,7 @@ $dokka.location:io.kvision.form.number/ImaskNumeric/startValue/#/PointingToDecla
 $dokka.location:io.kvision.form.number/ImaskNumeric/styleForHorizontalFormPanel/#io.kvision.form.FormHorizontalRatio/PointingToDeclaration/kvision/io.kvision.form.number/-imask-numeric/style-for-horizontal-form-panel.html
 $dokka.location:io.kvision.form.number/ImaskNumeric/subscribe/#kotlin.Function1[kotlin.Number?,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.number/-imask-numeric/subscribe.html
 $dokka.location:io.kvision.form.number/ImaskNumeric/thousandsSeparator/#/PointingToDeclaration/kvision/io.kvision.form.number/-imask-numeric/thousands-separator.html
+$dokka.location:io.kvision.form.number/ImaskNumeric/validatorError/#/PointingToDeclaration/kvision/io.kvision.form.number/-imask-numeric/validator-error.html
 $dokka.location:io.kvision.form.number/ImaskNumeric/value/#/PointingToDeclaration/kvision/io.kvision.form.number/-imask-numeric/value.html
 $dokka.location:io.kvision.form.number/ImaskNumericInput.Companion///PointingToDeclaration/kvision/io.kvision.form.number/-imask-numeric-input/-companion/index.html
 $dokka.location:io.kvision.form.number/ImaskNumericInput///PointingToDeclaration/kvision/io.kvision.form.number/-imask-numeric-input/index.html
@@ -6719,6 +6720,7 @@ $dokka.location:io.kvision.form.number/Numeric/setState/#kotlin.Number?/Pointing
 $dokka.location:io.kvision.form.number/Numeric/startValue/#/PointingToDeclaration/kvision/io.kvision.form.number/-numeric/start-value.html
 $dokka.location:io.kvision.form.number/Numeric/styleForHorizontalFormPanel/#io.kvision.form.FormHorizontalRatio/PointingToDeclaration/kvision/io.kvision.form.number/-numeric/style-for-horizontal-form-panel.html
 $dokka.location:io.kvision.form.number/Numeric/subscribe/#kotlin.Function1[kotlin.Number?,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.number/-numeric/subscribe.html
+$dokka.location:io.kvision.form.number/Numeric/validatorError/#/PointingToDeclaration/kvision/io.kvision.form.number/-numeric/validator-error.html
 $dokka.location:io.kvision.form.number/Numeric/value/#/PointingToDeclaration/kvision/io.kvision.form.number/-numeric/value.html
 $dokka.location:io.kvision.form.number/NumericInput///PointingToDeclaration/kvision/io.kvision.form.number/-numeric-input/index.html
 $dokka.location:io.kvision.form.number/NumericInput/NumericInput/#kotlin.Number?#kotlin.Number?#kotlin.Number?#kotlin.Int#kotlin.Char#kotlin.String?#kotlin.Function1[io.kvision.form.number.NumericInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.number/-numeric-input/-numeric-input.html
@@ -6765,6 +6767,7 @@ $dokka.location:io.kvision.form.number/Range/stepDown/#/PointingToDeclaration/k
 $dokka.location:io.kvision.form.number/Range/stepUp/#/PointingToDeclaration/kvision/io.kvision.form.number/-range/step-up.html
 $dokka.location:io.kvision.form.number/Range/styleForHorizontalFormPanel/#io.kvision.form.FormHorizontalRatio/PointingToDeclaration/kvision/io.kvision.form.number/-range/style-for-horizontal-form-panel.html
 $dokka.location:io.kvision.form.number/Range/subscribe/#kotlin.Function1[kotlin.Number?,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.number/-range/subscribe.html
+$dokka.location:io.kvision.form.number/Range/validatorError/#/PointingToDeclaration/kvision/io.kvision.form.number/-range/validator-error.html
 $dokka.location:io.kvision.form.number/Range/value/#/PointingToDeclaration/kvision/io.kvision.form.number/-range/value.html
 $dokka.location:io.kvision.form.number/RangeInput///PointingToDeclaration/kvision/io.kvision.form.number/-range-input/index.html
 $dokka.location:io.kvision.form.number/RangeInput/RangeInput/#kotlin.Number?#kotlin.Number#kotlin.Number#kotlin.Number#kotlin.String?#kotlin.Function1[io.kvision.form.number.RangeInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.number/-range-input/-range-input.html
@@ -6812,6 +6815,7 @@ $dokka.location:io.kvision.form.number/Spinner/startValue/#/PointingToDeclaratio
 $dokka.location:io.kvision.form.number/Spinner/step/#/PointingToDeclaration/kvision/io.kvision.form.number/-spinner/step.html
 $dokka.location:io.kvision.form.number/Spinner/styleForHorizontalFormPanel/#io.kvision.form.FormHorizontalRatio/PointingToDeclaration/kvision/io.kvision.form.number/-spinner/style-for-horizontal-form-panel.html
 $dokka.location:io.kvision.form.number/Spinner/subscribe/#kotlin.Function1[kotlin.Number?,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.number/-spinner/subscribe.html
+$dokka.location:io.kvision.form.number/Spinner/validatorError/#/PointingToDeclaration/kvision/io.kvision.form.number/-spinner/validator-error.html
 $dokka.location:io.kvision.form.number/Spinner/value/#/PointingToDeclaration/kvision/io.kvision.form.number/-spinner/value.html
 $dokka.location:io.kvision.form.number/SpinnerInput///PointingToDeclaration/kvision/io.kvision.form.number/-spinner-input/index.html
 $dokka.location:io.kvision.form.number/SpinnerInput/SpinnerInput/#kotlin.Number?#kotlin.Int?#kotlin.Int?#kotlin.Int#kotlin.String?#kotlin.Function1[io.kvision.form.number.SpinnerInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.number/-spinner-input/-spinner-input.html
@@ -6915,6 +6919,7 @@ $dokka.location:io.kvision.form.select/Select/removeEventListeners/#/PointingToD
 $dokka.location:io.kvision.form.select/Select/rich/#/PointingToDeclaration/kvision/io.kvision.form.select/-select/rich.html
 $dokka.location:io.kvision.form.select/Select/selectSize/#/PointingToDeclaration/kvision/io.kvision.form.select/-select/select-size.html
 $dokka.location:io.kvision.form.select/Select/selectedIndex/#/PointingToDeclaration/kvision/io.kvision.form.select/-select/selected-index.html
+$dokka.location:io.kvision.form.select/Select/selectedLabel/#/PointingToDeclaration/kvision/io.kvision.form.select/-select/selected-label.html
 $dokka.location:io.kvision.form.select/Select/setEventListener/#kotlin.Function1[io.kvision.utils.SnOn[TypeParam(bounds=[io.kvision.core.Widget])],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.select/-select/set-event-listener.html
 $dokka.location:io.kvision.form.select/Select/setState/#kotlin.String?/PointingToDeclaration/kvision/io.kvision.form.select/-select/set-state.html
 $dokka.location:io.kvision.form.select/Select/startValue/#/PointingToDeclaration/kvision/io.kvision.form.select/-select/start-value.html
@@ -6932,6 +6937,7 @@ $dokka.location:io.kvision.form.select/SelectInput/options/#/PointingToDeclarati
 $dokka.location:io.kvision.form.select/SelectInput/placeholder/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/placeholder.html
 $dokka.location:io.kvision.form.select/SelectInput/selectSize/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/select-size.html
 $dokka.location:io.kvision.form.select/SelectInput/selectedIndex/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/selected-index.html
+$dokka.location:io.kvision.form.select/SelectInput/selectedLabel/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/selected-label.html
 $dokka.location:io.kvision.form.select/SelectInput/setState/#kotlin.String?/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/set-state.html
 $dokka.location:io.kvision.form.select/SelectInput/size/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/size.html
 $dokka.location:io.kvision.form.select/SelectInput/startValue/#/PointingToDeclaration/kvision/io.kvision.form.select/-select-input/start-value.html
@@ -7552,6 +7558,7 @@ $dokka.location:io.kvision.form.upload/Upload/setEventListener/#kotlin.Function1
 $dokka.location:io.kvision.form.upload/Upload/setState/#kotlin.collections.List[[Error type: Unresolved type for KFile]]?/PointingToDeclaration/kvision/io.kvision.form.upload/-upload/set-state.html
 $dokka.location:io.kvision.form.upload/Upload/styleForHorizontalFormPanel/#io.kvision.form.FormHorizontalRatio/PointingToDeclaration/kvision/io.kvision.form.upload/-upload/style-for-horizontal-form-panel.html
 $dokka.location:io.kvision.form.upload/Upload/subscribe/#kotlin.Function1[kotlin.collections.List[[Error type: Unresolved type for KFile]]?,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.form.upload/-upload/subscribe.html
+$dokka.location:io.kvision.form.upload/Upload/validatorError/#/PointingToDeclaration/kvision/io.kvision.form.upload/-upload/validator-error.html
 $dokka.location:io.kvision.form.upload/Upload/value/#/PointingToDeclaration/kvision/io.kvision.form.upload/-upload/value.html
 $dokka.location:io.kvision.form.upload/Upload/webkitdirectory/#/PointingToDeclaration/kvision/io.kvision.form.upload/-upload/webkitdirectory.html
 $dokka.location:io.kvision.form.upload/UploadInput///PointingToDeclaration/kvision/io.kvision.form.upload/-upload-input/index.html
@@ -7614,6 +7621,8 @@ $dokka.location:io.kvision.form/Form/remove/#kotlin.reflect.KProperty1[TypeParam
 $dokka.location:io.kvision.form/Form/removeAll/#/PointingToDeclaration/kvision/io.kvision.form/-form/remove-all.html
 $dokka.location:io.kvision.form/Form/setData/#TypeParam(bounds=[kotlin.Any])/PointingToDeclaration/kvision/io.kvision.form/-form/set-data.html
 $dokka.location:io.kvision.form/Form/validate/#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.form/-form/validate.html
+$dokka.location:io.kvision.form/Form/validate/#kotlin.String#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.form/-form/validate.html
+$dokka.location:io.kvision.form/Form/validate/#kotlin.reflect.KProperty1[TypeParam(bounds=[kotlin.Any]),*]#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.form/-form/validate.html
 $dokka.location:io.kvision.form/FormControl///PointingToDeclaration/kvision/io.kvision.form/-form-control/index.html
 $dokka.location:io.kvision.form/FormControl/disabled/#/PointingToDeclaration/kvision/io.kvision.form/-form-control/disabled.html
 $dokka.location:io.kvision.form/FormControl/flabel/#/PointingToDeclaration/kvision/io.kvision.form/-form-control/flabel.html
@@ -7711,6 +7720,8 @@ $dokka.location:io.kvision.form/FormPanel/target/#/PointingToDeclaration/kvisio
 $dokka.location:io.kvision.form/FormPanel/unbind/#kotlin.String/PointingToDeclaration/kvision/io.kvision.form/-form-panel/unbind.html
 $dokka.location:io.kvision.form/FormPanel/unbind/#kotlin.reflect.KProperty1[TypeParam(bounds=[kotlin.Any]),*]/PointingToDeclaration/kvision/io.kvision.form/-form-panel/unbind.html
 $dokka.location:io.kvision.form/FormPanel/validate/#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.form/-form-panel/validate.html
+$dokka.location:io.kvision.form/FormPanel/validate/#kotlin.String#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.form/-form-panel/validate.html
+$dokka.location:io.kvision.form/FormPanel/validate/#kotlin.reflect.KProperty1[TypeParam(bounds=[kotlin.Any]),*]#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.form/-form-panel/validate.html
 $dokka.location:io.kvision.form/FormPanel/validator/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/validator.html
 $dokka.location:io.kvision.form/FormPanel/validatorMessage/#/PointingToDeclaration/kvision/io.kvision.form/-form-panel/validator-message.html
 $dokka.location:io.kvision.form/FormTarget.BLANK///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form/-form-target/-b-l-a-n-k/index.html
