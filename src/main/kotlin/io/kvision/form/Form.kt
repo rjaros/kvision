@@ -98,10 +98,12 @@ class Form<K : Any>(
                         is Date -> {
                             value.toStringF()
                         }
+
                         is List<*> -> {
                             @Suppress("UNCHECKED_CAST", "UnsafeCastFromDynamic")
                             ((value as? List<KFile>)?.toObj(ListSerializer(KFile.serializer())))
                         }
+
                         else -> value
                     }
                     if (v != null) json[key] = v
@@ -340,6 +342,7 @@ class Form<K : Any>(
                                 JSON.stringify(jsonValue)
                             )
                         }
+
                         else -> {
                             if (formField != null) {
                                 formField.setValue(jsonValue)
@@ -440,6 +443,48 @@ class Form<K : Any>(
             null
         }
         return fieldWithError == null && validatorPassed
+    }
+
+    /**
+     * Invokes validator for a single form field.
+     * @param key key identifier of the control
+     * @param markField determines if form field should be labeled with error message
+     * @return validation result
+     */
+    fun validate(key: KProperty1<K, *>, markField: Boolean = true): Boolean {
+        return validate(key.name, markField)
+    }
+
+    /**
+     * Invokes validator for a single form field.
+     * @param key key identifier of the control
+     * @param markField determines if form field should be labeled with error message
+     * @return validation result
+     */
+    fun validate(key: String, markField: Boolean = true): Boolean {
+        val control = fields[key]
+        @Suppress("UNCHECKED_CAST")
+        val fieldParams = fieldsParams[key] as? FieldParams<FormControl>
+        return if (control != null && fieldParams != null) {
+            val required = fieldParams.required
+            val requiredError = control.getValue() == null && control.visible && required
+            if (requiredError) {
+                if (markField) control.validatorError = trans(fieldParams.requiredMessage) ?: "Value is required"
+                false
+            } else {
+                val validatorPassed = !control.visible || (fieldParams.validator?.invoke(control) ?: true)
+                if (markField) {
+                    control.validatorError = if (!validatorPassed) {
+                        trans(fieldParams.validatorMessage?.invoke(control)) ?: "Invalid value"
+                    } else {
+                        null
+                    }
+                }
+                validatorPassed
+            }
+        } else {
+            false
+        }
     }
 
     /**

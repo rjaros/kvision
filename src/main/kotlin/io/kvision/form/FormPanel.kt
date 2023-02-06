@@ -715,6 +715,28 @@ open class FormPanel<K : Any>(
     }
 
     /**
+     * Invokes validator for a single form field.
+     * @param key key identifier of the control
+     * @param markField determines if form field should be labeled with error messages
+     * @return validation result
+     */
+    open fun validate(key: KProperty1<K, *>, markField: Boolean = true): Boolean {
+        return validate(key.name, markField)
+    }
+
+    /**
+     * Invokes validator for a single form field.
+     * @param key key identifier of the control
+     * @param markField determines if form field should be labeled with error messages
+     * @return validation result
+     */
+    open fun validate(key: String, markField: Boolean = true): Boolean {
+        return singleRender {
+            form.validate(key, markField)
+        }
+    }
+
+    /**
      * Clear validation information from all fields.
      */
     open fun clearValidation() {
