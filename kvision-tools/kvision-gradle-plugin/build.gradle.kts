@@ -17,20 +17,17 @@ val kotestVersion: String by project
 val kspVersion: String by project
 
 gradlePlugin {
+    website.set(kvisionProjectWebsite)
+    vcsUrl.set(kvisionVcsUrl)
     plugins {
         create("kvisionGradlePlugin") {
             displayName = kvisionProjectName
             description = kvisionProjectDescription
             id = "io.kvision"
             implementationClass = "io.kvision.gradle.KVisionPlugin"
+            tags.set(listOf("kvision", "kotlin", "kotlin-js", "kotlin-multiplatform"))
         }
     }
-}
-
-pluginBundle {
-    website = kvisionProjectWebsite
-    vcsUrl = kvisionVcsUrl
-    tags = listOf("kvision", "kotlin", "kotlin-js", "kotlin-multiplatform")
 }
 
 kotlin {

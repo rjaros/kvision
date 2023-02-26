@@ -35,7 +35,7 @@ kotlin {
                 targetCompatibility = JavaVersion.VERSION_17
             }
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "17"
                 freeCompilerArgs = listOf("-Xjsr305=strict")
             }
         }
@@ -71,7 +71,6 @@ kotlin {
             dependencies {
                 api("io.kvision:kvision-server-ktor:$kvisionVersion")
             }
-            kotlin.srcDir("build/generated-src/common")
         }
         val commonTest by getting {
             dependencies {
@@ -101,7 +100,6 @@ kotlin {
                 implementation("io.kvision:kvision-bootstrap:$kvisionVersion")
                 implementation("io.kvision:kvision-i18n:$kvisionVersion")
             }
-            kotlin.srcDir("build/generated-src/frontend")
         }
         val frontendTest by getting {
             dependencies {
@@ -175,7 +173,7 @@ afterEvaluate {
         create("backendRun", JavaExec::class) {
             dependsOn("compileKotlinBackend")
             group = "run"
-            main = mainClassName
+            mainClass.set(mainClassName)
             classpath =
                 configurations["backendRuntimeClasspath"] + project.tasks["compileKotlinBackend"].outputs.files +
                     project.tasks["backendProcessResources"].outputs.files
