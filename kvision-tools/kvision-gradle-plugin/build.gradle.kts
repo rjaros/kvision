@@ -4,7 +4,6 @@ plugins {
     id("java-gradle-plugin")
     id("maven-publish")
     id("signing")
-    id("de.marcphilipp.nexus-publish")
     id("org.jetbrains.dokka")
     val gradlePluginPublishVersion: String by System.getProperties()
     id("com.gradle.plugin-publish") version gradlePluginPublishVersion

@@ -4,7 +4,7 @@ plugins {
     kotlin("js")
     id("maven-publish")
     id("signing")
-    id("de.marcphilipp.nexus-publish")
+    id("io.github.gradle-nexus.publish-plugin")
     id("org.jetbrains.dokka")
 }
 
@@ -97,7 +97,7 @@ publishing {
 }
 
 setupSigning()
-setupPublication()
+setupRootPublication()
 
 tasks.dokkaHtml.configure {
     dokkaSourceSets {

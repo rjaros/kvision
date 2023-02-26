@@ -3,7 +3,6 @@ plugins {
     id("kotlinx-serialization")
     id("maven-publish")
     id("signing")
-    id("de.marcphilipp.nexus-publish")
     id("org.jetbrains.dokka")
     kotlin("kapt")
 }
@@ -80,7 +79,7 @@ publishing {
 }
 
 setupSigning()
-setupPublication()
+setupPublication(true)
 setupDokkaMpp()
 
 kapt {

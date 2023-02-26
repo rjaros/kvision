@@ -1,4 +1,4 @@
-import de.marcphilipp.gradle.nexus.NexusPublishExtension
+import io.github.gradlenexus.publishplugin.NexusPublishExtension
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPom
@@ -100,7 +100,8 @@ fun Project.setupSigning() {
     }
 }
 
-fun Project.setupPublication() {
+
+fun Project.setupRootPublication() {
     extensions.getByType<PublishingExtension>().run {
         publications.withType<MavenPublication>().all {
             pom {
@@ -113,6 +114,29 @@ fun Project.setupPublication() {
                     username.set(findProperty("ossrhUsername")?.toString())
                     password.set(findProperty("ossrhPassword")?.toString())
                 }
+            }
+        }
+    }
+}
+
+fun Project.setupPublication(isMuliplatform: Boolean = false) {
+    extensions.getByType<PublishingExtension>().run {
+        publications.withType<MavenPublication>().all {
+            pom {
+                defaultPom()
+            }
+        }
+    }
+    if (isMuliplatform) {
+        afterEvaluate {
+            tasks.getByName("publishKotlinMultiplatformPublicationToSonatypeRepository") {
+                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
+            }
+            tasks.getByName("publishJsPublicationToSonatypeRepository") {
+                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
+            }
+            tasks.getByName("publishJvmPublicationToSonatypeRepository") {
+                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
             }
         }
     }
