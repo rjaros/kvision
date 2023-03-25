@@ -26,7 +26,6 @@ import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.StringPair
-import io.kvision.core.Widget
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
@@ -295,6 +294,13 @@ open class TomSelectInput(
     override fun refresh() {
         super.refresh()
         window.setTimeout({ refreshTomSelect() }, 0)
+    }
+
+    /**
+     * Removes all unselected options from the control.
+     */
+    open fun clearOptions() {
+        tomSelectJs?.clearOptions()
     }
 
     override fun getState(): String? = value

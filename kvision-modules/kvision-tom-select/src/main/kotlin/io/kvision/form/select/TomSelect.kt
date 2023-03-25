@@ -253,6 +253,13 @@ open class TomSelect(
         input.blur()
     }
 
+    /**
+     * Removes all unselected options from the control.
+     */
+    open fun clearOptions() {
+        input.clearOptions()
+    }
+
     override fun getState(): String? = input.getState()
 
     override fun subscribe(observer: (String?) -> Unit): () -> Unit {
