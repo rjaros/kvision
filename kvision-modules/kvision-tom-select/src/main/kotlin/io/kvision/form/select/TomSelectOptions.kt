@@ -40,6 +40,7 @@ data class TomSelectOptions(
     val loadingClass: String? = null,
     val hidePlaceholder: Boolean? = null,
     val preload: Boolean? = null,
+    val preloadOnFocus: Boolean? = null,
     val addPrecedence: Boolean? = null,
     val selectOnTab: Boolean? = null,
     val duplicates: Boolean? = null,
@@ -130,7 +131,11 @@ fun TomSelectOptions.toJs(emptyOption: Boolean): dynamic {
         this.loadThrottle = loadThrottle
         if (loadingClass != null) this.loadingClass = loadingClass
         if (hidePlaceholder != null) this.hidePlaceholder = hidePlaceholder
-        if (preload != null) this.preload = preload
+        if (preload != null) {
+            this.preload = preload
+        } else if (preloadOnFocus == true) {
+            this.preload = "focus"
+        }
         if (addPrecedence != null) this.addPrecedence = addPrecedence
         if (selectOnTab != null) this.selectOnTab = selectOnTab
         if (duplicates != null) this.duplicates = duplicates
