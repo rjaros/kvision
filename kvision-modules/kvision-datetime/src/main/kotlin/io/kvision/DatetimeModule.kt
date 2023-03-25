@@ -22,8 +22,6 @@
 
 package io.kvision
 
-import io.kvision.utils.createInstance
-
 /**
  * Initializer for KVision datetime module.
  */
@@ -59,25 +57,6 @@ object DatetimeModule : ModuleInitializer {
         locales[localeSl.name] = localeSl.localization
         val localeTr = require("@eonasdan/tempus-dominus/dist/locales/tr.js")
         locales[localeTr.name] = localeTr.localization
-        val customDateFormatPlugin = require("@eonasdan/tempus-dominus/dist/plugins/customDateFormat.js")
-        var tdClasses: dynamic = null
-
-        @Suppress("UNUSED_PARAMETER")
-        fun tdClassesGetter(a: dynamic, fields: dynamic, b: dynamic) {
-            tdClasses = fields
-        }
-        tempusDominus.extend(::tdClassesGetter)
-        // workaround some bugs in tempus dominus custom date format plugin
-        customDateFormatPlugin(null, tdClasses, tempusDominus)
-        val oldParseInput = tdClasses.Dates.prototype.parseInput
-        tdClasses.Dates.prototype.parseInput = { input: String ->
-            try {
-                oldParseInput.apply(js("this"), arrayOf(input))
-            } catch (e: Throwable) {
-                tdClasses.DateTime.unsafeCast<Any>().createInstance<Any>()
-            }
-        }
-        customDateFormatPlugin.installed = true
     }
 
     override fun initialize() {
