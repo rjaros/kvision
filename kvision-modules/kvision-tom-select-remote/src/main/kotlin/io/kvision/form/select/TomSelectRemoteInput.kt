@@ -27,8 +27,10 @@ import io.kvision.remote.HttpMethod
 import io.kvision.remote.JsonRpcRequest
 import io.kvision.remote.KVServiceMgr
 import io.kvision.remote.RemoteOption
+import io.kvision.snabbdom.VNode
 import io.kvision.utils.Serialization
 import io.kvision.utils.obj
+import kotlinx.browser.window
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import org.w3c.fetch.RequestInit
@@ -48,6 +50,7 @@ import org.w3c.fetch.RequestInit
  * @param tsCallbacks Tom Select callbacks
  * @param tsRenders Tom Select render functions
  * @param preload preload all options from remote data source
+ * @param openOnFocus open dropdown on input focus
  * @param requestFilter a request filtering function
  * @param className CSS class names
  * @param init an initializer extension function
@@ -58,7 +61,7 @@ open class TomSelectRemoteInput<out T : Any>(
     protected val stateFunction: (() -> String)? = null,
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, selectSize: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
-    protected val preload: Boolean = false,
+    protected val preload: Boolean = false, protected val openOnFocus: Boolean = false,
     protected val requestFilter: (suspend RequestInit.() -> Unit)? = null,
     className: String? = null,
     init: (TomSelectRemoteInput<T>.() -> Unit)? = null
@@ -76,11 +79,12 @@ open class TomSelectRemoteInput<out T : Any>(
             }
         } else null
         this.tsCallbacks = tsCallbacks?.copy(load = loadCallback) ?: TomSelectCallbacks(load = loadCallback)
-        this.tsOptions = tsOptions?.copy(preload = preload, openOnFocus = preload, searchField = emptyList()) ?: TomSelectOptions(
-            preload = preload,
-            openOnFocus = preload,
-            searchField = emptyList()
-        )
+        this.tsOptions = tsOptions?.copy(preload = preload, openOnFocus = openOnFocus, searchField = emptyList())
+            ?: TomSelectOptions(
+                preload = preload,
+                openOnFocus = openOnFocus,
+                searchField = emptyList()
+            )
         this.tsRenders = tsRenders?.copy(option = ::renderOption, item = ::renderItem) ?: TomSelectRenders(
             option = ::renderOption,
             item = ::renderItem
@@ -114,6 +118,19 @@ open class TomSelectRemoteInput<out T : Any>(
             }
         } else {
             super.refreshState()
+        }
+    }
+
+    override fun afterInsert(node: VNode) {
+        super.afterInsert(node)
+        if (openOnFocus) {
+            window.setTimeout({
+                tomSelectJs?.on("focus") {
+                    if (this.value == null) {
+                        tomSelectJs?.load("")
+                    }
+                }
+            }, 0)
         }
     }
 
@@ -190,7 +207,7 @@ fun <T : Any> Container.tomSelectRemoteInput(
     stateFunction: (() -> String)? = null,
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, selectSize: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
-    preload: Boolean = false,
+    preload: Boolean = false, openOnFocus: Boolean = false,
     requestFilter: (suspend RequestInit.() -> Unit)? = null,
     className: String? = null,
     init: (TomSelectRemoteInput<T>.() -> Unit)? = null
@@ -208,6 +225,7 @@ fun <T : Any> Container.tomSelectRemoteInput(
             tsCallbacks,
             tsRenders,
             preload,
+            openOnFocus,
             requestFilter,
             className,
             init

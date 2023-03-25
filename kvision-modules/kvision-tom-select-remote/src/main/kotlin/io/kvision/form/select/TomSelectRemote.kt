@@ -50,6 +50,7 @@ import org.w3c.fetch.RequestInit
  * @param tsCallbacks Tom Select callbacks
  * @param tsRenders Tom Select render functions
  * @param preload preload all options from remote data source
+ * @param openOnFocus open dropdown on input focus
  * @param requestFilter a request filtering function
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
@@ -62,7 +63,8 @@ open class TomSelectRemote<out T : Any>(
     stateFunction: (() -> String)? = null,
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, selectSize: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
-    private val preload: Boolean = false, requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    private val preload: Boolean = false, private val openOnFocus: Boolean = false,
+    requestFilter: (suspend RequestInit.() -> Unit)? = null,
     name: String? = null, label: String? = null, rich: Boolean = false,
     init: (TomSelectRemote<T>.() -> Unit)? = null
 ) : SimplePanel("form-group kv-mb-3"), StringFormControl, MutableState<String?> {
@@ -174,7 +176,7 @@ open class TomSelectRemote<out T : Any>(
     private val idc = "kv_form_TomSelectRemote_$counter"
     final override val input: TomSelectRemoteInput<T> = TomSelectRemoteInput(
         serviceManager, function, stateFunction, value, emptyOption, multiple, selectSize,
-        tsOptions, tsCallbacks, tsRenders, preload, requestFilter, "form-control"
+        tsOptions, tsCallbacks, tsRenders, preload, openOnFocus, requestFilter, "form-control"
     ).apply {
         this.id = this@TomSelectRemote.idc
         this.name = name
@@ -279,14 +281,14 @@ fun <T : Any> Container.tomSelectRemote(
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, selectSize: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
-    preload: Boolean = false, requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    preload: Boolean = false, openOnFocus: Boolean = false, requestFilter: (suspend RequestInit.() -> Unit)? = null,
     name: String? = null, label: String? = null, rich: Boolean = false, init: (TomSelectRemote<T>.() -> Unit)? = null
 ): TomSelectRemote<T> {
     val tomSelectRemote =
         TomSelectRemote(
             serviceManager, function, stateFunction,
-            value, emptyOption, multiple, selectSize, tsOptions, tsCallbacks, tsRenders, preload, requestFilter,
-            name, label, rich, init
+            value, emptyOption, multiple, selectSize, tsOptions, tsCallbacks, tsRenders, preload, openOnFocus,
+            requestFilter, name, label, rich, init
         )
     this.add(tomSelectRemote)
     return tomSelectRemote
