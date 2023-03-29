@@ -30,7 +30,6 @@ import io.kvision.remote.RemoteOption
 import io.kvision.snabbdom.VNode
 import io.kvision.utils.Serialization
 import io.kvision.utils.obj
-import kotlinx.browser.window
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import org.w3c.fetch.RequestInit
@@ -78,7 +77,11 @@ open class TomSelectRemoteInput<out T : Any>(
                 loadResults(callAgent, url, method, query, this.value, requestFilter, callback)
             }
         } else null
-        this.tsCallbacks = tsCallbacks?.copy(load = loadCallback) ?: TomSelectCallbacks(load = loadCallback)
+        val shouldLoadCallback = if (openOnFocus) {
+            { _: String -> true }
+        } else null
+        this.tsCallbacks = tsCallbacks?.copy(load = loadCallback, shouldLoad = shouldLoadCallback)
+            ?: TomSelectCallbacks(load = loadCallback, shouldLoad = shouldLoadCallback)
         this.tsOptions = tsOptions?.copy(preload = preload, openOnFocus = openOnFocus, searchField = emptyList())
             ?: TomSelectOptions(
                 preload = preload,
@@ -121,17 +124,29 @@ open class TomSelectRemoteInput<out T : Any>(
         }
     }
 
+    protected open fun installEventListeners() {
+        if (openOnFocus) {
+            tomSelectJs?.on("focus") {
+                if (this.value == null) {
+                    tomSelectJs?.load("")
+                }
+            }
+            tomSelectJs?.on("change") { v: dynamic ->
+                if (v == "") {
+                    tomSelectJs?.load("")
+                }
+            }
+        }
+    }
+
     override fun afterInsert(node: VNode) {
         super.afterInsert(node)
-        if (openOnFocus) {
-            window.setTimeout({
-                tomSelectJs?.on("focus") {
-                    if (this.value == null) {
-                        tomSelectJs?.load("")
-                    }
-                }
-            }, 0)
-        }
+        installEventListeners()
+    }
+
+    override fun refreshTomSelect() {
+        super.refreshTomSelect()
+        installEventListeners()
     }
 
     @Suppress("UnsafeCastFromDynamic")
