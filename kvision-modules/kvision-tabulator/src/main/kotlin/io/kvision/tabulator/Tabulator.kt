@@ -204,9 +204,11 @@ open class Tabulator<T : Any>(
                 jsTabulator?.on("cellEditCancelled") { cell: JsTabulator.CellComponent ->
                     window.setTimeout({
                         try {
-                            cell.getTable().redraw(true)
+                            cell.getTable().getRows("visible").forEach { row ->
+                                row.reformat()
+                            }
                         } catch (e: Throwable) {
-                            console.log("Table redraw failed. Probably it's not visible anymore.")
+                            console.log("Table reformat failed. Probably it's not visible anymore.")
                         }
                     }, 0)
                 }
