@@ -124,6 +124,7 @@ open class Tabulator<T : Any>(
      * Native Tabulator object.
      */
     var jsTabulator: JsTabulator? = null
+    private var unsubscribe: (() -> Unit)? = null
     private var jsTabulatorInitialized = false
 
     private var pageSize: Number? = null
@@ -138,7 +139,7 @@ open class Tabulator<T : Any>(
             @Suppress("UnsafeCastFromDynamic")
             options.data = data.map { toPlainObjTabulator(it) }.toTypedArray()
             if (data is ObservableList) {
-                data.onUpdate += {
+                unsubscribe = data.subscribe {
                     replaceData(data.toTypedArray())
                 }
             }
@@ -204,9 +205,11 @@ open class Tabulator<T : Any>(
                 jsTabulator?.on("cellEditCancelled") { cell: JsTabulator.CellComponent ->
                     window.setTimeout({
                         try {
-                            cell.getTable().redraw(true)
+                            cell.getTable().getRows("visible").forEach { row ->
+                                row.reformat()
+                            }
                         } catch (e: Throwable) {
-                            console.log("Table redraw failed. Probably it's not visible anymore.")
+                            console.log("Table reformat failed. Probably it's not visible anymore.")
                         }
                     }, 0)
                 }
@@ -335,7 +338,13 @@ open class Tabulator<T : Any>(
         if ((getElement()?.unsafeCast<Element>()?.querySelectorAll(".tabulator-editing")?.length ?: 0) > 0) {
             this.removeCustomEditors()
         }
-        if (jsTabulatorInitialized) jsTabulator?.replaceData(jsData, null, null)
+        if (jsTabulatorInitialized) {
+            // Workaround resetting scrollbars with pagination turned on
+            val oldPagination = jsTabulator?.options?.pagination
+            jsTabulator?.options?.pagination = false
+            jsTabulator?.replaceData(jsData, null, null)
+            jsTabulator?.options?.pagination = oldPagination
+        }
     }
 
     /**
@@ -844,6 +853,7 @@ open class Tabulator<T : Any>(
     }
 
     override fun dispose() {
+        unsubscribe?.invoke()
         jsTabulator?.destroy()
         customRoots.forEach { it.dispose() }
         customRoots.clear()
