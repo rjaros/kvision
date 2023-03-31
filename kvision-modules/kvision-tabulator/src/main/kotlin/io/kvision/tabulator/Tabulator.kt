@@ -334,7 +334,13 @@ open class Tabulator<T : Any>(
         if ((getElement()?.unsafeCast<Element>()?.querySelectorAll(".tabulator-editing")?.length ?: 0) > 0) {
             this.removeCustomEditors()
         }
-        if (jsTabulatorInitialized) jsTabulator?.replaceData(jsData, null, null)
+        if (jsTabulatorInitialized) {
+            // Workaround resetting scrollbars with pagination turned on
+            val oldPagination = jsTabulator?.options?.pagination
+            jsTabulator?.options?.pagination = false
+            jsTabulator?.replaceData(jsData, null, null)
+            jsTabulator?.options?.pagination = oldPagination
+        }
     }
 
     /**
