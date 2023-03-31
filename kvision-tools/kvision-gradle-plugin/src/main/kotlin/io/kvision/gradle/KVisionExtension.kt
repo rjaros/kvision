@@ -77,7 +77,7 @@ abstract class KVisionExtension @Inject constructor(
 
         @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
-        val webpack: Property<String> = objects.property<String>().convention("5.76.3")
+        val webpack: Property<String> = objects.property<String>().convention("5.77.0")
 
         @get:Optional
         /** Requires [KVisionExtension.enableWebpackVersions] to be true */
