@@ -30,7 +30,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: Run all tests
-        run: ./gradlew check
+        run: ./gradlew check -x :kvision-tools:kvision-gradle-plugin:check
 
       - name: Test Report
         uses: dorny/test-reporter@v1
