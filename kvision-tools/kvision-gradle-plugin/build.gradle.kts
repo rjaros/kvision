@@ -46,11 +46,6 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core")
 }
 
-val sourcesJar by tasks.registering(Jar::class) {
-    archiveClassifier.set("sources")
-    from(kotlin.sourceSets.main.get().kotlin)
-}
-
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")

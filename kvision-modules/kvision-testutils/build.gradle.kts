@@ -23,12 +23,6 @@ dependencies {
     }
 }
 
-val sourcesJar by tasks.registering(Jar::class) {
-    dependsOn("generateExternalsIntegrated")
-    archiveClassifier.set("sources")
-    from(kotlin.sourceSets.main.get().kotlin)
-}
-
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
@@ -39,7 +33,6 @@ publishing {
     publications {
         create<MavenPublication>("kotlin") {
             from(components["kotlin"])
-            artifact(tasks["sourcesJar"])
             if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
         }
     }

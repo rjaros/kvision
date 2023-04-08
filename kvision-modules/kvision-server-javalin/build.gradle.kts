@@ -51,14 +51,6 @@ val javadocJar by tasks.registering(Jar::class) {
     from("$buildDir/dokka/html")
 }
 
-val sourcesJar by tasks.named("sourcesJar") {
-    dependsOn("jsGenerateExternalsIntegrated")
-}
-
-val jsSourcesJar by tasks.named("jsSourcesJar") {
-    dependsOn("jsGenerateExternalsIntegrated")
-}
-
 publishing {
     publications.withType<MavenPublication> {
         if (name == "kotlinMultiplatform") artifactId = "kvision-server-javalin"

@@ -41,8 +41,8 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
-        versions.webpackDevServer.version = "4.13.1"
-        versions.webpack.version = "5.77.0"
+        versions.webpackDevServer.version = "4.13.2"
+        versions.webpack.version = "5.78.0"
         versions.webpackCli.version = "5.0.1"
         versions.karma.version = "6.4.1"
         versions.mocha.version = "10.2.0"
@@ -74,12 +74,6 @@ dependencies {
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }
 
-val sourcesJar by tasks.registering(Jar::class) {
-    dependsOn("generateExternalsIntegrated")
-    archiveClassifier.set("sources")
-    from(kotlin.sourceSets.main.get().kotlin)
-}
-
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
@@ -90,7 +84,6 @@ publishing {
     publications {
         create<MavenPublication>("kotlin") {
             from(components["kotlin"])
-            artifact(tasks["sourcesJar"])
             if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
         }
     }

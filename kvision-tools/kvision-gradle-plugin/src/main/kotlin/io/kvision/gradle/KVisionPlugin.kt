@@ -106,7 +106,7 @@ abstract class KVisionPlugin @Inject constructor(
 
         if (kvExtension.enableGradleTasks.get()) {
             registerGeneratePotFileTask {
-                dependsOn(tasks.all.compileKotlinJs)
+                dependsOn(tasks.all.kotlinNpmInstall)
                 inputs.files(kotlinJsExtension.sourceSets.main.get().kotlin.files)
                 potFile.set(
                     layout.projectDirectory.file(
@@ -117,7 +117,7 @@ abstract class KVisionPlugin @Inject constructor(
         }
 
         val convertPoToJsonTask = registerConvertPoToJsonTask {
-            dependsOn(tasks.all.compileKotlinJs)
+            dependsOn(tasks.all.kotlinNpmInstall)
             sourceDirectory.set(
                 layout.projectDirectory.dir("src/main/resources/i18n")
             )
@@ -160,7 +160,7 @@ abstract class KVisionPlugin @Inject constructor(
 
         if (kvExtension.enableGradleTasks.get()) {
             registerGeneratePotFileTask {
-                dependsOn(tasks.all.compileKotlinFrontend)
+                dependsOn(tasks.all.kotlinNpmInstall)
                 inputs.files(kotlinMppExtension.sourceSets.frontendMain.map { it.kotlin.files })
                 potFile.set(
                     layout.projectDirectory.file(
@@ -171,7 +171,7 @@ abstract class KVisionPlugin @Inject constructor(
         }
 
         val convertPoToJsonTask = registerConvertPoToJsonTask {
-            dependsOn(tasks.all.compileKotlinFrontend)
+            dependsOn(tasks.all.kotlinNpmInstall)
             sourceDirectory.set(
                 layout.projectDirectory.dir("src/frontendMain/resources/i18n")
             )
@@ -424,6 +424,9 @@ abstract class KVisionPlugin @Inject constructor(
 
         val frontendBrowserDevelopmentRun: TaskCollection<Task>
             get() = collection("frontendBrowserDevelopmentRun")
+
+        val kotlinNpmInstall: TaskCollection<Task>
+            get() = collection("kotlinNpmInstall")
 
         val kspKotlinFrontend: TaskCollection<Task>
             get() = collection("kspKotlinFrontend")
