@@ -232,14 +232,15 @@ open class ImaskNumericInput(
     }
 
     protected open fun refreshState() {
-        if (mask == null) {
-            getElementD()?.value = value?.toString()?.replace('.', decimalSeparator) ?: ""
-        } else {
-            getElementD()?.value = value
-            mask!!.refresh()
-            val v = mask?.getValue()?.toDoubleOrNull()
-            if (this.value != v) {
-                this.value = v
+        val newValue = value?.toString()?.replace('.', decimalSeparator) ?: ""
+        if (getElementD()?.value != newValue) {
+            getElementD()?.value = newValue
+            if (mask != null) {
+                mask!!.refresh()
+                val v = mask?.getValue()?.toDoubleOrNull()
+                if (this.value != v) {
+                    this.value = v
+                }
             }
         }
     }
@@ -266,7 +267,8 @@ open class ImaskNumericInput(
                 )
             )
             mask!!.onChange {
-                tempValue = it?.toDoubleOrNull()
+                val newValue = it?.toDoubleOrNull()
+                if (tempValue != newValue) tempValue = newValue
             }
         }
     }
