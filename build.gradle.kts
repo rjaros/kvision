@@ -58,7 +58,7 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
     api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
 //    for local development
-//    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-8.0.0.tgz"))
+//    implementation(npm("kvision-assets", "http://localhost:8001/kvision-assets-8.0.6.tgz"))
     implementation(npm("kvision-assets", "^$kvisionAssetsVersion"))
     implementation(npm("css-loader", "^$cssLoaderVersion"))
     implementation(npm("style-loader", "^$styleLoaderVersion"))

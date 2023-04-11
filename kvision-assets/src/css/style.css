@@ -716,7 +716,7 @@ label.required-label + ons-input > span.text-input__label::after {
     margin-left: 5px;
 }
 
-.ts-control {
+.ts-wrapper:not(.multi) .ts-control {
     flex-wrap: nowrap;
 }
 
