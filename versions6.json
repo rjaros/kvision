@@ -1,6 +1,6 @@
 {
-    "kvision": "6.3.1",
-    "kotlin": "1.8.20",
+    "kvision": "6.3.2",
+    "kotlin": "1.8.21",
     "serialization": "1.5.0",
     "coroutines": "1.6.4",
     "template-javalin": {
@@ -9,13 +9,13 @@
         "jooby": "2.16.1"
     },
     "template-ktor": {
-        "ktor": "2.2.4"
+        "ktor": "2.3.0"
     },
     "template-micronaut": {
-        "micronaut": "3.8.8"
+        "micronaut": "3.9.1"
     },
     "template-spring-boot": {
-        "spring-boot": "3.0.5"
+        "spring-boot": "3.0.6"
     },
     "template-vertx": {
         "vertx-plugin": "1.4.0"
