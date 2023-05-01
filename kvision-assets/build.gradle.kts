@@ -38,11 +38,3 @@ npmPublish {
         }
     }
 }
-
-afterEvaluate {
-    tasks {
-        getByName("publishKvisionAssetsPackageToNpmjsRegistry") {
-            dependsOn(":kotlinNodeJsSetup")
-        }
-    }
-}

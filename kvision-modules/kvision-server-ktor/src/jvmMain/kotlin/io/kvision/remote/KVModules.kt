@@ -85,10 +85,7 @@ fun Application.kvisionInit(initStaticResources: Boolean, json: Json, vararg mod
  */
 fun Application.initStaticResources() {
     routing {
-        static("/") {
-            resources("assets")
-            defaultResource("assets/index.html")
-        }
+        staticResources("/", "assets", "index.html")
     }
 }
 
