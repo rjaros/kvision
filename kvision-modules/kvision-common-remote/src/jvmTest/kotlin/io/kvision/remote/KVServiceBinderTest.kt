@@ -20,6 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:Suppress("UNUSED_ANONYMOUS_PARAMETER")
+
 package io.kvision.remote
 
 import kotlinx.coroutines.DelicateCoroutinesApi

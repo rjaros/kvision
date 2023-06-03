@@ -23,6 +23,7 @@
 package io.kvision.remote
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
@@ -118,6 +119,7 @@ class WebsocketHandlerKtTest {
         assertChannelsClosedNoUndelivered()
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun assertChannelsClosedNoUndelivered() {
         assertThat("rawIncoming.isClosedForReceive", rawClientToServer.isClosedForReceive, equalTo(true))
         assertThat("rawIncoming.isClosedForSend", rawClientToServer.isClosedForSend, equalTo(true))

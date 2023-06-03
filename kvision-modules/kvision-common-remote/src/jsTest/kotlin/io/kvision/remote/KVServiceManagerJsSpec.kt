@@ -19,6 +19,7 @@ class Dummy {
     }
 }
 
+@Suppress("UNUSED_ANONYMOUS_PARAMETER")
 val ALL_NON_WS_BIND_CALLS: List<(serviceManager: KVServiceManager, method: HttpMethod, route: String?) -> Unit> = listOf(
     { serviceManager, method, route -> serviceManager.bind(Dummy::param0fun, method, route) },
     { serviceManager, method, route -> serviceManager.bind(Dummy::param1fun, method, route) },

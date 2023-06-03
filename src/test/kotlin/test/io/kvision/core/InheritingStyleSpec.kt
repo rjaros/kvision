@@ -44,10 +44,10 @@ class InheritingStyleSpec : DomSpec {
                     padding = 4.px
                     border = Border(1.px, BorderStyle.SOLID, Color.name(Col.BLACK))
                 }
-                val redCardStyle = inheritingStyle(".redcard", parentStyle = cardStyle) {
+                inheritingStyle(".redcard", parentStyle = cardStyle) {
                     border = Border(1.px, BorderStyle.SOLID, Color.name(Col.RED))
                 }
-                val blueCardStyle = inheritingStyle(".bluecard", parentStyle = cardStyle) {
+                inheritingStyle(".bluecard", parentStyle = cardStyle) {
                     border = Border(1.px, BorderStyle.SOLID, Color.name(Col.BLUE))
                     paddingTop = 5.px
                 }
