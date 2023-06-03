@@ -19,19 +19,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.form
+package test.io.kvision.theme
 
-import io.kvision.html.TAG
-import io.kvision.html.Tag
+import kotlinx.browser.document
+import io.kvision.panel.Root
+import io.kvision.test.DomSpec
+import io.kvision.theme.ThemeSwitcher
+import kotlin.test.Test
 
-/**
- * Helper class for Bootstrap help text element.
- *
- * @constructor
- * @param content the text of the label
- * @param rich determines if [content] can contain HTML code
- */
-open class HelpText(content: String? = null, rich: Boolean = false) : Tag(
-    TAG.SMALL, content, rich,
-    className = "form-text text-body-secondary"
-)
+class ThemeSwitcherSpec : DomSpec {
+
+    @Test
+    fun render() {
+        run {
+            val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
+            val themeSwitcher = ThemeSwitcher(round = true)
+            root.add(themeSwitcher)
+            val element = document.getElementById("test")
+            assertEqualsHtml(
+                "<button class=\"btn btn-secondary rounded-circle\" title=\"Switch color theme\" type=\"button\"><i class=\"fas fa-circle-half-stroke\"></i> </button>",
+                element?.innerHTML,
+                "Should render correct theme switcher"
+            )
+        }
+    }
+
+}

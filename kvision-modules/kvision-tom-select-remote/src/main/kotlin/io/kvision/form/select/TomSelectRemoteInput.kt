@@ -158,7 +158,7 @@ open class TomSelectRemoteInput<out T : Any>(
         } else if (data.content != null) {
             "<div${className}>${data.content}</div>"
         } else {
-            val subtext = if (data.subtext) " <small class=\"text-muted\">${escape(data.subtext)}</small> " else ""
+            val subtext = if (data.subtext) " <small class=\"text-body-secondary\">${escape(data.subtext)}</small> " else ""
             val icon = if (data.icon) "<i class=\"${escape(data.icon)}\"></i> " else ""
             "<div${className}>${icon}${text}${subtext}</div>"
         }

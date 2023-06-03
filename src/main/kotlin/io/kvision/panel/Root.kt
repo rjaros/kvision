@@ -256,7 +256,10 @@ class Root : SimplePanel {
         }
     }
 
-    internal fun restart() {
+    /**
+     * Restart the root component
+     */
+    fun restart() {
         if (rootVnode != null) {
             rootVnode = KVManager.patch(rootVnode!!, h("div"))
             rootVnode = KVManager.patch(rootVnode!!, renderVNode())
@@ -292,7 +295,10 @@ class Root : SimplePanel {
             roots.clear()
         }
 
-        internal val roots: MutableList<Root> = mutableListOf()
+        /**
+         * @suppress internal property
+         */
+        val roots: MutableList<Root> = mutableListOf()
 
         /**
          * @suppress internal function

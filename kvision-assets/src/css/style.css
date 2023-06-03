@@ -824,6 +824,30 @@ label.required-label + ons-input > span.text-input__label::after {
     opacity: unset;
 }
 
+[data-bs-theme="dark"] trix-toolbar .trix-button {
+    background: #fff !important;
+}
+
+[data-bs-theme="dark"] .tabulator.table-bordered .tabulator-header .tabulator-col, [data-bs-theme="dark"] .tabulator.table-bordered .tabulator-tableholder .tabulator-table .tabulator-row .tabulator-cell, [data-bs-theme="dark"] .tabulator .tabulator-tableholder, [data-bs-theme="dark"] .tabulator .tabulator-footer {
+    background-color: var(--bs-body-bg, #212529);
+}
+
+[data-bs-theme="dark"] .tabulator .tabulator-header .tabulator-col.tabulator-sortable.tabulator-col-sorter-element:hover {
+    background-color: var(--bs-secondary-bg, #343a40);
+}
+
+[data-bs-theme="dark"] .ts-control, [data-bs-theme="dark"] .ts-control input, [data-bs-theme="dark"] .ts-dropdown {
+    color: inherit;
+}
+
+[data-bs-theme="dark"] .ts-dropdown {
+    background-color: var(--bs-secondary-bg, #343a40);
+}
+
+[data-bs-theme="dark"] .ts-dropdown [data-selectable] .highlight {
+    background-color: #757575;
+}
+
 /*!
  * bootstrap-vertical-tabs - v1.2.2
  * https://dbtek.github.io/bootstrap-vertical-tabs

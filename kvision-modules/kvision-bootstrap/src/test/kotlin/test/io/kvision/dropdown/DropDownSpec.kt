@@ -144,7 +144,7 @@ class DropDownSpec : DomSpec {
             val element = document.getElementById("test")
             val id = dd.buttonId()
             assertEqualsHtml(
-                "<div class=\"dropdown\"><button class=\"dropdown-toggle btn btn-primary show\" id=\"$id\" role=\"button\" type=\"button\" data-bs-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\" href=\"javascript:void(0)\" data-bs-auto-close=\"true\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu dropdown-menu-dark show\" aria-labelledby=\"$id\" style=\"position: absolute; left: 0px; top: 0px; margin: 0px;\"><a class=\"dropdown-item\" href=\"#!/x\">abc</a><a class=\"dropdown-item\" href=\"#!/y\">def</a></div></div>",
+                "<div class=\"dropdown\"><button class=\"dropdown-toggle btn btn-primary show\" id=\"$id\" role=\"button\" type=\"button\" data-bs-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\" href=\"javascript:void(0)\" data-bs-auto-close=\"true\"><i class=\"flag\"></i> Dropdown</button><div class=\"dropdown-menu show\" aria-labelledby=\"$id\" style=\"position: absolute; left: 0px; top: 0px; margin: 0px;\" data-bs-theme=\"dark\"><a class=\"dropdown-item\" href=\"#!/x\">abc</a><a class=\"dropdown-item\" href=\"#!/y\">def</a></div></div>",
                 element?.innerHTML?.replace("position: ;", "position: absolute;"),
                 "Should render dark mode drop down"
             )

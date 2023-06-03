@@ -21,6 +21,7 @@
  */
 package io.kvision.offcanvas
 
+import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
@@ -107,9 +108,7 @@ open class Offcanvas(
     /**
      * Dark mode.
      */
-    var dark by refreshOnUpdate(dark) {
-        if (dark) closeIcon.addCssClass("btn-close-white") else closeIcon.removeCssClass("btn-close-white")
-    }
+    var dark by refreshOnUpdate(dark)
 
     /**
      * The offcanvas responsive type.
@@ -136,7 +135,6 @@ open class Offcanvas(
     protected val closeIcon = CloseIcon().apply {
         setAttribute("data-bs-dismiss", "offcanvas")
         setAttribute("data-bs-target", "#kv_offcanvas_${counter}")
-        if (dark) addCssClass("btn-close-white")
         this.visible = closeButton
         headerTag.add(this)
     }
@@ -200,6 +198,11 @@ open class Offcanvas(
         return body.getChildren()
     }
 
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        if (dark) attributeSetBuilder.add("data-bs-theme", "dark")
+    }
+
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
         if (responsiveType == null) {
@@ -208,7 +211,6 @@ open class Offcanvas(
             classSetBuilder.add(responsiveType)
         }
         classSetBuilder.add(placement)
-        if (dark) classSetBuilder.add("text-bg-dark")
     }
 
     override fun afterInsert(node: VNode) {

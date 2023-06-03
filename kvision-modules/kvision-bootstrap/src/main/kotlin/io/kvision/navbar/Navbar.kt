@@ -85,8 +85,8 @@ open class Navbar(
     link: String? = null,
     type: NavbarType? = null,
     expand: NavbarExpand? = NavbarExpand.LG,
-    nColor: NavbarColor = NavbarColor.LIGHT,
-    bgColor: BsBgColor = BsBgColor.LIGHT,
+    nColor: NavbarColor? = null,
+    bgColor: BsBgColor = BsBgColor.BODYTERTIARY,
     collapseOnClick: Boolean = false,
     dataNavigo: Boolean? = null,
     className: String? = null, init: (Navbar.() -> Unit)? = null
@@ -214,12 +214,17 @@ open class Navbar(
         return container.getChildren()
     }
 
+    override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
+        super.buildAttributeSet(attributeSetBuilder)
+        if (nColor == NavbarColor.DARK) attributeSetBuilder.add("data-bs-theme", "dark")
+    }
+
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
         classSetBuilder.add("navbar")
         classSetBuilder.add(type)
         classSetBuilder.add(expand)
-        classSetBuilder.add(nColor.navbarColor)
+        if (nColor == NavbarColor.LIGHT) classSetBuilder.add(nColor!!.navbarColor)
         classSetBuilder.add(bgColor.className)
     }
 
@@ -238,8 +243,8 @@ fun Container.navbar(
     link: String? = null,
     type: NavbarType? = null,
     expand: NavbarExpand? = NavbarExpand.LG,
-    nColor: NavbarColor = NavbarColor.LIGHT,
-    bgColor: BsBgColor = BsBgColor.LIGHT,
+    nColor: NavbarColor? = null,
+    bgColor: BsBgColor = BsBgColor.BODYTERTIARY,
     collapseOnClick: Boolean = false,
     dataNavigo: Boolean? = null,
     className: String? = null,

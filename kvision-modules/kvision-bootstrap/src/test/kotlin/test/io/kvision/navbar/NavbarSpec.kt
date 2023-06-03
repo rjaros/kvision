@@ -44,13 +44,13 @@ class NavbarSpec : DomSpec {
             val element = document.getElementById("test")
             val id = navbar.container.id
             assertEqualsHtml(
-                "<nav class=\"navbar fixed-top navbar-expand-lg navbar-light bg-light\"><div class=\"container-fluid\"><a class=\"navbar-brand\" href=\"#\">TEST</a><button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#$id\" aria-controls=\"$id\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"$id\"></div></div></nav>",
+                "<nav class=\"navbar fixed-top navbar-expand-lg bg-body-tertiary\"><div class=\"container-fluid\"><a class=\"navbar-brand\" href=\"#\">TEST</a><button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#$id\" aria-controls=\"$id\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"$id\"></div></div></nav>",
                 element?.innerHTML,
                 "Should render correct navbar"
             )
             navbar.nColor = NavbarColor.DARK
             assertEqualsHtml(
-                "<nav class=\"navbar fixed-top navbar-expand-lg bg-light navbar-dark\"><div class=\"container-fluid\"><a class=\"navbar-brand\" href=\"#\">TEST</a><button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#$id\" aria-controls=\"$id\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"$id\"></div></div></nav>",
+                "<nav class=\"navbar fixed-top navbar-expand-lg bg-body-tertiary\" data-bs-theme=\"dark\"><div class=\"container-fluid\"><a class=\"navbar-brand\" href=\"#\">TEST</a><button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#$id\" aria-controls=\"$id\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"$id\"></div></div></nav>",
                 element?.innerHTML,
                 "Should render correct dark navbar"
             )
@@ -60,7 +60,7 @@ class NavbarSpec : DomSpec {
                 }
             })
             assertEqualsHtml(
-                "<nav class=\"navbar fixed-top navbar-expand-lg bg-light navbar-dark\"><div class=\"container-fluid\"><a class=\"navbar-brand\" href=\"#\">TEST</a><button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#$id\" aria-controls=\"$id\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"$id\"><div class=\"navbar-nav\"><li><a href=\"#!/test\">Test</a></li></div></div></div></nav>",
+                "<nav class=\"navbar fixed-top navbar-expand-lg bg-body-tertiary\" data-bs-theme=\"dark\"><div class=\"container-fluid\"><a class=\"navbar-brand\" href=\"#\">TEST</a><button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#$id\" aria-controls=\"$id\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"$id\"><div class=\"navbar-nav\"><li><a href=\"#!/test\">Test</a></li></div></div></div></nav>",
                 element?.innerHTML,
                 "Should render correct navbar with nav link"
             )

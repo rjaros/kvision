@@ -37,7 +37,7 @@ class HelpTextSpec : DomSpec {
             root.add(fl)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<small class=\"form-text text-muted\">Form Error</small>",
+                "<small class=\"form-text text-body-secondary\">Form Error</small>",
                 element?.innerHTML,
                 "Should render correct help block"
             )

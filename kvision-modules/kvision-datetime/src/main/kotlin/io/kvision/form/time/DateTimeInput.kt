@@ -38,6 +38,7 @@ import io.kvision.types.toDateF
 import io.kvision.types.toStringF
 import io.kvision.utils.createInstance
 import io.kvision.utils.obj
+import kotlinx.browser.document
 import kotlin.js.Date
 
 internal const val DEFAULT_STEPPING = 1
@@ -372,6 +373,13 @@ open class DateTimeInput(
         locale["locale"] = language
         locale["format"] = newFormat
         val initialViewMode = viewMode ?: if (calendarView) ViewMode.CALENDAR else ViewMode.CLOCK
+        val currentTheme = if (theme == null || theme == Theme.AUTO) {
+            document.documentElement?.getAttribute("data-bs-theme")?.let { theme ->
+                Theme.values().find { theme == it.theme }
+            }
+        } else {
+            theme
+        }
         dateTimePicker = getElement()?.let { element ->
             DatetimeModule.tempusDominus.TempusDominus.unsafeCast<Any>().createInstance<Any>(element, obj {
                 this.useCurrent = inline
@@ -405,7 +413,7 @@ open class DateTimeInput(
                     }
                     this.inline = inline
                     this.keepOpen = keepOpen
-                    theme?.let { this.theme = it.theme }
+                    currentTheme?.let { this.theme = it.theme }
                     this.components = obj {
                         this.calendar = calendarView
                         this.clock = clockView

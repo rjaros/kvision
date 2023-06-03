@@ -49,11 +49,11 @@ open class DropDownMenu(private val ariaId: String, dark: Boolean = false, right
     override fun buildAttributeSet(attributeSetBuilder: AttributeSetBuilder) {
         super.buildAttributeSet(attributeSetBuilder)
         attributeSetBuilder.add("aria-labelledby", ariaId)
+        if (dark) attributeSetBuilder.add("data-bs-theme", "dark")
     }
 
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
-        if (dark) classSetBuilder.add("dropdown-menu-dark")
         if (rightAligned) classSetBuilder.add("dropdown-menu-end")
     }
 }

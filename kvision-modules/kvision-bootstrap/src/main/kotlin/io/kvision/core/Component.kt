@@ -33,14 +33,23 @@ enum class BsBorder(override val className: String) : CssClass {
     BORDERRIGHT_0("border-end-0"),
     BORDERLEFT_0("border-start-0"),
     BORDERPRIMARY("border-primary"),
+    BORDERPRIMARYSUBTLE("border-primary-subtle"),
     BORDERSECONDARY("border-secondary"),
+    BORDERSECONDARYSUBTLE("border-secondary-subtle"),
     BORDERSUCCESS("border-success"),
+    BORDERSUCCESSSUBTLE("border-success-subtle"),
     BORDERDANGER("border-danger"),
+    BORDERDANGERSUBTLE("border-danger-subtle"),
     BORDERWARNING("border-warning"),
+    BORDERWARNINGSUBTLE("border-warning-subtle"),
     BORDERINFO("border-info"),
+    BORDERINFOSUBTLE("border-info-subtle"),
     BORDERLIGHT("border-light"),
+    BORDERLIGHTSUBTLE("border-light-subtle"),
     BORDERDARK("border-dark"),
-    BORDERWHITE("border-white")
+    BORDERDARKSUBTLE("border-dark-subtle"),
+    BORDERWHITE("border-white"),
+    BORDERBLACK("border-black")
 }
 
 fun Component.addBsBorder(vararg bsBorder: BsBorder) {
@@ -93,16 +102,30 @@ fun Component.removeBsClearfix() {
 
 enum class BsColor(override val className: String) : CssClass {
     PRIMARY("text-primary"),
+    PRIMARYEMPHASIS("text-primary-emphasis"),
     SECONDARY("text-secondary"),
+    SECONDARYEMPHASIS("text-secondary-emphasis"),
     SUCCESS("text-success"),
+    SUCCESSEMPHASIS("text-success-emphasis"),
     DANGER("text-danger"),
+    DANGEREMPHASIS("text-danger-emphasis"),
     WARNING("text-warning"),
+    WARNINGEMPHASIS("text-warning-emphasis"),
     INFO("text-info"),
+    INFOEMPHASIS("text-info-emphasis"),
     LIGHT("text-light"),
+    LIGHTEMPHASIS("text-light-emphasis"),
     DARK("text-dark"),
+    DARKEMPHASIS("text-dark-emphasis"),
+    BLACK("text-black"),
     WHITE("text-white"),
     BODY("text-body"),
-    MUTED("text-muted"),
+
+    @Deprecated("Use BODYSECONDARY instead", ReplaceWith("BODYSECONDARY"))
+    MUTED("text-body-secondary"),
+    BODYSECONDARY("text-body-secondary"),
+    BODYTERTIARY("text-body-tertiary"),
+    BODYEMPHASIS("text-body-emphasis"),
     BLACK50("text-black-50"),
     WHITE50("text-white-50"),
     PRIMARYBG("text-bg-primary"),
@@ -125,13 +148,25 @@ fun Component.removeBsColor(bsColor: BsColor) {
 
 enum class BsBgColor(override val className: String) : CssClass {
     PRIMARY("bg-primary"),
+    PRIMARYSUBTLE("bg-primary-subtle"),
     SECONDARY("bg-secondary"),
+    SECONDARYSUBTLE("bg-secondary-subtle"),
     SUCCESS("bg-success"),
+    SUCCESSSUBTLE("bg-success-subtle"),
     DANGER("bg-danger"),
+    DANGERSUBTLE("bg-danger-subtle"),
     WARNING("bg-warning"),
+    WARNINGSUBTLE("bg-warning-subtle"),
     INFO("bg-info"),
+    INFOSUBTLE("bg-info-subtle"),
     LIGHT("bg-light"),
+    LIGHTSUBTLE("bg-light-subtle"),
     DARK("bg-dark"),
+    DARKSUBTLE("bg-dark-subtle"),
+    BODY("bg-body"),
+    BODYSECONDARY("bg-body-secondary"),
+    BODYTERTIARY("bg-body-tertiary"),
+    BLACK("bg-black"),
     WHITE("bg-white"),
     TRANSPARENT("bg-transparent")
 }
