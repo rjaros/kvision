@@ -71,8 +71,9 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
             } else {
                 ctx.body<JsonRpcRequest>()
             }
-            val injector = ctx.attribute<Injector>(KV_INJECTOR_KEY)!!
+            val injector = ctx.getAttribute<Injector>(KV_INJECTOR_KEY)!!
             val service = injector.getInstance(serviceClass.java)
+            ctx.setResponseType("application/json")
             try {
                 val result = function.invoke(service, jsonRpcRequest.params)
                 JsonRpcResponse(

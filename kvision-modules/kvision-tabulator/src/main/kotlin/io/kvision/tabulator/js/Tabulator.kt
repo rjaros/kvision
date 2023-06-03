@@ -1217,6 +1217,9 @@ open external class Tabulator {
         var documentProcessing: ((input: Any) -> Any)?
             get() = definedExternally
             set(value) = definedExternally
+        var writeOptions: dynamic
+            get() = definedExternally
+            set(value) = definedExternally
     }
 
     interface DownloadPDF {
@@ -2426,6 +2429,7 @@ open external class Tabulator {
         var isValid: () -> dynamic
         var clearValidation: () -> Unit
         var validate: () -> Boolean
+        var getType: () -> String
     }
 
     companion object {

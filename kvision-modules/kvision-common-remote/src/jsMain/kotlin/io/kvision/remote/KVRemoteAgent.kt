@@ -23,6 +23,7 @@ package io.kvision.remote
 
 import kotlinx.browser.window
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.await
@@ -34,7 +35,6 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
@@ -309,6 +309,7 @@ open class KVRemoteAgent<T : Any>(
     /**
      * Executes defined web socket connection
      */
+    @OptIn(DelicateCoroutinesApi::class)
     @Suppress("ComplexMethod", "TooGenericExceptionCaught")
     suspend inline fun <reified PAR1 : Any, reified PAR2 : Any> webSocket(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
@@ -347,7 +348,7 @@ open class KVRemoteAgent<T : Any>(
                 responseJob = launch {
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
-                        val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
+                        val data = JSON.parse<dynamic>(str).result ?: ""
                         val par2 = deserialize(serializerPAR2, data)
                         responseChannel.send(par2)
                     }
@@ -377,6 +378,7 @@ open class KVRemoteAgent<T : Any>(
     /**
      * Executes defined web socket connection returning list objects
      */
+    @OptIn(DelicateCoroutinesApi::class)
     @Suppress("ComplexMethod", "TooGenericExceptionCaught")
     suspend inline fun <reified PAR1 : Any, reified PAR2 : Any> webSocket(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<List<PAR2>>) -> Unit,
@@ -415,7 +417,7 @@ open class KVRemoteAgent<T : Any>(
                 responseJob = launch {
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
-                        val data = kotlin.js.JSON.parse<dynamic>(str).result ?: ""
+                        val data = JSON.parse<dynamic>(str).result ?: ""
                         val par2 = deserialize(ListSerializer(serializerPAR2), data)
                         responseChannel.send(par2)
                     }

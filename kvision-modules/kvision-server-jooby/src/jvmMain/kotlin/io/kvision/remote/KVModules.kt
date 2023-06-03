@@ -27,8 +27,8 @@ import com.google.inject.Module
 import io.jooby.AssetSource
 import io.jooby.Context
 import io.jooby.Kooby
-import io.jooby.di.GuiceModule
-import io.jooby.json.JacksonModule
+import io.jooby.guice.GuiceModule
+import io.jooby.jackson.JacksonModule
 
 const val KV_INJECTOR_KEY = "io.kvision.injector.key"
 
@@ -48,7 +48,7 @@ fun Kooby.kvisionInit(initStaticResources: Boolean = true, vararg modules: Modul
     install(JacksonModule())
     before { ctx ->
         val injector = ctx.require(Injector::class.java).createChildInjector(ContextModule(ctx))
-        ctx.attribute(KV_INJECTOR_KEY, injector)
+        ctx.setAttribute(KV_INJECTOR_KEY, injector)
     }
 }
 

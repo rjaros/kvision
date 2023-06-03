@@ -139,7 +139,8 @@ enum class Calc(internal val calc: String) {
     MIN("min"),
     SUM("sum"),
     CONCAT("concat"),
-    COUNT("count")
+    COUNT("count"),
+    UNIQUE("unique")
 }
 
 /**
@@ -697,6 +698,8 @@ fun <T : Any> ColumnDefinition<T>.toJs(
 data class TabulatorOptions<T : Any>(
     val height: String? = null,
     val placeholder: String? = null,
+    val placeholderFunc: (() -> String?)? = null,
+    val placeholderHeaderFilter: String? = null,
     val footerElement: String? = null,
     val history: Boolean? = null,
     val keybindings: dynamic = null,
