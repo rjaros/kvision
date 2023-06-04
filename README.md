@@ -63,6 +63,7 @@ class App : Application() {
     - [Tabulator](http://tabulator.info/)
     - [Redux](https://redux.js.org/)
     - [ReduxKotlin](https://reduxkotlin.org/)
+    - [Ballast](https://copper-leaf.github.io/ballast/)
     - [Navigo](https://github.com/krasimir/navigo)
     - [Pace](https://github.hubspot.com/pace/docs/welcome/)
     - [Leaflet](https://leafletjs.com/)
@@ -79,6 +80,7 @@ class App : Application() {
 - Easy to use Drag & Drop support.
 - Support for jQuery animations and effects.
 - Type-safe REST connectivity.
+- Dark mode support.
 - Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.io), [Spring Boot](https://spring.io/projects/spring-boot),
  [Javalin](https://javalin.io), [Vert.x](https://vertx.io) and [Micronaut](https://micronaut.io) frameworks on the server side,
 including support for type-safe websockets connections.
