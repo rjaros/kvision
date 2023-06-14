@@ -836,6 +836,25 @@ fun <T : Any> TabulatorOptions<T>.toJs(
     i18nTranslator: (String) -> (String),
     kClass: KClass<T>?
 ): Tabulator.Options {
+    val tmpPersistenceWriterFunc = persistenceWriterFunc ?: run {
+        if (persistence?.columns?.unsafeCast<Array<String>>()
+                ?.contains("field") == true && responsiveLayout == ResponsiveLayout.COLLAPSE
+        ) {
+            { id: String, type: String, value: Array<dynamic> ->
+                val responsiveHiddenColumns =
+                    (tabulator.jsTabulator?.modules?.asDynamic()?.responsiveLayout?.hiddenColumns as Array<Tabulator.ColumnComponent>).map {
+                        it.getField()
+                    }
+                val fixedData = value.map {
+                    if (it.visible == false && responsiveHiddenColumns.contains(it.field))
+                        it.visible = true
+                    it
+                }.toTypedArray()
+                localStorage.setItem("$id-$type", JSON.stringify(fixedData))
+            }
+        } else null
+    }
+
     return obj {
         if (height != null) this.height = height
         if (placeholder != null) this.placeholder = i18nTranslator(placeholder)
