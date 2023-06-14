@@ -32,8 +32,12 @@ import io.kvision.tabulator.EditorRoot.root
 import io.kvision.tabulator.js.Tabulator
 import io.kvision.utils.obj
 import kotlinx.browser.document
+import kotlinx.browser.localStorage
 import kotlinx.browser.window
+import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.asList
+import org.w3c.dom.events.Event
 import kotlin.js.Promise
 import kotlin.reflect.KClass
 
@@ -93,7 +97,8 @@ enum class Formatter(internal val formatter: String) {
     ROWNUM("rownum"),
     HANDLE("handle"),
     ROWSELECTION("rowSelection"),
-    RESPONSIVECOLLAPSE("responsiveCollapse")
+    RESPONSIVECOLLAPSE("responsiveCollapse"),
+    RESPONSIVECOLLAPSEAUTO("responsiveCollapseAuto")
 }
 
 /**
@@ -399,6 +404,13 @@ data class ColumnDefinition<T : Any>(
     val headerVertical: Boolean? = null,
     val editableTitle: Boolean? = null,
     val titleFormatter: Formatter? = null,
+    val titleFormatterFunction: ((
+        cell: Tabulator.CellComponent, formatterParams: dynamic,
+        onRendered: (callback: () -> Unit) -> Unit
+    ) -> dynamic)? = null,
+    val titleFormatterComponentFunction: ((
+        cell: Tabulator.CellComponent, onRendered: (callback: () -> Unit) -> Unit
+    ) -> Component)? = null,
     val titleFormatterParams: dynamic = null,
     val headerFilter: Editor? = null,
     val headerFilterParams: dynamic = null,
@@ -468,6 +480,9 @@ data class ColumnDefinition<T : Any>(
     val headerClickMenu: dynamic = null,
     val headerDblClickMenu: dynamic = null,
     val dblClickMenu: dynamic = null,
+    val headerColumnsMenu: Boolean? = null,
+    val headerColumnsMenuTitle: String? = null,
+    val headerColumnsMenuResetTitle: String? = null,
 )
 
 internal object EditorRoot {
@@ -518,6 +533,8 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                     (component as? FormControl)?.focus()
                     (component as? FormInput)?.focus()
                     cell.checkHeight()
+                    (root?.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
+                    (root?.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
                     onRenderedCallback?.invoke()
                 }
             }
@@ -542,6 +559,8 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                     @Suppress("UnsafeCastFromDynamic")
                     root.add(component)
                     cell.checkHeight()
+                    (root.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
+                    (root.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
                     onRenderedCallback?.invoke()
                 }
             }
@@ -549,7 +568,143 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         }
     }
 
+    val tmpTitleFormatterFunction = titleFormatterComponentFunction?.let {
+        { cell: Tabulator.CellComponent, _: dynamic,
+          onRendered: (callback: () -> Unit) -> Unit ->
+            var onRenderedCallback: (() -> Unit)? = null
+            val component = it(cell) { callback ->
+                onRenderedCallback = callback
+            }
+            val rootElement = document.createElement("div") as HTMLElement
+            if (onRendered != undefined) {
+                onRendered {
+                    val root = Root(rootElement, ContainerType.NONE, false)
+                    tabulator.addCustomRoot(root)
+                    root.add(component)
+                    (root.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
+                    (root.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
+                    onRenderedCallback?.invoke()
+                }
+            }
+            rootElement
+        }
+    }
+    val tmpHeaderColumnsMenu: ((Event) -> Array<dynamic>)? = if (this.headerColumnsMenu == true) {
+        { _ ->
+            val resetTitle = this.headerColumnsMenuResetTitle ?: "Default columns"
+            fun resetColumns() {
+                val persistenceID =
+                    tabulator.jsTabulator?.options?.persistenceID?.let { "tabulator-$it" } ?: "tabulator"
+                localStorage.removeItem("$persistenceID-columns")
+                window.location.reload()
+            }
+
+            val columns = tabulator.jsTabulator?.getColumns(false)?.filter {
+                it.getDefinition().title.isNotEmpty()
+            }?.map {
+                val responsiveHiddenColumns =
+                    (tabulator.jsTabulator?.modules?.asDynamic()?.responsiveLayout?.hiddenColumns as Array<Tabulator.ColumnComponent>).map {
+                        it.getField()
+                    }
+                val icon = document.createElement("i")
+                icon.classList.add("far")
+                icon.classList.add(if (!it.isVisible() && !responsiveHiddenColumns.contains(it.getField())) "fa-square" else "fa-check-square")
+                val label = document.createElement("span")
+                val title = document.createElement("span")
+                title.textContent = " " + it.getDefinition().title
+                label.appendChild(icon)
+                label.appendChild(title)
+                obj {
+                    this.label = label
+                    this.action = { e: Event ->
+                        e.stopPropagation()
+                        if (it.isVisible()) {
+                            it.hide()
+                            icon.classList.remove("fa-check-square")
+                            icon.classList.add("fa-square")
+                        } else if (responsiveHiddenColumns.contains(it.getField())) {
+                            it.show()
+                            it.hide()
+                            icon.classList.remove("fa-check-square")
+                            icon.classList.add("fa-square")
+                        } else {
+                            it.show()
+                            icon.classList.remove("fa-square");
+                            icon.classList.add("fa-check-square");
+                        }
+                        tabulator.jsTabulator?.redraw(true)
+                    }
+                }
+            } ?: emptyList()
+            (columns + listOf(obj {
+                separator = true
+            }, obj {
+                val icon = document.createElement("i")
+                icon.classList.add("fas")
+                icon.classList.add("fa-rotate")
+                val label = document.createElement("span")
+                val title = document.createElement("span")
+                title.textContent = " $resetTitle"
+                label.appendChild(icon)
+                label.appendChild(title)
+                this.label = label
+                this.action = { e: Event ->
+                    e.stopPropagation()
+                    resetColumns()
+                }
+            })).toTypedArray()
+        }
+    } else null
+    val headerColumnsMenuTitle = this.headerColumnsMenuTitle ?: "Customize"
+
+    val responsiveCollapseAuto = this.formatter == Formatter.RESPONSIVECOLLAPSEAUTO
     return obj {
+        if (responsiveCollapseAuto) {
+            this.formatter = "responsiveCollapse"
+            this.titleFormatter = "tickCross"
+            this.titleFormatterParams = obj {
+                crossElement = "<i class='fas fa-arrows-up-down'></i>"
+            }
+            this.width = "40"
+            this.headerSort = false
+            this.responsive = 0
+            this.headerHozAlign = "center"
+            this.headerClick = {
+                val columnsOpened = document.querySelectorAll("div.tabulator-responsive-collapse-toggle")
+                    .asList().firstOrNull()?.let {
+                        (it as HTMLElement).classList.contains("open")
+                    } ?: false
+                if (columnsOpened) {
+                    document.querySelectorAll("div.tabulator-responsive-collapse-toggle.open").asList()
+                        .forEach {
+                            (it as HTMLElement).click()
+                        }
+                } else {
+                    document.querySelectorAll("div.tabulator-responsive-collapse-toggle:not(.open)").asList()
+                        .forEach {
+                            (it as HTMLElement).click()
+                        }
+                }
+            }
+        } else {
+            when {
+                tmpFormatterFunction != null -> this.formatter = tmpFormatterFunction
+                formatterFunction != null -> this.formatter = formatterFunction
+                formatter != null -> this.formatter = formatter.formatter
+            }
+            if (formatterParams != null) this.formatterParams = formatterParams
+        }
+        if (tmpHeaderColumnsMenu != null) {
+            this.headerHozAlign = "center"
+            this.headerMenu = tmpHeaderColumnsMenu
+            this.headerMenuIcon = "<i class='far fa-square-caret-down'></i> $headerColumnsMenuTitle"
+        }
         this.title = i18nTranslator(title)
         if (field != null) this.field = field
         if (columns != null) this.columns = columns.map { it.toJs(tabulator, i18nTranslator, kClass) }.toTypedArray()
@@ -572,12 +727,6 @@ fun <T : Any> ColumnDefinition<T>.toJs(
             this.sorter = sorter.sorter
         }
         if (sorterParams != null) this.sorterParams = sorterParams
-        when {
-            tmpFormatterFunction != null -> this.formatter = tmpFormatterFunction
-            formatterFunction != null -> this.formatter = formatterFunction
-            formatter != null -> this.formatter = formatter.formatter
-        }
-        if (formatterParams != null) this.formatterParams = formatterParams
         if (variableHeight != null) this.variableHeight = variableHeight
         if (editable != null) this.editable = editable
         when {
@@ -610,7 +759,11 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (headerTooltip != null) this.headerTooltip = headerTooltip
         if (headerVertical != null) this.headerVertical = headerVertical
         if (editableTitle != null) this.editableTitle = editableTitle
-        if (titleFormatter != null) this.titleFormatter = titleFormatter.formatter
+        when {
+            tmpTitleFormatterFunction != null -> this.titleFormatter = tmpTitleFormatterFunction
+            titleFormatterFunction != null -> this.titleFormatter = titleFormatterFunction
+            titleFormatter != null -> this.titleFormatter = titleFormatter.formatter
+        }
         if (titleFormatterParams != null) this.titleFormatterParams = titleFormatterParams
         if (headerFilterCustom != null) {
             this.headerFilter = headerFilterCustom
@@ -956,7 +1109,7 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (ajaxResponse != null) this.ajaxResponse = ajaxResponse
         if (persistence != null) this.persistence = persistence
         if (persistenceReaderFunc != null) this.persistenceReaderFunc = persistenceReaderFunc
-        if (persistenceWriterFunc != null) this.persistenceWriterFunc = persistenceWriterFunc
+        if (tmpPersistenceWriterFunc != null) this.persistenceWriterFunc = tmpPersistenceWriterFunc
         if (paginationInitialPage != null) this.paginationInitialPage = paginationInitialPage
         if (columnHeaderVertAlign != null) this.columnHeaderVertAlign = columnHeaderVertAlign.valign
         if (maxHeight != null) this.maxHeight = maxHeight
