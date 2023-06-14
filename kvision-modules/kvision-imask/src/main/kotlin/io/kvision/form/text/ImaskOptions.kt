@@ -21,6 +21,7 @@
  */
 package io.kvision.form.text
 
+import io.kvision.i18n.I18n
 import io.kvision.utils.obj
 import kotlin.js.RegExp
 
@@ -140,8 +141,8 @@ data class NumberMask(
     val thousandsSeparator: Char? = null,
     val padFractionalZeros: Boolean? = null,
     val normalizeZeros: Boolean? = null,
-    val radix: Char? = null,
-    val mapToRadix: List<Char>? = null,
+    val radix: Char = I18n.detectDecimalSeparator(),
+    val mapToRadix: List<Char> = listOf('.'),
     val min: Number? = null,
     val max: Number? = null,
 )
@@ -157,8 +158,8 @@ fun NumberMask.toJs(): dynamic {
         if (thousandsSeparator != null) this.thousandsSeparator = thousandsSeparator.toString()
         if (padFractionalZeros != null) this.padFractionalZeros = padFractionalZeros
         if (normalizeZeros != null) this.normalizeZeros = normalizeZeros
-        if (radix != null) this.radix = radix.toString()
-        if (mapToRadix != null) this.mapToRadix = mapToRadix.map { it.toString() }.toTypedArray()
+        this.radix = radix.toString()
+        this.mapToRadix = mapToRadix.map { it.toString() }.toTypedArray()
         if (min != null) this.min = min
         if (max != null) this.max = max
     }
@@ -176,7 +177,13 @@ data class ImaskOptions(
     val function: ((String) -> Boolean)? = null,
     val list: List<ImaskOptions>? = null,
     val overwrite: MaskOverwrite? = null,
-) : MaskOptions
+) : MaskOptions {
+    override fun maskNumericValue(value: String): String {
+        return if (number?.radix != null) {
+            value.replace(".", number.radix.toString())
+        } else value
+    }
+}
 
 /**
  * An extension function to convert configuration class to a JS object.

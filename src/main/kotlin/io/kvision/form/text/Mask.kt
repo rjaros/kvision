@@ -52,7 +52,9 @@ interface Mask {
 /**
  * Generic text input mask options.
  */
-interface MaskOptions
+interface MaskOptions {
+    fun maskNumericValue(value: String): String
+}
 
 /**
  * Text input mask controller factory.

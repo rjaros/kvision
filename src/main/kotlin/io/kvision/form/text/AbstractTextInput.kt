@@ -188,7 +188,7 @@ abstract class AbstractTextInput(
         } else {
             getElementD()?.value = value
             mask!!.refresh()
-            val v = mask?.getValue()?.ifEmpty { null }
+            val v = mask?.getValue()?.let { maskOptions?.maskNumericValue(it) ?: it }?.ifEmpty { null }
             if (this.value != v) {
                 this.value = v
             }
@@ -218,7 +218,7 @@ abstract class AbstractTextInput(
             if (MaskManager.factory == null) throw IllegalStateException("Input mask module has not been initialized")
             mask = MaskManager.factory!!.createMask(getElement().unsafeCast<HTMLElement>(), maskOptions!!)
             mask!!.onChange {
-                val v = it?.ifEmpty { null }
+                val v = it?.let { maskOptions?.maskNumericValue(it) ?: it }?.ifEmpty { null }
                 if (this.value != v) {
                     this.value = v
                 }
