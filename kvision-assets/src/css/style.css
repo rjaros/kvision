@@ -105,6 +105,22 @@ trix-toolbar .trix-button-group {
     margin-bottom: 3px !important;
 }
 
+.tabulator {
+    font-size: var(--bs-body-font-size);
+}
+
+button.tabulator-page {
+    font-size: var(--bs-body-font-size);
+}
+
+.tabulator-row .tabulator-responsive-collapse table {
+    font-size: var(--bs-body-font-size);
+}
+
+.tabulator-popup-container {
+    font-size: var(--bs-body-font-size);
+}
+
 .tabulator-row .tabulator-cell.tabulator-editing input, .tabulator-row .tabulator-cell.tabulator-editing select {
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -130,6 +146,38 @@ trix-toolbar .trix-button-group {
 
 .tabulator.table-sm > :not(caption) > * > * {
     padding: 0;
+}
+
+.tabulator-row.tabulator-row-even {
+    background-color: inherit;
+}
+
+@media (hover:hover) and (pointer:fine) {
+    .tabulator.table-striped:not(.table) .tabulator-row.tabulator-row-even.tabulator-selectable:hover {
+        background-color:#e9ecef;
+    }
+    .tabulator.table-striped:not(.table) .tabulator-row.tabulator-row-even.tabulator-selected:hover {
+        background-color:#9abcea;
+    }
+    .tabulator-row.tabulator-selectable:hover {
+        background-color:inherit;
+    }
+    .tabulator-row.tabulator-selected:hover {
+        background-color:#9abcea;
+    }
+
+    .tabulator.table-hover.table-striped:not(.table) .tabulator-row.tabulator-row-even.tabulator-selectable:hover {
+        background-color:#ced4da;
+    }
+    .tabulator.table-hover.table-striped:not(.table) .tabulator-row.tabulator-row-even.tabulator-selected:hover {
+        background-color:#769bcc;
+    }
+    .tabulator.table-hover:not(.table) .tabulator-row.tabulator-selectable:hover {
+        background-color:#ced4da;
+    }
+    .tabulator.table-hover:not(.table) .tabulator-row.tabulator-selected:hover {
+        background-color:#769bcc;
+    }
 }
 
 .input-group.date.is-invalid ~ .invalid-feedback {
