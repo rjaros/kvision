@@ -35,7 +35,9 @@ import io.kvision.panel.SimplePanel
 import io.kvision.snabbdom.VNode
 import io.kvision.state.MutableState
 import io.kvision.types.toDateF
+import io.kvision.types.toDateFOrNull
 import io.kvision.types.toStringF
+import io.kvision.utils.Intl
 import io.kvision.utils.createInstance
 import io.kvision.utils.obj
 import kotlinx.browser.document
@@ -108,9 +110,9 @@ open class DateTimeInput(
      * Date/time input value.
      */
     override var value
-        get() = input.value?.toDateF(format)
+        get() = input.value?.toDateF(inputFormat)
         set(value) {
-            input.value = value?.toStringF(format)
+            input.value = value?.toStringF(inputFormat)
             refreshState()
         }
 
@@ -118,6 +120,14 @@ open class DateTimeInput(
      * Date/time format.
      */
     var format by refreshOnUpdate(format) { refreshDatePicker() }
+
+    internal val inputFormat: String
+        get() {
+            val hourCycle = guessHourCycle(I18n.language)
+            return if (hourCycle == HourCycle.H11 || hourCycle == HourCycle.H12) {
+                format.replace("HH:mm:ss", "hh:mm:ss A").replace("HH:mm", "hh:mm A")
+            } else format
+        }
 
     /**
      * The placeholder for the date/time input.
@@ -293,8 +303,8 @@ open class DateTimeInput(
         if (dateTimePicker != null) {
             @Suppress("UnsafeCastFromDynamic")
             val currentPickerArray: Array<Date> = dateTimePicker.dates.picked
-            val currentPickerValueStr = currentPickerArray.getOrNull(0)?.toStringF(format)
-            val currentValueStr = value?.toStringF(format)
+            val currentPickerValueStr = currentPickerArray.getOrNull(0)?.toStringF(inputFormat)
+            val currentValueStr = value?.toStringF(inputFormat)
             if (currentPickerValueStr != currentValueStr) {
                 if (value != null) {
                     val internalDateTime = dateTimePicker.dates.parseInput(currentValueStr)
@@ -307,7 +317,9 @@ open class DateTimeInput(
     }
 
     private fun getIconClass(format: String): String {
-        return if (format.contains("YYYY") || format.contains("MM") || format.contains("DD")) {
+        return if (format.contains("y", ignoreCase = true) || format.contains("MM")
+            || format.contains("d", ignoreCase = true)
+        ) {
             "fas fa-calendar-alt"
         } else {
             "fas fa-clock"
@@ -364,11 +376,12 @@ open class DateTimeInput(
     }
 
     private fun initDateTimePicker() {
-        val calendarView = (format.contains("YYYY") || format.contains("MM") || format.contains("DD"))
-        val clockView = (format.contains("HH") || format.contains("mm") || format.contains("ss"))
+        val calendarView = (format.contains("y", ignoreCase = true) || format.contains("MM")
+            || format.contains("d", ignoreCase = true))
+        val clockView = (format.contains("h", ignoreCase = true) || format.contains("mm") || format.contains("ss"))
         val secondsView = format.contains("ss")
-        val newFormat = format.replace("YYYY", "yyyy").replace("DD", "dd")
         val language = I18n.language
+        val newFormat = inputFormat.replace("Y", "y").replace("D", "d").replace("A", "T")
         val locale = DatetimeModule.locales[language] ?: js("{}")
         locale["locale"] = language
         locale["format"] = newFormat
@@ -381,6 +394,7 @@ open class DateTimeInput(
             theme
         }
         dateTimePicker = getElement()?.let { element ->
+            input.value = input.value?.toDateFOrNull(inputFormat)?.toStringF(inputFormat)
             DatetimeModule.tempusDominus.TempusDominus.unsafeCast<Any>().createInstance<Any>(element, obj {
                 this.useCurrent = inline
                 this.defaultDate =
@@ -487,6 +501,39 @@ open class DateTimeInput(
 
         init {
             DatetimeModule.initialize()
+        }
+
+        /**
+         * Time format hour cycle.
+         */
+        enum class HourCycle {
+            H11, H12, H23, H24
+        }
+
+        /**
+         * Tries to guess the hour cycle for given language.
+         */
+        fun guessHourCycle(language: String): HourCycle? {
+            val template = obj {
+                hour = "2-digit"
+                minute = "2-digit"
+                numberingSystem = "latn"
+            }
+            val dateTimeFormat = Intl.asDynamic().DateTimeFormat(language, template)
+            val date = Date()
+            date.asDynamic().setHours(0)
+            @Suppress("UnsafeCastFromDynamic")
+            val start: Array<dynamic> = dateTimeFormat.formatToParts(date)
+            val startHour = start.find { it.type == "hour" }?.value
+            if (startHour == "24") return HourCycle.H24
+            if (startHour == "12") return HourCycle.H12
+            date.asDynamic().setHours(23)
+            @Suppress("UnsafeCastFromDynamic")
+            val end: Array<dynamic> = dateTimeFormat.formatToParts(date)
+            val endHour = end.find { it.type == "hour" }?.value
+            if (startHour == "00" && endHour == "11") return HourCycle.H11
+            if (startHour == "00" && endHour == "23") return HourCycle.H23
+            return null
         }
     }
 }

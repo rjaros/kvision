@@ -41,6 +41,16 @@ fun String.toDateF(format: String = KV_DEFAULT_DATE_FORMAT): Date {
 }
 
 /**
+ * Extension function to convert String to Date with a given date format.
+ * @param format date/time format
+ * @return Date object or null if the conversion fails
+ */
+@Suppress("UnsafeCastFromDynamic")
+fun String.toDateFOrNull(format: String = KV_DEFAULT_DATE_FORMAT): Date? {
+    return KVManager.fecha.parse(this, format)
+}
+
+/**
  * Extension function to convert Date to String with a given date format.
  * @param format date/time format
  * @return String object
