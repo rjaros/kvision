@@ -158,13 +158,13 @@ open class Tabulator<T : Any>(
                 pagination = obj {
                     page_size = "↕"
                     page_title = "#"
-                    first = "<<"
+                    first = "◀◀"
                     first_title = "<<"
-                    last = ">>"
+                    last = "▶▶"
                     last_title = ">>"
-                    prev = "<"
+                    prev = "◀"
                     prev_title = "<"
-                    next = ">"
+                    next = "▶"
                     next_title = ">"
                     all = "*"
                     counter = obj {
@@ -240,19 +240,22 @@ open class Tabulator<T : Any>(
                 this.dispatchEvent("rowDeselectedTabulator", obj { detail = row })
             }
             jsTabulator?.on("cellClick") { e: Event, cell: dynamic ->
-                @Suppress("UnsafeCastFromDynamic")
-                if (this.dispatchEvent("cellClickTabulator", obj {
-                        detail = cell
-                        cancelable = true
-                    }) != true) e.preventDefault()
-
+                if (!e.defaultPrevented) {
+                    @Suppress("UnsafeCastFromDynamic")
+                    if (this.dispatchEvent("cellClickTabulator", obj {
+                            detail = cell
+                            cancelable = true
+                        }) != true) e.preventDefault()
+                }
             }
             jsTabulator?.on("cellDblClick") { e: Event, cell: dynamic ->
-                @Suppress("UnsafeCastFromDynamic")
-                if (this.dispatchEvent("cellDblClickTabulator", obj {
-                        detail = cell
-                        cancelable = true
-                    }) != true) e.preventDefault()
+                if (!e.defaultPrevented) {
+                    @Suppress("UnsafeCastFromDynamic")
+                    if (this.dispatchEvent("cellDblClickTabulator", obj {
+                            detail = cell
+                            cancelable = true
+                        }) != true) e.preventDefault()
+                }
             }
             jsTabulator?.on("cellEditing") { cell: dynamic ->
                 @Suppress("UnsafeCastFromDynamic")
