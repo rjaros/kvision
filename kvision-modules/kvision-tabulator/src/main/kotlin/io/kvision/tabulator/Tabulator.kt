@@ -132,6 +132,8 @@ open class Tabulator<T : Any>(
 
     protected var filter: ((T) -> Boolean)? = null
 
+    protected val paginations = mutableListOf<TabulatorPagination<T>>()
+
     init {
         useSnabbdomDistinctKey()
         if (data != null) {
@@ -283,6 +285,15 @@ open class Tabulator<T : Any>(
                     window.setTimeout({
                         this.data.syncWithList(fixedData)
                     }, 0)
+                }
+            }
+            jsTabulator?.on("pageLoaded") {
+                paginations.forEach {
+                    it.paginationState.value = PaginationState(
+                        jsTabulator?.getPage()?.unsafeCast<Int>() ?: 1,
+                        jsTabulator?.getPageMax()?.unsafeCast<Int>() ?: 1,
+                        jsTabulator?.options?.paginationButtonCount?.unsafeCast<Int>() ?: 5
+                    )
                 }
             }
             jsTabulator?.on("tableBuilt") {
@@ -791,6 +802,20 @@ open class Tabulator<T : Any>(
      */
     open fun clearAlert() {
         jsTabulator?.clearAlert()
+    }
+
+    /**
+     * Register external pagination component for this Tabulator instance
+     */
+    open fun registerPagination(tabulatorPagination: TabulatorPagination<T>): () -> Unit {
+        tabulatorPagination.tabulator = this
+        paginations.add(tabulatorPagination)
+        val unregister = {
+            paginations.remove(tabulatorPagination)
+            tabulatorPagination.tabulator = null
+        }
+        tabulatorPagination.addBeforeDisposeHook(unregister)
+        return unregister
     }
 
     internal fun removeCustomEditors() {
