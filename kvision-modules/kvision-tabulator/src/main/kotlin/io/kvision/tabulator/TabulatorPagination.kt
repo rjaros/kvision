@@ -28,6 +28,7 @@ import io.kvision.core.Container
 import io.kvision.core.onClick
 import io.kvision.html.TAG
 import io.kvision.html.div
+import io.kvision.html.icon
 import io.kvision.html.tag
 import io.kvision.panel.SimplePanel
 import io.kvision.state.ObservableValue
@@ -61,7 +62,8 @@ open class TabulatorPagination<T : Any>(
         div(className = "tabulator-footer") {
             borderTop = Border(style = BorderStyle.NONE)
             bind(paginationState) { state ->
-                tag(TAG.BUTTON, "⯇⯇", className = "tabulator-page") {
+                tag(TAG.BUTTON, className = "tabulator-page") {
+                    icon("fas fa-angles-left")
                     role = "button"
                     setAttribute("type", "button")
                     setAttribute("aria-label", "<<")
@@ -73,7 +75,8 @@ open class TabulatorPagination<T : Any>(
                         tabulator?.setPage(1)
                     }
                 }
-                tag(TAG.BUTTON, "⯇", className = "tabulator-page") {
+                tag(TAG.BUTTON, className = "tabulator-page") {
+                    icon("fas fa-angle-left")
                     role = "button"
                     setAttribute("type", "button")
                     setAttribute("aria-label", "<")
@@ -106,7 +109,8 @@ open class TabulatorPagination<T : Any>(
                         }
                     }
                 }
-                tag(TAG.BUTTON, "⯈", className = "tabulator-page") {
+                tag(TAG.BUTTON, className = "tabulator-page") {
+                    icon("fas fa-angle-right")
                     role = "button"
                     setAttribute("type", "button")
                     setAttribute("aria-label", ">")
@@ -118,7 +122,8 @@ open class TabulatorPagination<T : Any>(
                         tabulator?.nextPage()
                     }
                 }
-                tag(TAG.BUTTON, "⯈⯈", className = "tabulator-page") {
+                tag(TAG.BUTTON, className = "tabulator-page") {
+                    icon("fas fa-angles-right")
                     role = "button"
                     setAttribute("type", "button")
                     setAttribute("aria-label", ">>")

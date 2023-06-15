@@ -156,15 +156,15 @@ open class Tabulator<T : Any>(
                     error = "!!!"
                 }
                 pagination = obj {
-                    page_size = "↕"
+                    page_size = "<i class=\"fas fa-up-down\"></i>"
                     page_title = "#"
-                    first = "⯇⯇"
+                    first = "<i class=\"fas fa-angles-left\"></i>"
                     first_title = "<<"
-                    last = "⯈⯈"
+                    last = "<i class=\"fas fa-angles-right\"></i>"
                     last_title = ">>"
-                    prev = "⯇"
+                    prev = "<i class=\"fas fa-angle-left\"></i>"
                     prev_title = "<"
-                    next = "⯈"
+                    next = "<i class=\"fas fa-angle-right\"></i>"
                     next_title = ">"
                     all = "*"
                     counter = obj {
