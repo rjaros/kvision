@@ -158,13 +158,13 @@ open class Tabulator<T : Any>(
                 pagination = obj {
                     page_size = "↕"
                     page_title = "#"
-                    first = "◀◀"
+                    first = "⯇⯇"
                     first_title = "<<"
-                    last = "▶▶"
+                    last = "⯈⯈"
                     last_title = ">>"
-                    prev = "◀"
+                    prev = "⯇"
                     prev_title = "<"
-                    next = "▶"
+                    next = "⯈"
                     next_title = ">"
                     all = "*"
                     counter = obj {

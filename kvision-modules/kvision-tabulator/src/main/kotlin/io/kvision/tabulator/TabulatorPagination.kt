@@ -61,7 +61,7 @@ open class TabulatorPagination<T : Any>(
         div(className = "tabulator-footer") {
             borderTop = Border(style = BorderStyle.NONE)
             bind(paginationState) { state ->
-                tag(TAG.BUTTON, "◀◀", className = "tabulator-page") {
+                tag(TAG.BUTTON, "⯇⯇", className = "tabulator-page") {
                     role = "button"
                     setAttribute("type", "button")
                     setAttribute("aria-label", "<<")
@@ -73,7 +73,7 @@ open class TabulatorPagination<T : Any>(
                         tabulator?.setPage(1)
                     }
                 }
-                tag(TAG.BUTTON, "◀", className = "tabulator-page") {
+                tag(TAG.BUTTON, "⯇", className = "tabulator-page") {
                     role = "button"
                     setAttribute("type", "button")
                     setAttribute("aria-label", "<")
@@ -106,7 +106,7 @@ open class TabulatorPagination<T : Any>(
                         }
                     }
                 }
-                tag(TAG.BUTTON, "▶", className = "tabulator-page") {
+                tag(TAG.BUTTON, "⯈", className = "tabulator-page") {
                     role = "button"
                     setAttribute("type", "button")
                     setAttribute("aria-label", ">")
@@ -118,7 +118,7 @@ open class TabulatorPagination<T : Any>(
                         tabulator?.nextPage()
                     }
                 }
-                tag(TAG.BUTTON, "▶▶", className = "tabulator-page") {
+                tag(TAG.BUTTON, "⯈⯈", className = "tabulator-page") {
                     role = "button"
                     setAttribute("type", "button")
                     setAttribute("aria-label", ">>")
