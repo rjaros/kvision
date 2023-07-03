@@ -102,6 +102,15 @@ open class TomSelect(
         }
 
     /**
+     * Disable searching in options.
+     */
+    var disableSearch
+        get() = input.disableSearch
+        set(value) {
+            input.disableSearch = value
+        }
+
+    /**
      * Tom Select options
      */
     var tsOptions

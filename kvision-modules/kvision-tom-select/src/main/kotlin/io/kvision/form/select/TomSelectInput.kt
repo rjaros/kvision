@@ -102,6 +102,11 @@ open class TomSelectInput(
     var selectSize: Int? by refreshOnUpdate(selectSize)
 
     /**
+     * Disable searching in options.
+     */
+    var disableSearch by refreshOnUpdate(false)
+
+    /**
      * Tom Select options
      */
     var tsOptions by refreshOnUpdate(tsOptions)
@@ -228,7 +233,7 @@ open class TomSelectInput(
                         this.text = translate(it.second)
                     }
                 }.toTypedArray()
-                if (placeholder == null) this.controlInput = null
+                if (disableSearch) this.controlInput = null
             }
             if (tsOptions != null) {
                 val optionsObj = tsOptions!!.toJs(emptyOption)
