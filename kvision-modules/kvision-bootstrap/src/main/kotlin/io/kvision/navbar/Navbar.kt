@@ -30,6 +30,7 @@ import io.kvision.core.CssClass
 import io.kvision.html.Link
 import io.kvision.html.Span
 import io.kvision.html.span
+import io.kvision.panel.ContainerType
 import io.kvision.panel.SimplePanel
 import io.kvision.snabbdom.VNode
 import io.kvision.utils.obj
@@ -77,6 +78,7 @@ enum class NavbarExpand(override val className: String) : CssClass {
  * @param bgColor the navbar background color
  * @param collapseOnClick the navbar is auto collapsed when the link is clicked
  * @param dataNavigo the 'data-navigo' attribute for history API based JS routing
+ * @param containerType the internal container type
  * @param className CSS class names
  * @param init an initializer extension function
  */
@@ -89,6 +91,7 @@ open class Navbar(
     bgColor: BsBgColor = BsBgColor.BODYTERTIARY,
     collapseOnClick: Boolean = false,
     dataNavigo: Boolean? = null,
+    containerType: ContainerType = ContainerType.FLUID,
     className: String? = null, init: (Navbar.() -> Unit)? = null
 ) : SimplePanel(className) {
 
@@ -151,7 +154,7 @@ open class Navbar(
     internal val container = SimplePanel("collapse navbar-collapse") {
         id = this@Navbar.idc
     }
-    internal val extContainer = SimplePanel("container-fluid")
+    internal val extContainer = SimplePanel(containerType.type)
 
     init {
         extContainer.add(brandLink)
@@ -247,10 +250,11 @@ fun Container.navbar(
     bgColor: BsBgColor = BsBgColor.BODYTERTIARY,
     collapseOnClick: Boolean = false,
     dataNavigo: Boolean? = null,
+    containerType: ContainerType = ContainerType.FLUID,
     className: String? = null,
     init: (Navbar.() -> Unit)? = null
 ): Navbar {
-    val navbar = Navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, dataNavigo, className, init)
+    val navbar = Navbar(label, link, type, expand, nColor, bgColor, collapseOnClick, dataNavigo, containerType, className, init)
     this.add(navbar)
     return navbar
 }
