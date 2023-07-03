@@ -34,6 +34,7 @@ import io.kvision.utils.obj
 import kotlinx.browser.document
 import kotlinx.browser.localStorage
 import kotlinx.browser.window
+import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.asList
@@ -532,7 +533,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                     root?.add(component)
                     (component as? FormControl)?.focus()
                     (component as? FormInput)?.focus()
-                    cell.checkHeight()
+                    if (cell.asDynamic().checkHeight != undefined) cell.checkHeight()
                     (root?.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
                     (root?.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
                     onRenderedCallback?.invoke()
@@ -558,7 +559,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                     tabulator.addCustomRoot(root)
                     @Suppress("UnsafeCastFromDynamic")
                     root.add(component)
-                    cell.checkHeight()
+                    if (cell.asDynamic().checkHeight != undefined) cell.checkHeight()
                     (root.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
                     (root.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
                     onRenderedCallback?.invoke()
@@ -583,12 +584,18 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                     root.add(component)
                     (root.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
                     (root.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
-                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
-                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
-                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
-                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
-                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
-                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowY = "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowX =
+                        "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowY =
+                        "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowX =
+                        "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowY =
+                        "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowX =
+                        "visible"
+                    (root.getElement()?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as? HTMLDivElement)?.style?.overflowY =
+                        "visible"
                     onRenderedCallback?.invoke()
                 }
             }
@@ -978,6 +985,7 @@ data class TabulatorOptions<T : Any>(
     val headerSortClickElement: HeaderSortClickElement? = null,
     val rowDblClickPopup: dynamic = null,
     val rowDblClickMenu: dynamic = null,
+    val responsiveLayoutCollapseFormatter: ((data: Array<dynamic>) -> Element)? = null,
 )
 
 /**
@@ -1143,5 +1151,7 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (headerSortClickElement != null) this.headerSortClickElement = headerSortClickElement.element
         if (rowDblClickPopup != null) this.rowDblClickPopup = rowDblClickPopup
         if (rowDblClickMenu != null) this.rowDblClickMenu = rowDblClickMenu
+        if (responsiveLayoutCollapseFormatter != null) this.responsiveLayoutCollapseFormatter =
+            responsiveLayoutCollapseFormatter
     } as Tabulator.Options
 }
