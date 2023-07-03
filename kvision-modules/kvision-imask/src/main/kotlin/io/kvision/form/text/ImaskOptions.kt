@@ -137,6 +137,7 @@ fun EnumMask.toJs(imask: dynamic): dynamic {
  */
 data class NumberMask(
     val scale: Int? = null,
+    @Deprecated("No longer used")
     val signed: Boolean? = null,
     val thousandsSeparator: Char? = null,
     val padFractionalZeros: Boolean? = null,
@@ -154,7 +155,6 @@ fun NumberMask.toJs(): dynamic {
     return obj {
         this.mask = js("Number")
         if (scale != null) this.scale = scale
-        if (signed != null) this.signed = signed
         if (thousandsSeparator != null) this.thousandsSeparator = thousandsSeparator.toString()
         if (padFractionalZeros != null) this.padFractionalZeros = padFractionalZeros
         if (normalizeZeros != null) this.normalizeZeros = normalizeZeros

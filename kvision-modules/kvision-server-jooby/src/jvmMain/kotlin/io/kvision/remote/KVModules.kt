@@ -26,7 +26,7 @@ import com.google.inject.Injector
 import com.google.inject.Module
 import io.jooby.AssetSource
 import io.jooby.Context
-import io.jooby.Kooby
+import io.jooby.kt.Kooby
 import io.jooby.guice.GuiceModule
 import io.jooby.jackson.JacksonModule
 

@@ -75,7 +75,7 @@ interface I18nManager {
             val tab = text.substring(I18N_PLURAL_DELIMITER.length).split(I18N_PLURAL_DELIMITER)
             @Suppress("MagicNumber")
             if (tab.size == 3) {
-                ngettext(tab[0], tab[1], tab[2].toIntOrNull() ?: 1)
+                ngettext(tab[0], tab[1], tab[2].toIntOrNull() ?: 1, tab[2].toIntOrNull() ?: 1)
             } else {
                 text
             }

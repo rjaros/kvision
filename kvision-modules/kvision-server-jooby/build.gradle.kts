@@ -33,6 +33,7 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(kotlin("reflect"))
+                api("io.jooby:jooby-kotlin:$joobyVersion")
                 api("io.jooby:jooby-netty:$joobyVersion")
                 api("io.jooby:jooby-guice:$joobyVersion")
                 api("io.jooby:jooby-jackson:$joobyVersion")

@@ -27,8 +27,9 @@ import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
 import io.kvision.utils.obj
 import react.ChildrenBuilder
+import react.FC
+import react.Props
 import react.StateSetter
-import react.VFC
 import react.createRef
 import react.dom.html.ReactHTML.div
 import react.useEffect
@@ -40,7 +41,7 @@ import web.html.HTMLElement
 /**
  * A helper functional component used by KVision React.
  */
-fun <S> reactWrapper(builder: ChildrenBuilder.(refresh: StateSetter<S>) -> Unit) = VFC {
+fun <S> reactWrapper(builder: ChildrenBuilder.(refresh: StateSetter<S>) -> Unit) = FC<Props> {
     @Suppress("UnsafeCastFromDynamic")
     val state = useState<S> { js("{}") }
     builder(state.component2())
@@ -49,7 +50,7 @@ fun <S> reactWrapper(builder: ChildrenBuilder.(refresh: StateSetter<S>) -> Unit)
 /**
  * A helper functional component which allows to use KVision components as React children.
  */
-fun kvisionWrapper(builder: Container.() -> Unit) = VFC {
+fun kvisionWrapper(builder: Container.() -> Unit) = FC<Props> {
     val elRef = createRef<HTMLDivElement>()
     useEffect {
         var root: Root? = null

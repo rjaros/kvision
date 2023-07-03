@@ -255,14 +255,13 @@ open class ImaskNumericInput(
                 ImaskOptions(
                     number = NumberMask(
                         scale = decimals,
-                        signed = true,
                         thousandsSeparator = thousandsSeparator,
                         padFractionalZeros = padFractionalZeros,
                         normalizeZeros = normalizeZeros,
                         radix = decimalSeparator,
                         mapToRadix = listOf('.'),
-                        min = min ?: -99999999999999,
-                        max = max ?: 99999999999999
+                        min = min,
+                        max = max
                     )
                 )
             )

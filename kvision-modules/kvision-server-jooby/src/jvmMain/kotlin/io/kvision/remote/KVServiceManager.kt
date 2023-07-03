@@ -23,11 +23,10 @@ package io.kvision.remote
 
 import com.google.inject.Injector
 import io.jooby.Context
-import io.jooby.CoroutineRouter
-import io.jooby.HandlerContext
-import io.jooby.Kooby
+import io.jooby.kt.CoroutineRouter
+import io.jooby.kt.HandlerContext
+import io.jooby.kt.Kooby
 import io.jooby.WebSocketConfigurer
-import io.jooby.body
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -69,7 +68,7 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 JsonRpcRequest(ctx.query("id").intValue(), "", listOf())
             } else {
-                ctx.body<JsonRpcRequest>()
+                ctx.body(JsonRpcRequest::class.java)
             }
             val injector = ctx.getAttribute<Injector>(KV_INJECTOR_KEY)!!
             val service = injector.getInstance(serviceClass.java)

@@ -39,7 +39,7 @@ import org.w3c.dom.asList
 /**
  * Root container types.
  */
-enum class ContainerType(internal val type: String) {
+enum class ContainerType(val type: String) {
     NONE(""),
     FIXED("container"),
     FLUID("container-fluid"),
