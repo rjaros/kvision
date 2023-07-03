@@ -778,7 +778,7 @@ label.required-label + ons-input > span.text-input__label::after {
 }
 
 .disabled .ts-control {
-    background-color: var(--bs-form-control-disabled-bg);
+    background-color: var(--bs-secondary-bg);
     opacity: 1;
 }
 
