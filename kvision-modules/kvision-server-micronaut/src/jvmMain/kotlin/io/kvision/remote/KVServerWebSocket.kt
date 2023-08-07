@@ -34,7 +34,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
-import javax.annotation.PostConstruct
+import jakarta.annotation.PostConstruct
 
 /**
  * Micronaut WebSocket handler.

@@ -329,14 +329,14 @@ external interface `T$76` {
     var canvas: HTMLCanvasElement
 }
 
-external enum class UpdateModeEnum {
-    resize /* = 'resize' */,
-    reset /* = 'reset' */,
-    none /* = 'none' */,
-    hide /* = 'hide' */,
-    show /* = 'show' */,
-    normal /* = 'normal' */,
-    active /* = 'active' */
+external sealed class UpdateModeEnum {
+    object resize: UpdateModeEnum /* = 'resize' */
+    object reset: UpdateModeEnum /* = 'reset' */
+    object none: UpdateModeEnum /* = 'none' */
+    object hide: UpdateModeEnum /* = 'hide' */
+    object show: UpdateModeEnum /* = 'show' */
+    object normal: UpdateModeEnum /* = 'normal' */
+    object active: UpdateModeEnum /* = 'active' */
 }
 
 external interface `T$11` {
@@ -1155,9 +1155,9 @@ open external class DomPlatform : BasePlatform
 
 external var Decimation: Plugin<AnyObject>
 
-external enum class DecimationAlgorithm {
-    lttb /* = 'lttb' */,
-    minmax /* = 'min-max' */
+external sealed class DecimationAlgorithm {
+    object lttb: DecimationAlgorithm /* = 'lttb' */
+    object minmax: DecimationAlgorithm /* = 'min-max' */
 }
 
 external interface BaseDecimationOptions {

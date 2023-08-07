@@ -42,7 +42,7 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
     }
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {
         versions.webpackDevServer.version = "4.15.1"
-        versions.webpack.version = "5.86.0"
+        versions.webpack.version = "5.88.2"
         versions.webpackCli.version = "5.1.4"
         versions.karma.version = "6.4.2"
         versions.mocha.version = "10.2.0"

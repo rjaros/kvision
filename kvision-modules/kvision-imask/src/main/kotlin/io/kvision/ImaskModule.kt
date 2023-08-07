@@ -28,7 +28,7 @@ import io.kvision.form.text.MaskManager
  * Initializer for KVision imask module.
  */
 object ImaskModule : ModuleInitializer {
-    internal val imask = require("imask").default
+    internal val imask = require("imask/esm/index.js").default
 
     override fun initialize() {
         MaskManager.factory = ImaskFactory(imask)

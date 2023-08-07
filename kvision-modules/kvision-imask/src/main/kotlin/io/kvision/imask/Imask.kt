@@ -20,22 +20,13 @@
  * SOFTWARE.
  */
 
-package io.kvision.remote
+package io.kvision.imask
 
-import io.micronaut.context.annotation.Bean
-import io.micronaut.context.annotation.Factory
-import io.micronaut.core.io.ResourceResolver
-import io.micronaut.web.router.resource.StaticResourceConfiguration
+import org.w3c.dom.HTMLElement
 
-/**
- * Default static resources configuration.
- */
-@Factory
-class StaticResources {
-    @Bean
-    fun publicStaticResources(resourceResolver: ResourceResolver): StaticResourceConfiguration {
-        val conf = StaticResourceConfiguration(resourceResolver, null)
-        conf.setPaths(listOf("classpath:public"))
-        return conf
-    }
+@JsModule("imask/esm/index.js")
+@JsNonModule
+external object Imask {
+    @JsName("default")
+    val imask: (HTMLElement, dynamic) -> dynamic
 }

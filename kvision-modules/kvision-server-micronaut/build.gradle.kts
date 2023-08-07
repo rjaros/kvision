@@ -4,7 +4,7 @@ plugins {
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
-    kotlin("kapt")
+    id("com.google.devtools.ksp") version "1.9.0-1.0.13"
 }
 
 // Versions
@@ -37,7 +37,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("reflect"))
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
-                api(project.dependencies.platform("io.micronaut:micronaut-bom:$micronautVersion"))
+                api(platform("io.micronaut.platform:micronaut-platform:$micronautVersion"))
                 api("io.micronaut:micronaut-inject")
                 api("io.micronaut:micronaut-http")
                 api("io.micronaut:micronaut-router")
@@ -54,10 +54,15 @@ kotlin {
     }
 }
 
+dependencies {
+    add("kspJvm", platform("io.micronaut.platform:micronaut-platform:$micronautVersion"))
+    add("kspJvm", "io.micronaut:micronaut-inject-kotlin")
+}
+
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
-    from("$buildDir/dokka/html")
+    from("${layout.buildDirectory}/dokka/html")
 }
 
 publishing {
@@ -73,19 +78,3 @@ publishing {
 setupSigning()
 setupPublication(true)
 setupDokkaMpp()
-
-kapt {
-    arguments {
-        arg("micronaut.processing.annotations", "io.kvision.remote")
-        arg("micronaut.processing.group", "io.kvision")
-        arg("micronaut.processing.module", "kvision-server-micronaut")
-    }
-}
-
-dependencies {
-    "kapt"(platform("io.micronaut:micronaut-bom:$micronautVersion"))
-    "kapt"("io.micronaut:micronaut-inject-java")
-    "kapt"("io.micronaut:micronaut-validation")
-    "kaptTest"("io.micronaut:micronaut-bom:$micronautVersion")
-    "kaptTest"("io.micronaut:micronaut-inject-java")
-}

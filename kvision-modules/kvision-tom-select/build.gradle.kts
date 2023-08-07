@@ -13,7 +13,7 @@ kotlin {
 
 dependencies {
     api(rootProject)
-    implementation(npm("tom-select", "^$tomSelectVersion"))
+    implementation(npm("@remotedevforce/tom-select", "^$tomSelectVersion"))
     testImplementation(kotlin("test-js"))
     testImplementation(project(":kvision-modules:kvision-testutils"))
 }

@@ -1,6 +1,5 @@
 package io.kvision.gradle
 
-import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.model.ObjectFactory
@@ -9,6 +8,7 @@ import org.gradle.api.provider.ProviderFactory
 import org.gradle.api.tasks.Nested
 import org.gradle.api.tasks.Optional
 import org.gradle.kotlin.dsl.property
+import javax.inject.Inject
 
 
 /**
@@ -38,9 +38,6 @@ abstract class KVisionExtension @Inject constructor(
 
     val enableKsp: Property<Boolean> =
         kvisionGradleProperty("enableKsp")
-
-    val irCompiler: Property<Boolean> = objects.property<Boolean>()
-        .convention(providers.gradleProperty("kotlin.js.compiler").orElse("legacy").map { it == "ir" })
 
     /** The location of generated resources that will be included in the packaged frontend. */
     abstract val generatedFrontendResources: DirectoryProperty
@@ -72,23 +69,23 @@ abstract class KVisionExtension @Inject constructor(
         objects: ObjectFactory,
     ) {
         @get:Optional
-        /** Requires [KVisionExtension.enableWebpackVersions] to be true */
+            /** Requires [KVisionExtension.enableWebpackVersions] to be true */
         val webpackDevServer: Property<String> = objects.property<String>().convention("4.15.1")
 
         @get:Optional
-        /** Requires [KVisionExtension.enableWebpackVersions] to be true */
-        val webpack: Property<String> = objects.property<String>().convention("5.86.0")
+            /** Requires [KVisionExtension.enableWebpackVersions] to be true */
+        val webpack: Property<String> = objects.property<String>().convention("5.88.2")
 
         @get:Optional
-        /** Requires [KVisionExtension.enableWebpackVersions] to be true */
+            /** Requires [KVisionExtension.enableWebpackVersions] to be true */
         val webpackCli: Property<String> = objects.property<String>().convention("5.1.4")
 
         @get:Optional
-        /** Requires [KVisionExtension.enableWebpackVersions] to be true */
+            /** Requires [KVisionExtension.enableWebpackVersions] to be true */
         val karma: Property<String> = objects.property<String>().convention("6.4.2")
 
         @get:Optional
-        /** Requires [KVisionExtension.enableWebpackVersions] to be true */
+            /** Requires [KVisionExtension.enableWebpackVersions] to be true */
         val mocha: Property<String> = objects.property<String>().convention("10.2.0")
     }
 
