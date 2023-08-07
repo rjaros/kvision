@@ -28,7 +28,7 @@ package io.kvision
 object TomSelectMinModule : ModuleInitializer {
 
     override fun initialize() {
-        require("tom-select/dist/css/tom-select.min.css")
+        require("@remotedevforce/tom-select/dist/css/tom-select.min.css")
     }
 
 }
