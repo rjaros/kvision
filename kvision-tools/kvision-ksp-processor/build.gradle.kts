@@ -27,7 +27,8 @@ val sourcesJar by tasks.registering(Jar::class) {
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
-    from("$buildDir/dokka/html")
+    from(layout.buildDirectory.dir("dokka/html"))
+
 }
 
 publishing {
@@ -41,5 +42,4 @@ publishing {
 }
 
 setupSigning()
-setupPublication()
 setupDokka()

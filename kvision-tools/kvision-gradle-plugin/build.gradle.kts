@@ -14,6 +14,8 @@ val kotlinVersion: String by System.getProperties()
 val autoServiceVersion: String by project
 val kotestVersion: String by project
 val kspVersion: String by project
+val springBootVersion: String by project
+val shadowVersion: String by project
 
 repositories {
     gradlePluginPortal()
@@ -42,8 +44,8 @@ kotlin {
 dependencies {
     implementation(kotlin("gradle-plugin"))
     implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:$kspVersion")
-    compileOnly("org.springframework.boot:spring-boot-gradle-plugin:3.1.2")
-    compileOnly("com.github.johnrengelman.shadow:com.github.johnrengelman.shadow.gradle.plugin:8.1.1")
+    compileOnly("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+    compileOnly("com.github.johnrengelman.shadow:com.github.johnrengelman.shadow.gradle.plugin:$shadowVersion")
 
     testImplementation(gradleTestKit())
 
@@ -55,12 +57,22 @@ dependencies {
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
-    from("$buildDir/dokka/html")
+    from(layout.buildDirectory.dir("dokka/html"))
+
     enabled = !hasProperty("SNAPSHOT")
 }
 
+publishing {
+    publications {
+        withType<MavenPublication>() {
+            pom {
+                defaultPom()
+            }
+        }
+    }
+}
+
 setupSigning()
-setupPublication()
 setupDokka()
 
 tasks.withType<Test>().configureEach {

@@ -1,5 +1,5 @@
 plugins {
-    kotlin("js")
+    kotlin("multiplatform")
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
@@ -12,37 +12,36 @@ val kotestVersion: String by project
 
 kotlin {
     kotlinJsTargets()
-}
-
-dependencies {
-    api(rootProject)
-    implementation(kotlin("stdlib-js"))
-    implementation(npm("leaflet", "^$leafletVersion"))
-    implementation(npm("geojson", "^$geojsonVersion")) {
-        because("used by Leaflet for defining locations")
+    sourceSets {
+        val jsMain by getting {
+            dependencies {
+                api(rootProject)
+                implementation(kotlin("stdlib-js"))
+                implementation(npm("leaflet", "^$leafletVersion"))
+                implementation(npm("geojson", "^$geojsonVersion")) {
+                    because("used by Leaflet for defining locations")
+                }
+                implementation(npm("@types/geojson", "^$geojsonTypesVersion"))
+            }
+        }
+        val jsTest by getting {
+            dependencies {
+                implementation(kotlin("test-js"))
+                implementation(project(":kvision-modules:kvision-testutils"))
+                implementation(platform("io.kotest:kotest-bom:$kotestVersion"))
+                implementation("io.kotest:kotest-assertions-core")
+            }
+        }
     }
-    implementation(npm("@types/geojson", "^$geojsonTypesVersion"))
-    testImplementation(kotlin("test-js"))
-    testImplementation(project(":kvision-modules:kvision-testutils"))
-    testImplementation(platform("io.kotest:kotest-bom:$kotestVersion"))
-    testImplementation("io.kotest:kotest-assertions-core")
 }
 
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
-    from("$buildDir/dokka/html")
-}
+    from(layout.buildDirectory.dir("dokka/html"))
 
-publishing {
-    publications {
-        create<MavenPublication>("kotlin") {
-            from(components["kotlin"])
-            if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
-        }
-    }
 }
 
 setupSigning()
 setupPublication()
-setupDokka()
+setupDokkaMpp()

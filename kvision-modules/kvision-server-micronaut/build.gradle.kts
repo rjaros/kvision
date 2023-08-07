@@ -62,19 +62,10 @@ dependencies {
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
-    from("${layout.buildDirectory}/dokka/html")
-}
+    from(layout.buildDirectory.dir("dokka/html"))
 
-publishing {
-    publications.withType<MavenPublication> {
-        if (name == "kotlinMultiplatform") artifactId = "kvision-server-micronaut"
-        if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
-        pom {
-            defaultPom()
-        }
-    }
 }
 
 setupSigning()
 setupPublication(true)
-setupDokkaMpp()
+setupDokkaMpp(withJvm = true)

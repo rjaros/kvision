@@ -1,5 +1,5 @@
 plugins {
-    kotlin("js")
+    kotlin("multiplatform")
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
@@ -11,35 +11,34 @@ val reduxThunkVersion: String by project
 
 kotlin {
     kotlinJsTargets()
-}
-
-dependencies {
-    api(rootProject)
-    api("org.jetbrains.kotlin-wrappers:kotlin-redux:$kotlinReduxVersion") {
-        exclude("org.jetbrains.kotlinx", "kotlinx-html-js")
+    sourceSets {
+        val jsMain by getting {
+            dependencies {
+                api(rootProject)
+                api("org.jetbrains.kotlin-wrappers:kotlin-redux:$kotlinReduxVersion") {
+                    exclude("org.jetbrains.kotlinx", "kotlinx-html-js")
+                }
+                implementation(npm("redux", "^$reduxVersion"))
+                implementation(npm("redux-thunk", "^$reduxThunkVersion"))
+            }
+        }
+        val jsTest by getting {
+            dependencies {
+                implementation(kotlin("test-js"))
+                implementation(project(":kvision-modules:kvision-testutils"))
+                implementation(project(":kvision-modules:kvision-state"))
+            }
+        }
     }
-    implementation(npm("redux", "^$reduxVersion"))
-    implementation(npm("redux-thunk", "^$reduxThunkVersion"))
-    testImplementation(kotlin("test-js"))
-    testImplementation(project(":kvision-modules:kvision-testutils"))
-    testImplementation(project(":kvision-modules:kvision-state"))
 }
 
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
-    from("$buildDir/dokka/html")
-}
+    from(layout.buildDirectory.dir("dokka/html"))
 
-publishing {
-    publications {
-        create<MavenPublication>("kotlin") {
-            from(components["kotlin"])
-            if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
-        }
-    }
 }
 
 setupSigning()
 setupPublication()
-setupDokka()
+setupDokkaMpp()

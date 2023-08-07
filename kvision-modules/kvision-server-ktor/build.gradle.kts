@@ -50,19 +50,10 @@ kotlin {
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
-    from("$buildDir/dokka/html")
-}
+    from(layout.buildDirectory.dir("dokka/html"))
 
-publishing {
-    publications.withType<MavenPublication> {
-        if (name == "kotlinMultiplatform") artifactId = "kvision-server-ktor"
-        if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
-        pom {
-            defaultPom()
-        }
-    }
 }
 
 setupSigning()
 setupPublication(true)
-setupDokkaMpp()
+setupDokkaMpp(withJvm = true)

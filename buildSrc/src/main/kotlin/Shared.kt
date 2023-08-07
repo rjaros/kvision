@@ -1,9 +1,11 @@
 import io.github.gradlenexus.publishplugin.NexusPublishExtension
+import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.jvm.toolchain.JavaLanguageVersion
+import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.named
@@ -40,11 +42,11 @@ private fun KotlinJsTargetDsl.kotlinJsTargets() {
         }
     }
     browser {
-        testTask {
+        testTask(Action {
             useKarma {
                 useChromeHeadless()
             }
-        }
+        })
     }
 }
 
@@ -100,35 +102,27 @@ fun Project.setupSigning() {
     }
 }
 
-
-fun Project.setupRootPublication() {
+fun Project.setupPublication(withJvm: Boolean = false, withSigning: Boolean = false) {
     extensions.getByType<PublishingExtension>().run {
         publications.withType<MavenPublication>().all {
+            if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
             pom {
                 defaultPom()
             }
         }
-        extensions.getByType<NexusPublishExtension>().run {
-            repositories {
-                sonatype {
-                    username.set(findProperty("ossrhUsername")?.toString())
-                    password.set(findProperty("ossrhPassword")?.toString())
+        if (withSigning) {
+            extensions.getByType<NexusPublishExtension>().run {
+                repositories {
+                    sonatype {
+                        username.set(findProperty("ossrhUsername")?.toString())
+                        password.set(findProperty("ossrhPassword")?.toString())
+                    }
                 }
             }
         }
     }
-}
-
-fun Project.setupPublication(isMuliplatform: Boolean = false) {
-    extensions.getByType<PublishingExtension>().run {
-        publications.withType<MavenPublication>().all {
-            pom {
-                defaultPom()
-            }
-        }
-    }
-    if (isMuliplatform) {
-        afterEvaluate {
+    afterEvaluate {
+        if (withJvm) {
             tasks.getByName("publishKotlinMultiplatformPublicationToSonatypeRepository") {
                 dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
             }
@@ -138,6 +132,34 @@ fun Project.setupPublication(isMuliplatform: Boolean = false) {
             tasks.getByName("publishJvmPublicationToSonatypeRepository") {
                 dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
             }
+            // Only for publishing signed artifacts to local maven repository
+            /*
+            tasks.getByName("publishKotlinMultiplatformPublicationToMavenLocal") {
+                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
+            }
+            tasks.getByName("publishJsPublicationToMavenLocal") {
+                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
+            }
+            tasks.getByName("publishJvmPublicationToMavenLocal") {
+                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
+            }
+             */
+        } else {
+            tasks.getByName("publishKotlinMultiplatformPublicationToSonatypeRepository") {
+                dependsOn("signKotlinMultiplatformPublication", "signJsPublication")
+            }
+            tasks.getByName("publishJsPublicationToSonatypeRepository") {
+                dependsOn("signKotlinMultiplatformPublication", "signJsPublication")
+            }
+            // Only for publishing signed artifacts to local maven repository
+            /*
+            tasks.getByName("publishKotlinMultiplatformPublicationToMavenLocal") {
+                dependsOn("signKotlinMultiplatformPublication", "signJsPublication")
+            }
+            tasks.getByName("publishJsPublicationToMavenLocal") {
+                dependsOn("signKotlinMultiplatformPublication", "signJsPublication")
+            }
+             */
         }
     }
 }
@@ -150,8 +172,8 @@ fun Project.setupDokka() {
             }
             register("kvision") {
                 includes.from("../../Module.md")
-                displayName.set("js")
-                platform.set(org.jetbrains.dokka.Platform.js)
+                displayName.set("jvm")
+                platform.set(org.jetbrains.dokka.Platform.jvm)
                 includeNonPublic.set(false)
                 skipDeprecated.set(false)
                 reportUndocumented.set(false)
@@ -161,7 +183,7 @@ fun Project.setupDokka() {
     }
 }
 
-fun Project.setupDokkaMpp(disableJvm: Boolean = false) {
+fun Project.setupDokkaMpp(withJvm: Boolean = false) {
     tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml").configure {
         dokkaSourceSets.invoke {
             named("commonMain") {
@@ -170,8 +192,10 @@ fun Project.setupDokkaMpp(disableJvm: Boolean = false) {
             named("jsMain") {
                 suppress.set(true)
             }
-            named("jvmMain") {
-                suppress.set(true)
+            if (findByName("jvmMain") != null) {
+                named("jvmMain") {
+                    suppress.set(true)
+                }
             }
             register("kvision-common") {
                 includes.from("../../Module.md")
@@ -191,7 +215,7 @@ fun Project.setupDokkaMpp(disableJvm: Boolean = false) {
                 reportUndocumented.set(false)
                 sourceRoots.from(file("src/jsMain/kotlin"))
             }
-            if (!disableJvm) { // Workaround for StackOverflowError in Spring Boot module
+            if (withJvm) { // Workaround for StackOverflowError in Spring Boot module
                 register("kvision-jvm") {
                     includes.from("../../Module.md")
                     displayName.set("jvm")

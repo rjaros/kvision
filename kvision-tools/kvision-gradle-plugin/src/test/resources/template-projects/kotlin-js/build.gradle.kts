@@ -37,7 +37,7 @@ kotlin {
                         "/kv/*" to "http://localhost:8080",
                         "/kvws/*" to mapOf("target" to "ws://localhost:8080", "ws" to true)
                     ),
-                    static = mutableListOf("$buildDir/processedResources/js/main")
+                    static = mutableListOf("${buildDir}/processedResources/js/main")
                 )
             }
             webpackTask {

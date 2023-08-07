@@ -1,5 +1,5 @@
 plugins {
-    kotlin("js")
+    kotlin("multiplatform")
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
@@ -17,36 +17,35 @@ kotlin {
             }
         }
         nodejs {
-            testTask {
+            testTask(Action {
                 useKarma()
+            })
+        }
+    }
+    sourceSets {
+        val jsMain by getting {
+            dependencies {
+                api(rootProject)
+                api("org.jetbrains.kotlin-wrappers:kotlin-node:$kotlinNodeVersion")
+                implementation(npm("electron", "^$electronVersion"))
+                implementation(npm("@electron/remote", "^$electronRemoteVersion"))
+            }
+        }
+        val jsTest by getting {
+            dependencies {
+                implementation(kotlin("test-js"))
             }
         }
     }
 }
 
-dependencies {
-    api(rootProject)
-    api("org.jetbrains.kotlin-wrappers:kotlin-node:$kotlinNodeVersion")
-    implementation(npm("electron", "^$electronVersion"))
-    implementation(npm("@electron/remote", "^$electronRemoteVersion"))
-    testImplementation(kotlin("test-js"))
-}
-
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
-    from("$buildDir/dokka/html")
-}
+    from(layout.buildDirectory.dir("dokka/html"))
 
-publishing {
-    publications {
-        create<MavenPublication>("kotlin") {
-            from(components["kotlin"])
-            if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
-        }
-    }
 }
 
 setupSigning()
 setupPublication()
-setupDokka()
+setupDokkaMpp()
