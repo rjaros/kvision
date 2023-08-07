@@ -1,5 +1,6 @@
 package io.kvision.gradle
 
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import io.kvision.gradle.tasks.KVConvertPoTask
 import io.kvision.gradle.tasks.KVGeneratePotTask
 import io.kvision.gradle.tasks.KVWorkerBundleTask
@@ -13,15 +14,18 @@ import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.provider.Provider
 import org.gradle.api.provider.ProviderFactory
 import org.gradle.api.tasks.Copy
+import org.gradle.api.tasks.JavaExec
 import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.TaskContainer
 import org.gradle.api.tasks.TaskProvider
+import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.tasks.bundling.Zip
 import org.gradle.internal.os.OperatingSystem
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.get
+import org.gradle.kotlin.dsl.getByName
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
@@ -34,7 +38,13 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+import org.springframework.boot.gradle.tasks.run.BootRun
 import javax.inject.Inject
+
+enum class KVServerType {
+    JAVALIN, JOOBY, KTOR, MICRONAUT, SPRINGBOOT, VERTX
+}
 
 abstract class KVisionPlugin @Inject constructor(
     private val providers: ProviderFactory
@@ -138,12 +148,6 @@ abstract class KVisionPlugin @Inject constructor(
             dependsOn(convertPoToJsonTask)
         }
 
-        if (kvExtension.irCompiler.get()) {
-            tasks.all.browserDevelopmentRun.configureEach {
-                dependsOn("developmentExecutableCompileSync")
-            }
-        }
-
         kotlinJsExtension.sourceSets.main.configure {
             resources.srcDir(kvExtension.generatedFrontendResources)
         }
@@ -208,12 +212,6 @@ abstract class KVisionPlugin @Inject constructor(
             dependsOn(convertPoToJsonTask)
         }
 
-        if (kvExtension.irCompiler.get()) {
-            tasks.all.frontendBrowserDevelopmentRun.configureEach {
-                dependsOn("frontendDevelopmentExecutableCompileSync")
-            }
-        }
-
         kotlinMppExtension.sourceSets.matching { it.name == "frontendMain" }.configureEach {
             resources.srcDir(kvExtension.generatedFrontendResources)
         }
@@ -229,16 +227,167 @@ abstract class KVisionPlugin @Inject constructor(
                 }
                 kotlinMppExtension.sourceSets.getByName("commonMain").kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
                 kotlinMppExtension.sourceSets.getByName("frontendMain").kotlin.srcDir("build/generated/ksp/frontend/frontendMain/kotlin")
-                // Workaround KSP 1.0.9 issues
-                configurations.filter { it.name.startsWith("frontend") && it.name.endsWith("DependenciesMetadata") }
-                    .forEach {
-                        configurations.remove(it)
+
+                // Workaround duplicated source roots in IntelliJ IDEA
+                afterEvaluate {
+                    afterEvaluate {
+                        afterEvaluate {
+                            afterEvaluate {
+                                kotlinMppExtension.sourceSets.filter { it.name.startsWith("generatedByKsp") }.forEach {
+                                    kotlinMppExtension.sourceSets.remove(it)
+                                }
+                            }
+                        }
                     }
-                configurations["backendRuntimeClasspath"].files
+                }
             }
 
             tasks.all.kspKotlinFrontend.configureEach {
                 dependsOn("kspCommonMainKotlinMetadata")
+            }
+        }
+
+        if (kvExtension.enableGradleTasks.get()) {
+            afterEvaluate {
+                afterEvaluate {
+                    val serverType = getServerType(project)
+                    val assetsPath = when (serverType) {
+                        KVServerType.MICRONAUT, KVServerType.SPRINGBOOT -> "/public"
+                        KVServerType.VERTX -> "/webroot"
+                        else -> "/assets"
+                    }
+                    tasks.create("frontendArchive", Jar::class).apply {
+                        dependsOn("frontendBrowserDistribution")
+                        group = "package"
+                        archiveAppendix.set("frontend")
+                        val distribution =
+                            project.tasks.getByName(
+                                "frontendBrowserProductionWebpack",
+                                KotlinWebpack::class
+                            ).outputDirectory
+                        from(distribution) {
+                            include("*.*")
+                        }
+                        val processedResources =
+                            project.tasks.getByName("frontendProcessResources", Copy::class).destinationDir
+                        from(processedResources)
+                        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+                        into(assetsPath)
+                        inputs.files(distribution, processedResources)
+                        outputs.file(archiveFile)
+                        manifest {
+                            attributes(
+                                mapOf(
+                                    "Implementation-Title" to rootProject.name,
+                                    "Implementation-Group" to rootProject.group,
+                                    "Implementation-Version" to rootProject.version,
+                                    "Timestamp" to System.currentTimeMillis()
+                                )
+                            )
+                        }
+                    }
+                    tasks.getByName("backendProcessResources", Copy::class) {
+                        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+                    }
+                    when (serverType) {
+                        KVServerType.JAVALIN, KVServerType.JOOBY, KVServerType.KTOR -> {
+                            val jarTaskExists = tasks.findByName("jar") != null
+                            val customJarTaskName = if (jarTaskExists) "shadowJar" else "jar"
+                            tasks.create(customJarTaskName, Jar::class).apply {
+                                dependsOn("frontendArchive", "backendJar")
+                                group = "package"
+                                manifest {
+                                    attributes(
+                                        mapOf(
+                                            "Implementation-Title" to rootProject.name,
+                                            "Implementation-Group" to rootProject.group,
+                                            "Implementation-Version" to rootProject.version,
+                                            "Timestamp" to System.currentTimeMillis(),
+                                            "Main-Class" to tasks.getByName(
+                                                "backendRun",
+                                                JavaExec::class
+                                            ).mainClass.get()
+                                        )
+                                    )
+                                }
+                                val dependencies = files(
+                                    configurations.getByName("backendRuntimeClasspath"),
+                                    project.tasks["backendJar"].outputs.files,
+                                    project.tasks["frontendArchive"].outputs.files
+                                )
+                                from(dependencies.asSequence().map { if (it.isDirectory) it else zipTree(it) }
+                                    .asIterable())
+                                exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA")
+                                inputs.files(dependencies)
+                                outputs.file(archiveFile)
+                                duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+                            }
+                            if (jarTaskExists) {
+                                tasks.getByName("jar", Jar::class).apply {
+                                    dependsOn("shadowJar")
+                                }
+                            }
+                        }
+
+                        KVServerType.SPRINGBOOT -> {
+                            tasks.getByName("bootJar", BootJar::class) {
+                                dependsOn("frontendArchive", "backendMainClasses")
+                                classpath = files(
+                                    kotlinMppExtension.targets["backend"].compilations["main"].output.allOutputs,
+                                    project.configurations["backendRuntimeClasspath"],
+                                    (project.tasks["frontendArchive"] as Jar).archiveFile
+                                )
+                            }
+                            tasks.getByName("jar", Jar::class).apply {
+                                dependsOn("bootJar")
+                            }
+                            tasks.getByName("bootRun", BootRun::class) {
+                                dependsOn("backendMainClasses")
+                                classpath = files(
+                                    kotlinMppExtension.targets["backend"].compilations["main"].output.allOutputs,
+                                    project.configurations["backendRuntimeClasspath"]
+                                )
+                            }
+                            tasks.getByName("backendRun").apply {
+                                dependsOn("bootRun")
+                            }
+                        }
+
+                        KVServerType.MICRONAUT -> {
+                            tasks.getByName("shadowJar", ShadowJar::class) {
+                                dependsOn("frontendArchive")
+                                from(project.tasks["frontendArchive"].outputs.files)
+                                mergeServiceFiles()
+                            }
+                            tasks.getByName("kaptGenerateStubsKotlinBackend").apply {
+                                dependsOn("kspCommonMainKotlinMetadata")
+                            }
+                            tasks.getByName("jar", Jar::class).apply {
+                                enabled = false
+                                dependsOn("shadowJar")
+                            }
+                            tasks.getByName("backendRun").apply {
+                                dependsOn("run")
+                            }
+                        }
+
+                        KVServerType.VERTX -> {
+                            tasks.getByName("shadowJar", ShadowJar::class) {
+                                dependsOn("frontendArchive")
+                                from(project.tasks["frontendArchive"].outputs.files)
+                            }
+                            tasks.getByName("jar", Jar::class).apply {
+                                enabled = false
+                                dependsOn("shadowJar")
+                            }
+                            tasks.getByName("backendRun").apply {
+                                dependsOn("vertxRun")
+                            }
+                        }
+
+                        else -> {}
+                    }
+                }
             }
         }
     }
@@ -284,7 +433,7 @@ abstract class KVisionPlugin @Inject constructor(
             group = PACKAGE_TASK_GROUP
             description = "Builds ZIP archive with the application"
             destinationDirectory.set(layout.buildDirectory.dir("libs"))
-            from(tasks.provider.browserProductionWebpack.map { it.destinationDirectory }) {
+            from(tasks.provider.browserProductionWebpack.map { it.outputDirectory }) {
                 include("*.*")
             }
             from(webDir)
@@ -470,6 +619,21 @@ abstract class KVisionPlugin @Inject constructor(
     private val NamedDomainObjectContainer<KotlinSourceSet>.frontendMain: NamedDomainObjectProvider<KotlinSourceSet>
         get() = named("frontendMain")
 
+    private fun getServerType(project: Project): KVServerType? {
+        val kvisionServerDependency = project.configurations["commonMainApi"].dependencies.map {
+            it.name
+        }.firstOrNull { it.startsWith("kvision-server-") }
+        return when (kvisionServerDependency) {
+            "kvision-server-javalin" -> KVServerType.JAVALIN
+            "kvision-server-jooby" -> KVServerType.JOOBY
+            "kvision-server-ktor" -> KVServerType.KTOR
+            "kvision-server-ktor-koin" -> KVServerType.KTOR
+            "kvision-server-micronaut" -> KVServerType.MICRONAUT
+            "kvision-server-spring-boot" -> KVServerType.SPRINGBOOT
+            "kvision-server-vertx" -> KVServerType.VERTX
+            else -> return null
+        }
+    }
 
     companion object {
 

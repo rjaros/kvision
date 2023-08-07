@@ -15,6 +15,10 @@ val autoServiceVersion: String by project
 val kotestVersion: String by project
 val kspVersion: String by project
 
+repositories {
+    gradlePluginPortal()
+}
+
 gradlePlugin {
     website.set(kvisionProjectWebsite)
     vcsUrl.set(kvisionVcsUrl)
@@ -38,6 +42,8 @@ kotlin {
 dependencies {
     implementation(kotlin("gradle-plugin"))
     implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:$kspVersion")
+    compileOnly("org.springframework.boot:spring-boot-gradle-plugin:3.1.2")
+    compileOnly("com.github.johnrengelman.shadow:com.github.johnrengelman.shadow.gradle.plugin:8.1.1")
 
     testImplementation(gradleTestKit())
 
