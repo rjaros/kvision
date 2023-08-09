@@ -44,7 +44,7 @@ import org.w3c.fetch.RequestInit
  * @param value selected value
  * @param emptyOption determines if an empty option is automatically generated
  * @param multiple allows multiple value selection (multiple values are comma delimited)
- * @param selectSize the number of visible options
+ * @param maxOptions the number of visible options
  * @param tsOptions Tom Select options
  * @param tsCallbacks Tom Select callbacks
  * @param tsRenders Tom Select render functions
@@ -58,13 +58,13 @@ open class TomSelectRemoteInput<out T : Any>(
     private val serviceManager: KVServiceMgr<T>,
     private val function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     protected val stateFunction: (() -> String)? = null,
-    value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, selectSize: Int? = null,
+    value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
     protected val preload: Boolean = false, protected val openOnFocus: Boolean = false,
     protected val requestFilter: (suspend RequestInit.() -> Unit)? = null,
     className: String? = null,
     init: (TomSelectRemoteInput<T>.() -> Unit)? = null
-) : TomSelectInput(null, value, emptyOption, multiple, selectSize, tsOptions, tsCallbacks, tsRenders, className) {
+) : TomSelectInput(null, value, emptyOption, multiple, maxOptions, tsOptions, tsCallbacks, tsRenders, className) {
 
     private var initialized = false
 
@@ -220,7 +220,7 @@ fun <T : Any> Container.tomSelectRemoteInput(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     stateFunction: (() -> String)? = null,
-    value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, selectSize: Int? = null,
+    value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
     preload: Boolean = false, openOnFocus: Boolean = false,
     requestFilter: (suspend RequestInit.() -> Unit)? = null,
@@ -235,7 +235,7 @@ fun <T : Any> Container.tomSelectRemoteInput(
             value,
             emptyOption,
             multiple,
-            selectSize,
+            maxOptions,
             tsOptions,
             tsCallbacks,
             tsRenders,

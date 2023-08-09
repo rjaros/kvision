@@ -45,7 +45,7 @@ import org.w3c.fetch.RequestInit
  * @param stateFunction a function to generate the state object passed with the remote request
  * @param emptyOption determines if an empty option is automatically generated
  * @param multiple allows multiple value selection (multiple values are comma delimited)
- * @param selectSize the number of visible options
+ * @param maxOptions the number of visible options
  * @param tsOptions Tom Select options
  * @param tsCallbacks Tom Select callbacks
  * @param tsRenders Tom Select render functions
@@ -61,7 +61,7 @@ open class TomSelectRemote<out T : Any>(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     stateFunction: (() -> String)? = null,
-    value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, selectSize: Int? = null,
+    value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
     private val preload: Boolean = false, private val openOnFocus: Boolean = false,
     requestFilter: (suspend RequestInit.() -> Unit)? = null,
@@ -98,10 +98,10 @@ open class TomSelectRemote<out T : Any>(
     /**
      * The number of visible options.
      */
-    var selectSize
-        get() = input.selectSize
+    var maxOptions
+        get() = input.maxOptions
         set(value) {
-            input.selectSize = value
+            input.maxOptions = value
         }
 
     /**
@@ -184,7 +184,7 @@ open class TomSelectRemote<out T : Any>(
 
     private val idc = "kv_form_TomSelectRemote_$counter"
     final override val input: TomSelectRemoteInput<T> = TomSelectRemoteInput(
-        serviceManager, function, stateFunction, value, emptyOption, multiple, selectSize,
+        serviceManager, function, stateFunction, value, emptyOption, multiple, maxOptions,
         tsOptions, tsCallbacks, tsRenders, preload, openOnFocus, requestFilter, "form-control"
     ).apply {
         this.id = this@TomSelectRemote.idc
@@ -295,7 +295,7 @@ open class TomSelectRemote<out T : Any>(
 fun <T : Any> Container.tomSelectRemote(
     serviceManager: KVServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,
-    value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, selectSize: Int? = null,
+    value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
     preload: Boolean = false, openOnFocus: Boolean = false, requestFilter: (suspend RequestInit.() -> Unit)? = null,
     name: String? = null, label: String? = null, rich: Boolean = false, init: (TomSelectRemote<T>.() -> Unit)? = null
@@ -303,7 +303,7 @@ fun <T : Any> Container.tomSelectRemote(
     val tomSelectRemote =
         TomSelectRemote(
             serviceManager, function, stateFunction,
-            value, emptyOption, multiple, selectSize, tsOptions, tsCallbacks, tsRenders, preload, openOnFocus,
+            value, emptyOption, multiple, maxOptions, tsOptions, tsCallbacks, tsRenders, preload, openOnFocus,
             requestFilter, name, label, rich, init
         )
     this.add(tomSelectRemote)

@@ -49,7 +49,7 @@ import org.w3c.dom.asList
  * @param value text input value
  * @param emptyOption determines if an empty option is automatically generated
  * @param multiple allows multiple value selection (multiple values are comma delimited)
- * @param selectSize the number of visible options
+ * @param maxOptions the number of visible options
  * @param tsOptions Tom Select options
  * @param tsCallbacks Tom Select callbacks
  * @param tsRenders Tom Select render functions
@@ -58,7 +58,7 @@ import org.w3c.dom.asList
  */
 open class TomSelectInput(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
-    multiple: Boolean = false, selectSize: Int? = null, tsOptions: TomSelectOptions? = null,
+    multiple: Boolean = false, maxOptions: Int? = null, tsOptions: TomSelectOptions? = null,
     tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
     className: String? = null, init: (TomSelectInput.() -> Unit)? = null
 ) : SimplePanel((className?.let { "$it " } ?: "") + "form-select"), GenericFormComponent<String?>, FormInput,
@@ -99,7 +99,7 @@ open class TomSelectInput(
     /**
      * The number of visible options.
      */
-    var selectSize: Int? by refreshOnUpdate(selectSize)
+    var maxOptions: Int? by refreshOnUpdate(maxOptions)
 
     /**
      * Disable searching in options.
@@ -188,9 +188,6 @@ open class TomSelectInput(
         if (multiple) {
             attributeSetBuilder.add("multiple")
         }
-        selectSize?.let {
-            attributeSetBuilder.add("size", "$it")
-        }
         if (disabled) {
             attributeSetBuilder.add("disabled")
         }
@@ -219,7 +216,7 @@ open class TomSelectInput(
     protected open fun getSettingsObj(): dynamic {
         return obj {
             this.maxItems = if (!multiple) 1 else null
-            this.maxOptions = selectSize
+            this.maxOptions = maxOptions
             this.allowEmptyOption = emptyOption
             if (options != null) {
                 val optionsWithEmpty = if (emptyOption) {
@@ -335,7 +332,7 @@ open class TomSelectInput(
  */
 fun Container.tomSelectInput(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
-    multiple: Boolean = false, selectSize: Int? = null, tsOptions: TomSelectOptions? = null,
+    multiple: Boolean = false, maxOptions: Int? = null, tsOptions: TomSelectOptions? = null,
     tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
     className: String? = null, init: (TomSelectInput.() -> Unit)? = null
 ): TomSelectInput {
@@ -345,7 +342,7 @@ fun Container.tomSelectInput(
             value,
             emptyOption,
             multiple,
-            selectSize,
+            maxOptions,
             tsOptions,
             tsCallbacks,
             tsRenders,

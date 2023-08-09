@@ -41,7 +41,7 @@ import io.kvision.utils.SnOn
  * @param value text input value
  * @param emptyOption determines if an empty option is automatically generated
  * @param multiple allows multiple value selection (multiple values are comma delimited)
- * @param selectSize the number of visible options
+ * @param maxOptions the number of visible options
  * @param tsOptions Tom Select options
  * @param tsCallbacks Tom Select callbacks
  * @param tsRenders Tom Select render functions
@@ -51,7 +51,7 @@ import io.kvision.utils.SnOn
  */
 open class TomSelect(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
-    multiple: Boolean = false, selectSize: Int? = null, tsOptions: TomSelectOptions? = null,
+    multiple: Boolean = false, maxOptions: Int? = null, tsOptions: TomSelectOptions? = null,
     tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
     label: String? = null, rich: Boolean = false, init: (TomSelect.() -> Unit)? = null
 ) : SimplePanel("form-group kv-mb-3"), StringFormControl, MutableState<String?> {
@@ -95,10 +95,10 @@ open class TomSelect(
     /**
      * The number of visible options.
      */
-    var selectSize
-        get() = input.selectSize
+    var maxOptions
+        get() = input.maxOptions
         set(value) {
-            input.selectSize = value
+            input.maxOptions = value
         }
 
     /**
@@ -181,7 +181,7 @@ open class TomSelect(
 
     private val idc = "kv_form_TomSelect_$counter"
     final override val input: TomSelectInput = TomSelectInput(
-        options, value, emptyOption, multiple, selectSize, tsOptions, tsCallbacks, tsRenders,
+        options, value, emptyOption, multiple, maxOptions, tsOptions, tsCallbacks, tsRenders,
         "form-control"
     ).apply {
         this.id = this@TomSelect.idc
@@ -291,7 +291,7 @@ open class TomSelect(
  */
 fun Container.tomSelect(
     options: List<StringPair>? = null, value: String? = null, emptyOption: Boolean = false,
-    multiple: Boolean = false, selectSize: Int? = null, tsOptions: TomSelectOptions? = null,
+    multiple: Boolean = false, maxOptions: Int? = null, tsOptions: TomSelectOptions? = null,
     tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
     label: String? = null, rich: Boolean = false, init: (TomSelect.() -> Unit)? = null
 ): TomSelect {
@@ -300,7 +300,7 @@ fun Container.tomSelect(
         value,
         emptyOption,
         multiple,
-        selectSize,
+        maxOptions,
         tsOptions,
         tsCallbacks,
         tsRenders,
