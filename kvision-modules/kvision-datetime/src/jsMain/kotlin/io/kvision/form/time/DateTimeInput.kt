@@ -455,11 +455,13 @@ open class DateTimeInput(
                 }
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("change", obj { detail = event.asDynamic().detail })
+                observers.forEach { ob -> ob(this.value) }
             })
             element.addEventListener("error.td", { event ->
                 this.value = null
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("change", obj { detail = event.asDynamic().detail })
+                observers.forEach { ob -> ob(null) }
             })
         }
     }
