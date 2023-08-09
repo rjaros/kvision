@@ -834,12 +834,6 @@ open class Tabulator<T : Any>(
         } else data.toList()
     }
 
-    @Deprecated("Use toKotlinObj instead", ReplaceWith("toKotlinObj(data)"))
-    @Suppress("UNUSED_PARAMETER")
-    fun toKotlinObjTabulator(data: dynamic, kClass: KClass<T>): T {
-        return toKotlinObj(data)
-    }
-
     /**
      * Converts an internal (dynamic) data model to Kotlin data model
      */

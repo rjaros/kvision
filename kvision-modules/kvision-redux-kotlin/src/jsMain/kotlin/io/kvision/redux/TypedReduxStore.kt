@@ -31,8 +31,6 @@ import org.reduxkotlin.thunk.Thunk
 import org.reduxkotlin.thunk.createThunkMiddleware
 
 interface RAction
-@Deprecated("Use TypedReducer instead.", ReplaceWith("TypedReducer<S, A>"))
-typealias ReducerFun<S, A> = (S, A) -> S
 typealias Dispatch<A> = (A) -> Unit
 typealias GetState<S> = () -> S
 typealias ActionCreator<A, S> = (Dispatch<A>, GetState<S>) -> Unit

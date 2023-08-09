@@ -120,9 +120,6 @@ enum class BsColor(override val className: String) : CssClass {
     BLACK("text-black"),
     WHITE("text-white"),
     BODY("text-body"),
-
-    @Deprecated("Use BODYSECONDARY instead", ReplaceWith("BODYSECONDARY"))
-    MUTED("text-body-secondary"),
     BODYSECONDARY("text-body-secondary"),
     BODYTERTIARY("text-body-tertiary"),
     BODYEMPHASIS("text-body-emphasis"),
