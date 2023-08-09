@@ -25,6 +25,7 @@ import io.kvision.KVManager
 import io.kvision.core.Container
 import io.kvision.core.StyledComponent
 import io.kvision.core.UNIT
+import io.kvision.core.Widget
 import io.kvision.snabbdom.VNode
 import io.kvision.utils.obj
 import kotlin.math.ceil
@@ -111,6 +112,7 @@ open class SplitPanel(
     @Suppress("UnsafeCastFromDynamic")
     internal fun afterInsertSplitter() {
         if (children?.size == 2) {
+            children!!.forEach { (it as Widget).useSnabbdomDistinctKey() }
             val horizontal = direction == Direction.HORIZONTAL
             val perc = UNIT.perc
             val self = this
