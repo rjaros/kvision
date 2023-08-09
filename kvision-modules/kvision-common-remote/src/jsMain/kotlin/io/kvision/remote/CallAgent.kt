@@ -27,7 +27,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.promise
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import org.w3c.dom.get
 import org.w3c.dom.url.URLSearchParams
@@ -147,7 +146,7 @@ open class CallAgent {
      * @param requestFilter a request filtering function
      * @return a promise of the result
      */
-    @Suppress("UnsafeCastFromDynamic", "ComplexMethod")
+    @Suppress("ComplexMethod")
     fun remoteCall(
         url: String,
         data: dynamic = null,
@@ -164,7 +163,7 @@ open class CallAgent {
             urlAddr + "?" + URLSearchParams(data).toString()
         } else {
             requestInit.body = when (contentType) {
-                "application/json" -> if (data is String) data else kotlin.js.JSON.stringify(data)
+                "application/json" -> if (data is String) data else JSON.stringify(data)
                 "application/x-www-form-urlencoded" -> URLSearchParams(data).toString()
                 else -> data
             }

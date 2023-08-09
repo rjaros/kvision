@@ -735,6 +735,7 @@ abstract class StyledComponent {
     open fun getSnStyle(): dynamic {
         return snStyleCache ?: run {
             val s = js("Object").assign(js("{}"), propertyStyles)
+            @Suppress("UnsafeCastFromDynamic")
             snStyleCache = s
             s
         }
@@ -791,7 +792,6 @@ abstract class StyledComponent {
     }
 
     private inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)?) {
-        @Suppress("UNCHECKED_CAST")
         operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
             val value = propertyValues[property.name]
             return if (value != null) {

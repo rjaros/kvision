@@ -126,7 +126,6 @@ open class SelectInput(
     /**
      * The index of currently selected option or -1 if none.
      */
-    @Suppress("UnsafeCastFromDynamic")
     var selectedIndex: Int
         get() = getElement()?.unsafeCast<HTMLSelectElement>()?.selectedIndex
             ?: value?.let { v ->

@@ -156,7 +156,6 @@ open class ImaskNumericInput(
      * Temporary component value.
      */
     protected var tempValue: Number? = null
-        get() = field
         set(value) {
             field = value
             observers.forEach { ob -> ob(value) }

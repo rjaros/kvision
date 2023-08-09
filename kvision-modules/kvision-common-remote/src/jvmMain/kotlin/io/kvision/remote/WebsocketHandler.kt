@@ -68,11 +68,9 @@ suspend fun <T, OBJECTS_IN, OBJECTS_OUT> handleWebsocketConnection(
  *                    indicate that the message should be ignored
  * @param rawOut a channel for outgoing messages
  * @param rawOutFromText a function to convert the JSON-string to an object to be sent via [rawOut]
- * @param parsedInType the type of object that [function] receives through a channel
  * @param service the receiver to be used when calling [function]
  * @param function the function to delegate data processing to
  */
-@OptIn(FlowPreview::class)
 suspend fun <T, RAW_IN, RAW_OUT, OBJECTS_IN, OBJECTS_OUT> handleWebsocketConnection(
     deSerializer: ObjectDeSerializer,
     rawIn: ReceiveChannel<RAW_IN>,

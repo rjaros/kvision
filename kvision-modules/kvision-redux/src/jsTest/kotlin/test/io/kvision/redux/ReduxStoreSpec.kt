@@ -30,8 +30,8 @@ import kotlin.test.assertEquals
 data class TestState(val counter: Int, val values: List<Int>)
 
 sealed class TestAction : RAction {
-    object Inc : TestAction()
-    object Dec : TestAction()
+    data object Inc : TestAction()
+    data object Dec : TestAction()
 }
 
 fun testReducer(state: TestState, action: TestAction): TestState = when (action) {

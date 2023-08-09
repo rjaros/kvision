@@ -49,6 +49,7 @@ open class ContextMenu(
         hide()
         @Suppress("LeakingThis")
         display = Display.BLOCK
+        @Suppress("LeakingThis")
         width = auto
         val root = element?.getRoot() ?: Root.getLastRoot()
         if (root != null) {

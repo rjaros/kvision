@@ -529,7 +529,6 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                     }
                     root = Root(rootElement, ContainerType.NONE, false)
                     EditorRoot.cancel = cancel
-                    @Suppress("UnsafeCastFromDynamic")
                     root?.add(component)
                     (component as? FormControl)?.focus()
                     (component as? FormInput)?.focus()
@@ -557,7 +556,6 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                 onRendered {
                     val root = Root(rootElement, ContainerType.NONE, false)
                     tabulator.addCustomRoot(root)
-                    @Suppress("UnsafeCastFromDynamic")
                     root.add(component)
                     if (cell.asDynamic().checkHeight != undefined) cell.checkHeight()
                     (root.getElement()?.parentElement as? HTMLDivElement)?.style?.overflowX = "visible"
@@ -642,8 +640,8 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                             icon.classList.add("fa-square")
                         } else {
                             it.show()
-                            icon.classList.remove("fa-square");
-                            icon.classList.add("fa-check-square");
+                            icon.classList.remove("fa-square")
+                            icon.classList.add("fa-check-square")
                         }
                         tabulator.jsTabulator?.redraw(true)
                     }
@@ -1007,6 +1005,7 @@ fun <T : Any> TabulatorOptions<T>.toJs(
                         it.getField()
                     }
                 val fixedData = value.map {
+                    @Suppress("UnsafeCastFromDynamic")
                     if (it.visible == false && responsiveHiddenColumns.contains(it.field))
                         it.visible = true
                     it

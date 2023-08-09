@@ -34,9 +34,7 @@ import io.kvision.electron.electron.HeapStatistics
 import io.kvision.electron.electron.IOCounters
 import io.kvision.electron.electron.ProcessMemoryInfo
 import io.kvision.electron.electron.SystemMemoryInfo
-import node.Dict
 import node.Module
-import node.RequireResolve
 import node.tty.ReadStream
 import node.tty.WriteStream
 import org.khronos.webgl.Uint8Array
@@ -247,10 +245,8 @@ external interface Socket : ReadWriteStream {
 
 external interface ProcessEnv
 
-@Suppress("NOTHING_TO_INLINE")
 inline operator fun ProcessEnv.get(key: String): String? = asDynamic()[key]
 
-@Suppress("NOTHING_TO_INLINE")
 inline operator fun ProcessEnv.set(key: String, value: String?) {
     asDynamic()[key] = value
 }
@@ -259,7 +255,6 @@ external interface HRTime {
     fun bigint(): Any
 }
 
-@Suppress("NOTHING_TO_INLINE")
 inline operator fun HRTime.invoke(time: dynamic): dynamic /* JsTuple<Number, Number> */ {
     return asDynamic()(time)
 }

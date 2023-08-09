@@ -44,7 +44,6 @@ data class DataForm2(
     val d: String? = null
 )
 
-@Suppress("CanBeParameter")
 class FormSpec : SimpleSpec {
 
     @Test
@@ -136,7 +135,7 @@ class FormSpec : SimpleSpec {
         run {
             val form = Form.create<DataForm2>()
             form.add(DataForm2::s, Text()) {
-                it.getValue()?.length ?: 0 > 4
+                (it.getValue()?.length ?: 0) > 4
             }
             form.add(DataForm2::d, Text(), required = true)
             form.setData(DataForm2(s = "123"))

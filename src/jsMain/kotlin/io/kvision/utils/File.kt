@@ -35,7 +35,6 @@ import kotlin.coroutines.resumeWithException
 suspend fun File.getContent(): String = suspendCancellableCoroutine { cont ->
     val reader = FileReader()
     reader.onload = {
-        @Suppress("UnsafeCastFromDynamic")
         cont.resume(reader.result)
     }
     reader.onerror = { e ->

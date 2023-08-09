@@ -21,18 +21,17 @@
  */
 package test.io.kvision.form.time
 
-import kotlinx.browser.document
-import kotlinx.serialization.Contextual
-import kotlinx.serialization.Serializable
 import io.kvision.form.Form
 import io.kvision.form.time.DateTime
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import io.kvision.types.toStringF
+import kotlinx.browser.document
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import kotlin.js.Date
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 
 @Serializable
 data class DataForm(

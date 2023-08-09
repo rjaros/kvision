@@ -40,7 +40,6 @@ class WidgetWrapper(internal var wrapped: Component?, className: String? = null)
         }
 
     init {
-        @Suppress("LeakingThis")
         wrapped?.parent = this
     }
 

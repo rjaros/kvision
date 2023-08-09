@@ -21,11 +21,10 @@
  */
 package io.kvision.window
 
-import io.kvision.snabbdom.VNode
 import io.kvision.KVManager
 import io.kvision.core.AttributeSetBuilder
-import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Widget
+import io.kvision.snabbdom.VNode
 
 /**
  * Helper class for minimize icon component.

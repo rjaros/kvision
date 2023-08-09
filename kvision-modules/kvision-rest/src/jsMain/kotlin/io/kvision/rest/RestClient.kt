@@ -423,7 +423,7 @@ fun RestClient.requestDynamic(
     url: String,
     block: RestRequestConfig<dynamic, dynamic>.() -> Unit = {}
 ): Promise<RestResponse<dynamic>> {
-    return receive<dynamic, dynamic>(url) {
+    return receive(url) {
         block.invoke(this)
     }
 }
@@ -440,7 +440,7 @@ inline fun <reified V : Any> RestClient.requestDynamic(
     data: V,
     crossinline block: RestRequestConfig<dynamic, V>.() -> Unit = {}
 ): Promise<RestResponse<dynamic>> {
-    return receive<dynamic, V>(url) {
+    return receive(url) {
         block.invoke(this)
         this.data = data
         this.serializer = serializer()
@@ -457,7 +457,7 @@ inline fun <reified T : Any> RestClient.request(
     url: String,
     crossinline block: RestRequestConfig<T, dynamic>.() -> Unit = {}
 ): Promise<RestResponse<T>> {
-    return receive<T, dynamic>(url) {
+    return receive(url) {
         block.invoke(this)
         this.deserializer = serializer()
     }
@@ -475,7 +475,7 @@ inline fun <reified T : Any, reified V : Any> RestClient.request(
     data: V,
     crossinline block: RestRequestConfig<T, V>.() -> Unit = {}
 ): Promise<RestResponse<T>> {
-    return receive<T, V>(url) {
+    return receive(url) {
         block.invoke(this)
         this.data = data
         this.serializer = serializer()

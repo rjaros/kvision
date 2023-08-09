@@ -146,10 +146,12 @@ open class Chart(
         }
 
         fun registerPlugin(plugin: dynamic) {
+            @Suppress("UnsafeCastFromDynamic")
             JsChart.register(plugin)
         }
 
         fun unregisterPlugin(plugin: dynamic) {
+            @Suppress("UnsafeCastFromDynamic")
             JsChart.unregister(plugin)
         }
     }

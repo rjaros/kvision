@@ -44,7 +44,6 @@ import org.w3c.fetch.RequestInit
 /**
  * Client side agent for JSON-RPC remote calls.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 @Suppress("LargeClass", "TooManyFunctions")
 open class KVRemoteAgent<T : Any>(
     val serviceManager: KVServiceMgr<T>,
@@ -349,6 +348,7 @@ open class KVRemoteAgent<T : Any>(
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
                         val data = JSON.parse<dynamic>(str).result ?: ""
+                        @Suppress("UnsafeCastFromDynamic")
                         val par2 = deserialize(serializerPAR2, data)
                         responseChannel.send(par2)
                     }
@@ -418,6 +418,7 @@ open class KVRemoteAgent<T : Any>(
                     while (true) {
                         val str = socket.receiveOrNull() ?: break
                         val data = JSON.parse<dynamic>(str).result ?: ""
+                        @Suppress("UnsafeCastFromDynamic")
                         val par2 = deserialize(ListSerializer(serializerPAR2), data)
                         responseChannel.send(par2)
                     }

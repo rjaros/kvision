@@ -21,7 +21,6 @@
  */
 package io.kvision.modal
 
-import io.kvision.core.Widget
 import io.kvision.html.Align
 import io.kvision.html.Button
 import io.kvision.html.ButtonStyle

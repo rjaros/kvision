@@ -110,7 +110,6 @@ class Root : SimplePanel {
             rootVnode = KVManager.patch(id, this.renderVNode())
         }
         this.id = id
-        @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
@@ -133,7 +132,6 @@ class Root : SimplePanel {
         getPropertiesFromElement(element)
         rootVnode = KVManager.patch(element, this.renderVNode())
         this.id = "kv_root_${counter++}"
-        @Suppress("LeakingThis")
         init?.invoke(this)
     }
 
@@ -345,7 +343,6 @@ class Root : SimplePanel {
  * @param init an initializer extension function
  * @return the created Root container
  */
-@Suppress("unused")
 fun Application.root(
     id: String,
     containerType: ContainerType = ContainerType.NONE,
@@ -364,7 +361,6 @@ fun Application.root(
  * @param init an initializer extension function
  * @return the created Root container
  */
-@Suppress("unused")
 fun Application.root(
     element: HTMLElement,
     containerType: ContainerType = ContainerType.NONE,

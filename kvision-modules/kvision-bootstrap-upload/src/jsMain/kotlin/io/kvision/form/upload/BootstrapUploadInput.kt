@@ -21,8 +21,6 @@
  */
 package io.kvision.form.upload
 
-import io.kvision.snabbdom.VNode
-import io.kvision.snabbdom.h
 import io.kvision.BootstrapUploadModule
 import io.kvision.core.AttributeSetBuilder
 import io.kvision.core.ClassSetBuilder
@@ -32,20 +30,19 @@ import io.kvision.core.bindAllJQueryListeners
 import io.kvision.core.getElementJQuery
 import io.kvision.core.getElementJQueryD
 import io.kvision.core.removeAllJQueryListeners
-import io.kvision.form.Form
 import io.kvision.form.FormInput
-import io.kvision.form.FormPanel
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.InputSize
 import io.kvision.form.ValidationStatus
 import io.kvision.i18n.I18n
+import io.kvision.snabbdom.VNode
+import io.kvision.snabbdom.h
 import io.kvision.state.MutableState
 import io.kvision.types.KFile
 import io.kvision.utils.getContent
 import io.kvision.utils.obj
 import org.w3c.files.File
 import kotlin.collections.set
-import kotlin.reflect.KProperty1
 
 /**
  * The file upload component for Bootstrap
@@ -257,7 +254,6 @@ open class BootstrapUploadInput(
         return if (v.isNullOrEmpty()) null else v
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     override fun afterInsert(node: VNode) {
         getElementJQueryD()?.fileinput(getSettingsObj())
         getElementJQuery()?.parent()?.parent()?.parent()?.find("div.kv-fileinput-caption")?.removeAttr("tabindex")

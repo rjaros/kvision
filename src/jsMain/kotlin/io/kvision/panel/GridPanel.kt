@@ -21,8 +21,16 @@
  */
 package io.kvision.panel
 
-import io.kvision.KVManager
-import io.kvision.core.*
+import io.kvision.core.AlignContent
+import io.kvision.core.AlignItems
+import io.kvision.core.Component
+import io.kvision.core.Container
+import io.kvision.core.Display
+import io.kvision.core.GridAutoFlow
+import io.kvision.core.JustifyContent
+import io.kvision.core.JustifyItems
+import io.kvision.core.Widget
+import io.kvision.core.WidgetWrapper
 
 /**
  * The container with CSS grid layout support.

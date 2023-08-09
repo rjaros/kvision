@@ -225,10 +225,10 @@ abstract class KVServiceBinder<out T, RH, WH>(
 
     /**
      * Binds a given web socket connection with a function of the receiver.
-     * @param requestMessageType the type of each message received via websocket
-     * @param responseMessageType the type of each message to be sent via websocket
-     * @param function a function of the receiver
+     * @param REQ the type of each message received via websocket
+     * @param RES the type of each message to be sent via websocket
      * @param route a route
+     * @param function a function of the receiver
      */
     fun <REQ, RES> bindWebsocket(
         route: String? = null,

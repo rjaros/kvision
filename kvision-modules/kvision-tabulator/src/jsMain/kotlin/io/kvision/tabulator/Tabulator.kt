@@ -137,7 +137,6 @@ open class Tabulator<T : Any>(
     init {
         useSnabbdomDistinctKey()
         if (data != null) {
-            @Suppress("UnsafeCastFromDynamic")
             options.data = data.map { toPlainObj(it) }.toTypedArray()
             if (data is ObservableList) {
                 unsubscribe = data.subscribe {
@@ -372,7 +371,6 @@ open class Tabulator<T : Any>(
      * @param rowRangeLookup selected data set
      * @return current data
      */
-    @Suppress("UNCHECKED_CAST")
     open fun getData(rowRangeLookup: RowRangeLookup? = null): List<T>? {
         return if (jsTabulator != null) {
             toKotlinObjList(jsTabulator!!.getData(rowRangeLookup?.set))
@@ -385,7 +383,6 @@ open class Tabulator<T : Any>(
      * Returns the selected data in the table.
      * @return selected data
      */
-    @Suppress("UNCHECKED_CAST")
     open fun getSelectedData(): List<T> {
         return if (jsTabulator != null) {
             toKotlinObjList(jsTabulator!!.getSelectedData())
@@ -590,7 +587,6 @@ open class Tabulator<T : Any>(
         if (filter != null) {
             jsTabulator?.setFilter({ data: dynamic, _: dynamic ->
                 filter?.let {
-                    @Suppress("UnsafeCastFromDynamic")
                     it(toKotlinObj(data))
                 }
             }, null, null, null)
@@ -847,6 +843,7 @@ open class Tabulator<T : Any>(
     /**
      * Converts an internal (dynamic) data model to Kotlin data model
      */
+    @Suppress("UnsafeCastFromDynamic")
     fun toKotlinObj(data: dynamic): T {
         return if (kClass != null) {
             if (jsonHelper == null || serializer == null) {

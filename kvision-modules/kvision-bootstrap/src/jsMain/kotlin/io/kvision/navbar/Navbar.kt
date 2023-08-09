@@ -160,6 +160,7 @@ open class Navbar(
         extContainer.add(brandLink)
         extContainer.add(toggler)
         extContainer.add(container)
+        @Suppress("LeakingThis")
         addPrivate(extContainer)
         if (label == null) brandLink.hide()
         counter++

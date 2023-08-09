@@ -69,7 +69,7 @@ private typealias BindingInitializer = KVServiceBinder<Any, RouteHandler, *>.(me
 
 // Array of some helper functions, for binding each of the seven sample request handler implementations, so we can
 // easily iterate them in the tests:
-@Suppress("RemoveExplicitTypeArguments") // Workaround KT-49573
+// Workaround KT-49573
 val BINDING_INITIALIZERS = arrayOf<BindingInitializer>(
     { method, route -> bind(PARAM_0_FUN, method, route) },
     { method, route -> bind<String,String>(PARAM_1_FUN, method, route) },
@@ -221,7 +221,7 @@ private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler, Websocket
     ): RouteHandler =
         { runBlocking { function.invoke(HANDLER_THIS, it) } }
 
-    @OptIn(FlowPreview::class, DelicateCoroutinesApi::class)
+    @OptIn(DelicateCoroutinesApi::class)
     @Suppress("UNCHECKED_CAST")
     override fun <REQ, RES> createWebsocketHandler(
         function: suspend Any.(ReceiveChannel<REQ>, SendChannel<RES>) -> Unit,

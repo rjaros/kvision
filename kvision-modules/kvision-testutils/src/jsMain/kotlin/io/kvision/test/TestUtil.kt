@@ -52,7 +52,7 @@ interface TestSpec {
     fun runAsync(code: (resolve: () -> Unit, reject: (Throwable) -> Unit) -> Unit): Promise<Unit> {
         beforeTest()
         @Suppress("UnsafeCastFromDynamic")
-        return Promise<Unit> { resolve, reject ->
+        return Promise { resolve, reject ->
             code({ resolve(Unit) }, reject)
         }.asDynamic().finally {
             afterTest()

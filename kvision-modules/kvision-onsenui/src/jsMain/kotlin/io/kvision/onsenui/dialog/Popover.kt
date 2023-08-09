@@ -201,7 +201,6 @@ open class Popover(
  *
  * It takes the same parameters as the constructor of the built component.
  */
-@Suppress("unused")
 fun Container.popover(
     direction: FloatDirection? = null,
     cancelable: Boolean? = null,

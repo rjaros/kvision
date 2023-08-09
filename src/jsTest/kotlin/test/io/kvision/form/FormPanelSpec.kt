@@ -21,7 +21,6 @@
  */
 package test.io.kvision.form
 
-import io.kvision.form.Form
 import io.kvision.form.FormPanel
 import io.kvision.form.check.CheckBox
 import io.kvision.form.form
@@ -34,7 +33,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
-@Suppress("CanBeParameter")
 class FormPanelSpec : SimpleSpec {
 
     @Test

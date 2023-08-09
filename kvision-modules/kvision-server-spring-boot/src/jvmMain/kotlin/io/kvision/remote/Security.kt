@@ -48,7 +48,7 @@ fun serviceMatchers(vararg services: KVServiceManager<*>): ServerWebExchangeMatc
 @Suppress("SpreadOperator")
 fun getServerWebExchangeMatcher(vararg services: KVServiceManager<*>): Array<ServerWebExchangeMatcher> =
     io.kvision.remote.HttpMethod
-        .values()
+        .entries
         .asSequence()
         .mapNotNull { method ->
             val paths = services.asSequence().flatMap { service ->

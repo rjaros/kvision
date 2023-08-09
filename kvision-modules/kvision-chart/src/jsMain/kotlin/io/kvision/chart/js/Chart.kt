@@ -2,8 +2,7 @@
     "INTERFACE_WITH_SUPERCLASS",
     "OVERRIDING_FINAL_MEMBER",
     "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
-    "CONFLICTING_OVERLOADS",
-    "UNUSED_TYPEALIAS_PARAMETER"
+    "CONFLICTING_OVERLOADS"
 )
 @file:JsModule("chart.js/auto")
 @file:JsNonModule
@@ -329,7 +328,7 @@ external interface `T$76` {
     var canvas: HTMLCanvasElement
 }
 
-external sealed class UpdateModeEnum {
+sealed external class UpdateModeEnum {
     object resize: UpdateModeEnum /* = 'resize' */
     object reset: UpdateModeEnum /* = 'reset' */
     object none: UpdateModeEnum /* = 'none' */

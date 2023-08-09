@@ -66,7 +66,7 @@ class Socket {
      */
     suspend fun connect(url: String, retryDelay: Long = 1000) {
         while (true) {
-            val connected = suspendCoroutine<Boolean> { cont ->
+            val connected = suspendCoroutine { cont ->
                 while (eventQueue.tryReceive().isSuccess) {/*drain*/
                 }
                 ws = WebSocket(url)

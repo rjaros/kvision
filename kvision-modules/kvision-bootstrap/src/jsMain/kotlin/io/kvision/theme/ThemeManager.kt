@@ -82,7 +82,7 @@ object ThemeManager {
     private fun getStoredTheme(): Theme? {
         return if (remember) {
             localStorage.getItem("kvision-bootstrap-theme")?.let { theme ->
-                return Theme.values().find { theme == it.theme }
+                return Theme.entries.find { theme == it.theme }
             }
         } else null
     }

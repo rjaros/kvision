@@ -116,7 +116,6 @@ open class RichTextInput(
         trixId = null
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     override fun refreshState() {
         val v = document.getElementById("trix-input-$trixId")?.let { it.asDynamic().value }
         if (value != v) {

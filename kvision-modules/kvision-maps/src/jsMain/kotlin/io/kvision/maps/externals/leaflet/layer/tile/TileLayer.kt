@@ -25,10 +25,7 @@
 
 package io.kvision.maps.externals.leaflet.layer.tile
 
-import io.kvision.maps.externals.leaflet.DoneCallback
-import io.kvision.maps.externals.leaflet.geo.Coords
 import io.kvision.maps.externals.leaflet.layer.tile.TileLayer.TileLayerOptions
-import org.w3c.dom.HTMLElement
 
 /**
  * Used to load and display tile layers on the map. Note that most tile servers require

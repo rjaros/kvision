@@ -140,6 +140,7 @@ open class Tab(
     }
 
     init {
+        @Suppress("LeakingThis")
         addPrivate(link)
         onClick { e ->
             (this@Tab.parent as? TabPanel.TabPanelNav)?.tabPanel?.activeTab = this

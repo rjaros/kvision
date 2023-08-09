@@ -252,7 +252,7 @@ class KVProcessor(
                                         getParameterList(
                                             params
                                         )
-                                    }) = ${it.returnType!!.resolve().let { getTypeString(it) }}()"
+                                    }) = ${getTypeString(it.returnType!!.resolve())}()"
                                 )
 
                                 else -> appendLine(

@@ -41,7 +41,6 @@ internal class FieldLabelCheck(
 ) : FieldLabel(forId, content, rich, className) {
 
     init {
-        @Suppress("LeakingThis")
         init?.invoke(this)
     }
 

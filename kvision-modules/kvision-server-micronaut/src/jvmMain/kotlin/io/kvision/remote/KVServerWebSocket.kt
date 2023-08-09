@@ -59,9 +59,9 @@ class KVServerWebSocket {
 
     @OnOpen
     suspend fun onOpen(path: String, session: WebSocketSession) {
-        kvManagers.services.mapNotNull {
+        kvManagers.services.firstNotNullOfOrNull {
             it.webSocketRequests["/kvws/$path"]
-        }.firstOrNull()?.let { handler ->
+        }?.let { handler ->
             val requestChannel = Channel<String>()
             val responseChannel = Channel<String>()
             coroutineScope {

@@ -26,7 +26,6 @@ import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.CssClass
-import io.kvision.core.Widget
 import io.kvision.core.createBsInstance
 import io.kvision.core.getBsInstance
 import io.kvision.html.H5

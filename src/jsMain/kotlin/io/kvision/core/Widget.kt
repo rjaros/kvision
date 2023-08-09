@@ -777,7 +777,6 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     }
 
     protected inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
-        @Suppress("UNCHECKED_CAST")
         operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
             val value = propertyValues[property.name]
             return if (value != null) {

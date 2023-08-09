@@ -30,7 +30,6 @@ import io.kvision.maps.externals.geojson.GeoJsonGeometry
 import io.kvision.maps.externals.geojson.GeoJsonObject
 import io.kvision.maps.externals.geojson.Point
 import io.kvision.maps.externals.leaflet.geo.LatLng
-import io.kvision.maps.externals.leaflet.layer.vector.Path
 import io.kvision.maps.externals.leaflet.layer.vector.Path.PathOptions
 
 /**

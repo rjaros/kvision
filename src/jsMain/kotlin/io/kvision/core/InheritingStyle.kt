@@ -46,11 +46,13 @@ open class InheritingStyle(
             val otherStyles = it.getSnStyle()
             val myStyles = getSnStyle()
             for (key in js("Object").keys(otherStyles)) {
+                @Suppress("UnsafeCastFromDynamic")
                 stylePairs(key, otherStyles[key]).forEach { res ->
                     setStyle(res.first, res.second)
                 }
             }
             for (key in js("Object").keys(myStyles)) {
+                @Suppress("UnsafeCastFromDynamic")
                 stylePairs(key, myStyles[key]).forEach { res ->
                     setStyle(res.first, res.second)
                 }

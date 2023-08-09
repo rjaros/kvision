@@ -109,7 +109,7 @@ enum class FormTarget(override val attributeValue: String) : DomAttribute {
  * @param type form layout
  * @param condensed  determines if the form is condensed.
  * @param horizRatio  horizontal form layout ratio
- * @param classes set of CSS class names
+ * @param className set of CSS class names
  * @param serializer a serializer for model type
  * @param customSerializers a map of custom serializers for model type
  */

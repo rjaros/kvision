@@ -31,7 +31,6 @@ import com.copperleaf.ballast.navigation.browser.withBrowserHistoryRouter
 import com.copperleaf.ballast.navigation.vm.BasicRouter
 import kotlinx.coroutines.CoroutineScope
 
-@OptIn(ExperimentalBallastApi::class)
 class KVRouterViewModel(
     routingTable: KVRoutingTable,
     initialRoute: KVRoute,

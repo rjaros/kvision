@@ -22,7 +22,6 @@
 package test.io.kvision.form.number
 
 import io.kvision.form.number.ImaskNumeric
-import io.kvision.form.number.Numeric
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
 import kotlinx.browser.document

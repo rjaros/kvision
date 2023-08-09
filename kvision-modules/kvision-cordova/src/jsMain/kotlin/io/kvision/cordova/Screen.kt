@@ -62,7 +62,7 @@ object Screen {
      */
     fun getOrientation(): Orientation {
         val type = window.screen.asDynamic().orientation.type
-        return Orientation.values().find {
+        return Orientation.entries.find {
             it.type == type
         } ?: Orientation.ANY
     }

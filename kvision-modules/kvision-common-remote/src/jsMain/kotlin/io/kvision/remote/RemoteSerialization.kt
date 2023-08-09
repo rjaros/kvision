@@ -60,7 +60,7 @@ actual object RemoteSerialization {
      * @param serializer a serializer for T
      */
     fun <T> T.toObj(serializer: SerializationStrategy<T>): dynamic {
-        return kotlin.js.JSON.parse(getJson().encodeToString(serializer, this))
+        return JSON.parse(getJson().encodeToString(serializer, this))
     }
 
     /**

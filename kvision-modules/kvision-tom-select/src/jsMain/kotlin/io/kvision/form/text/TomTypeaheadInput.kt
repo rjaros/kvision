@@ -23,7 +23,6 @@
 package io.kvision.form.text
 
 import io.kvision.core.Container
-import io.kvision.core.Widget
 import io.kvision.form.select.TomSelectCallbacks
 import io.kvision.form.select.js.TomSelectJs
 import io.kvision.form.select.toJs

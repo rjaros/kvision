@@ -59,7 +59,7 @@ internal data class FieldParams<in F : FormControl>(
  * @param serializer a serializer for model type
  * @param customSerializers a map of custom serializers for model type
  */
-@Suppress("TooManyFunctions", "UnsafeCastFromDynamic")
+@Suppress("TooManyFunctions")
 class Form<K : Any>(
     private val panel: FormPanel<K>? = null,
     private val serializer: KSerializer<K>? = null,
@@ -100,7 +100,7 @@ class Form<K : Any>(
                         }
 
                         is List<*> -> {
-                            @Suppress("UNCHECKED_CAST", "UnsafeCastFromDynamic")
+                            @Suppress("UNCHECKED_CAST")
                             ((value as? List<KFile>)?.toObj(ListSerializer(KFile.serializer())))
                         }
 

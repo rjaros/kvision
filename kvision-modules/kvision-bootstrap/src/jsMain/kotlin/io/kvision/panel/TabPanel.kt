@@ -22,12 +22,11 @@
 
 package io.kvision.panel
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.core.ResString
 import io.kvision.core.WidgetWrapper
-import io.kvision.routing.RoutingManager
+import io.kvision.snabbdom.VNode
 import io.kvision.utils.obj
 
 /**

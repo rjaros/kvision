@@ -259,7 +259,6 @@ open class BootstrapUpload(
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun <T : Widget> setEventListener(block: SnOn<T>.() -> Unit): Int {
         return input.setEventListener(block)
     }

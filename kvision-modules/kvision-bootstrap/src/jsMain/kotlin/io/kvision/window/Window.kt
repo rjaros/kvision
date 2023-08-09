@@ -281,8 +281,11 @@ open class Window(
             }
         }
         iconsContainer.add(closeIcon)
+        @Suppress("LeakingThis")
         checkHeaderVisibility()
+        @Suppress("LeakingThis")
         addPrivate(header)
+        @Suppress("LeakingThis")
         addPrivate(content)
         checkIsDraggable()
         if (isResizable) {
@@ -299,6 +302,7 @@ open class Window(
         }
         @Suppress("LeakingThis")
         init?.invoke(this)
+        @Suppress("LeakingThis")
         windows.add(this)
         counter++
     }

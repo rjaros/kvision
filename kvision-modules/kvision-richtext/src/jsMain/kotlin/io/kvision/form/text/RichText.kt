@@ -24,7 +24,6 @@ package io.kvision.form.text
 import io.kvision.core.Container
 import io.kvision.form.FormHorizontalRatio
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.px
 
 /**
  * Form field rich text component.

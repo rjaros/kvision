@@ -30,7 +30,6 @@ internal object KoinModule {
     internal val threadLocalApplicationCall = ThreadLocal<ApplicationCall>()
     internal val threadLocalWebSocketServerSession = ThreadLocal<WebSocketServerSession>()
 
-    @Suppress("RemoveExplicitTypeArguments")
     internal fun applicationModule(app: Application) = module {
         single { app }
         factory<ApplicationCall> {

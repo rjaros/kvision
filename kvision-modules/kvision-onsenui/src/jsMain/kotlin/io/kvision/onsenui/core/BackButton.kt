@@ -22,9 +22,7 @@
 
 package io.kvision.onsenui.core
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.AttributeSetBuilder
-import io.kvision.core.Component
 import io.kvision.html.Align
 import io.kvision.html.CustomTag
 import io.kvision.html.Div

@@ -34,8 +34,8 @@ import kotlin.test.Test
 data class State(val counter: Int)
 
 sealed class StateAction : RAction {
-    object Inc : StateAction()
-    object Dec : StateAction()
+    data object Inc : StateAction()
+    data object Dec : StateAction()
 }
 
 fun stateReducer(state: State, action: StateAction): State = when (action) {

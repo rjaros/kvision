@@ -51,7 +51,6 @@ open class HeaderCell(
 
     init {
         scope?.let {
-            @Suppress("LeakingThis")
             setAttribute("scope", it.scope)
         }
         @Suppress("LeakingThis")

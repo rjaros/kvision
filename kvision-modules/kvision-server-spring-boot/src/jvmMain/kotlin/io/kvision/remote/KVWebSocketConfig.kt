@@ -64,9 +64,9 @@ class KVWebSocketHandler(
     ) -> Unit) {
         val uri = session.handshakeInfo.uri.toString()
         val route = uri.substring(uri.lastIndexOf('/') + 1)
-        return services.mapNotNull {
+        return services.firstNotNullOf {
             it.webSocketRequests["/kvws/$route"]
-        }.first()
+        }
     }
 
     override fun handle(session: WebSocketSession): Mono<Void> {

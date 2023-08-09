@@ -393,7 +393,7 @@ open class DateTimeInput(
         val initialViewMode = viewMode ?: if (calendarView) ViewMode.CALENDAR else ViewMode.CLOCK
         val currentTheme = if (theme == null || theme == Theme.AUTO) {
             document.documentElement?.getAttribute("data-bs-theme")?.let { theme ->
-                Theme.values().find { theme == it.theme }
+                Theme.entries.find { theme == it.theme }
             }
         } else {
             theme

@@ -21,11 +21,10 @@
  */
 package io.kvision.panel
 
-import io.kvision.snabbdom.VNode
 import io.kvision.core.Component
 import io.kvision.core.Container
 import io.kvision.routing.RoutingManager
-import kotlinx.browser.window
+import io.kvision.snabbdom.VNode
 import kotlin.collections.set
 
 /**

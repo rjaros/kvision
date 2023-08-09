@@ -36,7 +36,7 @@ import io.kvision.state.ObservableValue
  * @param className CSS class names
  * @param init an initializer extension function
  */
-class Progress<T>(
+open class Progress<T>(
     bounds: Bounds<T>,
     className: String? = null,
     init: (Progress<T>.() -> Unit)? = null

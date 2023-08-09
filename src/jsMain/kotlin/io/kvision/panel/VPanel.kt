@@ -21,7 +21,6 @@
  */
 package io.kvision.panel
 
-import io.kvision.KVManager
 import io.kvision.core.AlignItems
 import io.kvision.core.Container
 import io.kvision.core.FlexDirection
