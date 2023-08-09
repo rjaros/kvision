@@ -117,8 +117,8 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
 
     protected var lastLanguage: String? = null
 
-    private var afterInsertHooks: MutableList<(VNode) -> Unit>? = null
-    private var afterDestroyHooks: MutableList<() -> Unit>? = null
+    protected var afterInsertHooks: MutableList<(VNode) -> Unit>? = null
+    protected var afterDestroyHooks: MutableList<() -> Unit>? = null
     private var beforeDisposeHooks: MutableList<() -> Unit>? = null
 
     init {

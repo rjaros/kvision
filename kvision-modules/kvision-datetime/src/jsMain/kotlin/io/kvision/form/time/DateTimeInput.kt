@@ -335,11 +335,16 @@ open class DateTimeInput(
         if (dateTimePicker != null) {
             dateTimePicker.dispose()
             dateTimePicker = null
+            afterDestroyHooks?.forEach { it() }
         }
         input.visible = !inline
         addon.visible = !inline
-        initDateTimePicker()
         icon.icon = getIconClass(format)
+        if (getElement() != null) {
+            initDateTimePicker()
+            initEventHandlers()
+            afterInsertHooks?.forEach { it(vnode!!) }
+        }
     }
 
     /**

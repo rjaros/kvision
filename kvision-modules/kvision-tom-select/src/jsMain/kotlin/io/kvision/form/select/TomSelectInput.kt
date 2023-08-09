@@ -288,11 +288,16 @@ open class TomSelectInput(
     }
 
     protected open fun refreshTomSelect() {
-        tomSelectJs?.destroy()
-        tomSelectJs = null
+        if (tomSelectJs != null) {
+            tomSelectJs?.destroy()
+            tomSelectJs = null
+            afterDestroyHooks?.forEach { it() }
+        }
         getElement()?.let {
-            tomSelectJs = TomSelectJs(it.unsafeCast<HTMLElement>(), getSettingsObj())
+            tomSelectJs = TomSelectJs(it, getSettingsObj())
             refreshState()
+            bindAllJQueryListeners()
+            afterInsertHooks?.forEach { it(vnode!!) }
         }
     }
 
