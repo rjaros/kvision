@@ -13,7 +13,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("pace-progressbar", "^$paceProgressbarVersion"))
+                implementation(npm("pace-progressbar", paceProgressbarVersion))
             }
         }
         val jsTest by getting {

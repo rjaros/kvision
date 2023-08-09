@@ -58,8 +58,18 @@ val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
     from(layout.buildDirectory.dir("dokka/html"))
+    enabled = !rootProject.hasProperty("SNAPSHOT")
+}
 
-    enabled = !hasProperty("SNAPSHOT")
+tasks.getByName("dokkaHtml").apply {
+    enabled = !rootProject.hasProperty("SNAPSHOT")
+}
+
+tasks.getByName("jar", Jar::class) {
+    from(rootProject.layout.projectDirectory.file("gradle.properties")) {
+        rename { "io.kvision.versions.properties" }
+        filter { line -> line.replaceAfter("versionNumber=", version.toString() ) }
+    }
 }
 
 publishing {

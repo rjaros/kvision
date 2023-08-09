@@ -13,7 +13,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("@fortawesome/fontawesome-free", "^$fontawesomeFreeVersion"))
+                implementation(npm("@fortawesome/fontawesome-free", fontawesomeFreeVersion))
             }
         }
         val jsTest by getting {

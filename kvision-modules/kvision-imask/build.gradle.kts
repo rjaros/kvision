@@ -13,7 +13,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("imask", "^$imaskVersion"))
+                implementation(npm("imask", imaskVersion))
             }
         }
         val jsTest by getting {

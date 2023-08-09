@@ -15,8 +15,8 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("@popperjs/core", "^$popperjsCoreVersion"))
-                implementation(npm("@eonasdan/tempus-dominus", "^$tempusDominusVersion"))
+                implementation(npm("@popperjs/core", popperjsCoreVersion))
+                implementation(npm("@eonasdan/tempus-dominus", tempusDominusVersion))
             }
         }
         val jsTest by getting {

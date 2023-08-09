@@ -13,7 +13,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("chart.js", "^$chartjsVersion"))
+                implementation(npm("chart.js", chartjsVersion))
             }
         }
         val jsTest by getting {

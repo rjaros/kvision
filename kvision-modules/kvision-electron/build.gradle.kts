@@ -27,8 +27,8 @@ kotlin {
             dependencies {
                 api(rootProject)
                 api("org.jetbrains.kotlin-wrappers:kotlin-node:$kotlinNodeVersion")
-                implementation(npm("electron", "^$electronVersion"))
-                implementation(npm("@electron/remote", "^$electronRemoteVersion"))
+                implementation(npm("electron", electronVersion))
+                implementation(npm("@electron/remote", electronRemoteVersion))
             }
         }
         val jsTest by getting {

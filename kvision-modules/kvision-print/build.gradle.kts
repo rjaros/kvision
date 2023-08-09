@@ -13,7 +13,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("print-js", "^$printjsVersion"))
+                implementation(npm("print-js", printjsVersion))
             }
         }
         val jsTest by getting {

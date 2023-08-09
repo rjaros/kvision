@@ -13,7 +13,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("@remotedevforce/tom-select", "^$tomSelectVersion"))
+                implementation(npm("@remotedevforce/tom-select", tomSelectVersion))
             }
         }
         val jsTest by getting {

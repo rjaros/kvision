@@ -16,8 +16,8 @@ kotlin {
                 api(rootProject)
                 api("org.jetbrains.kotlin-wrappers:kotlin-react:$kotlinReactVersion")
                 api("org.jetbrains.kotlin-wrappers:kotlin-react-dom:$kotlinReactVersion")
-                implementation(npm("react", "^$reactVersion"))
-                implementation(npm("react-dom", "^$reactVersion"))
+                implementation(npm("react", reactVersion))
+                implementation(npm("react-dom", reactVersion))
             }
         }
         val jsTest by getting {

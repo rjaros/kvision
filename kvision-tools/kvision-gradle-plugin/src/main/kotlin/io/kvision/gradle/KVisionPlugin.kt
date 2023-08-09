@@ -40,7 +40,9 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 import org.springframework.boot.gradle.tasks.run.BootRun
+import java.util.*
 import javax.inject.Inject
+
 
 enum class KVServerType {
     JAVALIN, JOOBY, KTOR, MICRONAUT, SPRINGBOOT, VERTX
@@ -60,7 +62,12 @@ abstract class KVisionPlugin @Inject constructor(
 
         val kvExtension = createKVisionExtension()
 
-        with(KVPluginContext(project, kvExtension)) {
+        val kvVersions = Properties().run {
+            this.load(this@KVisionPlugin.javaClass.classLoader.getResourceAsStream("io.kvision.versions.properties"))
+            propertiesToMap(this)
+        }
+
+        with(KVPluginContext(project, kvExtension, kvVersions)) {
 
             plugins.withId("org.jetbrains.kotlin.js") {
                 configureJsProject()
@@ -105,6 +112,7 @@ abstract class KVisionPlugin @Inject constructor(
     private data class KVPluginContext(
         private val project: Project,
         val kvExtension: KVisionExtension,
+        val kvVersions: Map<String, String>
     ) : Project by project
 
 
@@ -136,16 +144,18 @@ abstract class KVisionPlugin @Inject constructor(
             )
         }
 
-        if (kvExtension.enableGradleTasks.get()) {
-            registerZipTask {
-                dependsOn(tasks.all.browserProductionWebpack)
-            }
-        }
-
         tasks.all.processResources.configureEach {
             exclude("**/*.pot")
             exclude("**/*.po")
             dependsOn(convertPoToJsonTask)
+        }
+
+        if (kvExtension.enableGradleTasks.get()) {
+            val webDir = layout.projectDirectory.dir("src/main/web")
+            registerZipTask {
+                from(webDir)
+                dependsOn(tasks.all.browserProductionWebpack)
+            }
         }
 
         kotlinJsExtension.sourceSets.main.configure {
@@ -218,12 +228,12 @@ abstract class KVisionPlugin @Inject constructor(
 
         if (kvExtension.enableKsp.get()) {
             dependencies {
-                add("kspCommonMainMetadata", "io.kvision:kvision-ksp-processor:6.6.0")
+                add("kspCommonMainMetadata", "io.kvision:kvision-ksp-processor:${kvVersions["versionNumber"]}")
             }
 
             afterEvaluate {
                 dependencies {
-                    add("kspFrontend", "io.kvision:kvision-ksp-processor:6.6.0")
+                    add("kspFrontend", "io.kvision:kvision-ksp-processor:${kvVersions["versionNumber"]}")
                 }
                 kotlinMppExtension.sourceSets.getByName("commonMain").kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
                 kotlinMppExtension.sourceSets.getByName("frontendMain").kotlin.srcDir("build/generated/ksp/frontend/frontendMain/kotlin")
@@ -248,6 +258,11 @@ abstract class KVisionPlugin @Inject constructor(
         }
 
         if (kvExtension.enableGradleTasks.get()) {
+            val webDir = layout.projectDirectory.dir("src/jsMain/web")
+            registerZipTask {
+                from(webDir)
+                dependsOn(tasks.all.browserProductionWebpack)
+            }
             afterEvaluate {
                 afterEvaluate {
                     val serverType = getServerType(project)
@@ -424,11 +439,9 @@ abstract class KVisionPlugin @Inject constructor(
         return tasks.register<KVConvertPoTask>("convertPoToJson")
     }
 
-
-    /** Requires Kotlin JS project */
+    /** Applied to both Kotlin JS and Kotlin Multiplatform project */
     private fun KVPluginContext.registerZipTask(configuration: Zip.() -> Unit = {}) {
         logger.debug("registering KVision zip task")
-        val webDir = layout.projectDirectory.dir("src/main/web")
         tasks.register<Zip>("zip") {
             group = PACKAGE_TASK_GROUP
             description = "Builds ZIP archive with the application"
@@ -436,7 +449,6 @@ abstract class KVisionPlugin @Inject constructor(
             from(tasks.provider.browserProductionWebpack.map { it.outputDirectory }) {
                 include("*.*")
             }
-            from(webDir)
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
             configuration()
         }
@@ -479,43 +491,50 @@ abstract class KVisionPlugin @Inject constructor(
         rootProject.extensions.configure<YarnRootExtension> {
             logger.info("configuring Yarn")
             if (kvExtension.enableResolutions.get()) {
-                // No forced resolutions at the moment
+                resolution("bootstrap", kvVersions["bootstrapVersion"]!!)
+                resolution("kvision-assets", kvVersions["kvisionAssetsVersion"]!!)
+                resolution("css-loader", kvVersions["cssLoaderVersion"]!!)
+                resolution("style-loader", kvVersions["styleLoaderVersion"]!!)
+                resolution("imports-loader", kvVersions["importsLoaderVersion"]!!)
+                resolution("fecha", kvVersions["fechaVersion"]!!)
+                resolution("snabbdom", kvVersions["snabbdomVersion"]!!)
+                resolution("@rjaros/snabbdom-virtualize", kvVersions["snabbdomVirtualizeVersion"]!!)
+                resolution("split.js", kvVersions["splitjsVersion"]!!)
+                resolution("gettext.js", kvVersions["gettextjsVersion"]!!)
+                resolution("gettext-extract", kvVersions["gettextExtractVersion"]!!)
+                resolution("karma-junit-reporter", kvVersions["karmaJunitReporterVersion"]!!)
+                resolution("@popperjs/core", kvVersions["popperjsCoreVersion"]!!)
+                resolution("bootstrap", kvVersions["bootstrapVersion"]!!)
+                resolution("bootstrap-icons", kvVersions["bootstrapIconsVersion"]!!)
+                resolution("bootstrap-fileinput", kvVersions["bootstrapFileinputVersion"]!!)
+                resolution("chart.js", kvVersions["chartjsVersion"]!!)
+                resolution("@eonasdan/tempus-dominus", kvVersions["tempusDominusVersion"]!!)
+                resolution("electron", kvVersions["electronVersion"]!!)
+                resolution("@electron/remote", kvVersions["electronRemoteVersion"]!!)
+                resolution("@fortawesome/fontawesome-free", kvVersions["fontawesomeFreeVersion"]!!)
+                resolution("handlebars", kvVersions["handlebarsVersion"]!!)
+                resolution("handlebars-loader", kvVersions["handlebarsLoaderVersion"]!!)
+                resolution("imask", kvVersions["imaskVersion"]!!)
+                resolution("jquery", kvVersions["jqueryVersion"]!!)
+                resolution("leaflet", kvVersions["leafletVersion"]!!)
+                resolution("geojson", kvVersions["geojsonVersion"]!!)
+                resolution("@types/geojson", kvVersions["geojsonTypesVersion"]!!)
+                resolution("onsenui", kvVersions["onsenuiVersion"]!!)
+                resolution("pace-progressbar", kvVersions["paceProgressbarVersion"]!!)
+                resolution("print-js", kvVersions["printjsVersion"]!!)
+                resolution("react", kvVersions["reactVersion"]!!)
+                resolution("react-dom", kvVersions["reactVersion"]!!)
+                resolution("redux", kvVersions["reduxVersion"]!!)
+                resolution("redux-thunk", kvVersions["reduxThunkVersion"]!!)
+                resolution("trix", kvVersions["trixVersion"]!!)
+                resolution("tabulator-tables", kvVersions["tabulatorTablesVersion"]!!)
+                resolution("toastify-js", kvVersions["toastifyjsVersion"]!!)
+                resolution("@remotedevforce/tom-select", kvVersions["tomSelectVersion"]!!)
             }
 
             if (kvExtension.enableHiddenKotlinJsStore.get()) {
                 lockFileDirectory = kvExtension.kotlinJsStoreDirectory.get().asFile
                 logger.info("[configureNodeEcosystem.configureYarn] set lockFileDirectory: $lockFileDirectory")
-            }
-        }
-
-        rootProject.extensions.configure<NodeJsRootExtension> {
-            logger.info("configuring NodeJs")
-            if (kvExtension.enableWebpackVersions.get()) {
-                versions.apply {
-                    kvExtension.versions.webpackDevServer.orNull?.let {
-                        webpackDevServer.version = it
-                    }
-                    kvExtension.versions.webpack.orNull?.let {
-                        webpack.version = it
-                    }
-                    kvExtension.versions.webpackCli.orNull?.let {
-                        webpackCli.version = it
-                    }
-                    kvExtension.versions.karma.orNull?.let {
-                        karma.version = it
-                    }
-                    kvExtension.versions.mocha.orNull?.let {
-                        mocha.version = it
-                    }
-                    val versions = listOf(
-                        "webpackDevServer: ${webpackDevServer.version}",
-                        "         webpack: ${webpack.version}         ",
-                        "      webpackCli: ${webpackCli.version}      ",
-                        "           karma: ${karma.version}           ",
-                        "           mocha: ${mocha.version}           ",
-                    ).joinToString(", ") { it.trim() }
-                    logger.info("[configureNodeEcosystem.configureNodeJs] set webpack versions: $versions")
-                }
             }
         }
     }
@@ -633,6 +652,14 @@ abstract class KVisionPlugin @Inject constructor(
             "kvision-server-vertx" -> KVServerType.VERTX
             else -> return null
         }
+    }
+
+    private fun propertiesToMap(prop: Properties): Map<String, String> {
+        val retMap = mutableMapOf<String, String>()
+        for ((key, value) in prop) {
+            retMap[key.toString()] = value.toString()
+        }
+        return retMap
     }
 
     companion object {

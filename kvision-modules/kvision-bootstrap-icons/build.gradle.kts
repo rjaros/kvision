@@ -13,7 +13,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("bootstrap-icons", "^$bootstrapIconsVersion"))
+                implementation(npm("bootstrap-icons", bootstrapIconsVersion))
             }
         }
         val jsTest by getting {

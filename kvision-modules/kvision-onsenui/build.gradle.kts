@@ -13,7 +13,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("onsenui", "^$onsenuiVersion"))
+                implementation(npm("onsenui", onsenuiVersion))
             }
         }
         val jsTest by getting {

@@ -13,7 +13,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("trix", "^$trixVersion"))
+                implementation(npm("trix", trixVersion))
             }
         }
         val jsTest by getting {

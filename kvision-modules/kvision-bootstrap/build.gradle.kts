@@ -14,8 +14,8 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("@popperjs/core", "^$popperjsCoreVersion"))
-                implementation(npm("bootstrap", "^$bootstrapVersion"))
+                implementation(npm("@popperjs/core", popperjsCoreVersion))
+                implementation(npm("bootstrap", bootstrapVersion))
             }
         }
         val jsTest by getting {

@@ -18,8 +18,8 @@ kotlin {
                 api("org.jetbrains.kotlin-wrappers:kotlin-redux:$kotlinReduxVersion") {
                     exclude("org.jetbrains.kotlinx", "kotlinx-html-js")
                 }
-                implementation(npm("redux", "^$reduxVersion"))
-                implementation(npm("redux-thunk", "^$reduxThunkVersion"))
+                implementation(npm("redux", reduxVersion))
+                implementation(npm("redux-thunk", reduxThunkVersion))
             }
         }
         val jsTest by getting {

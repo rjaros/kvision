@@ -17,11 +17,11 @@ kotlin {
             dependencies {
                 api(rootProject)
                 implementation(kotlin("stdlib-js"))
-                implementation(npm("leaflet", "^$leafletVersion"))
-                implementation(npm("geojson", "^$geojsonVersion")) {
+                implementation(npm("leaflet", leafletVersion))
+                implementation(npm("geojson", geojsonVersion)) {
                     because("used by Leaflet for defining locations")
                 }
-                implementation(npm("@types/geojson", "^$geojsonTypesVersion"))
+                implementation(npm("@types/geojson", geojsonTypesVersion))
             }
         }
         val jsTest by getting {

@@ -13,7 +13,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("toastify-js", "^$toastifyjsVersion"))
+                implementation(npm("toastify-js", toastifyjsVersion))
             }
         }
         val jsTest by getting {

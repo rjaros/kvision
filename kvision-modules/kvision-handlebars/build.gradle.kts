@@ -14,8 +14,8 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
-                implementation(npm("handlebars", "^$handlebarsVersion"))
-                implementation(npm("handlebars-loader", "^$handlebarsLoaderVersion"))
+                implementation(npm("handlebars", handlebarsVersion))
+                implementation(npm("handlebars-loader", handlebarsLoaderVersion))
             }
         }
         val jsTest by getting {
