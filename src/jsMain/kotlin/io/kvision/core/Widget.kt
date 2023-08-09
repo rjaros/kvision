@@ -130,7 +130,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     /**
      * Makes the component use distinct snabbdom key.
      */
-    protected fun useSnabbdomDistinctKey() {
+    open fun useSnabbdomDistinctKey() {
         vnkey = "kv_widget_${counter++}"
     }
 
