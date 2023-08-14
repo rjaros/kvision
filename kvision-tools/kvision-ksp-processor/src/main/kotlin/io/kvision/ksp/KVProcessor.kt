@@ -90,7 +90,7 @@ class KVProcessor(
                             )
                         }
 
-                        "frontendMain" -> {
+                        "jsMain" -> {
                             it.write(
                                 generateFrontendCode(
                                     packageName,
@@ -113,7 +113,7 @@ class KVProcessor(
                         it.write(generateCommonCodeFunctions(services))
                     }
 
-                    "frontendMain" -> {
+                    "jsMain" -> {
                         it.write(generateFrontendCodeFunctions(services))
                     }
                 }

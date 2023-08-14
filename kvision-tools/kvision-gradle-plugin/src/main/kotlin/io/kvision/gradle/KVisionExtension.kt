@@ -33,8 +33,11 @@ abstract class KVisionExtension @Inject constructor(
     val enableKsp: Property<Boolean> =
         kvisionGradleProperty("enableKsp")
 
+    /** The location of static resources that will be included in the packaged frontend. */
+    abstract val webDir: DirectoryProperty
+
     /** The location of generated resources that will be included in the packaged frontend. */
-    abstract val generatedFrontendResources: DirectoryProperty
+    abstract val generatedJsResources: DirectoryProperty
 
     private fun kvisionGradleProperty(
         property: String,
