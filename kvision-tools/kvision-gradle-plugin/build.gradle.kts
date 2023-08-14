@@ -13,7 +13,7 @@ val javaVersion: String by project
 val kotlinVersion: String by System.getProperties()
 val autoServiceVersion: String by project
 val kotestVersion: String by project
-val kspVersion: String by project
+val kspVersion: String by System.getProperties()
 val springBootVersion: String by project
 val shadowVersion: String by project
 

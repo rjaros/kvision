@@ -6,7 +6,7 @@ plugins {
 }
 
 val javaVersion: String by project
-val kspVersion: String by project
+val kspVersion: String by System.getProperties()
 
 kotlin {
     jvmToolchain {

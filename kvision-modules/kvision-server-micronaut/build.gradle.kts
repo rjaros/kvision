@@ -4,7 +4,8 @@ plugins {
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
-    id("com.google.devtools.ksp") version "1.9.0-1.0.13"
+    val kspVersion: String by System.getProperties()
+    id("com.google.devtools.ksp") version kspVersion
 }
 
 // Versions
