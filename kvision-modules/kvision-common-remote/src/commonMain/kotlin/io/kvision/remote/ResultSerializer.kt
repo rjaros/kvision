@@ -45,7 +45,7 @@ private data class ExceptionJson(
  */
 class ResultSerializer<T>(private val tSerializer: KSerializer<T>) :
     KSerializer<Result<T>> {
-    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("kotlin.Result") {
+    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("kotlin.Result", tSerializer.descriptor) {
         element("value", tSerializer.descriptor, isOptional = true)
         element("error", buildClassSerialDescriptor("io.kvision.remote.ExceptionJson"), isOptional = true)
     }
