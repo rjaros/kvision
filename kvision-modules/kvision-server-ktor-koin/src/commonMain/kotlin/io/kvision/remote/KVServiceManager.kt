@@ -132,4 +132,13 @@ expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVSer
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
         route: String? = null
     )
+
+    /**
+     * Binds a given function of the receiver as a server-sent events connection
+     * @param function a function of the receiver
+     */
+    protected inline fun <reified PAR : Any> bind(
+        noinline function: suspend T.(SendChannel<PAR>) -> Unit,
+        route: String? = null
+    )
 }

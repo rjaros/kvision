@@ -24,31 +24,45 @@ package io.kvision.remote
 import io.micronaut.context.ApplicationContext
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpResponse
+import io.micronaut.http.sse.Event
 import io.micronaut.websocket.WebSocketSession
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.reactor.flux
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
+import org.reactivestreams.Publisher
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
 
 typealias RequestHandler =
-        suspend (HttpRequest<*>, ThreadLocal<HttpRequest<*>>, ApplicationContext) -> HttpResponse<String>
+    suspend (HttpRequest<*>, ThreadLocal<HttpRequest<*>>, ApplicationContext) -> HttpResponse<String>
 
 typealias WebsocketHandler = suspend (
     WebSocketSession, ThreadLocal<WebSocketSession>, ApplicationContext, ReceiveChannel<String>, SendChannel<String>
 ) -> Unit
 
+typealias SseHandler =
+    (HttpRequest<*>, ThreadLocal<HttpRequest<*>>, ApplicationContext) -> Publisher<Event<String>>
+
 /**
  * Multiplatform service manager for Micronaut.
  */
-actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) : KVServiceMgr<T>,
-    KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
+actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) :
+    KVServiceMgr<T>,
+    KVServiceBinder<T, RequestHandler, WebsocketHandler, SseHandler>() {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
     }
+
+    private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     override fun <RET> createRequestHandler(
         method: HttpMethod,
@@ -117,6 +131,35 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
                 service = service,
                 function = function
             )
+        }
+    }
+
+    override fun <PAR> createSseHandler(
+        function: suspend T.(SendChannel<PAR>) -> Unit,
+        serializerFactory: () -> KSerializer<PAR>
+    ): SseHandler {
+        val serializer by lazy { serializerFactory() }
+        return { req, tlReq, ctx ->
+            tlReq.set(req)
+            val service = ctx.getBean(serviceClass.java)
+            tlReq.remove()
+            val channel = Channel<String>()
+            applicationScope.launch {
+                handleSseConnection(
+                    deSerializer = deSerializer,
+                    rawOut = channel,
+                    serializerOut = serializer,
+                    service = service,
+                    function = function
+                )
+            }
+            flux {
+                for (item in channel) {
+                    send(Event.of(item))
+                }
+            }.doOnCancel {
+                channel.close()
+            }
         }
     }
 }

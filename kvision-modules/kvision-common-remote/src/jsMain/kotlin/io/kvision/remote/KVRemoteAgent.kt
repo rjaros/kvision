@@ -35,6 +35,8 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
+import org.w3c.dom.EventSource
+import org.w3c.dom.EventSourceInit
 import org.w3c.dom.get
 import org.w3c.fetch.RequestInit
 
@@ -482,6 +484,83 @@ open class KVRemoteAgent<T : Any>(
         }
     }
 
+    /**
+     * Executes defined server-sent events connection
+     */
+    @OptIn(DelicateCoroutinesApi::class)
+    suspend inline fun <reified PAR : Any> sseConnection(
+        noinline function: suspend T.(SendChannel<PAR>) -> Unit,
+        noinline handler: suspend (ReceiveChannel<PAR>) -> Unit
+    ) {
+        val kvUrlPrefix = window["kv_remote_url_prefix"]
+        val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
+        val (url, _) = serviceManager.requireCall(function)
+        val serializerPAR = json.serializersModule.serializer<PAR>()
+        val eventSource = EventSource(urlPrefix + url.drop(1), obj {
+            withCredentials = true
+        }.unsafeCast<EventSourceInit>())
+        val channel = Channel<PAR>()
+        eventSource.onmessage = {
+            if (it.data != null) {
+                val response = json.decodeFromString<JsonRpcResponse>(it.data.unsafeCast<String>())
+                val par = json.decodeFromString(serializerPAR, response.result!!)
+                if (!channel.isClosedForSend) channel.trySend(par)
+            }
+        }
+        try {
+            coroutineScope {
+                launch {
+                    exceptionHelper {
+                        handler(channel)
+                    }
+                    if (!channel.isClosedForSend) channel.close()
+                }
+            }
+        } catch (e: Exception) {
+            console.log(e)
+        }
+        if (!channel.isClosedForSend) channel.close()
+        eventSource.close()
+    }
+
+    /**
+     * Executes defined server-sent events connection with list of objects
+     */
+    @OptIn(DelicateCoroutinesApi::class)
+    suspend inline fun <reified PAR : Any> sseConnection(
+        noinline function: suspend T.(SendChannel<List<PAR>>) -> Unit,
+        noinline handler: suspend (ReceiveChannel<List<PAR>>) -> Unit
+    ) {
+        val kvUrlPrefix = window["kv_remote_url_prefix"]
+        val urlPrefix: String = if (kvUrlPrefix != undefined) "$kvUrlPrefix/" else ""
+        val (url, _) = serviceManager.requireCall(function)
+        val serializerPAR = json.serializersModule.serializer<PAR>()
+        val eventSource = EventSource(urlPrefix + url.drop(1), obj {
+            withCredentials = true
+        }.unsafeCast<EventSourceInit>())
+        val channel = Channel<List<PAR>>()
+        eventSource.onmessage = {
+            if (it.data != null) {
+                val response = json.decodeFromString<JsonRpcResponse>(it.data.unsafeCast<String>())
+                val par = json.decodeFromString(ListSerializer(serializerPAR), response.result!!)
+                if (!channel.isClosedForSend) channel.trySend(par)
+            }
+        }
+        try {
+            coroutineScope {
+                launch {
+                    exceptionHelper {
+                        handler(channel)
+                    }
+                    if (!channel.isClosedForSend) channel.close()
+                }
+            }
+        } catch (e: Exception) {
+            console.log(e)
+        }
+        if (!channel.isClosedForSend) channel.close()
+        eventSource.close()
+    }
 }
 
 /**

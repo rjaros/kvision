@@ -34,6 +34,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.KSerializer
@@ -43,14 +44,17 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
 
+
 typealias RequestHandler = (RoutingContext) -> Unit
 typealias WebsocketHandler = (Injector, ServerWebSocket) -> Unit
+typealias SseHandler = RequestHandler
 
 /**
  * Multiplatform service manager for Vert.x.
  */
-actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) : KVServiceMgr<T>,
-    KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
+actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) :
+    KVServiceMgr<T>,
+    KVServiceBinder<T, RequestHandler, WebsocketHandler, SseHandler>() {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
@@ -150,6 +154,45 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
             }
         }
     }
+
+    override fun <PAR> createSseHandler(
+        function: suspend T.(SendChannel<PAR>) -> Unit,
+        serializerFactory: () -> KSerializer<PAR>
+    ): SseHandler {
+        val serializer by lazy { serializerFactory() }
+        return { ctx ->
+            val response = ctx.response()
+            response.setChunked(true);
+            response.putHeader("Content-Type", "text/event-stream");
+            response.putHeader("Connection", "keep-alive");
+            response.putHeader("Cache-Control", "no-cache");
+            val channel = Channel<String>()
+            val injector = ctx.get<Injector>(KV_INJECTOR_KEY)
+            val service = injector.getInstance(serviceClass.java)
+            response.closeHandler {
+                channel.close()
+            }
+            applicationScope.launch(ctx.vertx().dispatcher()) {
+                coroutineScope {
+                    launch {
+                        channel.consumeEach {
+                            response.write("data: $it\n\n")
+                        }
+                        response.end()
+                    }
+                    launch {
+                        handleSseConnection(
+                            deSerializer = deSerializer,
+                            rawOut = channel,
+                            serializerOut = serializer,
+                            service = service,
+                            function = function
+                        )
+                    }
+                }
+            }
+        }
+    }
 }
 
 /**
@@ -168,5 +211,8 @@ fun <T : Any> Vertx.applyRoutes(
         }?.let {
             router.route(it, path).handler(handler)
         }
+    }
+    serviceManager.sseRequests.asSequence().forEach { (path, handler) ->
+        router.route(path).handler(handler)
     }
 }

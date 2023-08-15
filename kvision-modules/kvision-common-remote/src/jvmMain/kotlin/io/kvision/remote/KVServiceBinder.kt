@@ -33,9 +33,10 @@ import kotlinx.serialization.serializer
  * @param T the receiver of bound functions
  * @param RH the platform specific request handler
  * @param WH the platform specific websocket handler
+ * @param SH the platform specific server-sent events handler
  *
  */
-abstract class KVServiceBinder<out T, RH, WH>(
+abstract class KVServiceBinder<out T, RH, WH, SH>(
     routeNameGenerator: NameGenerator? = null
 ) {
     @PublishedApi
@@ -43,6 +44,7 @@ abstract class KVServiceBinder<out T, RH, WH>(
         routeNameGenerator ?: createNameGenerator("route${javaClass.simpleName}")
     val routeMapRegistry = createRouteMapRegistry<RH>()
     val webSocketRequests: MutableMap<String, WH> = HashMap()
+    val sseRequests: MutableMap<String, SH> = HashMap()
 
     //  deSerializer has to public instead of protected because of https://youtrack.jetbrains.com/issue/KT-22625
     lateinit var deSerializer: ObjectDeSerializer
@@ -58,6 +60,11 @@ abstract class KVServiceBinder<out T, RH, WH>(
         requestSerializerFactory: () -> KSerializer<REQ>,
         responseSerializerFactory: () -> KSerializer<RES>
     ): WH
+
+    abstract fun <PAR> createSseHandler(
+        function: suspend T.(SendChannel<PAR>) -> Unit,
+        serializerFactory: () -> KSerializer<PAR>
+    ): SH
 
     /**
      * Bind the given HTTP call defined by [method] and an optional [route] (auto-generated if null) to a function that
@@ -255,6 +262,20 @@ abstract class KVServiceBinder<out T, RH, WH>(
         function,
         { deSerializer.serializersModule.serializer() },
         { deSerializer.serializersModule.serializer() })
+
+    /**
+     * Binds a given server-sent events connection with a function of the receiver.
+     * @param PAR the type of each message received via sse
+     * @param function a function of the receiver
+     * @param route a route
+     */
+    inline fun <reified PAR : Any> bind(
+        noinline function: suspend T.(SendChannel<PAR>) -> Unit,
+        route: String? = null
+    ) {
+        sseRequests["/kvsse/${route ?: generateRouteName()}"] =
+            createSseHandler(function) { deSerializer.serializersModule.serializer() }
+    }
 
     /**
      * Deserialize the parameter of type [T] from [txt]

@@ -21,6 +21,7 @@
  */
 package io.kvision.remote
 
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -28,8 +29,12 @@ import io.ktor.server.routing.*
 import io.ktor.server.websocket.*
 import io.ktor.util.pipeline.*
 import io.ktor.websocket.*
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
@@ -40,12 +45,14 @@ import kotlin.reflect.KClass
 
 typealias RequestHandler = suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit
 typealias WebsocketHandler = suspend WebSocketServerSession.() -> Unit
+typealias SseHandler = RequestHandler
 
 /**
  * Multiplatform service manager for Ktor.
  */
-actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) : KVServiceMgr<T>,
-    KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
+actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) :
+    KVServiceMgr<T>,
+    KVServiceBinder<T, RequestHandler, WebsocketHandler, SseHandler>() {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
@@ -124,6 +131,44 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
             )
         }
     }
+
+    override fun <PAR> createSseHandler(
+        function: suspend T.(SendChannel<PAR>) -> Unit,
+        serializerFactory: () -> KSerializer<PAR>
+    ): SseHandler {
+        val serializer by lazy { serializerFactory() }
+        return {
+            val channel = Channel<String>()
+            KoinModule.threadLocalApplicationCall.set(call)
+            val service = call.getKoin().get<T>(serviceClass)
+            KoinModule.threadLocalApplicationCall.remove()
+            call.response.cacheControl(CacheControl.NoCache(null))
+            call.response.header("Connection", "keep-alive")
+            coroutineScope {
+                launch {
+                    call.respondTextWriter(contentType = ContentType.Text.EventStream) {
+                        try {
+                            channel.consumeEach {
+                                write("data: $it\n\n")
+                                flush()
+                            }
+                        } finally {
+                            channel.close()
+                        }
+                    }
+                }
+                launch {
+                    handleSseConnection(
+                        deSerializer = deSerializer,
+                        rawOut = channel,
+                        serializerOut = serializer,
+                        service = service,
+                        function = function
+                    )
+                }
+            }
+        }
+    }
 }
 
 /**
@@ -147,5 +192,8 @@ fun <T : Any> Route.applyRoutes(
         this.webSocket(path) {
             handler()
         }
+    }
+    serviceManager.sseRequests.forEach { (path, handler) ->
+        this.route(path) { handle(handler) }
     }
 }

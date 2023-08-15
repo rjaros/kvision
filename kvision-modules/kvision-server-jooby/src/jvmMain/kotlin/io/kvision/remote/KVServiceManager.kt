@@ -23,10 +23,12 @@ package io.kvision.remote
 
 import com.google.inject.Injector
 import io.jooby.Context
+import io.jooby.ServerSentEmitter
+import io.jooby.WebSocketConfigurer
 import io.jooby.kt.CoroutineRouter
 import io.jooby.kt.HandlerContext
 import io.jooby.kt.Kooby
-import io.jooby.WebSocketConfigurer
+import io.jooby.kt.ServerSentHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -36,6 +38,7 @@ import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
@@ -45,12 +48,14 @@ import kotlin.reflect.KClass
 
 typealias RequestHandler = suspend HandlerContext.() -> Any
 typealias WebsocketHandler = (ctx: Context, configurer: WebSocketConfigurer) -> Unit
+typealias SseHandler = ServerSentHandler.() -> Unit
 
 /**
  * Multiplatform service manager for Jooby.
  */
-actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) : KVServiceMgr<T>,
-    KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
+actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) :
+    KVServiceMgr<T>,
+    KVServiceBinder<T, RequestHandler, WebsocketHandler, SseHandler>() {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
@@ -141,6 +146,40 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
             }
         }
     }
+
+    override fun <PAR> createSseHandler(
+        function: suspend T.(SendChannel<PAR>) -> Unit,
+        serializerFactory: () -> KSerializer<PAR>
+    ): SseHandler {
+        val serializer by lazy { serializerFactory() }
+        return {
+            val channel = Channel<String>()
+            val injector = ctx.require(Injector::class.java).createChildInjector(ContextModule(ctx))
+            val service = injector.getInstance(serviceClass.java)
+            sse.onClose {
+                channel.close()
+            }
+            runBlocking {
+                coroutineScope {
+                    launch {
+                        channel.consumeEach {
+                            sse.send(it)
+                        }
+                        sse.close()
+                    }
+                    launch {
+                        handleSseConnection(
+                            deSerializer = deSerializer,
+                            rawOut = channel,
+                            serializerOut = serializer,
+                            service = service,
+                            function = function
+                        )
+                    }
+                }
+            }
+        }
+    }
 }
 
 /**
@@ -162,6 +201,12 @@ fun <T : Any> CoroutineRouter.applyRoutes(
     }
     serviceManager.webSocketRequests.forEach { (path, handler) ->
         this.router.ws(path, handler)
+    }
+    serviceManager.sseRequests.forEach { (path, handler) ->
+        val emiterHandler = ServerSentEmitter.Handler { sse ->
+            handler(ServerSentHandler(sse.context, sse))
+        }
+        this.router.sse(path, emiterHandler)
     }
 }
 

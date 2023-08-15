@@ -23,10 +23,11 @@ package io.kvision.remote
 
 import com.google.inject.Injector
 import io.javalin.Javalin
-import io.javalin.security.RouteRole
 import io.javalin.http.Context
 import io.javalin.http.bodyAsClass
 import io.javalin.http.queryParamAsClass
+import io.javalin.http.sse.SseClient
+import io.javalin.security.RouteRole
 import io.javalin.websocket.WsConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,6 +39,7 @@ import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
@@ -47,12 +49,14 @@ import kotlin.reflect.KClass
 
 typealias RequestHandler = (Context) -> Unit
 typealias WebsocketHandler = (WsConfig) -> Unit
+typealias SseHandler = (SseClient) -> Unit
 
 /**
  * Multiplatform service manager for Javalin.
  */
-actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) : KVServiceMgr<T>,
-    KVServiceBinder<T, RequestHandler, WebsocketHandler>() {
+actual open class KVServiceManager<out T : Any> actual constructor(private val serviceClass: KClass<T>) :
+    KVServiceMgr<T>,
+    KVServiceBinder<T, RequestHandler, WebsocketHandler, SseHandler>() {
 
     companion object {
         val LOG: Logger = LoggerFactory.getLogger(KVServiceManager::class.java.name)
@@ -151,6 +155,41 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
                 }
             }
         }
+
+    }
+
+    override fun <PAR> createSseHandler(
+        function: suspend T.(SendChannel<PAR>) -> Unit,
+        serializerFactory: () -> KSerializer<PAR>
+    ): SseHandler {
+        val serializer by lazy { serializerFactory() }
+        return { sseClient ->
+            val channel = Channel<String>()
+            val injector = sseClient.ctx().attribute<Injector>(KV_INJECTOR_KEY)!!
+            val service = injector.getInstance(serviceClass.java)
+            sseClient.onClose {
+                channel.close()
+            }
+            runBlocking {
+                coroutineScope {
+                    launch {
+                        channel.consumeEach {
+                            sseClient.sendEvent(it)
+                        }
+                        sseClient.close()
+                    }
+                    launch {
+                        handleSseConnection(
+                            deSerializer = deSerializer,
+                            rawOut = channel,
+                            serializerOut = serializer,
+                            service = service,
+                            function = function
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -174,5 +213,8 @@ fun <T : Any> Javalin.applyRoutes(
     }
     serviceManager.webSocketRequests.forEach { (path, handler) ->
         ws(path, handler, *roles.toTypedArray())
+    }
+    serviceManager.sseRequests.forEach { (path, handler) ->
+        sse(path, handler, *roles.toTypedArray())
     }
 }

@@ -169,11 +169,16 @@ class KVProcessor(
             appendLine("    init {")
             appendLine("        registerKVisionServiceExceptions()")
             val wsMethods = mutableListOf<String>()
+            val sseMethods = mutableListOf<String>()
             ksClassDeclaration.getDeclaredFunctions().forEach {
                 val params = it.parameters
                 val wsMethod =
                     if (params.size == 2)
                         params.first().type.toString().startsWith("ReceiveChannel")
+                    else false
+                val sseMethod =
+                    if (params.size == 1)
+                        params.first().type.toString().startsWith("SendChannel")
                     else false
                 val kvBinding = it.getAnnotationsByType(KVBinding::class).firstOrNull()
                 val kvBindingMethod = it.getAnnotationsByType(KVBindingMethod::class).firstOrNull()
@@ -201,10 +206,17 @@ class KVProcessor(
                         appendLine("        bind($interfaceName::${it.simpleName.asString()}, $route)")
                     }
 
-                    else -> if (!wsMethods.contains(it.simpleName.asString()))
+                    sseMethod -> if (route == null) {
+                        appendLine("        bind($interfaceName::${it.simpleName.asString()}, null as String?)")
+                    } else {
+                        appendLine("        bind($interfaceName::${it.simpleName.asString()}, $route)")
+                    }
+
+                    else -> if (!wsMethods.contains(it.simpleName.asString()) && !sseMethods.contains(it.simpleName.asString()))
                         appendLine("        bind($interfaceName::${it.simpleName.asString()}, $method, $route)")
                 }
                 if (wsMethod) wsMethods.add(it.simpleName.asString())
+                if (sseMethod) sseMethods.add(it.simpleName.asString())
             }
             appendLine("    }")
             appendLine("}")
@@ -227,8 +239,13 @@ class KVProcessor(
             appendLine("import org.w3c.fetch.RequestInit")
             appendLine("import io.kvision.remote.KVRemoteAgent")
             appendLine("import kotlinx.serialization.modules.SerializersModule")
-            getTypes(ksClassDeclaration.getDeclaredFunctions()).sorted().forEach {
+            val types = getTypes(ksClassDeclaration.getDeclaredFunctions())
+            types.sorted().forEach {
                 appendLine("import $it")
+            }
+            if (types.contains("kotlinx.coroutines.channels.SendChannel")
+                && !types.contains("kotlinx.coroutines.channels.ReceiveChannel")) {
+                appendLine("import kotlinx.coroutines.channels.ReceiveChannel")
             }
             appendLine()
             appendLine("actual class $className(serializersModules: List<SerializersModule>? = null, requestFilter: (suspend RequestInit.() -> Unit)? = null) : $interfaceName, KVRemoteAgent<$className>($managerName, serializersModules, requestFilter) {")
@@ -236,6 +253,7 @@ class KVProcessor(
                 it.simpleName.asString()
             }.groupBy { it }.map { it.key to it.value.size }.toMap()
             val wsMethods = mutableListOf<String>()
+            val sseMethods = mutableListOf<String>()
             ksClassDeclaration.getDeclaredFunctions().forEach {
                 val name = it.simpleName.asString()
                 val params = it.parameters
@@ -243,8 +261,12 @@ class KVProcessor(
                     if (params.size == 2)
                         params.first().type.toString().startsWith("ReceiveChannel")
                     else false
-                if (!wsMethod) {
-                    if (!wsMethods.contains(name)) {
+                val sseMethod =
+                    if (params.size == 1)
+                        params.first().type.toString().startsWith("SendChannel")
+                    else false
+                if (!wsMethod && !sseMethod) {
+                    if (!wsMethods.contains(name) && !sseMethods.contains(name)) {
                         if (params.isNotEmpty()) {
                             when {
                                 it.returnType.toString().startsWith("RemoteData") -> appendLine(
@@ -267,14 +289,20 @@ class KVProcessor(
                             appendLine("    override suspend fun $name() = call($interfaceName::$name)")
                         }
                     }
-                } else {
+                } else if (wsMethod) {
                     appendLine("    override suspend fun $name(${getParameterList(params)}) {}")
                     val type1 = getTypeString(params[0].type.resolve()).replace("ReceiveChannel", "SendChannel")
                     val type2 = getTypeString(params[1].type.resolve()).replace("SendChannel", "ReceiveChannel")
                     val override = if ((methodsCounts[name] ?: 0) > 1) "override " else ""
                     appendLine("    ${override}suspend fun $name(handler: suspend ($type1, $type2) -> Unit) = webSocket($interfaceName::$name, handler)")
+                } else {
+                    appendLine("    override suspend fun $name(${getParameterList(params)}) {}")
+                    val type = getTypeString(params[0].type.resolve()).replace("SendChannel", "ReceiveChannel")
+                    val override = if ((methodsCounts[name] ?: 0) > 1) "override " else ""
+                    appendLine("    ${override}suspend fun $name(handler: suspend ($type) -> Unit) = sseConnection($interfaceName::$name, handler)")
                 }
                 if (wsMethod) wsMethods.add(name)
+                if (sseMethod) sseMethods.add(name)
             }
             appendLine("}")
         }.toString()

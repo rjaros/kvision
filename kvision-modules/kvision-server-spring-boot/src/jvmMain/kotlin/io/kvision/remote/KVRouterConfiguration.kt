@@ -21,6 +21,7 @@
  */
 package io.kvision.remote
 
+import jakarta.annotation.PostConstruct
 import kotlinx.serialization.modules.SerializersModule
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -37,7 +38,6 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.buildAndAwait
 import org.springframework.web.reactive.function.server.coRouter
 import org.springframework.web.reactive.function.server.router
-import jakarta.annotation.PostConstruct
 
 /**
  * Default Spring Boot routes
@@ -54,6 +54,7 @@ open class KVRouterConfiguration {
         PUT("/kv/**", kvHandler::handle)
         DELETE("/kv/**", kvHandler::handle)
         OPTIONS("/kv/**", kvHandler::handle)
+        GET("/kvsse/**", kvHandler::handleSse)
     }
 
     @Bean
@@ -96,7 +97,24 @@ open class KVHandler(val services: List<KVServiceManager<*>>, val applicationCon
                 .mapNotNull { it.routeMapRegistry.findHandler(kvMethod, routeUrl) }
                 .firstOrNull()
         }
+
         return (getHandler() ?: return ServerResponse.notFound().buildAndAwait())(
+            request,
+            threadLocalRequest,
+            applicationContext
+        )
+    }
+
+    open suspend fun handleSse(request: ServerRequest): ServerResponse {
+
+        fun getSseHandler(): RequestHandler? {
+            val routeUrl = request.path()
+            return services.asSequence()
+                .mapNotNull { it.sseRequests[routeUrl] }
+                .firstOrNull()
+        }
+
+        return (getSseHandler() ?: return ServerResponse.notFound().buildAndAwait())(
             request,
             threadLocalRequest,
             applicationContext

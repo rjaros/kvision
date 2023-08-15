@@ -118,7 +118,7 @@ open class KVServiceManagerJs<out T: Any> : KVServiceMgr<T> {
     }
 
     /**
-     * Binds a given web socket connetion with a function of the receiver.
+     * Binds a given web socket connection with a function of the receiver.
      * @param function a function of the receiver
      * @param route a web socket route
      */
@@ -127,6 +127,18 @@ open class KVServiceManagerJs<out T: Any> : KVServiceMgr<T> {
         route: String?
     ) {
         bindFunctionInternal(route, function, HttpMethod.POST, "/kvws/")
+    }
+
+    /**
+     * Binds a given server-sent events connection with a function of the receiver.
+     * @param function a function of the receiver
+     * @param route a server-sent events route
+     */
+    inline fun <reified PAR : Any> bind(
+        noinline function: suspend T.(SendChannel<PAR>) -> Unit,
+        route: String?
+    ) {
+        bindFunctionInternal(route, function, HttpMethod.GET, "/kvsse/")
     }
 
     @PublishedApi
