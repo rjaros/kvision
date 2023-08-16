@@ -34,6 +34,9 @@ val javadocJar by tasks.registering(Jar::class) {
 publishing {
     publications {
         create<MavenPublication>("kotlin") {
+            pom {
+                defaultPom()
+            }
             from(components["kotlin"])
             artifact(tasks["sourcesJar"])
             if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
