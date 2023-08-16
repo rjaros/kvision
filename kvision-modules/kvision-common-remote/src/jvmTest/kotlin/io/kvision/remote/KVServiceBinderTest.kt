@@ -65,7 +65,8 @@ val PARAM_6_FUN: F_6 = { a, b, c, d, e, f -> f }
 
 private typealias RouteHandler = Any.(params: List<String?>) -> Any?
 private typealias WebsocketHandler = Any.(ReceiveChannel<String>, SendChannel<String>) -> Any?
-private typealias BindingInitializer = KVServiceBinder<Any, RouteHandler, *>.(method: HttpMethod, route: String?) -> Unit
+private typealias SseHandler = Any.(SendChannel<String>) -> Any?
+private typealias BindingInitializer = KVServiceBinder<Any, RouteHandler, *, *>.(method: HttpMethod, route: String?) -> Unit
 
 // Array of some helper functions, for binding each of the seven sample request handler implementations, so we can
 // easily iterate them in the tests:
@@ -213,7 +214,7 @@ class KVServiceBinderTest {
     )
 }
 
-private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler, WebsocketHandler>() {
+private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler, WebsocketHandler, SseHandler>() {
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend Any.(params: List<String?>) -> RET,
@@ -234,6 +235,21 @@ private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler, Websocket
                     HANDLER_THIS,
                     receiveChannel.consumeAsFlow().map { it as REQ }.produceIn(GlobalScope),
                     sendChannel as SendChannel<RES>
+                )
+            }
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    override fun <PAR> createSseHandler(
+        function: suspend Any.(SendChannel<PAR>) -> Unit,
+        serializerFactory: () -> KSerializer<PAR>
+    ): SseHandler {
+        return { sendChannel ->
+            runBlocking {
+                function.invoke(
+                    HANDLER_THIS,
+                    sendChannel as SendChannel<PAR>
                 )
             }
         }
