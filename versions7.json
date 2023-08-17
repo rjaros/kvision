@@ -9,11 +9,11 @@
     },
     "template-ktor": {
         "ktor": "2.3.3",
-        "koinAnnotations": "1.2.2"
+        "koin-annotations": "1.2.2"
     },
     "template-micronaut": {
         "micronaut": "4.0.3",
-        "micronautPlugins": "4.0.2"
+        "micronaut-plugins": "4.0.2"
     },
     "template-spring-boot": {
         "spring-boot": "3.1.2"
