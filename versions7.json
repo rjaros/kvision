@@ -1,0 +1,228 @@
+{
+    "kvision": "7.0.0",
+    "kotlin": "1.9.0",
+    "coroutines": "1.7.3",
+    "template-javalin": {
+    },
+    "template-jooby": {
+        "jooby": "3.0.2"
+    },
+    "template-ktor": {
+        "ktor": "2.3.3",
+        "koinAnnotations": "1.2.2"
+    },
+    "template-micronaut": {
+        "micronaut": "4.0.3",
+        "micronautPlugins": "4.0.2"
+    },
+    "template-spring-boot": {
+        "spring-boot": "3.1.2"
+    },
+    "template-vertx": {
+        "vertx-plugin": "1.4.0"
+    },
+    "modules": [
+        {
+            "name": "kvision-bootstrap",
+            "description": "Bootstrap based components",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializers": [
+                "BootstrapModule",
+                "BootstrapCssModule"
+            ]
+        },
+        {
+            "name": "kvision-datetime",
+            "description": "Date and time picker form components",
+            "initializers": [
+                "DatetimeModule"
+            ]
+        },
+        {
+            "name": "kvision-richtext",
+            "description": "Rich text form component",
+            "initializers": [
+                "RichTextModule"
+            ]
+        },
+        {
+            "name": "kvision-tom-select",
+            "description": "Advanced TomSelect and TomTypeahead (autocomplete) form components",
+            "initializers": [
+                "TomSelectModule"
+            ]
+        },
+        {
+            "name": "kvision-bootstrap-upload",
+            "description": "Bootstrap based upload form component",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializers": [
+                "BootstrapUploadModule"
+            ]
+        },
+        {
+            "name": "kvision-imask",
+            "description": "Text input mask support with Imask.js library, ImaskNumeric form component",
+            "initializers": [
+                "ImaskModule"
+            ]
+        },
+        {
+            "name": "kvision-toastify",
+            "description": "Toast messages",
+            "initializers": [
+                "ToastifyModule"
+            ]
+        },
+        {
+            "name": "kvision-fontawesome",
+            "description": "Font Awesome icons support",
+            "initializers": [
+                "FontAwesomeModule"
+            ]
+        },
+        {
+            "name": "kvision-bootstrap-icons",
+            "description": "Bootstrap Icons support",
+            "excludes": [
+                "kvision-onsenui"
+            ],
+            "initializers": [
+                "BootstrapIconsModule"
+            ]
+        },
+        {
+            "name": "kvision-i18n",
+            "description": "Internationalization support"
+        },
+        {
+            "name": "kvision-pace",
+            "description": "Pace automatic page loader"
+        },
+        {
+            "name": "kvision-print",
+            "description": "Printing support with Print.js library",
+            "initializers": [
+                "PrintModule"
+            ]
+        },
+        {
+            "name": "kvision-handlebars",
+            "description": "Handlebars.js templates support"
+        },
+        {
+            "name": "kvision-chart",
+            "description": "Chart component",
+            "initializers": [
+                "ChartModule"
+            ]
+        },
+        {
+            "name": "kvision-tabulator",
+            "description": "Tabulator component",
+            "initializers": [
+                "TabulatorModule",
+                "TabulatorCssBootstrapModule"
+            ]
+        },
+        {
+            "name": "kvision-maps",
+            "description": "Maps component, based on Leaflet library",
+            "initializers": [
+                "MapsModule"
+            ]
+        },
+        {
+            "name": "kvision-rest",
+            "description": "Configurable REST/HTTP client"
+        },
+        {
+            "name": "kvision-jquery",
+            "description": "jQuery bindings, events and animations"
+        },
+        {
+            "name": "kvision-routing-navigo",
+            "description": "Routing module based on Navigo 7 library",
+            "excludes": [
+                "kvision-routing-navigo-ng",
+                "kvision-routing-ballast"
+            ]
+        },
+        {
+            "name": "kvision-routing-navigo-ng",
+            "description": "Routing module based on Navigo 8+ library",
+            "excludes": [
+                "kvision-routing-navigo",
+                "kvision-routing-ballast"
+            ]
+        },
+        {
+            "name": "kvision-routing-ballast",
+            "description": "Routing module based on Ballast Navigation",
+            "excludes": [
+                "kvision-routing-navigo",
+                "kvision-routing-navigo-ng"
+            ]
+        },
+        {
+            "name": "kvision-state",
+            "description": "State bindings and observable data structures"
+        },
+        {
+            "name": "kvision-state-flow",
+            "description": "Extensions for Kotlin coroutines Flow, StateFlow and SharedFlow"
+        },
+        {
+            "name": "kvision-ballast",
+            "description": "Extensions for Ballast state management framework"
+        },
+        {
+            "name": "kvision-redux",
+            "description": "Redux state container",
+            "excludes": [
+                "kvision-redux-kotlin"
+            ]
+        },
+        {
+            "name": "kvision-redux-kotlin",
+            "description": "Redux Kotlin state container",
+            "excludes": [
+                "kvision-redux"
+            ]
+        },
+        {
+            "name": "kvision-select-remote",
+            "description": "Fullstack version of the select form component"
+        },
+        {
+            "name": "kvision-tom-select-remote",
+            "description": "Fullstack versions of TomSelect and TomTypeahead form components",
+            "initializers": [
+                "TomSelectModule"
+            ]
+        },
+        {
+            "name": "kvision-tabulator-remote",
+            "description": "Fullstack version of the tabulator component",
+            "initializers": [
+                "TabulatorModule",
+                "TabulatorCssBootstrapModule"
+            ]
+        },
+        {
+            "name": "kvision-onsenui",
+            "description": "Onsen UI mobile web components",
+            "excludes": [
+                "kvision-bootstrap",
+                "kvision-bootstrap-upload"
+            ],
+            "initializers": [
+                "OnsenUIModule"
+            ]
+        }
+    ]
+}
