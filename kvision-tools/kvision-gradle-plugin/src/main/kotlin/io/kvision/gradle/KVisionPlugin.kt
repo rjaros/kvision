@@ -61,7 +61,7 @@ abstract class KVisionPlugin @Inject constructor(
         val kvExtension = createKVisionExtension()
 
         val kvVersions = Properties().run {
-            this.load(this@KVisionPlugin.javaClass.classLoader.getResourceAsStream("io.kvision.versions.properties"))
+            this@KVisionPlugin.javaClass.classLoader.getResourceAsStream("io.kvision.versions.properties")?.let { this.load(it) }
             propertiesToMap(this)
         }
 
@@ -459,7 +459,7 @@ abstract class KVisionPlugin @Inject constructor(
 
         rootProject.extensions.configure<YarnRootExtension> {
             logger.info("configuring Yarn")
-            if (kvExtension.enableResolutions.get()) {
+            if (kvExtension.enableResolutions.get() && kvVersions.isNotEmpty()) {
                 resolution("bootstrap", kvVersions["bootstrapVersion"]!!)
                 resolution("kvision-assets", kvVersions["kvisionAssetsVersion"]!!)
                 resolution("css-loader", kvVersions["cssLoaderVersion"]!!)
