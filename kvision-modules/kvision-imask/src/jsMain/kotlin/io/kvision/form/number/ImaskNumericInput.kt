@@ -155,7 +155,7 @@ open class ImaskNumericInput(
     /**
      * Temporary component value.
      */
-    protected var tempValue: Number? = null
+    protected var tempValue: Number? = value
         set(value) {
             field = value
             observers.forEach { ob -> ob(value) }
@@ -264,6 +264,7 @@ open class ImaskNumericInput(
                     )
                 )
             )
+            tempValue = value
             mask!!.onChange {
                 val newValue = it?.toDoubleOrNull()
                 if (tempValue != newValue) tempValue = newValue
