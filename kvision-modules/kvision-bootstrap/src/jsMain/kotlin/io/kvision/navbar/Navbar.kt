@@ -149,7 +149,11 @@ open class Navbar(
 
     private val idc = "kv_navbar_$counter"
 
-    private val brandLink = Link(label ?: "", link, dataNavigo = dataNavigo, className = "navbar-brand")
+    /**
+     * The navbar brand link component.
+     */
+    val brandLink = Link(label ?: "", link, dataNavigo = dataNavigo, className = "navbar-brand")
+
     private val toggler = NavbarButton(idc)
     internal val container = SimplePanel("collapse navbar-collapse") {
         id = this@Navbar.idc
