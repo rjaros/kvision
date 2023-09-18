@@ -13,6 +13,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(rootProject)
+                api("io.github.copper-leaf:ballast-core:$ballastVersion")
                 api("io.github.copper-leaf:ballast-navigation:$ballastVersion")
             }
         }

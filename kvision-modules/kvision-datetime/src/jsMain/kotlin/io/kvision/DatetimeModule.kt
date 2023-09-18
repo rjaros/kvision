@@ -35,6 +35,8 @@ object DatetimeModule : ModuleInitializer {
         tempusDominus = require("@eonasdan/tempus-dominus")
         val localeAr = require("@eonasdan/tempus-dominus/dist/locales/ar.js")
         locales[localeAr.name] = localeAr.localization
+        val localeCa = require("@eonasdan/tempus-dominus/dist/locales/ca.js")
+        locales[localeCa.name] = localeCa.localization
         val localeDe = require("@eonasdan/tempus-dominus/dist/locales/de.js")
         locales[localeDe.name] = localeDe.localization
         val localeEs = require("@eonasdan/tempus-dominus/dist/locales/es.js")
