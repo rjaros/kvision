@@ -76,6 +76,7 @@ $dokka.location:io.kvision.chart.js/Animator/remove/#io.kvision.chart.js.Chart/P
 $dokka.location:io.kvision.chart.js/Animator/running/#io.kvision.chart.js.Chart/PointingToDeclaration/kvision/io.kvision.chart.js/-animator/running.html
 $dokka.location:io.kvision.chart.js/Animator/start/#io.kvision.chart.js.Chart/PointingToDeclaration/kvision/io.kvision.chart.js/-animator/start.html
 $dokka.location:io.kvision.chart.js/Animator/stop/#io.kvision.chart.js.Chart/PointingToDeclaration/kvision/io.kvision.chart.js/-animator/stop.html
+$dokka.location:io.kvision.chart.js/AnyObject///PointingToDeclaration/kvision/io.kvision.chart.js/-any-object/index.html
 $dokka.location:io.kvision.chart.js/ArcBorderRadius///PointingToDeclaration/kvision/io.kvision.chart.js/-arc-border-radius/index.html
 $dokka.location:io.kvision.chart.js/ArcBorderRadius/innerEnd/#/PointingToDeclaration/kvision/io.kvision.chart.js/-arc-border-radius/inner-end.html
 $dokka.location:io.kvision.chart.js/ArcBorderRadius/innerStart/#/PointingToDeclaration/kvision/io.kvision.chart.js/-arc-border-radius/inner-start.html
@@ -304,6 +305,7 @@ $dokka.location:io.kvision.chart.js/ChartMetaCommon/xAxisID/#/PointingToDeclarat
 $dokka.location:io.kvision.chart.js/ChartMetaCommon/xScale/#/PointingToDeclaration/kvision/io.kvision.chart.js/-chart-meta-common/x-scale.html
 $dokka.location:io.kvision.chart.js/ChartMetaCommon/yAxisID/#/PointingToDeclaration/kvision/io.kvision.chart.js/-chart-meta-common/y-axis-i-d.html
 $dokka.location:io.kvision.chart.js/ChartMetaCommon/yScale/#/PointingToDeclaration/kvision/io.kvision.chart.js/-chart-meta-common/y-scale.html
+$dokka.location:io.kvision.chart.js/ChartOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-chart-options/index.html
 $dokka.location:io.kvision.chart.js/ChartSize///PointingToDeclaration/kvision/io.kvision.chart.js/-chart-size/index.html
 $dokka.location:io.kvision.chart.js/ChartSize/height/#/PointingToDeclaration/kvision/io.kvision.chart.js/-chart-size/height.html
 $dokka.location:io.kvision.chart.js/ChartSize/width/#/PointingToDeclaration/kvision/io.kvision.chart.js/-chart-size/width.html
@@ -379,6 +381,7 @@ $dokka.location:io.kvision.chart.js/CoreScaleOptions/beforeUpdate/#io.kvision.ch
 $dokka.location:io.kvision.chart.js/CoreScaleOptions/display/#/PointingToDeclaration/kvision/io.kvision.chart.js/-core-scale-options/display.html
 $dokka.location:io.kvision.chart.js/CoreScaleOptions/reverse/#/PointingToDeclaration/kvision/io.kvision.chart.js/-core-scale-options/reverse.html
 $dokka.location:io.kvision.chart.js/CoreScaleOptions/weight/#/PointingToDeclaration/kvision/io.kvision.chart.js/-core-scale-options/weight.html
+$dokka.location:io.kvision.chart.js/DatasetChartOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-dataset-chart-options/index.html
 $dokka.location:io.kvision.chart.js/DatasetController///PointingToDeclaration/kvision/io.kvision.chart.js/-dataset-controller/index.html
 $dokka.location:io.kvision.chart.js/DatasetController/DatasetController/#io.kvision.chart.js.Chart#kotlin.Number/PointingToDeclaration/kvision/io.kvision.chart.js/-dataset-controller/-dataset-controller.html
 $dokka.location:io.kvision.chart.js/DatasetController/_cachedMeta/#/PointingToDeclaration/kvision/io.kvision.chart.js/-dataset-controller/_cached-meta.html
@@ -444,6 +447,8 @@ $dokka.location:io.kvision.chart.js/DateAdapterPartial/startOf/#/PointingToDecla
 $dokka.location:io.kvision.chart.js/DecimationAlgorithm.lttb///PointingToDeclaration/kvision/io.kvision.chart.js/-decimation-algorithm/lttb/index.html
 $dokka.location:io.kvision.chart.js/DecimationAlgorithm.minmax///PointingToDeclaration/kvision/io.kvision.chart.js/-decimation-algorithm/minmax/index.html
 $dokka.location:io.kvision.chart.js/DecimationAlgorithm///PointingToDeclaration/kvision/io.kvision.chart.js/-decimation-algorithm/index.html
+$dokka.location:io.kvision.chart.js/DeepPartial///PointingToDeclaration/kvision/io.kvision.chart.js/-deep-partial/index.html
+$dokka.location:io.kvision.chart.js/DefaultDataPoint///PointingToDeclaration/kvision/io.kvision.chart.js/-default-data-point/index.html
 $dokka.location:io.kvision.chart.js/Defaults///PointingToDeclaration/kvision/io.kvision.chart.js/-defaults/index.html
 $dokka.location:io.kvision.chart.js/Defaults/describe/#kotlin.String#io.kvision.utils.Object/PointingToDeclaration/kvision/io.kvision.chart.js/-defaults/describe.html
 $dokka.location:io.kvision.chart.js/Defaults/get/#kotlin.String/PointingToDeclaration/kvision/io.kvision.chart.js/-defaults/get.html
@@ -453,6 +458,7 @@ $dokka.location:io.kvision.chart.js/Defaults/scale/#/PointingToDeclaration/kvis
 $dokka.location:io.kvision.chart.js/Defaults/scales/#/PointingToDeclaration/kvision/io.kvision.chart.js/-defaults/scales.html
 $dokka.location:io.kvision.chart.js/Defaults/set/#io.kvision.utils.Object/PointingToDeclaration/kvision/io.kvision.chart.js/-defaults/set.html
 $dokka.location:io.kvision.chart.js/Defaults/set/#kotlin.String#io.kvision.utils.Object/PointingToDeclaration/kvision/io.kvision.chart.js/-defaults/set.html
+$dokka.location:io.kvision.chart.js/DistributiveArray///PointingToDeclaration/kvision/io.kvision.chart.js/-distributive-array/index.html
 $dokka.location:io.kvision.chart.js/DomPlatform///PointingToDeclaration/kvision/io.kvision.chart.js/-dom-platform/index.html
 $dokka.location:io.kvision.chart.js/DomPlatform/DomPlatform/#/PointingToDeclaration/kvision/io.kvision.chart.js/-dom-platform/-dom-platform.html
 $dokka.location:io.kvision.chart.js/DoughnutAnimationOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-doughnut-animation-options/index.html
@@ -478,6 +484,7 @@ $dokka.location:io.kvision.chart.js/DoughnutControllerDatasetOptions/circumferen
 $dokka.location:io.kvision.chart.js/DoughnutControllerDatasetOptions/rotation/#/PointingToDeclaration/kvision/io.kvision.chart.js/-doughnut-controller-dataset-options/rotation.html
 $dokka.location:io.kvision.chart.js/DoughnutControllerDatasetOptions/spacing/#/PointingToDeclaration/kvision/io.kvision.chart.js/-doughnut-controller-dataset-options/spacing.html
 $dokka.location:io.kvision.chart.js/DoughnutControllerDatasetOptions/weight/#/PointingToDeclaration/kvision/io.kvision.chart.js/-doughnut-controller-dataset-options/weight.html
+$dokka.location:io.kvision.chart.js/DoughnutDataPoint///PointingToDeclaration/kvision/io.kvision.chart.js/-doughnut-data-point/index.html
 $dokka.location:io.kvision.chart.js/DoughnutMetaExtensions///PointingToDeclaration/kvision/io.kvision.chart.js/-doughnut-meta-extensions/index.html
 $dokka.location:io.kvision.chart.js/DoughnutMetaExtensions/total/#/PointingToDeclaration/kvision/io.kvision.chart.js/-doughnut-meta-extensions/total.html
 $dokka.location:io.kvision.chart.js/Element///PointingToDeclaration/kvision/io.kvision.chart.js/-element/index.html
@@ -495,6 +502,7 @@ $dokka.location:io.kvision.chart.js/ElementOptionsByType/arc/#/PointingToDeclara
 $dokka.location:io.kvision.chart.js/ElementOptionsByType/bar/#/PointingToDeclaration/kvision/io.kvision.chart.js/-element-options-by-type/bar.html
 $dokka.location:io.kvision.chart.js/ElementOptionsByType/line/#/PointingToDeclaration/kvision/io.kvision.chart.js/-element-options-by-type/line.html
 $dokka.location:io.kvision.chart.js/ElementOptionsByType/point/#/PointingToDeclaration/kvision/io.kvision.chart.js/-element-options-by-type/point.html
+$dokka.location:io.kvision.chart.js/EmptyObject///PointingToDeclaration/kvision/io.kvision.chart.js/-empty-object/index.html
 $dokka.location:io.kvision.chart.js/ExtendedPlugin///PointingToDeclaration/kvision/io.kvision.chart.js/-extended-plugin/index.html
 $dokka.location:io.kvision.chart.js/ExtendedPlugin/afterTooltipDraw/#/PointingToDeclaration/kvision/io.kvision.chart.js/-extended-plugin/after-tooltip-draw.html
 $dokka.location:io.kvision.chart.js/ExtendedPlugin/beforeTooltipDraw/#/PointingToDeclaration/kvision/io.kvision.chart.js/-extended-plugin/before-tooltip-draw.html
@@ -536,6 +544,7 @@ $dokka.location:io.kvision.chart.js/InteractionItem///PointingToDeclaration/kvi
 $dokka.location:io.kvision.chart.js/InteractionItem/datasetIndex/#/PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-item/dataset-index.html
 $dokka.location:io.kvision.chart.js/InteractionItem/element/#/PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-item/element.html
 $dokka.location:io.kvision.chart.js/InteractionItem/index/#/PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-item/--index--.html
+$dokka.location:io.kvision.chart.js/InteractionModeFunction///PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-mode-function/index.html
 $dokka.location:io.kvision.chart.js/InteractionModeMap///PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-mode-map/index.html
 $dokka.location:io.kvision.chart.js/InteractionModeMap/dataset/#/PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-mode-map/dataset.html
 $dokka.location:io.kvision.chart.js/InteractionModeMap/index/#/PointingToDeclaration/kvision/io.kvision.chart.js/-interaction-mode-map/--index--.html
@@ -640,9 +649,15 @@ $dokka.location:io.kvision.chart.js/LttbDecimationOptions/algorithm/#/PointingTo
 $dokka.location:io.kvision.chart.js/LttbDecimationOptions/samples/#/PointingToDeclaration/kvision/io.kvision.chart.js/-lttb-decimation-options/samples.html
 $dokka.location:io.kvision.chart.js/MinMaxDecimationOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-min-max-decimation-options/index.html
 $dokka.location:io.kvision.chart.js/MinMaxDecimationOptions/algorithm/#/PointingToDeclaration/kvision/io.kvision.chart.js/-min-max-decimation-options/algorithm.html
+$dokka.location:io.kvision.chart.js/Overrides///PointingToDeclaration/kvision/io.kvision.chart.js/-overrides/index.html
 $dokka.location:io.kvision.chart.js/ParsingOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-parsing-options/index.html
 $dokka.location:io.kvision.chart.js/ParsingOptions/normalized/#/PointingToDeclaration/kvision/io.kvision.chart.js/-parsing-options/normalized.html
 $dokka.location:io.kvision.chart.js/ParsingOptions/parsing/#/PointingToDeclaration/kvision/io.kvision.chart.js/-parsing-options/parsing.html
+$dokka.location:io.kvision.chart.js/PieAnimationOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-pie-animation-options/index.html
+$dokka.location:io.kvision.chart.js/PieControllerChartOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-pie-controller-chart-options/index.html
+$dokka.location:io.kvision.chart.js/PieControllerDatasetOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-pie-controller-dataset-options/index.html
+$dokka.location:io.kvision.chart.js/PieDataPoint///PointingToDeclaration/kvision/io.kvision.chart.js/-pie-data-point/index.html
+$dokka.location:io.kvision.chart.js/PieMetaExtensions///PointingToDeclaration/kvision/io.kvision.chart.js/-pie-meta-extensions/index.html
 $dokka.location:io.kvision.chart.js/Plugin///PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/index.html
 $dokka.location:io.kvision.chart.js/Plugin/afterBuildTicks/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/after-build-ticks.html
 $dokka.location:io.kvision.chart.js/Plugin/afterDataLimits/#/PointingToDeclaration/kvision/io.kvision.chart.js/-plugin/after-data-limits.html
@@ -719,6 +734,7 @@ $dokka.location:io.kvision.chart.js/PointPrefixedOptions/pointStyle/#/PointingTo
 $dokka.location:io.kvision.chart.js/PointProps///PointingToDeclaration/kvision/io.kvision.chart.js/-point-props/index.html
 $dokka.location:io.kvision.chart.js/PointProps/x/#/PointingToDeclaration/kvision/io.kvision.chart.js/-point-props/x.html
 $dokka.location:io.kvision.chart.js/PointProps/y/#/PointingToDeclaration/kvision/io.kvision.chart.js/-point-props/y.html
+$dokka.location:io.kvision.chart.js/PolarAreaAnimationOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-polar-area-animation-options/index.html
 $dokka.location:io.kvision.chart.js/PolarAreaController.Companion///PointingToDeclaration/kvision/io.kvision.chart.js/-polar-area-controller/-companion/index.html
 $dokka.location:io.kvision.chart.js/PolarAreaController///PointingToDeclaration/kvision/io.kvision.chart.js/-polar-area-controller/index.html
 $dokka.location:io.kvision.chart.js/PolarAreaController/countVisibleElements/#/PointingToDeclaration/kvision/io.kvision.chart.js/-polar-area-controller/count-visible-elements.html
@@ -727,6 +743,7 @@ $dokka.location:io.kvision.chart.js/PolarAreaControllerChartOptions/animation/#/
 $dokka.location:io.kvision.chart.js/PolarAreaControllerChartOptions/startAngle/#/PointingToDeclaration/kvision/io.kvision.chart.js/-polar-area-controller-chart-options/start-angle.html
 $dokka.location:io.kvision.chart.js/PolarAreaControllerDatasetOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-polar-area-controller-dataset-options/index.html
 $dokka.location:io.kvision.chart.js/PolarAreaControllerDatasetOptions/angle/#/PointingToDeclaration/kvision/io.kvision.chart.js/-polar-area-controller-dataset-options/angle.html
+$dokka.location:io.kvision.chart.js/RadarControllerChartOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-radar-controller-chart-options/index.html
 $dokka.location:io.kvision.chart.js/RadarControllerDatasetOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-radar-controller-dataset-options/index.html
 $dokka.location:io.kvision.chart.js/RadarControllerDatasetOptions/showLine/#/PointingToDeclaration/kvision/io.kvision.chart.js/-radar-controller-dataset-options/show-line.html
 $dokka.location:io.kvision.chart.js/RadarControllerDatasetOptions/spanGaps/#/PointingToDeclaration/kvision/io.kvision.chart.js/-radar-controller-dataset-options/span-gaps.html
@@ -746,6 +763,7 @@ $dokka.location:io.kvision.chart.js/RadialParsedData///PointingToDeclaration/kv
 $dokka.location:io.kvision.chart.js/RadialParsedData/r/#/PointingToDeclaration/kvision/io.kvision.chart.js/-radial-parsed-data/r.html
 $dokka.location:io.kvision.chart.js/RadialScaleTypeRegistry///PointingToDeclaration/kvision/io.kvision.chart.js/-radial-scale-type-registry/index.html
 $dokka.location:io.kvision.chart.js/RadialScaleTypeRegistry/radialLinear/#/PointingToDeclaration/kvision/io.kvision.chart.js/-radial-scale-type-registry/radial-linear.html
+$dokka.location:io.kvision.chart.js/Record///PointingToDeclaration/kvision/io.kvision.chart.js/-record/index.html
 $dokka.location:io.kvision.chart.js/Registry///PointingToDeclaration/kvision/io.kvision.chart.js/-registry/index.html
 $dokka.location:io.kvision.chart.js/Registry/add/#kotlin.Array[kotlin.Any]/PointingToDeclaration/kvision/io.kvision.chart.js/-registry/add.html
 $dokka.location:io.kvision.chart.js/Registry/addControllers/#kotlin.Array[kotlin.Any]/PointingToDeclaration/kvision/io.kvision.chart.js/-registry/add-controllers.html
@@ -842,10 +860,14 @@ $dokka.location:io.kvision.chart.js/Scale/x/#/PointingToDeclaration/kvision/io.
 $dokka.location:io.kvision.chart.js/Scale/y/#/PointingToDeclaration/kvision/io.kvision.chart.js/-scale/y.html
 $dokka.location:io.kvision.chart.js/ScaleChartOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-scale-chart-options/index.html
 $dokka.location:io.kvision.chart.js/ScaleChartOptions/scales/#/PointingToDeclaration/kvision/io.kvision.chart.js/-scale-chart-options/scales.html
+$dokka.location:io.kvision.chart.js/ScaleOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-scale-options/index.html
 $dokka.location:io.kvision.chart.js/ScaleTypeRegistry///PointingToDeclaration/kvision/io.kvision.chart.js/-scale-type-registry/index.html
+$dokka.location:io.kvision.chart.js/ScatterControllerChartOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-scatter-controller-chart-options/index.html
+$dokka.location:io.kvision.chart.js/ScatterControllerDatasetOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-scatter-controller-dataset-options/index.html
 $dokka.location:io.kvision.chart.js/ScatterDataPoint///PointingToDeclaration/kvision/io.kvision.chart.js/-scatter-data-point/index.html
 $dokka.location:io.kvision.chart.js/ScatterDataPoint/x/#/PointingToDeclaration/kvision/io.kvision.chart.js/-scatter-data-point/x.html
 $dokka.location:io.kvision.chart.js/ScatterDataPoint/y/#/PointingToDeclaration/kvision/io.kvision.chart.js/-scatter-data-point/y.html
+$dokka.location:io.kvision.chart.js/ScriptableAndArrayOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-scriptable-and-array-options/index.html
 $dokka.location:io.kvision.chart.js/ScriptableContext///PointingToDeclaration/kvision/io.kvision.chart.js/-scriptable-context/index.html
 $dokka.location:io.kvision.chart.js/ScriptableContext/active/#/PointingToDeclaration/kvision/io.kvision.chart.js/-scriptable-context/active.html
 $dokka.location:io.kvision.chart.js/ScriptableContext/chart/#/PointingToDeclaration/kvision/io.kvision.chart.js/-scriptable-context/chart.html
@@ -861,6 +883,7 @@ $dokka.location:io.kvision.chart.js/ScriptableLineSegmentContext/p0DataIndex/#/P
 $dokka.location:io.kvision.chart.js/ScriptableLineSegmentContext/p1/#/PointingToDeclaration/kvision/io.kvision.chart.js/-scriptable-line-segment-context/p1.html
 $dokka.location:io.kvision.chart.js/ScriptableLineSegmentContext/p1DataIndex/#/PointingToDeclaration/kvision/io.kvision.chart.js/-scriptable-line-segment-context/p1-data-index.html
 $dokka.location:io.kvision.chart.js/ScriptableLineSegmentContext/type/#/PointingToDeclaration/kvision/io.kvision.chart.js/-scriptable-line-segment-context/type.html
+$dokka.location:io.kvision.chart.js/ScriptableOptions///PointingToDeclaration/kvision/io.kvision.chart.js/-scriptable-options/index.html
 $dokka.location:io.kvision.chart.js/ScriptableScaleContext///PointingToDeclaration/kvision/io.kvision.chart.js/-scriptable-scale-context/index.html
 $dokka.location:io.kvision.chart.js/ScriptableScaleContext/chart/#/PointingToDeclaration/kvision/io.kvision.chart.js/-scriptable-scale-context/chart.html
 $dokka.location:io.kvision.chart.js/ScriptableScaleContext/index/#/PointingToDeclaration/kvision/io.kvision.chart.js/-scriptable-scale-context/--index--.html
@@ -1237,6 +1260,7 @@ $dokka.location:io.kvision.chart.js/TypedRegistry///PointingToDeclaration/kvisi
 $dokka.location:io.kvision.chart.js/TypedRegistry/get/#kotlin.String/PointingToDeclaration/kvision/io.kvision.chart.js/-typed-registry/get.html
 $dokka.location:io.kvision.chart.js/TypedRegistry/register/#io.kvision.chart.js.ChartComponent/PointingToDeclaration/kvision/io.kvision.chart.js/-typed-registry/register.html
 $dokka.location:io.kvision.chart.js/TypedRegistry/unregister/#io.kvision.chart.js.ChartComponent/PointingToDeclaration/kvision/io.kvision.chart.js/-typed-registry/unregister.html
+$dokka.location:io.kvision.chart.js/UnionToIntersection///PointingToDeclaration/kvision/io.kvision.chart.js/-union-to-intersection/index.html
 $dokka.location:io.kvision.chart.js/UpdateModeEnum.active///PointingToDeclaration/kvision/io.kvision.chart.js/-update-mode-enum/active/index.html
 $dokka.location:io.kvision.chart.js/UpdateModeEnum.hide///PointingToDeclaration/kvision/io.kvision.chart.js/-update-mode-enum/hide/index.html
 $dokka.location:io.kvision.chart.js/UpdateModeEnum.none///PointingToDeclaration/kvision/io.kvision.chart.js/-update-mode-enum/none/index.html
@@ -1252,6 +1276,8 @@ $dokka.location:io.kvision.chart.js/VisualElement/getRange/#/PointingToDeclarati
 $dokka.location:io.kvision.chart.js/VisualElement/inRange/#kotlin.Number#kotlin.Number#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.chart.js/-visual-element/in-range.html
 $dokka.location:io.kvision.chart.js/VisualElement/inXRange/#kotlin.Number#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.chart.js/-visual-element/in-x-range.html
 $dokka.location:io.kvision.chart.js/VisualElement/inYRange/#kotlin.Number#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.chart.js/-visual-element/in-y-range.html
+$dokka.location:io.kvision.chart.js/_DeepPartialArray///PointingToDeclaration/kvision/io.kvision.chart.js/_-deep-partial-array/index.html
+$dokka.location:io.kvision.chart.js/_DeepPartialObject///PointingToDeclaration/kvision/io.kvision.chart.js/_-deep-partial-object/index.html
 $dokka.location:io.kvision.chart.js/layouts///PointingToDeclaration/kvision/io.kvision.chart.js/layouts/index.html
 $dokka.location:io.kvision.chart.js/layouts/addBox/#io.kvision.chart.js.Chart#io.kvision.chart.js.LayoutItem/PointingToDeclaration/kvision/io.kvision.chart.js/layouts/add-box.html
 $dokka.location:io.kvision.chart.js/layouts/configure/#io.kvision.chart.js.Chart#io.kvision.chart.js.LayoutItem#io.kvision.chart.js.T$14/PointingToDeclaration/kvision/io.kvision.chart.js/layouts/configure.html
@@ -2787,6 +2813,7 @@ $dokka.location:io.kvision.core/Container/removeAt/#kotlin.Int/PointingToDeclara
 $dokka.location:io.kvision.core/Container/unaryPlus/kotlin.String#/PointingToDeclaration/kvision/io.kvision.core/-container/unary-plus.html
 $dokka.location:io.kvision.core/CssClass///PointingToDeclaration/kvision/io.kvision.core/-css-class/index.html
 $dokka.location:io.kvision.core/CssClass/className/#/PointingToDeclaration/kvision/io.kvision.core/-css-class/class-name.html
+$dokka.location:io.kvision.core/CssSize///PointingToDeclaration/kvision/io.kvision.core/-css-size/index.html
 $dokka.location:io.kvision.core/Cursor.ALIAS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-cursor/-a-l-i-a-s/index.html
 $dokka.location:io.kvision.core/Cursor.ALLSCROLL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-cursor/-a-l-l-s-c-r-o-l-l/index.html
 $dokka.location:io.kvision.core/Cursor.AUTO///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-cursor/-a-u-t-o/index.html
@@ -3094,6 +3121,7 @@ $dokka.location:io.kvision.core/Position.STICKY///PointingToDeclaration/{"org.je
 $dokka.location:io.kvision.core/Position///PointingToDeclaration/kvision/io.kvision.core/-position/index.html
 $dokka.location:io.kvision.core/Position/valueOf/#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-position/value-of.html
 $dokka.location:io.kvision.core/Position/values/#/PointingToDeclaration/kvision/io.kvision.core/-position/values.html
+$dokka.location:io.kvision.core/ResString///PointingToDeclaration/kvision/io.kvision.core/-res-string/index.html
 $dokka.location:io.kvision.core/Resize.BOTH///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-resize/-b-o-t-h/index.html
 $dokka.location:io.kvision.core/Resize.HORIZONTAL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-resize/-h-o-r-i-z-o-n-t-a-l/index.html
 $dokka.location:io.kvision.core/Resize.INHERIT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.core/-resize/-i-n-h-e-r-i-t/index.html
@@ -3107,6 +3135,8 @@ $dokka.location:io.kvision.core/SingleObjectCache///PointingToDeclaration/kvisi
 $dokka.location:io.kvision.core/SingleObjectCache/clear/#/PointingToDeclaration/kvision/io.kvision.core/-single-object-cache/clear.html
 $dokka.location:io.kvision.core/SingleObjectCache/clearOn/#kotlin.Function0[kotlin.Boolean]/PointingToDeclaration/kvision/io.kvision.core/-single-object-cache/clear-on.html
 $dokka.location:io.kvision.core/SingleObjectCache/value/#/PointingToDeclaration/kvision/io.kvision.core/-single-object-cache/value.html
+$dokka.location:io.kvision.core/StringBoolPair///PointingToDeclaration/kvision/io.kvision.core/-string-bool-pair/index.html
+$dokka.location:io.kvision.core/StringPair///PointingToDeclaration/kvision/io.kvision.core/-string-pair/index.html
 $dokka.location:io.kvision.core/Style.Companion///PointingToDeclaration/kvision/io.kvision.core/-style/-companion/index.html
 $dokka.location:io.kvision.core/Style///PointingToDeclaration/kvision/io.kvision.core/-style/index.html
 $dokka.location:io.kvision.core/Style/Style/#kotlin.String?#io.kvision.core.PClass?#io.kvision.core.PElement?#kotlin.String?#io.kvision.core.Style?#kotlin.Function1[io.kvision.core.Style,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.core/-style/-style.html
@@ -6030,6 +6060,7 @@ $dokka.location:io.kvision.electron.nodejs////PointingToDeclaration/kvision/io.
 $dokka.location:io.kvision.electron.nodejs//get/io.kvision.electron.nodejs.ProcessEnv#kotlin.String/PointingToDeclaration/kvision/io.kvision.electron.nodejs/get.html
 $dokka.location:io.kvision.electron.nodejs//invoke/io.kvision.electron.nodejs.HRTime#kotlin.Any/PointingToDeclaration/kvision/io.kvision.electron.nodejs/invoke.html
 $dokka.location:io.kvision.electron.nodejs//set/io.kvision.electron.nodejs.ProcessEnv#kotlin.String#kotlin.String?/PointingToDeclaration/kvision/io.kvision.electron.nodejs/set.html
+$dokka.location:io.kvision.electron.nodejs/BeforeExitListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-before-exit-listener/index.html
 $dokka.location:io.kvision.electron.nodejs/CallSite///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-call-site/index.html
 $dokka.location:io.kvision.electron.nodejs/CallSite/getColumnNumber/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-call-site/get-column-number.html
 $dokka.location:io.kvision.electron.nodejs/CallSite/getEvalOrigin/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-call-site/get-eval-origin.html
@@ -6055,6 +6086,7 @@ $dokka.location:io.kvision.electron.nodejs/ConsoleConstructorOptions/stdout/#/Po
 $dokka.location:io.kvision.electron.nodejs/CpuUsage///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-cpu-usage/index.html
 $dokka.location:io.kvision.electron.nodejs/CpuUsage/system/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-cpu-usage/system.html
 $dokka.location:io.kvision.electron.nodejs/CpuUsage/user/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-cpu-usage/user.html
+$dokka.location:io.kvision.electron.nodejs/DisconnectListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-disconnect-listener/index.html
 $dokka.location:io.kvision.electron.nodejs/Domain///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-domain/index.html
 $dokka.location:io.kvision.electron.nodejs/Domain/add/#io.kvision.electron.nodejs.EventEmitter/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-domain/add.html
 $dokka.location:io.kvision.electron.nodejs/Domain/add/#io.kvision.electron.nodejs.Timer/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-domain/add.html
@@ -6097,6 +6129,7 @@ $dokka.location:io.kvision.electron.nodejs/EventEmitter/removeAllListeners/#kotl
 $dokka.location:io.kvision.electron.nodejs/EventEmitter/removeListener/#kotlin.Any#kotlin.Function1[kotlin.Any,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-event-emitter/remove-listener.html
 $dokka.location:io.kvision.electron.nodejs/EventEmitter/removeListener/#kotlin.String#kotlin.Function1[kotlin.Any,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-event-emitter/remove-listener.html
 $dokka.location:io.kvision.electron.nodejs/EventEmitter/setMaxListeners/#kotlin.Number/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-event-emitter/set-max-listeners.html
+$dokka.location:io.kvision.electron.nodejs/ExitListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-exit-listener/index.html
 $dokka.location:io.kvision.electron.nodejs/Global///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-global/index.html
 $dokka.location:io.kvision.electron.nodejs/Global/Array/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-global/-array.html
 $dokka.location:io.kvision.electron.nodejs/Global/ArrayBuffer/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-global/-array-buffer.html
@@ -6186,6 +6219,9 @@ $dokka.location:io.kvision.electron.nodejs/MemoryUsage/external/#/PointingToDecl
 $dokka.location:io.kvision.electron.nodejs/MemoryUsage/heapTotal/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-memory-usage/heap-total.html
 $dokka.location:io.kvision.electron.nodejs/MemoryUsage/heapUsed/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-memory-usage/heap-used.html
 $dokka.location:io.kvision.electron.nodejs/MemoryUsage/rss/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-memory-usage/rss.html
+$dokka.location:io.kvision.electron.nodejs/MessageListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-message-listener/index.html
+$dokka.location:io.kvision.electron.nodejs/MultipleResolveListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-multiple-resolve-listener/index.html
+$dokka.location:io.kvision.electron.nodejs/NewListenerListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-new-listener-listener/index.html
 $dokka.location:io.kvision.electron.nodejs/Process///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-process/index.html
 $dokka.location:io.kvision.electron.nodejs/Process/abort/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-process/abort.html
 $dokka.location:io.kvision.electron.nodejs/Process/addListener/#kotlin.String#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-process/add-listener.html
@@ -6376,6 +6412,8 @@ $dokka.location:io.kvision.electron.nodejs/ReadableStream/unpipe/#io.kvision.ele
 $dokka.location:io.kvision.electron.nodejs/ReadableStream/unshift/#[Error type: Unresolved type for Uint8Array]#kotlin.String/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-readable-stream/unshift.html
 $dokka.location:io.kvision.electron.nodejs/ReadableStream/unshift/#kotlin.String#kotlin.String/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-readable-stream/unshift.html
 $dokka.location:io.kvision.electron.nodejs/ReadableStream/wrap/#io.kvision.electron.nodejs.ReadableStream/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-readable-stream/wrap.html
+$dokka.location:io.kvision.electron.nodejs/RejectionHandledListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-rejection-handled-listener/index.html
+$dokka.location:io.kvision.electron.nodejs/RemoveListenerListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-remove-listener-listener/index.html
 $dokka.location:io.kvision.electron.nodejs/ResourceUsage///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-resource-usage/index.html
 $dokka.location:io.kvision.electron.nodejs/ResourceUsage/fsRead/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-resource-usage/fs-read.html
 $dokka.location:io.kvision.electron.nodejs/ResourceUsage/fsWrite/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-resource-usage/fs-write.html
@@ -6393,6 +6431,7 @@ $dokka.location:io.kvision.electron.nodejs/ResourceUsage/unsharedDataSize/#/Poin
 $dokka.location:io.kvision.electron.nodejs/ResourceUsage/unsharedStackSize/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-resource-usage/unshared-stack-size.html
 $dokka.location:io.kvision.electron.nodejs/ResourceUsage/userCPUTime/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-resource-usage/user-c-p-u-time.html
 $dokka.location:io.kvision.electron.nodejs/ResourceUsage/voluntaryContextSwitches/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-resource-usage/voluntary-context-switches.html
+$dokka.location:io.kvision.electron.nodejs/SignalsListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-signals-listener/index.html
 $dokka.location:io.kvision.electron.nodejs/Socket///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-socket/index.html
 $dokka.location:io.kvision.electron.nodejs/Socket/isTTY/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-socket/is-t-t-y.html
 $dokka.location:io.kvision.electron.nodejs/T$3///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-t$3/index.html
@@ -6444,6 +6483,9 @@ $dokka.location:io.kvision.electron.nodejs/Timer/hasRef/#/PointingToDeclaration/
 $dokka.location:io.kvision.electron.nodejs/Timer/ref/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-timer/ref.html
 $dokka.location:io.kvision.electron.nodejs/Timer/refresh/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-timer/refresh.html
 $dokka.location:io.kvision.electron.nodejs/Timer/unref/#/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-timer/unref.html
+$dokka.location:io.kvision.electron.nodejs/UncaughtExceptionListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-uncaught-exception-listener/index.html
+$dokka.location:io.kvision.electron.nodejs/UnhandledRejectionListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-unhandled-rejection-listener/index.html
+$dokka.location:io.kvision.electron.nodejs/WarningListener///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-warning-listener/index.html
 $dokka.location:io.kvision.electron.nodejs/WritableStream///PointingToDeclaration/kvision/io.kvision.electron.nodejs/-writable-stream/index.html
 $dokka.location:io.kvision.electron.nodejs/WritableStream/end/#[Error type: Unresolved type for Uint8Array]#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-writable-stream/end.html
 $dokka.location:io.kvision.electron.nodejs/WritableStream/end/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-writable-stream/end.html
@@ -6455,6 +6497,7 @@ $dokka.location:io.kvision.electron.nodejs/WritableStream/write/#kotlin.String#k
 $dokka.location:io.kvision.electron.nodejs/WritableStream/write/#kotlin.String#kotlin.String#kotlin.Function1[[Error type: Unresolved type for Error]?,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.electron.nodejs/-writable-stream/write.html
 $dokka.location:io.kvision.electron////PointingToDeclaration/kvision/io.kvision.electron/index.html
 $dokka.location:io.kvision.electron//global/#/PointingToDeclaration/kvision/io.kvision.electron/global.html
+$dokka.location:io.kvision.electron/GlobalEvent///PointingToDeclaration/kvision/io.kvision.electron/-global-event/index.html
 $dokka.location:io.kvision.event////PointingToDeclaration/kvision/io.kvision.event/index.html
 $dokka.location:io.kvision.event//changeFlow/TypeParam(bounds=[io.kvision.core.Widget])#/PointingToDeclaration/kvision/io.kvision.event/change-flow.html
 $dokka.location:io.kvision.event//clickFlow/TypeParam(bounds=[io.kvision.core.Widget])#/PointingToDeclaration/kvision/io.kvision.event/click-flow.html
@@ -6621,6 +6664,7 @@ $dokka.location:io.kvision.form.check/RadioGroup/RadioGroup/#kotlin.collections.
 $dokka.location:io.kvision.form.check/RadioGroup/getValue/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio-group/get-value.html
 $dokka.location:io.kvision.form.check/RadioGroup/getValueAsString/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio-group/get-value-as-string.html
 $dokka.location:io.kvision.form.check/RadioGroup/setValue/#kotlin.Any?/PointingToDeclaration/kvision/io.kvision.form.check/-radio-group/set-value.html
+$dokka.location:io.kvision.form.check/RadioGroupInput///PointingToDeclaration/kvision/io.kvision.form.check/-radio-group-input/index.html
 $dokka.location:io.kvision.form.check/RadioInput///PointingToDeclaration/kvision/io.kvision.form.check/-radio-input/index.html
 $dokka.location:io.kvision.form.check/RadioInput/RadioInput/#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.form.check.RadioInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.check/-radio-input/-radio-input.html
 $dokka.location:io.kvision.form.check/RadioInput/squared/#/PointingToDeclaration/kvision/io.kvision.form.check/-radio-input/squared.html
@@ -8387,6 +8431,7 @@ $dokka.location:io.kvision.maps.externals.geojson/MultiPolygon///PointingToDecla
 $dokka.location:io.kvision.maps.externals.geojson/Point///PointingToDeclaration/kvision/io.kvision.maps.externals.geojson/-point/index.html
 $dokka.location:io.kvision.maps.externals.geojson/Point/coordinates/#/PointingToDeclaration/kvision/io.kvision.maps.externals.geojson/-point/coordinates.html
 $dokka.location:io.kvision.maps.externals.geojson/Polygon///PointingToDeclaration/kvision/io.kvision.maps.externals.geojson/-polygon/index.html
+$dokka.location:io.kvision.maps.externals.geojson/Position///PointingToDeclaration/kvision/io.kvision.maps.externals.geojson/-position/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.control////PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.control/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.control//get/io.kvision.maps.externals.leaflet.control.Control.LayersObject#kotlin.String/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.control/get.html
 $dokka.location:io.kvision.maps.externals.leaflet.control//set/io.kvision.maps.externals.leaflet.control.Control.LayersObject#kotlin.String#io.kvision.maps.externals.leaflet.layer.Layer[*]/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.control/set.html
@@ -8491,9 +8536,11 @@ $dokka.location:io.kvision.maps.externals.leaflet.dom/Draggable/enable/#/Pointin
 $dokka.location:io.kvision.maps.externals.leaflet.events////PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/DragEndEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-drag-end-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/DragEndEvent/distance/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-drag-end-event/distance.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/DragEndEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-drag-end-event-handler-fn/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/ErrorEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-error-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/ErrorEvent/code/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-error-event/code.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/ErrorEvent/message/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-error-event/message.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/ErrorEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-error-event-handler-fn/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/Evented///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-evented/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/Evented/Evented/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-evented/-evented.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/Evented/addEventListener/#io.kvision.maps.externals.leaflet.events.LeafletEventHandlerFnMap/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-evented/add-event-listener.html
@@ -8602,13 +8649,20 @@ $dokka.location:io.kvision.maps.externals.leaflet.events/GeoJSONEvent/layer/#/Po
 $dokka.location:io.kvision.maps.externals.leaflet.events/GeoJSONEvent/properties/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-geo-j-s-o-n-event/properties.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LayerEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-layer-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LayerEvent/layer/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-layer-event/layer.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LayerEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-layer-event-handler-fn/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LayersControlEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-layers-control-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LayersControlEvent/name/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-layers-control-event/name.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LayersControlEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-layers-control-event-handler-fn/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletAnyEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-any-event-id/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletControlEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-control-event-id/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletDragEndEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-drag-end-event-id/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletErrorEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-error-event-id/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEvent/propagatedFrom/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event/propagated-from.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEvent/sourceTarget/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event/source-target.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEvent/target/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event/target.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEvent/type/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event/type.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event-handler-fn/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEventHandlerFnMap///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event-handler-fn-map/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEventHandlerFnMap/add/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event-handler-fn-map/add.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEventHandlerFnMap/autopanstart/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event-handler-fn-map/autopanstart.html
@@ -8660,13 +8714,26 @@ $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEventHandlerFnMa
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEventHandlerFnMap/zoomend/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event-handler-fn-map/zoomend.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEventHandlerFnMap/zoomlevelschange/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event-handler-fn-map/zoomlevelschange.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEventHandlerFnMap/zoomstart/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event-handler-fn-map/zoomstart.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-event-id/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletKeyboardEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-keyboard-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletKeyboardEvent/originalEvent/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-keyboard-event/original-event.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletKeyboardEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-keyboard-event-handler-fn/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletKeyboardEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-keyboard-event-id/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletLayerEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-layer-event-id/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletLocationEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-location-event-id/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletMouseEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-mouse-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletMouseEvent/containerPoint/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-mouse-event/container-point.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletMouseEvent/latlng/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-mouse-event/latlng.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletMouseEvent/layerPoint/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-mouse-event/layer-point.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LeafletMouseEvent/originalEvent/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-mouse-event/original-event.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletMouseEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-mouse-event-handler-fn/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletMouseEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-mouse-event-id/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletPopupEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-popup-event-id/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletResizeEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-resize-event-id/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletTileErrorId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-tile-error-id/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletTileEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-tile-event-id/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletTooltipEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-tooltip-event-id/index.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LeafletZoomAnimEventId///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-leaflet-zoom-anim-event-id/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LocationEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-location-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LocationEvent/accuracy/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-location-event/accuracy.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LocationEvent/altitude/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-location-event/altitude.html
@@ -8676,22 +8743,29 @@ $dokka.location:io.kvision.maps.externals.leaflet.events/LocationEvent/heading/#
 $dokka.location:io.kvision.maps.externals.leaflet.events/LocationEvent/latlng/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-location-event/latlng.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LocationEvent/speed/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-location-event/speed.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/LocationEvent/timestamp/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-location-event/timestamp.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/LocationEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-location-event-handler-fn/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/PopupEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-popup-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/PopupEvent/popup/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-popup-event/popup.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/PopupEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-popup-event-handler-fn/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/ResizeEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-resize-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/ResizeEvent/newSize/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-resize-event/new-size.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/ResizeEvent/oldSize/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-resize-event/old-size.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/ResizeEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-resize-event-handler-fn/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/TileErrorEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-tile-error-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/TileErrorEvent/error/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-tile-error-event/error.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/TileErrorEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-tile-error-event-handler-fn/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/TileEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-tile-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/TileEvent/coords/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-tile-event/coords.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/TileEvent/tile/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-tile-event/tile.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/TileEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-tile-event-handler-fn/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/TooltipEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-tooltip-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/TooltipEvent/tooltip/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-tooltip-event/tooltip.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/TooltipEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-tooltip-event-handler-fn/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/ZoomAnimEvent///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-zoom-anim-event/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/ZoomAnimEvent/center/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-zoom-anim-event/center.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/ZoomAnimEvent/noUpdate/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-zoom-anim-event/no-update.html
 $dokka.location:io.kvision.maps.externals.leaflet.events/ZoomAnimEvent/zoom/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-zoom-anim-event/zoom.html
+$dokka.location:io.kvision.maps.externals.leaflet.events/ZoomAnimEventHandlerFn///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.events/-zoom-anim-event-handler-fn/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.geo////PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.geo/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.geo/CRS.Companion///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.geo/-c-r-s/-companion/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.geo/CRS.Companion/Base/#/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.geo/-c-r-s/-companion/-base.html
@@ -9171,6 +9245,7 @@ $dokka.location:io.kvision.maps.externals.leaflet.layer/LayerGroup/removeLayer/#
 $dokka.location:io.kvision.maps.externals.leaflet.layer/LayerGroup/removeLayer/#kotlin.Number/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.layer/-layer-group/remove-layer.html
 $dokka.location:io.kvision.maps.externals.leaflet.layer/LayerGroup/setZIndex/#kotlin.Number/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.layer/-layer-group/set-z-index.html
 $dokka.location:io.kvision.maps.externals.leaflet.layer/LayerGroup/toGeoJSON/#kotlin.Number/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.layer/-layer-group/to-geo-j-s-o-n.html
+$dokka.location:io.kvision.maps.externals.leaflet.layer/StyleFunction///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.layer/-style-function/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.map////PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.map/index.html
 $dokka.location:io.kvision.maps.externals.leaflet.map//get/io.kvision.maps.externals.leaflet.map.HTMLElementsObject#kotlin.String/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.map/get.html
 $dokka.location:io.kvision.maps.externals.leaflet.map//set/io.kvision.maps.externals.leaflet.map.HTMLElementsObject#kotlin.String#[Error type: Unresolved type for HTMLElement]/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.map/set.html
@@ -9334,7 +9409,10 @@ $dokka.location:io.kvision.maps.externals.leaflet.map/LeafletMap/zoomControl/#/P
 $dokka.location:io.kvision.maps.externals.leaflet.map/LeafletMap/zoomIn/#kotlin.Number#io.kvision.maps.externals.leaflet.map.LeafletMap.ZoomOptions/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.map/-leaflet-map/zoom-in.html
 $dokka.location:io.kvision.maps.externals.leaflet.map/LeafletMap/zoomOut/#kotlin.Number#io.kvision.maps.externals.leaflet.map.LeafletMap.ZoomOptions/PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.map/-leaflet-map/zoom-out.html
 $dokka.location:io.kvision.maps.externals.leaflet.map/MapPanes///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.map/-map-panes/index.html
-$dokka.location:io.kvision.maps.externals.leaflet////PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet.html
+$dokka.location:io.kvision.maps.externals.leaflet////PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet/index.html
+$dokka.location:io.kvision.maps.externals.leaflet/DirectionsUnion///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet/-directions-union/index.html
+$dokka.location:io.kvision.maps.externals.leaflet/DoneCallback///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet/-done-callback/index.html
+$dokka.location:io.kvision.maps.externals.leaflet/PositionsUnion///PointingToDeclaration/kvision/io.kvision.maps.externals.leaflet/-positions-union/index.html
 $dokka.location:io.kvision.maps////PointingToDeclaration/kvision/io.kvision.maps/index.html
 $dokka.location:io.kvision.maps//maps/io.kvision.core.Container#kotlin.Function1[kotlin.Any,kotlin.Unit]?#kotlin.String?#kotlin.Function1[io.kvision.maps.Maps,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.maps/maps.html
 $dokka.location:io.kvision.maps/DefaultTileLayers///PointingToDeclaration/kvision/io.kvision.maps/-default-tile-layers/index.html
@@ -9466,6 +9544,7 @@ $dokka.location:io.kvision.navbar/Navbar/add/#io.kvision.core.Component/Pointing
 $dokka.location:io.kvision.navbar/Navbar/add/#kotlin.Int#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/add.html
 $dokka.location:io.kvision.navbar/Navbar/addAll/#kotlin.collections.List[io.kvision.core.Component]/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/add-all.html
 $dokka.location:io.kvision.navbar/Navbar/bgColor/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/bg-color.html
+$dokka.location:io.kvision.navbar/Navbar/brandLink/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/brand-link.html
 $dokka.location:io.kvision.navbar/Navbar/dataNavigo/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/data-navigo.html
 $dokka.location:io.kvision.navbar/Navbar/disposeAll/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/dispose-all.html
 $dokka.location:io.kvision.navbar/Navbar/expand/#/PointingToDeclaration/kvision/io.kvision.navbar/-navbar/expand.html
@@ -10773,6 +10852,10 @@ $dokka.location:io.kvision.react/React/state/#/PointingToDeclaration/kvision/io
 $dokka.location:io.kvision.react/React/subscribe/#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.react/-react/subscribe.html
 $dokka.location:io.kvision.redux////PointingToDeclaration/kvision/io.kvision.redux/index.html
 $dokka.location:io.kvision.redux//createReduxStore/#[Error type: Unresolved type for Reducer<S, A>][TypeParam(bounds=[kotlin.Any]),TypeParam(bounds=[kotlin.Any?])]#TypeParam(bounds=[kotlin.Any])#kotlin.Array[kotlin.Any]/PointingToDeclaration/kvision/io.kvision.redux/create-redux-store.html
+$dokka.location:io.kvision.redux/ActionCreator///PointingToDeclaration/kvision/io.kvision.redux/-action-creator/index.html
+$dokka.location:io.kvision.redux/Dispatch///PointingToDeclaration/kvision/io.kvision.redux/-dispatch/index.html
+$dokka.location:io.kvision.redux/GetState///PointingToDeclaration/kvision/io.kvision.redux/-get-state/index.html
+$dokka.location:io.kvision.redux/RAction///PointingToDeclaration/kvision/io.kvision.redux/-r-action/index.html
 $dokka.location:io.kvision.redux/ReduxStore///PointingToDeclaration/kvision/io.kvision.redux/-redux-store/index.html
 $dokka.location:io.kvision.redux/ReduxStore/ReduxStore/#[Error type: Unresolved type for Reducer<S, A>][TypeParam(bounds=[kotlin.Any]),TypeParam(bounds=[kotlin.Any?])]#TypeParam(bounds=[kotlin.Any])#kotlin.Array[kotlin.Any]/PointingToDeclaration/kvision/io.kvision.redux/-redux-store/-redux-store.html
 $dokka.location:io.kvision.redux/ReduxStore/dispatch/#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/kvision/io.kvision.redux/-redux-store/dispatch.html
@@ -10919,6 +11002,7 @@ $dokka.location:io.kvision.remote/LoginService/LoginService/#kotlin.String/Point
 $dokka.location:io.kvision.remote/LoginService/login/#io.kvision.remote.Credentials?/PointingToDeclaration/kvision/io.kvision.remote/-login-service/login.html
 $dokka.location:io.kvision.remote/LoginService/loginAgent/#/PointingToDeclaration/kvision/io.kvision.remote/-login-service/login-agent.html
 $dokka.location:io.kvision.remote/LoginService/loginEndpoint/#/PointingToDeclaration/kvision/io.kvision.remote/-login-service/login-endpoint.html
+$dokka.location:io.kvision.remote/NameGenerator///PointingToDeclaration/kvision/io.kvision.remote/-name-generator/index.html
 $dokka.location:io.kvision.remote/Object///PointingToDeclaration/kvision/io.kvision.remote/-object/index.html
 $dokka.location:io.kvision.remote/Object/Object/#/PointingToDeclaration/kvision/io.kvision.remote/-object/-object.html
 $dokka.location:io.kvision.remote/ObjectDeSerializer///PointingToDeclaration/kvision/io.kvision.remote/-object-de-serializer/index.html
@@ -10954,6 +11038,7 @@ $dokka.location:io.kvision.remote/RemoteSorter///PointingToDeclaration/kvision/
 $dokka.location:io.kvision.remote/RemoteSorter/RemoteSorter/#kotlin.String#kotlin.String/PointingToDeclaration/kvision/io.kvision.remote/-remote-sorter/-remote-sorter.html
 $dokka.location:io.kvision.remote/RemoteSorter/dir/#/PointingToDeclaration/kvision/io.kvision.remote/-remote-sorter/dir.html
 $dokka.location:io.kvision.remote/RemoteSorter/field/#/PointingToDeclaration/kvision/io.kvision.remote/-remote-sorter/field.html
+$dokka.location:io.kvision.remote/RequestHandler///PointingToDeclaration/kvision/io.kvision.remote/-request-handler/index.html
 $dokka.location:io.kvision.remote/ResponseBodyType.JSON///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.remote/-response-body-type/-j-s-o-n/index.html
 $dokka.location:io.kvision.remote/ResponseBodyType.READABLE_STREAM///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.remote/-response-body-type/-r-e-a-d-a-b-l-e_-s-t-r-e-a-m/index.html
 $dokka.location:io.kvision.remote/ResponseBodyType.TEXT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.remote/-response-body-type/-t-e-x-t/index.html
@@ -11000,6 +11085,8 @@ $dokka.location:io.kvision.remote/Socket/state/#/PointingToDeclaration/kvision/
 $dokka.location:io.kvision.remote/SocketClosedException///PointingToDeclaration/kvision/io.kvision.remote/-socket-closed-exception/index.html
 $dokka.location:io.kvision.remote/SocketClosedException/SocketClosedException/#kotlin.String/PointingToDeclaration/kvision/io.kvision.remote/-socket-closed-exception/-socket-closed-exception.html
 $dokka.location:io.kvision.remote/SocketClosedException/reason/#/PointingToDeclaration/kvision/io.kvision.remote/-socket-closed-exception/reason.html
+$dokka.location:io.kvision.remote/SseHandler///PointingToDeclaration/kvision/io.kvision.remote/-sse-handler/index.html
+$dokka.location:io.kvision.remote/WebsocketHandler///PointingToDeclaration/kvision/io.kvision.remote/-websocket-handler/index.html
 $dokka.location:io.kvision.rest////PointingToDeclaration/kvision/io.kvision.rest/index.html
 $dokka.location:io.kvision.rest//HTTP_BAD_GATEWAY/#/PointingToDeclaration/kvision/io.kvision.rest/-h-t-t-p_-b-a-d_-g-a-t-e-w-a-y.html
 $dokka.location:io.kvision.rest//HTTP_BAD_REQUEST/#/PointingToDeclaration/kvision/io.kvision.rest/-h-t-t-p_-b-a-d_-r-e-q-u-e-s-t.html
@@ -11163,6 +11250,8 @@ $dokka.location:io.kvision.snabbdom//set/io.kvision.snabbdom.On#kotlin.String#ko
 $dokka.location:io.kvision.snabbdom//styleModule/#/PointingToDeclaration/kvision/io.kvision.snabbdom/style-module.html
 $dokka.location:io.kvision.snabbdom/Attrs///PointingToDeclaration/kvision/io.kvision.snabbdom/-attrs/index.html
 $dokka.location:io.kvision.snabbdom/Classes///PointingToDeclaration/kvision/io.kvision.snabbdom/-classes/index.html
+$dokka.location:io.kvision.snabbdom/CreateHook///PointingToDeclaration/kvision/io.kvision.snabbdom/-create-hook/index.html
+$dokka.location:io.kvision.snabbdom/DestroyHook///PointingToDeclaration/kvision/io.kvision.snabbdom/-destroy-hook/index.html
 $dokka.location:io.kvision.snabbdom/Hooks///PointingToDeclaration/kvision/io.kvision.snabbdom/-hooks/index.html
 $dokka.location:io.kvision.snabbdom/Hooks/create/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-hooks/create.html
 $dokka.location:io.kvision.snabbdom/Hooks/destroy/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-hooks/destroy.html
@@ -11174,6 +11263,8 @@ $dokka.location:io.kvision.snabbdom/Hooks/pre/#/PointingToDeclaration/kvision/i
 $dokka.location:io.kvision.snabbdom/Hooks/prepatch/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-hooks/prepatch.html
 $dokka.location:io.kvision.snabbdom/Hooks/remove/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-hooks/remove.html
 $dokka.location:io.kvision.snabbdom/Hooks/update/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-hooks/update.html
+$dokka.location:io.kvision.snabbdom/InitHook///PointingToDeclaration/kvision/io.kvision.snabbdom/-init-hook/index.html
+$dokka.location:io.kvision.snabbdom/InsertHook///PointingToDeclaration/kvision/io.kvision.snabbdom/-insert-hook/index.html
 $dokka.location:io.kvision.snabbdom/Module///PointingToDeclaration/kvision/io.kvision.snabbdom/-module/index.html
 $dokka.location:io.kvision.snabbdom/Module/create/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-module/create.html
 $dokka.location:io.kvision.snabbdom/Module/destroy/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-module/destroy.html
@@ -11285,7 +11376,14 @@ $dokka.location:io.kvision.snabbdom/On/waiting/#/PointingToDeclaration/kvision/
 $dokka.location:io.kvision.snabbdom/On/webkitfullscreenchange/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-on/webkitfullscreenchange.html
 $dokka.location:io.kvision.snabbdom/On/webkitfullscreenerror/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-on/webkitfullscreenerror.html
 $dokka.location:io.kvision.snabbdom/On/wheel/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-on/wheel.html
+$dokka.location:io.kvision.snabbdom/Patch///PointingToDeclaration/kvision/io.kvision.snabbdom/-patch/index.html
+$dokka.location:io.kvision.snabbdom/PostHook///PointingToDeclaration/kvision/io.kvision.snabbdom/-post-hook/index.html
+$dokka.location:io.kvision.snabbdom/PostPatchHook///PointingToDeclaration/kvision/io.kvision.snabbdom/-post-patch-hook/index.html
+$dokka.location:io.kvision.snabbdom/PreHook///PointingToDeclaration/kvision/io.kvision.snabbdom/-pre-hook/index.html
+$dokka.location:io.kvision.snabbdom/PrePatchHook///PointingToDeclaration/kvision/io.kvision.snabbdom/-pre-patch-hook/index.html
 $dokka.location:io.kvision.snabbdom/Props///PointingToDeclaration/kvision/io.kvision.snabbdom/-props/index.html
+$dokka.location:io.kvision.snabbdom/RemoveHook///PointingToDeclaration/kvision/io.kvision.snabbdom/-remove-hook/index.html
+$dokka.location:io.kvision.snabbdom/UpdateHook///PointingToDeclaration/kvision/io.kvision.snabbdom/-update-hook/index.html
 $dokka.location:io.kvision.snabbdom/VNode///PointingToDeclaration/kvision/io.kvision.snabbdom/-v-node/index.html
 $dokka.location:io.kvision.snabbdom/VNode/children/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-v-node/children.html
 $dokka.location:io.kvision.snabbdom/VNode/data/#/PointingToDeclaration/kvision/io.kvision.snabbdom/-v-node/data.html
@@ -11498,16 +11596,24 @@ $dokka.location:io.kvision.tabulator.js/AccessorModule///PointingToDeclaration/
 $dokka.location:io.kvision.tabulator.js/AccessorModule/AccessorModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-accessor-module/-accessor-module.html
 $dokka.location:io.kvision.tabulator.js/AjaxModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-ajax-module/index.html
 $dokka.location:io.kvision.tabulator.js/AjaxModule/AjaxModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-ajax-module/-ajax-module.html
+$dokka.location:io.kvision.tabulator.js/CellEditEventCallback///PointingToDeclaration/kvision/io.kvision.tabulator.js/-cell-edit-event-callback/index.html
+$dokka.location:io.kvision.tabulator.js/CellEventCallback///PointingToDeclaration/kvision/io.kvision.tabulator.js/-cell-event-callback/index.html
 $dokka.location:io.kvision.tabulator.js/ClipboardModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-clipboard-module/index.html
 $dokka.location:io.kvision.tabulator.js/ClipboardModule/ClipboardModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-clipboard-module/-clipboard-module.html
+$dokka.location:io.kvision.tabulator.js/ColumnCalcParams///PointingToDeclaration/kvision/io.kvision.tabulator.js/-column-calc-params/index.html
 $dokka.location:io.kvision.tabulator.js/ColumnCalcsModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-column-calcs-module/index.html
 $dokka.location:io.kvision.tabulator.js/ColumnCalcsModule/ColumnCalcsModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-column-calcs-module/-column-calcs-module.html
+$dokka.location:io.kvision.tabulator.js/ColumnEventCallback///PointingToDeclaration/kvision/io.kvision.tabulator.js/-column-event-callback/index.html
+$dokka.location:io.kvision.tabulator.js/ColumnSorterParamLookupFunction///PointingToDeclaration/kvision/io.kvision.tabulator.js/-column-sorter-param-lookup-function/index.html
+$dokka.location:io.kvision.tabulator.js/CustomAccessor///PointingToDeclaration/kvision/io.kvision.tabulator.js/-custom-accessor/index.html
+$dokka.location:io.kvision.tabulator.js/CustomMutator///PointingToDeclaration/kvision/io.kvision.tabulator.js/-custom-mutator/index.html
 $dokka.location:io.kvision.tabulator.js/DataTreeModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-data-tree-module/index.html
 $dokka.location:io.kvision.tabulator.js/DataTreeModule/DataTreeModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-data-tree-module/-data-tree-module.html
 $dokka.location:io.kvision.tabulator.js/DownloadModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-download-module/index.html
 $dokka.location:io.kvision.tabulator.js/DownloadModule/DownloadModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-download-module/-download-module.html
 $dokka.location:io.kvision.tabulator.js/EditModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-edit-module/index.html
 $dokka.location:io.kvision.tabulator.js/EditModule/EditModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-edit-module/-edit-module.html
+$dokka.location:io.kvision.tabulator.js/EmptyCallback///PointingToDeclaration/kvision/io.kvision.tabulator.js/-empty-callback/index.html
 $dokka.location:io.kvision.tabulator.js/EventCallBackMethods///PointingToDeclaration/kvision/io.kvision.tabulator.js/-event-call-back-methods/index.html
 $dokka.location:io.kvision.tabulator.js/EventCallBackMethods/ajaxError/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-event-call-back-methods/ajax-error.html
 $dokka.location:io.kvision.tabulator.js/EventCallBackMethods/cellClick/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-event-call-back-methods/cell-click.html
@@ -11602,6 +11708,7 @@ $dokka.location:io.kvision.tabulator.js/EventCallBackMethods/tableBuilt/#/Pointi
 $dokka.location:io.kvision.tabulator.js/EventCallBackMethods/validationFailed/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-event-call-back-methods/validation-failed.html
 $dokka.location:io.kvision.tabulator.js/ExportModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-export-module/index.html
 $dokka.location:io.kvision.tabulator.js/ExportModule/ExportModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-export-module/-export-module.html
+$dokka.location:io.kvision.tabulator.js/FilterFunction///PointingToDeclaration/kvision/io.kvision.tabulator.js/-filter-function/index.html
 $dokka.location:io.kvision.tabulator.js/FilterModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-filter-module/index.html
 $dokka.location:io.kvision.tabulator.js/FilterModule/FilterModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-filter-module/-filter-module.html
 $dokka.location:io.kvision.tabulator.js/FormatModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-format-module/index.html
@@ -11610,8 +11717,10 @@ $dokka.location:io.kvision.tabulator.js/FrozenColumnsModule///PointingToDeclarat
 $dokka.location:io.kvision.tabulator.js/FrozenColumnsModule/FrozenColumnsModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-frozen-columns-module/-frozen-columns-module.html
 $dokka.location:io.kvision.tabulator.js/FrozenRowsModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-frozen-rows-module/index.html
 $dokka.location:io.kvision.tabulator.js/FrozenRowsModule/FrozenRowsModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-frozen-rows-module/-frozen-rows-module.html
+$dokka.location:io.kvision.tabulator.js/GroupEventCallback///PointingToDeclaration/kvision/io.kvision.tabulator.js/-group-event-callback/index.html
 $dokka.location:io.kvision.tabulator.js/GroupRowsModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-group-rows-module/index.html
 $dokka.location:io.kvision.tabulator.js/GroupRowsModule/GroupRowsModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-group-rows-module/-group-rows-module.html
+$dokka.location:io.kvision.tabulator.js/GroupValuesArg///PointingToDeclaration/kvision/io.kvision.tabulator.js/-group-values-arg/index.html
 $dokka.location:io.kvision.tabulator.js/HistoryModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-history-module/index.html
 $dokka.location:io.kvision.tabulator.js/HistoryModule/HistoryModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-history-module/-history-module.html
 $dokka.location:io.kvision.tabulator.js/HtmlTableImportModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-html-table-import-module/index.html
@@ -11652,6 +11761,8 @@ $dokka.location:io.kvision.tabulator.js/ResizeTableModule///PointingToDeclaratio
 $dokka.location:io.kvision.tabulator.js/ResizeTableModule/ResizeTableModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-resize-table-module/-resize-table-module.html
 $dokka.location:io.kvision.tabulator.js/ResponsiveLayoutModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-responsive-layout-module/index.html
 $dokka.location:io.kvision.tabulator.js/ResponsiveLayoutModule/ResponsiveLayoutModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-responsive-layout-module/-responsive-layout-module.html
+$dokka.location:io.kvision.tabulator.js/RowChangedCallback///PointingToDeclaration/kvision/io.kvision.tabulator.js/-row-changed-callback/index.html
+$dokka.location:io.kvision.tabulator.js/RowEventCallback///PointingToDeclaration/kvision/io.kvision.tabulator.js/-row-event-callback/index.html
 $dokka.location:io.kvision.tabulator.js/SelectRowModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-select-row-module/index.html
 $dokka.location:io.kvision.tabulator.js/SelectRowModule/SelectRowModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-select-row-module/-select-row-module.html
 $dokka.location:io.kvision.tabulator.js/SortModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-sort-module/index.html
@@ -12533,6 +12644,9 @@ $dokka.location:io.kvision.tabulator.js/TabulatorFull///PointingToDeclaration/k
 $dokka.location:io.kvision.tabulator.js/TabulatorFull/TabulatorFull/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator-full/-tabulator-full.html
 $dokka.location:io.kvision.tabulator.js/ValidateModule///PointingToDeclaration/kvision/io.kvision.tabulator.js/-validate-module/index.html
 $dokka.location:io.kvision.tabulator.js/ValidateModule/ValidateModule/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-validate-module/-validate-module.html
+$dokka.location:io.kvision.tabulator.js/ValueBooleanCallback///PointingToDeclaration/kvision/io.kvision.tabulator.js/-value-boolean-callback/index.html
+$dokka.location:io.kvision.tabulator.js/ValueStringCallback///PointingToDeclaration/kvision/io.kvision.tabulator.js/-value-string-callback/index.html
+$dokka.location:io.kvision.tabulator.js/ValueVoidCallback///PointingToDeclaration/kvision/io.kvision.tabulator.js/-value-void-callback/index.html
 $dokka.location:io.kvision.tabulator////PointingToDeclaration/kvision/io.kvision.tabulator/index.html
 $dokka.location:io.kvision.tabulator//tabulator/io.kvision.core.Container#io.kvision.state.ObservableState[TypeParam(bounds=[kotlin.Any])]#kotlin.Function1[TypeParam(bounds=[kotlin.Any]),kotlin.collections.List[TypeParam(bounds=[kotlin.Any])]]#io.kvision.tabulator.TabulatorOptions[TypeParam(bounds=[kotlin.Any])]#kotlin.collections.Set[io.kvision.tabulator.TableType]#kotlin.String?#[Error type: Unresolved type for KSerializer<T>][TypeParam(bounds=[kotlin.Any])]#[Error type: Unresolved type for SerializersModule]?#kotlin.Function1[io.kvision.tabulator.Tabulator[TypeParam(bounds=[kotlin.Any])],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.tabulator/tabulator.html
 $dokka.location:io.kvision.tabulator//tabulator/io.kvision.core.Container#io.kvision.tabulator.TabulatorOptions[kotlin.Any]#kotlin.collections.Set[io.kvision.tabulator.TableType]#kotlin.String?#kotlin.Function1[io.kvision.tabulator.Tabulator[kotlin.Any],kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.tabulator/tabulator.html

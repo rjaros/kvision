@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>io.kvision.maps.externals.leaflet.events</title>
     <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
     if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -18,12 +19,13 @@
         }
     }
     </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
 <link href="../../styles/style.css" rel="Stylesheet">
-<link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
 <link href="../../styles/main.css" rel="Stylesheet">
 <link href="../../styles/prism.css" rel="Stylesheet">
 <link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
@@ -32,28 +34,33 @@
 <script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
-<div class="navigation-wrapper" id="navigation-wrapper">
-    <div id="leftToggler"><span class="icon-toggler"></span></div>
-    <div class="library-name">
-            <a href="../../index.html">
-                    <span>kvision</span>
-            </a>
-    </div>
-    <div>
-7.0.0    </div>
-    <div class="pull-right d-flex">
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../index.html">
+                            kvision
+                    </a>
+            </div>
+            <div class="library-version">
+7.0.1            </div>
+        </div>
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector js-like" data-active="" data-filter=":dokkaHtml/kvision">js</button>
         </div>
-        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
-        <div id="searchBar"></div>
     </div>
-</div>
-<div id="container">
-    <div id="leftColumn">
-        <div id="sideMenu"></div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
     </div>
-    <div id="main">
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
 <div class="main-content" data-page-type="package" id="content" pageIds="kvision::io.kvision.maps.externals.leaflet.events////PointingToDeclaration//978196697">
   <div class="breadcrumbs"><a href="../../index.html">kvision</a><span class="delimiter">/</span><span class="current">io.kvision.maps.externals.leaflet.events</span></div>
   <div class="cover ">
@@ -85,7 +92,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-1526278499%2FClasslikes%2F978196697"><span>Drag</span><wbr></wbr><span>End</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-drag-end-event-handler-fn/index.html"><span>Drag</span><wbr></wbr><span>End</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1526278499%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -93,7 +100,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-1526278499%2FClasslikes%2F978196697">DragEndEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-drag-end-event/index.html">DragEndEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-drag-end-event-handler-fn/index.html">DragEndEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-drag-end-event/index.html">DragEndEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -119,7 +126,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-570905796%2FClasslikes%2F978196697"><span>Error</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-error-event-handler-fn/index.html"><span>Error</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-570905796%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -127,7 +134,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-570905796%2FClasslikes%2F978196697">ErrorEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-error-event/index.html">ErrorEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-error-event-handler-fn/index.html">ErrorEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-error-event/index.html">ErrorEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -187,7 +194,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-1365641261%2FClasslikes%2F978196697"><span>Layer</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-layer-event-handler-fn/index.html"><span>Layer</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1365641261%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -195,7 +202,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-1365641261%2FClasslikes%2F978196697">LayerEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-layer-event/index.html">LayerEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-layer-event-handler-fn/index.html">LayerEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-layer-event/index.html">LayerEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -221,7 +228,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-1895606999%2FClasslikes%2F978196697"><span>Layers</span><wbr></wbr><span>Control</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-layers-control-event-handler-fn/index.html"><span>Layers</span><wbr></wbr><span>Control</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1895606999%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -229,7 +236,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-1895606999%2FClasslikes%2F978196697">LayersControlEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-layers-control-event/index.html">LayersControlEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-layers-control-event-handler-fn/index.html">LayersControlEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-layers-control-event/index.html">LayersControlEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -238,7 +245,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#2003896694%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Any</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-any-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Any</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2003896694%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -246,7 +253,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#2003896694%2FClasslikes%2F978196697">LeafletAnyEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">baselayerchange</code> | <code class="lang-kotlin">overlayadd</code> | <code class="lang-kotlin">overlayremove</code> | <code class="lang-kotlin">layeradd</code> | <code class="lang-kotlin">layerremove</code> | <code class="lang-kotlin">zoomlevelschange</code> | <code class="lang-kotlin">unload</code> | <code class="lang-kotlin">viewreset</code> | <code class="lang-kotlin">load</code> | <code class="lang-kotlin">zoomstart</code> | <code class="lang-kotlin">movestart</code> | <code class="lang-kotlin">zoom</code> | <code class="lang-kotlin">move</code> | <code class="lang-kotlin">zoomend</code> | <code class="lang-kotlin">moveend</code> | <code class="lang-kotlin">autopanstart</code> | <code class="lang-kotlin">dragstart</code> | <code class="lang-kotlin">drag</code> | <code class="lang-kotlin">add</code> | <code class="lang-kotlin">remove</code> | <code class="lang-kotlin">loading</code> | <code class="lang-kotlin">error</code> | <code class="lang-kotlin">update</code> | <code class="lang-kotlin">down</code> | <code class="lang-kotlin">predrag</code> | <code class="lang-kotlin">resize</code> | <code class="lang-kotlin">popupopen</code> | <code class="lang-kotlin">popupclose</code> | <code class="lang-kotlin">tooltipopen</code> | <code class="lang-kotlin">tooltipclose</code> | <code class="lang-kotlin">locationerror</code> | <code class="lang-kotlin">locationfound</code> | <code class="lang-kotlin">click</code> | <code class="lang-kotlin">dblclick</code> | <code class="lang-kotlin">mousedown</code> | <code class="lang-kotlin">mouseup</code> | <code class="lang-kotlin">mouseover</code> | <code class="lang-kotlin">mouseout</code> | <code class="lang-kotlin">mousemove</code> | <code class="lang-kotlin">contextmenu</code> | <code class="lang-kotlin">preclick</code> | <code class="lang-kotlin">keypress</code> | <code class="lang-kotlin">keydown</code> | <code class="lang-kotlin">keyup</code> | <code class="lang-kotlin">zoomanim</code> | <code class="lang-kotlin">dragend</code> | <code class="lang-kotlin">tileunload</code> | <code class="lang-kotlin">tileloadstart</code> | <code class="lang-kotlin">tileload</code> | <code class="lang-kotlin">tileerror</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-any-event-id/index.html">LeafletAnyEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">baselayerchange</code> | <code class="lang-kotlin">overlayadd</code> | <code class="lang-kotlin">overlayremove</code> | <code class="lang-kotlin">layeradd</code> | <code class="lang-kotlin">layerremove</code> | <code class="lang-kotlin">zoomlevelschange</code> | <code class="lang-kotlin">unload</code> | <code class="lang-kotlin">viewreset</code> | <code class="lang-kotlin">load</code> | <code class="lang-kotlin">zoomstart</code> | <code class="lang-kotlin">movestart</code> | <code class="lang-kotlin">zoom</code> | <code class="lang-kotlin">move</code> | <code class="lang-kotlin">zoomend</code> | <code class="lang-kotlin">moveend</code> | <code class="lang-kotlin">autopanstart</code> | <code class="lang-kotlin">dragstart</code> | <code class="lang-kotlin">drag</code> | <code class="lang-kotlin">add</code> | <code class="lang-kotlin">remove</code> | <code class="lang-kotlin">loading</code> | <code class="lang-kotlin">error</code> | <code class="lang-kotlin">update</code> | <code class="lang-kotlin">down</code> | <code class="lang-kotlin">predrag</code> | <code class="lang-kotlin">resize</code> | <code class="lang-kotlin">popupopen</code> | <code class="lang-kotlin">popupclose</code> | <code class="lang-kotlin">tooltipopen</code> | <code class="lang-kotlin">tooltipclose</code> | <code class="lang-kotlin">locationerror</code> | <code class="lang-kotlin">locationfound</code> | <code class="lang-kotlin">click</code> | <code class="lang-kotlin">dblclick</code> | <code class="lang-kotlin">mousedown</code> | <code class="lang-kotlin">mouseup</code> | <code class="lang-kotlin">mouseover</code> | <code class="lang-kotlin">mouseout</code> | <code class="lang-kotlin">mousemove</code> | <code class="lang-kotlin">contextmenu</code> | <code class="lang-kotlin">preclick</code> | <code class="lang-kotlin">keypress</code> | <code class="lang-kotlin">keydown</code> | <code class="lang-kotlin">keyup</code> | <code class="lang-kotlin">zoomanim</code> | <code class="lang-kotlin">dragend</code> | <code class="lang-kotlin">tileunload</code> | <code class="lang-kotlin">tileloadstart</code> | <code class="lang-kotlin">tileload</code> | <code class="lang-kotlin">tileerror</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -255,7 +262,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-27604505%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Control</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-control-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Control</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-27604505%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -263,7 +270,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-27604505%2FClasslikes%2F978196697">LeafletControlEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">baselayerchange</code> | <code class="lang-kotlin">overlayadd</code> | <code class="lang-kotlin">overlayremove</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-control-event-id/index.html">LeafletControlEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">baselayerchange</code> | <code class="lang-kotlin">overlayadd</code> | <code class="lang-kotlin">overlayremove</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -272,7 +279,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-996105327%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Drag</span><wbr></wbr><span>End</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-drag-end-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Drag</span><wbr></wbr><span>End</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-996105327%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -280,7 +287,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-996105327%2FClasslikes%2F978196697">LeafletDragEndEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">dragend</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-drag-end-event-id/index.html">LeafletDragEndEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">dragend</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -289,7 +296,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#1037463058%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Error</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-error-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Error</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1037463058%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -297,7 +304,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#1037463058%2FClasslikes%2F978196697">LeafletErrorEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">locationerror</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-error-event-id/index.html">LeafletErrorEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">locationerror</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -323,7 +330,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#1375770343%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-leaflet-event-handler-fn/index.html"><span>Leaflet</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1375770343%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -331,7 +338,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#1375770343%2FClasslikes%2F978196697">LeafletEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-leaflet-event/index.html">LeafletEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-event-handler-fn/index.html">LeafletEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-leaflet-event/index.html">LeafletEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -357,7 +364,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-1213415346%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1213415346%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -365,7 +372,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-1213415346%2FClasslikes%2F978196697">LeafletEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">zoomlevelschange</code> | <code class="lang-kotlin">unload</code> | <code class="lang-kotlin">viewreset</code> | <code class="lang-kotlin">load</code> | <code class="lang-kotlin">zoomstart</code> | <code class="lang-kotlin">movestart</code> | <code class="lang-kotlin">zoom</code> | <code class="lang-kotlin">move</code> | <code class="lang-kotlin">zoomend</code> | <code class="lang-kotlin">moveend</code> | <code class="lang-kotlin">autopanstart</code> | <code class="lang-kotlin">dragstart</code> | <code class="lang-kotlin">drag</code> | <code class="lang-kotlin">add</code> | <code class="lang-kotlin">remove</code> | <code class="lang-kotlin">loading</code> | <code class="lang-kotlin">error</code> | <code class="lang-kotlin">update</code> | <code class="lang-kotlin">down</code> | <code class="lang-kotlin">predrag</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-event-id/index.html">LeafletEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">zoomlevelschange</code> | <code class="lang-kotlin">unload</code> | <code class="lang-kotlin">viewreset</code> | <code class="lang-kotlin">load</code> | <code class="lang-kotlin">zoomstart</code> | <code class="lang-kotlin">movestart</code> | <code class="lang-kotlin">zoom</code> | <code class="lang-kotlin">move</code> | <code class="lang-kotlin">zoomend</code> | <code class="lang-kotlin">moveend</code> | <code class="lang-kotlin">autopanstart</code> | <code class="lang-kotlin">dragstart</code> | <code class="lang-kotlin">drag</code> | <code class="lang-kotlin">add</code> | <code class="lang-kotlin">remove</code> | <code class="lang-kotlin">loading</code> | <code class="lang-kotlin">error</code> | <code class="lang-kotlin">update</code> | <code class="lang-kotlin">down</code> | <code class="lang-kotlin">predrag</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -391,7 +398,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-1516083456%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Keyboard</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-leaflet-keyboard-event-handler-fn/index.html"><span>Leaflet</span><wbr></wbr><span>Keyboard</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1516083456%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -399,7 +406,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-1516083456%2FClasslikes%2F978196697">LeafletKeyboardEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-leaflet-keyboard-event/index.html">LeafletKeyboardEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-keyboard-event-handler-fn/index.html">LeafletKeyboardEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-leaflet-keyboard-event/index.html">LeafletKeyboardEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -408,7 +415,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-1020269995%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Keyboard</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-keyboard-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Keyboard</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1020269995%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -416,7 +423,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-1020269995%2FClasslikes%2F978196697">LeafletKeyboardEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">keypress</code> | <code class="lang-kotlin">keydown</code> | <code class="lang-kotlin">keyup</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-keyboard-event-id/index.html">LeafletKeyboardEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">keypress</code> | <code class="lang-kotlin">keydown</code> | <code class="lang-kotlin">keyup</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -425,7 +432,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#2078936411%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Layer</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-layer-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Layer</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2078936411%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -433,7 +440,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#2078936411%2FClasslikes%2F978196697">LeafletLayerEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">layeradd</code> | <code class="lang-kotlin">layerremove</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-layer-event-id/index.html">LeafletLayerEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">layeradd</code> | <code class="lang-kotlin">layerremove</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -442,7 +449,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#849763875%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Location</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-location-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Location</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="849763875%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -450,7 +457,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#849763875%2FClasslikes%2F978196697">LeafletLocationEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">locationfound</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-location-event-id/index.html">LeafletLocationEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">locationfound</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -476,7 +483,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#859485030%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Mouse</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-leaflet-mouse-event-handler-fn/index.html"><span>Leaflet</span><wbr></wbr><span>Mouse</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="859485030%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -484,7 +491,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#859485030%2FClasslikes%2F978196697">LeafletMouseEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-leaflet-mouse-event/index.html">LeafletMouseEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-mouse-event-handler-fn/index.html">LeafletMouseEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-leaflet-mouse-event/index.html">LeafletMouseEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -493,7 +500,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#1131160751%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Mouse</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-mouse-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Mouse</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1131160751%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -501,7 +508,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#1131160751%2FClasslikes%2F978196697">LeafletMouseEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">click</code> | <code class="lang-kotlin">dblclick</code> | <code class="lang-kotlin">mousedown</code> | <code class="lang-kotlin">mouseup</code> | <code class="lang-kotlin">mouseover</code> | <code class="lang-kotlin">mouseout</code> | <code class="lang-kotlin">mousemove</code> | <code class="lang-kotlin">contextmenu</code> | <code class="lang-kotlin">preclick</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-mouse-event-id/index.html">LeafletMouseEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">click</code> | <code class="lang-kotlin">dblclick</code> | <code class="lang-kotlin">mousedown</code> | <code class="lang-kotlin">mouseup</code> | <code class="lang-kotlin">mouseover</code> | <code class="lang-kotlin">mouseout</code> | <code class="lang-kotlin">mousemove</code> | <code class="lang-kotlin">contextmenu</code> | <code class="lang-kotlin">preclick</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -510,7 +517,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#1588362422%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Popup</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-popup-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Popup</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1588362422%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -518,7 +525,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#1588362422%2FClasslikes%2F978196697">LeafletPopupEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">popupopen</code> | <code class="lang-kotlin">popupclose</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-popup-event-id/index.html">LeafletPopupEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">popupopen</code> | <code class="lang-kotlin">popupclose</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -527,7 +534,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-1190564958%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Resize</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-resize-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Resize</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1190564958%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -535,7 +542,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-1190564958%2FClasslikes%2F978196697">LeafletResizeEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">resize</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-resize-event-id/index.html">LeafletResizeEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">resize</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -544,7 +551,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#1301615086%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Tile</span><wbr></wbr><span>Error</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-tile-error-id/index.html"><span>Leaflet</span><wbr></wbr><span>Tile</span><wbr></wbr><span>Error</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1301615086%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -552,7 +559,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#1301615086%2FClasslikes%2F978196697">LeafletTileErrorId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">tileerror</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-tile-error-id/index.html">LeafletTileErrorId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">tileerror</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -561,7 +568,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#1355130396%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Tile</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-tile-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Tile</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1355130396%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -569,7 +576,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#1355130396%2FClasslikes%2F978196697">LeafletTileEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">tileunload</code> | <code class="lang-kotlin">tileloadstart</code> | <code class="lang-kotlin">tileload</code> | <code class="lang-kotlin">tileerror</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-tile-event-id/index.html">LeafletTileEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">tileunload</code> | <code class="lang-kotlin">tileloadstart</code> | <code class="lang-kotlin">tileload</code> | <code class="lang-kotlin">tileerror</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -578,7 +585,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#527113357%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Tooltip</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-tooltip-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Tooltip</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="527113357%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -586,7 +593,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#527113357%2FClasslikes%2F978196697">LeafletTooltipEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">tooltipopen</code> | <code class="lang-kotlin">tooltipclose</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-tooltip-event-id/index.html">LeafletTooltipEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">tooltipopen</code> | <code class="lang-kotlin">tooltipclose</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -595,7 +602,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#1595144946%2FClasslikes%2F978196697"><span>Leaflet</span><wbr></wbr><span>Zoom</span><wbr></wbr><span>Anim</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
+                  <div><a href="-leaflet-zoom-anim-event-id/index.html"><span>Leaflet</span><wbr></wbr><span>Zoom</span><wbr></wbr><span>Anim</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1595144946%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -603,7 +610,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#1595144946%2FClasslikes%2F978196697">LeafletZoomAnimEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">zoomanim</code></p></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-zoom-anim-event-id/index.html">LeafletZoomAnimEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">zoomanim</code></p></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -629,7 +636,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-348228039%2FClasslikes%2F978196697"><span>Location</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-location-event-handler-fn/index.html"><span>Location</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-348228039%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -637,7 +644,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-348228039%2FClasslikes%2F978196697">LocationEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-location-event/index.html">LocationEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-location-event-handler-fn/index.html">LocationEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-location-event/index.html">LocationEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -663,7 +670,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#488086552%2FClasslikes%2F978196697"><span>Popup</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-popup-event-handler-fn/index.html"><span>Popup</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="488086552%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -671,7 +678,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#488086552%2FClasslikes%2F978196697">PopupEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-popup-event/index.html">PopupEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-popup-event-handler-fn/index.html">PopupEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-popup-event/index.html">PopupEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -697,7 +704,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-1300688486%2FClasslikes%2F978196697"><span>Resize</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-resize-event-handler-fn/index.html"><span>Resize</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1300688486%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -705,7 +712,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-1300688486%2FClasslikes%2F978196697">ResizeEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-resize-event/index.html">ResizeEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-resize-event-handler-fn/index.html">ResizeEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-resize-event/index.html">ResizeEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -731,7 +738,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-1907730550%2FClasslikes%2F978196697"><span>Tile</span><wbr></wbr><span>Error</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-tile-error-event-handler-fn/index.html"><span>Tile</span><wbr></wbr><span>Error</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1907730550%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -739,7 +746,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-1907730550%2FClasslikes%2F978196697">TileErrorEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-tile-error-event/index.html">TileErrorEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-tile-error-event-handler-fn/index.html">TileErrorEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-tile-error-event/index.html">TileErrorEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -765,7 +772,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#331247520%2FClasslikes%2F978196697"><span>Tile</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-tile-event-handler-fn/index.html"><span>Tile</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="331247520%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -773,7 +780,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#331247520%2FClasslikes%2F978196697">TileEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-tile-event/index.html">TileEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-tile-event-handler-fn/index.html">TileEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-tile-event/index.html">TileEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -799,7 +806,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#1101892129%2FClasslikes%2F978196697"><span>Tooltip</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-tooltip-event-handler-fn/index.html"><span>Tooltip</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1101892129%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -807,7 +814,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#1101892129%2FClasslikes%2F978196697">TooltipEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-tooltip-event/index.html">TooltipEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-tooltip-event-handler-fn/index.html">TooltipEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-tooltip-event/index.html">TooltipEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -833,7 +840,7 @@
           <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#-1868782966%2FClasslikes%2F978196697"><span>Zoom</span><wbr></wbr><span>Anim</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
+                  <div><a href="-zoom-anim-event-handler-fn/index.html"><span>Zoom</span><wbr></wbr><span>Anim</span><wbr></wbr><span>Event</span><wbr></wbr><span>Handler</span><wbr></wbr><span><span>Fn</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1868782966%2FClasslikes%2F978196697"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
@@ -841,7 +848,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="index.html#-1868782966%2FClasslikes%2F978196697">ZoomAnimEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-zoom-anim-event/index.html">ZoomAnimEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-zoom-anim-event-handler-fn/index.html">ZoomAnimEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span><span class="token keyword"></span>event<span class="token operator">: </span><a href="-zoom-anim-event/index.html">ZoomAnimEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -856,7 +863,8 @@
                 class="pull-right"><span>Generated by </span><a
                 href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 </html>

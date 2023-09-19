@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Options</title>
     <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
     if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -18,12 +19,13 @@
         }
     }
     </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
 <link href="../../../../styles/style.css" rel="Stylesheet">
-<link href="../../../../styles/jetbrains-mono.css" rel="Stylesheet">
 <link href="../../../../styles/main.css" rel="Stylesheet">
 <link href="../../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <script type="text/javascript" src="../../../../scripts/clipboard.js" async="async"></script>
 <script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
@@ -32,28 +34,33 @@
 <script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
-<div class="navigation-wrapper" id="navigation-wrapper">
-    <div id="leftToggler"><span class="icon-toggler"></span></div>
-    <div class="library-name">
-            <a href="../../../../index.html">
-                    <span>kvision</span>
-            </a>
-    </div>
-    <div>
-7.0.0    </div>
-    <div class="pull-right d-flex">
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../../index.html">
+                            kvision
+                    </a>
+            </div>
+            <div class="library-version">
+7.0.1            </div>
+        </div>
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector js-like" data-active="" data-filter=":dokkaHtml/kvision">js</button>
         </div>
-        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
-        <div id="searchBar"></div>
     </div>
-</div>
-<div id="container">
-    <div id="leftColumn">
-        <div id="sideMenu"></div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
     </div>
-    <div id="main">
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
 <div class="main-content" data-page-type="classlike" id="content" pageIds="kvision::io.kvision.tabulator.js/Tabulator.Options///PointingToDeclaration//978196697">
   <div class="breadcrumbs"><a href="../../../../index.html">kvision</a><span class="delimiter">/</span><a href="../../index.html">io.kvision.tabulator.js</a><span class="delimiter">/</span><a href="../index.html">Tabulator</a><span class="delimiter">/</span><span class="current">Options</span></div>
   <div class="cover ">
@@ -385,7 +392,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-click.html">cellClick</a><span class="token operator">: </span><a href="../../index.html#1389535339%2FClasslikes%2F978196697">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-click.html">cellClick</a><span class="token operator">: </span><a href="../../-cell-event-callback/index.html">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -402,7 +409,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-context.html">cellContext</a><span class="token operator">: </span><a href="../../index.html#1389535339%2FClasslikes%2F978196697">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-context.html">cellContext</a><span class="token operator">: </span><a href="../../-cell-event-callback/index.html">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -419,7 +426,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-dbl-click.html">cellDblClick</a><span class="token operator">: </span><a href="../../index.html#1389535339%2FClasslikes%2F978196697">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-dbl-click.html">cellDblClick</a><span class="token operator">: </span><a href="../../-cell-event-callback/index.html">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -436,7 +443,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-dbl-tap.html">cellDblTap</a><span class="token operator">: </span><a href="../../index.html#1389535339%2FClasslikes%2F978196697">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-dbl-tap.html">cellDblTap</a><span class="token operator">: </span><a href="../../-cell-event-callback/index.html">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -453,7 +460,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-edit-cancelled.html">cellEditCancelled</a><span class="token operator">: </span><a href="../../index.html#-139538795%2FClasslikes%2F978196697">CellEditEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-edit-cancelled.html">cellEditCancelled</a><span class="token operator">: </span><a href="../../-cell-edit-event-callback/index.html">CellEditEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -470,7 +477,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-edited.html">cellEdited</a><span class="token operator">: </span><a href="../../index.html#-139538795%2FClasslikes%2F978196697">CellEditEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-edited.html">cellEdited</a><span class="token operator">: </span><a href="../../-cell-edit-event-callback/index.html">CellEditEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -487,7 +494,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-editing.html">cellEditing</a><span class="token operator">: </span><a href="../../index.html#-139538795%2FClasslikes%2F978196697">CellEditEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-editing.html">cellEditing</a><span class="token operator">: </span><a href="../../-cell-edit-event-callback/index.html">CellEditEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -504,7 +511,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-mouse-enter.html">cellMouseEnter</a><span class="token operator">: </span><a href="../../index.html#1389535339%2FClasslikes%2F978196697">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-mouse-enter.html">cellMouseEnter</a><span class="token operator">: </span><a href="../../-cell-event-callback/index.html">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -521,7 +528,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-mouse-leave.html">cellMouseLeave</a><span class="token operator">: </span><a href="../../index.html#1389535339%2FClasslikes%2F978196697">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-mouse-leave.html">cellMouseLeave</a><span class="token operator">: </span><a href="../../-cell-event-callback/index.html">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -538,7 +545,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-mouse-move.html">cellMouseMove</a><span class="token operator">: </span><a href="../../index.html#1389535339%2FClasslikes%2F978196697">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-mouse-move.html">cellMouseMove</a><span class="token operator">: </span><a href="../../-cell-event-callback/index.html">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -555,7 +562,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-mouse-out.html">cellMouseOut</a><span class="token operator">: </span><a href="../../index.html#1389535339%2FClasslikes%2F978196697">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-mouse-out.html">cellMouseOut</a><span class="token operator">: </span><a href="../../-cell-event-callback/index.html">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -572,7 +579,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-mouse-over.html">cellMouseOver</a><span class="token operator">: </span><a href="../../index.html#1389535339%2FClasslikes%2F978196697">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-mouse-over.html">cellMouseOver</a><span class="token operator">: </span><a href="../../-cell-event-callback/index.html">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -589,7 +596,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-tap.html">cellTap</a><span class="token operator">: </span><a href="../../index.html#1389535339%2FClasslikes%2F978196697">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-tap.html">cellTap</a><span class="token operator">: </span><a href="../../-cell-event-callback/index.html">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -606,7 +613,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-tap-hold.html">cellTapHold</a><span class="token operator">: </span><a href="../../index.html#1389535339%2FClasslikes%2F978196697">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-cell/cell-tap-hold.html">cellTapHold</a><span class="token operator">: </span><a href="../../-cell-event-callback/index.html">CellEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -1541,7 +1548,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-click.html">groupClick</a><span class="token operator">: </span><a href="../../index.html#768040442%2FClasslikes%2F978196697">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-click.html">groupClick</a><span class="token operator">: </span><a href="../../-group-event-callback/index.html">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -1592,7 +1599,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-context.html">groupContext</a><span class="token operator">: </span><a href="../../index.html#768040442%2FClasslikes%2F978196697">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-context.html">groupContext</a><span class="token operator">: </span><a href="../../-group-event-callback/index.html">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -1626,7 +1633,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-dbl-click.html">groupDblClick</a><span class="token operator">: </span><a href="../../index.html#768040442%2FClasslikes%2F978196697">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-dbl-click.html">groupDblClick</a><span class="token operator">: </span><a href="../../-group-event-callback/index.html">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -1643,7 +1650,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-dbl-tap.html">groupDblTap</a><span class="token operator">: </span><a href="../../index.html#768040442%2FClasslikes%2F978196697">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-dbl-tap.html">groupDblTap</a><span class="token operator">: </span><a href="../../-group-event-callback/index.html">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -1762,7 +1769,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-tap.html">groupTap</a><span class="token operator">: </span><a href="../../index.html#768040442%2FClasslikes%2F978196697">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-tap.html">groupTap</a><span class="token operator">: </span><a href="../../-group-event-callback/index.html">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -1779,7 +1786,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-tap-hold.html">groupTapHold</a><span class="token operator">: </span><a href="../../index.html#768040442%2FClasslikes%2F978196697">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-tap-hold.html">groupTapHold</a><span class="token operator">: </span><a href="../../-group-event-callback/index.html">GroupEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -1830,7 +1837,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-values.html">groupValues</a><span class="token operator">: </span><a href="../../index.html#-631161147%2FClasslikes%2F978196697">GroupValuesArg</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-row-grouping/group-values.html">groupValues</a><span class="token operator">: </span><a href="../../-group-values-arg/index.html">GroupValuesArg</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -2000,7 +2007,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-general/html-imported.html">htmlImported</a><span class="token operator">: </span><a href="../../index.html#548329366%2FClasslikes%2F978196697">EmptyCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-general/html-imported.html">htmlImported</a><span class="token operator">: </span><a href="../../-empty-callback/index.html">EmptyCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -2017,7 +2024,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-general/html-importing.html">htmlImporting</a><span class="token operator">: </span><a href="../../index.html#548329366%2FClasslikes%2F978196697">EmptyCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-general/html-importing.html">htmlImporting</a><span class="token operator">: </span><a href="../../-empty-callback/index.html">EmptyCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3241,7 +3248,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-added.html">rowAdded</a><span class="token operator">: </span><a href="../../index.html#-1959392837%2FClasslikes%2F978196697">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-added.html">rowAdded</a><span class="token operator">: </span><a href="../../-row-changed-callback/index.html">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3258,7 +3265,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-click.html">rowClick</a><span class="token operator">: </span><a href="../../index.html#-1710664875%2FClasslikes%2F978196697">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-click.html">rowClick</a><span class="token operator">: </span><a href="../../-row-event-callback/index.html">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3292,7 +3299,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-context.html">rowContext</a><span class="token operator">: </span><a href="../../index.html#-1710664875%2FClasslikes%2F978196697">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-context.html">rowContext</a><span class="token operator">: </span><a href="../../-row-event-callback/index.html">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3326,7 +3333,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-dbl-click.html">rowDblClick</a><span class="token operator">: </span><a href="../../index.html#-1710664875%2FClasslikes%2F978196697">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-dbl-click.html">rowDblClick</a><span class="token operator">: </span><a href="../../-row-event-callback/index.html">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3343,7 +3350,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-dbl-tap.html">rowDblTap</a><span class="token operator">: </span><a href="../../index.html#-1710664875%2FClasslikes%2F978196697">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-dbl-tap.html">rowDblTap</a><span class="token operator">: </span><a href="../../-row-event-callback/index.html">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3360,7 +3367,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-deleted.html">rowDeleted</a><span class="token operator">: </span><a href="../../index.html#-1959392837%2FClasslikes%2F978196697">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-deleted.html">rowDeleted</a><span class="token operator">: </span><a href="../../-row-changed-callback/index.html">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3377,7 +3384,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-deselected.html">rowDeselected</a><span class="token operator">: </span><a href="../../index.html#-1959392837%2FClasslikes%2F978196697">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-deselected.html">rowDeselected</a><span class="token operator">: </span><a href="../../-row-changed-callback/index.html">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3462,7 +3469,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-mouse-enter.html">rowMouseEnter</a><span class="token operator">: </span><a href="../../index.html#-1710664875%2FClasslikes%2F978196697">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-mouse-enter.html">rowMouseEnter</a><span class="token operator">: </span><a href="../../-row-event-callback/index.html">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3479,7 +3486,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-mouse-leave.html">rowMouseLeave</a><span class="token operator">: </span><a href="../../index.html#-1710664875%2FClasslikes%2F978196697">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-mouse-leave.html">rowMouseLeave</a><span class="token operator">: </span><a href="../../-row-event-callback/index.html">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3496,7 +3503,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-mouse-move.html">rowMouseMove</a><span class="token operator">: </span><a href="../../index.html#-1710664875%2FClasslikes%2F978196697">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-mouse-move.html">rowMouseMove</a><span class="token operator">: </span><a href="../../-row-event-callback/index.html">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3513,7 +3520,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-mouse-out.html">rowMouseOut</a><span class="token operator">: </span><a href="../../index.html#-1710664875%2FClasslikes%2F978196697">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-mouse-out.html">rowMouseOut</a><span class="token operator">: </span><a href="../../-row-event-callback/index.html">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3530,7 +3537,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-mouse-over.html">rowMouseOver</a><span class="token operator">: </span><a href="../../index.html#-1710664875%2FClasslikes%2F978196697">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-mouse-over.html">rowMouseOver</a><span class="token operator">: </span><a href="../../-row-event-callback/index.html">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3547,7 +3554,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-moved.html">rowMoved</a><span class="token operator">: </span><a href="../../index.html#-1959392837%2FClasslikes%2F978196697">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-moved.html">rowMoved</a><span class="token operator">: </span><a href="../../-row-changed-callback/index.html">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3564,7 +3571,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-resized.html">rowResized</a><span class="token operator">: </span><a href="../../index.html#-1959392837%2FClasslikes%2F978196697">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-resized.html">rowResized</a><span class="token operator">: </span><a href="../../-row-changed-callback/index.html">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3581,7 +3588,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-selected.html">rowSelected</a><span class="token operator">: </span><a href="../../index.html#-1959392837%2FClasslikes%2F978196697">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-selected.html">rowSelected</a><span class="token operator">: </span><a href="../../-row-changed-callback/index.html">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3615,7 +3622,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-tap.html">rowTap</a><span class="token operator">: </span><a href="../../index.html#-1710664875%2FClasslikes%2F978196697">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-tap.html">rowTap</a><span class="token operator">: </span><a href="../../-row-event-callback/index.html">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3632,7 +3639,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-tap-hold.html">rowTapHold</a><span class="token operator">: </span><a href="../../index.html#-1710664875%2FClasslikes%2F978196697">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-tap-hold.html">rowTapHold</a><span class="token operator">: </span><a href="../../-row-event-callback/index.html">RowEventCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3649,7 +3656,7 @@
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-updated.html">rowUpdated</a><span class="token operator">: </span><a href="../../index.html#-1959392837%2FClasslikes%2F978196697">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><a href="../-options-rows/row-updated.html">rowUpdated</a><span class="token operator">: </span><a href="../../-row-changed-callback/index.html">RowChangedCallback</a><span class="token operator">?</span></div></div>                  </div>
                 </div>
               </div>
             </div>
@@ -3987,7 +3994,8 @@
                 class="pull-right"><span>Generated by </span><a
                 href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 </html>
