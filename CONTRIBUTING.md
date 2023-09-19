@@ -11,13 +11,12 @@
 
 ## How to develop KVision
 
-1. You need JDK 11 or later installed on your system.
+1. You need JDK 17 or later installed on your system.
 2. Clone the code repository (create a fork if you want to make pull requests with your changes).
-3. Change the version number in the file `kvision-tools/kvision-gradle-plugin/src/main/kotlin/io/kvision/gradle/KVisionPlugin.kt` (at the bottom of the `configureMppProject` function) to the current version number with a `-SNAPSHOT` suffix.
-4. Make your changes to KVision code.
-5. Run tests with `./gradlew check` command to check if everything is OK.
-6. Compile and publish artifacts to your local Maven repository with `./gradlew publishToMavenLocal -PSNAPSHOT=true` command. It will automatically publish a `*-SNAPSHOT` version.
-7. Use your snapshot of KVision by specifying the correct version number in your application (in `gradle.properties` file). Remember to clean your project every time you publish new version of the framework.
+3. Make your changes to KVision code.
+4. Run tests with `./gradlew check` command to check if everything is OK.
+5. Compile and publish artifacts to your local Maven repository with `./gradlew publishToMavenLocal -PSNAPSHOT=true` command. It will automatically publish a `*-SNAPSHOT` version.
+6. Use your snapshot of KVision by specifying the correct version number in your application (in `gradle.properties` file). Remember to clean your project every time you publish new version of the framework.
 
 ## How to create new module
 
