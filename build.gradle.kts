@@ -103,7 +103,7 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("trix", trixVersion)
         resolution("tabulator-tables", tabulatorTablesVersion)
         resolution("toastify-js", toastifyjsVersion)
-        resolution("@remotedevforce/tom-select", tomSelectVersion)
+        resolution("tom-select", tomSelectVersion)
     }
 }
 

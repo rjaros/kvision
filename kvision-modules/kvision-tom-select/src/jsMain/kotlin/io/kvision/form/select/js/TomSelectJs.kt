@@ -24,7 +24,7 @@ package io.kvision.form.select.js
 
 import org.w3c.dom.HTMLElement
 
-@JsModule("@remotedevforce/tom-select")
+@JsModule("tom-select")
 @JsNonModule
 @JsName("TomSelect")
 external class TomSelectJs(element: HTMLElement, options: dynamic) {

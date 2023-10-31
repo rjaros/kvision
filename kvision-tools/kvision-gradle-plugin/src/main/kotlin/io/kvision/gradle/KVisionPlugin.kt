@@ -498,7 +498,7 @@ abstract class KVisionPlugin @Inject constructor(
                 resolution("trix", kvVersions["trixVersion"]!!)
                 resolution("tabulator-tables", kvVersions["tabulatorTablesVersion"]!!)
                 resolution("toastify-js", kvVersions["toastifyjsVersion"]!!)
-                resolution("@remotedevforce/tom-select", kvVersions["tomSelectVersion"]!!)
+                resolution("tom-select", kvVersions["tomSelectVersion"]!!)
             }
 
             if (kvExtension.enableHiddenKotlinJsStore.get()) {
