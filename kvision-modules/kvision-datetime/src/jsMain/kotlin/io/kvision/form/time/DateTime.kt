@@ -265,6 +265,24 @@ open class DateTime(
         }
 
     /**
+     * Date/time month header format.
+     */
+    var monthHeaderFormat
+        get() = input.monthHeaderFormat
+        set(value) {
+            input.monthHeaderFormat = value
+        }
+
+    /**
+     * Date/time year header format.
+     */
+    var yearHeaderFormat
+        get() = input.yearHeaderFormat
+        set(value) {
+            input.yearHeaderFormat = value
+        }
+
+    /**
      * The label text bound to the input element.
      */
     var label

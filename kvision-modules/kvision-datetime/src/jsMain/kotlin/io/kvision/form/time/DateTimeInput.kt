@@ -74,6 +74,25 @@ enum class ToolbarPlacement(internal val placement: String) {
 }
 
 /**
+ * Date/time chooser month header format.
+ */
+enum class MonthHeaderFormat(internal val format: String) {
+    TWODIGIT("2-digit"),
+    NUMERIC("numeric"),
+    NARROW("narrow"),
+    SHORT("short"),
+    LONG("long"),
+}
+
+/**
+ * Date/time chooser year header format.
+ */
+enum class YearHeaderFormat(internal val format: String) {
+    TWODIGIT("2-digit"),
+    NUMERIC("numeric"),
+}
+
+/**
  * Basic date/time chooser component.
  *
  * @constructor
@@ -288,6 +307,16 @@ open class DateTimeInput(
      */
     var toolbarPlacement: ToolbarPlacement? by refreshOnUpdate { refreshDatePicker() }
 
+    /**
+     * Date/time chooser month header format.
+     */
+    var monthHeaderFormat: MonthHeaderFormat? by refreshOnUpdate { refreshDatePicker() }
+
+    /**
+     * Date/time chooser year header format.
+     */
+    var yearHeaderFormat: YearHeaderFormat? by refreshOnUpdate { refreshDatePicker() }
+
     init {
         id = idc
         useSnabbdomDistinctKey()
@@ -390,6 +419,12 @@ open class DateTimeInput(
         val locale = DatetimeModule.locales[language] ?: js("{}")
         locale["locale"] = language
         locale["format"] = newFormat
+        if (monthHeaderFormat != null || yearHeaderFormat != null) {
+            locale["dayViewHeaderFormat"] = obj {
+                this.month = if (monthHeaderFormat != null) monthHeaderFormat!!.format else "long"
+                this.year = if (yearHeaderFormat != null) yearHeaderFormat!!.format else "2-digit"
+            }
+        }
         val initialViewMode = viewMode ?: if (calendarView) ViewMode.CALENDAR else ViewMode.CLOCK
         val currentTheme = if (theme == null || theme == Theme.AUTO) {
             document.documentElement?.getAttribute("data-bs-theme")?.let { theme ->
