@@ -507,8 +507,12 @@ fun <T : Any> ColumnDefinition<T>.toJs(
           success: (value: dynamic) -> Unit, cancel: (value: dynamic) -> Unit, _: dynamic ->
             if (cell.getElement().asDynamic() != false) cell.getElement().style.asDynamic().overflow = "visible"
             var onRenderedCallback: (() -> Unit)? = null
-            if (kClass == null) throw IllegalStateException("The data class type is unknown")
-            val data = tabulator.toKotlinObj(cell.getData())
+            val data: dynamic = if (kClass != null) {
+                tabulator.toKotlinObj(cell.getData())
+            } else {
+                cell.getData()
+            }
+            @Suppress("UnsafeCastFromDynamic")
             val component = it(cell, { callback ->
                 onRenderedCallback = callback
             }, { value ->
@@ -546,8 +550,12 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         { cell: Tabulator.CellComponent, _: dynamic,
           onRendered: (callback: () -> Unit) -> Unit ->
             var onRenderedCallback: (() -> Unit)? = null
-            if (kClass == null) throw IllegalStateException("The data class type is unknown")
-            val data = tabulator.toKotlinObj(cell.getData())
+            val data: dynamic = if (kClass != null) {
+                tabulator.toKotlinObj(cell.getData())
+            } else {
+                cell.getData()
+            }
+            @Suppress("UnsafeCastFromDynamic")
             val component = it(cell, { callback ->
                 onRenderedCallback = callback
             }, data)
