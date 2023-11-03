@@ -770,7 +770,7 @@ open class FormPanel<K : Any>(
      * Report validity of the html form.
      */
     open fun reportValidity(): Boolean {
-        return (getElement() as? HTMLFormElement)?.checkValidity() ?: false
+        return (getElement() as? HTMLFormElement)?.reportValidity() ?: false
     }
 
     override fun focus() {
