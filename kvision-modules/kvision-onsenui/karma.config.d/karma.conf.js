@@ -1,7 +1,7 @@
 config.set({
     reporters: ['karma-kotlin-reporter', 'junit'],
     junitReporter: {
-        outputDir: '../../../../reports/junit',
+        outputDir: '../../../reports/junit',
         outputFile: 'kvision-onsenui.xml',
         useBrowserName: false
     },
