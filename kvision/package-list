@@ -7431,6 +7431,7 @@ $dokka.location:io.kvision.form.time/DateTime/keepOpen/#/PointingToDeclaration/
 $dokka.location:io.kvision.form.time/DateTime/label/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time/label.html
 $dokka.location:io.kvision.form.time/DateTime/maxDate/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time/max-date.html
 $dokka.location:io.kvision.form.time/DateTime/minDate/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time/min-date.html
+$dokka.location:io.kvision.form.time/DateTime/monthHeaderFormat/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time/month-header-format.html
 $dokka.location:io.kvision.form.time/DateTime/placeholder/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time/placeholder.html
 $dokka.location:io.kvision.form.time/DateTime/promptTimeOnDateChange/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time/prompt-time-on-date-change.html
 $dokka.location:io.kvision.form.time/DateTime/promptTimeOnDateChangeTransitionDelay/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time/prompt-time-on-date-change-transition-delay.html
@@ -7453,6 +7454,7 @@ $dokka.location:io.kvision.form.time/DateTime/toolbarPlacement/#/PointingToDecla
 $dokka.location:io.kvision.form.time/DateTime/value/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time/value.html
 $dokka.location:io.kvision.form.time/DateTime/viewDate/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time/view-date.html
 $dokka.location:io.kvision.form.time/DateTime/viewMode/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time/view-mode.html
+$dokka.location:io.kvision.form.time/DateTime/yearHeaderFormat/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time/year-header-format.html
 $dokka.location:io.kvision.form.time/DateTimeInput.Companion.HourCycle.H11///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-date-time-input/-companion/-hour-cycle/-h11/index.html
 $dokka.location:io.kvision.form.time/DateTimeInput.Companion.HourCycle.H12///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-date-time-input/-companion/-hour-cycle/-h12/index.html
 $dokka.location:io.kvision.form.time/DateTimeInput.Companion.HourCycle.H23///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-date-time-input/-companion/-hour-cycle/-h23/index.html
@@ -7482,6 +7484,7 @@ $dokka.location:io.kvision.form.time/DateTimeInput/input/#/PointingToDeclaration
 $dokka.location:io.kvision.form.time/DateTimeInput/keepOpen/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/keep-open.html
 $dokka.location:io.kvision.form.time/DateTimeInput/maxDate/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/max-date.html
 $dokka.location:io.kvision.form.time/DateTimeInput/minDate/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/min-date.html
+$dokka.location:io.kvision.form.time/DateTimeInput/monthHeaderFormat/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/month-header-format.html
 $dokka.location:io.kvision.form.time/DateTimeInput/name/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/name.html
 $dokka.location:io.kvision.form.time/DateTimeInput/placeholder/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/placeholder.html
 $dokka.location:io.kvision.form.time/DateTimeInput/promptTimeOnDateChange/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/prompt-time-on-date-change.html
@@ -7503,6 +7506,15 @@ $dokka.location:io.kvision.form.time/DateTimeInput/validationStatus/#/PointingTo
 $dokka.location:io.kvision.form.time/DateTimeInput/value/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/value.html
 $dokka.location:io.kvision.form.time/DateTimeInput/viewDate/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/view-date.html
 $dokka.location:io.kvision.form.time/DateTimeInput/viewMode/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/view-mode.html
+$dokka.location:io.kvision.form.time/DateTimeInput/yearHeaderFormat/#/PointingToDeclaration/kvision/io.kvision.form.time/-date-time-input/year-header-format.html
+$dokka.location:io.kvision.form.time/MonthHeaderFormat.LONG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-month-header-format/-l-o-n-g/index.html
+$dokka.location:io.kvision.form.time/MonthHeaderFormat.NARROW///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-month-header-format/-n-a-r-r-o-w/index.html
+$dokka.location:io.kvision.form.time/MonthHeaderFormat.NUMERIC///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-month-header-format/-n-u-m-e-r-i-c/index.html
+$dokka.location:io.kvision.form.time/MonthHeaderFormat.SHORT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-month-header-format/-s-h-o-r-t/index.html
+$dokka.location:io.kvision.form.time/MonthHeaderFormat.TWODIGIT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-month-header-format/-t-w-o-d-i-g-i-t/index.html
+$dokka.location:io.kvision.form.time/MonthHeaderFormat///PointingToDeclaration/kvision/io.kvision.form.time/-month-header-format/index.html
+$dokka.location:io.kvision.form.time/MonthHeaderFormat/valueOf/#kotlin.String/PointingToDeclaration/kvision/io.kvision.form.time/-month-header-format/value-of.html
+$dokka.location:io.kvision.form.time/MonthHeaderFormat/values/#/PointingToDeclaration/kvision/io.kvision.form.time/-month-header-format/values.html
 $dokka.location:io.kvision.form.time/Theme.AUTO///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-theme/-a-u-t-o/index.html
 $dokka.location:io.kvision.form.time/Theme.DARK///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-theme/-d-a-r-k/index.html
 $dokka.location:io.kvision.form.time/Theme.LIGHT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-theme/-l-i-g-h-t/index.html
@@ -7522,6 +7534,11 @@ $dokka.location:io.kvision.form.time/ViewMode.YEARS///PointingToDeclaration/{"or
 $dokka.location:io.kvision.form.time/ViewMode///PointingToDeclaration/kvision/io.kvision.form.time/-view-mode/index.html
 $dokka.location:io.kvision.form.time/ViewMode/valueOf/#kotlin.String/PointingToDeclaration/kvision/io.kvision.form.time/-view-mode/value-of.html
 $dokka.location:io.kvision.form.time/ViewMode/values/#/PointingToDeclaration/kvision/io.kvision.form.time/-view-mode/values.html
+$dokka.location:io.kvision.form.time/YearHeaderFormat.NUMERIC///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-year-header-format/-n-u-m-e-r-i-c/index.html
+$dokka.location:io.kvision.form.time/YearHeaderFormat.TWODIGIT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.form.time/-year-header-format/-t-w-o-d-i-g-i-t/index.html
+$dokka.location:io.kvision.form.time/YearHeaderFormat///PointingToDeclaration/kvision/io.kvision.form.time/-year-header-format/index.html
+$dokka.location:io.kvision.form.time/YearHeaderFormat/valueOf/#kotlin.String/PointingToDeclaration/kvision/io.kvision.form.time/-year-header-format/value-of.html
+$dokka.location:io.kvision.form.time/YearHeaderFormat/values/#/PointingToDeclaration/kvision/io.kvision.form.time/-year-header-format/values.html
 $dokka.location:io.kvision.form.upload////PointingToDeclaration/kvision/io.kvision.form.upload/index.html
 $dokka.location:io.kvision.form.upload//bootstrapUpload/io.kvision.core.Container#kotlin.String?#kotlin.Boolean#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.upload.BootstrapUpload,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.upload/bootstrap-upload.html
 $dokka.location:io.kvision.form.upload//bootstrapUploadInput/io.kvision.core.Container#kotlin.String?#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.form.upload.BootstrapUploadInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.upload/bootstrap-upload-input.html
@@ -10738,6 +10755,7 @@ $dokka.location:io.kvision.panel/SimplePanel/removeAll/#/PointingToDeclaration/
 $dokka.location:io.kvision.panel/SimplePanel/removeAt/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.panel/-simple-panel/remove-at.html
 $dokka.location:io.kvision.panel/SplitPanel///PointingToDeclaration/kvision/io.kvision.panel/-split-panel/index.html
 $dokka.location:io.kvision.panel/SplitPanel/SplitPanel/#io.kvision.panel.Direction#kotlin.String?#kotlin.Function1[io.kvision.panel.SplitPanel,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.panel/-split-panel/-split-panel.html
+$dokka.location:io.kvision.panel/SplitPanel/add/#io.kvision.core.Component/PointingToDeclaration/kvision/io.kvision.panel/-split-panel/add.html
 $dokka.location:io.kvision.panel/SplitPanel/dragInterval/#/PointingToDeclaration/kvision/io.kvision.panel/-split-panel/drag-interval.html
 $dokka.location:io.kvision.panel/SplitPanel/expandToMin/#/PointingToDeclaration/kvision/io.kvision.panel/-split-panel/expand-to-min.html
 $dokka.location:io.kvision.panel/SplitPanel/getSizes/#/PointingToDeclaration/kvision/io.kvision.panel/-split-panel/get-sizes.html
