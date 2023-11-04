@@ -73,7 +73,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
     @PublishedApi
     internal inline fun <reified RET> bind(
         method: HttpMethod,
-        route: String? = null,
+        route: String?,
         noinline function: suspend T.(params: List<String?>) -> RET
     ) {
         routeMapRegistry.addRoute(
@@ -89,7 +89,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
      * @param method a HTTP method
      * @param route a route
      */
-    inline fun <reified RET> bind(noinline function: suspend T.() -> RET, method: HttpMethod, route: String? = null) {
+    inline fun <reified RET> bind(noinline function: suspend T.() -> RET, method: HttpMethod, route: String?) {
         bind(method, route) {
             requireParameterCountEqualTo(it, 0)
             function.invoke(this)
@@ -105,7 +105,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
     inline fun <reified PAR, reified RET> bind(
         noinline function: suspend T.(PAR) -> RET,
         method: HttpMethod,
-        route: String? = null
+        route: String?
     ) {
         expectMethodSupportsParameters(method)
         bind(method, route) {
@@ -123,7 +123,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
     inline fun <reified PAR1, reified PAR2, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2) -> RET,
         method: HttpMethod,
-        route: String? = null
+        route: String?
     ) {
         expectMethodSupportsParameters(method)
         bind(method, route) {
@@ -141,7 +141,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
     inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
         method: HttpMethod,
-        route: String? = null
+        route: String?
     ) {
         expectMethodSupportsParameters(method)
         bind(method, route) {
@@ -159,7 +159,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
     inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
         method: HttpMethod,
-        route: String? = null
+        route: String?
     ) {
         expectMethodSupportsParameters(method)
         bind(method, route) {
@@ -177,7 +177,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
     inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
         method: HttpMethod,
-        route: String? = null
+        route: String?
     ) {
         expectMethodSupportsParameters(method)
         bind(method, route) {
@@ -202,7 +202,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
     inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified PAR6, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, PAR6) -> RET,
         method: HttpMethod,
-        route: String? = null
+        route: String?
     ) {
         expectMethodSupportsParameters(method)
         bind(method, route) {
@@ -256,7 +256,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
      */
     inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
-        route: String? = null
+        route: String?
     ) = bindWebsocket(
         route,
         function,
@@ -271,7 +271,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
      */
     inline fun <reified PAR : Any> bind(
         noinline function: suspend T.(SendChannel<PAR>) -> Unit,
-        route: String? = null
+        route: String?
     ) {
         sseRequests["/kvsse/${route ?: generateRouteName()}"] =
             createSseHandler(function) { deSerializer.serializersModule.serializer() }

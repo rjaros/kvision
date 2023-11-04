@@ -14,6 +14,7 @@ val ktorVersion: String by project
 val koinVersion: String by project
 
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     kotlinJvmTargets()
     sourceSets {

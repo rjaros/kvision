@@ -13,6 +13,7 @@ val testNgVersion: String by project
 val hamcrestVersion: String by project
 
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     kotlinJvmTargets()
     sourceSets {

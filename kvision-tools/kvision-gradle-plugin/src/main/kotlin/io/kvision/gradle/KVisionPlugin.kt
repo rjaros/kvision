@@ -125,7 +125,12 @@ abstract class KVisionPlugin @Inject constructor(
             logger.warn("KVision Gradle plugin works now with standard source sets names. Please rename 'frontendMain' source set and directory to 'jsMain'.")
         }
 
-        if (jsMainExists && jvmMainExists && kvExtension.enableKsp.get()) plugins.apply("com.google.devtools.ksp")
+        if (jsMainExists && jvmMainExists && kvExtension.enableKsp.get()) {
+            if (!plugins.hasPlugin("java")) {
+                plugins.apply("java")
+            }
+            plugins.apply("com.google.devtools.ksp")
+        }
 
         val kotlinMppExtension = extensions.getByType<KotlinMultiplatformExtension>()
 
@@ -173,6 +178,15 @@ abstract class KVisionPlugin @Inject constructor(
         }
 
         if (jsMainExists && jvmMainExists) {
+            afterEvaluate {
+                kotlinMppExtension.targets.configureEach {
+                    compilations.configureEach {
+                        compilerOptions.configure {
+                            freeCompilerArgs.add("-Xexpect-actual-classes")
+                        }
+                    }
+                }
+            }
             if (kvExtension.enableKsp.get()) {
                 tasks.all.compileKotlinJs.configureEach {
                     dependsOn("kspCommonMainKotlinMetadata")

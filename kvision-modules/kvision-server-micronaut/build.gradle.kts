@@ -18,6 +18,7 @@ val testNgVersion: String by project
 val hamcrestVersion: String by project
 
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     kotlinJvmTargets()
     sourceSets {
@@ -40,7 +41,7 @@ kotlin {
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:$coroutinesVersion")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$coroutinesVersion")
-                api(platform("io.micronaut.platform:micronaut-platform:$micronautVersion"))
+                api(project.dependencies.platform("io.micronaut.platform:micronaut-platform:$micronautVersion"))
                 api("io.micronaut:micronaut-inject")
                 api("io.micronaut:micronaut-http")
                 api("io.micronaut:micronaut-router")

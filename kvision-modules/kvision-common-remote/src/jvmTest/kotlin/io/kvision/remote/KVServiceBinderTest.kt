@@ -165,7 +165,7 @@ class KVServiceBinderTest {
     @Test
     fun bind_generatesRouteName_ifNoneGiven() {
         // execution
-        serviceBinder.bind(PARAM_0_FUN, HttpMethod.GET)
+        serviceBinder.bind(PARAM_0_FUN, HttpMethod.GET, null)
 
         // evaluation
         assertThat(serviceBinder.routeMapRegistry.asSequence().single().path, equalTo("/kv/routeKVServiceBinderImpl0"))
@@ -186,7 +186,7 @@ class KVServiceBinderTest {
         val clientServerMessage = "a message from client to server"
 
         // execution
-        serviceBinder.bind(handler)
+        serviceBinder.bind(handler, null)
         val entry = serviceBinder.webSocketRequests.entries.single()
         entry.value(HANDLER_THIS, receiveChannel, responseChannel)
         val response = runBlocking {

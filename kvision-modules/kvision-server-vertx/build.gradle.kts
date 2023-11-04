@@ -16,6 +16,7 @@ val jacksonModuleKotlinVersion: String by project
 val logbackVersion: String by project
 
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     kotlinJvmTargets()
     sourceSets {

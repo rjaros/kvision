@@ -12,9 +12,7 @@ import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
 
 fun Project.repositories() {
     repositories {
@@ -23,30 +21,30 @@ fun Project.repositories() {
     }
 }
 
-fun KotlinJsProjectExtension.kotlinJsTargets() {
-    js(IR) {
-        kotlinJsTargets()
+fun KotlinMultiplatformExtension.compilerOptions() {
+    targets.configureEach {
+        compilations.configureEach {
+            compilerOptions.configure {
+                freeCompilerArgs.add("-Xexpect-actual-classes")
+            }
+        }
     }
 }
 
 fun KotlinMultiplatformExtension.kotlinJsTargets() {
     js(IR) {
-        kotlinJsTargets()
-    }
-}
-
-private fun KotlinJsTargetDsl.kotlinJsTargets() {
-    compilations.all {
-        kotlinOptions {
-            moduleKind = "umd"
-        }
-    }
-    browser {
-        testTask(Action {
-            useKarma {
-                useChromeHeadless()
+        compilations.all {
+            kotlinOptions {
+                moduleKind = "umd"
             }
-        })
+        }
+        browser {
+            testTask(Action {
+                useKarma {
+                    useChromeHeadless()
+                }
+            })
+        }
     }
 }
 
@@ -57,7 +55,7 @@ fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "17") {
     jvm {
         compilations.all {
             kotlinOptions {
-                freeCompilerArgs = listOf("-Xjsr305=strict")
+                freeCompilerArgs = listOf("-Xjsr305=strict", "-Xexpect-actual-classes")
             }
         }
     }

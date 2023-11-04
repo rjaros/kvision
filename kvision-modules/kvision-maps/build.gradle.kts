@@ -28,7 +28,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-js"))
                 implementation(project(":kvision-modules:kvision-testutils"))
-                implementation(platform("io.kotest:kotest-bom:$kotestVersion"))
+                implementation(project.dependencies.platform("io.kotest:kotest-bom:$kotestVersion"))
                 implementation("io.kotest:kotest-assertions-core")
             }
         }

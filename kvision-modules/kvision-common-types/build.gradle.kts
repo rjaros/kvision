@@ -10,6 +10,7 @@ plugins {
 val serializationVersion: String by project
 
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     kotlinJvmTargets()
     sourceSets {

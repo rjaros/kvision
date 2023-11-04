@@ -17,7 +17,7 @@ kotlin {
                 api(rootProject)
                 api(kotlin("test-js"))
 
-                implementation(platform("io.kotest:kotest-bom:$kotestVersion"))
+                implementation(project.dependencies.platform("io.kotest:kotest-bom:$kotestVersion"))
                 implementation("io.kotest:kotest-assertions-core") {
                     because("improved test assertions")
                 }
