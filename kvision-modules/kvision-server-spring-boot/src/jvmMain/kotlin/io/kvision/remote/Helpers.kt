@@ -32,6 +32,7 @@ import org.springframework.http.codec.HttpMessageReader
 import org.springframework.http.codec.multipart.Part
 import org.springframework.http.server.reactive.ServerHttpRequest
 import org.springframework.util.MultiValueMap
+import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.reactive.function.BodyExtractor
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.socket.CloseStatus
@@ -47,6 +48,7 @@ import java.net.InetSocketAddress
 import java.net.URI
 import java.security.Principal
 import java.util.*
+import java.util.function.Consumer
 import java.util.function.Function
 
 /**
@@ -98,6 +100,10 @@ internal class KVServerRequest : ServerRequest {
     }
 
     override fun <T : Any?> bodyToFlux(typeReference: ParameterizedTypeReference<T>): Flux<T> {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun <T : Any?> bind(bindType: Class<T>, dataBinderCustomizer: Consumer<WebDataBinder>): Mono<T> {
         throw IllegalStateException("Empty implementation")
     }
 
