@@ -311,6 +311,7 @@ abstract class KVisionPlugin @Inject constructor(
                                 }
                                 if (jarTaskExists) {
                                     tasks.getByName("jar", Jar::class).apply {
+                                        enabled = false
                                         dependsOn("shadowJar")
                                     }
                                 }
