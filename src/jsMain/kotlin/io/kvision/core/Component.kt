@@ -170,10 +170,36 @@ interface Component {
         getElementD()?.blur()
     }
 
+
     /**
-     * The supplied function is called before the component is disposed.
+     * The supplied function is called after the component DOM element is created.
      */
-    fun addBeforeDisposeHook(hook: () -> Unit): Boolean
+    fun addAfterCreateHook(hook: (VNode) -> Unit): Boolean
+
+    /**
+     * Remove the after create hook function (the same function reference must be used).
+     */
+    fun removeAfterCreateHook(hook: (VNode) -> Unit): Boolean
+
+    /**
+     * Remove all after create hooks functions.
+     */
+    fun clearAfterCreateHooks()
+
+    /**
+     * The supplied function is called after the component is inserted into the DOM.
+     */
+    fun addAfterInsertHook(hook: (VNode) -> Unit): Boolean
+
+    /**
+     * Remove the after insert hook function (the same function reference must be used).
+     */
+    fun removeAfterInsertHook(hook: (VNode) -> Unit): Boolean
+
+    /**
+     * Remove all after insert hooks functions.
+     */
+    fun clearAfterInsertHooks()
 
     /**
      * The supplied function is called after the component is removed from the DOM.
@@ -181,9 +207,29 @@ interface Component {
     fun addAfterDestroyHook(hook: () -> Unit): Boolean
 
     /**
-     * The supplied function is called after the component is inserted into the DOM.
+     * Remove the after destroy hook function (the same function reference must be used).
      */
-    fun addAfterInsertHook(hook: (VNode) -> Unit): Boolean
+    fun removeAfterDestroyHook(hook: () -> Unit): Boolean
+
+    /**
+     * Remove all after destroy hooks functions.
+     */
+    fun clearAfterDestroyHooks()
+
+    /**
+     * The supplied function is called before the component is disposed.
+     */
+    fun addBeforeDisposeHook(hook: () -> Unit): Boolean
+
+    /**
+     * Remove the before dispose hook function (the same function reference must be used).
+     */
+    fun removeBeforeDisposeHook(hook: () -> Unit): Boolean
+
+    /**
+     * Remove all before dispose hooks functions.
+     */
+    fun clearBeforeDisposeHooks()
 
     /**
      * Executes given function within a single rendering process.

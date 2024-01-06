@@ -117,6 +117,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
 
     protected var lastLanguage: String? = null
 
+    protected var afterCreateHooks: MutableList<(VNode) -> Unit>? = null
     protected var afterInsertHooks: MutableList<(VNode) -> Unit>? = null
     protected var afterDestroyHooks: MutableList<() -> Unit>? = null
     private var beforeDisposeHooks: MutableList<() -> Unit>? = null
@@ -135,12 +136,38 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     }
 
     /**
-     * The supplied function is called before the widget is disposed.
+     * The supplied function is called after the widget DOM element is created.
      */
-    override fun addBeforeDisposeHook(hook: () -> Unit) = (beforeDisposeHooks ?: run {
-        beforeDisposeHooks = mutableListOf()
-        beforeDisposeHooks!!
+    override fun addAfterCreateHook(hook: (VNode) -> Unit) = (afterCreateHooks ?: run {
+        useSnabbdomDistinctKey()
+        afterCreateHooks = mutableListOf()
+        afterCreateHooks!!
     }).add(hook)
+
+    override fun removeAfterCreateHook(hook: (VNode) -> Unit): Boolean {
+        return afterCreateHooks?.remove(hook) ?: false
+    }
+
+    override fun clearAfterCreateHooks() {
+        afterCreateHooks?.clear()
+    }
+
+    /**
+     * The supplied function is called after the widget is inserted into the DOM.
+     */
+    override fun addAfterInsertHook(hook: (VNode) -> Unit) = (afterInsertHooks ?: run {
+        useSnabbdomDistinctKey()
+        afterInsertHooks = mutableListOf()
+        afterInsertHooks!!
+    }).add(hook)
+
+    override fun removeAfterInsertHook(hook: (VNode) -> Unit): Boolean {
+        return afterInsertHooks?.remove(hook) ?: false
+    }
+
+    override fun clearAfterInsertHooks() {
+        afterInsertHooks?.clear()
+    }
 
     /**
      * The supplied function is called after the widget is removed from the DOM.
@@ -151,14 +178,29 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
         afterDestroyHooks!!
     }).add(hook)
 
+    override fun removeAfterDestroyHook(hook: () -> Unit): Boolean {
+        return afterDestroyHooks?.remove(hook) ?: false
+    }
+
+    override fun clearAfterDestroyHooks() {
+        afterDestroyHooks?.clear()
+    }
+
     /**
-     * The supplied function is called after the widget is inserted into the DOM.
+     * The supplied function is called before the widget is disposed.
      */
-    override fun addAfterInsertHook(hook: (VNode) -> Unit) = (afterInsertHooks ?: run {
-        useSnabbdomDistinctKey()
-        afterInsertHooks = mutableListOf()
-        afterInsertHooks!!
+    override fun addBeforeDisposeHook(hook: () -> Unit) = (beforeDisposeHooks ?: run {
+        beforeDisposeHooks = mutableListOf()
+        beforeDisposeHooks!!
     }).add(hook)
+
+    override fun removeBeforeDisposeHook(hook: () -> Unit): Boolean {
+        return beforeDisposeHooks?.remove(hook) ?: false
+    }
+
+    override fun clearBeforeDisposeHooks() {
+        beforeDisposeHooks?.clear()
+    }
 
     override fun <T> singleRender(block: () -> T): T {
         val root = getRoot()
@@ -362,6 +404,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
             create = { _, v ->
                 vnode = v
                 afterCreate(v)
+                afterCreateHooks?.forEach { it(v) }
             }
             insert = { v ->
                 vnode = v
