@@ -2777,6 +2777,7 @@ $dokka.location:io.kvision.core/Color/asString/#/PointingToDeclaration/kvision/
 $dokka.location:io.kvision.core/Color/color/#/PointingToDeclaration/kvision/io.kvision.core/-color/color.html
 $dokka.location:io.kvision.core/Color/toString/#/PointingToDeclaration/kvision/io.kvision.core/-color/to-string.html
 $dokka.location:io.kvision.core/Component///PointingToDeclaration/kvision/io.kvision.core/-component/index.html
+$dokka.location:io.kvision.core/Component/addAfterCreateHook/#kotlin.Function1[io.kvision.snabbdom.VNode,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-component/add-after-create-hook.html
 $dokka.location:io.kvision.core/Component/addAfterDestroyHook/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-component/add-after-destroy-hook.html
 $dokka.location:io.kvision.core/Component/addAfterInsertHook/#kotlin.Function1[io.kvision.snabbdom.VNode,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-component/add-after-insert-hook.html
 $dokka.location:io.kvision.core/Component/addBeforeDisposeHook/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-component/add-before-dispose-hook.html
@@ -2785,13 +2786,21 @@ $dokka.location:io.kvision.core/Component/addCssStyle/#io.kvision.core.Style/Poi
 $dokka.location:io.kvision.core/Component/addSurroundingCssClass/#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-component/add-surrounding-css-class.html
 $dokka.location:io.kvision.core/Component/addSurroundingCssStyle/#io.kvision.core.Style/PointingToDeclaration/kvision/io.kvision.core/-component/add-surrounding-css-style.html
 $dokka.location:io.kvision.core/Component/blur/#/PointingToDeclaration/kvision/io.kvision.core/-component/blur.html
+$dokka.location:io.kvision.core/Component/clearAfterCreateHooks/#/PointingToDeclaration/kvision/io.kvision.core/-component/clear-after-create-hooks.html
+$dokka.location:io.kvision.core/Component/clearAfterDestroyHooks/#/PointingToDeclaration/kvision/io.kvision.core/-component/clear-after-destroy-hooks.html
+$dokka.location:io.kvision.core/Component/clearAfterInsertHooks/#/PointingToDeclaration/kvision/io.kvision.core/-component/clear-after-insert-hooks.html
+$dokka.location:io.kvision.core/Component/clearBeforeDisposeHooks/#/PointingToDeclaration/kvision/io.kvision.core/-component/clear-before-dispose-hooks.html
 $dokka.location:io.kvision.core/Component/focus/#/PointingToDeclaration/kvision/io.kvision.core/-component/focus.html
 $dokka.location:io.kvision.core/Component/getAttribute/#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-component/get-attribute.html
 $dokka.location:io.kvision.core/Component/getElement/#/PointingToDeclaration/kvision/io.kvision.core/-component/get-element.html
 $dokka.location:io.kvision.core/Component/getElementD/#/PointingToDeclaration/kvision/io.kvision.core/-component/get-element-d.html
 $dokka.location:io.kvision.core/Component/hasCssClass/#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-component/has-css-class.html
 $dokka.location:io.kvision.core/Component/parent/#/PointingToDeclaration/kvision/io.kvision.core/-component/parent.html
+$dokka.location:io.kvision.core/Component/removeAfterCreateHook/#kotlin.Function1[io.kvision.snabbdom.VNode,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-component/remove-after-create-hook.html
+$dokka.location:io.kvision.core/Component/removeAfterDestroyHook/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-component/remove-after-destroy-hook.html
+$dokka.location:io.kvision.core/Component/removeAfterInsertHook/#kotlin.Function1[io.kvision.snabbdom.VNode,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-component/remove-after-insert-hook.html
 $dokka.location:io.kvision.core/Component/removeAttribute/#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-component/remove-attribute.html
+$dokka.location:io.kvision.core/Component/removeBeforeDisposeHook/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-component/remove-before-dispose-hook.html
 $dokka.location:io.kvision.core/Component/removeCssClass/#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-component/remove-css-class.html
 $dokka.location:io.kvision.core/Component/removeCssStyle/#io.kvision.core.Style/PointingToDeclaration/kvision/io.kvision.core/-component/remove-css-style.html
 $dokka.location:io.kvision.core/Component/removeSurroundingCssClass/#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-component/remove-surrounding-css-class.html
@@ -3371,6 +3380,7 @@ $dokka.location:io.kvision.core/Widget.Companion///PointingToDeclaration/kvisio
 $dokka.location:io.kvision.core/Widget.Companion/KV_JQUERY_EVENT_PREFIX/#/PointingToDeclaration/kvision/io.kvision.core/-widget/-companion/-k-v_-j-q-u-e-r-y_-e-v-e-n-t_-p-r-e-f-i-x.html
 $dokka.location:io.kvision.core/Widget///PointingToDeclaration/kvision/io.kvision.core/-widget/index.html
 $dokka.location:io.kvision.core/Widget/Widget/#kotlin.String?#kotlin.Function1[io.kvision.core.Widget,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.core/-widget/-widget.html
+$dokka.location:io.kvision.core/Widget/addAfterCreateHook/#kotlin.Function1[io.kvision.snabbdom.VNode,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-widget/add-after-create-hook.html
 $dokka.location:io.kvision.core/Widget/addAfterDestroyHook/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-widget/add-after-destroy-hook.html
 $dokka.location:io.kvision.core/Widget/addAfterInsertHook/#kotlin.Function1[io.kvision.snabbdom.VNode,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-widget/add-after-insert-hook.html
 $dokka.location:io.kvision.core/Widget/addBeforeDisposeHook/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-widget/add-before-dispose-hook.html
@@ -3378,6 +3388,10 @@ $dokka.location:io.kvision.core/Widget/addCssClass/#kotlin.String/PointingToDecl
 $dokka.location:io.kvision.core/Widget/addCssStyle/#io.kvision.core.Style/PointingToDeclaration/kvision/io.kvision.core/-widget/add-css-style.html
 $dokka.location:io.kvision.core/Widget/addSurroundingCssClass/#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-widget/add-surrounding-css-class.html
 $dokka.location:io.kvision.core/Widget/addSurroundingCssStyle/#io.kvision.core.Style/PointingToDeclaration/kvision/io.kvision.core/-widget/add-surrounding-css-style.html
+$dokka.location:io.kvision.core/Widget/clearAfterCreateHooks/#/PointingToDeclaration/kvision/io.kvision.core/-widget/clear-after-create-hooks.html
+$dokka.location:io.kvision.core/Widget/clearAfterDestroyHooks/#/PointingToDeclaration/kvision/io.kvision.core/-widget/clear-after-destroy-hooks.html
+$dokka.location:io.kvision.core/Widget/clearAfterInsertHooks/#/PointingToDeclaration/kvision/io.kvision.core/-widget/clear-after-insert-hooks.html
+$dokka.location:io.kvision.core/Widget/clearBeforeDisposeHooks/#/PointingToDeclaration/kvision/io.kvision.core/-widget/clear-before-dispose-hooks.html
 $dokka.location:io.kvision.core/Widget/clearDragDropData/#/PointingToDeclaration/kvision/io.kvision.core/-widget/clear-drag-drop-data.html
 $dokka.location:io.kvision.core/Widget/dispatchEvent/#kotlin.String#[Error type: Unresolved type for CustomEventInit]/PointingToDeclaration/kvision/io.kvision.core/-widget/dispatch-event.html
 $dokka.location:io.kvision.core/Widget/draggable/#/PointingToDeclaration/kvision/io.kvision.core/-widget/draggable.html
@@ -3392,7 +3406,11 @@ $dokka.location:io.kvision.core/Widget/kvscope/#/PointingToDeclaration/kvision/
 $dokka.location:io.kvision.core/Widget/parent/#/PointingToDeclaration/kvision/io.kvision.core/-widget/parent.html
 $dokka.location:io.kvision.core/Widget/popoverHooksActive/#/PointingToDeclaration/kvision/io.kvision.core/-widget/popover-hooks-active.html
 $dokka.location:io.kvision.core/Widget/popoverOptions/#/PointingToDeclaration/kvision/io.kvision.core/-widget/popover-options.html
+$dokka.location:io.kvision.core/Widget/removeAfterCreateHook/#kotlin.Function1[io.kvision.snabbdom.VNode,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-widget/remove-after-create-hook.html
+$dokka.location:io.kvision.core/Widget/removeAfterDestroyHook/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-widget/remove-after-destroy-hook.html
+$dokka.location:io.kvision.core/Widget/removeAfterInsertHook/#kotlin.Function1[io.kvision.snabbdom.VNode,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-widget/remove-after-insert-hook.html
 $dokka.location:io.kvision.core/Widget/removeAttribute/#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-widget/remove-attribute.html
+$dokka.location:io.kvision.core/Widget/removeBeforeDisposeHook/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.core/-widget/remove-before-dispose-hook.html
 $dokka.location:io.kvision.core/Widget/removeCssClass/#kotlin.String/PointingToDeclaration/kvision/io.kvision.core/-widget/remove-css-class.html
 $dokka.location:io.kvision.core/Widget/removeCssStyle/#io.kvision.core.Style/PointingToDeclaration/kvision/io.kvision.core/-widget/remove-css-style.html
 $dokka.location:io.kvision.core/Widget/removeEventListener/#kotlin.Int/PointingToDeclaration/kvision/io.kvision.core/-widget/remove-event-listener.html
