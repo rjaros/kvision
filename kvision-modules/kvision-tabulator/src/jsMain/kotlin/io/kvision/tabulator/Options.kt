@@ -512,6 +512,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
             } else {
                 cell.getData()
             }
+
             @Suppress("UnsafeCastFromDynamic")
             val component = it(cell, { callback ->
                 onRenderedCallback = callback
@@ -555,6 +556,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
             } else {
                 cell.getData()
             }
+
             @Suppress("UnsafeCastFromDynamic")
             val component = it(cell, { callback ->
                 onRenderedCallback = callback
@@ -1007,18 +1009,22 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (persistence?.columns?.unsafeCast<Array<String>>()
                 ?.contains("field") == true && responsiveLayout == ResponsiveLayout.COLLAPSE
         ) {
-            { id: String, type: String, value: Array<dynamic> ->
-                val responsiveHiddenColumns =
-                    (tabulator.jsTabulator?.modules?.asDynamic()?.responsiveLayout?.hiddenColumns as Array<Tabulator.ColumnComponent>).map {
-                        it.getField()
-                    }
-                val fixedData = value.map {
-                    @Suppress("UnsafeCastFromDynamic")
-                    if (it.visible == false && responsiveHiddenColumns.contains(it.field))
-                        it.visible = true
-                    it
-                }.toTypedArray()
-                localStorage.setItem("$id-$type", JSON.stringify(fixedData))
+            { id: String, type: String, value: dynamic ->
+                if (type == "columns") {
+                    val responsiveHiddenColumns =
+                        (tabulator.jsTabulator?.modules?.asDynamic()?.responsiveLayout?.hiddenColumns as Array<Tabulator.ColumnComponent>).map {
+                            it.getField()
+                        }
+                    val fixedValue = value.unsafeCast<Array<dynamic>>().map {
+                        @Suppress("UnsafeCastFromDynamic")
+                        if (it.visible == false && responsiveHiddenColumns.contains(it.field))
+                            it.visible = true
+                        it
+                    }.toTypedArray()
+                    localStorage.setItem("$id-$type", JSON.stringify(fixedValue))
+                } else {
+                    localStorage.setItem("$id-$type", JSON.stringify(value))
+                }
             }
         } else null
     }
