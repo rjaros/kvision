@@ -1,5 +1,5 @@
 {
-    "kvision": "7.3.0",
+    "kvision": "7.3.1",
     "kotlin": "1.9.22",
     "coroutines": "1.8.0-RC2",
     "template-javalin": {
