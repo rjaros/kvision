@@ -30,7 +30,7 @@ import kotlin.reflect.KProperty
  */
 @Suppress("LargeClass")
 abstract class StyledComponent {
-    private val propertyValues = js("{}")
+    internal val styledPropertyValues = js("{}")
     private val propertyStyles = js("{}")
 
     private var snStyleCache: List<StringPair>? = null
@@ -780,38 +780,31 @@ abstract class StyledComponent {
     }
 
     @Suppress("NOTHING_TO_INLINE")
-    private inline fun <T> refreshOnUpdate(noinline refreshFunction: ((T) -> Unit)? = null) =
-        RefreshDelegateProvider(refreshFunction)
+    private inline fun <T> refreshOnUpdate(noinline refreshFunction: ((T) -> Unit)) = StyledRefreshDelegate(refreshFunction)
 
-    private inner class RefreshDelegateProvider<T>(
-        private val refreshFunction: ((T) -> Unit)?
-    ) {
-        operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): RefreshDelegate<T> {
-            return RefreshDelegate(refreshFunction)
+}
+
+
+value class StyledRefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
+    operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
+        val value = thisRef.styledPropertyValues[property.name]
+        return if (value != null) {
+            value.unsafeCast<T>()
+        } else {
+            null.unsafeCast<T>()
         }
     }
 
-    private inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)?) {
-        operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
-            val value = propertyValues[property.name]
-            return if (value != null) {
-                value.unsafeCast<T>()
-            } else {
-                null.unsafeCast<T>()
-            }
+    operator fun setValue(thisRef: StyledComponent, property: KProperty<*>, value: T) {
+        val oldValue = thisRef.styledPropertyValues[property.name]
+        if (value == null) {
+            delete(thisRef.styledPropertyValues, property.name)
+        } else {
+            thisRef.styledPropertyValues[property.name] = value
         }
-
-        operator fun setValue(thisRef: StyledComponent, property: KProperty<*>, value: T) {
-            val oldValue = propertyValues[property.name]
-            if (value == null) {
-                delete(propertyValues, property.name)
-            } else {
-                propertyValues[property.name] = value
-            }
-            if (oldValue != value) {
-                refreshFunction?.invoke(value)
-                refresh()
-            }
+        if (oldValue != value) {
+            refreshFunction(value)
+            thisRef.refresh()
         }
     }
 }

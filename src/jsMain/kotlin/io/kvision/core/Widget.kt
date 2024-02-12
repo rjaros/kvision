@@ -51,7 +51,7 @@ import kotlin.reflect.KProperty
 @Suppress("TooManyFunctions", "LargeClass")
 open class Widget(internal val className: String? = null, init: (Widget.() -> Unit)? = null) : StyledComponent(),
     Component {
-    private val propertyValues = js("{}")
+    internal val widgetPropertyValues = js("{}")
 
     internal var classes: MutableSet<String>? = null
     internal var surroundingClasses: MutableSet<String>? = null
@@ -800,8 +800,8 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     }
 
     @Suppress("NOTHING_TO_INLINE")
-    protected inline fun <T> refreshOnUpdate(noinline refreshFunction: ((T) -> Unit) = { this.refresh() }): RefreshDelegateProvider<T> =
-        RefreshDelegateProvider(null, refreshFunction)
+    protected inline fun <T> refreshOnUpdate(noinline refreshFunction: ((T) -> Unit) = { this.refresh() }): WidgetRefreshDelegate<T> =
+        WidgetRefreshDelegate(refreshFunction)
 
     @Suppress("NOTHING_TO_INLINE")
     protected inline fun <T> refreshOnUpdate(
@@ -813,38 +813,40 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     protected inner class RefreshDelegateProvider<T>(
         private val initialValue: T?, private val refreshFunction: (T) -> Unit
     ) {
-        operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): RefreshDelegate<T> {
-            if (initialValue != null) propertyValues[prop.name] = initialValue
-            return RefreshDelegate(refreshFunction)
-        }
-    }
-
-    protected inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
-        operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
-            val value = propertyValues[property.name]
-            return if (value != null) {
-                value.unsafeCast<T>()
-            } else {
-                null.unsafeCast<T>()
-            }
-        }
-
-        operator fun setValue(thisRef: StyledComponent, property: KProperty<*>, value: T) {
-            val oldValue = propertyValues[property.name]
-            if (value == null) {
-                delete(propertyValues, property.name)
-            } else {
-                propertyValues[property.name] = value
-            }
-            if (oldValue != value) {
-                refreshFunction(value)
-            }
+        operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): WidgetRefreshDelegate<T> {
+            if (initialValue != null) widgetPropertyValues[prop.name] = initialValue
+            return WidgetRefreshDelegate(refreshFunction)
         }
     }
 
     companion object {
         const val KV_JQUERY_EVENT_PREFIX = "KVJQUERYEVENT##"
         private var counter: Int = 0
+    }
+}
+
+
+
+value class WidgetRefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
+    operator fun getValue(thisRef: Widget, property: KProperty<*>): T {
+        val value = thisRef.widgetPropertyValues[property.name]
+        return if (value != null) {
+            value.unsafeCast<T>()
+        } else {
+            null.unsafeCast<T>()
+        }
+    }
+
+    operator fun setValue(thisRef: Widget, property: KProperty<*>, value: T) {
+        val oldValue = thisRef.widgetPropertyValues[property.name]
+        if (value == null) {
+            delete(thisRef.widgetPropertyValues, property.name)
+        } else {
+            thisRef.widgetPropertyValues[property.name] = value
+        }
+        if (oldValue != value) {
+            refreshFunction(value)
+        }
     }
 }
 
