@@ -785,7 +785,7 @@ abstract class StyledComponent {
 }
 
 
-value class StyledRefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
+internal value class StyledRefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
     operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
         val value = thisRef.styledPropertyValues[property.name]
         return if (value != null) {

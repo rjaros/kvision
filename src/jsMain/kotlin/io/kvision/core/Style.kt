@@ -150,7 +150,7 @@ open class Style(
 
     @Suppress("NOTHING_TO_INLINE")
     protected inline fun <T> refreshOnUpdate(noinline refreshFunction: ((T) -> Unit) = { this.refresh() }) =
-        RefreshDelegate(refreshFunction)
+        StyleRefreshDelegate(refreshFunction)
 
     @Suppress("NOTHING_TO_INLINE")
     protected inline fun <T> refreshOnUpdate(
@@ -162,9 +162,9 @@ open class Style(
     protected inner class RefreshDelegateProvider<T>(
         private val initialValue: T?, private val refreshFunction: (T) -> Unit
     ) {
-        operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): RefreshDelegate<T> {
+        operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): StyleRefreshDelegate<T> {
             if (initialValue != null) stylePropertyValues[prop.name] = initialValue
-            return RefreshDelegate(refreshFunction)
+            return StyleRefreshDelegate(refreshFunction)
         }
     }
 
@@ -174,7 +174,7 @@ open class Style(
     }
 }
 
-class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
+value class StyleRefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
     operator fun getValue(thisRef: Style, property: KProperty<*>): T {
         val value = thisRef.stylePropertyValues[property.name]
         return if (value != null) {
