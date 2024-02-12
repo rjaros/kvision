@@ -86,7 +86,7 @@ open class Style(
     val parentStyle: Style? = null,
     init: (Style.() -> Unit)? = null
 ) : StyledComponent() {
-    private val propertyValues = js("{}")
+    internal val stylePropertyValues = js("{}")
 
     /**
      * The name of the CSS selector.
@@ -150,7 +150,7 @@ open class Style(
 
     @Suppress("NOTHING_TO_INLINE")
     protected inline fun <T> refreshOnUpdate(noinline refreshFunction: ((T) -> Unit) = { this.refresh() }) =
-        RefreshDelegateProvider<T>(null, refreshFunction)
+        StyleRefreshDelegate(refreshFunction)
 
     @Suppress("NOTHING_TO_INLINE")
     protected inline fun <T> refreshOnUpdate(
@@ -162,31 +162,31 @@ open class Style(
     protected inner class RefreshDelegateProvider<T>(
         private val initialValue: T?, private val refreshFunction: (T) -> Unit
     ) {
-        operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): RefreshDelegate<T> {
-            if (initialValue != null) propertyValues[prop.name] = initialValue
-            return RefreshDelegate(refreshFunction)
-        }
-    }
-
-    protected inner class RefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
-        operator fun getValue(thisRef: StyledComponent, property: KProperty<*>): T {
-            val value = propertyValues[property.name]
-            return if (value != null) {
-                value.unsafeCast<T>()
-            } else {
-                null.unsafeCast<T>()
-            }
-        }
-
-        operator fun setValue(thisRef: StyledComponent, property: KProperty<*>, value: T) {
-            propertyValues[property.name] = value
-            refreshFunction(value)
+        operator fun provideDelegate(thisRef: Any?, prop: KProperty<*>): StyleRefreshDelegate<T> {
+            if (initialValue != null) stylePropertyValues[prop.name] = initialValue
+            return StyleRefreshDelegate(refreshFunction)
         }
     }
 
     companion object {
         internal var counter = 0
         internal var styles = mutableListOf<Style>()
+    }
+}
+
+value class StyleRefreshDelegate<T>(private val refreshFunction: ((T) -> Unit)) {
+    operator fun getValue(thisRef: Style, property: KProperty<*>): T {
+        val value = thisRef.stylePropertyValues[property.name]
+        return if (value != null) {
+            value.unsafeCast<T>()
+        } else {
+            null.unsafeCast<T>()
+        }
+    }
+
+    operator fun setValue(thisRef: Style, property: KProperty<*>, value: T) {
+        thisRef.stylePropertyValues[property.name] = value
+        refreshFunction(value)
     }
 }
 
