@@ -133,7 +133,8 @@ enum class Validator(internal val validator: String) {
     MINLENGTH("minLength"),
     MAXLENGTH("maxLength"),
     IN("in"),
-    REGEX("regex")
+    REGEX("regex"),
+    ALPHANUMERIC("alphanumeric")
 }
 
 /**
@@ -307,6 +308,15 @@ enum class ImportReader(internal val type: String) {
 enum class HeaderSortClickElement(internal val element: String) {
     HEADER("header"),
     ICON("icon")
+}
+
+/**
+ * Possible edit trigger events.
+ */
+enum class EditTriggerEvent(internal val event: String) {
+    FOCUS("focus"),
+    CLICK("click"),
+    DBLCLICK("dblclick"),
 }
 
 /**
@@ -892,11 +902,11 @@ data class TabulatorOptions<T : Any>(
     val scrollToColumnIfVisible: Boolean? = null,
     val rowFormatter: ((row: Tabulator.RowComponent) -> Unit)? = null,
     val addRowPos: RowPos? = null,
-    val selectable: dynamic = null,
-    val selectableRangeMode: RangeMode? = null,
-    val selectableRollingSelection: Boolean? = null,
-    val selectablePersistence: Boolean? = null,
-    val selectableCheck: ((row: Tabulator.RowComponent) -> Boolean)? = null,
+    val selectableRows: dynamic = null,
+    val selectableRowsRangeMode: RangeMode? = null,
+    val selectableRowsRollingSelection: Boolean? = null,
+    val selectableRowsPersistence: Boolean? = null,
+    val selectableRowsCheck: ((row: Tabulator.RowComponent) -> Boolean)? = null,
     val movableRows: Boolean? = null,
     val movableRowsConnectedTables: dynamic = null,
     val movableRowsSender: dynamic = null,
@@ -999,6 +1009,12 @@ data class TabulatorOptions<T : Any>(
     val rowDblClickPopup: dynamic = null,
     val rowDblClickMenu: dynamic = null,
     val responsiveLayoutCollapseFormatter: ((data: Array<dynamic>) -> Element)? = null,
+    val selectableRange: dynamic = null,
+    val selectableRangeColumns: Boolean? = null,
+    val selectableRangeRows: Boolean? = null,
+    val selectableRangeClearCells: Boolean? = null,
+    val selectableRangeClearCellsValue: String? = null,
+    val editTriggerEvent: EditTriggerEvent? = null,
 )
 
 /**
@@ -1067,11 +1083,11 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (scrollToColumnIfVisible != null) this.scrollToColumnIfVisible = scrollToColumnIfVisible
         if (rowFormatter != null) this.rowFormatter = rowFormatter
         if (addRowPos != null) this.addRowPos = addRowPos.position
-        if (selectable != null) this.selectable = selectable
-        if (selectableRangeMode != null) this.selectableRangeMode = selectableRangeMode.mode
-        if (selectableRollingSelection != null) this.selectableRollingSelection = selectableRollingSelection
-        if (selectablePersistence != null) this.selectablePersistence = selectablePersistence
-        if (selectableCheck != null) this.selectableCheck = selectableCheck
+        if (selectableRows != null) this.selectable = selectableRows
+        if (selectableRowsRangeMode != null) this.selectableRangeMode = selectableRowsRangeMode.mode
+        if (selectableRowsRollingSelection != null) this.selectableRollingSelection = selectableRowsRollingSelection
+        if (selectableRowsPersistence != null) this.selectablePersistence = selectableRowsPersistence
+        if (selectableRowsCheck != null) this.selectableCheck = selectableRowsCheck
         if (movableRows != null) this.movableRows = movableRows
         if (movableRowsConnectedTables != null) this.movableRowsConnectedTables = movableRowsConnectedTables
         if (movableRowsSender != null) this.movableRowsSender = movableRowsSender
@@ -1176,5 +1192,11 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (rowDblClickMenu != null) this.rowDblClickMenu = rowDblClickMenu
         if (responsiveLayoutCollapseFormatter != null) this.responsiveLayoutCollapseFormatter =
             responsiveLayoutCollapseFormatter
+        if (selectableRange != null) this.selectableRange = selectableRange
+        if (selectableRangeColumns != null) this.selectableRangeColumns = selectableRangeColumns
+        if (selectableRangeRows != null) this.selectableRangeRows = selectableRangeRows
+        if (selectableRangeClearCells != null) this.selectableRangeClearCells = selectableRangeClearCells
+        if (selectableRangeClearCellsValue != null) this.selectableRangeClearCellsValue = selectableRangeClearCellsValue
+        if (editTriggerEvent != null) this.editTriggerEvent = editTriggerEvent.event
     } as Tabulator.Options
 }

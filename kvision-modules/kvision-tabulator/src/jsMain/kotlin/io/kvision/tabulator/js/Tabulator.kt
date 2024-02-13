@@ -398,6 +398,10 @@ open external class Tabulator {
     open fun alert(message: String, style: String = definedExternally): Unit = definedExternally
     open fun clearAlert(): Unit = definedExternally
 
+    open fun addRange(topLeft: dynamic, bottomRight: dynamic): dynamic = definedExternally
+    open fun getRanges(): dynamic = definedExternally
+    open fun getRangesData(): dynamic = definedExternally
+
     interface Options : OptionsGeneral, OptionsMenu, OptionsHistory, OptionsLocale, OptionsDownload, OptionsColumns,
         OptionsRows, OptionsData, OptionsSorting, OptionsFiltering, OptionsRowGrouping, OptionsPagination,
         OptionsPersistentConfiguration, OptionsClipboard, OptionsDataTree, OptionsCell, OptionsDebug, OptionsHTML
