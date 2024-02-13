@@ -176,7 +176,9 @@ open class GridPanel(
     }
 
     override fun addAll(children: List<Component>) {
-        children.forEach { add(it, null, null) }
+        singleRender {
+            children.forEach { add(it, null, null) }
+        }
     }
 
     override fun remove(child: Component) {

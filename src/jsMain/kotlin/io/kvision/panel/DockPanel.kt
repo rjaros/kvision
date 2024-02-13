@@ -219,7 +219,9 @@ open class DockPanel(className: String? = null, init: (DockPanel.() -> Unit)? = 
     }
 
     override fun addAll(children: List<Component>) {
-        children.forEach { this.add(it) }
+        singleRender {
+            children.forEach { add(it) }
+        }
     }
 
     override fun remove(child: Component) {

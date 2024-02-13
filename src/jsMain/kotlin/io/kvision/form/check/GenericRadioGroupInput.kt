@@ -206,7 +206,9 @@ open class GenericRadioGroupInput<T>(
     }
 
     override fun addAll(children: List<Component>) {
-        children.forEach { add(it) }
+        singleRender {
+            children.forEach { add(it) }
+        }
     }
 
     override fun focus() {

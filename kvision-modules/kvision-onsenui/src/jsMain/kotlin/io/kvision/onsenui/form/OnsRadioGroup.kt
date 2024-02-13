@@ -247,7 +247,9 @@ open class OnsRadioGroup(
     }
 
     override fun addAll(children: List<Component>) {
-        children.forEach { add(it) }
+        singleRender {
+            children.forEach { add(it) }
+        }
     }
 
     override fun remove(child: Component) {

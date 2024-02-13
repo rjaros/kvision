@@ -123,7 +123,9 @@ open class ResponsiveGridPanel(
     }
 
     override fun addAll(children: List<Component>) {
-        children.forEach { this.add(it) }
+        singleRender {
+            children.forEach { this.add(it) }
+        }
     }
 
     @Suppress("NestedBlockDepth")

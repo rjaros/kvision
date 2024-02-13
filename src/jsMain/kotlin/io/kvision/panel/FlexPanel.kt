@@ -156,7 +156,9 @@ open class FlexPanel(
     }
 
     private fun refreshSpacing() {
-        getChildren().forEach { applySpacing(it.unsafeCast<Widget>()) }
+        singleRender {
+            getChildren().forEach { applySpacing(it.unsafeCast<Widget>()) }
+        }
     }
 
     private fun applySpacing(wrapper: Widget) {
@@ -191,7 +193,9 @@ open class FlexPanel(
     }
 
     override fun addAll(children: List<Component>) {
-        children.forEach { add(it, null) }
+        singleRender {
+            children.forEach { add(it, null) }
+        }
     }
 
     override fun remove(child: Component) {
