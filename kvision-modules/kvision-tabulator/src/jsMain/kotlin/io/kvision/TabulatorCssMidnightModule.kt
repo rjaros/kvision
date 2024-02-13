@@ -22,7 +22,7 @@
 package io.kvision
 
 /**
- * Initializer for KVision Tabulator with Bootstrap 5 CSS theme.
+ * Initializer for KVision Tabulator with Midnight CSS theme.
  */
 object TabulatorCssMidnightModule : ModuleInitializer {
     override fun initialize() {
