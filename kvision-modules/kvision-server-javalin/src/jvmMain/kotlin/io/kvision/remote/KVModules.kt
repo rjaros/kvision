@@ -65,9 +65,7 @@ fun Javalin.kvisionInit(initStaticResources: Boolean = true, vararg modules: Mod
  * Initialize default static resources for Javalin server.
  */
 fun Javalin.initStaticResources() {
-    updateConfig {
-        it.staticFiles.add("/assets", Location.CLASSPATH)
-    }
+    unsafeConfig().staticFiles.add("/assets", Location.CLASSPATH)
 }
 
 internal class MainModule(private val javalin: Javalin) : AbstractModule() {

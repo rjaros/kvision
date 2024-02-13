@@ -22,9 +22,13 @@
 
 package io.kvision.remote
 
+import io.javalin.config.Key
 import io.javalin.http.Context
 import io.javalin.http.HandlerType
 import io.javalin.http.HttpStatus
+import io.javalin.json.JsonMapper
+import io.javalin.plugin.ContextPlugin
+import io.javalin.security.RouteRole
 import io.javalin.websocket.WsContext
 import jakarta.servlet.ServletOutputStream
 import jakarta.servlet.http.HttpServletRequest
@@ -42,12 +46,13 @@ import java.net.InetSocketAddress
 import java.time.Duration
 import java.util.concurrent.CompletableFuture
 import java.util.function.Supplier
+import java.util.stream.Stream
 
 /**
  * Empty subclass of the Context class
  */
 internal class KVContext : Context {
-    override fun <T> appAttribute(key: String): T {
+    override fun <T> appData(key: Key<T>): T {
         throw IllegalStateException("Empty implementation")
     }
 
@@ -63,7 +68,15 @@ internal class KVContext : Context {
         throw IllegalStateException("Empty implementation")
     }
 
+    override fun jsonMapper(): JsonMapper {
+        throw IllegalStateException("Empty implementation")
+    }
+
     override fun matchedPath(): String {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun minSizeForCompression(minSizeForCompression: Int): Context {
         throw IllegalStateException("Empty implementation")
     }
 
@@ -100,6 +113,22 @@ internal class KVContext : Context {
     }
 
     override fun resultInputStream(): InputStream? {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun routeRoles(): Set<RouteRole> {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun skipRemainingHandlers(): Context {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun <T> with(clazz: Class<out ContextPlugin<*, T>>): T {
+        throw IllegalStateException("Empty implementation")
+    }
+
+    override fun writeJsonStream(stream: Stream<*>) {
         throw IllegalStateException("Empty implementation")
     }
 
