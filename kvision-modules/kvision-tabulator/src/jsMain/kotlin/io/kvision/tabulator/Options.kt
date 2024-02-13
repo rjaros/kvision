@@ -679,6 +679,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
     val headerColumnsMenuTitle = this.headerColumnsMenuTitle ?: "Customize"
 
     val responsiveCollapseAuto = this.formatter == Formatter.RESPONSIVECOLLAPSEAUTO
+
     return obj {
         if (responsiveCollapseAuto) {
             this.formatter = "responsiveCollapse"
@@ -750,7 +751,11 @@ fun <T : Any> ColumnDefinition<T>.toJs(
             editor != null -> this.editor = editor.editor
         }
         if (editorParams != null) this.editorParams = editorParams
-        if (validator != null) this.validator = validator.validator
+        if (validatorFunction != null) {
+            this.validator = validatorFunction
+        } else if (validator != null) {
+            this.validator = validator.validator
+        }
         if (validatorParams != null) this.validatorParams = validatorParams
         if (download != null) this.download = download
         if (downloadTitle != null) this.downloadTitle = i18nTranslator(downloadTitle)
@@ -1031,7 +1036,12 @@ fun <T : Any> TabulatorOptions<T>.toJs(
 
     return obj {
         if (height != null) this.height = height
-        if (placeholder != null) this.placeholder = i18nTranslator(placeholder)
+        if (placeholderFunc != null) {
+            this.placeholder = placeholderFunc
+        } else if (placeholder != null) {
+            this.placeholder = i18nTranslator(placeholder)
+        }
+        if (placeholderHeaderFilter != null) this.placeholderHeaderFilter = placeholderHeaderFilter
         if (footerElement != null) this.footerElement = i18nTranslator(footerElement)
         if (history != null) this.history = history
         if (keybindings != null) this.keybindings = keybindings
