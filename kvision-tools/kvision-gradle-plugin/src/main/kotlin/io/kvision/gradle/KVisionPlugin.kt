@@ -136,7 +136,7 @@ abstract class KVisionPlugin @Inject constructor(
 
         if (jsMainExists && kvExtension.enableGradleTasks.get()) {
             registerGeneratePotFileTask {
-                dependsOn(tasks.all.kotlinNpmInstall)
+                dependsOn(rootProject.tasks.all.kotlinNpmInstall)
                 inputs.files(kotlinMppExtension.sourceSets.jsMain.map { it.kotlin.files })
                 potFile.set(
                     layout.projectDirectory.file(
@@ -145,7 +145,7 @@ abstract class KVisionPlugin @Inject constructor(
                 )
             }
             val convertPoToJsonTask = registerConvertPoToJsonTask {
-                dependsOn(tasks.all.kotlinNpmInstall)
+                dependsOn(rootProject.tasks.all.kotlinNpmInstall)
                 sourceDirectory.set(
                     layout.projectDirectory.dir("src/jsMain/resources/i18n")
                 )
