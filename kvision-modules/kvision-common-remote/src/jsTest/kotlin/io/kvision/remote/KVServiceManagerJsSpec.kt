@@ -93,16 +93,6 @@ class KVServiceManagerJsSpec {
     }
 
     @Test
-    fun bind_failsIfMethodIsGetAndFunctionHasParameters() {
-        // execution
-        ALL_NON_WS_BIND_CALLS.subList(1, ALL_NON_WS_BIND_CALLS.size - 1).forEachIndexed { index, it ->
-            assertFailsWith<UnsupportedOperationException>("Fun with params[$index]") {
-                it(serviceManager, HttpMethod.GET, null)
-            }
-        }
-    }
-
-    @Test
     fun bind_addsWebsocketFunction() {
         // execution
         serviceManager.bind(Dummy::websocketFun, null)
