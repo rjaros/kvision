@@ -39,8 +39,8 @@ expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVSer
      */
     protected inline fun <reified RET> bind(
         noinline function: suspend T.() -> RET,
-        method: HttpMethod = HttpMethod.POST,
-        route: String? = null
+        method: HttpMethod,
+        route: String?
     )
 
     /**
@@ -51,8 +51,8 @@ expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVSer
      */
     protected inline fun <reified PAR, reified RET> bind(
         noinline function: suspend T.(PAR) -> RET,
-        method: HttpMethod = HttpMethod.POST,
-        route: String? = null
+        method: HttpMethod,
+        route: String?
     )
 
     /**
@@ -63,8 +63,8 @@ expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVSer
      */
     protected inline fun <reified PAR1, reified PAR2, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2) -> RET,
-        method: HttpMethod = HttpMethod.POST,
-        route: String? = null
+        method: HttpMethod,
+        route: String?
     )
 
     /**
@@ -75,8 +75,8 @@ expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVSer
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
-        method: HttpMethod = HttpMethod.POST,
-        route: String? = null
+        method: HttpMethod,
+        route: String?
     )
 
     /**
@@ -87,8 +87,8 @@ expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVSer
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
-        method: HttpMethod = HttpMethod.POST,
-        route: String? = null
+        method: HttpMethod,
+        route: String?
     )
 
     /**
@@ -99,8 +99,8 @@ expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVSer
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
-        method: HttpMethod = HttpMethod.POST,
-        route: String? = null
+        method: HttpMethod,
+        route: String?
     )
 
     /**
@@ -111,8 +111,8 @@ expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVSer
      */
     protected inline fun <reified PAR1, reified PAR2, reified PAR3, reified PAR4, reified PAR5, reified PAR6, reified RET> bind(
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, PAR6) -> RET,
-        method: HttpMethod = HttpMethod.POST,
-        route: String? = null
+        method: HttpMethod,
+        route: String?
     )
 
     /**
@@ -121,7 +121,7 @@ expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVSer
      */
     protected inline fun <reified RET> bindTabulatorRemote(
         noinline function: suspend T.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<RET>,
-        route: String? = null
+        route: String?
     )
 
     /**
@@ -130,7 +130,7 @@ expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVSer
      */
     protected inline fun <reified PAR1 : Any, reified PAR2 : Any> bind(
         noinline function: suspend T.(ReceiveChannel<PAR1>, SendChannel<PAR2>) -> Unit,
-        route: String? = null
+        route: String?
     )
 
     /**
@@ -139,6 +139,6 @@ expect open class KVServiceManager<out T : Any>(serviceClass: KClass<T>) : KVSer
      */
     protected inline fun <reified PAR : Any> bind(
         noinline function: suspend T.(SendChannel<PAR>) -> Unit,
-        route: String? = null
+        route: String?
     )
 }
