@@ -44,6 +44,9 @@ import org.springframework.web.reactive.function.server.awaitBody
 import org.springframework.web.reactive.function.server.bodyValueAndAwait
 import org.springframework.web.reactive.function.server.json
 import org.springframework.web.reactive.socket.WebSocketSession
+import java.net.URLDecoder
+import java.nio.charset.StandardCharsets
+import kotlin.jvm.optionals.getOrNull
 import kotlin.reflect.KClass
 
 typealias RequestHandler = suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse
@@ -69,6 +72,7 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
+        numberOfParams: Int,
         serializerFactory: () -> KSerializer<RET>
     ): RequestHandler {
         val serializer by lazy { serializerFactory() }
@@ -77,7 +81,12 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
             val service = ctx.getBean(serviceClass.java)
             tlReq.remove()
             val jsonRpcRequest = if (method == HttpMethod.GET) {
-                JsonRpcRequest(req.queryParam("id").map { it.toInt() }.orElse(0), "", listOf())
+                val parameters = (0..<numberOfParams).map {
+                    req.queryParam("p$it").getOrNull()?.let {
+                        URLDecoder.decode(it, StandardCharsets.UTF_8)
+                    }
+                }
+                JsonRpcRequest(req.queryParam("id").map { it.toInt() }.orElse(0), "", parameters)
             } else {
                 req.awaitBody()
             }
@@ -146,10 +155,12 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
             val channel = Channel<String>()
             val events = flux {
                 for (item in channel) {
-                    send(ServerSentEvent.builder<String>()
-                        .event("message")
-                        .data(item)
-                        .build())
+                    send(
+                        ServerSentEvent.builder<String>()
+                            .event("message")
+                            .data(item)
+                            .build()
+                    )
                 }
             }.doOnCancel {
                 channel.close()

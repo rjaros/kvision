@@ -141,23 +141,6 @@ class KVServiceBinderTest {
         return Array(BINDING_INITIALIZERS.size) { args(it, BINDING_INITIALIZERS[it]) }
     }
 
-    @Test
-    fun bind_canUseGetMethod_ifNoArgs() {
-        // execution & evaluation
-        testBind(BINDING_INITIALIZERS[0], method = HttpMethod.GET, result = true)
-    }
-
-    @Test(
-        dataProvider = "provide_bindingInitializersWithArgs",
-        expectedExceptions = [UnsupportedOperationException::class]
-    )
-    fun bind_failsForGetMethod_ifHasArgs(bindingInitializer: BindingInitializer) {
-        // execution
-        testBind(bindingInitializer, method = HttpMethod.GET, result = true)
-
-        // evaluation handled by expectedExceptions
-    }
-
     @DataProvider
     fun provide_bindingInitializersWithArgs(): Array<BindingInitializer> =
         BINDING_INITIALIZERS.copyOfRange(1, BINDING_INITIALIZERS.size)
@@ -218,6 +201,7 @@ private class KVServiceBinderImpl : KVServiceBinder<Any, RouteHandler, Websocket
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend Any.(params: List<String?>) -> RET,
+        numberOfParams: Int,
         serializerFactory: () -> KSerializer<RET>
     ): RouteHandler =
         { runBlocking { function.invoke(HANDLER_THIS, it) } }

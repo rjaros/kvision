@@ -29,6 +29,11 @@ import kotlinx.browser.window
 external class Object
 
 /**
+ * JavaScript encodeURIComponent function
+ */
+external fun encodeURIComponent(uri: String): String
+
+/**
  * Helper function for creating JavaScript objects.
  */
 fun obj(init: dynamic.() -> Unit): dynamic {

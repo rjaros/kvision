@@ -36,7 +36,7 @@ open class KVServiceManagerJs<out T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR) -> RET,
         method: HttpMethod, route: String?
     ) {
-        bindFunctionWithParamsInternal(method, route, function)
+        bindFunctionInternal(route, function, method)
     }
 
     /**
@@ -49,7 +49,7 @@ open class KVServiceManagerJs<out T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR1, PAR2) -> RET,
         method: HttpMethod, route: String?
     ) {
-        bindFunctionWithParamsInternal(method, route, function)
+        bindFunctionInternal(route, function, method)
     }
 
     /**
@@ -62,7 +62,7 @@ open class KVServiceManagerJs<out T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR1, PAR2, PAR3) -> RET,
         method: HttpMethod, route: String?
     ) {
-        bindFunctionWithParamsInternal(method, route, function)
+        bindFunctionInternal(route, function, method)
     }
 
     /**
@@ -75,7 +75,7 @@ open class KVServiceManagerJs<out T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4) -> RET,
         method: HttpMethod, route: String?
     ) {
-        bindFunctionWithParamsInternal(method, route, function)
+        bindFunctionInternal(route, function, method)
     }
 
     /**
@@ -89,7 +89,7 @@ open class KVServiceManagerJs<out T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5) -> RET,
         method: HttpMethod, route: String?
     ) {
-        bindFunctionWithParamsInternal(method, route, function)
+        bindFunctionInternal(route, function, method)
     }
 
     /**
@@ -103,7 +103,7 @@ open class KVServiceManagerJs<out T: Any> : KVServiceMgr<T> {
         noinline function: suspend T.(PAR1, PAR2, PAR3, PAR4, PAR5, PAR6) -> RET,
         method: HttpMethod, route: String?
     ) {
-        bindFunctionWithParamsInternal(method, route, function)
+        bindFunctionInternal(route, function, method)
     }
 
     /**
@@ -139,13 +139,6 @@ open class KVServiceManagerJs<out T: Any> : KVServiceMgr<T> {
         route: String?
     ) {
         bindFunctionInternal(route, function, HttpMethod.GET, "/kvsse/")
-    }
-
-    @PublishedApi
-    internal fun bindFunctionWithParamsInternal(method: HttpMethod, route: String?, function: Function<*>) {
-        if (method == HttpMethod.GET)
-            throw UnsupportedOperationException("GET method is only supported for methods without parameters")
-        bindFunctionInternal(route, function, method)
     }
 
     @PublishedApi

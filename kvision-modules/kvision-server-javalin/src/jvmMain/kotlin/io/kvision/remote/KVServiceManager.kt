@@ -45,6 +45,8 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.net.URLDecoder
+import java.nio.charset.StandardCharsets
 import kotlin.reflect.KClass
 
 typealias RequestHandler = (Context) -> Unit
@@ -69,12 +71,18 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
+        numberOfParams: Int,
         serializerFactory: () -> KSerializer<RET>
     ): RequestHandler {
         val serializer by lazy { serializerFactory() }
         return { ctx ->
             val jsonRpcRequest = if (method == HttpMethod.GET) {
-                JsonRpcRequest(ctx.queryParamAsClass<Int>("id").get(), "", listOf())
+                val parameters = (0..<numberOfParams).map {
+                    ctx.queryParam("p$it")?.let {
+                        URLDecoder.decode(it, StandardCharsets.UTF_8)
+                    }
+                }
+                JsonRpcRequest(ctx.queryParamAsClass<Int>("id").get(), "", parameters)
             } else {
                 ctx.bodyAsClass()
             }

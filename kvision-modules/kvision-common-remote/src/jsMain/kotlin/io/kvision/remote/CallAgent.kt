@@ -87,7 +87,11 @@ open class CallAgent {
         val jsonRpcRequest = JsonRpcRequest(counter++, url, data)
         val urlAddr = urlPrefix + url.drop(1)
         val fetchUrl = if (method == HttpMethod.GET) {
-            urlAddr + "?" + URLSearchParams(obj { id = jsonRpcRequest.id }).toString()
+            val paramsObject = obj { id = jsonRpcRequest.id }
+            data.forEachIndexed { index, s ->
+                if (s != null) paramsObject["p$index"] = encodeURIComponent(s)
+            }
+            urlAddr + "?" + URLSearchParams(paramsObject).toString()
         } else {
             requestInit.body = RemoteSerialization.plain.encodeToString(jsonRpcRequest)
             urlAddr
@@ -182,9 +186,18 @@ open class CallAgent {
                                 if (response.headers.get("Content-Type") == "application/json") {
                                     response.json().then { cont.resume(it) }
                                 } else {
-                                    cont.cancel(ContentTypeException("Invalid response content type: ${response.headers.get("Content-Type")}"))
+                                    cont.cancel(
+                                        ContentTypeException(
+                                            "Invalid response content type: ${
+                                                response.headers.get(
+                                                    "Content-Type"
+                                                )
+                                            }"
+                                        )
+                                    )
                                 }
                             }
+
                             ResponseBodyType.TEXT -> response.text().then { cont.resume(it) }
                             ResponseBodyType.READABLE_STREAM -> cont.resume(response.body)
                         }

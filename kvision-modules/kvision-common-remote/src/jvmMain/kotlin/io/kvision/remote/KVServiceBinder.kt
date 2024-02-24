@@ -52,6 +52,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
     abstract fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
+        numberOfParams: Int,
         serializerFactory: () -> KSerializer<RET>
     ): RH
 
@@ -74,12 +75,13 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
     internal inline fun <reified RET> bind(
         method: HttpMethod,
         route: String?,
+        numberOfParams: Int,
         noinline function: suspend T.(params: List<String?>) -> RET
     ) {
         routeMapRegistry.addRoute(
             method,
             "/kv/${route ?: generateRouteName()}",
-            createRequestHandler(method, function) { deSerializer.serializersModule.serializer() }
+            createRequestHandler(method, function, numberOfParams) { deSerializer.serializersModule.serializer() }
         )
     }
 
@@ -90,7 +92,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
      * @param route a route
      */
     inline fun <reified RET> bind(noinline function: suspend T.() -> RET, method: HttpMethod, route: String?) {
-        bind(method, route) {
+        bind(method, route, 0) {
             requireParameterCountEqualTo(it, 0)
             function.invoke(this)
         }
@@ -107,8 +109,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
         method: HttpMethod,
         route: String?
     ) {
-        expectMethodSupportsParameters(method)
-        bind(method, route) {
+        bind(method, route, 1) {
             requireParameterCountEqualTo(it, 1)
             function.invoke(this, deserialize(it[0]))
         }
@@ -125,8 +126,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
         method: HttpMethod,
         route: String?
     ) {
-        expectMethodSupportsParameters(method)
-        bind(method, route) {
+        bind(method, route, 2) {
             requireParameterCountEqualTo(it, 2)
             function.invoke(this, deserialize(it[0]), deserialize(it[1]))
         }
@@ -143,8 +143,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
         method: HttpMethod,
         route: String?
     ) {
-        expectMethodSupportsParameters(method)
-        bind(method, route) {
+        bind(method, route, 3) {
             requireParameterCountEqualTo(it, 3)
             function.invoke(this, deserialize(it[0]), deserialize(it[1]), deserialize(it[2]))
         }
@@ -161,8 +160,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
         method: HttpMethod,
         route: String?
     ) {
-        expectMethodSupportsParameters(method)
-        bind(method, route) {
+        bind(method, route, 4) {
             requireParameterCountEqualTo(it, 4)
             function.invoke(this, deserialize(it[0]), deserialize(it[1]), deserialize(it[2]), deserialize(it[3]))
         }
@@ -179,8 +177,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
         method: HttpMethod,
         route: String?
     ) {
-        expectMethodSupportsParameters(method)
-        bind(method, route) {
+        bind(method, route, 5) {
             requireParameterCountEqualTo(it, 5)
             function.invoke(
                 this,
@@ -204,8 +201,7 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
         method: HttpMethod,
         route: String?
     ) {
-        expectMethodSupportsParameters(method)
-        bind(method, route) {
+        bind(method, route, 6) {
             requireParameterCountEqualTo(it, 6)
             function.invoke(
                 this,
@@ -284,11 +280,4 @@ abstract class KVServiceBinder<out T, RH, WH, SH>(
     internal inline fun <reified T> deserialize(txt: String?): T {
         return deSerializer.deserialize(txt)
     }
-}
-
-
-@PublishedApi
-internal fun expectMethodSupportsParameters(method: HttpMethod) {
-    if (method == HttpMethod.GET)
-        throw UnsupportedOperationException("GET method is only supported for methods without parameters")
 }

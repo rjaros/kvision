@@ -39,6 +39,8 @@ import kotlinx.serialization.encodeToString
 import org.reactivestreams.Publisher
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.net.URLDecoder
+import java.nio.charset.StandardCharsets
 import kotlin.reflect.KClass
 
 typealias RequestHandler =
@@ -49,7 +51,7 @@ typealias WebsocketHandler = suspend (
 ) -> Unit
 
 typealias SseHandler =
-    (HttpRequest<*>, ThreadLocal<HttpRequest<*>>, ApplicationContext) -> Publisher<Event<String>>
+        (HttpRequest<*>, ThreadLocal<HttpRequest<*>>, ApplicationContext) -> Publisher<Event<String>>
 
 /**
  * Multiplatform service manager for Micronaut.
@@ -67,6 +69,7 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
     override fun <RET> createRequestHandler(
         method: HttpMethod,
         function: suspend T.(params: List<String?>) -> RET,
+        numberOfParams: Int,
         serializerFactory: () -> KSerializer<RET>
     ): RequestHandler {
         val serializer by lazy { serializerFactory() }
@@ -75,7 +78,12 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
             val service = ctx.getBean(serviceClass.java)
             tlReq.remove()
             val jsonRpcRequest = if (method == HttpMethod.GET) {
-                JsonRpcRequest(req.parameters["id"]?.toInt() ?: 0, "", listOf())
+                val parameters = (0..<numberOfParams).map {
+                    req.parameters["p$it"]?.let {
+                        URLDecoder.decode(it, StandardCharsets.UTF_8)
+                    }
+                }
+                JsonRpcRequest(req.parameters["id"]?.toInt() ?: 0, "", parameters)
             } else {
                 req.getBody(JsonRpcRequest::class.java).get()
             }
