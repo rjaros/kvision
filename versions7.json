@@ -1,7 +1,7 @@
 {
-    "kvision": "7.4.0",
+    "kvision": "7.4.1",
     "kotlin": "1.9.22",
-    "coroutines": "1.8.0-RC2",
+    "coroutines": "1.8.0",
     "template-javalin": {
     },
     "template-jooby": {
@@ -12,11 +12,11 @@
         "koin-annotations": "1.3.1"
     },
     "template-micronaut": {
-        "micronaut": "4.3.1",
-        "micronaut-plugins": "4.3.2"
+        "micronaut": "4.3.3",
+        "micronaut-plugins": "4.3.3"
     },
     "template-spring-boot": {
-        "spring-boot": "3.2.2"
+        "spring-boot": "3.2.3"
     },
     "template-vertx": {
         "vertx-plugin": "1.4.0"
