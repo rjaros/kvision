@@ -38,7 +38,7 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 import org.springframework.boot.gradle.tasks.run.BootRun
-import java.util.*
+import java.util.Properties
 import javax.inject.Inject
 
 
@@ -602,6 +602,9 @@ abstract class KVisionPlugin @Inject constructor(
         get() = named("jsMain")
 
     private fun getServerType(project: Project): KVServerType? {
+        if (project.configurations["jvmMainImplementation"].dependencies.any { it.name == "spring-boot-starter-web" }) {
+            return KVServerType.SPRINGBOOT
+        }
         val kvisionServerDependency = project.configurations["commonMainApi"].dependencies.map {
             it.name
         }.firstOrNull { it.startsWith("kvision-server-") }
