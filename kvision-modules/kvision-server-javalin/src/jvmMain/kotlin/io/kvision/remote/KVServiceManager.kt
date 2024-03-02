@@ -25,7 +25,6 @@ import com.google.inject.Injector
 import io.javalin.Javalin
 import io.javalin.http.Context
 import io.javalin.http.bodyAsClass
-import io.javalin.http.queryParamAsClass
 import io.javalin.http.sse.SseClient
 import io.javalin.security.RouteRole
 import io.javalin.websocket.WsConfig
@@ -82,7 +81,7 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
                         URLDecoder.decode(it, StandardCharsets.UTF_8)
                     }
                 }
-                JsonRpcRequest(ctx.queryParamAsClass<Int>("id").get(), "", parameters)
+                JsonRpcRequest(0, "", parameters)
             } else {
                 ctx.bodyAsClass()
             }

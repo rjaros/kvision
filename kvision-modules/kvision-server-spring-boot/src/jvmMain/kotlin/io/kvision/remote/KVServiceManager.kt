@@ -86,7 +86,7 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
                         URLDecoder.decode(it, StandardCharsets.UTF_8)
                     }
                 }
-                JsonRpcRequest(req.queryParam("id").map { it.toInt() }.orElse(0), "", parameters)
+                JsonRpcRequest(0, "", parameters)
             } else {
                 req.awaitBody()
             }

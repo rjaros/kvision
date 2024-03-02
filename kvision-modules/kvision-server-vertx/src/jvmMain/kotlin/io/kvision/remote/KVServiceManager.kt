@@ -78,7 +78,7 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
                         URLDecoder.decode(it, StandardCharsets.UTF_8)
                     }
                 }
-                JsonRpcRequest(ctx.request().getParam("id")?.toInt() ?: 0, "", parameters)
+                JsonRpcRequest(0, "", parameters)
             } else {
                 ctx.body().asJsonObject().mapTo(JsonRpcRequest::class.java)
             }

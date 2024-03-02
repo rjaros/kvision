@@ -79,7 +79,7 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
                         URLDecoder.decode(it, StandardCharsets.UTF_8)
                     }
                 }
-                JsonRpcRequest(ctx.query("id").intValue(), "", parameters)
+                JsonRpcRequest(0, "", parameters)
             } else {
                 ctx.body(JsonRpcRequest::class.java)
             }

@@ -87,7 +87,7 @@ open class CallAgent {
         val jsonRpcRequest = JsonRpcRequest(counter++, url, data)
         val urlAddr = urlPrefix + url.drop(1)
         val fetchUrl = if (method == HttpMethod.GET) {
-            val paramsObject = obj { id = jsonRpcRequest.id }
+            val paramsObject = obj {}
             data.forEachIndexed { index, s ->
                 if (s != null) paramsObject["p$index"] = encodeURIComponent(s)
             }
@@ -106,7 +106,7 @@ open class CallAgent {
                     if (response.ok && response.headers.get("Content-Type") == "application/json") {
                         response.json().then { data: dynamic ->
                             when {
-                                data.id != jsonRpcRequest.id -> cont.cancel(Exception("Invalid response ID"))
+                                method != HttpMethod.GET && data.id != jsonRpcRequest.id -> cont.cancel(Exception("Invalid response ID"))
                                 data.error != null -> {
                                     if (data.exceptionType == "io.kvision.remote.ServiceException") {
                                         cont.cancel(ServiceException(data.error.toString()))
