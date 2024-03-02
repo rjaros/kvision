@@ -105,7 +105,12 @@ open class KVController {
         val handler = kvManagers.services.asSequence().mapNotNull {
             it.routeMapRegistry.findHandler(method, "/$path")
         }.firstOrNull() ?: return HttpResponse.notFound()
-        return handler(request, RequestHolder.threadLocalRequest, applicationContext)
+        return handler(
+            request,
+            RequestHolder.threadLocalRequest,
+            ResponseMutatorHolder.threadLocalResponseMutator,
+            applicationContext
+        )
     }
 
     private fun handleSse(path: String?, request: HttpRequest<*>): Publisher<Event<String>> {

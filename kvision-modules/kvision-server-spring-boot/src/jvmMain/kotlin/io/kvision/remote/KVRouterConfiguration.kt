@@ -35,6 +35,8 @@ import org.springframework.http.MediaType.TEXT_HTML
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
+import org.springframework.web.reactive.function.server.ServerResponse.BodyBuilder
+import org.springframework.web.reactive.function.server.ServerResponse.HeadersBuilder
 import org.springframework.web.reactive.function.server.buildAndAwait
 import org.springframework.web.reactive.function.server.coRouter
 import org.springframework.web.reactive.function.server.router
@@ -76,6 +78,8 @@ open class KVHandler(val services: List<KVServiceManager<*>>, val applicationCon
 
     private val threadLocalRequest = ThreadLocal<ServerRequest>()
 
+    private val threadLocalHeadersBuilder = ThreadLocal<HeadersBuilder<BodyBuilder>>()
+
     @PostConstruct
     open fun init() {
         services.forEach { it.deSerializer = kotlinxObjectDeSerializer(serializersModules) }
@@ -85,6 +89,12 @@ open class KVHandler(val services: List<KVServiceManager<*>>, val applicationCon
     @Scope(BeanDefinition.SCOPE_PROTOTYPE)
     open fun serverRequest(): ServerRequest {
         return threadLocalRequest.get() ?: KVServerRequest()
+    }
+
+    @Bean
+    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+    open fun headersBuilder(): HeadersBuilder<BodyBuilder> {
+        return threadLocalHeadersBuilder.get() ?: ServerResponse.ok()
     }
 
     open suspend fun handle(request: ServerRequest): ServerResponse {
@@ -101,6 +111,7 @@ open class KVHandler(val services: List<KVServiceManager<*>>, val applicationCon
         return (getHandler() ?: return ServerResponse.notFound().buildAndAwait())(
             request,
             threadLocalRequest,
+            threadLocalHeadersBuilder,
             applicationContext
         )
     }
@@ -117,6 +128,7 @@ open class KVHandler(val services: List<KVServiceManager<*>>, val applicationCon
         return (getSseHandler() ?: return ServerResponse.notFound().buildAndAwait())(
             request,
             threadLocalRequest,
+            threadLocalHeadersBuilder,
             applicationContext
         )
     }

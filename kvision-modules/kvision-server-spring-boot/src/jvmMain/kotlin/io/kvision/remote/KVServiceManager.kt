@@ -40,6 +40,8 @@ import org.springframework.http.codec.ServerSentEvent
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
+import org.springframework.web.reactive.function.server.ServerResponse.BodyBuilder
+import org.springframework.web.reactive.function.server.ServerResponse.HeadersBuilder
 import org.springframework.web.reactive.function.server.awaitBody
 import org.springframework.web.reactive.function.server.bodyValueAndAwait
 import org.springframework.web.reactive.function.server.json
@@ -49,7 +51,7 @@ import java.nio.charset.StandardCharsets
 import kotlin.jvm.optionals.getOrNull
 import kotlin.reflect.KClass
 
-typealias RequestHandler = suspend (ServerRequest, ThreadLocal<ServerRequest>, ApplicationContext) -> ServerResponse
+typealias RequestHandler = suspend (ServerRequest, ThreadLocal<ServerRequest>, ThreadLocal<HeadersBuilder<BodyBuilder>>, ApplicationContext) -> ServerResponse
 typealias WebsocketHandler = suspend (
     WebSocketSession, ThreadLocal<WebSocketSession>, ApplicationContext, ReceiveChannel<String>, SendChannel<String>
 ) -> Unit
@@ -76,10 +78,13 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
         serializerFactory: () -> KSerializer<RET>
     ): RequestHandler {
         val serializer by lazy { serializerFactory() }
-        return { req, tlReq, ctx ->
+        return { req, tlReq, tlHeadersBuilder, ctx ->
+            val bodyBuilder = ServerResponse.ok().json()
             tlReq.set(req)
+            tlHeadersBuilder.set(bodyBuilder)
             val service = ctx.getBean(serviceClass.java)
             tlReq.remove()
+            tlHeadersBuilder.remove()
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 val parameters = (0..<numberOfParams).map {
                     req.queryParam("p$it").getOrNull()?.let {
@@ -90,7 +95,7 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
             } else {
                 req.awaitBody()
             }
-            ServerResponse.ok().json().bodyValueAndAwait(
+            bodyBuilder.bodyValueAndAwait(
                 deSerializer.serializeNonNull(
                     try {
                         val result = function.invoke(service, jsonRpcRequest.params)
@@ -148,10 +153,13 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
         serializerFactory: () -> KSerializer<PAR>
     ): SseHandler {
         val serializer by lazy { serializerFactory() }
-        return { req, tlReq, ctx ->
+        return { req, tlReq, tlHeadersBuilder, ctx ->
+            val bodyBuilder = ServerResponse.ok().contentType(MediaType.TEXT_EVENT_STREAM)
             tlReq.set(req)
+            tlHeadersBuilder.set(bodyBuilder)
             val service = ctx.getBean(serviceClass.java)
             tlReq.remove()
+            tlHeadersBuilder.remove()
             val channel = Channel<String>()
             val events = flux {
                 for (item in channel) {
@@ -174,9 +182,7 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
                     function = function
                 )
             }
-            ServerResponse
-                .ok()
-                .contentType(MediaType.TEXT_EVENT_STREAM)
+            bodyBuilder
                 .body(BodyInserters.fromServerSentEvents(events)).awaitSingle()
         }
     }

@@ -44,7 +44,7 @@ import java.nio.charset.StandardCharsets
 import kotlin.reflect.KClass
 
 typealias RequestHandler =
-    suspend (HttpRequest<*>, ThreadLocal<HttpRequest<*>>, ApplicationContext) -> HttpResponse<String>
+    suspend (HttpRequest<*>, ThreadLocal<HttpRequest<*>>, ThreadLocal<HttpResponseMutator>, ApplicationContext) -> HttpResponse<String>
 
 typealias WebsocketHandler = suspend (
     WebSocketSession, ThreadLocal<WebSocketSession>, ApplicationContext, ReceiveChannel<String>, SendChannel<String>
@@ -73,10 +73,13 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
         serializerFactory: () -> KSerializer<RET>
     ): RequestHandler {
         val serializer by lazy { serializerFactory() }
-        return { req, tlReq, ctx ->
+        return { req, tlReq, tlResponseMutator, ctx ->
+            val httpResponseMutator = HttpResponseMutator()
             tlReq.set(req)
+            tlResponseMutator.set(httpResponseMutator)
             val service = ctx.getBean(serviceClass.java)
             tlReq.remove()
+            tlResponseMutator.remove()
             val jsonRpcRequest = if (method == HttpMethod.GET) {
                 val parameters = (0..<numberOfParams).map {
                     req.parameters["p$it"]?.let {
@@ -114,7 +117,7 @@ actual open class KVServiceManager<out T : Any> actual constructor(private val s
                         )
                     }
                 )
-            )
+            ).also { mutableHttpResponse -> httpResponseMutator.responseMutator?.let { mutableHttpResponse.it() } }
         }
     }
 
