@@ -1881,6 +1881,12 @@ $dokka.location:io.kvision.chart/UpdateMode.SHOW///PointingToDeclaration/{"org.j
 $dokka.location:io.kvision.chart/UpdateMode///PointingToDeclaration/kvision/io.kvision.chart/-update-mode/index.html
 $dokka.location:io.kvision.chart/UpdateMode/valueOf/#kotlin.String/PointingToDeclaration/kvision/io.kvision.chart/-update-mode/value-of.html
 $dokka.location:io.kvision.chart/UpdateMode/values/#/PointingToDeclaration/kvision/io.kvision.chart/-update-mode/values.html
+$dokka.location:io.kvision.collapse////PointingToDeclaration/kvision/io.kvision.collapse/index.html
+$dokka.location:io.kvision.collapse//collapse/io.kvision.core.Container#kotlin.String#kotlin.String?#kotlin.Boolean#kotlin.Boolean#kotlin.Function1[io.kvision.collapse.Collapse,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.collapse/collapse.html
+$dokka.location:io.kvision.collapse//forCollapse/io.kvision.html.Button#kotlin.String#kotlin.Array[kotlin.String]/PointingToDeclaration/kvision/io.kvision.collapse/for-collapse.html
+$dokka.location:io.kvision.collapse//forCollapse/io.kvision.html.Button#kotlin.String/PointingToDeclaration/kvision/io.kvision.collapse/for-collapse.html
+$dokka.location:io.kvision.collapse/Collapse///PointingToDeclaration/kvision/io.kvision.collapse/-collapse/index.html
+$dokka.location:io.kvision.collapse/Collapse/Collapse/#kotlin.String#kotlin.String?#kotlin.Boolean#kotlin.Boolean#kotlin.Function1[io.kvision.collapse.Collapse,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.collapse/-collapse/-collapse.html
 $dokka.location:io.kvision.cordova////PointingToDeclaration/kvision/io.kvision.cordova/index.html
 $dokka.location:io.kvision.cordova//addCordovaEventListener/#io.kvision.cordova.CordovaEvent#kotlin.Function1[[Error type: Unresolved type for Event],kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.cordova/add-cordova-event-listener.html
 $dokka.location:io.kvision.cordova//addDeviceReadyListener/#kotlin.Function1[io.kvision.cordova.Device,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.cordova/add-device-ready-listener.html
@@ -7247,8 +7253,8 @@ $dokka.location:io.kvision.form.select/TomSelectRenders/option/#/PointingToDecla
 $dokka.location:io.kvision.form.select/TomSelectRenders/optionCreate/#/PointingToDeclaration/kvision/io.kvision.form.select/-tom-select-renders/option-create.html
 $dokka.location:io.kvision.form.text////PointingToDeclaration/kvision/io.kvision.form.text/index.html
 $dokka.location:io.kvision.form.text//password/io.kvision.core.Container#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Boolean#kotlin.Function1[io.kvision.form.text.Password,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/password.html
-$dokka.location:io.kvision.form.text//richText/io.kvision.core.Container#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.text.RichText,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/rich-text.html
-$dokka.location:io.kvision.form.text//richTextInput/io.kvision.core.Container#kotlin.String?#kotlin.String?#kotlin.Function1[io.kvision.form.text.RichTextInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/rich-text-input.html
+$dokka.location:io.kvision.form.text//richText/io.kvision.core.Container#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Boolean#kotlin.Function1[io.kvision.form.text.RichText,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/rich-text.html
+$dokka.location:io.kvision.form.text//richTextInput/io.kvision.core.Container#kotlin.String?#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.form.text.RichTextInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/rich-text-input.html
 $dokka.location:io.kvision.form.text//text/io.kvision.core.Container#io.kvision.html.InputType#kotlin.String?#kotlin.String?#kotlin.Int?#kotlin.String?#kotlin.Boolean#kotlin.Boolean#kotlin.Function1[io.kvision.form.text.Text,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/text.html
 $dokka.location:io.kvision.form.text//textArea/io.kvision.core.Container#kotlin.Int?#kotlin.Int?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Boolean#kotlin.Function1[io.kvision.form.text.TextArea,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/text-area.html
 $dokka.location:io.kvision.form.text//textAreaInput/io.kvision.core.Container#kotlin.Int?#kotlin.Int?#kotlin.String?#kotlin.String?#kotlin.Function1[io.kvision.form.text.TextAreaInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/text-area-input.html
@@ -7384,14 +7390,14 @@ $dokka.location:io.kvision.form.text/RangeMask/maxLength/#/PointingToDeclaration
 $dokka.location:io.kvision.form.text/RangeMask/placeholderChar/#/PointingToDeclaration/kvision/io.kvision.form.text/-range-mask/placeholder-char.html
 $dokka.location:io.kvision.form.text/RangeMask/to/#/PointingToDeclaration/kvision/io.kvision.form.text/-range-mask/to.html
 $dokka.location:io.kvision.form.text/RichText///PointingToDeclaration/kvision/io.kvision.form.text/-rich-text/index.html
-$dokka.location:io.kvision.form.text/RichText/RichText/#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Function1[io.kvision.form.text.RichText,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/-rich-text/-rich-text.html
+$dokka.location:io.kvision.form.text/RichText/RichText/#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.Boolean#kotlin.Boolean#kotlin.Function1[io.kvision.form.text.RichText,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/-rich-text/-rich-text.html
 $dokka.location:io.kvision.form.text/RichText/input/#/PointingToDeclaration/kvision/io.kvision.form.text/-rich-text/input.html
 $dokka.location:io.kvision.form.text/RichText/inputHeight/#/PointingToDeclaration/kvision/io.kvision.form.text/-rich-text/input-height.html
 $dokka.location:io.kvision.form.text/RichText/styleForHorizontalFormPanel/#io.kvision.form.FormHorizontalRatio/PointingToDeclaration/kvision/io.kvision.form.text/-rich-text/style-for-horizontal-form-panel.html
 $dokka.location:io.kvision.form.text/RichText/wrapper/#/PointingToDeclaration/kvision/io.kvision.form.text/-rich-text/wrapper.html
 $dokka.location:io.kvision.form.text/RichTextInput.Companion///PointingToDeclaration/kvision/io.kvision.form.text/-rich-text-input/-companion/index.html
 $dokka.location:io.kvision.form.text/RichTextInput///PointingToDeclaration/kvision/io.kvision.form.text/-rich-text-input/index.html
-$dokka.location:io.kvision.form.text/RichTextInput/RichTextInput/#kotlin.String?#kotlin.String?#kotlin.Function1[io.kvision.form.text.RichTextInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/-rich-text-input/-rich-text-input.html
+$dokka.location:io.kvision.form.text/RichTextInput/RichTextInput/#kotlin.String?#kotlin.Boolean#kotlin.String?#kotlin.Function1[io.kvision.form.text.RichTextInput,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/-rich-text-input/-rich-text-input.html
 $dokka.location:io.kvision.form.text/RichTextInput/maskOptions/#/PointingToDeclaration/kvision/io.kvision.form.text/-rich-text-input/mask-options.html
 $dokka.location:io.kvision.form.text/Text///PointingToDeclaration/kvision/io.kvision.form.text/-text/index.html
 $dokka.location:io.kvision.form.text/Text/Text/#io.kvision.html.InputType#kotlin.String?#kotlin.String?#kotlin.Int?#kotlin.String?#kotlin.Boolean#kotlin.Boolean#kotlin.Function1[io.kvision.form.text.Text,kotlin.Unit]?/PointingToDeclaration/kvision/io.kvision.form.text/-text/-text.html
@@ -13658,6 +13664,7 @@ io.kvision
 io.kvision.annotations
 io.kvision.chart
 io.kvision.chart.js
+io.kvision.collapse
 io.kvision.cordova
 io.kvision.core
 io.kvision.dropdown
