@@ -34,11 +34,13 @@ import org.w3c.dom.Element
  *
  * @constructor
  * @param value text input value
+ * @param allowFileUploads determines if file uploads are allowed (default false)
  * @param className CSS class names
  * @param init an initializer extension function
  */
 open class RichTextInput(
     value: String? = null,
+    protected val allowFileUploads: Boolean = false,
     className: String? = null,
     init: (RichTextInput.() -> Unit)? = null
 ) : AbstractTextInput(value, null, (className?.let { "$it " } ?: "") + "form-control trix-control") {
@@ -107,7 +109,7 @@ open class RichTextInput(
                 }
             }
         })
-        this.getElement()?.addEventListener("trix-file-accept", { e -> e.preventDefault() })
+        if (!allowFileUploads) this.getElement()?.addEventListener("trix-file-accept", { e -> e.preventDefault() })
     }
 
     override fun afterDestroy() {
@@ -149,10 +151,11 @@ open class RichTextInput(
  */
 fun Container.richTextInput(
     value: String? = null,
+    allowFileUploads: Boolean = false,
     className: String? = null,
     init: (RichTextInput.() -> Unit)? = null
 ): RichTextInput {
-    val richTextInput = RichTextInput(value, className, init)
+    val richTextInput = RichTextInput(value, allowFileUploads, className, init)
     this.add(richTextInput)
     return richTextInput
 }

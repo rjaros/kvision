@@ -33,11 +33,13 @@ import io.kvision.panel.SimplePanel
  * @param name the name attribute of the generated HTML input element
  * @param label label text bound to the input element
  * @param rich determines if [label] can contain HTML code
+ * @param allowFileUploads determines if file uploads are allowed (default false)
  * @param init an initializer extension function
  */
 open class RichText(
     value: String? = null, name: String? = null,
     label: String? = null, rich: Boolean = false,
+    allowFileUploads: Boolean = false,
     init: (RichText.() -> Unit)? = null
 ) : AbstractText(label, rich) {
 
@@ -50,7 +52,7 @@ open class RichText(
             input.height = value
         }
 
-    final override val input: RichTextInput = RichTextInput(value).apply {
+    final override val input: RichTextInput = RichTextInput(value, allowFileUploads).apply {
         this.id = this@RichText.idc
         this.name = name
     }
@@ -90,9 +92,10 @@ fun Container.richText(
     name: String? = null,
     label: String? = null,
     rich: Boolean = false,
+    allowFileUploads: Boolean = false,
     init: (RichText.() -> Unit)? = null
 ): RichText {
-    val richText = RichText(value, name, label, rich, init)
+    val richText = RichText(value, name, label, rich, allowFileUploads, init)
     this.add(richText)
     return richText
 }
