@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2024 André Harnisch
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +23,7 @@
 package io.kvision.collapse
 
 import io.kvision.core.Container
-import io.kvision.html.*
+import io.kvision.html.Button
 import io.kvision.panel.SimplePanel
 
 /**
@@ -35,18 +36,21 @@ import io.kvision.panel.SimplePanel
  * @see <a href="https://getbootstrap.com/docs/5.3/components/collapse/"/>Bootstrap documentation</a>
  * @author André Harnisch
  */
-class Collapse(
+open class Collapse(
     id: String,
     groupId: String? = null,
     horizontal: Boolean = false,
     opened: Boolean = false,
-    init: SimplePanel.() -> Unit
-): SimplePanel("collapse") {
+    init: Collapse.() -> Unit
+) : SimplePanel("collapse") {
 
     init {
         this.id = id
+        @Suppress("LeakingThis")
         if (groupId != null) addCssClass(groupId)
+        @Suppress("LeakingThis")
         if (horizontal) addCssClass("collapse-horizontal")
+        @Suppress("LeakingThis")
         if (opened) addCssClass("show")
         init()
     }
@@ -61,7 +65,7 @@ fun Container.collapse(
     groupId: String? = null,
     horizontal: Boolean = false,
     opened: Boolean = false,
-    init: SimplePanel.() -> Unit
+    init: Collapse.() -> Unit
 ) = Collapse(id, groupId, horizontal, opened, init).also { add(it) }
 
 /**
