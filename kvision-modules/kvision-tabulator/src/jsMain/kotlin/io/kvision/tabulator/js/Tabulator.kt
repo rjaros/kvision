@@ -184,7 +184,7 @@ open external class Tabulator {
         definedExternally
 
     open fun destroy(): Unit = definedExternally
-    open fun import(importer: dynamic, extensions: String): Unit = definedExternally
+    open fun import(importer: dynamic, extensions: String, type: String = definedExternally): Unit = definedExternally
     open fun setData(data: Any?, params: Any?, config: Any?): Promise<Unit> = definedExternally
     open fun clearData(): Unit = definedExternally
     open fun getData(activeOnly: String? /* 'active' | 'visible' */): Array<Any> = definedExternally
@@ -401,6 +401,19 @@ open external class Tabulator {
     open fun addRange(topLeft: dynamic, bottomRight: dynamic): dynamic = definedExternally
     open fun getRanges(): dynamic = definedExternally
     open fun getRangesData(): dynamic = definedExternally
+
+    open fun setSheetData(data: dynamic): Unit = definedExternally
+    open fun getSheetData(sheet: dynamic = definedExternally): dynamic = definedExternally
+    open fun clearSheet(sheet: dynamic = definedExternally): Unit = definedExternally
+    open fun setSheets(sheets: dynamic): Unit = definedExternally
+    open fun addSheet(sheetDef: dynamic): dynamic = definedExternally
+    open fun getSheetDefinitions(): dynamic = definedExternally
+    open fun getSheets(): dynamic = definedExternally
+    open fun getSheet(sheet: dynamic): dynamic = definedExternally
+    open fun setSheetData(sheet: dynamic, data: dynamic): Unit = definedExternally
+    open fun activeSheet(sheet: dynamic): Unit = definedExternally
+    open fun removeSheet(sheet: dynamic): Unit = definedExternally
+
 
     interface Options : OptionsGeneral, OptionsMenu, OptionsHistory, OptionsLocale, OptionsDownload, OptionsColumns,
         OptionsRows, OptionsData, OptionsSorting, OptionsFiltering, OptionsRowGrouping, OptionsPagination,

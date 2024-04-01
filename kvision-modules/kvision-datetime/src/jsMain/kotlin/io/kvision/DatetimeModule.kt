@@ -59,6 +59,8 @@ object DatetimeModule : ModuleInitializer {
         locales[localeSl.name] = localeSl.localization
         val localeTr = require("@eonasdan/tempus-dominus/dist/locales/tr.js")
         locales[localeTr.name] = localeTr.localization
+        val localeZh = require("@eonasdan/tempus-dominus/dist/locales/zh-CN.js")
+        locales[localeZh.name] = localeZh.localization
     }
 
     override fun initialize() {

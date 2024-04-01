@@ -99,7 +99,8 @@ enum class Formatter(internal val formatter: String) {
     HANDLE("handle"),
     ROWSELECTION("rowSelection"),
     RESPONSIVECOLLAPSE("responsiveCollapse"),
-    RESPONSIVECOLLAPSEAUTO("responsiveCollapseAuto")
+    RESPONSIVECOLLAPSEAUTO("responsiveCollapseAuto"),
+    TOGGLE("toggle"),
 }
 
 /**
@@ -325,7 +326,8 @@ enum class EditTriggerEvent(internal val event: String) {
 data class DownloadConfig(
     val columnGroups: Boolean? = null,
     val rowGroups: Boolean? = null,
-    val columnCalcs: Boolean? = null
+    val columnCalcs: Boolean? = null,
+    val rowHeaders: Boolean? = null
 )
 
 /**
@@ -337,6 +339,7 @@ fun DownloadConfig.toJs(): Tabulator.AddditionalExportOptions {
         if (columnGroups != null) this.columnGroups = columnGroups
         if (rowGroups != null) this.rowGroups = rowGroups
         if (columnCalcs != null) this.columnCalcs = columnCalcs
+        if (rowHeaders != null) this.rowHeaders = rowHeaders
     } as Tabulator.AddditionalExportOptions
 }
 
@@ -892,6 +895,7 @@ data class TabulatorOptions<T : Any>(
     val autoResize: Boolean? = null,
     val columns: List<ColumnDefinition<T>>? = null,
     val autoColumns: Boolean? = null,
+    val autoColumnsFull: Boolean? = null,
     val layout: Layout? = null,
     val layoutColumnsOnNewData: Boolean? = null,
     val responsiveLayout: ResponsiveLayout? = null,
@@ -1015,6 +1019,19 @@ data class TabulatorOptions<T : Any>(
     val selectableRangeClearCells: Boolean? = null,
     val selectableRangeClearCellsValue: String? = null,
     val editTriggerEvent: EditTriggerEvent? = null,
+    val rowHeader: dynamic = null,
+    val spreadsheet: Boolean? = null,
+    val spreadsheetColumns: Int? = null,
+    val spreadsheetRows: Int? = null,
+    val spreadsheetData: dynamic = null,
+    val spreadsheetColumnDefinition: dynamic = null,
+    val spreadsheetOutputFull: Boolean? = null,
+    val spreadsheetSheets: dynamic = null,
+    val spreadsheetSheetTabs: Boolean? = null,
+    val resizableColumnGuide: Boolean? = null,
+    val resizableRowGuide: Boolean? = null,
+    val editorEmptyValue: dynamic = null,
+    val editorEmptyValueFunc: ((dynamic) -> Boolean)? = null,
 )
 
 /**
@@ -1066,7 +1083,9 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (reactiveData != null) this.reactiveData = reactiveData
         if (autoResize != null) this.autoResize = autoResize
         if (columns != null) this.columns = columns.map { it.toJs(tabulator, i18nTranslator, kClass) }.toTypedArray()
-        if (autoColumns != null) {
+        if (autoColumnsFull == true) {
+            this.autoColumns = "full"
+        } else if (autoColumns != null) {
             this.autoColumns = autoColumns
         } else if (columns == null) {
             this.autoColumns = true
@@ -1198,5 +1217,18 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (selectableRangeClearCells != null) this.selectableRangeClearCells = selectableRangeClearCells
         if (selectableRangeClearCellsValue != null) this.selectableRangeClearCellsValue = selectableRangeClearCellsValue
         if (editTriggerEvent != null) this.editTriggerEvent = editTriggerEvent.event
+        if (rowHeader != null) this.rowHeader = rowHeader
+        if (spreadsheet != null) this.spreadsheet = spreadsheet
+        if (spreadsheetColumns != null) this.spreadsheetColumns = spreadsheetColumns
+        if (spreadsheetRows != null) this.spreadsheetRows = spreadsheetRows
+        if (spreadsheetData != null) this.spreadsheetData = spreadsheetData
+        if (spreadsheetColumnDefinition != null) this.spreadsheetColumnDefinition = spreadsheetColumnDefinition
+        if (spreadsheetOutputFull != null) this.spreadsheetOutputFull = spreadsheetOutputFull
+        if (spreadsheetSheets != null) this.spreadsheetSheets = spreadsheetSheets
+        if (spreadsheetSheetTabs != null) this.spreadsheetSheetTabs = spreadsheetSheetTabs
+        if (resizableColumnGuide != null) this.resizableColumnGuide = resizableColumnGuide
+        if (resizableRowGuide != null) this.resizableRowGuide = resizableRowGuide
+        if (editorEmptyValue != null) this.editorEmptyValue = editorEmptyValue
+        if (editorEmptyValueFunc != null) this.editorEmptyValueFunc = editorEmptyValueFunc
     } as Tabulator.Options
 }
