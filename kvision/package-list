@@ -18,6 +18,23 @@ $dokka.location:io.kvision.annotations/Method.PUT///PointingToDeclaration/{"org.
 $dokka.location:io.kvision.annotations/Method///PointingToDeclaration/kvision/io.kvision.annotations/-method/index.html
 $dokka.location:io.kvision.annotations/Method/valueOf/#kotlin.String/PointingToDeclaration/kvision/io.kvision.annotations/-method/value-of.html
 $dokka.location:io.kvision.annotations/Method/values/#/PointingToDeclaration/kvision/io.kvision.annotations/-method/values.html
+$dokka.location:io.kvision.badge////PointingToDeclaration/kvision/io.kvision.badge/index.html
+$dokka.location:io.kvision.badge//badge/io.kvision.core.Container#kotlin.String?#io.kvision.core.BsColor#kotlin.Boolean#io.kvision.badge.BadgePosition?#kotlin.Function1[io.kvision.badge.Badge,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.badge/badge.html
+$dokka.location:io.kvision.badge/Badge///PointingToDeclaration/kvision/io.kvision.badge/-badge/index.html
+$dokka.location:io.kvision.badge/Badge/Badge/#kotlin.String?#io.kvision.core.BsColor#kotlin.Boolean#io.kvision.badge.BadgePosition?#kotlin.Function1[io.kvision.badge.Badge,kotlin.Unit]/PointingToDeclaration/kvision/io.kvision.badge/-badge/-badge.html
+$dokka.location:io.kvision.badge/Badge/content/#/PointingToDeclaration/kvision/io.kvision.badge/-badge/content.html
+$dokka.location:io.kvision.badge/BadgePosition.Companion///PointingToDeclaration/kvision/io.kvision.badge/-badge-position/-companion/index.html
+$dokka.location:io.kvision.badge/BadgePosition.Companion/BOTTOM_CENTER/#/PointingToDeclaration/kvision/io.kvision.badge/-badge-position/-companion/-b-o-t-t-o-m_-c-e-n-t-e-r.html
+$dokka.location:io.kvision.badge/BadgePosition.Companion/BOTTOM_LEFT/#/PointingToDeclaration/kvision/io.kvision.badge/-badge-position/-companion/-b-o-t-t-o-m_-l-e-f-t.html
+$dokka.location:io.kvision.badge/BadgePosition.Companion/BOTTOM_RIGHT/#/PointingToDeclaration/kvision/io.kvision.badge/-badge-position/-companion/-b-o-t-t-o-m_-r-i-g-h-t.html
+$dokka.location:io.kvision.badge/BadgePosition.Companion/MIDDLE_CENTER/#/PointingToDeclaration/kvision/io.kvision.badge/-badge-position/-companion/-m-i-d-d-l-e_-c-e-n-t-e-r.html
+$dokka.location:io.kvision.badge/BadgePosition.Companion/MIDDLE_LEFT/#/PointingToDeclaration/kvision/io.kvision.badge/-badge-position/-companion/-m-i-d-d-l-e_-l-e-f-t.html
+$dokka.location:io.kvision.badge/BadgePosition.Companion/MIDDLE_RIGHT/#/PointingToDeclaration/kvision/io.kvision.badge/-badge-position/-companion/-m-i-d-d-l-e_-r-i-g-h-t.html
+$dokka.location:io.kvision.badge/BadgePosition.Companion/TOP_CENTER/#/PointingToDeclaration/kvision/io.kvision.badge/-badge-position/-companion/-t-o-p_-c-e-n-t-e-r.html
+$dokka.location:io.kvision.badge/BadgePosition.Companion/TOP_LEFT/#/PointingToDeclaration/kvision/io.kvision.badge/-badge-position/-companion/-t-o-p_-l-e-f-t.html
+$dokka.location:io.kvision.badge/BadgePosition.Companion/TOP_RIGHT/#/PointingToDeclaration/kvision/io.kvision.badge/-badge-position/-companion/-t-o-p_-r-i-g-h-t.html
+$dokka.location:io.kvision.badge/BadgePosition///PointingToDeclaration/kvision/io.kvision.badge/-badge-position/index.html
+$dokka.location:io.kvision.badge/BadgePosition/BadgePosition/#kotlin.Array[kotlin.String]/PointingToDeclaration/kvision/io.kvision.badge/-badge-position/-badge-position.html
 $dokka.location:io.kvision.chart.js////PointingToDeclaration/kvision/io.kvision.chart.js/index.html
 $dokka.location:io.kvision.chart.js//BarController/#/PointingToDeclaration/kvision/io.kvision.chart.js/-bar-controller.html
 $dokka.location:io.kvision.chart.js//BubbleController/#/PointingToDeclaration/kvision/io.kvision.chart.js/-bubble-controller.html
@@ -12578,11 +12595,13 @@ $dokka.location:io.kvision.tabulator.js/Tabulator/Tabulator/#[Error type: Unreso
 $dokka.location:io.kvision.tabulator.js/Tabulator/Tabulator/#[Error type: Unresolved type for HTMLElement]/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/-tabulator.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/Tabulator/#kotlin.String#io.kvision.tabulator.js.Tabulator.Options/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/-tabulator.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/Tabulator/#kotlin.String/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/-tabulator.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/activeSheet/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/active-sheet.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/addColumn/#io.kvision.tabulator.js.Tabulator.ColumnDefinition#kotlin.Boolean?#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/add-column.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/addData/#kotlin.Array[kotlin.Any]#kotlin.Boolean#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/add-data.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/addFilter/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/add-filter.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/addRange/#kotlin.Any#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/add-range.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/addRow/#kotlin.Any#kotlin.Boolean#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/add-row.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/addSheet/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/add-sheet.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/alert/#kotlin.String#kotlin.String/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/alert.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/blockRedraw/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/block-redraw.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/browser/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/browser.html
@@ -12594,6 +12613,7 @@ $dokka.location:io.kvision.tabulator.js/Tabulator/clearData/#/PointingToDeclarat
 $dokka.location:io.kvision.tabulator.js/Tabulator/clearFilter/#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/clear-filter.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/clearHeaderFilter/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/clear-header-filter.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/clearHistory/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/clear-history.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/clearSheet/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/clear-sheet.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/clearSort/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/clear-sort.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/columnManager/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/column-manager.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/copyToClipboard/#kotlin.String/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/copy-to-clipboard.html
@@ -12636,9 +12656,13 @@ $dokka.location:io.kvision.tabulator.js/Tabulator/getRowPosition/#kotlin.Any/Poi
 $dokka.location:io.kvision.tabulator.js/Tabulator/getRows/#kotlin.String/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/get-rows.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/getSelectedData/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/get-selected-data.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/getSelectedRows/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/get-selected-rows.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/getSheet/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/get-sheet.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/getSheetData/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/get-sheet-data.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/getSheetDefinitions/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/get-sheet-definitions.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/getSheets/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/get-sheets.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/getSorters/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/get-sorters.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/hideColumn/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/hide-column.html
-$dokka.location:io.kvision.tabulator.js/Tabulator/import/#kotlin.Any#kotlin.String/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/import.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/import/#kotlin.Any#kotlin.String#kotlin.String/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/import.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/modules/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/modules.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/moveColumn/#kotlin.Any#kotlin.Any#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/move-column.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/moveRow/#kotlin.Any#kotlin.Any#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/move-row.html
@@ -12659,6 +12683,7 @@ $dokka.location:io.kvision.tabulator.js/Tabulator/redo/#/PointingToDeclaration/
 $dokka.location:io.kvision.tabulator.js/Tabulator/redraw/#kotlin.Boolean/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/redraw.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/refreshFilters/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/refresh-filters.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/removeFilter/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/remove-filter.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/removeSheet/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/remove-sheet.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/replaceData/#kotlin.Any#kotlin.Any?#kotlin.Any?/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/replace-data.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/restoreRedraw/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/restore-redraw.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/rowManager/#/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/row-manager.html
@@ -12683,6 +12708,9 @@ $dokka.location:io.kvision.tabulator.js/Tabulator/setMaxPage/#kotlin.Number/Poin
 $dokka.location:io.kvision.tabulator.js/Tabulator/setPage/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/set-page.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/setPageSize/#kotlin.Number/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/set-page-size.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/setPageToRow/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/set-page-to-row.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/setSheetData/#kotlin.Any#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/set-sheet-data.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/setSheetData/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/set-sheet-data.html
+$dokka.location:io.kvision.tabulator.js/Tabulator/setSheets/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/set-sheets.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/setSort/#kotlin.Any#kotlin.String/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/set-sort.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/showColumn/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/show-column.html
 $dokka.location:io.kvision.tabulator.js/Tabulator/toggleColumn/#kotlin.Any/PointingToDeclaration/kvision/io.kvision.tabulator.js/-tabulator/toggle-column.html
@@ -12866,10 +12894,11 @@ $dokka.location:io.kvision.tabulator/ColumnPosition///PointingToDeclaration/kvi
 $dokka.location:io.kvision.tabulator/ColumnPosition/valueOf/#kotlin.String/PointingToDeclaration/kvision/io.kvision.tabulator/-column-position/value-of.html
 $dokka.location:io.kvision.tabulator/ColumnPosition/values/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-position/values.html
 $dokka.location:io.kvision.tabulator/DownloadConfig///PointingToDeclaration/kvision/io.kvision.tabulator/-download-config/index.html
-$dokka.location:io.kvision.tabulator/DownloadConfig/DownloadConfig/#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?/PointingToDeclaration/kvision/io.kvision.tabulator/-download-config/-download-config.html
+$dokka.location:io.kvision.tabulator/DownloadConfig/DownloadConfig/#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?/PointingToDeclaration/kvision/io.kvision.tabulator/-download-config/-download-config.html
 $dokka.location:io.kvision.tabulator/DownloadConfig/columnCalcs/#/PointingToDeclaration/kvision/io.kvision.tabulator/-download-config/column-calcs.html
 $dokka.location:io.kvision.tabulator/DownloadConfig/columnGroups/#/PointingToDeclaration/kvision/io.kvision.tabulator/-download-config/column-groups.html
 $dokka.location:io.kvision.tabulator/DownloadConfig/rowGroups/#/PointingToDeclaration/kvision/io.kvision.tabulator/-download-config/row-groups.html
+$dokka.location:io.kvision.tabulator/DownloadConfig/rowHeaders/#/PointingToDeclaration/kvision/io.kvision.tabulator/-download-config/row-headers.html
 $dokka.location:io.kvision.tabulator/EditTriggerEvent.CLICK///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.tabulator/-edit-trigger-event/-c-l-i-c-k/index.html
 $dokka.location:io.kvision.tabulator/EditTriggerEvent.DBLCLICK///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.tabulator/-edit-trigger-event/-d-b-l-c-l-i-c-k/index.html
 $dokka.location:io.kvision.tabulator/EditTriggerEvent.FOCUS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.tabulator/-edit-trigger-event/-f-o-c-u-s/index.html
@@ -12926,6 +12955,7 @@ $dokka.location:io.kvision.tabulator/Formatter.ROWSELECTION///PointingToDeclarat
 $dokka.location:io.kvision.tabulator/Formatter.STAR///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.tabulator/-formatter/-s-t-a-r/index.html
 $dokka.location:io.kvision.tabulator/Formatter.TEXTAREA///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.tabulator/-formatter/-t-e-x-t-a-r-e-a/index.html
 $dokka.location:io.kvision.tabulator/Formatter.TICKCROSS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.tabulator/-formatter/-t-i-c-k-c-r-o-s-s/index.html
+$dokka.location:io.kvision.tabulator/Formatter.TOGGLE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.tabulator/-formatter/-t-o-g-g-l-e/index.html
 $dokka.location:io.kvision.tabulator/Formatter.TRAFFIC///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kvision/io.kvision.tabulator/-formatter/-t-r-a-f-f-i-c/index.html
 $dokka.location:io.kvision.tabulator/Formatter///PointingToDeclaration/kvision/io.kvision.tabulator/-formatter/index.html
 $dokka.location:io.kvision.tabulator/Formatter/valueOf/#kotlin.String/PointingToDeclaration/kvision/io.kvision.tabulator/-formatter/value-of.html
@@ -13095,7 +13125,7 @@ $dokka.location:io.kvision.tabulator/Tabulator/toggleSelectRow/#kotlin.Any/Point
 $dokka.location:io.kvision.tabulator/Tabulator/types/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator/types.html
 $dokka.location:io.kvision.tabulator/Tabulator/undo/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator/undo.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions///PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/index.html
-$dokka.location:io.kvision.tabulator/TabulatorOptions/TabulatorOptions/#kotlin.String?#kotlin.String?#kotlin.Function0[kotlin.String?]?#kotlin.String?#kotlin.String?#kotlin.Boolean?#kotlin.Any#kotlin.Any#io.kvision.tabulator.DownloadConfig?#kotlin.Boolean?#kotlin.Boolean?#kotlin.collections.List[io.kvision.tabulator.ColumnDefinition[TypeParam(bounds=[kotlin.Any])]]?#kotlin.Boolean?#io.kvision.tabulator.Layout?#kotlin.Boolean?#io.kvision.tabulator.ResponsiveLayout?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#io.kvision.tabulator.ColumnPosition?#kotlin.Boolean?#kotlin.Function1[io.kvision.tabulator.js.Tabulator.RowComponent,kotlin.Unit]?#io.kvision.tabulator.RowPos?#kotlin.Any#io.kvision.tabulator.RangeMode?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Function1[io.kvision.tabulator.js.Tabulator.RowComponent,kotlin.Boolean]?#kotlin.Boolean?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Boolean?#io.kvision.tabulator.RowPosition?#kotlin.Boolean?#kotlin.String?#kotlin.Array[TypeParam(bounds=[kotlin.Any])]?#kotlin.String?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Function3[kotlin.String,kotlin.Any,kotlin.Any,kotlin.String]?#kotlin.Function3[kotlin.String,kotlin.Any,kotlin.Any,[Error type: Unresolved type for Promise<Any>][kotlin.Any]]?#io.kvision.tabulator.ProgressiveMode?#kotlin.Int?#kotlin.Int?#kotlin.Boolean?#kotlin.String?#kotlin.String?#kotlin.collections.List[io.kvision.tabulator.js.Tabulator.Sorter]?#kotlin.Boolean?#kotlin.collections.List[io.kvision.tabulator.js.Tabulator.Filter]?#kotlin.collections.List[kotlin.Any?]?#kotlin.Boolean?#io.kvision.tabulator.PaginationMode?#kotlin.Int?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Any#io.kvision.tabulator.AddRowMode?#kotlin.Int?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.Any#kotlin.Function2[kotlin.String,kotlin.Any,kotlin.Unit]?#kotlin.Boolean?#kotlin.Any#kotlin.Boolean?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.String?#kotlin.Function2[kotlin.Any,kotlin.Any,kotlin.Unit]?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.Any#kotlin.Any#kotlin.String?#kotlin.Any#kotlin.Number?#kotlin.Function2[io.kvision.tabulator.js.Tabulator.RowComponent,kotlin.Number,kotlin.Boolean]?#kotlin.Function2[kotlin.String,kotlin.Any,kotlin.Boolean]?#kotlin.Function3[kotlin.String,kotlin.Any,kotlin.Any,kotlin.Any]?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Int?#io.kvision.tabulator.VAlign?#kotlin.String?#kotlin.String?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.Int?#io.kvision.tabulator.TextDirection?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#io.kvision.tabulator.RenderType?#kotlin.Int?#io.kvision.tabulator.RenderType?#io.kvision.tabulator.ColumnDefinition[TypeParam(bounds=[kotlin.Any])]?#io.kvision.tabulator.SortMode?#io.kvision.tabulator.FilterMode?#io.kvision.tabulator.ImportFormat?#io.kvision.tabulator.ImportReader?#kotlin.Int?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Boolean?#kotlin.Int?#kotlin.Any#kotlin.String?#io.kvision.tabulator.HeaderSortClickElement?#kotlin.Any#kotlin.Any#kotlin.Function1[kotlin.Array[kotlin.Any],[Error type: Unresolved type for Element]]?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#io.kvision.tabulator.EditTriggerEvent?/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/-tabulator-options.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/TabulatorOptions/#kotlin.String?#kotlin.String?#kotlin.Function0[kotlin.String?]?#kotlin.String?#kotlin.String?#kotlin.Boolean?#kotlin.Any#kotlin.Any#io.kvision.tabulator.DownloadConfig?#kotlin.Boolean?#kotlin.Boolean?#kotlin.collections.List[io.kvision.tabulator.ColumnDefinition[TypeParam(bounds=[kotlin.Any])]]?#kotlin.Boolean?#kotlin.Boolean?#io.kvision.tabulator.Layout?#kotlin.Boolean?#io.kvision.tabulator.ResponsiveLayout?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#io.kvision.tabulator.ColumnPosition?#kotlin.Boolean?#kotlin.Function1[io.kvision.tabulator.js.Tabulator.RowComponent,kotlin.Unit]?#io.kvision.tabulator.RowPos?#kotlin.Any#io.kvision.tabulator.RangeMode?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Function1[io.kvision.tabulator.js.Tabulator.RowComponent,kotlin.Boolean]?#kotlin.Boolean?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Boolean?#io.kvision.tabulator.RowPosition?#kotlin.Boolean?#kotlin.String?#kotlin.Array[TypeParam(bounds=[kotlin.Any])]?#kotlin.String?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Function3[kotlin.String,kotlin.Any,kotlin.Any,kotlin.String]?#kotlin.Function3[kotlin.String,kotlin.Any,kotlin.Any,[Error type: Unresolved type for Promise<Any>][kotlin.Any]]?#io.kvision.tabulator.ProgressiveMode?#kotlin.Int?#kotlin.Int?#kotlin.Boolean?#kotlin.String?#kotlin.String?#kotlin.collections.List[io.kvision.tabulator.js.Tabulator.Sorter]?#kotlin.Boolean?#kotlin.collections.List[io.kvision.tabulator.js.Tabulator.Filter]?#kotlin.collections.List[kotlin.Any?]?#kotlin.Boolean?#io.kvision.tabulator.PaginationMode?#kotlin.Int?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Any#io.kvision.tabulator.AddRowMode?#kotlin.Int?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.Any#kotlin.Function2[kotlin.String,kotlin.Any,kotlin.Unit]?#kotlin.Boolean?#kotlin.Any#kotlin.Boolean?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.String?#kotlin.Function2[kotlin.Any,kotlin.Any,kotlin.Unit]?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#kotlin.Any#kotlin.Any#kotlin.String?#kotlin.Any#kotlin.Number?#kotlin.Function2[io.kvision.tabulator.js.Tabulator.RowComponent,kotlin.Number,kotlin.Boolean]?#kotlin.Function2[kotlin.String,kotlin.Any,kotlin.Boolean]?#kotlin.Function3[kotlin.String,kotlin.Any,kotlin.Any,kotlin.Any]?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Int?#io.kvision.tabulator.VAlign?#kotlin.String?#kotlin.String?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.Int?#io.kvision.tabulator.TextDirection?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#io.kvision.tabulator.RenderType?#kotlin.Int?#io.kvision.tabulator.RenderType?#io.kvision.tabulator.ColumnDefinition[TypeParam(bounds=[kotlin.Any])]?#io.kvision.tabulator.SortMode?#io.kvision.tabulator.FilterMode?#io.kvision.tabulator.ImportFormat?#io.kvision.tabulator.ImportReader?#kotlin.Int?#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Any#kotlin.Boolean?#kotlin.Int?#kotlin.Any#kotlin.String?#io.kvision.tabulator.HeaderSortClickElement?#kotlin.Any#kotlin.Any#kotlin.Function1[kotlin.Array[kotlin.Any],[Error type: Unresolved type for Element]]?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.String?#io.kvision.tabulator.EditTriggerEvent?#kotlin.Any#kotlin.Boolean?#kotlin.Int?#kotlin.Int?#kotlin.Any#kotlin.Any#kotlin.Boolean?#kotlin.Any#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Any#kotlin.Function1[kotlin.Any,kotlin.Boolean]?/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/-tabulator-options.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/addRowPos/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/add-row-pos.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/ajaxConfig/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/ajax-config.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/ajaxContentType/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/ajax-content-type.html
@@ -13107,6 +13137,7 @@ $dokka.location:io.kvision.tabulator/TabulatorOptions/ajaxURL/#/PointingToDeclar
 $dokka.location:io.kvision.tabulator/TabulatorOptions/ajaxURLGenerator/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/ajax-u-r-l-generator.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/autoColumns/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/auto-columns.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/autoColumnsDefinitions/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/auto-columns-definitions.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/autoColumnsFull/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/auto-columns-full.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/autoResize/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/auto-resize.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/columnDefaults/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/column-defaults.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/columnHeaderVertAlign/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/column-header-vert-align.html
@@ -13133,6 +13164,8 @@ $dokka.location:io.kvision.tabulator/TabulatorOptions/dataTreeStartExpanded/#/Po
 $dokka.location:io.kvision.tabulator/TabulatorOptions/downloadConfig/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/download-config.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/downloadDataFormatter/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/download-data-formatter.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/editTriggerEvent/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/edit-trigger-event.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/editorEmptyValue/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/editor-empty-value.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/editorEmptyValueFunc/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/editor-empty-value-func.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/filterMode/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/filter-mode.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/footerElement/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/footer-element.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/frozenRows/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/frozen-rows.html
@@ -13201,6 +13234,8 @@ $dokka.location:io.kvision.tabulator/TabulatorOptions/renderHorizontal/#/Pointin
 $dokka.location:io.kvision.tabulator/TabulatorOptions/renderVertical/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/render-vertical.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/renderVerticalBuffer/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/render-vertical-buffer.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/resizableColumnFit/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/resizable-column-fit.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/resizableColumnGuide/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/resizable-column-guide.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/resizableRowGuide/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/resizable-row-guide.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/resizableRows/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/resizable-rows.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/responsiveLayout/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/responsive-layout.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/responsiveLayoutCollapseFormatter/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/responsive-layout-collapse-formatter.html
@@ -13213,6 +13248,7 @@ $dokka.location:io.kvision.tabulator/TabulatorOptions/rowContextPopup/#/Pointing
 $dokka.location:io.kvision.tabulator/TabulatorOptions/rowDblClickMenu/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/row-dbl-click-menu.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/rowDblClickPopup/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/row-dbl-click-popup.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/rowFormatter/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/row-formatter.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/rowHeader/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/row-header.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/rowHeight/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/row-height.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/scrollToColumnIfVisible/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/scroll-to-column-if-visible.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/scrollToColumnPosition/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/scroll-to-column-position.html
@@ -13230,6 +13266,14 @@ $dokka.location:io.kvision.tabulator/TabulatorOptions/selectableRowsRangeMode/#/
 $dokka.location:io.kvision.tabulator/TabulatorOptions/selectableRowsRollingSelection/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/selectable-rows-rolling-selection.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/sortMode/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/sort-mode.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/sortOrderReverse/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/sort-order-reverse.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/spreadsheet/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/spreadsheet.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/spreadsheetColumnDefinition/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/spreadsheet-column-definition.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/spreadsheetColumns/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/spreadsheet-columns.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/spreadsheetData/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/spreadsheet-data.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/spreadsheetOutputFull/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/spreadsheet-output-full.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/spreadsheetRows/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/spreadsheet-rows.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/spreadsheetSheetTabs/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/spreadsheet-sheet-tabs.html
+$dokka.location:io.kvision.tabulator/TabulatorOptions/spreadsheetSheets/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/spreadsheet-sheets.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/tabEndNewRow/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/tab-end-new-row.html
 $dokka.location:io.kvision.tabulator/TabulatorOptions/textDirection/#/PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-options/text-direction.html
 $dokka.location:io.kvision.tabulator/TabulatorPagination///PointingToDeclaration/kvision/io.kvision.tabulator/-tabulator-pagination/index.html
@@ -13647,6 +13691,8 @@ $dokka.location:io.kvision/TabulatorCssSemanticUIModule///PointingToDeclaration/
 $dokka.location:io.kvision/TabulatorCssSemanticUIModule/initialize/#/PointingToDeclaration/kvision/io.kvision/-tabulator-css-semantic-u-i-module/initialize.html
 $dokka.location:io.kvision/TabulatorCssSimpleModule///PointingToDeclaration/kvision/io.kvision/-tabulator-css-simple-module/index.html
 $dokka.location:io.kvision/TabulatorCssSimpleModule/initialize/#/PointingToDeclaration/kvision/io.kvision/-tabulator-css-simple-module/initialize.html
+$dokka.location:io.kvision/TabulatorCssSiteDarkModule///PointingToDeclaration/kvision/io.kvision/-tabulator-css-site-dark-module/index.html
+$dokka.location:io.kvision/TabulatorCssSiteDarkModule/initialize/#/PointingToDeclaration/kvision/io.kvision/-tabulator-css-site-dark-module/initialize.html
 $dokka.location:io.kvision/TabulatorCssStandardModule///PointingToDeclaration/kvision/io.kvision/-tabulator-css-standard-module/index.html
 $dokka.location:io.kvision/TabulatorCssStandardModule/initialize/#/PointingToDeclaration/kvision/io.kvision/-tabulator-css-standard-module/initialize.html
 $dokka.location:io.kvision/TabulatorModule///PointingToDeclaration/kvision/io.kvision/-tabulator-module/index.html
@@ -13662,6 +13708,7 @@ $dokka.location:io.kvision/TomSelectModule///PointingToDeclaration/kvision/io.k
 $dokka.location:io.kvision/TomSelectModule/initialize/#/PointingToDeclaration/kvision/io.kvision/-tom-select-module/initialize.html
 io.kvision
 io.kvision.annotations
+io.kvision.badge
 io.kvision.chart
 io.kvision.chart.js
 io.kvision.collapse
