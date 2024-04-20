@@ -396,7 +396,7 @@ data class ColumnDefinition<T : Any>(
     val validatorFunction: dynamic = null,
     val validatorParams: String? = null,
     val download: dynamic = null,
-    val downloadTitle: String? = null,
+    val titleDownload: String? = null,
     val topCalc: Calc? = null,
     val topCalcParams: dynamic = null,
     val topCalcFormatter: Formatter? = null,
@@ -771,7 +771,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         }
         if (validatorParams != null) this.validatorParams = validatorParams
         if (download != null) this.download = download
-        if (downloadTitle != null) this.downloadTitle = i18nTranslator(downloadTitle)
+        if (titleDownload != null) this.titleDownload = i18nTranslator(titleDownload)
         if (topCalc != null) this.topCalc = topCalc.calc
         if (topCalcParams != null) this.topCalcParams = topCalcParams
         if (topCalcFormatter != null) this.topCalcFormatter = topCalcFormatter.formatter
