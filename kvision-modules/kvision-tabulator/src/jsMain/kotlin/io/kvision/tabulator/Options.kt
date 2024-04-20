@@ -1102,11 +1102,11 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (scrollToColumnIfVisible != null) this.scrollToColumnIfVisible = scrollToColumnIfVisible
         if (rowFormatter != null) this.rowFormatter = rowFormatter
         if (addRowPos != null) this.addRowPos = addRowPos.position
-        if (selectableRows != null) this.selectable = selectableRows
-        if (selectableRowsRangeMode != null) this.selectableRangeMode = selectableRowsRangeMode.mode
-        if (selectableRowsRollingSelection != null) this.selectableRollingSelection = selectableRowsRollingSelection
-        if (selectableRowsPersistence != null) this.selectablePersistence = selectableRowsPersistence
-        if (selectableRowsCheck != null) this.selectableCheck = selectableRowsCheck
+        if (selectableRows != null) this.selectableRows = selectableRows
+        if (selectableRowsRangeMode != null) this.selectableRowsRangeMode = selectableRowsRangeMode.mode
+        if (selectableRowsRollingSelection != null) this.selectableRowsRollingSelection = selectableRowsRollingSelection
+        if (selectableRowsPersistence != null) this.selectableRowsPersistence = selectableRowsPersistence
+        if (selectableRowsCheck != null) this.selectableRowsCheck = selectableRowsCheck
         if (movableRows != null) this.movableRows = movableRows
         if (movableRowsConnectedTables != null) this.movableRowsConnectedTables = movableRowsConnectedTables
         if (movableRowsSender != null) this.movableRowsSender = movableRowsSender
