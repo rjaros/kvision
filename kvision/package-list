@@ -12797,7 +12797,6 @@ $dokka.location:io.kvision.tabulator/ColumnDefinition/cssClass/#/PointingToDecla
 $dokka.location:io.kvision.tabulator/ColumnDefinition/dblClickMenu/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/dbl-click-menu.html
 $dokka.location:io.kvision.tabulator/ColumnDefinition/dblClickPopup/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/dbl-click-popup.html
 $dokka.location:io.kvision.tabulator/ColumnDefinition/download/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/download.html
-$dokka.location:io.kvision.tabulator/ColumnDefinition/downloadTitle/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/download-title.html
 $dokka.location:io.kvision.tabulator/ColumnDefinition/editable/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/editable.html
 $dokka.location:io.kvision.tabulator/ColumnDefinition/editableTitle/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/editable-title.html
 $dokka.location:io.kvision.tabulator/ColumnDefinition/editor/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/editor.html
@@ -12869,6 +12868,7 @@ $dokka.location:io.kvision.tabulator/ColumnDefinition/sorter/#/PointingToDeclara
 $dokka.location:io.kvision.tabulator/ColumnDefinition/sorterFunction/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/sorter-function.html
 $dokka.location:io.kvision.tabulator/ColumnDefinition/sorterParams/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/sorter-params.html
 $dokka.location:io.kvision.tabulator/ColumnDefinition/title/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/title.html
+$dokka.location:io.kvision.tabulator/ColumnDefinition/titleDownload/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/title-download.html
 $dokka.location:io.kvision.tabulator/ColumnDefinition/titleFormatter/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/title-formatter.html
 $dokka.location:io.kvision.tabulator/ColumnDefinition/titleFormatterComponentFunction/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/title-formatter-component-function.html
 $dokka.location:io.kvision.tabulator/ColumnDefinition/titleFormatterFunction/#/PointingToDeclaration/kvision/io.kvision.tabulator/-column-definition/title-formatter-function.html
