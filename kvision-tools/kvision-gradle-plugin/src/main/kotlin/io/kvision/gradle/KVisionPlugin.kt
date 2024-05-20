@@ -602,7 +602,12 @@ abstract class KVisionPlugin @Inject constructor(
         get() = named("jsMain")
 
     private fun getServerType(project: Project): KVServerType? {
-        if (project.configurations["jvmMainImplementation"].dependencies.any { it.name == "spring-boot-starter-web" }) {
+        val springbootDependencies = listOf(
+            "spring-boot-starter-web", // for Spring Web MVC
+            "spring-boot-starter-webflux", // for Spring WebFlux
+        )
+        val jvmMainImplementationDependencies = project.configurations["jvmMainImplementation"].dependencies
+        if (jvmMainImplementationDependencies.any { it.name in springbootDependencies }) {
             return KVServerType.SPRINGBOOT
         }
         val kvisionServerDependency = project.configurations["commonMainApi"].dependencies.map {
