@@ -49,6 +49,7 @@ val jqueryVersion: String by project
 val leafletVersion: String by project
 val geojsonVersion: String by project
 val geojsonTypesVersion: String by project
+val materialVersion: String by project
 val onsenuiVersion: String by project
 val paceProgressbarVersion: String by project
 val printjsVersion: String by project
@@ -93,6 +94,7 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("leaflet", leafletVersion)
         resolution("geojson", geojsonVersion)
         resolution("@types/geojson", geojsonTypesVersion)
+        resolution("@material/web", materialVersion)
         resolution("onsenui", onsenuiVersion)
         resolution("pace-progressbar", paceProgressbarVersion)
         resolution("print-js", printjsVersion)
@@ -181,6 +183,7 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-imask/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-jquery/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-maps/src/jsMain/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-material/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-onsenui/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-pace/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-react/src/jsMain/kotlin"))

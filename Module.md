@@ -109,6 +109,78 @@ Bootstrap navbar components.
 
 Bootstrap offcanvas component.
 
+# Package io.kvision.material.button
+
+Material web button components (elevated, filled, filled tonal, outlined, text).
+
+# Package io.kvision.material.checkbox
+
+Material web checkbox component.
+
+# Package io.kvision.material.chips
+
+Material web chips components (chip set, chip).
+
+# Package io.kvision.material.dialog
+
+Material web dialog component.
+
+# Package io.kvision.material.divider
+
+Material web divider component.
+
+# Package io.kvision.material.fab
+
+Material web fab components (fab, branded fab).
+
+# Package io.kvision.material.icon
+
+Material web icon component.
+
+# Package io.kvision.material.iconbutton
+
+Material web icon button components (filled, filled tonal, outlined, standard).
+
+# Package io.kvision.material.list
+
+Material web list components (list, list item).
+
+# Package io.kvision.material.menu
+
+Material web menu components (menu, menu item, submenu).
+
+# Package io.kvision.material.progress
+
+Material web progress components (circular, linear).
+
+# Package io.kvision.material.radio
+
+Material web radio component.
+
+# Package io.kvision.material.ripple
+
+Material web ripple component.
+
+# Package io.kvision.material.select
+
+Material web select components (filled, outlined, select option).
+
+# Package io.kvision.material.slider
+
+Material web slider components (slider, range slider).
+
+# Package io.kvision.material.switch
+
+Material web switch component.
+
+# Package io.kvision.material.tabs
+
+Material web tabs components (tabs, primary tab, secondary tab).
+
+# Package io.kvision.material.textfield
+
+Material web text field component (filled, outlined).
+
 # Package io.kvision.onsenui
 
 Onsen UI helper utility functions.
