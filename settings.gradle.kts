@@ -26,6 +26,7 @@ include(
     "kvision-modules:kvision-imask",
     "kvision-modules:kvision-jquery",
     "kvision-modules:kvision-maps",
+    "kvision-modules:kvision-material",
     "kvision-modules:kvision-pace",
     "kvision-modules:kvision-print",
     "kvision-modules:kvision-react",
