@@ -71,6 +71,7 @@ class App : Application() {
     - [Toastify JS](https://apvarun.github.io/toastify-js/)
     - [Print.js](https://printjs.crabbly.com/)
     - [Imask.js](https://imask.js.org/)
+    - [Material Web](https://material-web.dev/)
 
 - Includes sophisticated layout containers, including CSS flexbox, CSS grid and Bootstrap responsive 12 columns grid.
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
