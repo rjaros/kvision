@@ -70,7 +70,6 @@ fun Container.filledTonalButton(
     href: String? = null,
     target: LinkTarget? = null,
     trailingIcon: Boolean = false,
-    hasIcon: Boolean = trailingIcon,
     type: ButtonType = ButtonType.Submit,
     value: String? = null,
     name: String? = null,
