@@ -20,10 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.kvision.material
+package io.kvision
 
-import io.kvision.ModuleInitializer
-import io.kvision.require
 import kotlinx.browser.document
 
 /**
