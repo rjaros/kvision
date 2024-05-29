@@ -136,6 +136,6 @@ fun numberFormat(locales: String, optionsBuilder: NumberFormatOptions.() -> Unit
  * Formats a number to fixed decimal digits without rounding.
  */
 fun Number.toFixedNoRound(precision: Int): String {
-    val factor = 10.0.pow(precision)
-    return (floor(this.toDouble() * factor) / factor).toString()
+    val r = Regex("^-?\\d+(?:\\.\\d{0,$precision})?")
+    return r.find(this.toString())?.value ?: "0"
 }
