@@ -92,7 +92,7 @@ open class TabulatorRemote<T : Any, out E : Any>(
         val callAgent = CallAgent()
 
         options.ajaxURL = urlPrefix + url.drop(1)
-        options.ajaxRequestFunc = { _, _, params ->
+        options.ajaxRequestFunc = { _, _, params: dynamic ->
             val page = if (params.page != null) "" + params.page else null
             val size = if (params.size != null) "" + params.size else null
 

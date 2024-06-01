@@ -54,7 +54,7 @@ external interface ControllerDatasetOptions : ParsingOptions {
 }
 
 external interface BarControllerDatasetOptions : ControllerDatasetOptions,
-    ScriptableAndArrayOptions<BarOptions, ScriptableContext>, AnimationOptions {
+    AnimationOptions {
     var xAxisID: String
     var yAxisID: String
     var barPercentage: Number
@@ -77,8 +77,8 @@ external interface BarControllerChartOptions {
 
 external var BarController: ChartComponent /* ChartComponent & `T$1` */
 
-external interface BubbleControllerDatasetOptions : ControllerDatasetOptions,
-    ScriptableAndArrayOptions<PointOptions, ScriptableContext>
+external interface BubbleControllerDatasetOptions : ControllerDatasetOptions
+
 
 external interface BubbleDataPoint {
     var x: Number
@@ -89,7 +89,6 @@ external interface BubbleDataPoint {
 external var BubbleController: ChartComponent /* ChartComponent & `T$2` */
 
 external interface LineControllerDatasetOptions : ControllerDatasetOptions,
-    ScriptableAndArrayOptions<PointPrefixedOptions, ScriptableContext>,
     AnimationOptions {
     var xAxisID: String
     var yAxisID: String
@@ -116,7 +115,6 @@ external interface ScatterDataPoint {
 external var ScatterController: ChartComponent /* ChartComponent & `T$4` */
 
 external interface DoughnutControllerDatasetOptions : ControllerDatasetOptions,
-    ScriptableAndArrayOptions<ArcOptions, ScriptableContext>,
     AnimationOptions {
     var circumference: Number
     var rotation: Number
@@ -181,7 +179,6 @@ external interface PolarAreaController : DoughnutController {
 }
 
 external interface RadarControllerDatasetOptions : ControllerDatasetOptions,
-    ScriptableAndArrayOptions<PointOptions /* PointOptions & PointHoverOptions & PointPrefixedOptions & PointPrefixedHoverOptions */, ScriptableContext>,
     AnimationOptions {
     var xAxisID: String
     var yAxisID: String

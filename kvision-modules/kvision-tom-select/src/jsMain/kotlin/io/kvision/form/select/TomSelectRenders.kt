@@ -25,14 +25,14 @@ package io.kvision.form.select
 import io.kvision.utils.obj
 
 data class TomSelectRenders(
-    val option: ((data: dynamic, escape: (String) -> String) -> String)? = null,
-    val item: ((data: dynamic, escape: (String) -> String) -> String)? = null,
-    val optionCreate: ((data: dynamic, escape: (String) -> String) -> String)? = null,
-    val noResults: ((data: dynamic, escape: (String) -> String) -> String)? = null,
-    val notLoading: ((data: dynamic, escape: (String) -> String) -> String)? = null,
-    val optGroup: ((data: dynamic) -> String)? = null,
-    val optGroupHeader: ((dynamic, escape: (String) -> String) -> String)? = null,
-    val loading: ((data: dynamic, escape: (String) -> String) -> String)? = null,
+    val option: ((data: Any?, escape: (String) -> String) -> String)? = null,
+    val item: ((data: Any?, escape: (String) -> String) -> String)? = null,
+    val optionCreate: ((data: Any?, escape: (String) -> String) -> String)? = null,
+    val noResults: ((data: Any?, escape: (String) -> String) -> String)? = null,
+    val notLoading: ((data: Any?, escape: (String) -> String) -> String)? = null,
+    val optGroup: ((data: Any?) -> String)? = null,
+    val optGroupHeader: ((data: Any?, escape: (String) -> String) -> String)? = null,
+    val loading: ((data: Any?, escape: (String) -> String) -> String)? = null,
     val dropdown: (() -> String)? = null,
 )
 

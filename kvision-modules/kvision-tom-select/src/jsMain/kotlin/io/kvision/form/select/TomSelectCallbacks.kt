@@ -25,23 +25,23 @@ package io.kvision.form.select
 import io.kvision.utils.obj
 
 data class TomSelectCallbacks(
-    val load: ((query: String, callback: (Array<dynamic>) -> Unit) -> Unit)? = null,
+    val load: ((query: String, callback: (Array<Any?>) -> Unit) -> Unit)? = null,
     val shouldLoad: ((query: String) -> Boolean)? = null,
-    val score: ((search: String) -> (dynamic) -> Int)? = null,
+    val score: ((search: String) -> (Any?) -> Int)? = null,
     val onInitialize: (() -> Unit)? = null,
     val onFocus: (() -> Unit)? = null,
     val onBlur: (() -> Unit)? = null,
-    val onChange: ((value: dynamic) -> Unit)? = null,
-    val onItemAdd: ((value: dynamic, item: dynamic) -> Unit)? = null,
-    val onItemRemove: ((value: dynamic) -> Unit)? = null,
+    val onChange: ((value: Any?) -> Unit)? = null,
+    val onItemAdd: ((value: Any?, item: Any?) -> Unit)? = null,
+    val onItemRemove: ((value: Any?) -> Unit)? = null,
     val onClear: (() -> Unit)? = null,
-    val onDelete: ((value: dynamic, event: dynamic) -> Unit)? = null,
-    val onOptionAdd: ((value: dynamic, data: dynamic) -> Unit)? = null,
-    val onOptionRemove: ((value: dynamic) -> Unit)? = null,
-    val onDropdownOpen: ((dropdown: dynamic) -> Unit)? = null,
-    val onDropdownClose: ((dropdown: dynamic) -> Unit)? = null,
+    val onDelete: ((value: Any?, event: Any?) -> Unit)? = null,
+    val onOptionAdd: ((value: Any?, data: Any?) -> Unit)? = null,
+    val onOptionRemove: ((value: Any?) -> Unit)? = null,
+    val onDropdownOpen: ((dropdown: Any?) -> Unit)? = null,
+    val onDropdownClose: ((dropdown: Any?) -> Unit)? = null,
     val onType: ((str: String) -> Unit)? = null,
-    val onLoad: ((options: dynamic, optgroup: dynamic) -> Unit)? = null,
+    val onLoad: ((options: Any?, optgroup: Any?) -> Unit)? = null,
 )
 
 fun TomSelectCallbacks.toJs(): dynamic {
