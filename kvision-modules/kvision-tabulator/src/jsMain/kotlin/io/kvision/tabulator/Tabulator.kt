@@ -855,7 +855,8 @@ open class Tabulator<T : Any>(
         return if (jsonHelper == null || serializer == null) {
             throw IllegalStateException("The data class can't be serialized. Please provide a serializer when creating the Tabulator instance.")
         } else {
-            JSON.parse(jsonHelper!!.encodeToString(serializer, data)) as dynamic
+            @Suppress("UnsafeCastFromDynamic")
+            JSON.parse(jsonHelper!!.encodeToString(serializer, data))
         }
     }
 
