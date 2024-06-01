@@ -8,6 +8,7 @@ plugins {
 val chartjsVersion: String by project
 
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     sourceSets {
         val jsMain by getting {

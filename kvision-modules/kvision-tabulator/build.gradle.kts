@@ -8,6 +8,7 @@ plugins {
 val tabulatorTablesVersion: String by project
 
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     sourceSets {
         val jsMain by getting {

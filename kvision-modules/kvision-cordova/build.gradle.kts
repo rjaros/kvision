@@ -6,6 +6,7 @@ plugins {
 }
 
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     sourceSets {
         val jsMain by getting {

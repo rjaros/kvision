@@ -10,6 +10,7 @@ val electronVersion: String by project
 val electronRemoteVersion: String by project
 
 kotlin {
+    compilerOptions()
     js(IR) {
         nodejs {
             testTask {
