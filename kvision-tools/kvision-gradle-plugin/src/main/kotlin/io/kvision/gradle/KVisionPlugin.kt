@@ -30,15 +30,15 @@ import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 import org.springframework.boot.gradle.tasks.run.BootRun
-import java.util.Properties
+import java.util.*
 import javax.inject.Inject
 
 
@@ -181,8 +181,10 @@ abstract class KVisionPlugin @Inject constructor(
             afterEvaluate {
                 kotlinMppExtension.targets.configureEach {
                     compilations.configureEach {
-                        compilerOptions.configure {
-                            freeCompilerArgs.add("-Xexpect-actual-classes")
+                        compileTaskProvider.configure {
+                            compilerOptions {
+                                freeCompilerArgs.add("-Xexpect-actual-classes")
+                            }
                         }
                     }
                 }
@@ -547,10 +549,10 @@ abstract class KVisionPlugin @Inject constructor(
         val jsProcessResources: TaskCollection<Copy>
             get() = collection("jsProcessResources")
 
-        val compileKotlinJs: TaskCollection<KotlinCompile<*>>
+        val compileKotlinJs: TaskCollection<KotlinCompilationTask<*>>
             get() = collection("compileKotlinJs")
 
-        val compileKotlinJvm: TaskCollection<KotlinCompile<*>>
+        val compileKotlinJvm: TaskCollection<KotlinCompilationTask<*>>
             get() = collection("compileKotlinJvm")
 
         val jsBrowserProductionWebpack: TaskCollection<KotlinWebpack>
@@ -589,7 +591,7 @@ abstract class KVisionPlugin @Inject constructor(
             if (isWindows) nodeDir else nodeDir.resolve("bin")
         }
         val nodeExecutableProvider = nodeJsRootExtension.zip(isWindowsProvider) { ext, isWindows ->
-            if (isWindows && ext.nodeCommand == "node") "node.exe" else ext.nodeCommand
+            if (isWindows && ext.command == "node") "node.exe" else ext.command
         }
         return nodeExecutableProvider.zip(nodeBinDirProvider) { nodeExecutable, nodeBinDir ->
             nodeBinDir.resolve(nodeExecutable).absolutePath
