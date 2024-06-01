@@ -24,8 +24,11 @@ fun Project.repositories() {
 fun KotlinMultiplatformExtension.compilerOptions() {
     targets.configureEach {
         compilations.configureEach {
-            compilerOptions.configure {
-                freeCompilerArgs.add("-Xexpect-actual-classes")
+            compileTaskProvider.configure {
+                compilerOptions {
+                    freeCompilerArgs.add("-Xexpect-actual-classes")
+                    freeCompilerArgs.add("-Xdont-warn-on-error-suppression")
+                }
             }
         }
     }
@@ -33,17 +36,12 @@ fun KotlinMultiplatformExtension.compilerOptions() {
 
 fun KotlinMultiplatformExtension.kotlinJsTargets() {
     js(IR) {
-        compilations.all {
-            kotlinOptions {
-                moduleKind = "umd"
-            }
-        }
         browser {
-            testTask(Action {
+            testTask {
                 useKarma {
                     useChromeHeadless()
                 }
-            })
+            }
         }
     }
 }
@@ -53,9 +51,11 @@ fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "17") {
         languageVersion.set(JavaLanguageVersion.of(target))
     }
     jvm {
-        compilations.all {
-            kotlinOptions {
-                freeCompilerArgs = listOf("-Xjsr305=strict", "-Xexpect-actual-classes")
+        compilations.configureEach {
+            compileTaskProvider.configure {
+                compilerOptions {
+                    freeCompilerArgs.add("-Xjsr305=strict")
+                }
             }
         }
     }

@@ -11,15 +11,10 @@ val electronRemoteVersion: String by project
 
 kotlin {
     js(IR) {
-        compilations.all {
-            kotlinOptions {
-                moduleKind = "umd"
-            }
-        }
         nodejs {
-            testTask(Action {
+            testTask {
                 useKarma()
-            })
+            }
         }
     }
     sourceSets {
