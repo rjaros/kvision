@@ -25,6 +25,7 @@ package io.kvision.material.util
 /**
  * Whether a [Number] is NaN.
  */
+@Suppress("SENSELESS_COMPARISON")
 internal fun Number?.isNaN(): Boolean {
     if (this === null || this === undefined) {
         return true

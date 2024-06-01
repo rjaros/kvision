@@ -139,6 +139,7 @@ external interface SnOn<T> : BtOn {
 /**
  * Helper function for defining custom event types.
  */
+@Suppress("NOTHING_TO_INLINE")
 inline fun <T> SnOn<T>.event(name: String, noinline handler: (Event) -> Unit) = set(name, handler)
 
 /**

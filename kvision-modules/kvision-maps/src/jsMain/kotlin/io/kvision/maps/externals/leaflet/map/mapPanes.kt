@@ -59,9 +59,11 @@ external interface DefaultMapPanes {
 
 external interface HTMLElementsObject
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun HTMLElementsObject.get(name: String): HTMLElement? =
     asDynamic()[name] as HTMLElement?
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun HTMLElementsObject.set(name: String, value: HTMLElement) {
     asDynamic()[name] = value
 }

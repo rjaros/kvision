@@ -245,8 +245,10 @@ external interface Socket : ReadWriteStream {
 
 external interface ProcessEnv
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun ProcessEnv.get(key: String): String? = asDynamic()[key]
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun ProcessEnv.set(key: String, value: String?) {
     asDynamic()[key] = value
 }
@@ -255,6 +257,7 @@ external interface HRTime {
     fun bigint(): Any
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun HRTime.invoke(time: dynamic): dynamic /* JsTuple<Number, Number> */ {
     return asDynamic()(time)
 }

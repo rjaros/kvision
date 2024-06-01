@@ -539,6 +539,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                 }, 500)
             }, cancel, data)
             val rootElement = document.createElement("div") as HTMLElement
+            @Suppress("SENSELESS_COMPARISON")
             if (onRendered != undefined) {
                 onRendered {
                     if (root != null) {
@@ -575,6 +576,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                 onRenderedCallback = callback
             }, data)
             val rootElement = document.createElement("div") as HTMLElement
+            @Suppress("SENSELESS_COMPARISON")
             if (onRendered != undefined) {
                 onRendered {
                     val root = Root(rootElement, ContainerType.NONE, false)
@@ -598,6 +600,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
                 onRenderedCallback = callback
             }
             val rootElement = document.createElement("div") as HTMLElement
+            @Suppress("SENSELESS_COMPARISON")
             if (onRendered != undefined) {
                 onRendered {
                     val root = Root(rootElement, ContainerType.NONE, false)

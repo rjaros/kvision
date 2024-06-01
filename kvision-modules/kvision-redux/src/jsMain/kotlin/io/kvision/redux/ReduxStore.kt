@@ -69,7 +69,7 @@ class ReduxStore<S : Any, A : RAction>(
         @Suppress("UnsafeCastFromDynamic")
         store = ReduxModule.createStore(
             { s: S, a: RAction ->
-                @Suppress("UnsafeCastFromDynamic")
+                @Suppress("UnsafeCastFromDynamic", "SENSELESS_COMPARISON")
                 if (a == undefined || (a.asDynamic().type is String && a.asDynamic().type.startsWith("@@"))) {
                     s
                 } else {

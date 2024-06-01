@@ -275,11 +275,13 @@ open class Tabulator<T : Any>(
                 this.dispatchEvent("dataLoadingTabulator", obj { detail = fixedData })
             }
             jsTabulator?.on("dataLoaded") { data: Array<T> ->
+                @Suppress("SENSELESS_COMPARISON")
                 val fixedData = if (data != undefined) toKotlinObjList(data) else emptyList()
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("dataLoadedTabulator", obj { detail = fixedData })
             }
             jsTabulator?.on("dataChanged") { data: Array<T> ->
+                @Suppress("SENSELESS_COMPARISON")
                 val fixedData = if (data != undefined) toKotlinObjList(data) else emptyList()
                 @Suppress("UnsafeCastFromDynamic")
                 this.dispatchEvent("dataEditedTabulator", obj { detail = fixedData })

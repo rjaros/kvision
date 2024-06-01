@@ -117,60 +117,70 @@ external interface FileEntry : Entry {
 
 external interface FileSystemCallback
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun FileSystemCallback.invoke(filesystem: FileSystem) {
     asDynamic()(filesystem)
 }
 
 external interface EntryCallback
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun EntryCallback.invoke(entry: Entry) {
     asDynamic()(entry)
 }
 
 external interface FileEntryCallback
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun FileEntryCallback.invoke(entry: FileEntry) {
     asDynamic()(entry)
 }
 
 external interface DirectoryEntryCallback
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun DirectoryEntryCallback.invoke(entry: DirectoryEntry) {
     asDynamic()(entry)
 }
 
 external interface EntriesCallback
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun EntriesCallback.invoke(entries: Array<Entry>) {
     asDynamic()(entries)
 }
 
 external interface MetadataCallback
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun MetadataCallback.invoke(metadata: Metadata) {
     asDynamic()(metadata)
 }
 
 external interface FileWriterCallback
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun FileWriterCallback.invoke(fileWriter: FileWriter) {
     asDynamic()(fileWriter)
 }
 
 external interface FileCallback
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun FileCallback.invoke(file: File) {
     asDynamic()(file)
 }
 
 external interface VoidCallback
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun VoidCallback.invoke() {
     asDynamic()()
 }
 
 external interface ErrorCallback
 
+@Suppress("NOTHING_TO_INLINE")
 inline operator fun ErrorCallback.invoke(err: Error) {
     asDynamic()(err)
 }

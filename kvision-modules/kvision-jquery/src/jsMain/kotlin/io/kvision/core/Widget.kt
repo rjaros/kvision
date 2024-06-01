@@ -208,6 +208,7 @@ fun Widget.animate(
 /**
  * Helper function for defining jquery event types.
  */
+@Suppress("NOTHING_TO_INLINE")
 inline fun <T> SnOn<T>.jqueryEvent(
     name: String,
     noinline handler: (eventObject: JQueryEventObject) -> dynamic
@@ -216,6 +217,7 @@ inline fun <T> SnOn<T>.jqueryEvent(
 /**
  * Helper function for defining jquery event types with additional argument.
  */
+@Suppress("NOTHING_TO_INLINE")
 inline fun <T> SnOn<T>.jqueryEvent(
     name: String,
     noinline handler: (eventObject: JQueryEventObject, arg: dynamic) -> dynamic
@@ -224,6 +226,7 @@ inline fun <T> SnOn<T>.jqueryEvent(
 /**
  * Helper function for defining jquery event types with additional arguments.
  */
+@Suppress("NOTHING_TO_INLINE")
 inline fun <T> SnOn<T>.jqueryEvent(
     name: String,
     noinline handler: (eventObject: JQueryEventObject, arg1: dynamic, arg2: dynamic) -> dynamic
@@ -232,6 +235,7 @@ inline fun <T> SnOn<T>.jqueryEvent(
 /**
  * Helper function for defining jquery event types with additional arguments.
  */
+@Suppress("NOTHING_TO_INLINE")
 inline fun <T> SnOn<T>.jqueryEvent(
     name: String,
     noinline handler: (eventObject: JQueryEventObject, arg1: dynamic, arg2: dynamic, arg3: dynamic) -> dynamic
@@ -240,6 +244,7 @@ inline fun <T> SnOn<T>.jqueryEvent(
 /**
  * Helper function for defining jquery event types with additional arguments.
  */
+@Suppress("NOTHING_TO_INLINE")
 inline fun <T> SnOn<T>.jqueryEvent(
     name: String,
     noinline handler: (eventObject: JQueryEventObject, arg1: dynamic, arg2: dynamic, arg3: dynamic, arg4: dynamic) -> dynamic
@@ -248,6 +253,7 @@ inline fun <T> SnOn<T>.jqueryEvent(
 /**
  * Helper function for defining jquery event types with additional arguments.
  */
+@Suppress("NOTHING_TO_INLINE")
 inline fun <T> SnOn<T>.jqueryEvent(
     name: String,
     noinline handler: (eventObject: JQueryEventObject, arg1: dynamic, arg2: dynamic, arg3: dynamic, arg4: dynamic, arg5: dynamic) -> dynamic
@@ -256,6 +262,7 @@ inline fun <T> SnOn<T>.jqueryEvent(
 /**
  * Helper function for defining jquery event types with additional arguments.
  */
+@Suppress("NOTHING_TO_INLINE")
 inline fun <T> SnOn<T>.jqueryEvent(
     name: String,
     noinline handler: (eventObject: JQueryEventObject, arg1: dynamic, arg2: dynamic, arg3: dynamic, arg4: dynamic, arg5: dynamic, arg6: dynamic) -> dynamic
