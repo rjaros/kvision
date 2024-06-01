@@ -1,18 +1,18 @@
 {
-    "kvision": "7.5.0",
+    "kvision": "7.5.1",
     "kotlin": "1.9.24",
     "coroutines": "1.8.1",
     "template-javalin": {
     },
     "template-jooby": {
-        "jooby": "3.1.1"
+        "jooby": "3.1.2"
     },
     "template-ktor": {
         "ktor": "2.3.11",
         "koin-annotations": "1.3.1"
     },
     "template-micronaut": {
-        "micronaut": "4.4.2",
+        "micronaut": "4.4.3",
         "micronaut-plugins": "4.4.0"
     },
     "template-spring-boot": {
@@ -26,7 +26,8 @@
             "name": "kvision-bootstrap",
             "description": "Bootstrap based components",
             "excludes": [
-                "kvision-onsenui"
+                "kvision-onsenui",
+                "kvision-material"
             ],
             "initializers": [
                 "BootstrapModule",
@@ -58,7 +59,8 @@
             "name": "kvision-bootstrap-upload",
             "description": "Bootstrap based upload form component",
             "excludes": [
-                "kvision-onsenui"
+                "kvision-onsenui",
+                "kvision-material"
             ],
             "initializers": [
                 "BootstrapUploadModule"
@@ -88,9 +90,6 @@
         {
             "name": "kvision-bootstrap-icons",
             "description": "Bootstrap Icons support",
-            "excludes": [
-                "kvision-onsenui"
-            ],
             "initializers": [
                 "BootstrapIconsModule"
             ]
@@ -218,10 +217,23 @@
             "description": "Onsen UI mobile web components",
             "excludes": [
                 "kvision-bootstrap",
-                "kvision-bootstrap-upload"
+                "kvision-bootstrap-upload",
+                "kvision-material"
             ],
             "initializers": [
                 "OnsenUIModule"
+            ]
+        },
+        {
+            "name": "kvision-material",
+            "description": "Material 3 web components",
+            "excludes": [
+                "kvision-bootstrap",
+                "kvision-bootstrap-upload",
+                "kvision-onsenui"
+            ],
+            "initializers": [
+                "MaterialModule"
             ]
         }
     ]
