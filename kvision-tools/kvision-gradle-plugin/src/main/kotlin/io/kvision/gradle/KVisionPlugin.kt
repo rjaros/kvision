@@ -61,7 +61,8 @@ abstract class KVisionPlugin @Inject constructor(
         val kvExtension = createKVisionExtension()
 
         val kvVersions = Properties().run {
-            this@KVisionPlugin.javaClass.classLoader.getResourceAsStream("io.kvision.versions.properties")?.let { this.load(it) }
+            this@KVisionPlugin.javaClass.classLoader.getResourceAsStream("io.kvision.versions.properties")
+                ?.let { this.load(it) }
             propertiesToMap(this)
         }
 
@@ -114,6 +115,13 @@ abstract class KVisionPlugin @Inject constructor(
     /** Configure a Kotlin Multiplatform project */
     private fun KVPluginContext.configureProject() {
         logger.debug("configuring Kotlin/MPP plugin")
+
+        tasks.withType<Copy>().matching {
+            it.name == "jsBrowserDistribution"
+        }.configureEach {
+            exclude("/modules/**")
+        }
+
         val backendMainExists = layout.projectDirectory.dir("src/backendMain").asFile.exists()
         val jvmMainExists = layout.projectDirectory.dir("src/jvmMain").asFile.exists()
         if (backendMainExists && !jvmMainExists) {
@@ -160,7 +168,7 @@ abstract class KVisionPlugin @Inject constructor(
             }
 
             registerZipTask {
-                dependsOn(tasks.all.jsBrowserProductionWebpack)
+                dependsOn(tasks.all.jsBrowserDistribution)
             }
 
             kotlinMppExtension.sourceSets.matching { it.name == "jsMain" }.configureEach {
@@ -251,18 +259,13 @@ abstract class KVisionPlugin @Inject constructor(
                             archiveAppendix.set("js")
                             val distribution =
                                 project.tasks.getByName(
-                                    "jsBrowserProductionWebpack",
-                                    KotlinWebpack::class
-                                ).outputDirectory
-                            from(distribution) {
-                                include("*.*")
-                            }
-                            val processedResources =
-                                project.tasks.getByName("jsProcessResources", Copy::class).destinationDir
-                            from(processedResources)
+                                    "jsBrowserDistribution",
+                                    Copy::class
+                                ).outputs
+                            from(distribution)
                             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
                             into(assetsPath)
-                            inputs.files(distribution, processedResources)
+                            inputs.files(distribution)
                             outputs.file(archiveFile)
                             manifest {
                                 attributes(
@@ -431,10 +434,12 @@ abstract class KVisionPlugin @Inject constructor(
             group = PACKAGE_TASK_GROUP
             description = "Builds ZIP archive with the application"
             destinationDirectory.set(layout.buildDirectory.dir("libs"))
-            from(tasks.provider.jsBrowserProductionWebpack.map { it.outputDirectory }) {
-                include("*.*")
-            }
-            from(kvExtension.webDir)
+            val distribution =
+                project.tasks.getByName(
+                    "jsBrowserDistribution",
+                    Copy::class
+                ).outputs
+            from(distribution)
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
             configuration()
         }
@@ -555,8 +560,8 @@ abstract class KVisionPlugin @Inject constructor(
         val compileKotlinJvm: TaskCollection<KotlinCompilationTask<*>>
             get() = collection("compileKotlinJvm")
 
-        val jsBrowserProductionWebpack: TaskCollection<KotlinWebpack>
-            get() = collection("jsBrowserProductionWebpack")
+        val jsBrowserDistribution: TaskCollection<Copy>
+            get() = collection("jsBrowserDistribution")
 
         val workerBrowserProductionWebpack: TaskCollection<Task>
             get() = collection("workerBrowserProductionWebpack")
