@@ -927,7 +927,7 @@ data class TabulatorOptions<T : Any>(
     val ajaxParams: dynamic = null,
     val ajaxConfig: dynamic = null,
     val ajaxContentType: dynamic = null,
-    val ajaxURLGenerator: ((url: String, config: Any?, params: Any?) -> String)? = null,
+    val ajaxURLGenerator: ((url: String, config: dynamic, params: dynamic) -> String)? = null,
     var ajaxRequestFunc: ((url: String, config: Any?, params: Any?) -> Promise<Any>)? = null,
     val progressiveLoad: ProgressiveMode? = null,
     val progressiveLoadDelay: Int? = null,
