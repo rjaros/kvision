@@ -43,6 +43,6 @@ class Imask(private val imask: dynamic) : Mask {
 
     override fun refresh() {
         imask.updateValue()
-        imask.updateControl()
+        imask.updateControl("auto")
     }
 }
