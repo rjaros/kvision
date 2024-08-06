@@ -233,15 +233,6 @@ label.form-check-label.required-label > span:last-child::after {
     height: inherit;
 }
 
-.form-check .form-check-input.form-control-sm {
-    height: 14px;
-    min-height: 14px;
-    margin-left: -1.7em;
-    width: 14px;
-    padding: .25rem;
-    margin-top: 8px;
-}
-
 .form-check-inline {
     margin-left: 3px;
 }
@@ -623,9 +614,12 @@ select.form-select:invalid {
 }
 
 .form-check .form-check-input.form-control-sm {
-    height: 18px;
-    min-height: 18px;
+    height: 14px;
+    min-height: 14px;
     margin-left: -1.7em;
+    width: 14px;
+    padding: .25rem;
+    margin-top: 8px;
 }
 
 .form-check .form-check-input.form-control-lg {
