@@ -1780,7 +1780,7 @@ kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-kvision-assets@8.0.11, kvision-assets@8.0.12:
+kvision-assets@8.0.12:
   version "8.0.12"
   resolved "https://registry.yarnpkg.com/kvision-assets/-/kvision-assets-8.0.12.tgz#1251c10924543ab938e1774e49ee5bfa135ee967"
   integrity sha512-d9lfDc6ZmVFV545FSFUcUwnKrolYJw30bzcmBUlTELo0kzUj0WB7aSSLkLPus8K/7VyZ6FS14lkBWajKvcXyrQ==
