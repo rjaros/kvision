@@ -515,8 +515,6 @@ abstract class KVisionPlugin @Inject constructor(
                 resolution("print-js", kvVersions["printjsVersion"]!!)
                 resolution("react", kvVersions["reactVersion"]!!)
                 resolution("react-dom", kvVersions["reactVersion"]!!)
-                resolution("redux", kvVersions["reduxVersion"]!!)
-                resolution("redux-thunk", kvVersions["reduxThunkVersion"]!!)
                 resolution("trix", kvVersions["trixVersion"]!!)
                 resolution("tabulator-tables", kvVersions["tabulatorTablesVersion"]!!)
                 resolution("toastify-js", kvVersions["toastifyjsVersion"]!!)

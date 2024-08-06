@@ -30,7 +30,6 @@ include(
     "kvision-modules:kvision-pace",
     "kvision-modules:kvision-print",
     "kvision-modules:kvision-react",
-    "kvision-modules:kvision-redux",
     "kvision-modules:kvision-redux-kotlin",
     "kvision-modules:kvision-rest",
     "kvision-modules:kvision-richtext",

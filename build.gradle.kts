@@ -54,8 +54,6 @@ val onsenuiVersion: String by project
 val paceProgressbarVersion: String by project
 val printjsVersion: String by project
 val reactVersion: String by project
-val reduxVersion: String by project
-val reduxThunkVersion: String by project
 val trixVersion: String by project
 val tabulatorTablesVersion: String by project
 val toastifyjsVersion: String by project
@@ -100,8 +98,6 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("print-js", printjsVersion)
         resolution("react", reactVersion)
         resolution("react-dom", reactVersion)
-        resolution("redux", reduxVersion)
-        resolution("redux-thunk", reduxThunkVersion)
         resolution("trix", trixVersion)
         resolution("tabulator-tables", tabulatorTablesVersion)
         resolution("toastify-js", toastifyjsVersion)
@@ -187,7 +183,7 @@ tasks.dokkaHtml.configure {
             sourceRoots.from(file("kvision-modules/kvision-onsenui/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-pace/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-react/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-redux/src/jsMain/kotlin"))
+            sourceRoots.from(file("kvision-modules/kvision-redux-kotlin/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-rest/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-richtext/src/jsMain/kotlin"))
             sourceRoots.from(file("kvision-modules/kvision-routing-navigo-ng/src/jsMain/kotlin"))
