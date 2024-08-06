@@ -40,12 +40,13 @@ import io.kvision.utils.event
  * @param size modal window size
  * @param animation determines if animations are used
  * @param centered determines if modal dialog is vertically centered
+ * @param okTitle "OK" button text
  * @param callback a function called after closing window with OK button
  */
 open class Alert(
     caption: String? = null, text: String? = null, rich: Boolean = false,
     align: Align? = null, size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false,
-    private val callback: (() -> Unit)? = null
+    okTitle: String = "OK", private val callback: (() -> Unit)? = null
 ) : Modal(caption, true, size, animation, centered) {
 
     /**
@@ -56,6 +57,7 @@ open class Alert(
         set(value) {
             contentTag.content = value
         }
+
     /**
      * Determines if [text] can contain HTML code.
      */
@@ -64,6 +66,7 @@ open class Alert(
         set(value) {
             contentTag.rich = value
         }
+
     /**
      * Text align.
      */
@@ -77,7 +80,7 @@ open class Alert(
 
     init {
         body.add(contentTag)
-        val okButton = Button("OK", "fas fa-check", ButtonStyle.PRIMARY)
+        val okButton = Button(okTitle, "fas fa-check", ButtonStyle.PRIMARY)
         okButton.setEventListener<Button> {
             click = {
                 hide()
@@ -111,15 +114,17 @@ open class Alert(
          * @param size modal window size
          * @param animation determines if animations are used
          * @param centered determines if modal dialog is vertically centered
+         * @param okTitle "OK" button text
          * @param callback a function called after closing window with OK button
          */
         @Suppress("LongParameterList")
         fun show(
             caption: String? = null, text: String? = null, rich: Boolean = false,
             align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
-            centered: Boolean = false, callback: (() -> Unit)? = null
+            centered: Boolean = false, okTitle: String = "OK",
+            callback: (() -> Unit)? = null
         ) {
-            Alert(caption, text, rich, align, size, animation, centered, callback).show()
+            Alert(caption, text, rich, align, size, animation, centered, okTitle, callback).show()
         }
     }
 }
