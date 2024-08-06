@@ -13,7 +13,7 @@ npmPublish {
             }
             packageJson {
                 main.set("index.js")
-                version.set("8.0.9")
+                version.set("8.0.10")
                 description.set("The assets for the KVision framework")
                 keywords.set(listOf("kvision", "kotlin"))
                 homepage.set("https://kvision.io")
