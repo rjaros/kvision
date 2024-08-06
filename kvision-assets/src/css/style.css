@@ -381,6 +381,7 @@ label.form-check-label.required-label > span:last-child::after {
     height: 40px;
     padding: 5px 15px 5px 15px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .kv-window .modal-header button.close {
