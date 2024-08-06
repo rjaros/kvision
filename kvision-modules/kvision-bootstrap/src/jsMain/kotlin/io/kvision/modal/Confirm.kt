@@ -41,9 +41,9 @@ import io.kvision.utils.event
  * @param animation determines if animations are used
  * @param centered determines if modal dialog is vertically centered
  * @param cancelVisible determines if Cancel button is visible
- * @param yesTitle yes button text
- * @param noTitle no button text
- * @param cancelTitle cancel button text
+ * @param yesTitle "Yes" button text
+ * @param noTitle "No" button text
+ * @param cancelTitle "Cancel" button text
  * @param noCallback a function called after closing window with No button
  * @param yesCallback a function called after closing window with Yes button
  */
@@ -111,8 +111,8 @@ open class Confirm(
         }
 
     private val contentTag = Tag(TAG.DIV, text, rich, align)
-    private val cancelButton = Button(cancelTitle, "fas fa-times")
-    private val noButton = Button(noTitle, "fas fa-ban")
+    private val cancelButton = Button(cancelTitle, "fas fa-times", ButtonStyle.SECONDARY)
+    private val noButton = Button(noTitle, "fas fa-ban", ButtonStyle.SECONDARY)
     private val yesButton = Button(yesTitle, "fas fa-check", ButtonStyle.PRIMARY)
 
     init {
@@ -166,6 +166,9 @@ open class Confirm(
          * @param animation determines if animations are used
          * @param centered determines if modal dialog is vertically centered
          * @param cancelVisible determines if Cancel button is visible
+         * @param yesTitle "Yes" button text
+         * @param noTitle "No" button text
+         * @param cancelTitle "Cancel" button text
          * @param noCallback a function called after closing window with No button
          * @param yesCallback a function called after closing window with Yes button
          */
