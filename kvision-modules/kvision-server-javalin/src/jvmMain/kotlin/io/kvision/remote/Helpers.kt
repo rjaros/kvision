@@ -124,6 +124,10 @@ internal class KVContext : Context {
         throw IllegalStateException("Empty implementation")
     }
 
+    override fun strictContentTypes(): Boolean {
+        throw IllegalStateException("Empty implementation")
+    }
+
     override fun <T> with(clazz: Class<out ContextPlugin<*, T>>): T {
         throw IllegalStateException("Empty implementation")
     }

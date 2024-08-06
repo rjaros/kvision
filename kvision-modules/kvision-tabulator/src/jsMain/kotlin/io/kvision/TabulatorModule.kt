@@ -26,7 +26,7 @@ package io.kvision
  */
 object TabulatorModule : ModuleInitializer {
 
-    private val tabulator = require("tabulator-tables").TabulatorFull
+    private val tabulator = require("tabulator-tables")
 
     @Suppress("UnsafeCastFromDynamic")
     fun getConstructor(): Any {

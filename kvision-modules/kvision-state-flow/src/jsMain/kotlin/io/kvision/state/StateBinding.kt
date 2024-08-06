@@ -21,6 +21,7 @@
  */
 package io.kvision.state
 
+import io.github.petertrr.diffutils.algorithm.myers.MyersDiff
 import io.github.petertrr.diffutils.diff
 import io.github.petertrr.diffutils.patch.ChangeDelta
 import io.github.petertrr.diffutils.patch.DeleteDelta
@@ -409,7 +410,10 @@ fun <S, W : SimplePanel> W.bindEach(
         this.singleRender {
             if (this.unsafeCast<Widget>().kvscope != null) {
                 val previousState = _archivedState?.unsafeCast<List<S>>() ?: emptyList()
-                val patch = diff(previousState, it, equalizer)
+                val myersDiff = if (equalizer != null) {
+                    MyersDiff(equalizer)
+                } else MyersDiff()
+                val patch = diff(previousState, it, myersDiff)
                 val deltas = patch.deltas
                 val iterator = deltas.listIterator(deltas.size)
                 while (iterator.hasPrevious()) {
