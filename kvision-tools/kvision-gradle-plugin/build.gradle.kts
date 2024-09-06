@@ -45,7 +45,7 @@ dependencies {
     implementation(kotlin("gradle-plugin"))
     implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:$kspVersion")
     compileOnly("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-    compileOnly("com.github.johnrengelman.shadow:com.github.johnrengelman.shadow.gradle.plugin:$shadowVersion")
+    compileOnly("com.gradleup.shadow:shadow-gradle-plugin:$shadowVersion")
 
     testImplementation(gradleTestKit())
 
