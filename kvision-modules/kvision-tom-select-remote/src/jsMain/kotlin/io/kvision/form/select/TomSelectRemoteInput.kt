@@ -82,10 +82,12 @@ open class TomSelectRemoteInput<out T : Any>(
         } else null
         this.tsCallbacks = tsCallbacks?.copy(load = loadCallback, shouldLoad = shouldLoadCallback)
             ?: TomSelectCallbacks(load = loadCallback, shouldLoad = shouldLoadCallback)
-        this.tsOptions = tsOptions?.copy(preload = preload, openOnFocus = openOnFocus, searchField = emptyList())
+        val forcedPreload = if (preload) true else tsOptions?.preload
+        val forcedOpenOnFocus = if (openOnFocus) true else tsOptions?.openOnFocus
+        this.tsOptions = tsOptions?.copy(preload = forcedPreload, openOnFocus = forcedOpenOnFocus, searchField = emptyList())
             ?: TomSelectOptions(
-                preload = preload,
-                openOnFocus = openOnFocus,
+                preload = forcedPreload,
+                openOnFocus = forcedOpenOnFocus,
                 searchField = emptyList()
             )
         this.tsRenders = tsRenders?.copy(option = ::renderOption, item = ::renderItem) ?: TomSelectRenders(
