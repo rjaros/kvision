@@ -101,6 +101,9 @@ enum class Formatter(internal val formatter: String) {
     RESPONSIVECOLLAPSE("responsiveCollapse"),
     RESPONSIVECOLLAPSEAUTO("responsiveCollapseAuto"),
     TOGGLE("toggle"),
+    ARRAY("array"),
+    JSON("json"),
+    ADAPTABLE("adaptable"),
 }
 
 /**
@@ -117,6 +120,7 @@ enum class Editor(internal val editor: String) {
     DATE("date"),
     TIME("time"),
     DATETIME("datetime"),
+    ADAPTABLE("adaptable"),
 }
 
 /**
@@ -497,6 +501,8 @@ data class ColumnDefinition<T : Any>(
     val headerColumnsMenu: Boolean? = null,
     val headerColumnsMenuTitle: String? = null,
     val headerColumnsMenuResetTitle: String? = null,
+    val mutatorImport: dynamic = null,
+    val mutatorImportParams: dynamic = null,
 )
 
 internal object EditorRoot {
@@ -878,6 +884,8 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (headerClickMenu != null) this.headerClickMenu = headerClickMenu
         if (headerDblClickMenu != null) this.headerDblClickMenu = headerDblClickMenu
         if (dblClickMenu != null) this.dblClickMenu = dblClickMenu
+        if (mutatorImport != null) this.mutatorImport = mutatorImport
+        if (mutatorImportParams != null) this.mutatorImportParams = mutatorImportParams
     } as Tabulator.ColumnDefinition
 }
 
@@ -1035,6 +1043,12 @@ data class TabulatorOptions<T : Any>(
     val resizableRowGuide: Boolean? = null,
     val editorEmptyValue: dynamic = null,
     val editorEmptyValueFunc: ((Any?) -> Boolean)? = null,
+    val importHeaderTransform: ((header: String, headers: Array<String>) -> String)? = null,
+    val importValueTransform: ((header: dynamic, headers: Array<dynamic>) -> dynamic)? = null,
+    val importFileValidator: ((file: dynamic) -> dynamic)? = null,
+    val importDataValidator: ((data: dynamic) -> dynamic)? = null,
+    val paginationOutOfRange: dynamic = null,
+    val selectableRangeAutoFocus: Boolean? = null,
 )
 
 /**
@@ -1233,5 +1247,11 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (resizableRowGuide != null) this.resizableRowGuide = resizableRowGuide
         if (editorEmptyValue != null) this.editorEmptyValue = editorEmptyValue
         if (editorEmptyValueFunc != null) this.editorEmptyValueFunc = editorEmptyValueFunc
+        if (importHeaderTransform != null) this.importHeaderTransform = importHeaderTransform
+        if (importValueTransform != null) this.importValueTransform = importValueTransform
+        if (importFileValidator != null) this.importFileValidator = importFileValidator
+        if (importDataValidator != null) this.importDataValidator = importDataValidator
+        if (paginationOutOfRange != null) this.paginationOutOfRange = paginationOutOfRange
+        if (selectableRangeAutoFocus != null) this.selectableRangeAutoFocus = selectableRangeAutoFocus
     } as Tabulator.Options
 }
