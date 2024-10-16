@@ -880,7 +880,7 @@ label.required-label + ons-input > span.text-input__label::after {
     background: #fff !important;
 }
 
-[data-bs-theme="dark"] .tabulator.table-bordered .tabulator-header .tabulator-col, [data-bs-theme="dark"] .tabulator.table-bordered .tabulator-tableholder .tabulator-table .tabulator-row .tabulator-cell, [data-bs-theme="dark"] .tabulator .tabulator-tableholder, [data-bs-theme="dark"] .tabulator .tabulator-footer {
+[data-bs-theme="dark"] .tabulator .tabulator-header .tabulator-col, [data-bs-theme="dark"] .tabulator .tabulator-tableholder .tabulator-table .tabulator-row .tabulator-cell, [data-bs-theme="dark"] .tabulator .tabulator-tableholder, [data-bs-theme="dark"] .tabulator .tabulator-footer {
     background-color: var(--bs-body-bg, #212529);
 }
 
