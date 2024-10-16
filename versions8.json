@@ -1,22 +1,22 @@
 {
-    "kvision": "8.0.0",
-    "kotlin": "2.0.20",
-    "coroutines": "1.9.0-RC.2",
+    "kvision": "8.0.1",
+    "kotlin": "2.0.21",
+    "coroutines": "1.9.0",
     "template-javalin": {
     },
     "template-jooby": {
-        "jooby": "3.3.0"
+        "jooby": "3.4.2"
     },
     "template-ktor": {
         "ktor": "2.3.12",
         "koin-annotations": "1.4.0-RC3"
     },
     "template-micronaut": {
-        "micronaut": "4.6.1",
-        "micronaut-plugins": "4.4.2"
+        "micronaut": "4.6.3",
+        "micronaut-plugins": "4.4.3"
     },
     "template-spring-boot": {
-        "spring-boot": "3.3.3"
+        "spring-boot": "3.3.4"
     },
     "template-vertx": {
         "vertx-plugin": "1.4.0"
