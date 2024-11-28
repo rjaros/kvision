@@ -23,7 +23,7 @@ package io.kvision.types
 
 import kotlin.js.Date
 
-const val KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
+var KV_DEFAULT_DATE_FORMAT = "YYYY-MM-DD HH:mm:ss"
 
 actual typealias LocalDateTime = Date
 
