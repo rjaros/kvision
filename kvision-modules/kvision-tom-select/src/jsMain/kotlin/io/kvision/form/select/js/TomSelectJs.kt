@@ -1,3 +1,5 @@
+@file:JsModule("tom-select")
+@file:JsNonModule
 /*
  * Copyright (c) 2017-present Robert Jaros
  *
@@ -24,9 +26,7 @@ package io.kvision.form.select.js
 
 import org.w3c.dom.HTMLElement
 
-@JsModule("tom-select")
-@JsNonModule
-@JsName("TomSelect")
+@JsName("default")
 external class TomSelectJs(element: HTMLElement, options: dynamic) {
     fun addOption(value: dynamic, user_created: Boolean = definedExternally)
     fun addOptions(value: Array<dynamic>, user_created: Boolean = definedExternally)

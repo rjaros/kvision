@@ -102,7 +102,12 @@ fun Vertx.kvisionInit(
             server.webSocketHandler { webSocket ->
                 serviceManager.webSocketRequests[webSocket.path()]?.let {
                     it(injector, webSocket)
-                } ?: webSocket.reject()
+                }
+            }
+            server.webSocketHandshakeHandler { serverWebSocketHandshake ->
+                serviceManager.webSocketRequests[serverWebSocketHandshake.path()]?.let {
+                    serverWebSocketHandshake.accept()
+                } ?: serverWebSocketHandshake.reject()
             }
         }
     }

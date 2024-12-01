@@ -24,7 +24,6 @@ package io.kvision.remote
 import io.micronaut.context.ApplicationContext
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpResponse
-import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Delete
@@ -33,18 +32,13 @@ import io.micronaut.http.annotation.Options
 import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.annotation.Put
-import io.micronaut.http.sse.Event
-import io.micronaut.scheduling.TaskExecutors
-import io.micronaut.scheduling.annotation.ExecuteOn
 import jakarta.annotation.PostConstruct
 import jakarta.inject.Inject
-import org.reactivestreams.Publisher
-import reactor.core.publisher.Flux
 
 /**
  * Controller for handling automatic routes.
  */
-@Controller("/")
+@Controller("/kv")
 open class KVController {
 
     @Inject
@@ -60,50 +54,45 @@ open class KVController {
         }
     }
 
-    @Get("{/path:kv/.*}")
+    @Get("/{+path}")
     suspend fun get(@PathVariable path: String?, request: HttpRequest<*>): HttpResponse<String> =
-        handle(HttpMethod.GET, path, request)
+        handle(HttpMethod.GET, "/rpc/$path", request)
 
     @Suppress("UNUSED_PARAMETER")
-    @Post("{/path:kv/.*}")
+    @Post("/{+path}")
     suspend fun post(
         @PathVariable path: String?,
         request: HttpRequest<*>,
         @Body body: JsonRpcRequest
-    ): HttpResponse<String> = handle(HttpMethod.POST, path, request)
+    ): HttpResponse<String> = handle(HttpMethod.POST, "/rpc/$path", request)
 
     @Suppress("UNUSED_PARAMETER")
-    @Put("{/path:kv/.*}")
+    @Put("/{+path}")
     suspend fun put(
         @PathVariable path: String?,
         request: HttpRequest<*>,
         @Body body: JsonRpcRequest
-    ): HttpResponse<String> = handle(HttpMethod.PUT, path, request)
+    ): HttpResponse<String> = handle(HttpMethod.PUT, "/rpc/$path", request)
 
     @Suppress("UNUSED_PARAMETER")
-    @Delete("{/path:kv/.*}")
+    @Delete("/{+path}")
     suspend fun delete(
         @PathVariable path: String?,
         request: HttpRequest<*>,
         @Body body: JsonRpcRequest
-    ): HttpResponse<String> = handle(HttpMethod.DELETE, path, request)
+    ): HttpResponse<String> = handle(HttpMethod.DELETE, "/rpc/$path", request)
 
     @Suppress("UNUSED_PARAMETER")
-    @Options("{/path:kv/.*}")
+    @Options("/{+path}")
     suspend fun options(
         @PathVariable path: String?,
         request: HttpRequest<*>,
         @Body body: JsonRpcRequest
-    ): HttpResponse<String> = handle(HttpMethod.OPTIONS, path, request)
+    ): HttpResponse<String> = handle(HttpMethod.OPTIONS, "/rpc/$path", request)
 
-    @ExecuteOn(TaskExecutors.IO)
-    @Get("{/path:kvsse/.*}", produces = [MediaType.TEXT_EVENT_STREAM])
-    fun getSse(@PathVariable path: String?, request: HttpRequest<*>): Publisher<Event<String>> =
-        handleSse(path, request)
-
-    private suspend fun handle(method: HttpMethod, path: String?, request: HttpRequest<*>): HttpResponse<String> {
+    private suspend fun handle(method: HttpMethod, path: String, request: HttpRequest<*>): HttpResponse<String> {
         val handler = kvManagers.services.asSequence().mapNotNull {
-            it.routeMapRegistry.findHandler(method, "/$path")
+            it.routeMapRegistry.findHandler(method, path)
         }.firstOrNull() ?: return HttpResponse.notFound()
         return handler(
             request,
@@ -111,12 +100,5 @@ open class KVController {
             ResponseMutatorHolder.threadLocalResponseMutator,
             applicationContext
         )
-    }
-
-    private fun handleSse(path: String?, request: HttpRequest<*>): Publisher<Event<String>> {
-        val handler = kvManagers.services.asSequence().mapNotNull {
-            it.sseRequests["/$path"]
-        }.firstOrNull() ?: return Flux.empty()
-        return handler(request, RequestHolder.threadLocalRequest, applicationContext)
     }
 }

@@ -22,12 +22,10 @@
 package io.kvision.remote
 
 import io.ktor.http.*
-import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.websocket.*
-import io.ktor.util.pipeline.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -44,7 +42,7 @@ import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 import kotlin.reflect.KClass
 
-typealias RequestHandler = suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit
+typealias RequestHandler = suspend RoutingContext.() -> Unit
 typealias WebsocketHandler = suspend WebSocketServerSession.() -> Unit
 typealias SseHandler = RequestHandler
 

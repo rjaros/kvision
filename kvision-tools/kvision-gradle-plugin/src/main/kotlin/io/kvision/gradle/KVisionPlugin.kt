@@ -580,6 +580,7 @@ abstract class KVisionPlugin @Inject constructor(
      *
      * The current operating system is taken into account.
      */
+    @Suppress("DEPRECATION")
     private fun Project.nodeJsBinaryProvider(): Provider<String> {
         val nodeJsRootExtension = providers.provider {
             rootProject.extensions.getByType(NodeJsRootExtension::class)
