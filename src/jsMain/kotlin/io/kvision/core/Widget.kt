@@ -795,7 +795,10 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
     override fun dispose() {
         afterDestroyInternal()
         afterDestroy()
-        afterDestroyHooks?.forEach { it() }
+        if (vnode != null) {
+            afterDestroyHooks?.forEach { it() }
+            afterDestroyHooks?.clear()
+        }
         beforeDisposeHooks?.forEach { it() }
     }
 
