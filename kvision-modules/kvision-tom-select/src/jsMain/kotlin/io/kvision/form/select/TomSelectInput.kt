@@ -307,7 +307,10 @@ open class TomSelectInput(
      * Removes all unselected options from the control.
      */
     open fun clearOptions() {
-        tomSelectJs?.clearOptions()
+        if (tomSelectJs != null) {
+            tomSelectJs!!.clearOptions()
+            tomSelectJs.asDynamic().input.clear()
+        }
     }
 
     override fun getState(): String? = value
