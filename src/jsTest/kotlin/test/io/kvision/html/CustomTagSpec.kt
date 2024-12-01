@@ -38,7 +38,7 @@ class CustomTagSpec : DomSpec {
             root.add(tag)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<custom-element class=\"text-center\">This is &lt;b&gt;custom element&lt;/b&gt;</custom-element>",
+                "<custom-element class=\"kv-text-center\">This is &lt;b&gt;custom element&lt;/b&gt;</custom-element>",
                 element?.innerHTML,
                 "Should render correct custom html tag"
             )

@@ -40,7 +40,7 @@ class TagSpec : DomSpec {
             root.add(tag)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<h1 class=\"text-center\">This is &lt;b&gt;h1&lt;/b&gt;</h1>",
+                "<h1 class=\"kv-text-center\">This is &lt;b&gt;h1&lt;/b&gt;</h1>",
                 element?.innerHTML,
                 "Should render correct html tag"
             )
@@ -55,7 +55,7 @@ class TagSpec : DomSpec {
             root.add(tag)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<h1 class=\"text-end\"><span style=\"display: contents;\">This is <b>h1</b></span></h1>",
+                "<h1 class=\"kv-text-right\"><span style=\"display: contents;\">This is <b>h1</b></span></h1>",
                 element?.innerHTML,
                 "Should render correct html tag"
             )
@@ -72,7 +72,7 @@ class TagSpec : DomSpec {
             root.add(tag)
             val element = document.getElementById("test")
             assertEqualsHtml(
-                "<p class=\"text-end\"><del>This is test</del><a href=\"/x\">abc</a></p>",
+                "<p class=\"kv-text-right\"><del>This is test</del><a href=\"/x\">abc</a></p>",
                 element?.innerHTML,
                 "Should render correct html tag with children"
             )
