@@ -1,32 +1,32 @@
-.text-justify {
+.kv-text-justify {
     text-align: justify !important;
 }
 
-.text-left {
+.kv-text-left {
     text-align: left !important;
 }
 
-.text-start {
-    text-align: left !important;
+.kv-text-start {
+    text-align: start !important;
 }
 
-.text-right {
+.kv-text-right {
     text-align: right !important;
 }
 
-.text-end {
-    text-align: right !important;
+.kv-text-end {
+    text-align: end !important;
 }
 
-.text-center {
+.kv-text-center {
     text-align: center !important;
 }
 
-.text-nowrap {
+.kv-text-nowrap {
     white-space: nowrap !important;
 }
 
-.text-danger {
+.kv-text-danger {
     color: var(--bs-danger, #dc3545) !important;
 }
 
@@ -808,6 +808,12 @@ label.required-label + ons-input > span.text-input__label::after {
     margin: .5rem 0;
     overflow: hidden;
     border-top: 1px solid #888888;
+}
+
+.ts-wrapper.form-select-sm .ts-control, .ts-wrapper.form-control-sm .ts-control {
+    padding-left: 0.5rem;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 .toastify {

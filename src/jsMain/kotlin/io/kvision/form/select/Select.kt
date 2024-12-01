@@ -194,7 +194,7 @@ open class Select(
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
         if (validatorError != null) {
-            classSetBuilder.add("text-danger")
+            classSetBuilder.add("kv-text-danger")
         }
     }
 

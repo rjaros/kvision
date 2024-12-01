@@ -61,7 +61,7 @@ class DateTimeSpec : DomSpec {
             )
             ti.validatorError = "Validation Error"
             assertEqualsHtml(
-                "<div class=\"form-group kv-mb-3 text-danger\"><label class=\"form-label\" for=\"${id}_input\">Label</label><div class=\"input-group date is-invalid\" data-td-target-input=\"nearest\" data-td-target-toggle=\"nearest\" id=\"$id\"><input class=\"form-control is-invalid\" data-td-target=\"#$id\" id=\"${id}_input\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" type=\"text\" value=\"$datastr\"><span class=\"input-group-text\" data-td-target=\"#$id\" data-td-toggle=\"datetimepicker\"><span class=\"fas fa-calendar-alt\"></span></span></div><div class=\"invalid-feedback\">Validation Error</div></div>",
+                "<div class=\"form-group kv-mb-3 kv-text-danger\"><label class=\"form-label\" for=\"${id}_input\">Label</label><div class=\"input-group date is-invalid\" data-td-target-input=\"nearest\" data-td-target-toggle=\"nearest\" id=\"$id\"><input class=\"form-control is-invalid\" data-td-target=\"#$id\" id=\"${id}_input\" placeholder=\"place\" name=\"name\" disabled=\"disabled\" type=\"text\" value=\"$datastr\"><span class=\"input-group-text\" data-td-target=\"#$id\" data-td-toggle=\"datetimepicker\"><span class=\"fas fa-calendar-alt\"></span></span></div><div class=\"invalid-feedback\">Validation Error</div></div>",
                 element?.innerHTML,
                 "Should render correct date time input form control with validation error"
             )

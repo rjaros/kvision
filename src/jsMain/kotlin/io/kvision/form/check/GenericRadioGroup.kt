@@ -161,7 +161,7 @@ open class GenericRadioGroup<T>(
     override fun buildClassSet(classSetBuilder: ClassSetBuilder) {
         super.buildClassSet(classSetBuilder)
         if (validatorError != null) {
-            classSetBuilder.add("text-danger")
+            classSetBuilder.add("kv-text-danger")
         }
         if (inline) {
             classSetBuilder.add("kv-radiogroup-inline")

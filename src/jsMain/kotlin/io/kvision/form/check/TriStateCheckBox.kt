@@ -198,7 +198,7 @@ open class TriStateCheckBox(
             classSetBuilder.add("form-check-reverse")
         }
         if (validatorError != null) {
-            classSetBuilder.add("text-danger")
+            classSetBuilder.add("kv-text-danger")
         }
     }
 
