@@ -373,8 +373,8 @@ label.form-check-label.required-label > span:last-child::after {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
     box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
     border-radius: 0px;
-    width: inherit;
-    height: inherit;
+    width: initial;
+    height: initial;
 }
 
 .kv-window .modal-header {
