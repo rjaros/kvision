@@ -332,7 +332,9 @@ data class DownloadConfig(
     val columnGroups: Boolean? = null,
     val rowGroups: Boolean? = null,
     val columnCalcs: Boolean? = null,
-    val rowHeaders: Boolean? = null
+    val rowHeaders: Boolean? = null,
+    val columnHeaders: Boolean? = null,
+    val dataTree: Boolean? = null,
 )
 
 /**
@@ -403,10 +405,12 @@ data class ColumnDefinition<T : Any>(
     val download: dynamic = null,
     val titleDownload: String? = null,
     val topCalc: Calc? = null,
+    val topCalcFunc: ((values: dynamic, data: dynamic, calcParams: dynamic) -> dynamic)? = null,
     val topCalcParams: dynamic = null,
     val topCalcFormatter: Formatter? = null,
     val topCalcFormatterParams: dynamic = null,
     val bottomCalc: Calc? = null,
+    val bottomCalcFunc: ((values: dynamic, data: dynamic, calcParams: dynamic) -> dynamic)? = null,
     val bottomCalcParams: dynamic = null,
     val bottomCalcFormatter: Formatter? = null,
     val bottomCalcFormatterParams: dynamic = null,
@@ -504,6 +508,8 @@ data class ColumnDefinition<T : Any>(
     val headerColumnsMenuResetTitle: String? = null,
     val mutatorImport: dynamic = null,
     val mutatorImportParams: dynamic = null,
+    val accessorDownload: dynamic = null,
+    val accessorDownloadParams: dynamic = null,
 )
 
 internal object EditorRoot {
@@ -782,11 +788,19 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (validatorParams != null) this.validatorParams = validatorParams
         if (download != null) this.download = download
         if (titleDownload != null) this.titleDownload = i18nTranslator(titleDownload)
-        if (topCalc != null) this.topCalc = topCalc.calc
+        if (topCalcFunc != null) {
+            this.topCalc = topCalcFunc
+        } else if (topCalc != null) {
+            this.topCalc = topCalc.calc
+        }
         if (topCalcParams != null) this.topCalcParams = topCalcParams
         if (topCalcFormatter != null) this.topCalcFormatter = topCalcFormatter.formatter
         if (topCalcFormatterParams != null) this.topCalcFormatterParams = topCalcFormatterParams
-        if (bottomCalc != null) this.bottomCalc = bottomCalc.calc
+        if (bottomCalcFunc != null) {
+            this.bottomCalc = bottomCalcFunc
+        } else if (bottomCalc != null) {
+            this.bottomCalc = bottomCalc.calc
+        }
         if (bottomCalcParams != null) this.bottomCalcParams = bottomCalcParams
         if (bottomCalcFormatter != null) this.bottomCalcFormatter = bottomCalcFormatter.formatter
         if (bottomCalcFormatterParams != null) this.bottomCalcFormatterParams = bottomCalcFormatterParams
@@ -887,6 +901,8 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (dblClickMenu != null) this.dblClickMenu = dblClickMenu
         if (mutatorImport != null) this.mutatorImport = mutatorImport
         if (mutatorImportParams != null) this.mutatorImportParams = mutatorImportParams
+        if (accessorDownload != null) this.accessorDownload = accessorDownload
+        if (accessorDownloadParams != null) this.accessorDownloadParams = accessorDownloadParams
     } as Tabulator.ColumnDefinition
 }
 
@@ -1050,6 +1066,19 @@ data class TabulatorOptions<T : Any>(
     val importDataValidator: ((data: dynamic) -> dynamic)? = null,
     val paginationOutOfRange: dynamic = null,
     val selectableRangeAutoFocus: Boolean? = null,
+    val groupBy: dynamic = null,
+    val groupHeader: dynamic = null,
+    val groupHeaderPrint: dynamic = null,
+    val groupHeaderClipboard: dynamic = null,
+    val groupHeaderDownload: dynamic = null,
+    val groupHeaderHtmlOutput: dynamic = null,
+    val groupStartOpen: dynamic = null,
+    val groupToggleElement: dynamic = null,
+    val groupValues: dynamic = null,
+    val groupUpdateOnCellEdit: Boolean? = null,
+    val groupClosedShowCalcs: Boolean? = null,
+    val columnCalcs: dynamic = null,
+    val downloadEncoder: dynamic = null,
 )
 
 /**
@@ -1254,5 +1283,18 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (importDataValidator != null) this.importDataValidator = importDataValidator
         if (paginationOutOfRange != null) this.paginationOutOfRange = paginationOutOfRange
         if (selectableRangeAutoFocus != null) this.selectableRangeAutoFocus = selectableRangeAutoFocus
+        if (groupBy != null) this.groupBy = groupBy
+        if (groupHeader != null) this.groupHeader = groupHeader
+        if (groupHeaderPrint != null) this.groupHeaderPrint = groupHeaderPrint
+        if (groupHeaderClipboard != null) this.groupHeaderClipboard = groupHeaderClipboard
+        if (groupHeaderDownload != null) this.groupHeaderDownload = groupHeaderDownload
+        if (groupHeaderHtmlOutput != null) this.groupHeaderHtmlOutput = groupHeaderHtmlOutput
+        if (groupStartOpen != null) this.groupStartOpen = groupStartOpen
+        if (groupToggleElement != null) this.groupToggleElement = groupToggleElement
+        if (groupValues != null) this.groupValues = groupValues
+        if (groupUpdateOnCellEdit != null) this.groupUpdateOnCellEdit = groupUpdateOnCellEdit
+        if (groupClosedShowCalcs != null) this.groupClosedShowCalcs = groupClosedShowCalcs
+        if (columnCalcs != null) this.columnCalcs = columnCalcs
+        if (downloadEncoder != null) this.downloadEncoder = downloadEncoder
     } as Tabulator.Options
 }
