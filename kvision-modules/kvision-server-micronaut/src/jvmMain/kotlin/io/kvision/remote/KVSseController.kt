@@ -57,7 +57,7 @@ open class KVSseController {
     @ExecuteOn(TaskExecutors.IO)
     @Get("/{+path}", produces = [MediaType.TEXT_EVENT_STREAM])
     fun getSse(@PathVariable path: String?, request: HttpRequest<*>): Publisher<Event<String>> =
-        handleSse("/rpcsse/$path", request)
+        handleSse("/kvsse/$path", request)
 
     private fun handleSse(path: String, request: HttpRequest<*>): Publisher<Event<String>> {
         val handler = kvManagers.services.asSequence().mapNotNull {

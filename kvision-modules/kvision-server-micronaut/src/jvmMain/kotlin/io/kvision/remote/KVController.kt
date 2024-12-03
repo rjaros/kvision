@@ -56,7 +56,7 @@ open class KVController {
 
     @Get("/{+path}")
     suspend fun get(@PathVariable path: String?, request: HttpRequest<*>): HttpResponse<String> =
-        handle(HttpMethod.GET, "/rpc/$path", request)
+        handle(HttpMethod.GET, "/kv/$path", request)
 
     @Suppress("UNUSED_PARAMETER")
     @Post("/{+path}")
@@ -64,7 +64,7 @@ open class KVController {
         @PathVariable path: String?,
         request: HttpRequest<*>,
         @Body body: JsonRpcRequest
-    ): HttpResponse<String> = handle(HttpMethod.POST, "/rpc/$path", request)
+    ): HttpResponse<String> = handle(HttpMethod.POST, "/kv/$path", request)
 
     @Suppress("UNUSED_PARAMETER")
     @Put("/{+path}")
@@ -72,7 +72,7 @@ open class KVController {
         @PathVariable path: String?,
         request: HttpRequest<*>,
         @Body body: JsonRpcRequest
-    ): HttpResponse<String> = handle(HttpMethod.PUT, "/rpc/$path", request)
+    ): HttpResponse<String> = handle(HttpMethod.PUT, "/kv/$path", request)
 
     @Suppress("UNUSED_PARAMETER")
     @Delete("/{+path}")
@@ -80,7 +80,7 @@ open class KVController {
         @PathVariable path: String?,
         request: HttpRequest<*>,
         @Body body: JsonRpcRequest
-    ): HttpResponse<String> = handle(HttpMethod.DELETE, "/rpc/$path", request)
+    ): HttpResponse<String> = handle(HttpMethod.DELETE, "/kv/$path", request)
 
     @Suppress("UNUSED_PARAMETER")
     @Options("/{+path}")
@@ -88,7 +88,7 @@ open class KVController {
         @PathVariable path: String?,
         request: HttpRequest<*>,
         @Body body: JsonRpcRequest
-    ): HttpResponse<String> = handle(HttpMethod.OPTIONS, "/rpc/$path", request)
+    ): HttpResponse<String> = handle(HttpMethod.OPTIONS, "/kv/$path", request)
 
     private suspend fun handle(method: HttpMethod, path: String, request: HttpRequest<*>): HttpResponse<String> {
         val handler = kvManagers.services.asSequence().mapNotNull {
