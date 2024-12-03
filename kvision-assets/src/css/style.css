@@ -393,6 +393,8 @@ label.form-check-label.required-label > span:last-child::after {
 
 .kv-window .modal-header .modal-title {
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .kv-window .modal-header .window-icon {
