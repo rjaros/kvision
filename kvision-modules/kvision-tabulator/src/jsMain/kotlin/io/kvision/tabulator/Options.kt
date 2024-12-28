@@ -347,6 +347,8 @@ fun DownloadConfig.toJs(): Tabulator.AddditionalExportOptions {
         if (rowGroups != null) this.rowGroups = rowGroups
         if (columnCalcs != null) this.columnCalcs = columnCalcs
         if (rowHeaders != null) this.rowHeaders = rowHeaders
+        if (columnHeaders != null) this.columnHeaders = columnHeaders
+        if (dataTree != null) this.dataTree = dataTree
     } as Tabulator.AddditionalExportOptions
 }
 
