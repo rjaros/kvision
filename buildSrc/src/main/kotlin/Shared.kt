@@ -11,7 +11,10 @@ import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
+import org.jetbrains.dokka.gradle.DokkaExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import java.net.URI
+import kotlin.text.set
 
 fun Project.repositories() {
     repositories {
@@ -162,65 +165,14 @@ fun Project.setupPublication(withJvm: Boolean = false, withSigning: Boolean = fa
 }
 
 fun Project.setupDokka() {
-    tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml").configure {
+    extensions.getByType<DokkaExtension>().run {
         dokkaSourceSets.invoke {
-            named("main") {
-                suppress.set(true)
-            }
-            register("kvision") {
+            configureEach {
                 includes.from("../../Module.md")
-                displayName.set("jvm")
-                platform.set(org.jetbrains.dokka.Platform.jvm)
-                includeNonPublic.set(false)
-                skipDeprecated.set(false)
-                reportUndocumented.set(false)
-                sourceRoots.from(file("src/main/kotlin"))
-            }
-        }
-    }
-}
-
-fun Project.setupDokkaMpp(withJvm: Boolean = false) {
-    tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml").configure {
-        dokkaSourceSets.invoke {
-            named("commonMain") {
-                suppress.set(true)
-            }
-            named("jsMain") {
-                suppress.set(true)
-            }
-            if (findByName("jvmMain") != null) {
-                named("jvmMain") {
-                    suppress.set(true)
-                }
-            }
-            register("kvision-common") {
-                includes.from("../../Module.md")
-                displayName.set("common")
-                platform.set(org.jetbrains.dokka.Platform.common)
-                includeNonPublic.set(false)
-                skipDeprecated.set(false)
-                reportUndocumented.set(false)
-                sourceRoots.from(file("src/commonMain/kotlin"))
-            }
-            register("kvision-js") {
-                includes.from("../../Module.md")
-                displayName.set("js")
-                platform.set(org.jetbrains.dokka.Platform.js)
-                includeNonPublic.set(false)
-                skipDeprecated.set(false)
-                reportUndocumented.set(false)
-                sourceRoots.from(file("src/jsMain/kotlin"))
-            }
-            if (withJvm) { // Workaround for StackOverflowError in Spring Boot module
-                register("kvision-jvm") {
-                    includes.from("../../Module.md")
-                    displayName.set("jvm")
-                    platform.set(org.jetbrains.dokka.Platform.jvm)
-                    includeNonPublic.set(false)
-                    skipDeprecated.set(false)
-                    reportUndocumented.set(false)
-                    sourceRoots.from(file("src/jvmMain/kotlin"))
+                sourceLink {
+                    localDirectory.set(projectDir.resolve("src"))
+                    remoteUrl.set(URI("https://github.com/rjaros/kvision/tree/master/kvision-modules/${project.name}/src"))
+                    remoteLineSuffix.set("#L")
                 }
             }
         }

@@ -55,13 +55,13 @@ dependencies {
 }
 
 val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaHtml")
+    dependsOn("dokkaGenerate")
     archiveClassifier.set("javadoc")
     from(layout.buildDirectory.dir("dokka/html"))
     enabled = !rootProject.hasProperty("SNAPSHOT")
 }
 
-tasks.getByName("dokkaHtml").apply {
+tasks.getByName("dokkaGenerate").apply {
     enabled = !rootProject.hasProperty("SNAPSHOT")
 }
 

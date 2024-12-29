@@ -177,7 +177,7 @@ abstract class KVisionPlugin @Inject constructor(
             }
 
             if (!jvmMainExists) {
-                tasks.create("run") {
+                tasks.register("run") {
                     group = "run"
                     description = "Runs the application"
                     dependsOn("jsRun")
@@ -237,7 +237,7 @@ abstract class KVisionPlugin @Inject constructor(
                 }
 
                 if (kvExtension.enableGradleTasks.get()) {
-                    tasks.create("generateKVisionSources") {
+                    tasks.register("generateKVisionSources") {
                         group = KVISION_TASK_GROUP
                         description = "Generates KVision sources for fullstack interfaces"
                         dependsOn("kspCommonMainKotlinMetadata")
@@ -253,7 +253,7 @@ abstract class KVisionPlugin @Inject constructor(
                             KVServerType.VERTX -> "/webroot"
                             else -> "/assets"
                         }
-                        tasks.create("jsArchive", Jar::class).apply {
+                        tasks.register("jsArchive", Jar::class) {
                             dependsOn("jsBrowserDistribution")
                             group = "package"
                             archiveAppendix.set("js")
@@ -285,7 +285,7 @@ abstract class KVisionPlugin @Inject constructor(
                             KVServerType.JAVALIN, KVServerType.JOOBY, KVServerType.KTOR -> {
                                 val jarTaskExists = tasks.findByName("jar") != null
                                 val customJarTaskName = if (jarTaskExists) "shadowJar" else "jar"
-                                tasks.create(customJarTaskName, Jar::class).apply {
+                                tasks.register(customJarTaskName, Jar::class) {
                                     dependsOn("jsArchive", "jvmJar")
                                     group = "package"
                                     manifest {

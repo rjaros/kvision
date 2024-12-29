@@ -37,6 +37,7 @@ import io.kvision.electron.GlobalEvent
 import io.kvision.electron.nodejs.EventEmitter
 import io.kvision.electron.nodejs.Process
 import io.kvision.electron.nodejs.ReadableStream
+import js.buffer.ArrayBuffer
 import node.buffer.Buffer
 import kotlin.js.Date
 import kotlin.js.Promise
@@ -775,7 +776,7 @@ external open class BrowserWindow(options: BrowserWindowConstructorOptions = def
     open fun getMaximumSize(): Array<Number>
     open fun getMediaSourceId(): String
     open fun getMinimumSize(): Array<Number>
-    open fun getNativeWindowHandle(): Buffer
+    open fun getNativeWindowHandle(): Buffer<ArrayBuffer>
     open fun getNormalBounds(): Rectangle
     open fun getOpacity(): Number
     open fun getParentWindow(): BrowserWindow
@@ -1030,7 +1031,7 @@ external open class ClientRequest : EventEmitter {
     )
 
     open fun end(
-        chunk: Buffer = definedExternally,
+        chunk: Buffer<ArrayBuffer> = definedExternally,
         encoding: String = definedExternally,
         callback: () -> Unit = definedExternally
     )
@@ -1041,7 +1042,7 @@ external open class ClientRequest : EventEmitter {
     open fun removeHeader(name: String)
     open fun setHeader(name: String, value: String)
     open fun write(chunk: String, encoding: String = definedExternally, callback: () -> Unit = definedExternally)
-    open fun write(chunk: Buffer, encoding: String = definedExternally, callback: () -> Unit = definedExternally)
+    open fun write(chunk: Buffer<ArrayBuffer>, encoding: String = definedExternally, callback: () -> Unit = definedExternally)
     open var chunkedEncoding: Boolean
 }
 
@@ -1051,7 +1052,7 @@ external interface Clipboard {
     fun has(format: String, type: String /* 'selection' | 'clipboard' */ = definedExternally): Boolean
     fun read(format: String): String
     fun readBookmark(): ReadBookmark
-    fun readBuffer(format: String): Buffer
+    fun readBuffer(format: String): Buffer<ArrayBuffer>
     fun readFindText(): String
     fun readHTML(type: String /* 'selection' | 'clipboard' */ = definedExternally): String
     fun readImage(type: String /* 'selection' | 'clipboard' */ = definedExternally): NativeImage
@@ -1059,7 +1060,7 @@ external interface Clipboard {
     fun readText(type: String /* 'selection' | 'clipboard' */ = definedExternally): String
     fun write(data: Data, type: String /* 'selection' | 'clipboard' */ = definedExternally)
     fun writeBookmark(title: String, url: String, type: String /* 'selection' | 'clipboard' */ = definedExternally)
-    fun writeBuffer(format: String, buffer: Buffer, type: String /* 'selection' | 'clipboard' */ = definedExternally)
+    fun writeBuffer(format: String, buffer: Buffer<ArrayBuffer>, type: String /* 'selection' | 'clipboard' */ = definedExternally)
     fun writeFindText(text: String)
     fun writeHTML(markup: String, type: String /* 'selection' | 'clipboard' */ = definedExternally)
     fun writeImage(image: NativeImage, type: String /* 'selection' | 'clipboard' */ = definedExternally)
@@ -1374,10 +1375,10 @@ external open class IncomingMessage : EventEmitter {
         listener: Function<*>
     ): IncomingMessage /* this */
 
-    open fun on(event: String /* 'data' */, listener: (chunk: Buffer) -> Unit): IncomingMessage /* this */
-    open fun once(event: String /* 'data' */, listener: (chunk: Buffer) -> Unit): IncomingMessage /* this */
-    open fun addListener(event: String /* 'data' */, listener: (chunk: Buffer) -> Unit): IncomingMessage /* this */
-    open fun removeListener(event: String /* 'data' */, listener: (chunk: Buffer) -> Unit): IncomingMessage /* this */
+    open fun on(event: String /* 'data' */, listener: (chunk: Buffer<ArrayBuffer>) -> Unit): IncomingMessage /* this */
+    open fun once(event: String /* 'data' */, listener: (chunk: Buffer<ArrayBuffer>) -> Unit): IncomingMessage /* this */
+    open fun addListener(event: String /* 'data' */, listener: (chunk: Buffer<ArrayBuffer>) -> Unit): IncomingMessage /* this */
+    open fun removeListener(event: String /* 'data' */, listener: (chunk: Buffer<ArrayBuffer>) -> Unit): IncomingMessage /* this */
     open var headers: Record<String, Array<String>>
     open var httpVersion: String
     open var httpVersionMajor: Number
@@ -1574,7 +1575,7 @@ external open class MenuItem(options: MenuItemConstructorOptions) {
 }
 
 external interface MimeTypedBuffer {
-    var data: Buffer
+    var data: Buffer<ArrayBuffer>
     var mimeType: String
 }
 
@@ -1634,23 +1635,23 @@ external open class NativeImage {
     open fun addRepresentation(options: AddRepresentationOptions)
     open fun crop(rect: Rectangle): NativeImage
     open fun getAspectRatio(): Number
-    open fun getBitmap(options: BitmapOptions = definedExternally): Buffer
-    open fun getNativeHandle(): Buffer
+    open fun getBitmap(options: BitmapOptions = definedExternally): Buffer<ArrayBuffer>
+    open fun getNativeHandle(): Buffer<ArrayBuffer>
     open fun getSize(): Size
     open fun isEmpty(): Boolean
     open fun isTemplateImage(): Boolean
     open fun resize(options: ResizeOptions): NativeImage
     open fun setTemplateImage(option: Boolean)
-    open fun toBitmap(options: ToBitmapOptions = definedExternally): Buffer
+    open fun toBitmap(options: ToBitmapOptions = definedExternally): Buffer<ArrayBuffer>
     open fun toDataURL(options: ToDataURLOptions = definedExternally): String
-    open fun toJPEG(quality: Number): Buffer
-    open fun toPNG(options: ToPNGOptions = definedExternally): Buffer
+    open fun toJPEG(quality: Number): Buffer<ArrayBuffer>
+    open fun toPNG(options: ToPNGOptions = definedExternally): Buffer<ArrayBuffer>
     open var isMacTemplateImage: Boolean
 
     companion object {
         fun createEmpty(): NativeImage
-        fun createFromBitmap(buffer: Buffer, options: CreateFromBitmapOptions): NativeImage
-        fun createFromBuffer(buffer: Buffer, options: CreateFromBufferOptions = definedExternally): NativeImage
+        fun createFromBitmap(buffer: Buffer<ArrayBuffer>, options: CreateFromBitmapOptions): NativeImage
+        fun createFromBuffer(buffer: Buffer<ArrayBuffer>, options: CreateFromBufferOptions = definedExternally): NativeImage
         fun createFromDataURL(dataURL: String): NativeImage
         fun createFromNamedImage(imageName: String, hslShift: Array<Number> = definedExternally): NativeImage
         fun createFromPath(path: String): NativeImage
@@ -1842,7 +1843,7 @@ external interface Product {
 external interface Protocol {
     fun interceptBufferProtocol(
         scheme: String,
-        handler: (request: Request, callback: (buffer: Buffer) -> Unit) -> Unit,
+        handler: (request: Request, callback: (buffer: Buffer<ArrayBuffer>) -> Unit) -> Unit,
         completion: (error: Error) -> Unit = definedExternally
     )
 
@@ -2166,7 +2167,7 @@ external open class Session : EventEmitter {
     open fun downloadURL(url: String)
     open fun enableNetworkEmulation(options: EnableNetworkEmulationOptions)
     open fun flushStorageData()
-    open fun getBlobData(identifier: String): Promise<Buffer>
+    open fun getBlobData(identifier: String): Promise<Buffer<ArrayBuffer>>
     open fun getCacheSize(): Promise<Number>
     open fun getPreloads(): Array<String>
     open fun getSpellCheckerLanguages(): Array<String>
@@ -2639,7 +2640,7 @@ external interface UploadData {
     var blobUUID: String?
         get() = definedExternally
         set(value) = definedExternally
-    var bytes: Buffer
+    var bytes: Buffer<ArrayBuffer>
     var file: String?
         get() = definedExternally
         set(value) = definedExternally
@@ -2654,7 +2655,7 @@ external interface UploadFile {
 }
 
 external interface UploadRawData {
-    var bytes: Buffer
+    var bytes: Buffer<ArrayBuffer>
     var type: String
 }
 
@@ -3393,7 +3394,7 @@ external open class WebContents : EventEmitter {
         callback: (success: Boolean, failureReason: String) -> Unit = definedExternally
     )
 
-    open fun printToPDF(options: PrintToPDFOptions): Promise<Buffer>
+    open fun printToPDF(options: PrintToPDFOptions): Promise<Buffer<ArrayBuffer>>
     open fun redo()
     open fun reload()
     open fun reloadIgnoringCache()
@@ -3816,7 +3817,7 @@ external interface AddRepresentationOptions {
     var height: Number?
         get() = definedExternally
         set(value) = definedExternally
-    var buffer: Buffer?
+    var buffer: Buffer<ArrayBuffer>?
         get() = definedExternally
         set(value) = definedExternally
     var dataURL: String?
