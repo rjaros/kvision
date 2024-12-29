@@ -118,6 +118,11 @@ open class DateTimeInput(
     val input = TextInput(value = value?.toStringF(format)) {
         this.id = "${idc}_input"
         setAttribute("data-td-target", "#${idc}")
+        onEvent {
+            blur = {
+                this@DateTimeInput.hidePopup()
+            }
+        }
     }
     private lateinit var icon: Icon
     private val addon = Span(className = "input-group-text") {
