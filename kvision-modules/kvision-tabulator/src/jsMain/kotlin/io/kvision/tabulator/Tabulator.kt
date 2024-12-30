@@ -301,6 +301,7 @@ open class Tabulator<T : Any>(
                 }
             }
             jsTabulator?.on("tableBuilt") {
+                onTableBuilt()
                 if (currentPage != null) {
                     jsTabulator?.setPageSize(pageSize ?: 0)
                     jsTabulator?.setPage(currentPage)
@@ -310,6 +311,12 @@ open class Tabulator<T : Any>(
             }
         }
     }
+
+    /**
+     * A lambda function invoked when the table-building process is completed.
+     * This function is intended to execute custom logic after the table construction.
+     */
+    var onTableBuilt: () -> Unit = {}
 
     override fun render(): VNode {
         if (lastLanguage != null && lastLanguage != I18n.language) {
