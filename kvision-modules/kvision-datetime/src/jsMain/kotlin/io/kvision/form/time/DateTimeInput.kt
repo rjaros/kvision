@@ -24,6 +24,7 @@ package io.kvision.form.time
 import io.kvision.DatetimeModule
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
+import io.kvision.core.onEvent
 import io.kvision.form.FormInput
 import io.kvision.form.GenericFormComponent
 import io.kvision.form.text.TextInput
@@ -117,6 +118,11 @@ open class DateTimeInput(
     val input = TextInput(value = value?.toStringF(format)) {
         this.id = "${idc}_input"
         setAttribute("data-td-target", "#${idc}")
+        onEvent {
+            blur = {
+                this@DateTimeInput.hidePopup()
+            }
+        }
     }
     private lateinit var icon: Icon
     private val addon = Span(className = "input-group-text") {
@@ -280,7 +286,7 @@ open class DateTimeInput(
     /**
      * Automatically open the chooser popup.
      */
-    var allowInputToggle by refreshOnUpdate(true) { refreshDatePicker() }
+    var allowInputToggle by refreshOnUpdate(false) { refreshDatePicker() }
 
     /**
      * The view date of the date/time chooser.

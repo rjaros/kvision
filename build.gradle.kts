@@ -1,3 +1,5 @@
+import java.net.URI
+
 plugins {
     val kotlinVersion: String by System.getProperties()
     kotlin("plugin.serialization") version kotlinVersion
@@ -17,7 +19,6 @@ allprojects {
 }
 
 // Versions
-val kotlinVersion: String by System.getProperties()
 val serializationVersion: String by project
 val coroutinesVersion: String by project
 
@@ -58,9 +59,6 @@ val trixVersion: String by project
 val tabulatorTablesVersion: String by project
 val toastifyjsVersion: String by project
 val tomSelectVersion: String by project
-
-// Custom Properties
-val webDir = file("src/jsMain/web")
 
 rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
@@ -138,7 +136,7 @@ kotlin {
 }
 
 val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaHtml")
+    dependsOn("dokkaGenerate")
     archiveClassifier.set("javadoc")
     from(layout.buildDirectory.dir("dokka/html"))
 
@@ -147,79 +145,66 @@ val javadocJar by tasks.registering(Jar::class) {
 setupSigning()
 setupPublication(withSigning = true)
 
-tasks.dokkaHtml.configure {
+dependencies {
+    dokka(rootProject)
+    dokka(project(":kvision-modules:kvision-ballast"))
+    dokka(project(":kvision-modules:kvision-bootstrap"))
+    dokka(project(":kvision-modules:kvision-bootstrap-icons"))
+    dokka(project(":kvision-modules:kvision-bootstrap-upload"))
+    dokka(project(":kvision-modules:kvision-chart"))
+    dokka(project(":kvision-modules:kvision-common-annotations"))
+    dokka(project(":kvision-modules:kvision-common-remote"))
+    dokka(project(":kvision-modules:kvision-common-types"))
+    dokka(project(":kvision-modules:kvision-cordova"))
+    dokka(project(":kvision-modules:kvision-datetime"))
+    dokka(project(":kvision-modules:kvision-electron"))
+    dokka(project(":kvision-modules:kvision-fontawesome"))
+    dokka(project(":kvision-modules:kvision-handlebars"))
+    dokka(project(":kvision-modules:kvision-i18n"))
+    dokka(project(":kvision-modules:kvision-imask"))
+    dokka(project(":kvision-modules:kvision-jquery"))
+    dokka(project(":kvision-modules:kvision-maps"))
+    dokka(project(":kvision-modules:kvision-material"))
+    dokka(project(":kvision-modules:kvision-onsenui"))
+    dokka(project(":kvision-modules:kvision-pace"))
+    dokka(project(":kvision-modules:kvision-print"))
+    dokka(project(":kvision-modules:kvision-react"))
+    dokka(project(":kvision-modules:kvision-redux-kotlin"))
+    dokka(project(":kvision-modules:kvision-rest"))
+    dokka(project(":kvision-modules:kvision-richtext"))
+    dokka(project(":kvision-modules:kvision-routing-ballast"))
+    dokka(project(":kvision-modules:kvision-routing-navigo"))
+    dokka(project(":kvision-modules:kvision-routing-navigo-ng"))
+    dokka(project(":kvision-modules:kvision-select-remote"))
+    dokka(project(":kvision-modules:kvision-server-javalin"))
+    dokka(project(":kvision-modules:kvision-server-jooby"))
+    dokka(project(":kvision-modules:kvision-server-ktor"))
+    dokka(project(":kvision-modules:kvision-server-ktor-koin"))
+    dokka(project(":kvision-modules:kvision-server-micronaut"))
+    dokka(project(":kvision-modules:kvision-server-spring-boot"))
+    dokka(project(":kvision-modules:kvision-server-vertx"))
+    dokka(project(":kvision-modules:kvision-state"))
+    dokka(project(":kvision-modules:kvision-state-flow"))
+    dokka(project(":kvision-modules:kvision-tabulator"))
+    dokka(project(":kvision-modules:kvision-tabulator-remote"))
+    dokka(project(":kvision-modules:kvision-testutils"))
+    dokka(project(":kvision-modules:kvision-toastify"))
+    dokka(project(":kvision-modules:kvision-tom-select"))
+    dokka(project(":kvision-modules:kvision-tom-select-remote"))
+}
+
+dokka {
     dokkaSourceSets {
-        named("commonMain") {
-            suppress.set(true)
-        }
-        named("jsMain") {
-            suppress.set(true)
-        }
-        register("kvision") {
+        configureEach {
             includes.from("Module.md")
-            displayName.set("js")
-            platform.set(org.jetbrains.dokka.Platform.js)
-            includeNonPublic.set(false)
-            skipDeprecated.set(false)
-            reportUndocumented.set(false)
-            sourceRoots.from(file("src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-ballast/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-bootstrap/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-bootstrap-icons/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-bootstrap-upload/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-chart/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-common-remote/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-common-types/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-cordova/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-datetime/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-electron/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-fontawesome/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-handlebars/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-i18n/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-imask/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-jquery/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-maps/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-material/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-onsenui/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-pace/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-react/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-redux-kotlin/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-rest/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-richtext/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-routing-navigo-ng/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-server-ktor/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-select-remote/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-state/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-state-flow/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-tabulator/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-tabulator-remote/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-testutils/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-toastify/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-tom-select/src/jsMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-tom-select-remote/src/jsMain/kotlin"))
+            sourceLink {
+                localDirectory.set(projectDir.resolve("src"))
+                remoteUrl.set(URI("https://github.com/rjaros/kvision/tree/master/src"))
+                remoteLineSuffix.set("#L")
+            }
         }
-        register("kvision-common") {
-            includes.from("Module.md")
-            displayName.set("common")
-            platform.set(org.jetbrains.dokka.Platform.common)
-            includeNonPublic.set(false)
-            skipDeprecated.set(false)
-            reportUndocumented.set(false)
-            sourceRoots.from(file("kvision-modules/kvision-common-annotations/src/commonMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-common-remote/src/commonMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-common-types/src/commonMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-server-ktor/src/commonMain/kotlin"))
-        }
-        register("kvision-jvm") {
-            includes.from("Module.md")
-            displayName.set("jvm")
-            platform.set(org.jetbrains.dokka.Platform.jvm)
-            includeNonPublic.set(false)
-            skipDeprecated.set(false)
-            reportUndocumented.set(false)
-            sourceRoots.from(file("kvision-modules/kvision-common-remote/src/jvmMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-common-types/src/jvmMain/kotlin"))
-            sourceRoots.from(file("kvision-modules/kvision-server-ktor/src/jvmMain/kotlin"))
-        }
+    }
+    dokkaGeneratorIsolation = ProcessIsolation {
+        maxHeapSize = "6g"
     }
 }

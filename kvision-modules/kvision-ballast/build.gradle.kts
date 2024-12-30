@@ -30,11 +30,11 @@ kotlin {
 }
 
 val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaHtml")
+    dependsOn("dokkaGenerate")
     archiveClassifier.set("javadoc")
     from(layout.buildDirectory.dir("dokka/html"))
 }
 
 setupSigning()
 setupPublication()
-setupDokkaMpp()
+setupDokka()

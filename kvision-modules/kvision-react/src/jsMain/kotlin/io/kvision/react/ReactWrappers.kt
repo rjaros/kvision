@@ -30,9 +30,9 @@ import react.ChildrenBuilder
 import react.FC
 import react.Props
 import react.StateSetter
-import react.createRef
 import react.dom.html.ReactHTML.div
 import react.useEffectWithCleanup
+import react.useRef
 import react.useState
 import web.dom.document
 import web.html.HTMLDivElement
@@ -51,14 +51,14 @@ fun <S> reactWrapper(builder: ChildrenBuilder.(refresh: StateSetter<S>) -> Unit)
  * A helper functional component which allows to use KVision components as React children.
  */
 fun kvisionWrapper(builder: Container.() -> Unit) = FC<Props> {
-    val elRef = createRef<HTMLDivElement>()
+    val elRef = useRef<HTMLDivElement>()
     useEffectWithCleanup {
         var root: Root? = null
         var el: HTMLElement? = null
         elRef.current?.let {
             el = document.createElement("div")
-            it.appendChild(el!!)
-            root = Root(el!!.unsafeCast<org.w3c.dom.HTMLElement>(), ContainerType.NONE, false, init = builder)
+            it.appendChild(el)
+            root = Root(el.unsafeCast<org.w3c.dom.HTMLElement>(), ContainerType.NONE, false, init = builder)
         }
         onCleanup {
             root?.dispose()

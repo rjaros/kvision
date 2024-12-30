@@ -309,7 +309,9 @@ open class TomSelectInput(
     open fun clearOptions() {
         if (tomSelectJs != null) {
             tomSelectJs!!.clearOptions()
-            tomSelectJs.asDynamic().input.clear()
+            if (tomSelectJs.asDynamic().input != undefined && tomSelectJs.asDynamic().input.clear != undefined) {
+                tomSelectJs.asDynamic().input.clear()
+            }
         }
     }
 
