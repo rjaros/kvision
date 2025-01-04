@@ -77,6 +77,8 @@ external interface BtOn : On {
     var dataLoadingTabulator: ((KvEvent) -> Unit)?
     var dataLoadedTabulator: ((KvEvent) -> Unit)?
     var dataEditedTabulator: ((KvEvent) -> Unit)?
+    var pageLoadedTabulator: ((KvEvent) -> Unit)?
+    var tableBuiltTabulator: ((KvEvent) -> Unit)?
     var changeTab: ((KvEvent) -> Unit)?
     var closingTab: ((KvEvent) -> Unit)?
     var closedTab: ((KvEvent) -> Unit)?

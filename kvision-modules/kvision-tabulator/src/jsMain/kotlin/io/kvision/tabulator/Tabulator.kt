@@ -291,7 +291,7 @@ open class Tabulator<T : Any>(
                     }, 0)
                 }
             }
-            jsTabulator?.on("pageLoaded") {
+            jsTabulator?.on("pageLoaded") { pageNo: Int ->
                 paginations.forEach {
                     it.paginationState.value = PaginationState(
                         jsTabulator?.getPage()?.unsafeCast<Int>() ?: 1,
@@ -299,6 +299,7 @@ open class Tabulator<T : Any>(
                         jsTabulator?.options?.paginationButtonCount?.unsafeCast<Int>() ?: 5
                     )
                 }
+                this.dispatchEvent("pageLoadedTabulator", obj { detail = pageNo })
             }
             jsTabulator?.on("tableBuilt") {
                 if (currentPage != null) {
@@ -307,6 +308,7 @@ open class Tabulator<T : Any>(
                 }
                 applyFilter()
                 jsTabulatorInitialized = true
+                this.dispatchEvent("tableBuiltTabulator", obj { })
             }
         }
     }
