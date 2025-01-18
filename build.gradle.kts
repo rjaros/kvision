@@ -194,6 +194,7 @@ dependencies {
 }
 
 dokka {
+    modulePath = "kvision"
     dokkaSourceSets {
         configureEach {
             includes.from("Module.md")
