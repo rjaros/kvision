@@ -1,0 +1,496 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>io.kvision.remote</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.1.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":kvision-modules:kvision-server-spring-boot/commonMain">common</button>
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-server-spring-boot/jsMain">js</button>
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-server-spring-boot/commonMain" data-filter=":kvision-modules:kvision-server-spring-boot/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-server-spring-boot/jsMain" data-filter=":kvision-modules:kvision-server-spring-boot/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filter=":kvision-modules:kvision-server-spring-boot/jvmMain">
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="kvision-server-spring-boot::io.kvision.remote////PointingToDeclaration//-1079917314">
+  <div class="breadcrumbs"><a href="../index.html">kvision-server-spring-boot</a><span class="delimiter">/</span><span class="current">io.kvision.remote</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jsMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jsMain" data-toggle=":kvision-modules:kvision-server-spring-boot/jsMain">js</button><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><p class="paragraph">A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.</p></div><div class="content sourceset-dependent-content" data-togglable=":kvision-modules:kvision-server-spring-boot/jsMain"><p class="paragraph">A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.</p></div><div class="content sourceset-dependent-content" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><p class="paragraph">A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.</p></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1908951477%2FClasslikes%2F1048646926" anchor-label="Column" id="1908951477%2FClasslikes%2F1048646926" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-column/index.html"><span><span>Column</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1908951477%2FClasslikes%2F1048646926"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">annotation class </span><a href="-column/index.html">Column</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">typealias </span><a href="-column/index.html">Column</a><span class="token operator"> = </span><span data-unresolved-link="org.springframework.data.relational.core.mapping/Column///PointingToDeclaration/">org.springframework.data.relational.core.mapping.Column</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-258259824%2FClasslikes%2F1048646926" anchor-label="Id" id="-258259824%2FClasslikes%2F1048646926" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-id/index.html"><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-258259824%2FClasslikes%2F1048646926"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">annotation class </span><a href="-id/index.html">Id</a></div></div><div class="content sourceset-dependent-content" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">typealias </span><a href="-id/index.html">Id</a><span class="token operator"> = </span><span data-unresolved-link="org.springframework.data.annotation/Id///PointingToDeclaration/">org.springframework.data.annotation.Id</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1189928136%2FClasslikes%2F2114776892" anchor-label="KVHandler" id="-1189928136%2FClasslikes%2F2114776892" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-v-handler/index.html"><span><span>KVHandler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1189928136%2FClasslikes%2F2114776892"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="org.springframework.stereotype/Component///PointingToDeclaration/"><span class="token annotation builtin">Component</span></span></div></div><span class="token keyword">open </span><span class="token keyword">class </span><a href="-k-v-handler/index.html">KVHandler</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>services<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>applicationContext<span class="token operator">: </span><span data-unresolved-link="org.springframework.context/ApplicationContext///PointingToDeclaration/">ApplicationContext</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Default Spring Boot handler</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-499207627%2FClasslikes%2F2114776892" anchor-label="KVRouterConfiguration" id="-499207627%2FClasslikes%2F2114776892" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-v-router-configuration/index.html"><span>KVRouter</span><wbr><span><span>Configuration</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-499207627%2FClasslikes%2F2114776892"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="org.springframework.context.annotation/Configuration///PointingToDeclaration/"><span class="token annotation builtin">Configuration</span></span></div></div><span class="token keyword">open </span><span class="token keyword">class </span><a href="-k-v-router-configuration/index.html">KVRouterConfiguration</a></div><div class="brief "><p class="paragraph">Default Spring Boot routes</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1366546488%2FClasslikes%2F-1079917314" anchor-label="KVServiceManager" id="-1366546488%2FClasslikes%2F-1079917314" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jsMain,:kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jsMain,:kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jsMain,:kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-v-service-manager/index.html"><span>KVService</span><wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1366546488%2FClasslikes%2F-1079917314"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jsMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jsMain" data-toggle=":kvision-modules:kvision-server-spring-boot/jsMain">js</button><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">open </span><span class="token keyword">class </span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="-k-v-service-manager/index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">serviceClass<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../../../kvision-modules/kvision-common-remote/io.kvision.remote/-k-v-service-mgr/index.html">KVServiceMgr</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">T</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Multiplatform service manager.</p></div></div><div class="content sourceset-dependent-content" data-togglable=":kvision-modules:kvision-server-spring-boot/jsMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">open </span><span class="token keyword">class </span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="-k-v-service-manager/index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">serviceClass<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../../../kvision-modules/kvision-common-remote/io.kvision.remote/-k-v-service-manager-js/index.html">KVServiceManagerJs</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">T</a><span class="token operator">&gt; </span>, <a href="../../../kvision-modules/kvision-common-remote/io.kvision.remote/-k-v-service-mgr/index.html">KVServiceMgr</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">T</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Multiplatform service manager.</p></div></div><div class="content sourceset-dependent-content" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">open </span><span class="token keyword">class </span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="-k-v-service-manager/index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">serviceClass<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../../../kvision-modules/kvision-common-remote/io.kvision.remote/-k-v-service-binder/index.html">KVServiceBinder</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">T</a><span class="token punctuation">, </span><a href="-request-handler/index.html">RequestHandler</a><span class="token punctuation">, </span><a href="-websocket-handler/index.html">WebsocketHandler</a><span class="token punctuation">, </span><a href="-sse-handler/index.html">SseHandler</a><span class="token operator">&gt; </span>, <a href="../../../kvision-modules/kvision-common-remote/io.kvision.remote/-k-v-service-mgr/index.html">KVServiceMgr</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">T</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Multiplatform service manager for Spring Boot.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1138094169%2FClasslikes%2F2114776892" anchor-label="KVWebSocketConfig" id="1138094169%2FClasslikes%2F2114776892" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-v-web-socket-config/index.html"><span>KVWeb</span><wbr><span>Socket</span><wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1138094169%2FClasslikes%2F2114776892"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="org.springframework.context.annotation/Configuration///PointingToDeclaration/"><span class="token annotation builtin">Configuration</span></span></div></div><span class="token keyword">open </span><span class="token keyword">class </span><a href="-k-v-web-socket-config/index.html">KVWebSocketConfig</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">services<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">applicationContext<span class="token operator">: </span><span data-unresolved-link="org.springframework.context/ApplicationContext///PointingToDeclaration/">ApplicationContext</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Spring Boot WebSocket configuration</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1046447043%2FClasslikes%2F2114776892" anchor-label="KVWebSocketHandler" id="-1046447043%2FClasslikes%2F2114776892" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-v-web-socket-handler/index.html"><span>KVWeb</span><wbr><span>Socket</span><wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1046447043%2FClasslikes%2F2114776892"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-k-v-web-socket-handler/index.html">KVWebSocketHandler</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">services<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">threadLocalWebSocketSession<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ThreadLocal.html">ThreadLocal</a><span class="token operator">&lt;</span><span data-unresolved-link="org.springframework.web.reactive.socket/WebSocketSession///PointingToDeclaration/">WebSocketSession</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">applicationContext<span class="token operator">: </span><span data-unresolved-link="org.springframework.context/ApplicationContext///PointingToDeclaration/">ApplicationContext</span></span></span><span class="token punctuation">)</span> : <span data-unresolved-link="org.springframework.web.reactive.socket/WebSocketHandler///PointingToDeclaration/">WebSocketHandler</span>, <span data-unresolved-link="kotlinx.coroutines/CoroutineScope///PointingToDeclaration/">CoroutineScope</span></div><div class="brief "><p class="paragraph">Spring Boot WebSocket handler</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1906750114%2FClasslikes%2F1048646926" anchor-label="PersistenceCreator" id="-1906750114%2FClasslikes%2F1048646926" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-persistence-creator/index.html"><span>Persistence</span><wbr><span><span>Creator</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1906750114%2FClasslikes%2F1048646926"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">annotation class </span><a href="-persistence-creator/index.html">PersistenceCreator</a></div></div><div class="content sourceset-dependent-content" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">typealias </span><a href="-persistence-creator/index.html">PersistenceCreator</a><span class="token operator"> = </span><span data-unresolved-link="org.springframework.data.annotation/PersistenceCreator///PointingToDeclaration/">org.springframework.data.annotation.PersistenceCreator</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1186815760%2FClasslikes%2F2114776892" anchor-label="RequestHandler" id="-1186815760%2FClasslikes%2F2114776892" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-request-handler/index.html"><span>Request</span><wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1186815760%2FClasslikes%2F2114776892"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-request-handler/index.html">RequestHandler</a><span class="token operator"> = </span><span class="token keyword">suspend </span><span class="token punctuation">(</span><span data-unresolved-link="org.springframework.web.reactive.function.server/ServerRequest///PointingToDeclaration/">ServerRequest</span><span class="token punctuation">, </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ThreadLocal.html">ThreadLocal</a><span class="token operator">&lt;</span><span data-unresolved-link="org.springframework.web.reactive.function.server/ServerRequest///PointingToDeclaration/">ServerRequest</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ThreadLocal.html">ThreadLocal</a><span class="token operator">&lt;</span><span data-unresolved-link="org.springframework.web.reactive.function.server/ServerResponse.HeadersBuilder///PointingToDeclaration/">ServerResponse.HeadersBuilder</span><span class="token operator">&lt;</span><span data-unresolved-link="org.springframework.web.reactive.function.server/ServerResponse.BodyBuilder///PointingToDeclaration/">ServerResponse.BodyBuilder</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span data-unresolved-link="org.springframework.context/ApplicationContext///PointingToDeclaration/">ApplicationContext</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span data-unresolved-link="org.springframework.web.reactive.function.server/ServerResponse///PointingToDeclaration/">ServerResponse</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-742248090%2FClasslikes%2F2114776892" anchor-label="SseHandler" id="-742248090%2FClasslikes%2F2114776892" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-sse-handler/index.html"><span>Sse</span><wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-742248090%2FClasslikes%2F2114776892"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-sse-handler/index.html">SseHandler</a><span class="token operator"> = </span><a href="-request-handler/index.html">RequestHandler</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-972605239%2FClasslikes%2F1048646926" anchor-label="Table" id="-972605239%2FClasslikes%2F1048646926" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-table/index.html"><span><span>Table</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-972605239%2FClasslikes%2F1048646926"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">annotation class </span><a href="-table/index.html">Table</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>schema<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">typealias </span><a href="-table/index.html">Table</a><span class="token operator"> = </span><span data-unresolved-link="org.springframework.data.relational.core.mapping/Table///PointingToDeclaration/">org.springframework.data.relational.core.mapping.Table</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1125505677%2FClasslikes%2F1048646926" anchor-label="Transient" id="1125505677%2FClasslikes%2F1048646926" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-transient/index.html"><span><span>Transient</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1125505677%2FClasslikes%2F1048646926"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">annotation class </span><a href="-transient/index.html">Transient</a></div></div><div class="content sourceset-dependent-content" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">typealias </span><a href="-transient/index.html">Transient</a><span class="token operator"> = </span><span data-unresolved-link="org.springframework.data.annotation/Transient///PointingToDeclaration/">org.springframework.data.annotation.Transient</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="862220422%2FClasslikes%2F1048646926" anchor-label="Value" id="862220422%2FClasslikes%2F1048646926" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-value/index.html"><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="862220422%2FClasslikes%2F1048646926"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">annotation class </span><a href="-value/index.html">Value</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">typealias </span><a href="-value/index.html">Value</a><span class="token operator"> = </span><span data-unresolved-link="org.springframework.beans.factory.annotation/Value///PointingToDeclaration/">org.springframework.beans.factory.annotation.Value</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="723690879%2FClasslikes%2F1048646926" anchor-label="Version" id="723690879%2FClasslikes%2F1048646926" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain,:kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-version/index.html"><span><span>Version</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="723690879%2FClasslikes%2F1048646926"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">annotation class </span><a href="-version/index.html">Version</a></div></div><div class="content sourceset-dependent-content" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">typealias </span><a href="-version/index.html">Version</a><span class="token operator"> = </span><span data-unresolved-link="org.springframework.data.annotation/Version///PointingToDeclaration/">org.springframework.data.annotation.Version</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-849196120%2FClasslikes%2F2114776892" anchor-label="WebsocketHandler" id="-849196120%2FClasslikes%2F2114776892" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-websocket-handler/index.html"><span>Websocket</span><wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-849196120%2FClasslikes%2F2114776892"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-websocket-handler/index.html">WebsocketHandler</a><span class="token operator"> = </span><span class="token keyword">suspend </span><span class="token punctuation">(</span><span data-unresolved-link="org.springframework.web.reactive.socket/WebSocketSession///PointingToDeclaration/">WebSocketSession</span><span class="token punctuation">, </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ThreadLocal.html">ThreadLocal</a><span class="token operator">&lt;</span><span data-unresolved-link="org.springframework.web.reactive.socket/WebSocketSession///PointingToDeclaration/">WebSocketSession</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span data-unresolved-link="org.springframework.context/ApplicationContext///PointingToDeclaration/">ApplicationContext</span><span class="token punctuation">, </span><span data-unresolved-link="kotlinx.coroutines.channels/ReceiveChannel///PointingToDeclaration/">ReceiveChannel</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span><span data-unresolved-link="kotlinx.coroutines.channels/SendChannel///PointingToDeclaration/">SendChannel</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="896506774%2FFunctions%2F-1657087366" anchor-label="getAllServiceManagers" id="896506774%2FFunctions%2F-1657087366" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-all-service-managers.html"><span>get</span><wbr><span>All</span><wbr><span>Service</span><wbr><span><span>Managers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="896506774%2FFunctions%2F-1657087366"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-all-service-managers.html"><span class="token function">getAllServiceManagers</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">This will make IntelliJ think that this function exists. The real implementation will be generated by the KVision Gradle Plugin.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1268322986%2FFunctions%2F2114776892" anchor-label="getServerWebExchangeMatcher" id="1268322986%2FFunctions%2F2114776892" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-server-web-exchange-matcher.html"><span>get</span><wbr><span>Server</span><wbr><span>Web</span><wbr><span>Exchange</span><wbr><span><span>Matcher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1268322986%2FFunctions%2F2114776892"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-server-web-exchange-matcher.html"><span class="token function">getServerWebExchangeMatcher</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>services<span class="token operator">: </span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span data-unresolved-link="org.springframework.security.web.server.util.matcher/ServerWebExchangeMatcher///PointingToDeclaration/">ServerWebExchangeMatcher</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">A function to gather paths for spring security matchers.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-446546952%2FFunctions%2F-1657087366" anchor-label="getServiceManager" id="-446546952%2FFunctions%2F-1657087366" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-service-manager.html"><span>get</span><wbr><span>Service</span><wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-446546952%2FFunctions%2F-1657087366"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="get-service-manager.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="get-service-manager.html"><span class="token function">getServiceManager</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><a href="get-service-manager.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">This will make IntelliJ think that this function exists. The real implementation will be generated by the KVision Gradle Plugin.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-421542780%2FFunctions%2F-1657087366" anchor-label="getServiceManagers" id="-421542780%2FFunctions%2F-1657087366" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/commonMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-service-managers.html"><span>get</span><wbr><span>Service</span><wbr><span><span>Managers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-421542780%2FFunctions%2F-1657087366"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-service-managers.html"><span class="token function">getServiceManagers</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>kclass<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">This will make IntelliJ think that this function exists. The real implementation will be generated by the KVision Gradle Plugin.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1841970124%2FFunctions%2F2114776892" anchor-label="serviceMatchers" id="1841970124%2FFunctions%2F2114776892" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="service-matchers.html"><span>service</span><wbr><span><span>Matchers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1841970124%2FFunctions%2F2114776892"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="service-matchers.html"><span class="token function">serviceMatchers</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>services<span class="token operator">: </span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="org.springframework.security.web.server.util.matcher/ServerWebExchangeMatcher///PointingToDeclaration/">ServerWebExchangeMatcher</span></div><div class="brief "><p class="paragraph">A function to gather paths for spring security matchers.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1764063776%2FFunctions%2F2114776892" anchor-label="serviceMatchers" id="-1764063776%2FFunctions%2F2114776892" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="service-matchers.html"><span>service</span><wbr><span><span>Matchers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1764063776%2FFunctions%2F2114776892"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":kvision-modules:kvision-server-spring-boot/jvmMain" data-filterable-set=":kvision-modules:kvision-server-spring-boot/jvmMain" data-active="" data-toggle=":kvision-modules:kvision-server-spring-boot/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-server-spring-boot/jvmMain"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.springframework.security.config.web.server/ServerHttpSecurity.AuthorizeExchangeSpec///PointingToDeclaration/">ServerHttpSecurity.AuthorizeExchangeSpec</span><span class="token punctuation">.</span><a href="service-matchers.html"><span class="token function">serviceMatchers</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>services<span class="token operator">: </span><a href="-k-v-service-manager/index.html">KVServiceManager</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="org.springframework.security.config.web.server/ServerHttpSecurity.AuthorizeExchangeSpec.Access///PointingToDeclaration/">ServerHttpSecurity.AuthorizeExchangeSpec.Access</span></div><div class="brief "><p class="paragraph">A function to gather paths for spring security matchers.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

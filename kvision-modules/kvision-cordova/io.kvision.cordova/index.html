@@ -1,0 +1,1496 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>io.kvision.cordova</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.1.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-cordova/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-cordova/jsMain" data-filter=":kvision-modules:kvision-cordova/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="kvision-cordova::io.kvision.cordova////PointingToDeclaration//-1127190608">
+  <div class="breadcrumbs"><a href="../index.html">kvision-cordova</a><span class="delimiter">/</span><span class="current">io.kvision.cordova</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><p class="paragraph">Kotlin bindings for core Apache Cordova API.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button><button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">Properties</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-1563789094%2FClasslikes%2F-1127190608" anchor-label="Battery" id="-1563789094%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-battery/index.html"><span><span>Battery</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1563789094%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-battery/index.html"><strike>Battery</strike></a></div><div class="brief "><p class="paragraph">Main object for Cordova battery.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-586763704%2FClasslikes%2F-1127190608" anchor-label="BatteryStatus" id="-586763704%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-battery-status/index.html"><span>Battery</span><wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-586763704%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-battery-status/index.html">BatteryStatus</a></div><div class="brief "><p class="paragraph">Battery status.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1271963617%2FClasslikes%2F-1127190608" anchor-label="Browser" id="-1271963617%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-browser/index.html"><span><span>Browser</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1271963617%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-browser/index.html">Browser</a></div><div class="brief "><p class="paragraph">InAppBrowser reference object.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2095825878%2FClasslikes%2F-1127190608" anchor-label="Camera" id="2095825878%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-camera/index.html"><span><span>Camera</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2095825878%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-camera/index.html"><strike>Camera</strike></a></div><div class="brief "><p class="paragraph">Main object for Cordova camera.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1086047453%2FClasslikes%2F-1127190608" anchor-label="CameraException" id="1086047453%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-camera-exception/index.html"><span>Camera</span><wbr><span><span>Exception</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1086047453%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-camera-exception/index.html">CameraException</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-exception/index.html">Exception</a></div><div class="brief "><p class="paragraph">Exception class for camera errors.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-723795922%2FClasslikes%2F-1127190608" anchor-label="CameraOptions" id="-723795922%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-camera-options/index.html"><span>Camera</span><wbr><span><span>Options</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-723795922%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-camera-options/index.html">CameraOptions</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>quality<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>destinationType<span class="token operator">: </span><a href="-camera/-destination-type/index.html">Camera.DestinationType</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sourceType<span class="token operator">: </span><a href="-camera/-picture-source-type/index.html">Camera.PictureSourceType</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>allowEdit<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>encodingType<span class="token operator">: </span><a href="-camera/-encoding-type/index.html">Camera.EncodingType</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>targetWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>targetHeight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>mediaType<span class="token operator">: </span><a href="-camera/-media-type/index.html">Camera.MediaType</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>correctOrientation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>saveToPhotoAlbum<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>popoverOptions<span class="token operator">: </span><a href="-camera/-camera-popover-options/index.html">Camera.CameraPopoverOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>cameraDirection<span class="token operator">: </span><a href="-camera/-direction/index.html">Camera.Direction</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Camera options.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="753467218%2FClasslikes%2F-1127190608" anchor-label="CaptureException" id="753467218%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-capture-exception/index.html"><span>Capture</span><wbr><span><span>Exception</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="753467218%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-capture-exception/index.html">CaptureException</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">code<span class="token operator">: </span><a href="-media-capture/-capture-error-code/index.html">MediaCapture.CaptureErrorCode</a></span></span><span class="token punctuation">)</span> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-exception/index.html">Exception</a></div><div class="brief "><p class="paragraph">Exception class for media capture errors.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-305096276%2FClasslikes%2F-1127190608" anchor-label="Coordinates" id="-305096276%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-coordinates/index.html"><span><span>Coordinates</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-305096276%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-coordinates/index.html">Coordinates</a></div><div class="brief "><p class="paragraph">Geolocation coordinates values.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="169969821%2FClasslikes%2F-1127190608" anchor-label="CordovaEvent" id="169969821%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-cordova-event/index.html"><span>Cordova</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="169969821%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-cordova-event/index.html">CordovaEvent</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-cordova-event/index.html">CordovaEvent</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Cordova event types.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2000662981%2FClasslikes%2F-1127190608" anchor-label="Device" id="2000662981%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-device/index.html"><span><span>Device</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2000662981%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-device/index.html">Device</a></div><div class="brief "><p class="paragraph">Device information class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-482032906%2FClasslikes%2F-1127190608" anchor-label="DirectoryEntry" id="-482032906%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-directory-entry/index.html"><span>Directory</span><wbr><span><span>Entry</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-482032906%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-directory-entry/index.html">DirectoryEntry</a> : <a href="-entry/index.html">Entry</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2054818511%2FClasslikes%2F-1127190608" anchor-label="DirectoryEntryCallback" id="-2054818511%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-directory-entry-callback/index.html"><span>Directory</span><wbr><span>Entry</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2054818511%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-directory-entry-callback/index.html">DirectoryEntryCallback</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="849003035%2FClasslikes%2F-1127190608" anchor-label="DirectoryEntrySync" id="849003035%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-directory-entry-sync/index.html"><span>Directory</span><wbr><span>Entry</span><wbr><span><span>Sync</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="849003035%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-directory-entry-sync/index.html">DirectoryEntrySync</a> : <a href="-entry-sync/index.html">EntrySync</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-776799049%2FClasslikes%2F-1127190608" anchor-label="DirectoryReader" id="-776799049%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-directory-reader/index.html"><span>Directory</span><wbr><span><span>Reader</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-776799049%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-directory-reader/index.html">DirectoryReader</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1743008604%2FClasslikes%2F-1127190608" anchor-label="DirectoryReaderSync" id="1743008604%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-directory-reader-sync/index.html"><span>Directory</span><wbr><span>Reader</span><wbr><span><span>Sync</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1743008604%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-directory-reader-sync/index.html">DirectoryReaderSync</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1681077006%2FClasslikes%2F-1127190608" anchor-label="EntriesCallback" id="-1681077006%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-entries-callback/index.html"><span>Entries</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1681077006%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-entries-callback/index.html">EntriesCallback</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-171755627%2FClasslikes%2F-1127190608" anchor-label="Entry" id="-171755627%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-entry/index.html"><span><span>Entry</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-171755627%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-entry/index.html">Entry</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1389451984%2FClasslikes%2F-1127190608" anchor-label="EntryCallback" id="1389451984%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-entry-callback/index.html"><span>Entry</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1389451984%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-entry-callback/index.html">EntryCallback</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1098895162%2FClasslikes%2F-1127190608" anchor-label="EntrySync" id="1098895162%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-entry-sync/index.html"><span>Entry</span><wbr><span><span>Sync</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1098895162%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-entry-sync/index.html">EntrySync</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-662070278%2FClasslikes%2F-1127190608" anchor-label="ErrorCallback" id="-662070278%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-error-callback/index.html"><span>Error</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-662070278%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-error-callback/index.html">ErrorCallback</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1481790431%2FClasslikes%2F-1127190608" anchor-label="File" id="1481790431%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file/index.html"><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1481790431%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-file/index.html"><strike>File</strike></a></div><div class="brief "><p class="paragraph">Main object for Cordova file.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="239897882%2FClasslikes%2F-1127190608" anchor-label="FileCallback" id="239897882%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-callback/index.html"><span>File</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="239897882%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-callback/index.html">FileCallback</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1246444849%2FClasslikes%2F-1127190608" anchor-label="FileEntry" id="1246444849%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-entry/index.html"><span>File</span><wbr><span><span>Entry</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1246444849%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-entry/index.html">FileEntry</a> : <a href="-entry/index.html">Entry</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1329071212%2FClasslikes%2F-1127190608" anchor-label="FileEntryCallback" id="1329071212%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-entry-callback/index.html"><span>File</span><wbr><span>Entry</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1329071212%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-entry-callback/index.html">FileEntryCallback</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1628677846%2FClasslikes%2F-1127190608" anchor-label="FileEntrySync" id="1628677846%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-entry-sync/index.html"><span>File</span><wbr><span>Entry</span><wbr><span><span>Sync</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1628677846%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-entry-sync/index.html">FileEntrySync</a> : <a href="-entry-sync/index.html">EntrySync</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1102303500%2FClasslikes%2F-1127190608" anchor-label="FileException" id="-1102303500%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-exception/index.html"><span>File</span><wbr><span><span>Exception</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1102303500%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-file-exception/index.html">FileException</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">code<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-exception/index.html">Exception</a></div><div class="brief "><p class="paragraph">Exception class for file errors.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="641791086%2FClasslikes%2F-1127190608" anchor-label="FileSaver" id="641791086%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-saver/index.html"><span>File</span><wbr><span><span>Saver</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="641791086%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-saver/index.html">FileSaver</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom.events/-event-target/index.html">EventTarget</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1498538480%2FClasslikes%2F-1127190608" anchor-label="FileSystem" id="1498538480%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-system/index.html"><span>File</span><wbr><span><span>System</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1498538480%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-system/index.html">FileSystem</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1852406315%2FClasslikes%2F-1127190608" anchor-label="FileSystemCallback" id="1852406315%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-system-callback/index.html"><span>File</span><wbr><span>System</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1852406315%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-system-callback/index.html">FileSystemCallback</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1901341675%2FClasslikes%2F-1127190608" anchor-label="FileSystemSync" id="-1901341675%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-system-sync/index.html"><span>File</span><wbr><span>System</span><wbr><span><span>Sync</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1901341675%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-system-sync/index.html">FileSystemSync</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="341574700%2FClasslikes%2F-1127190608" anchor-label="FileWriter" id="341574700%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-writer/index.html"><span>File</span><wbr><span><span>Writer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="341574700%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-writer/index.html">FileWriter</a> : <a href="-file-saver/index.html">FileSaver</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1446748263%2FClasslikes%2F-1127190608" anchor-label="FileWriterCallback" id="1446748263%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-writer-callback/index.html"><span>File</span><wbr><span>Writer</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1446748263%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-writer-callback/index.html">FileWriterCallback</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1759348655%2FClasslikes%2F-1127190608" anchor-label="FileWriterSync" id="-1759348655%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-writer-sync/index.html"><span>File</span><wbr><span>Writer</span><wbr><span><span>Sync</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1759348655%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-writer-sync/index.html">FileWriterSync</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1119413024%2FClasslikes%2F-1127190608" anchor-label="Flags" id="1119413024%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-flags/index.html"><span><span>Flags</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1119413024%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-flags/index.html">Flags</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="117413889%2FClasslikes%2F-1127190608" anchor-label="Geolocation" id="117413889%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-geolocation/index.html"><span><span>Geolocation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="117413889%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-geolocation/index.html"><strike>Geolocation</strike></a></div><div class="brief "><p class="paragraph">Main geolocation object based on webview api.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="906785042%2FClasslikes%2F-1127190608" anchor-label="GeolocationException" id="906785042%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-geolocation-exception/index.html"><span>Geolocation</span><wbr><span><span>Exception</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="906785042%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-geolocation-exception/index.html">GeolocationException</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>code<span class="token operator">: </span><a href="-position-error/index.html">PositionError</a><span class="token punctuation">, </span></span><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-exception/index.html">Exception</a></div><div class="brief "><p class="paragraph">Exception class for geolocation errors.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-623376241%2FClasslikes%2F-1127190608" anchor-label="InAppBrowser" id="-623376241%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-in-app-browser/index.html"><span>In</span><wbr><span>App</span><wbr><span><span>Browser</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-623376241%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-in-app-browser/index.html"><strike>InAppBrowser</strike></a></div><div class="brief "><p class="paragraph">Main object for Cordova InAppBrowser api.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="659016025%2FClasslikes%2F-1127190608" anchor-label="InAppBrowserEvent" id="659016025%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-in-app-browser-event/index.html"><span>In</span><wbr><span>App</span><wbr><span>Browser</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="659016025%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-in-app-browser-event/index.html">InAppBrowserEvent</a></div><div class="brief "><p class="paragraph">InAppBrowser event type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-507743119%2FClasslikes%2F-1127190608" anchor-label="LocalFileSystem" id="-507743119%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-local-file-system/index.html"><span>Local</span><wbr><span>File</span><wbr><span><span>System</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-507743119%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">object </span><a href="-local-file-system/index.html">LocalFileSystem</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-493404650%2FClasslikes%2F-1127190608" anchor-label="LocalFileSystemSync" id="-493404650%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-local-file-system-sync/index.html"><span>Local</span><wbr><span>File</span><wbr><span>System</span><wbr><span><span>Sync</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-493404650%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">object </span><a href="-local-file-system-sync/index.html">LocalFileSystemSync</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="678663976%2FClasslikes%2F-1127190608" anchor-label="Locationservices" id="678663976%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-locationservices/index.html"><span><span>Locationservices</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="678663976%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-locationservices/index.html">Locationservices</a></div><div class="brief "><p class="paragraph">Main geolocation object based on Google location services api.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1242543203%2FClasslikes%2F-1127190608" anchor-label="Media" id="1242543203%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-media/index.html"><span><span>Media</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1242543203%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-media/index.html">Media</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">src<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">mediaSuccess<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">mediaError<span class="token operator">: </span><span class="token punctuation">(</span><a href="-media-error/index.html">MediaError</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">mediaStatus<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Cordova media class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1938608985%2FClasslikes%2F-1127190608" anchor-label="MediaCapture" id="1938608985%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-media-capture/index.html"><span>Media</span><wbr><span><span>Capture</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1938608985%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-media-capture/index.html"><strike>MediaCapture</strike></a></div><div class="brief "><p class="paragraph">Main media capture object.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1545430441%2FClasslikes%2F-1127190608" anchor-label="MediaError" id="-1545430441%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-media-error/index.html"><span>Media</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1545430441%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-media-error/index.html">MediaError</a></div><div class="brief "><p class="paragraph">Media error class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-646534841%2FClasslikes%2F-1127190608" anchor-label="MediaFile" id="-646534841%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-media-file/index.html"><span>Media</span><wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-646534841%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-media-file/index.html">MediaFile</a></div><div class="brief "><p class="paragraph">Media file information class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1429487171%2FClasslikes%2F-1127190608" anchor-label="MediaFileData" id="-1429487171%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-media-file-data/index.html"><span>Media</span><wbr><span>File</span><wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1429487171%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-media-file-data/index.html">MediaFileData</a></div><div class="brief "><p class="paragraph">Media file details class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-959076212%2FClasslikes%2F-1127190608" anchor-label="Metadata" id="-959076212%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-metadata/index.html"><span><span>Metadata</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-959076212%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-metadata/index.html">Metadata</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-260381497%2FClasslikes%2F-1127190608" anchor-label="MetadataCallback" id="-260381497%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-metadata-callback/index.html"><span>Metadata</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-260381497%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-metadata-callback/index.html">MetadataCallback</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="585630681%2FClasslikes%2F-1127190608" anchor-label="Network" id="585630681%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-network/index.html"><span><span>Network</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="585630681%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-network/index.html"><strike>Network</strike></a></div><div class="brief "><p class="paragraph">Main object for Cordova network.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1714479440%2FClasslikes%2F-1127190608" anchor-label="Notification" id="1714479440%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-notification/index.html"><span><span>Notification</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1714479440%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-notification/index.html"><strike>Notification</strike></a></div><div class="brief "><p class="paragraph">Main object for Cordova notifications.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2017911731%2FClasslikes%2F-1127190608" anchor-label="PendingResult" id="2017911731%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-pending-result/index.html"><span>Pending</span><wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2017911731%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-pending-result/index.html">PendingResult</a></div><div class="brief "><p class="paragraph">Pending result class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1749657646%2FClasslikes%2F-1127190608" anchor-label="Position" id="-1749657646%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-position/index.html"><span><span>Position</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1749657646%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-position/index.html">Position</a></div><div class="brief "><p class="paragraph">Geolocation position value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-783039416%2FClasslikes%2F-1127190608" anchor-label="PositionError" id="-783039416%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-position-error/index.html"><span>Position</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-783039416%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-position-error/index.html">PositionError</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-position-error/index.html">PositionError</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Geolocaton error codes.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1738851126%2FClasslikes%2F-1127190608" anchor-label="PromptResponse" id="1738851126%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-prompt-response/index.html"><span>Prompt</span><wbr><span><span>Response</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1738851126%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-prompt-response/index.html">PromptResponse</a></div><div class="brief "><p class="paragraph">A response object for prompt function callback.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-830699142%2FClasslikes%2F-1127190608" anchor-label="ResumeEvent" id="-830699142%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-resume-event/index.html"><span>Resume</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-830699142%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-resume-event/index.html">ResumeEvent</a></div><div class="brief "><p class="paragraph">Resume event class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-900959121%2FClasslikes%2F-1127190608" anchor-label="Screen" id="-900959121%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-screen/index.html"><span><span>Screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-900959121%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-screen/index.html"><strike>Screen</strike></a></div><div class="brief "><p class="paragraph">Main object for Cordova screen.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-175196760%2FClasslikes%2F-1127190608" anchor-label="Splashscreen" id="-175196760%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-splashscreen/index.html"><span><span>Splashscreen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-175196760%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-splashscreen/index.html"><strike>Splashscreen</strike></a></div><div class="brief "><p class="paragraph">Main object for Cordova splashscreen.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="931599654%2FClasslikes%2F-1127190608" anchor-label="StatusBar" id="931599654%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status-bar/index.html"><span>Status</span><wbr><span><span>Bar</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="931599654%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-status-bar/index.html"><strike>StatusBar</strike></a></div><div class="brief "><p class="paragraph">Main object for Cordova status bar.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1172263846%2FClasslikes%2F-1127190608" anchor-label="SystemDirs" id="1172263846%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-system-dirs/index.html"><span>System</span><wbr><span><span>Dirs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1172263846%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-system-dirs/index.html">SystemDirs</a></div><div class="brief "><p class="paragraph">System directories class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-877382027%2FClasslikes%2F-1127190608" anchor-label="Vibration" id="-877382027%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-vibration/index.html"><span><span>Vibration</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-877382027%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-vibration/index.html"><strike>Vibration</strike></a></div><div class="brief "><p class="paragraph">Main object for Cordova vibration.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1868884990%2FClasslikes%2F-1127190608" anchor-label="VoidCallback" id="-1868884990%2FClasslikes%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-void-callback/index.html"><span>Void</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1868884990%2FClasslikes%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-void-callback/index.html">VoidCallback</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-947542076%2FProperties%2F-1127190608" anchor-label="cordovaDevice" id="-947542076%2FProperties%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cordova-device.html"><span>cordova</span><wbr><span><span>Device</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-947542076%2FProperties%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="cordova-device.html"><strike>cordovaDevice</strike></a><span class="token operator">: </span><a href="-device/index.html">Device</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Cordova device information object.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1685635916%2FFunctions%2F-1127190608" anchor-label="addCordovaEventListener" id="1685635916%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-cordova-event-listener.html"><span>add</span><wbr><span>Cordova</span><wbr><span>Event</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1685635916%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="add-cordova-event-listener.html"><span class="token function">addCordovaEventListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span><a href="-cordova-event/index.html">CordovaEvent</a><span class="token punctuation">, </span></span><span class="parameter ">listener<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom.events/-event/index.html">Event</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Add listeners for a Cordova events.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1785449342%2FFunctions%2F-1127190608" anchor-label="addDeviceReadyListener" id="-1785449342%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-device-ready-listener.html"><span>add</span><wbr><span>Device</span><wbr><span>Ready</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1785449342%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="add-device-ready-listener.html"><span class="token function">addDeviceReadyListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">listener<span class="token operator">: </span><span class="token punctuation">(</span><a href="-device/index.html">Device</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Add listeners for 'deviceready' Cordova event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1272405579%2FFunctions%2F-1127190608" anchor-label="addPauseListener" id="1272405579%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-pause-listener.html"><span>add</span><wbr><span>Pause</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1272405579%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="add-pause-listener.html"><span class="token function">addPauseListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">listener<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Add listeners for 'pause' Cordova event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-784792125%2FFunctions%2F-1127190608" anchor-label="addResumeListener" id="-784792125%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-resume-listener.html"><span>add</span><wbr><span>Resume</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-784792125%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="add-resume-listener.html"><span class="token function">addResumeListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">listener<span class="token operator">: </span><span class="token punctuation">(</span><a href="-resume-event/index.html">ResumeEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Add listeners for 'resume' Cordova event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1368956775%2FFunctions%2F-1127190608" anchor-label="append" id="-1368956775%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="append.html"><span><span>append</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1368956775%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-file-entry/index.html">FileEntry</a><span class="token punctuation">.</span><a href="append.html"><span class="token function">append</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-file-entry/index.html">FileEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Append file content from a plain string.</p></div><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-file-entry/index.html">FileEntry</a><span class="token punctuation">.</span><a href="append.html"><span class="token function">append</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.files/-blob/index.html">Blob</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-file-entry/index.html">FileEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Append file content from a Blob.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2102888569%2FFunctions%2F-1127190608" anchor-label="copyTo" id="-2102888569%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="copy-to.html"><span>copy</span><wbr><span><span>To</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2102888569%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-entry/index.html">Entry</a><span class="token punctuation">.</span><a href="copy-to.html"><span class="token function">copyTo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parent<span class="token operator">: </span><a href="-directory-entry/index.html">DirectoryEntry</a><span class="token punctuation">, </span></span><span class="parameter ">newName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-entry/index.html">Entry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Copy given file or directory to a new location.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1591896298%2FFunctions%2F-1127190608" anchor-label="createWriter" id="-1591896298%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-writer.html"><span>create</span><wbr><span><span>Writer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1591896298%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-file-entry/index.html">FileEntry</a><span class="token punctuation">.</span><a href="create-writer.html"><span class="token function">createWriter</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-file-writer/index.html">FileWriter</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Create a FileWriter object for a given file entry.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1416853321%2FFunctions%2F-1127190608" anchor-label="file" id="1416853321%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="file.html"><span><span>file</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1416853321%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-file-entry/index.html">FileEntry</a><span class="token punctuation">.</span><a href="file.html"><span class="token function">file</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.files/-file/index.html">File</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Get a File object for a given file entry.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-278174043%2FFunctions%2F-1127190608" anchor-label="getCurrentAmplitude" id="-278174043%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-current-amplitude.html"><span>get</span><wbr><span>Current</span><wbr><span><span>Amplitude</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-278174043%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-media/index.html">Media</a><span class="token punctuation">.</span><a href="get-current-amplitude.html"><span class="token function">getCurrentAmplitude</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a></div><div class="brief "><p class="paragraph">Returns the current amplitude within an audio file.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-511030521%2FFunctions%2F-1127190608" anchor-label="getCurrentPosition" id="-511030521%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-current-position.html"><span>get</span><wbr><span>Current</span><wbr><span><span>Position</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-511030521%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-media/index.html">Media</a><span class="token punctuation">.</span><a href="get-current-position.html"><span class="token function">getCurrentPosition</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a></div><div class="brief "><p class="paragraph">Returns the current position within an audio file.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1243970390%2FFunctions%2F-1127190608" anchor-label="getDevice" id="-1243970390%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-device.html"><span>get</span><wbr><span><span>Device</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1243970390%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-device.html"><span class="token function"><strike>getDevice</strike></span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-device/index.html">Device</a></div><div class="brief "><p class="paragraph">Suspending function to return device information object.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="915557915%2FFunctions%2F-1127190608" anchor-label="getDirectory" id="915557915%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-directory.html"><span>get</span><wbr><span><span>Directory</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="915557915%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-directory-entry/index.html">DirectoryEntry</a><span class="token punctuation">.</span><a href="get-directory.html"><span class="token function">getDirectory</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">create<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">exclusive<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-directory-entry/index.html">DirectoryEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Get or create a directory in a given parent directory.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="220733458%2FFunctions%2F-1127190608" anchor-label="getFile" id="220733458%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-file.html"><span>get</span><wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="220733458%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-directory-entry/index.html">DirectoryEntry</a><span class="token punctuation">.</span><a href="get-file.html"><span class="token function">getFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">create<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">exclusive<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-file-entry/index.html">FileEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Get or create a file in a given parent directory.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="492333610%2FFunctions%2F-1127190608" anchor-label="getFormatData" id="492333610%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-format-data.html"><span>get</span><wbr><span>Format</span><wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="492333610%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-media-file/index.html">MediaFile</a><span class="token punctuation">.</span><a href="get-format-data.html"><span class="token function">getFormatData</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-media-file-data/index.html">MediaFileData</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Get details for the given file.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1170979154%2FFunctions%2F-1127190608" anchor-label="getMetadata" id="-1170979154%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-metadata.html"><span>get</span><wbr><span><span>Metadata</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1170979154%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-entry/index.html">Entry</a><span class="token punctuation">.</span><a href="get-metadata.html"><span class="token function">getMetadata</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-metadata/index.html">Metadata</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Get file or directory metadata.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1382121299%2FFunctions%2F-1127190608" anchor-label="getParent" id="1382121299%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-parent.html"><span>get</span><wbr><span><span>Parent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1382121299%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-entry/index.html">Entry</a><span class="token punctuation">.</span><a href="get-parent.html"><span class="token function">getParent</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-directory-entry/index.html">DirectoryEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Get file or directory parent directory entry.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-17201430%2FFunctions%2F-1127190608" anchor-label="invoke" id="-17201430%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="invoke.html"><span><span>invoke</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-17201430%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">inline operator </span><span class="token keyword">fun </span><a href="-void-callback/index.html">VoidCallback</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline operator </span><span class="token keyword">fun </span><a href="-directory-entry-callback/index.html">DirectoryEntryCallback</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entry<span class="token operator">: </span><a href="-directory-entry/index.html">DirectoryEntry</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline operator </span><span class="token keyword">fun </span><a href="-entries-callback/index.html">EntriesCallback</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entries<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="-entry/index.html">Entry</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline operator </span><span class="token keyword">fun </span><a href="-entry-callback/index.html">EntryCallback</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entry<span class="token operator">: </span><a href="-entry/index.html">Entry</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline operator </span><span class="token keyword">fun </span><a href="-error-callback/index.html">ErrorCallback</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">err<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-error/index.html">Error</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline operator </span><span class="token keyword">fun </span><a href="-file-callback/index.html">FileCallback</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">file<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.files/-file/index.html">File</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline operator </span><span class="token keyword">fun </span><a href="-file-entry-callback/index.html">FileEntryCallback</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entry<span class="token operator">: </span><a href="-file-entry/index.html">FileEntry</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline operator </span><span class="token keyword">fun </span><a href="-file-system-callback/index.html">FileSystemCallback</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">filesystem<span class="token operator">: </span><a href="-file-system/index.html">FileSystem</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline operator </span><span class="token keyword">fun </span><a href="-file-writer-callback/index.html">FileWriterCallback</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fileWriter<span class="token operator">: </span><a href="-file-writer/index.html">FileWriter</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline operator </span><span class="token keyword">fun </span><a href="-metadata-callback/index.html">MetadataCallback</a><span class="token punctuation">.</span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">metadata<span class="token operator">: </span><a href="-metadata/index.html">Metadata</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-806515285%2FFunctions%2F-1127190608" anchor-label="moveTo" id="-806515285%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="move-to.html"><span>move</span><wbr><span><span>To</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-806515285%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-entry/index.html">Entry</a><span class="token punctuation">.</span><a href="move-to.html"><span class="token function">moveTo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parent<span class="token operator">: </span><a href="-directory-entry/index.html">DirectoryEntry</a><span class="token punctuation">, </span></span><span class="parameter ">newName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-entry/index.html">Entry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Move given file or directory to a new location.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1683771014%2FFunctions%2F-1127190608" anchor-label="readAsArrayBuffer" id="1683771014%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="read-as-array-buffer.html"><span>read</span><wbr><span>As</span><wbr><span>Array</span><wbr><span><span>Buffer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1683771014%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-file-entry/index.html">FileEntry</a><span class="token punctuation">.</span><a href="read-as-array-buffer.html"><span class="token function">readAsArrayBuffer</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.khronos.webgl/-array-buffer/index.html">ArrayBuffer</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Read file content as an array buffer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-820237030%2FFunctions%2F-1127190608" anchor-label="readAsDataURL" id="-820237030%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="read-as-data-u-r-l.html"><span>read</span><wbr><span>As</span><wbr><span>Data</span><wbr><span><span>URL</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-820237030%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-file-entry/index.html">FileEntry</a><span class="token punctuation">.</span><a href="read-as-data-u-r-l.html"><span class="token function">readAsDataURL</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Read file content as a data url.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1361360016%2FFunctions%2F-1127190608" anchor-label="readAsText" id="-1361360016%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="read-as-text.html"><span>read</span><wbr><span>As</span><wbr><span><span>Text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1361360016%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-file-entry/index.html">FileEntry</a><span class="token punctuation">.</span><a href="read-as-text.html"><span class="token function">readAsText</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Read file content as a plain string.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="826183685%2FFunctions%2F-1127190608" anchor-label="readEntries" id="826183685%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="read-entries.html"><span>read</span><wbr><span><span>Entries</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="826183685%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-directory-entry/index.html">DirectoryEntry</a><span class="token punctuation">.</span><a href="read-entries.html"><span class="token function">readEntries</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-entry/index.html">Entry</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">List directory entries for a given parent directory entry.</p></div><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-directory-reader/index.html">DirectoryReader</a><span class="token punctuation">.</span><a href="read-entries.html"><span class="token function">readEntries</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-entry/index.html">Entry</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">List directory entries for a given DirectoryReader.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-824429027%2FFunctions%2F-1127190608" anchor-label="remove" id="-824429027%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remove.html"><span><span>remove</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-824429027%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-entry/index.html">Entry</a><span class="token punctuation">.</span><a href="remove.html"><span class="token function">remove</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-entry/index.html">Entry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Remove given file or directory.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="280885339%2FFunctions%2F-1127190608" anchor-label="removeRecursively" id="280885339%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remove-recursively.html"><span>remove</span><wbr><span><span>Recursively</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="280885339%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-directory-entry/index.html">DirectoryEntry</a><span class="token punctuation">.</span><a href="remove-recursively.html"><span class="token function">removeRecursively</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-directory-entry/index.html">DirectoryEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Remove given directory recursively.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-293527596%2FFunctions%2F-1127190608" anchor-label="toBlob" id="-293527596%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-blob.html"><span>to</span><wbr><span><span>Blob</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-293527596%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.khronos.webgl/-array-buffer/index.html">ArrayBuffer</a><span class="token punctuation">.</span><a href="to-blob.html"><span class="token function">toBlob</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.files/-blob/index.html">Blob</a></div><div class="brief "><p class="paragraph">Convert array buffer to a blob.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-962436842%2FFunctions%2F-1127190608" anchor-label="toDirectoryEntry" id="-962436842%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-directory-entry.html"><span>to</span><wbr><span>Directory</span><wbr><span><span>Entry</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-962436842%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">.</span><a href="to-directory-entry.html"><span class="token function">toDirectoryEntry</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-directory-entry/index.html">DirectoryEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Extension function to convert String to a directory entry.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1054687103%2FFunctions%2F-1127190608" anchor-label="toFileEntry" id="1054687103%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-file-entry.html"><span>to</span><wbr><span>File</span><wbr><span><span>Entry</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1054687103%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">.</span><a href="to-file-entry.html"><span class="token function">toFileEntry</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-file-entry/index.html">FileEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Extension function to convert String to a file entry.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-30631315%2FFunctions%2F-1127190608" anchor-label="write" id="-30631315%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="write.html"><span><span>write</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-30631315%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-file-entry/index.html">FileEntry</a><span class="token punctuation">.</span><a href="write.html"><span class="token function">write</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-file-entry/index.html">FileEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Write file content from a plain string.</p></div><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-file-entry/index.html">FileEntry</a><span class="token punctuation">.</span><a href="write.html"><span class="token function">write</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.khronos.webgl/-array-buffer/index.html">ArrayBuffer</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-file-entry/index.html">FileEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Write file content from an array buffer.</p></div><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-file-entry/index.html">FileEntry</a><span class="token punctuation">.</span><a href="write.html"><span class="token function">write</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.files/-blob/index.html">Blob</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-file-entry/index.html">FileEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Write file content from a Blob.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1972671429%2FFunctions%2F-1127190608" anchor-label="writeDataUrL" id="1972671429%2FFunctions%2F-1127190608" data-filterable-set=":kvision-modules:kvision-cordova/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-cordova/jsMain" data-filterable-set=":kvision-modules:kvision-cordova/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="write-data-ur-l.html"><span>write</span><wbr><span>Data</span><wbr><span>Ur</span><wbr><span><span>L</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1972671429%2FFunctions%2F-1127190608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-cordova/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="-file-entry/index.html">FileEntry</a><span class="token punctuation">.</span><a href="write-data-ur-l.html"><span class="token function">writeDataUrL</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">dataUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="-file-entry/index.html">FileEntry</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Write file content from a data url.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

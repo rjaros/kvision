@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>PClass</title>
-    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
     <script>document.documentElement.classList.replace("no-js","js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
     if (storage == null) {
@@ -19,482 +18,460 @@
         }
     }
     </script>
-<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
-<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
 <link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
-<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
-<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
-<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
-<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
-<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
-</head>
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
     <div class="root">
-<nav class="navigation" id="navigation-wrapper">
-    <div class="navigation--inner">
-        <div class="navigation-title">
-            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
-            <div class="library-name">
-                    <a class="library-name--link" href="../../../index.html">
-                            kvision
-                    </a>
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.1.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":/jsMain" data-filter=":/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div class="library-version">
-8.1.0            </div>
         </div>
-        <div class="filter-section" id="filter-section">
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":dokkaHtml/kvision">js</button>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
         </div>
-    </div>
-    <div class="navigation-controls">
-        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
-        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
-    </div>
-</nav>
+    </nav>
         <div id="container">
             <div class="sidebar" id="leftColumn">
-                <div class="sidebar--inner" id="sideMenu"></div>
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
             </div>
             <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageIds="kvision::io.kvision.core/PClass///PointingToDeclaration//978196697">
-  <div class="breadcrumbs"><a href="../../../index.html">kvision</a><span class="delimiter">/</span><a href="../index.html">io.kvision.core</a><span class="delimiter">/</span><span class="current">PClass</span></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="kvision::io.kvision.core/PClass///PointingToDeclaration//-649084563">
+  <div class="breadcrumbs"><a href="../../index.html">kvision</a><span class="delimiter">/</span><a href="../index.html">io.kvision.core</a><span class="delimiter">/</span><span class="current">PClass</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>PClass</span></span></h1>
-    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">enum </span><a href="index.html">PClass</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="index.html">PClass</a><span class="token operator">&gt; </span></div><p class="paragraph">CSS pseudo classes.</p></div>    </div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="index.html">PClass</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="index.html">PClass</a><span class="token operator">&gt; </span><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/src/jsMain/kotlin/io/kvision/core/Style.kt#L30">source</a>)</span></span></div><p class="paragraph">CSS pseudo classes.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="ENTRY">Entries</button></div>
     <div class="tabs-section-body">
       <div data-togglable="ENTRY">
         <h2 class="">Entries</h2>
-        <div class="table"><a data-name="1552490771%2FClasslikes%2F978196697" anchor-label="ACTIVE" id="1552490771%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+        <div class="table"><a data-name="1552490771%2FClasslikes%2F-649084563" anchor-label="ACTIVE" id="1552490771%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-a-c-t-i-v-e/index.html">ACTIVE</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1552490771%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1552490771%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-a-c-t-i-v-e/index.html">ACTIVE</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-a-c-t-i-v-e/index.html">ACTIVE</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1871234302%2FClasslikes%2F978196697" anchor-label="CHECKED" id="-1871234302%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-1871234302%2FClasslikes%2F-649084563" anchor-label="CHECKED" id="-1871234302%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-c-h-e-c-k-e-d/index.html">CHECKED</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1871234302%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1871234302%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-c-h-e-c-k-e-d/index.html">CHECKED</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-c-h-e-c-k-e-d/index.html">CHECKED</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-817658935%2FClasslikes%2F978196697" anchor-label="DISABLED" id="-817658935%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-817658935%2FClasslikes%2F-649084563" anchor-label="DISABLED" id="-817658935%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-d-i-s-a-b-l-e-d/index.html">DISABLED</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-817658935%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-817658935%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-d-i-s-a-b-l-e-d/index.html">DISABLED</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-d-i-s-a-b-l-e-d/index.html">DISABLED</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="729783272%2FClasslikes%2F978196697" anchor-label="EMPTY" id="729783272%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="729783272%2FClasslikes%2F-649084563" anchor-label="EMPTY" id="729783272%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-e-m-p-t-y/index.html">EMPTY</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="729783272%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="729783272%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-e-m-p-t-y/index.html">EMPTY</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-e-m-p-t-y/index.html">EMPTY</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1784313116%2FClasslikes%2F978196697" anchor-label="ENABLED" id="1784313116%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="1784313116%2FClasslikes%2F-649084563" anchor-label="ENABLED" id="1784313116%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-e-n-a-b-l-e-d/index.html">ENABLED</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1784313116%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1784313116%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-e-n-a-b-l-e-d/index.html">ENABLED</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-e-n-a-b-l-e-d/index.html">ENABLED</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1715763335%2FClasslikes%2F978196697" anchor-label="FIRSTCHILD" id="-1715763335%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-1715763335%2FClasslikes%2F-649084563" anchor-label="FIRSTCHILD" id="-1715763335%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-f-i-r-s-t-c-h-i-l-d/index.html">FIRSTCHILD</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1715763335%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1715763335%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-f-i-r-s-t-c-h-i-l-d/index.html">FIRSTCHILD</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-f-i-r-s-t-c-h-i-l-d/index.html">FIRSTCHILD</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="519089820%2FClasslikes%2F978196697" anchor-label="FIRSTOFTYPE" id="519089820%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="519089820%2FClasslikes%2F-649084563" anchor-label="FIRSTOFTYPE" id="519089820%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-f-i-r-s-t-o-f-t-y-p-e/index.html">FIRSTOFTYPE</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="519089820%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="519089820%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-f-i-r-s-t-o-f-t-y-p-e/index.html">FIRSTOFTYPE</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-f-i-r-s-t-o-f-t-y-p-e/index.html">FIRSTOFTYPE</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-283958733%2FClasslikes%2F978196697" anchor-label="FOCUS" id="-283958733%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-283958733%2FClasslikes%2F-649084563" anchor-label="FOCUS" id="-283958733%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-f-o-c-u-s/index.html">FOCUS</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-283958733%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-283958733%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-f-o-c-u-s/index.html">FOCUS</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-f-o-c-u-s/index.html">FOCUS</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1502551959%2FClasslikes%2F978196697" anchor-label="HOVER" id="1502551959%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="1502551959%2FClasslikes%2F-649084563" anchor-label="HOVER" id="1502551959%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-h-o-v-e-r/index.html">HOVER</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1502551959%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1502551959%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-h-o-v-e-r/index.html">HOVER</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-h-o-v-e-r/index.html">HOVER</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="87140051%2FClasslikes%2F978196697" anchor-label="INRANGE" id="87140051%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="87140051%2FClasslikes%2F-649084563" anchor-label="INRANGE" id="87140051%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-i-n-r-a-n-g-e/index.html">INRANGE</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="87140051%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="87140051%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-i-n-r-a-n-g-e/index.html">INRANGE</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-i-n-r-a-n-g-e/index.html">INRANGE</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1725411666%2FClasslikes%2F978196697" anchor-label="INVALID" id="1725411666%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="1725411666%2FClasslikes%2F-649084563" anchor-label="INVALID" id="1725411666%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-i-n-v-a-l-i-d/index.html">INVALID</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1725411666%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1725411666%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-i-n-v-a-l-i-d/index.html">INVALID</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-i-n-v-a-l-i-d/index.html">INVALID</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1740882527%2FClasslikes%2F978196697" anchor-label="LASTCHILD" id="-1740882527%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-1740882527%2FClasslikes%2F-649084563" anchor-label="LASTCHILD" id="-1740882527%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-l-a-s-t-c-h-i-l-d/index.html">LASTCHILD</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1740882527%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1740882527%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-l-a-s-t-c-h-i-l-d/index.html">LASTCHILD</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-l-a-s-t-c-h-i-l-d/index.html">LASTCHILD</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-259605132%2FClasslikes%2F978196697" anchor-label="LASTOFTYPE" id="-259605132%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-259605132%2FClasslikes%2F-649084563" anchor-label="LASTOFTYPE" id="-259605132%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-l-a-s-t-o-f-t-y-p-e/index.html">LASTOFTYPE</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-259605132%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-259605132%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-l-a-s-t-o-f-t-y-p-e/index.html">LASTOFTYPE</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-l-a-s-t-o-f-t-y-p-e/index.html">LASTOFTYPE</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-776557241%2FClasslikes%2F978196697" anchor-label="LINK" id="-776557241%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-776557241%2FClasslikes%2F-649084563" anchor-label="LINK" id="-776557241%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-l-i-n-k/index.html">LINK</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-776557241%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-776557241%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-l-i-n-k/index.html">LINK</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-l-i-n-k/index.html">LINK</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="997748618%2FClasslikes%2F978196697" anchor-label="ONLYOFTYPE" id="997748618%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="997748618%2FClasslikes%2F-649084563" anchor-label="ONLYOFTYPE" id="997748618%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-o-n-l-y-o-f-t-y-p-e/index.html">ONLYOFTYPE</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="997748618%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="997748618%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-o-n-l-y-o-f-t-y-p-e/index.html">ONLYOFTYPE</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-o-n-l-y-o-f-t-y-p-e/index.html">ONLYOFTYPE</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-2115964725%2FClasslikes%2F978196697" anchor-label="ONLYCHILD" id="-2115964725%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-2115964725%2FClasslikes%2F-649084563" anchor-label="ONLYCHILD" id="-2115964725%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-o-n-l-y-c-h-i-l-d/index.html">ONLYCHILD</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2115964725%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2115964725%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-o-n-l-y-c-h-i-l-d/index.html">ONLYCHILD</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-o-n-l-y-c-h-i-l-d/index.html">ONLYCHILD</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="985415085%2FClasslikes%2F978196697" anchor-label="OPTIONAL" id="985415085%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="985415085%2FClasslikes%2F-649084563" anchor-label="OPTIONAL" id="985415085%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-o-p-t-i-o-n-a-l/index.html">OPTIONAL</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="985415085%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="985415085%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-o-p-t-i-o-n-a-l/index.html">OPTIONAL</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-o-p-t-i-o-n-a-l/index.html">OPTIONAL</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1235226427%2FClasslikes%2F978196697" anchor-label="OUTOFRANGE" id="-1235226427%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-1235226427%2FClasslikes%2F-649084563" anchor-label="OUTOFRANGE" id="-1235226427%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-o-u-t-o-f-r-a-n-g-e/index.html">OUTOFRANGE</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1235226427%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1235226427%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-o-u-t-o-f-r-a-n-g-e/index.html">OUTOFRANGE</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-o-u-t-o-f-r-a-n-g-e/index.html">OUTOFRANGE</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="2022957327%2FClasslikes%2F978196697" anchor-label="READONLY" id="2022957327%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="2022957327%2FClasslikes%2F-649084563" anchor-label="READONLY" id="2022957327%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-r-e-a-d-o-n-l-y/index.html">READONLY</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2022957327%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2022957327%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-r-e-a-d-o-n-l-y/index.html">READONLY</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-r-e-a-d-o-n-l-y/index.html">READONLY</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-252502492%2FClasslikes%2F978196697" anchor-label="READWRITE" id="-252502492%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-252502492%2FClasslikes%2F-649084563" anchor-label="READWRITE" id="-252502492%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-r-e-a-d-w-r-i-t-e/index.html">READWRITE</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-252502492%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-252502492%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-r-e-a-d-w-r-i-t-e/index.html">READWRITE</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-r-e-a-d-w-r-i-t-e/index.html">READWRITE</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="242037164%2FClasslikes%2F978196697" anchor-label="REQUIRED" id="242037164%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="242037164%2FClasslikes%2F-649084563" anchor-label="REQUIRED" id="242037164%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-r-e-q-u-i-r-e-d/index.html">REQUIRED</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="242037164%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="242037164%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-r-e-q-u-i-r-e-d/index.html">REQUIRED</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-r-e-q-u-i-r-e-d/index.html">REQUIRED</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1695410129%2FClasslikes%2F978196697" anchor-label="ROOT" id="-1695410129%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-1695410129%2FClasslikes%2F-649084563" anchor-label="ROOT" id="-1695410129%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-r-o-o-t/index.html">ROOT</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1695410129%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1695410129%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-r-o-o-t/index.html">ROOT</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-r-o-o-t/index.html">ROOT</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="383355486%2FClasslikes%2F978196697" anchor-label="TARGET" id="383355486%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="383355486%2FClasslikes%2F-649084563" anchor-label="TARGET" id="383355486%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-t-a-r-g-e-t/index.html">TARGET</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="383355486%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="383355486%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-t-a-r-g-e-t/index.html">TARGET</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-t-a-r-g-e-t/index.html">TARGET</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-425421225%2FClasslikes%2F978196697" anchor-label="VALID" id="-425421225%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-425421225%2FClasslikes%2F-649084563" anchor-label="VALID" id="-425421225%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-v-a-l-i-d/index.html">VALID</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-425421225%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-425421225%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-v-a-l-i-d/index.html">VALID</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-v-a-l-i-d/index.html">VALID</a></div></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-33787067%2FClasslikes%2F978196697" anchor-label="VISITED" id="-33787067%2FClasslikes%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-33787067%2FClasslikes%2F-649084563" anchor-label="VISITED" id="-33787067%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-v-i-s-i-t-e-d/index.html">VISITED</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-33787067%2FClasslikes%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-33787067%2FClasslikes%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><div class="block"><a href="-v-i-s-i-t-e-d/index.html">VISITED</a></div></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-v-i-s-i-t-e-d/index.html">VISITED</a></div></div></div></div>
                 </div>
               </div>
             </div>
@@ -503,36 +480,47 @@
       </div>
       <div data-togglable="PROPERTY">
         <h2 class="">Properties</h2>
-        <div class="table"><a data-name="-372974862%2FProperties%2F978196697" anchor-label="name" id="-372974862%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+        <div class="table"><a data-name="-302271833%2FProperties%2F-649084563" anchor-label="entries" id="-302271833%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../../io.kvision.html/-align/-j-u-s-t-i-f-y/index.html#-372974862%2FProperties%2F978196697"><span><span>name</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372974862%2FProperties%2F978196697"></span>
+                  <div><a href="entries.html"><span><span>entries</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-302271833%2FProperties%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../io.kvision.html/-align/-j-u-s-t-i-f-y/index.html#-372974862%2FProperties%2F978196697">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="entries.html">entries</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.enums/-enum-entries/index.html">EnumEntries</a><span class="token operator">&lt;</span><a href="index.html">PClass</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns a representation of an immutable list of all enum entries, in the order they're declared.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-739389684%2FProperties%2F978196697" anchor-label="ordinal" id="-739389684%2FProperties%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="-372974862%2FProperties%2F-649084563" anchor-label="name" id="-372974862%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../../io.kvision.html/-align/-j-u-s-t-i-f-y/index.html#-739389684%2FProperties%2F978196697"><span><span>ordinal</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739389684%2FProperties%2F978196697"></span>
+                  <div><a href="../../io.kvision.panel/-gutter-align/-e-n-d/index.html#-372974862%2FProperties%2F-649084563"><span><span>name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372974862%2FProperties%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../io.kvision.html/-align/-j-u-s-t-i-f-y/index.html#-739389684%2FProperties%2F978196697">ordinal</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../io.kvision.panel/-gutter-align/-e-n-d/index.html#-372974862%2FProperties%2F-649084563">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-739389684%2FProperties%2F-649084563" anchor-label="ordinal" id="-739389684%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../io.kvision.panel/-gutter-align/-e-n-d/index.html#-739389684%2FProperties%2F-649084563"><span><span>ordinal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739389684%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../io.kvision.panel/-gutter-align/-e-n-d/index.html#-739389684%2FProperties%2F-649084563">ordinal</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -541,36 +529,32 @@
       </div>
       <div data-togglable="FUNCTION">
         <h2 class="">Functions</h2>
-        <div class="table"><a data-name="1838150229%2FFunctions%2F978196697" anchor-label="valueOf" id="1838150229%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+        <div class="table"><a data-name="1838150229%2FFunctions%2F-649084563" anchor-label="valueOf" id="1838150229%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="value-of.html"><span>value</span><wbr></wbr><span><span>Of</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1838150229%2FFunctions%2F978196697"></span>
+                  <div><a href="value-of.html"><span>value</span><wbr><span><span>Of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1838150229%2FFunctions%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">fun </span><a href="value-of.html"><span class="token function">valueOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PClass</a></div><div class="brief "><p class="paragraph">Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)</p></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="value-of.html"><span class="token function">valueOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PClass</a></div><div class="brief "><p class="paragraph">Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="745621537%2FFunctions%2F978196697" anchor-label="values" id="745621537%2FFunctions%2F978196697" data-filterable-set=":dokkaHtml/kvision"></a>
-          <div class="table-row" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision">
+<a data-name="745621537%2FFunctions%2F-649084563" anchor-label="values" id="745621537%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="values.html"><span><span>values</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="745621537%2FFunctions%2F978196697"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="745621537%2FFunctions%2F-649084563"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
-                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dokkaHtml/kvision" data-filterable-set=":dokkaHtml/kvision" data-active="" data-toggle=":dokkaHtml/kvision">js</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/kvision"><div class="symbol monospace"><span class="token keyword">fun </span><a href="values.html"><span class="token function">values</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="index.html">PClass</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns an array containing the constants of this enum type, in the order they're declared.</p></div></div>                  </div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="values.html"><span class="token function">values</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="index.html">PClass</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns an array containing the constants of this enum type, in the order they're declared.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -580,11 +564,16 @@
     </div>
   </div>
 </div>
-      <div class="footer">
-        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
-                class="pull-right"><span>Generated by </span><a
-                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-      </div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
             </div>
         </div>
     </div>

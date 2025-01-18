@@ -1,0 +1,615 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Routing</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.1.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-routing-navigo-ng/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filter=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kvision-routing-navigo-ng::io.kvision.routing/Routing///PointingToDeclaration//1797828933">
+  <div class="breadcrumbs"><a href="../../index.html">kvision-routing-navigo-ng</a><span class="delimiter">/</span><a href="../index.html">io.kvision.routing</a><span class="delimiter">/</span><span class="current">Routing</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Routing</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">Routing</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">root<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">useHash<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">strategy<span class="token operator">: </span><a href="../-strategy/index.html">Strategy</a><span class="token operator"> = </span>Strategy.ONE<span class="token punctuation">, </span></span><span class="parameter ">noMatchWarning<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">linksSelector<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span>, <a href="../../../../kvision/io.kvision.routing/-k-v-router/index.html">KVRouter</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-routing-navigo-ng/src/jsMain/kotlin/io/kvision/routing/Routing.kt#L70">source</a>)</span></span></div><p class="paragraph">A helper class for Navigo 8+ JavaScript router.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>root</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the root path of the application</p></div></div></div></div><div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>use</span><wbr><span><span>Hash</span></span></u></div></span></div><div><div class="title"><p class="paragraph">whether to use hash based routing</p></div></div></div></div><div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>strategy</span></span></u></div></span></div><div><div class="title"><p class="paragraph">a routing strategy</p></div></div></div></div><div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>no</span><wbr><span>Match</span><wbr><span><span>Warning</span></span></u></div></span></div><div><div class="title"><p class="paragraph">do not show warnings when there is no matching route</p></div></div></div></div><div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>links</span><wbr><span><span>Selector</span></span></u></div></span></div><div><div class="title"><p class="paragraph">CSS links selector</p></div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1158362376%2FConstructors%2F1797828933" anchor-label="Routing" id="-1158362376%2FConstructors%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-routing.html"><span><span>Routing</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1158362376%2FConstructors%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">root<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">useHash<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">strategy<span class="token operator">: </span><a href="../-strategy/index.html">Strategy</a><span class="token operator"> = </span>Strategy.ONE<span class="token punctuation">, </span></span><span class="parameter ">noMatchWarning<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">linksSelector<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1775120249%2FClasslikes%2F1797828933" anchor-label="Companion" id="1775120249%2FClasslikes%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1775120249%2FClasslikes%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="468667943%2FProperties%2F1797828933" anchor-label="current" id="468667943%2FProperties%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#468667943%2FProperties%2F1797828933"><span><span>current</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="468667943%2FProperties%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="index.html#468667943%2FProperties%2F1797828933">current</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span data-unresolved-link="io.kvision.navigo/Match///PointingToDeclaration/">Match</span><span class="token operator">&gt;</span><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1113457863%2FProperties%2F1797828933" anchor-label="destroyed" id="1113457863%2FProperties%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1113457863%2FProperties%2F1797828933"><span><span>destroyed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1113457863%2FProperties%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="index.html#1113457863%2FProperties%2F1797828933">destroyed</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1003001400%2FProperties%2F1797828933" anchor-label="root" id="1003001400%2FProperties%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1003001400%2FProperties%2F1797828933"><span><span>root</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1003001400%2FProperties%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="index.html#1003001400%2FProperties%2F1797828933">root</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-321834608%2FProperties%2F1797828933" anchor-label="routes" id="-321834608%2FProperties%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-321834608%2FProperties%2F1797828933"><span><span>routes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-321834608%2FProperties%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="index.html#-321834608%2FProperties%2F1797828933">routes</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span data-unresolved-link="io.kvision.navigo/Route///PointingToDeclaration/">Route</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="580418362%2FFunctions%2F1797828933" anchor-label="addAfterHook" id="580418362%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#754760001%2FFunctions%2F1797828933"><span>add</span><wbr><span>After</span><wbr><span><span>Hook</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="580418362%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#754760001%2FFunctions%2F1797828933"><span class="token function">addAfterHook</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">route<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Route///PointingToDeclaration/">Route</span><span class="token punctuation">, </span></span><span class="parameter ">hookFunction<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#1459699215%2FFunctions%2F1797828933"><span class="token function">addAfterHook</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">route<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">hookFunction<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-470109958%2FFunctions%2F1797828933" anchor-label="addAlreadyHook" id="-470109958%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1583701053%2FFunctions%2F1797828933"><span>add</span><wbr><span>Already</span><wbr><span><span>Hook</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-470109958%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#1583701053%2FFunctions%2F1797828933"><span class="token function">addAlreadyHook</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">route<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Route///PointingToDeclaration/">Route</span><span class="token punctuation">, </span></span><span class="parameter ">hookFunction<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#214838283%2FFunctions%2F1797828933"><span class="token function">addAlreadyHook</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">route<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">hookFunction<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-323807426%2FFunctions%2F1797828933" anchor-label="addBeforeHook" id="-323807426%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1783046164%2FFunctions%2F1797828933"><span>add</span><wbr><span>Before</span><wbr><span><span>Hook</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-323807426%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#1783046164%2FFunctions%2F1797828933"><span class="token function">addBeforeHook</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">route<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Route///PointingToDeclaration/">Route</span><span class="token punctuation">, </span></span><span class="parameter ">hookFunction<span class="token operator">: </span><span class="token punctuation">(</span>done<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/DoneFunction///PointingToDeclaration/">DoneFunction</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-615518522%2FFunctions%2F1797828933"><span class="token function">addBeforeHook</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">route<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">hookFunction<span class="token operator">: </span><span class="token punctuation">(</span>done<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/DoneFunction///PointingToDeclaration/">DoneFunction</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1128835626%2FFunctions%2F1797828933" anchor-label="addLeaveHook" id="-1128835626%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1322311512%2FFunctions%2F1797828933"><span>add</span><wbr><span>Leave</span><wbr><span><span>Hook</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1128835626%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#1322311512%2FFunctions%2F1797828933"><span class="token function">addLeaveHook</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">route<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Route///PointingToDeclaration/">Route</span><span class="token punctuation">, </span></span><span class="parameter ">hookFunction<span class="token operator">: </span><span class="token punctuation">(</span>done<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/DoneFunction///PointingToDeclaration/">DoneFunction</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-1168166134%2FFunctions%2F1797828933"><span class="token function">addLeaveHook</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">route<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">hookFunction<span class="token operator">: </span><span class="token punctuation">(</span>done<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/DoneFunction///PointingToDeclaration/">DoneFunction</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="638357190%2FFunctions%2F1797828933" anchor-label="destroy" id="638357190%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#638357190%2FFunctions%2F1797828933"><span><span>destroy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="638357190%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#638357190%2FFunctions%2F1797828933"><span class="token function">destroy</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-767752712%2FFunctions%2F1797828933" anchor-label="generate" id="-767752712%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-767752712%2FFunctions%2F1797828933"><span><span>generate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-767752712%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-767752712%2FFunctions%2F1797828933"><span class="token function">generate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/GenerateOptions///PointingToDeclaration/">GenerateOptions</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="915930882%2FFunctions%2F1797828933" anchor-label="getCurrentLocation" id="915930882%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#915930882%2FFunctions%2F1797828933"><span>get</span><wbr><span>Current</span><wbr><span><span>Location</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="915930882%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#915930882%2FFunctions%2F1797828933"><span class="token function">getCurrentLocation</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Match///PointingToDeclaration/">Match</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1321970132%2FFunctions%2F1797828933" anchor-label="getLinkPath" id="-1321970132%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1321970132%2FFunctions%2F1797828933"><span>get</span><wbr><span>Link</span><wbr><span><span>Path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1321970132%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-1321970132%2FFunctions%2F1797828933"><span class="token function">getLinkPath</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">link<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-815476883%2FFunctions%2F1797828933" anchor-label="getRoute" id="-815476883%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-2109272228%2FFunctions%2F1797828933"><span>get</span><wbr><span><span>Route</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-815476883%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-2109272228%2FFunctions%2F1797828933"><span class="token function">getRoute</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">nameOrHandler<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Handler///PointingToDeclaration/">Handler</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Route///PointingToDeclaration/">Route</span><span class="token operator">?</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#1530341181%2FFunctions%2F1797828933"><span class="token function">getRoute</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">nameOrHandler<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Route///PointingToDeclaration/">Route</span><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="490481036%2FFunctions%2F1797828933" anchor-label="hooks" id="490481036%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#490481036%2FFunctions%2F1797828933"><span><span>hooks</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="490481036%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#490481036%2FFunctions%2F1797828933"><span class="token function">hooks</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">hooks<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/RouteHooks///PointingToDeclaration/">RouteHooks</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-664178429%2FFunctions%2F1797828933" anchor-label="kvDestroy" id="-664178429%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kv-destroy.html"><span>kv</span><wbr><span><span>Destroy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-664178429%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="kv-destroy.html"><span class="token function">kvDestroy</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1752658200%2FFunctions%2F1797828933" anchor-label="kvNavigate" id="1752658200%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kv-navigate.html"><span>kv</span><wbr><span><span>Navigate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1752658200%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="kv-navigate.html"><span class="token function">kvNavigate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">route<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1447119844%2FFunctions%2F1797828933" anchor-label="kvOff" id="1447119844%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kv-off.html"><span>kv</span><wbr><span><span>Off</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1447119844%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="kv-off.html"><span class="token function">kvOff</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">handler<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="164840431%2FFunctions%2F1797828933" anchor-label="kvOn" id="164840431%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kv-on.html"><span>kv</span><wbr><span><span>On</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="164840431%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="kv-on.html"><span class="token function">kvOn</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">route<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">handler<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../../kvision/io.kvision.routing/-k-v-router/index.html">KVRouter</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1137984337%2FFunctions%2F1797828933" anchor-label="kvResolve" id="1137984337%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kv-resolve.html"><span>kv</span><wbr><span><span>Resolve</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1137984337%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="kv-resolve.html"><span class="token function">kvResolve</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2129098004%2FFunctions%2F1797828933" anchor-label="lastResolved" id="-2129098004%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-2129098004%2FFunctions%2F1797828933"><span>last</span><wbr><span><span>Resolved</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2129098004%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-2129098004%2FFunctions%2F1797828933"><span class="token function">lastResolved</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span data-unresolved-link="io.kvision.navigo/Match///PointingToDeclaration/">Match</span><span class="token operator">&gt;</span><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1018458852%2FFunctions%2F1797828933" anchor-label="link" id="1018458852%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1018458852%2FFunctions%2F1797828933"><span><span>link</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1018458852%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#1018458852%2FFunctions%2F1797828933"><span class="token function">link</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="742973641%2FFunctions%2F1797828933" anchor-label="match" id="742973641%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#742973641%2FFunctions%2F1797828933"><span><span>match</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="742973641%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#742973641%2FFunctions%2F1797828933"><span class="token function">match</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span>dynamic</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1713152399%2FFunctions%2F1797828933" anchor-label="matchLocation" id="1713152399%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1524164065%2FFunctions%2F1797828933"><span>match</span><wbr><span><span>Location</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1713152399%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#1524164065%2FFunctions%2F1797828933"><span class="token function">matchLocation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">currentLocation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">annotatePathWithRoot<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span>dynamic</div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-999072262%2FFunctions%2F1797828933"><span class="token function">matchLocation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/-reg-exp/index.html">RegExp</a><span class="token punctuation">, </span></span><span class="parameter ">currentLocation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">annotatePathWithRoot<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span>dynamic</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-105725618%2FFunctions%2F1797828933" anchor-label="navigate" id="-105725618%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-105725618%2FFunctions%2F1797828933"><span><span>navigate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-105725618%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-105725618%2FFunctions%2F1797828933"><span class="token function">navigate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/NavigateOptions///PointingToDeclaration/">NavigateOptions</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1753200534%2FFunctions%2F1797828933" anchor-label="navigateByName" id="1753200534%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1753200534%2FFunctions%2F1797828933"><span>navigate</span><wbr><span>By</span><wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1753200534%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#1753200534%2FFunctions%2F1797828933"><span class="token function">navigateByName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/NavigateOptions///PointingToDeclaration/">NavigateOptions</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-553189437%2FFunctions%2F1797828933" anchor-label="notFound" id="-553189437%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-553189437%2FFunctions%2F1797828933"><span>not</span><wbr><span><span>Found</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-553189437%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-553189437%2FFunctions%2F1797828933"><span class="token function">notFound</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">handler<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Handler///PointingToDeclaration/">Handler</span><span class="token punctuation">, </span></span><span class="parameter ">hooks<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/RouteHooks///PointingToDeclaration/">RouteHooks</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1569773987%2FFunctions%2F1797828933" anchor-label="off" id="1569773987%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1791962542%2FFunctions%2F1797828933"><span><span>off</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1569773987%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-1791962542%2FFunctions%2F1797828933"><span class="token function">off</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">handler<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Handler///PointingToDeclaration/">Handler</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#694655027%2FFunctions%2F1797828933"><span class="token function">off</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-2124914000%2FFunctions%2F1797828933"><span class="token function">off</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/-reg-exp/index.html">RegExp</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1406687553%2FFunctions%2F1797828933" anchor-label="on" id="1406687553%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1442613217%2FFunctions%2F1797828933"><span><span>on</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1406687553%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-1442613217%2FFunctions%2F1797828933"><span class="token function">on</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">map<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter ">hooks<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/RouteHooks///PointingToDeclaration/">RouteHooks</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#143113747%2FFunctions%2F1797828933"><span class="token function">on</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">f<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Handler///PointingToDeclaration/">Handler</span><span class="token punctuation">, </span></span><span class="parameter ">hooks<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/RouteHooks///PointingToDeclaration/">RouteHooks</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-601896946%2FFunctions%2F1797828933"><span class="token function">on</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">f<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Handler///PointingToDeclaration/">Handler</span><span class="token punctuation">, </span></span><span class="parameter ">hooks<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/RouteHooks///PointingToDeclaration/">RouteHooks</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#1149179101%2FFunctions%2F1797828933"><span class="token function">on</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/-reg-exp/index.html">RegExp</a><span class="token punctuation">, </span></span><span class="parameter ">f<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Handler///PointingToDeclaration/">Handler</span><span class="token punctuation">, </span></span><span class="parameter ">hooks<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/RouteHooks///PointingToDeclaration/">RouteHooks</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-183691392%2FFunctions%2F1797828933" anchor-label="resolve" id="-183691392%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-183691392%2FFunctions%2F1797828933"><span><span>resolve</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-183691392%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-183691392%2FFunctions%2F1797828933"><span class="token function">resolve</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">resolveOptions<span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/ResolveOptions///PointingToDeclaration/">ResolveOptions</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span>dynamic</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="962584063%2FFunctions%2F1797828933" anchor-label="updatePageLinks" id="962584063%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#962584063%2FFunctions%2F1797828933"><span>update</span><wbr><span>Page</span><wbr><span><span>Links</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="962584063%2FFunctions%2F1797828933"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#962584063%2FFunctions%2F1797828933"><span class="token function">updatePageLinks</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

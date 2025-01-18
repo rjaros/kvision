@@ -1,0 +1,243 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>DefaultTileLayers</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.1.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-maps/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-maps/jsMain" data-filter=":kvision-modules:kvision-maps/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kvision-maps::io.kvision.maps/DefaultTileLayers///PointingToDeclaration//-1002496885">
+  <div class="breadcrumbs"><a href="../../index.html">kvision-maps</a><span class="delimiter">/</span><a href="../index.html">io.kvision.maps</a><span class="delimiter">/</span><span class="current">DefaultTileLayers</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Default</span><wbr><span>Tile</span><wbr><span><span>Layers</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">DefaultTileLayers</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-maps/src/jsMain/kotlin/io/kvision/maps/BaseTileLayer.kt#L37">source</a>)</span></span></div><p class="paragraph">Some default <a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/index.html">TileLayer</a>s from publicly available tile providers.</p><p class="paragraph">See</p><ul><li><p class="paragraph"><a href="https://github.com/leaflet-extras/leaflet-providers/"><code class="lang-kotlin">https://github.com/leaflet-extras/leaflet-providers/</code></a></p></li><li><p class="paragraph"><a href="https://leaflet-extras.github.io/leaflet-providers/preview/"><code class="lang-kotlin">https://leaflet-extras.github.io/leaflet-providers/preview/</code></a></p></li></ul></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1854251465%2FProperties%2F-1002496885" anchor-label="baseLayers" id="-1854251465%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="base-layers.html"><span>base</span><wbr><span><span>Layers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1854251465%2FProperties%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="base-layers.html">baseLayers</a><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-control/-layers-object/index.html">Control.LayersObject</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2021839108%2FProperties%2F-1002496885" anchor-label="CartoDBVoyager" id="2021839108%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-carto-d-b-voyager.html"><span>Carto</span><wbr><span><span>DBVoyager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2021839108%2FProperties%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-carto-d-b-voyager.html">CartoDBVoyager</a><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/index.html">TileLayer</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/-tile-layer-options/index.html">TileLayer.TileLayerOptions</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph"><a href="https://carto.com/about-carto/">https://carto.com/about-carto/</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1267072131%2FProperties%2F-1002496885" anchor-label="Empty" id="1267072131%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-empty.html"><span><span>Empty</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1267072131%2FProperties%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-empty.html">Empty</a><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/index.html">TileLayer</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/-tile-layer-options/index.html">TileLayer.TileLayerOptions</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1088229653%2FProperties%2F-1002496885" anchor-label="EsriWorldImagery" id="1088229653%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-esri-world-imagery.html"><span>Esri</span><wbr><span>World</span><wbr><span><span>Imagery</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1088229653%2FProperties%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-esri-world-imagery.html">EsriWorldImagery</a><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/index.html">TileLayer</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/-tile-layer-options/index.html">TileLayer.TileLayerOptions</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="650107061%2FProperties%2F-1002496885" anchor-label="EsriWorldTopoMap" id="650107061%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-esri-world-topo-map.html"><span>Esri</span><wbr><span>World</span><wbr><span>Topo</span><wbr><span><span>Map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="650107061%2FProperties%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-esri-world-topo-map.html">EsriWorldTopoMap</a><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/index.html">TileLayer</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/-tile-layer-options/index.html">TileLayer.TileLayerOptions</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1981742123%2FProperties%2F-1002496885" anchor-label="HikeAndBikeMap" id="1981742123%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-hike-and-bike-map.html"><span>Hike</span><wbr><span>And</span><wbr><span>Bike</span><wbr><span><span>Map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1981742123%2FProperties%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-hike-and-bike-map.html">HikeAndBikeMap</a><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/index.html">TileLayer</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/-tile-layer-options/index.html">TileLayer.TileLayerOptions</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph"><a href="https://wiki.openstreetmap.org/wiki/Hike_%26_Bike_Map">Hike &amp; Bike Map v2</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1881918943%2FProperties%2F-1002496885" anchor-label="OpenMtbMap" id="1881918943%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-open-mtb-map.html"><span>Open</span><wbr><span>Mtb</span><wbr><span><span>Map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1881918943%2FProperties%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-open-mtb-map.html">OpenMtbMap</a><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/index.html">TileLayer</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/-tile-layer-options/index.html">TileLayer.TileLayerOptions</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">https://openmtbmap.org/ – Mountain bike and Hiking Maps based on OpenStreetMap</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1532836321%2FProperties%2F-1002496885" anchor-label="OpenStreetMap" id="1532836321%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-open-street-map.html"><span>Open</span><wbr><span>Street</span><wbr><span><span>Map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1532836321%2FProperties%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-open-street-map.html">OpenStreetMap</a><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/index.html">TileLayer</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/-tile-layer-options/index.html">TileLayer.TileLayerOptions</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">OpenStreetMap standard tile layer https://wiki.openstreetmap.org/wiki/Standard_tile_layer</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>kvision</title>
+<link href="../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../scripts/sourceset_dependencies.js" async></script>
+<link href="../styles/style.css" rel="Stylesheet">
+<link href="../styles/main.css" rel="Stylesheet">
+<link href="../styles/prism.css" rel="Stylesheet">
+<link href="../styles/logo-styles.css" rel="Stylesheet">
+<link href="../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../scripts/main.js" defer></script>
+<script type="text/javascript" src="../scripts/prism.js" async></script>
+<script type="text/javascript" src="../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.1.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":/jsMain" data-filter=":/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" id="content" pageids="kvision::////PointingToDeclaration//-649084563">
+  <div class="breadcrumbs"></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>kvision</span></span></h1>
+  </div>
+  <h2 class="">Packages</h2>
+  <div class="table"><a data-name="136280173%2FPackages%2F-649084563" anchor-label="io.kvision" id="136280173%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision/index.html">io.kvision</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="136280173%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="136280173%2FPackages%2F-649084563" anchor-label="io.kvision" id="136280173%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">KVision main Application class and some helper interfaces necessary to support Hot Module Replacement (HMR).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1468659004%2FPackages%2F-649084563" anchor-label="io.kvision.core" id="-1468659004%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.core/index.html">io.kvision.core</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1468659004%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-1468659004%2FPackages%2F-649084563" anchor-label="io.kvision.core" id="-1468659004%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">KVision core classes. This includes base interfaces for all components, CSS enums (for colors, borders, backgrounds, fonts, text and position) and the main Widget class.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="1963234217%2FPackages%2F-649084563" anchor-label="io.kvision.form" id="1963234217%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.form/index.html">io.kvision.form</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1963234217%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1963234217%2FPackages%2F-649084563" anchor-label="io.kvision.form" id="1963234217%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Convenient forms implementation, with support for many different input components and easy to define validation.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="1856817027%2FPackages%2F-649084563" anchor-label="io.kvision.form.check" id="1856817027%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.form.check/index.html">io.kvision.form.check</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1856817027%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1856817027%2FPackages%2F-649084563" anchor-label="io.kvision.form.check" id="1856817027%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Checkbox, radiobutton and radiobutton group components.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="94890610%2FPackages%2F-649084563" anchor-label="io.kvision.form.number" id="94890610%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.form.number/index.html">io.kvision.form.number</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="94890610%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="94890610%2FPackages%2F-649084563" anchor-label="io.kvision.form.number" id="94890610%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Numeric input components including range selection and spinner.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="1817164389%2FPackages%2F-649084563" anchor-label="io.kvision.form.select" id="1817164389%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.form.select/index.html">io.kvision.form.select</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1817164389%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1817164389%2FPackages%2F-649084563" anchor-label="io.kvision.form.select" id="1817164389%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Contains a simple select component as well as full-featured components with support for remote data sources.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="1793799446%2FPackages%2F-649084563" anchor-label="io.kvision.form.text" id="1793799446%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.form.text/index.html">io.kvision.form.text</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1793799446%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1793799446%2FPackages%2F-649084563" anchor-label="io.kvision.form.text" id="1793799446%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Text input components, with password, text area, rich text area and typeahead support.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1994610902%2FPackages%2F-649084563" anchor-label="io.kvision.form.upload" id="-1994610902%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.form.upload/index.html">io.kvision.form.upload</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1994610902%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-1994610902%2FPackages%2F-649084563" anchor-label="io.kvision.form.upload" id="-1994610902%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Full-featured file upload component with drag &amp; drop, preview and AJAX upload mode.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="1468476368%2FPackages%2F-649084563" anchor-label="io.kvision.html" id="1468476368%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.html/index.html">io.kvision.html</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1468476368%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1468476368%2FPackages%2F-649084563" anchor-label="io.kvision.html" id="1468476368%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Components supporting complete set of HTML tags, with dedicated classes for buttons, images, links, lists and iframe. Support for Handlebars.js templates is included.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="531014787%2FPackages%2F-649084563" anchor-label="io.kvision.i18n" id="531014787%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.i18n/index.html">io.kvision.i18n</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="531014787%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="531014787%2FPackages%2F-649084563" anchor-label="io.kvision.i18n" id="531014787%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Internationalization classes.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-315774141%2FPackages%2F-649084563" anchor-label="io.kvision.panel" id="-315774141%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.panel/index.html">io.kvision.panel</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-315774141%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-315774141%2FPackages%2F-649084563" anchor-label="io.kvision.panel" id="-315774141%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Rich set of container classes, supporting both simple use cases and sophisticated layouts (including CSS flexbox, CSS grid and Bootstrap responsive 12 columns gid).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="1652576325%2FPackages%2F-649084563" anchor-label="io.kvision.routing" id="1652576325%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.routing/index.html">io.kvision.routing</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1652576325%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1652576325%2FPackages%2F-649084563" anchor-label="io.kvision.routing" id="1652576325%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Simple and easy to use JavaScript router wrapper.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-730758463%2FPackages%2F-649084563" anchor-label="io.kvision.snabbdom" id="-730758463%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.snabbdom/index.html">io.kvision.snabbdom</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-730758463%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-730758463%2FPackages%2F-649084563" anchor-label="io.kvision.snabbdom" id="-730758463%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Snabbdom virtual DOM bindings.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1431167088%2FPackages%2F-649084563" anchor-label="io.kvision.state" id="-1431167088%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.state/index.html">io.kvision.state</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1431167088%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-1431167088%2FPackages%2F-649084563" anchor-label="io.kvision.state" id="-1431167088%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Classes supporting the observer pattern, including the implementation of the observable list.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="886579576%2FPackages%2F-649084563" anchor-label="io.kvision.types" id="886579576%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.types/index.html">io.kvision.types</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="886579576%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="886579576%2FPackages%2F-649084563" anchor-label="io.kvision.types" id="886579576%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Multiplatform type definitions.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1159101520%2FPackages%2F-649084563" anchor-label="io.kvision.utils" id="-1159101520%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+    <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.utils/index.html">io.kvision.utils</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1159101520%2FPackages%2F-649084563"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-1159101520%2FPackages%2F-649084563" anchor-label="io.kvision.utils" id="-1159101520%2FPackages%2F-649084563" data-filterable-set=":/jsMain"></a>
+            <p class="paragraph">Interfaces and helper functions for Snabbdom virtual dom implementation and a few useful extension functions.</p>
+          </span></div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

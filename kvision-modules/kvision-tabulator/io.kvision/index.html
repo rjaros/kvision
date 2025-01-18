@@ -1,0 +1,273 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>io.kvision</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.1.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-tabulator/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-tabulator/jsMain" data-filter=":kvision-modules:kvision-tabulator/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="kvision-tabulator::io.kvision////PointingToDeclaration//-777138954">
+  <div class="breadcrumbs"><a href="../index.html">kvision-tabulator</a><span class="delimiter">/</span><span class="current">io.kvision</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><p class="paragraph">KVision main Application class and some helper interfaces necessary to support Hot Module Replacement (HMR).</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1137763036%2FClasslikes%2F-777138954" anchor-label="TabulatorCssBootstrapModule" id="1137763036%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tabulator-css-bootstrap-module/index.html"><span>Tabulator</span><wbr><span>Css</span><wbr><span>Bootstrap</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1137763036%2FClasslikes%2F-777138954"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-tabulator-css-bootstrap-module/index.html">TabulatorCssBootstrapModule</a> : <a href="../../../kvision/io.kvision/-module-initializer/index.html">ModuleInitializer</a></div><div class="brief "><p class="paragraph">Initializer for KVision Tabulator with Bootstrap 5 CSS theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1663898083%2FClasslikes%2F-777138954" anchor-label="TabulatorCssBulmaModule" id="-1663898083%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tabulator-css-bulma-module/index.html"><span>Tabulator</span><wbr><span>Css</span><wbr><span>Bulma</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1663898083%2FClasslikes%2F-777138954"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-tabulator-css-bulma-module/index.html">TabulatorCssBulmaModule</a> : <a href="../../../kvision/io.kvision/-module-initializer/index.html">ModuleInitializer</a></div><div class="brief "><p class="paragraph">Initializer for KVision Tabulator with Bulma CSS theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1389015389%2FClasslikes%2F-777138954" anchor-label="TabulatorCssMaterializeModule" id="1389015389%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tabulator-css-materialize-module/index.html"><span>Tabulator</span><wbr><span>Css</span><wbr><span>Materialize</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1389015389%2FClasslikes%2F-777138954"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-tabulator-css-materialize-module/index.html">TabulatorCssMaterializeModule</a> : <a href="../../../kvision/io.kvision/-module-initializer/index.html">ModuleInitializer</a></div><div class="brief "><p class="paragraph">Initializer for KVision Tabulator with Materialize CSS theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="942366160%2FClasslikes%2F-777138954" anchor-label="TabulatorCssMidnightModule" id="942366160%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tabulator-css-midnight-module/index.html"><span>Tabulator</span><wbr><span>Css</span><wbr><span>Midnight</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="942366160%2FClasslikes%2F-777138954"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-tabulator-css-midnight-module/index.html">TabulatorCssMidnightModule</a> : <a href="../../../kvision/io.kvision/-module-initializer/index.html">ModuleInitializer</a></div><div class="brief "><p class="paragraph">Initializer for KVision Tabulator with Midnight CSS theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1377318497%2FClasslikes%2F-777138954" anchor-label="TabulatorCssModernModule" id="1377318497%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tabulator-css-modern-module/index.html"><span>Tabulator</span><wbr><span>Css</span><wbr><span>Modern</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1377318497%2FClasslikes%2F-777138954"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-tabulator-css-modern-module/index.html">TabulatorCssModernModule</a> : <a href="../../../kvision/io.kvision/-module-initializer/index.html">ModuleInitializer</a></div><div class="brief "><p class="paragraph">Initializer for KVision Tabulator with Modern CSS theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-629000762%2FClasslikes%2F-777138954" anchor-label="TabulatorCssSemanticUIModule" id="-629000762%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tabulator-css-semantic-u-i-module/index.html"><span>Tabulator</span><wbr><span>Css</span><wbr><span>Semantic</span><wbr><span><span>UIModule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-629000762%2FClasslikes%2F-777138954"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-tabulator-css-semantic-u-i-module/index.html">TabulatorCssSemanticUIModule</a> : <a href="../../../kvision/io.kvision/-module-initializer/index.html">ModuleInitializer</a></div><div class="brief "><p class="paragraph">Initializer for KVision Tabulator with Semantic UI CSS theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1882759826%2FClasslikes%2F-777138954" anchor-label="TabulatorCssSimpleModule" id="-1882759826%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tabulator-css-simple-module/index.html"><span>Tabulator</span><wbr><span>Css</span><wbr><span>Simple</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1882759826%2FClasslikes%2F-777138954"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-tabulator-css-simple-module/index.html">TabulatorCssSimpleModule</a> : <a href="../../../kvision/io.kvision/-module-initializer/index.html">ModuleInitializer</a></div><div class="brief "><p class="paragraph">Initializer for KVision Tabulator with simple CSS theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-417452125%2FClasslikes%2F-777138954" anchor-label="TabulatorCssSiteDarkModule" id="-417452125%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tabulator-css-site-dark-module/index.html"><span>Tabulator</span><wbr><span>Css</span><wbr><span>Site</span><wbr><span>Dark</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-417452125%2FClasslikes%2F-777138954"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-tabulator-css-site-dark-module/index.html">TabulatorCssSiteDarkModule</a> : <a href="../../../kvision/io.kvision/-module-initializer/index.html">ModuleInitializer</a></div><div class="brief "><p class="paragraph">Initializer for KVision Tabulator with Site Dark CSS theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-667587517%2FClasslikes%2F-777138954" anchor-label="TabulatorCssStandardModule" id="-667587517%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tabulator-css-standard-module/index.html"><span>Tabulator</span><wbr><span>Css</span><wbr><span>Standard</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-667587517%2FClasslikes%2F-777138954"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-tabulator-css-standard-module/index.html">TabulatorCssStandardModule</a> : <a href="../../../kvision/io.kvision/-module-initializer/index.html">ModuleInitializer</a></div><div class="brief "><p class="paragraph">Initializer for KVision Tabulator module with standard CSS theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1628091143%2FClasslikes%2F-777138954" anchor-label="TabulatorModule" id="1628091143%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tabulator-module/index.html"><span>Tabulator</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1628091143%2FClasslikes%2F-777138954"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-tabulator-module/index.html">TabulatorModule</a> : <a href="../../../kvision/io.kvision/-module-initializer/index.html">ModuleInitializer</a></div><div class="brief "><p class="paragraph">Initializer for KVision Tabulator module.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>LeafletObjectFactory</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.1.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-maps/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-maps/jsMain" data-filter=":kvision-modules:kvision-maps/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kvision-maps::io.kvision.maps/LeafletObjectFactory///PointingToDeclaration//-1002496885">
+  <div class="breadcrumbs"><a href="../../index.html">kvision-maps</a><span class="delimiter">/</span><a href="../index.html">io.kvision.maps</a><span class="delimiter">/</span><span class="current">LeafletObjectFactory</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Leaflet</span><wbr><span>Object</span><wbr><span><span>Factory</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">LeafletObjectFactory</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-maps/src/jsMain/kotlin/io/kvision/maps/LeafletObjectFactory.kt#L86">source</a>)</span></span></div><p class="paragraph">Leaflet constructors.</p><p class="paragraph">Equivalent to Leaflet's <code class="lang-kotlin">L</code> shortcut.</p><p class="paragraph">See <a href="https://leafletjs.com/reference.html#class-class-factories"><code class="lang-kotlin">https://leafletjs.com/reference.html#class-class-factories</code></a></p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-411084629%2FFunctions%2F-1002496885" anchor-label="attribution" id="-411084629%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="attribution.html"><span><span>attribution</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-411084629%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="attribution.html"><span class="token function">attribution</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-attribution/-attribution-options/index.html">Attribution.AttributionOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-attribution/index.html">Attribution</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1024397451%2FFunctions%2F-1002496885" anchor-label="canvas" id="-1024397451%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="canvas.html"><span><span>canvas</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1024397451%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="canvas.html"><span class="token function">canvas</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-canvas/-canvas-options/index.html">Canvas.CanvasOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-canvas/index.html">Canvas</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="271278466%2FFunctions%2F-1002496885" anchor-label="circle" id="271278466%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="circle.html"><span><span>circle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="271278466%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="circle.html"><span class="token function">circle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latlng<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-circle-marker/-circle-marker-options/index.html">CircleMarker.CircleMarkerOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-circle/index.html">Circle</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-910263320%2FFunctions%2F-1002496885" anchor-label="circleMarker" id="-910263320%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="circle-marker.html"><span>circle</span><wbr><span><span>Marker</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-910263320%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="circle-marker.html"><span class="token function">circleMarker</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latlng<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-circle-marker/-circle-marker-options/index.html">CircleMarker.CircleMarkerOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-circle-marker/index.html">CircleMarker</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1378477728%2FFunctions%2F-1002496885" anchor-label="divIcon" id="-1378477728%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="div-icon.html"><span>div</span><wbr><span><span>Icon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1378477728%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="div-icon.html"><span class="token function">divIcon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.marker/-div-icon/-div-icon-options/index.html">DivIcon.DivIconOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.marker/-div-icon/index.html">DivIcon</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="497447967%2FFunctions%2F-1002496885" anchor-label="divOverlay" id="497447967%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="div-overlay.html"><span>div</span><wbr><span><span>Overlay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="497447967%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="div-overlay.html"><span class="token function">divOverlay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">source<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer/-layer/index.html">Layer</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-div-overlay/-div-overlay-options/index.html">DivOverlay.DivOverlayOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-div-overlay/index.html">DivOverlay</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-div-overlay/-div-overlay-options/index.html">DivOverlay.DivOverlayOptions</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1454565641%2FFunctions%2F-1002496885" anchor-label="featureGroup" id="1454565641%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="feature-group.html"><span>feature</span><wbr><span><span>Group</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1454565641%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="feature-group.html"><span class="token function">featureGroup</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">layers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.layer/-layer/index.html">Layer</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer/-layer/-layer-options/index.html">Layer.LayerOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer/-feature-group/index.html">FeatureGroup</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="823945247%2FFunctions%2F-1002496885" anchor-label="icon" id="823945247%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="icon.html"><span><span>icon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="823945247%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="icon.html"><span class="token function">icon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.marker/-icon/-icon-options/index.html">Icon.IconOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.marker/-icon/index.html">Icon</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.layer.marker/-icon/-icon-options/index.html">Icon.IconOptions</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="103249592%2FFunctions%2F-1002496885" anchor-label="imageOverlay" id="103249592%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="image-overlay.html"><span>image</span><wbr><span><span>Overlay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="103249592%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="image-overlay.html"><span class="token function">imageOverlay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">imageUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">bounds<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng-bounds/index.html">LatLngBounds</a><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-image-overlay/-image-overlay-options/index.html">ImageOverlay.ImageOverlayOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-image-overlay/index.html">ImageOverlay</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1993838857%2FFunctions%2F-1002496885" anchor-label="latLng" id="1993838857%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="lat-lng.html"><span>lat</span><wbr><span><span>Lng</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1993838857%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="lat-lng.html"><span class="token function">latLng</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">longitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="lat-lng.html"><span class="token function">latLng</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latLng<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">altitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="lat-lng.html"><span class="token function">latLng</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">longitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">altitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1912168338%2FFunctions%2F-1002496885" anchor-label="latLngBounds" id="-1912168338%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="lat-lng-bounds.html"><span>lat</span><wbr><span>Lng</span><wbr><span><span>Bounds</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1912168338%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="lat-lng-bounds.html"><span class="token function">latLngBounds</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">southWestToNorthEast<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a><span class="token punctuation">, </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng-bounds/index.html">LatLngBounds</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="lat-lng-bounds.html"><span class="token function">latLngBounds</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">southWest<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a><span class="token punctuation">, </span></span><span class="parameter ">northEast<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng-bounds/index.html">LatLngBounds</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="774787186%2FFunctions%2F-1002496885" anchor-label="layers" id="774787186%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="layers.html"><span><span>layers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="774787186%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="layers.html"><span class="token function">layers</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">baseLayers<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-control/-layers-object/index.html">Control.LayersObject</a><span class="token operator"> = </span>layersObject(emptyMap())<span class="token punctuation">, </span></span><span class="parameter ">overlays<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-control/-layers-object/index.html">Control.LayersObject</a><span class="token operator"> = </span>layersObject(emptyMap())<span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-layers/-layers-options/index.html">Layers.LayersOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-layers/index.html">Layers</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1979867419%2FFunctions%2F-1002496885" anchor-label="layersObject" id="-1979867419%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="layers-object.html"><span>layers</span><wbr><span><span>Object</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1979867419%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="layers-object.html"><span class="token function">layersObject</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tileLayers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/index.html">TileLayer</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-control/-layers-object/index.html">Control.LayersObject</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-386214910%2FFunctions%2F-1002496885" anchor-label="map" id="-386214910%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map.html"><span><span>map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-386214910%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="map.html"><span class="token function">map</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">element<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-h-t-m-l-element/index.html">HTMLElement</a><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.map/-leaflet-map/-leaflet-map-options/index.html">LeafletMap.LeafletMapOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.map/-leaflet-map/index.html">LeafletMap</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1053026369%2FFunctions%2F-1002496885" anchor-label="marker" id="1053026369%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="marker.html"><span><span>marker</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1053026369%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="marker.html"><span class="token function">marker</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latlng<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.marker/-marker/-marker-options/index.html">Marker.MarkerOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.marker/-marker/index.html">Marker</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="504791703%2FFunctions%2F-1002496885" anchor-label="multiPolygon" id="504791703%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="multi-polygon.html"><span>multi</span><wbr><span><span>Polygon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="504791703%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="multi-polygon.html"><span class="token function">multiPolygon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latlngs<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-collection/index.html">Collection</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-collection/index.html">Collection</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-collection/index.html">Collection</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-polyline/-polyline-options/index.html">Polyline.PolylineOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-polygon/index.html">Polygon</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.geojson/-multi-polygon/index.html">MultiPolygon</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">See <a href="https://leafletjs.com/reference.html#polygon"><code class="lang-kotlin">https://leafletjs.com/reference.html#polygon</code></a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1928165219%2FFunctions%2F-1002496885" anchor-label="multiPolyline" id="1928165219%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="multi-polyline.html"><span>multi</span><wbr><span><span>Polyline</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1928165219%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="multi-polyline.html"><span class="token function">multiPolyline</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latLngs<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-collection/index.html">Collection</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-collection/index.html">Collection</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-polyline/-polyline-options/index.html">Polyline.PolylineOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-polyline/index.html">Polyline</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.geojson/-multi-line-string/index.html">MultiLineString</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-845227222%2FFunctions%2F-1002496885" anchor-label="polygon" id="-845227222%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="polygon.html"><span><span>polygon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-845227222%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="polygon.html"><span class="token function">polygon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latlngs<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-collection/index.html">Collection</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-polyline/-polyline-options/index.html">Polyline.PolylineOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-polygon/index.html">Polygon</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.geojson/-polygon/index.html">Polygon</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">See <a href="https://leafletjs.com/reference.html#polygon"><code class="lang-kotlin">https://leafletjs.com/reference.html#polygon</code></a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1105874488%2FFunctions%2F-1002496885" anchor-label="polyline" id="-1105874488%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="polyline.html"><span><span>polyline</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1105874488%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="polyline.html"><span class="token function">polyline</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latLngs<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-collection/index.html">Collection</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng/index.html">LatLng</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-polyline/-polyline-options/index.html">Polyline.PolylineOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-polyline/index.html">Polyline</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.geojson/-line-string/index.html">LineString</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="438014744%2FFunctions%2F-1002496885" anchor-label="popup" id="438014744%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="popup.html"><span><span>popup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="438014744%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="popup.html"><span class="token function">popup</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">source<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer/-layer/index.html">Layer</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-popup/-popup-options/index.html">Popup.PopupOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-popup/index.html">Popup</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-59589274%2FFunctions%2F-1002496885" anchor-label="rectangle" id="-59589274%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="rectangle.html"><span><span>rectangle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-59589274%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="rectangle.html"><span class="token function">rectangle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latLngBounds<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng-bounds/index.html">LatLngBounds</a><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-polyline/-polyline-options/index.html">Polyline.PolylineOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-rectangle/index.html">Rectangle</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1114326742%2FFunctions%2F-1002496885" anchor-label="scale" id="-1114326742%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scale.html"><span><span>scale</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1114326742%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="scale.html"><span class="token function">scale</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-scale/-scale-options/index.html">Scale.ScaleOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-scale/index.html">Scale</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1212473335%2FFunctions%2F-1002496885" anchor-label="svg" id="-1212473335%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="svg.html"><span><span>svg</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1212473335%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="svg.html"><span class="token function">svg</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-renderer/-renderer-options/index.html">Renderer.RendererOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.vector/-s-v-g/index.html">SVG</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="595130040%2FFunctions%2F-1002496885" anchor-label="tileLayer" id="595130040%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tile-layer.html"><span>tile</span><wbr><span><span>Layer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="595130040%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="tile-layer.html"><span class="token function">tileLayer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlTemplate<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/-tile-layer-options/index.html">TileLayer.TileLayerOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/index.html">TileLayer</a><span class="token operator">&lt;</span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-tile-layer/-tile-layer-options/index.html">TileLayer.TileLayerOptions</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-17447072%2FFunctions%2F-1002496885" anchor-label="tooltip" id="-17447072%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tooltip.html"><span><span>tooltip</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-17447072%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="tooltip.html"><span class="token function">tooltip</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">source<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer/-layer/index.html">Layer</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-tooltip/-tooltip-options/index.html">Tooltip.TooltipOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-tooltip/index.html">Tooltip</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-711548269%2FFunctions%2F-1002496885" anchor-label="videoOverlay" id="-711548269%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="video-overlay.html"><span>video</span><wbr><span><span>Overlay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-711548269%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="video-overlay.html"><span class="token function">videoOverlay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">video<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">bounds<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng-bounds/index.html">LatLngBounds</a><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-video-overlay/-video-overlay-options/index.html">VideoOverlay.VideoOverlayOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-video-overlay/index.html">VideoOverlay</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="video-overlay.html"><span class="token function">videoOverlay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">video<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">bounds<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng-bounds/index.html">LatLngBounds</a><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-video-overlay/-video-overlay-options/index.html">VideoOverlay.VideoOverlayOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-video-overlay/index.html">VideoOverlay</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="video-overlay.html"><span class="token function">videoOverlay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">video<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-h-t-m-l-video-element/index.html">HTMLVideoElement</a><span class="token punctuation">, </span></span><span class="parameter ">bounds<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.geo/-lat-lng-bounds/index.html">LatLngBounds</a><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-video-overlay/-video-overlay-options/index.html">VideoOverlay.VideoOverlayOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.overlay/-video-overlay/index.html">VideoOverlay</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1327650526%2FFunctions%2F-1002496885" anchor-label="wms" id="1327650526%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="wms.html"><span><span>wms</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1327650526%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="wms.html"><span class="token function">wms</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">baseUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-w-m-s/-w-m-s-options/index.html">WMS.WMSOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.layer.tile/-w-m-s/index.html">WMS</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1701537872%2FFunctions%2F-1002496885" anchor-label="zoom" id="1701537872%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="zoom.html"><span><span>zoom</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1701537872%2FFunctions%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="zoom.html"><span class="token function">zoom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configure<span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-zoom/-zoom-control-options/index.html">Zoom.ZoomControlOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.kvision.maps.externals.leaflet.control/-zoom/index.html">Zoom</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

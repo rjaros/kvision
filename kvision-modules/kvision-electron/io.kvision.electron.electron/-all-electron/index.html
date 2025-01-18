@@ -1,0 +1,888 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>AllElectron</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.1.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-electron/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-electron/jsMain" data-filter=":kvision-modules:kvision-electron/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kvision-electron::io.kvision.electron.electron/AllElectron///PointingToDeclaration//-787640362">
+  <div class="breadcrumbs"><a href="../../index.html">kvision-electron</a><span class="delimiter">/</span><a href="../index.html">io.kvision.electron.electron</a><span class="delimiter">/</span><span class="current">AllElectron</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>All</span><wbr><span><span>Electron</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="index.html">AllElectron</a> : <a href="../-main-interface/index.html">MainInterface</a>, <a href="../-renderer-interface/index.html">RendererInterface</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-electron/src/jsMain/kotlin/io/kvision/electron/electron/Electron.kt#L105">source</a>)</span></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-525529407%2FProperties%2F-787640362" anchor-label="app" id="-525529407%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/app.html"><span><span>app</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-525529407%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/app.html">app</a><span class="token operator">: </span><a href="../-app/index.html">App</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2055698968%2FProperties%2F-787640362" anchor-label="autoUpdater" id="-2055698968%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/auto-updater.html"><span>auto</span><wbr><span><span>Updater</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2055698968%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/auto-updater.html">autoUpdater</a><span class="token operator">: </span><a href="../-auto-updater/index.html">AutoUpdater</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-44941419%2FProperties%2F-787640362" anchor-label="BrowserView" id="-44941419%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-browser-view.html"><span>Browser</span><wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-44941419%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-browser-view.html">BrowserView</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1752880490%2FProperties%2F-787640362" anchor-label="BrowserWindow" id="1752880490%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-browser-window.html"><span>Browser</span><wbr><span><span>Window</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1752880490%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-browser-window.html">BrowserWindow</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1851445342%2FProperties%2F-787640362" anchor-label="BrowserWindowProxy" id="-1851445342%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-browser-window-proxy.html"><span>Browser</span><wbr><span>Window</span><wbr><span><span>Proxy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1851445342%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-browser-window-proxy.html">BrowserWindowProxy</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1560558626%2FProperties%2F-787640362" anchor-label="ClientRequest" id="-1560558626%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-client-request.html"><span>Client</span><wbr><span><span>Request</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1560558626%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-client-request.html">ClientRequest</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1419751724%2FProperties%2F-787640362" anchor-label="clipboard" id="1419751724%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/clipboard.html"><span><span>clipboard</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1419751724%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/clipboard.html">clipboard</a><span class="token operator">: </span><a href="../-clipboard/index.html">Clipboard</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1025922019%2FProperties%2F-787640362" anchor-label="CommandLine" id="1025922019%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-command-line.html"><span>Command</span><wbr><span><span>Line</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1025922019%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-command-line.html">CommandLine</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="227177135%2FProperties%2F-787640362" anchor-label="contentTracing" id="227177135%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/content-tracing.html"><span>content</span><wbr><span><span>Tracing</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="227177135%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/content-tracing.html">contentTracing</a><span class="token operator">: </span><a href="../-content-tracing/index.html">ContentTracing</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1264544662%2FProperties%2F-787640362" anchor-label="contextBridge" id="-1264544662%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/context-bridge.html"><span>context</span><wbr><span><span>Bridge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1264544662%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/context-bridge.html">contextBridge</a><span class="token operator">: </span><a href="../-context-bridge/index.html">ContextBridge</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1028163661%2FProperties%2F-787640362" anchor-label="Cookies" id="-1028163661%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-cookies.html"><span><span>Cookies</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1028163661%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-cookies.html">Cookies</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1776048422%2FProperties%2F-787640362" anchor-label="crashReporter" id="-1776048422%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/crash-reporter.html"><span>crash</span><wbr><span><span>Reporter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1776048422%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/crash-reporter.html">crashReporter</a><span class="token operator">: </span><a href="../-crash-reporter/index.html">CrashReporter</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2133750711%2FProperties%2F-787640362" anchor-label="Debugger" id="2133750711%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-debugger.html"><span><span>Debugger</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2133750711%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-debugger.html">Debugger</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="319993114%2FProperties%2F-787640362" anchor-label="desktopCapturer" id="319993114%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/desktop-capturer.html"><span>desktop</span><wbr><span><span>Capturer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="319993114%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/desktop-capturer.html">desktopCapturer</a><span class="token operator">: </span><a href="../-desktop-capturer/index.html">DesktopCapturer</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="648101712%2FProperties%2F-787640362" anchor-label="dialog" id="648101712%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/dialog.html"><span><span>dialog</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="648101712%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/dialog.html">dialog</a><span class="token operator">: </span><a href="../-dialog/index.html">Dialog</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-74869915%2FProperties%2F-787640362" anchor-label="Dock" id="-74869915%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-dock.html"><span><span>Dock</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-74869915%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-dock.html">Dock</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1274748893%2FProperties%2F-787640362" anchor-label="DownloadItem" id="1274748893%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-download-item.html"><span>Download</span><wbr><span><span>Item</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1274748893%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-download-item.html">DownloadItem</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-645575761%2FProperties%2F-787640362" anchor-label="globalShortcut" id="-645575761%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/global-shortcut.html"><span>global</span><wbr><span><span>Shortcut</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-645575761%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/global-shortcut.html">globalShortcut</a><span class="token operator">: </span><a href="../-global-shortcut/index.html">GlobalShortcut</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-221110715%2FProperties%2F-787640362" anchor-label="inAppPurchase" id="-221110715%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/in-app-purchase.html"><span>in</span><wbr><span>App</span><wbr><span><span>Purchase</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-221110715%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/in-app-purchase.html">inAppPurchase</a><span class="token operator">: </span><a href="../-in-app-purchase/index.html">InAppPurchase</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1314242689%2FProperties%2F-787640362" anchor-label="IncomingMessage" id="1314242689%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-incoming-message.html"><span>Incoming</span><wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1314242689%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-incoming-message.html">IncomingMessage</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2066591507%2FProperties%2F-787640362" anchor-label="ipcMain" id="-2066591507%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/ipc-main.html"><span>ipc</span><wbr><span><span>Main</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2066591507%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/ipc-main.html">ipcMain</a><span class="token operator">: </span><a href="../-ipc-main/index.html">IpcMain</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-243652445%2FProperties%2F-787640362" anchor-label="ipcRenderer" id="-243652445%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/ipc-renderer.html"><span>ipc</span><wbr><span><span>Renderer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-243652445%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/ipc-renderer.html">ipcRenderer</a><span class="token operator">: </span><a href="../-ipc-renderer/index.html">IpcRenderer</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1876473415%2FProperties%2F-787640362" anchor-label="Menu" id="-1876473415%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-menu.html"><span><span>Menu</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1876473415%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-menu.html">Menu</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1085238246%2FProperties%2F-787640362" anchor-label="MenuItem" id="1085238246%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-menu-item.html"><span>Menu</span><wbr><span><span>Item</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1085238246%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-menu-item.html">MenuItem</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1904646590%2FProperties%2F-787640362" anchor-label="nativeImage" id="1904646590%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/native-image.html"><span>native</span><wbr><span><span>Image</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1904646590%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/native-image.html">nativeImage</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-980613872%2FProperties%2F-787640362" anchor-label="nativeTheme" id="-980613872%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/native-theme.html"><span>native</span><wbr><span><span>Theme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-980613872%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/native-theme.html">nativeTheme</a><span class="token operator">: </span><a href="../-native-theme/index.html">NativeTheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1405877563%2FProperties%2F-787640362" anchor-label="net" id="-1405877563%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/net.html"><span><span>net</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1405877563%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/net.html">net</a><span class="token operator">: </span><a href="../-net/index.html">Net</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-338465519%2FProperties%2F-787640362" anchor-label="netLog" id="-338465519%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/net-log.html"><span>net</span><wbr><span><span>Log</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-338465519%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/net-log.html">netLog</a><span class="token operator">: </span><a href="../-net-log/index.html">NetLog</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2073034579%2FProperties%2F-787640362" anchor-label="Notification" id="-2073034579%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-notification.html"><span><span>Notification</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2073034579%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-notification.html">Notification</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-12910493%2FProperties%2F-787640362" anchor-label="powerMonitor" id="-12910493%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/power-monitor.html"><span>power</span><wbr><span><span>Monitor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-12910493%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/power-monitor.html">powerMonitor</a><span class="token operator">: </span><a href="../-power-monitor/index.html">PowerMonitor</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-244743840%2FProperties%2F-787640362" anchor-label="powerSaveBlocker" id="-244743840%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/power-save-blocker.html"><span>power</span><wbr><span>Save</span><wbr><span><span>Blocker</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-244743840%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/power-save-blocker.html">powerSaveBlocker</a><span class="token operator">: </span><a href="../-power-save-blocker/index.html">PowerSaveBlocker</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-752272064%2FProperties%2F-787640362" anchor-label="protocol" id="-752272064%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/protocol.html"><span><span>protocol</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-752272064%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/protocol.html">protocol</a><span class="token operator">: </span><a href="../-protocol/index.html">Protocol</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1419152556%2FProperties%2F-787640362" anchor-label="screen" id="1419152556%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/screen.html"><span><span>screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1419152556%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/screen.html">screen</a><span class="token operator">: </span><a href="../-screen/index.html">Screen</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-70682260%2FProperties%2F-787640362" anchor-label="session" id="-70682260%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/session.html"><span><span>session</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-70682260%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/session.html">session</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-544596910%2FProperties%2F-787640362" anchor-label="shell" id="-544596910%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/shell.html"><span><span>shell</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-544596910%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/shell.html">shell</a><span class="token operator">: </span><a href="../-shell/index.html">Shell</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1018546137%2FProperties%2F-787640362" anchor-label="systemPreferences" id="1018546137%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/system-preferences.html"><span>system</span><wbr><span><span>Preferences</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1018546137%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/system-preferences.html">systemPreferences</a><span class="token operator">: </span><a href="../-system-preferences/index.html">SystemPreferences</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1518006556%2FProperties%2F-787640362" anchor-label="TouchBar" id="-1518006556%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-touch-bar.html"><span>Touch</span><wbr><span><span>Bar</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1518006556%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-touch-bar.html">TouchBar</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-386088302%2FProperties%2F-787640362" anchor-label="TouchBarButton" id="-386088302%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-touch-bar-button.html"><span>Touch</span><wbr><span>Bar</span><wbr><span><span>Button</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-386088302%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-touch-bar-button.html">TouchBarButton</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1355099557%2FProperties%2F-787640362" anchor-label="TouchBarColorPicker" id="1355099557%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-touch-bar-color-picker.html"><span>Touch</span><wbr><span>Bar</span><wbr><span>Color</span><wbr><span><span>Picker</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1355099557%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-touch-bar-color-picker.html">TouchBarColorPicker</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1016900471%2FProperties%2F-787640362" anchor-label="TouchBarGroup" id="1016900471%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-touch-bar-group.html"><span>Touch</span><wbr><span>Bar</span><wbr><span><span>Group</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1016900471%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-touch-bar-group.html">TouchBarGroup</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1432739678%2FProperties%2F-787640362" anchor-label="TouchBarLabel" id="-1432739678%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-touch-bar-label.html"><span>Touch</span><wbr><span>Bar</span><wbr><span><span>Label</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1432739678%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-touch-bar-label.html">TouchBarLabel</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1206364113%2FProperties%2F-787640362" anchor-label="TouchBarPopover" id="1206364113%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-touch-bar-popover.html"><span>Touch</span><wbr><span>Bar</span><wbr><span><span>Popover</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1206364113%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-touch-bar-popover.html">TouchBarPopover</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1608656836%2FProperties%2F-787640362" anchor-label="TouchBarScrubber" id="1608656836%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-touch-bar-scrubber.html"><span>Touch</span><wbr><span>Bar</span><wbr><span><span>Scrubber</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1608656836%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-touch-bar-scrubber.html">TouchBarScrubber</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1724044601%2FProperties%2F-787640362" anchor-label="TouchBarSegmentedControl" id="1724044601%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-touch-bar-segmented-control.html"><span>Touch</span><wbr><span>Bar</span><wbr><span>Segmented</span><wbr><span><span>Control</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1724044601%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-touch-bar-segmented-control.html">TouchBarSegmentedControl</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1025205187%2FProperties%2F-787640362" anchor-label="TouchBarSlider" id="1025205187%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-touch-bar-slider.html"><span>Touch</span><wbr><span>Bar</span><wbr><span><span>Slider</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1025205187%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-touch-bar-slider.html">TouchBarSlider</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="75359960%2FProperties%2F-787640362" anchor-label="TouchBarSpacer" id="75359960%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-touch-bar-spacer.html"><span>Touch</span><wbr><span>Bar</span><wbr><span><span>Spacer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="75359960%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-touch-bar-spacer.html">TouchBarSpacer</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="171662274%2FProperties%2F-787640362" anchor-label="Tray" id="171662274%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-tray.html"><span><span>Tray</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="171662274%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-tray.html">Tray</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1004380660%2FProperties%2F-787640362" anchor-label="webContents" id="1004380660%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/web-contents.html"><span>web</span><wbr><span><span>Contents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1004380660%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/web-contents.html">webContents</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1165842559%2FProperties%2F-787640362" anchor-label="webFrame" id="1165842559%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/web-frame.html"><span>web</span><wbr><span><span>Frame</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1165842559%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/web-frame.html">webFrame</a><span class="token operator">: </span><a href="../-web-frame/index.html">WebFrame</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1433016765%2FProperties%2F-787640362" anchor-label="WebRequest" id="1433016765%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/-web-request.html"><span>Web</span><wbr><span><span>Request</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1433016765%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/-web-request.html">WebRequest</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-673707945%2FProperties%2F-787640362" anchor-label="webviewTag" id="-673707945%2FProperties%2F-787640362" data-filterable-set=":kvision-modules:kvision-electron/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-electron/jsMain" data-filterable-set=":kvision-modules:kvision-electron/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-common-interface/webview-tag.html"><span>webview</span><wbr><span><span>Tag</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-673707945%2FProperties%2F-787640362"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-electron/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-common-interface/webview-tag.html">webviewTag</a><span class="token operator">: </span><a href="../-webview-tag/index.html">WebviewTag</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

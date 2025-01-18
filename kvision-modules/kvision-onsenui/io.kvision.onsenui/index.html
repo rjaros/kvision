@@ -1,0 +1,247 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>io.kvision.onsenui</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.1.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-onsenui/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-onsenui/jsMain" data-filter=":kvision-modules:kvision-onsenui/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="kvision-onsenui::io.kvision.onsenui////PointingToDeclaration//-1707748827">
+  <div class="breadcrumbs"><a href="../index.html">kvision-onsenui</a><span class="delimiter">/</span><span class="current">io.kvision.onsenui</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-onsenui/jsMain"><p class="paragraph">Onsen UI helper utility functions.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-1702200975%2FClasslikes%2F-1707748827" anchor-label="BackButtonEvent" id="-1702200975%2FClasslikes%2F-1707748827" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-onsenui/jsMain" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-back-button-event/index.html"><span>Back</span><wbr><span>Button</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1702200975%2FClasslikes%2F-1707748827"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-onsenui/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-back-button-event/index.html">BackButtonEvent</a></div><div class="brief "><p class="paragraph">Back button event type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-411266131%2FClasslikes%2F-1707748827" anchor-label="FloatDirection" id="-411266131%2FClasslikes%2F-1707748827" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-onsenui/jsMain" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-float-direction/index.html"><span>Float</span><wbr><span><span>Direction</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-411266131%2FClasslikes%2F-1707748827"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-onsenui/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-float-direction/index.html">FloatDirection</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-float-direction/index.html">FloatDirection</a><span class="token operator">&gt; </span>, <a href="../../../kvision/io.kvision.core/-dom-attribute/index.html">DomAttribute</a></div><div class="brief "><p class="paragraph">Floating directions.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1340795475%2FClasslikes%2F-1707748827" anchor-label="FloatPosition" id="-1340795475%2FClasslikes%2F-1707748827" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-onsenui/jsMain" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-float-position/index.html"><span>Float</span><wbr><span><span>Position</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1340795475%2FClasslikes%2F-1707748827"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-onsenui/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-float-position/index.html">FloatPosition</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-float-position/index.html">FloatPosition</a><span class="token operator">&gt; </span>, <a href="../../../kvision/io.kvision.core/-dom-attribute/index.html">DomAttribute</a></div><div class="brief "><p class="paragraph">Floating positions.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-971458103%2FClasslikes%2F-1707748827" anchor-label="GridVerticalAlign" id="-971458103%2FClasslikes%2F-1707748827" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-onsenui/jsMain" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-grid-vertical-align/index.html"><span>Grid</span><wbr><span>Vertical</span><wbr><span><span>Align</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-971458103%2FClasslikes%2F-1707748827"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-onsenui/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-grid-vertical-align/index.html">GridVerticalAlign</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-grid-vertical-align/index.html">GridVerticalAlign</a><span class="token operator">&gt; </span>, <a href="../../../kvision/io.kvision.core/-dom-attribute/index.html">DomAttribute</a></div><div class="brief "><p class="paragraph">Grid row and column vertical align.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-611259903%2FClasslikes%2F-1707748827" anchor-label="OnsenUi" id="-611259903%2FClasslikes%2F-1707748827" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-onsenui/jsMain" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-onsen-ui/index.html"><span>Onsen</span><wbr><span><span>Ui</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-611259903%2FClasslikes%2F-1707748827"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-onsenui/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-onsen-ui/index.html"><strike>OnsenUi</strike></a></div><div class="brief "><p class="paragraph">Contains global Onsen UI functions.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="367792038%2FClasslikes%2F-1707748827" anchor-label="OrientationEvent" id="367792038%2FClasslikes%2F-1707748827" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-onsenui/jsMain" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-orientation-event/index.html"><span>Orientation</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="367792038%2FClasslikes%2F-1707748827"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-onsenui/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-orientation-event/index.html">OrientationEvent</a></div><div class="brief "><p class="paragraph">Change orientation event event type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1268053763%2FClasslikes%2F-1707748827" anchor-label="Platform" id="-1268053763%2FClasslikes%2F-1707748827" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-onsenui/jsMain" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-platform/index.html"><span><span>Platform</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1268053763%2FClasslikes%2F-1707748827"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-onsenui/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-platform/index.html">Platform</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-platform/index.html">Platform</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Platform types.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-37132433%2FFunctions%2F-1707748827" anchor-label="enableGestureDetector" id="-37132433%2FFunctions%2F-1707748827" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-onsenui/jsMain" data-filterable-set=":kvision-modules:kvision-onsenui/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="enable-gesture-detector.html"><span>enable</span><wbr><span>Gesture</span><wbr><span><span>Detector</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-37132433%2FFunctions%2F-1707748827"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-onsenui/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../../../kvision/io.kvision.core/-widget/index.html">Widget</a><span class="token punctuation">.</span><a href="enable-gesture-detector.html"><span class="token function">enableGestureDetector</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Enable gesture detector for a given Widget.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
