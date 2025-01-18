@@ -27,6 +27,7 @@ import kotlinx.browser.window
 /**
  * Main object for Cordova screen.
  */
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 object Screen {
 
     /**

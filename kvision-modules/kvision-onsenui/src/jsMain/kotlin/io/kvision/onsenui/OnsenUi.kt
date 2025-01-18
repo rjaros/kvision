@@ -102,7 +102,8 @@ enum class Platform(internal val type: String) {
 /**
  * Contains global Onsen UI functions.
  */
-@Suppress("UnsafeCastFromDynamic")
+@Suppress("UnsafeCastFromDynamic", "DEPRECATION")
+@Deprecated("The kvision-onsenui module is deprecated and will be removed in a future version.")
 object OnsenUi {
 
     /**

@@ -35,6 +35,7 @@ class CameraException(message: String) : Exception(message)
 /**
  * Main object for Cordova camera.
  */
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 object Camera {
 
     private const val CAMERA_ACTIVE_STORAGE_KEY = "kv_camera_active_storage_key"

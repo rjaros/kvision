@@ -35,6 +35,7 @@ external class PromptResponse {
 /**
  * Main object for Cordova notifications.
  */
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 object Notification {
 
     /**

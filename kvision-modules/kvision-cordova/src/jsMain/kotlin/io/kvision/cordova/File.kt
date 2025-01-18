@@ -64,6 +64,7 @@ external class SystemDirs {
 /**
  * Main object for Cordova file.
  */
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 object File {
 
     const val NOT_FOUND_ERR = 1

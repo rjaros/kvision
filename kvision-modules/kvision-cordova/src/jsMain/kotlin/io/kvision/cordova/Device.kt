@@ -80,6 +80,7 @@ private external val device: Device
 /**
  * Cordova device information object.
  */
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 var cordovaDevice: Device? = null
     private set
 
@@ -129,6 +130,8 @@ fun addCordovaEventListener(event: CordovaEvent, listener: (Event) -> Unit) {
 /**
  * Suspending function to return device information object.
  */
+@Suppress("DEPRECATION")
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 suspend fun getDevice(): Device {
     return cordovaDevice ?: suspendCoroutine { continuation ->
         addDeviceReadyListener {

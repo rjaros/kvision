@@ -73,6 +73,7 @@ class GeolocationException(val code: PositionError, message: String) : Exception
 /**
  * Main geolocation object based on webview api.
  */
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 object Geolocation {
 
     /**

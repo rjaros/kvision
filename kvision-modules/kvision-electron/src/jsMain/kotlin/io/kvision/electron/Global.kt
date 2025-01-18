@@ -24,4 +24,5 @@ package io.kvision.electron
 
 import io.kvision.electron.nodejs.Global
 
+@Deprecated("The kvision-electron module is deprecated and will be removed in a future version.")
 external var global: Global /* NodeJS.Global & Any */

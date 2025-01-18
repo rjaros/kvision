@@ -30,6 +30,7 @@ import kotlin.coroutines.suspendCoroutine
 /**
  * Main object for Cordova network.
  */
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 object Network {
 
     /**

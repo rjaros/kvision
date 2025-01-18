@@ -53,6 +53,7 @@ external class Browser {
 /**
  * Main object for Cordova InAppBrowser api.
  */
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 object InAppBrowser {
 
     /**

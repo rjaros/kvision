@@ -24,6 +24,7 @@ package io.kvision
 /**
  * Initializer for KVision OnsenUI module.
  */
+@Deprecated("The kvision-onsenui module is deprecated and will be removed in a future version.")
 object OnsenUIModule : ModuleInitializer {
 
     internal val ons = require("onsenui/js/onsenui.js")

@@ -35,6 +35,7 @@ internal external val StatusBarJs: dynamic
  * Main object for Cordova status bar.
  */
 @Suppress("TooManyFunctions")
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 object StatusBar {
 
     /**

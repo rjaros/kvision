@@ -89,6 +89,7 @@ class CaptureException(code: MediaCapture.CaptureErrorCode) : Exception("Capture
 /**
  * Main media capture object.
  */
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 object MediaCapture {
 
     enum class CaptureErrorCode {

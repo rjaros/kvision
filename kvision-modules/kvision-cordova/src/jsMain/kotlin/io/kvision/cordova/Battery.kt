@@ -37,6 +37,7 @@ external class BatteryStatus {
 /**
  * Main object for Cordova battery.
  */
+@Deprecated("The kvision-cordova module is deprecated and will be removed in a future version.")
 object Battery {
 
     /**
