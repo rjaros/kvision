@@ -335,7 +335,7 @@ enum class Overflow(internal val overflow: String) {
  */
 enum class OverflowWrap(internal val overflowWrap: String) {
     NORMAL("normal"),
-    BREAKWORK("break-word"),
+    BREAKWORD("break-word"),
     ANYWHERE("anywhere")
 }
 
