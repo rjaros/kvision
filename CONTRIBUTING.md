@@ -11,7 +11,7 @@
 
 ## How to develop KVision
 
-1. You need JDK 17 or later installed on your system.
+1. You need JDK 21 or later installed on your system.
 2. Clone the code repository (create a fork if you want to make pull requests with your changes).
 3. Make your changes to KVision code.
 4. Run tests with `./gradlew check` command to check if everything is OK.
