@@ -46,7 +46,7 @@ fun KotlinMultiplatformExtension.kotlinJsTargets() {
     }
 }
 
-fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "17") {
+fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "21") {
     jvmToolchain {
         languageVersion.set(JavaLanguageVersion.of(target))
     }
