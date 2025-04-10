@@ -10,12 +10,7 @@ plugins {
 }
 
 val javaVersion: String by project
-val kotlinVersion: String by System.getProperties()
-val autoServiceVersion: String by project
 val kotestVersion: String by project
-val kspVersion: String by System.getProperties()
-val springBootVersion: String by project
-val shadowVersion: String by project
 
 repositories {
     gradlePluginPortal()
@@ -43,9 +38,6 @@ kotlin {
 
 dependencies {
     implementation(kotlin("gradle-plugin"))
-    implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:$kspVersion")
-    compileOnly("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-    compileOnly("com.gradleup.shadow:shadow-gradle-plugin:$shadowVersion")
 
     testImplementation(gradleTestKit())
 
