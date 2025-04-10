@@ -856,12 +856,11 @@ open class Tabulator<T : Any>(
      * Converts a Kotlin data model to an internal (dynamic) data model
      */
     fun toPlainObj(data: T): dynamic {
-        return if (jsonHelper == null || serializer == null) {
+        if (jsonHelper == null || serializer == null) {
             throw IllegalStateException("The data class can't be serialized. Please provide a serializer when creating the Tabulator instance.")
-        } else {
-            @Suppress("UnsafeCastFromDynamic")
-            JSON.parse(jsonHelper!!.encodeToString(serializer, data))
         }
+        @Suppress("UnsafeCastFromDynamic")
+        return JSON.parse(jsonHelper!!.encodeToString(serializer, data))
     }
 
     internal fun addCustomRoot(root: Root) {
