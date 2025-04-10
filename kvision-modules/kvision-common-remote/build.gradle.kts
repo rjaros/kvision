@@ -9,8 +9,7 @@ plugins {
 // Versions
 val serializationVersion: String by project
 val coroutinesVersion: String by project
-val testNgVersion: String by project
-val hamcrestVersion: String by project
+val kiluaRpcVersion: String by project
 
 kotlin {
     compilerOptions()
@@ -21,6 +20,8 @@ kotlin {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+                api(project(":kvision-modules:kvision-common-types"))
+                api("dev.kilua:kilua-rpc-core:$kiluaRpcVersion")
             }
         }
         val jsMain by getting {
@@ -35,20 +36,13 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                api(project(":kvision-modules:kvision-common-types"))
             }
         }
         val jvmTest by getting {
             dependencies {
-                implementation("org.testng:testng:$testNgVersion")
-                implementation("org.hamcrest:hamcrest:$hamcrestVersion")
             }
         }
     }
-}
-
-tasks.withType<Test> {
-    useTestNG()
 }
 
 val javadocJar by tasks.registering(Jar::class) {

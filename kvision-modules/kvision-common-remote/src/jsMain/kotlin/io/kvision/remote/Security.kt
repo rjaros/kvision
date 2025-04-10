@@ -21,40 +21,10 @@
  */
 package io.kvision.remote
 
-import kotlinx.coroutines.asDeferred
-import kotlinx.serialization.Serializable
-
 /**
  * A security exception.
  */
 class SecurityException(message: String) : Exception(message)
-
-/**
- * Username and password credentials.
- */
-@Serializable
-data class Credentials(val username: String? = null, val password: String? = null)
-
-/**
- * Form login dispatcher.
- */
-class LoginService(val loginEndpoint: String) {
-    val loginAgent = CallAgent()
-
-    /**
-     * Login with a form.
-     * @param credentials username and password credentials
-     */
-    suspend fun login(credentials: Credentials?): Boolean =
-        if (credentials?.username != null) {
-            loginAgent.remoteCall(loginEndpoint, obj {
-                this.username = credentials.username
-                this.password = credentials.password
-            }, HttpMethod.POST, "application/x-www-form-urlencoded", ResponseBodyType.READABLE_STREAM).then { _: dynamic -> true }.asDeferred().await()
-        } else {
-            throw SecurityException("Credentials cannot be empty")
-        }
-}
 
 /**
  * Form login dispatcher.

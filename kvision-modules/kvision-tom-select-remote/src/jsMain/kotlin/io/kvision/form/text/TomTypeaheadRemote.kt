@@ -21,11 +21,11 @@
  */
 package io.kvision.form.text
 
+import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.Container
 import io.kvision.form.select.TomSelectCallbacks
 import io.kvision.html.InputType
-import io.kvision.remote.KVServiceMgr
-import org.w3c.fetch.RequestInit
+import web.http.RequestInit
 
 /**
  * The form field component for TomTypeaheadRemote control.
@@ -45,7 +45,7 @@ import org.w3c.fetch.RequestInit
  * @param init an initializer extension function
  */
 open class TomTypeaheadRemote<out T : Any>(
-    serviceManager: KVServiceMgr<T>,
+    serviceManager: RpcServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
     stateFunction: (() -> String)? = null,
     type: InputType = InputType.TEXT, value: String? = null, tsCallbacks: TomSelectCallbacks? = null,
@@ -105,7 +105,7 @@ open class TomTypeaheadRemote<out T : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T : Any> Container.tomTypeaheadRemote(
-    serviceManager: KVServiceMgr<T>,
+    serviceManager: RpcServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
     stateFunction: (() -> String)? = null,
     type: InputType = InputType.TEXT, value: String? = null, tsCallbacks: TomSelectCallbacks? = null,

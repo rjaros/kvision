@@ -21,24 +21,24 @@
  */
 package io.kvision.tabulator
 
+import dev.kilua.rpc.CallAgent
+import dev.kilua.rpc.RemoteData
+import dev.kilua.rpc.RemoteFilter
+import dev.kilua.rpc.RemoteSorter
+import dev.kilua.rpc.RpcSerialization
+import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.Container
-import io.kvision.remote.CallAgent
-import io.kvision.remote.HttpMethod
-import io.kvision.remote.JsonRpcRequest
-import io.kvision.remote.KVServiceMgr
-import io.kvision.remote.RemoteData
-import io.kvision.remote.RemoteFilter
-import io.kvision.remote.RemoteSerialization
-import io.kvision.remote.RemoteSorter
+import io.kvision.core.KVScope
 import io.kvision.utils.Serialization
 import kotlinx.browser.window
+import kotlinx.coroutines.asPromise
+import kotlinx.coroutines.async
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.overwriteWith
 import org.w3c.dom.get
-import org.w3c.fetch.RequestInit
+import web.http.RequestInit
 import kotlin.reflect.KClass
 
 /**
@@ -59,7 +59,7 @@ import kotlin.reflect.KClass
  * @param requestFilter a request filtering function
  */
 open class TabulatorRemote<T : Any, out E : Any>(
-    serviceManager: KVServiceMgr<E>,
+    serviceManager: RpcServiceMgr<E>,
     function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,
     stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),
@@ -72,13 +72,13 @@ open class TabulatorRemote<T : Any, out E : Any>(
 ) : Tabulator<T>(null, false, options, types, className, kClass, serializer, module) {
 
     override val jsonHelper = if (serializer != null) Json(
-        from = (RemoteSerialization.customConfiguration ?: Serialization.customConfiguration ?: Json {
+        from = (RpcSerialization.customConfiguration ?: Serialization.customConfiguration ?: Json {
             ignoreUnknownKeys = true
             isLenient = true
         })
     ) {
         serializersModule = SerializersModule {
-            include(RemoteSerialization.plain.serializersModule)
+            include(RpcSerialization.plain.serializersModule)
             module?.let { this.include(it) }
         }.overwriteWith(serializersModule)
     } else null
@@ -108,23 +108,29 @@ open class TabulatorRemote<T : Any, out E : Any>(
                 null
             }
             val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
-
-            val data =
-                Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(page, size, filters, sorters, state)))
-            callAgent.remoteCall(url, data, method = HttpMethod.valueOf(method.name), requestFilter = requestFilter)
-                .then { r: dynamic ->
-                    val result = JSON.parse<dynamic>(r.result.unsafeCast<String>())
-                    if (page != null) {
-                        if (result.data == undefined) {
-                            result.data = js("[]")
+            KVScope.async {
+                val r = callAgent.jsonRpcCall(
+                    url,
+                    listOf(page, size, filters, sorters, state),
+                    method = method,
+                    requestFilter = requestFilter?.let { requestFilterParam ->
+                        {
+                            val self = this.unsafeCast<RequestInit>()
+                            self.requestFilterParam()
                         }
-                        result
-                    } else if (result.data == undefined) {
-                        js("[]")
-                    } else {
-                        result.data
+                    })
+                val result = JSON.parse<dynamic>(r)
+                if (page != null) {
+                    if (result.data == undefined) {
+                        result.data = js("[]")
                     }
+                    result
+                } else if (result.data == undefined) {
+                    js("[]")
+                } else {
+                    result.data
                 }
+            }.asPromise()
         }
     }
 }
@@ -135,7 +141,7 @@ open class TabulatorRemote<T : Any, out E : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
-    serviceManager: KVServiceMgr<E>,
+    serviceManager: RpcServiceMgr<E>,
     noinline function: suspend E.(Int?, Int?, List<RemoteFilter>?, List<RemoteSorter>?, String?) -> RemoteData<T>,
     noinline stateFunction: (() -> String)? = null,
     options: TabulatorOptions<T> = TabulatorOptions(),

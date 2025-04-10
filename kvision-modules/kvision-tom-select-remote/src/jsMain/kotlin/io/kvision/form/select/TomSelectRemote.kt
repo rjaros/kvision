@@ -21,6 +21,8 @@
  */
 package io.kvision.form.select
 
+import dev.kilua.rpc.RemoteOption
+import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
@@ -29,11 +31,9 @@ import io.kvision.form.FieldLabel
 import io.kvision.form.InvalidFeedback
 import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
-import io.kvision.remote.KVServiceMgr
-import io.kvision.remote.RemoteOption
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
-import org.w3c.fetch.RequestInit
+import web.http.RequestInit
 
 /**
  * The form field component for TomSelectRemote control.
@@ -58,7 +58,7 @@ import org.w3c.fetch.RequestInit
  * @param init an initializer extension function
  */
 open class TomSelectRemote<out T : Any>(
-    serviceManager: KVServiceMgr<T>,
+    serviceManager: RpcServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     stateFunction: (() -> String)? = null,
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,
@@ -293,7 +293,7 @@ open class TomSelectRemote<out T : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T : Any> Container.tomSelectRemote(
-    serviceManager: KVServiceMgr<T>,
+    serviceManager: RpcServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,

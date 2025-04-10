@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2017-present Robert Jaros
- * Copyright (c) 2020 Yannik Hampe
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package io.kvision.remote
 
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.modules.SerializersModule
-
-interface ObjectDeSerializer {
-    val serializersModule: SerializersModule
-
-    fun <T> deserialize(str: String?, serializer: KSerializer<T>): T
-    fun <T> serializeNonNullToString(obj: T, serializer: KSerializer<T>): String
-
-    fun <T> serializeNullableToString(obj: T?, serializer: KSerializer<T>): String? =
-        if (obj == null) null
-        else serializeNonNullToString(obj, serializer)
-}
+expect fun registerRemoteTypes()

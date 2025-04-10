@@ -21,18 +21,18 @@
  */
 package io.kvision.form.select
 
+import dev.kilua.rpc.CallAgent
+import dev.kilua.rpc.HttpMethod
+import dev.kilua.rpc.RemoteOption
+import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.Container
-import io.kvision.remote.CallAgent
-import io.kvision.remote.HttpMethod
-import io.kvision.remote.JsonRpcRequest
-import io.kvision.remote.KVServiceMgr
-import io.kvision.remote.RemoteOption
+import io.kvision.core.KVScope
 import io.kvision.snabbdom.VNode
 import io.kvision.utils.Serialization
 import io.kvision.utils.obj
+import kotlinx.coroutines.launch
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.encodeToString
-import org.w3c.fetch.RequestInit
+import web.http.RequestInit
 
 /**
  * The TomSelectInput control connected to the fullstack service.
@@ -55,7 +55,7 @@ import org.w3c.fetch.RequestInit
  * @param init an initializer extension function
  */
 open class TomSelectRemoteInput<out T : Any>(
-    private val serviceManager: KVServiceMgr<T>,
+    private val serviceManager: RpcServiceMgr<T>,
     private val function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     protected val stateFunction: (() -> String)? = null,
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,
@@ -84,12 +84,13 @@ open class TomSelectRemoteInput<out T : Any>(
             ?: TomSelectCallbacks(load = loadCallback, shouldLoad = shouldLoadCallback)
         val forcedPreload = if (preload) true else tsOptions?.preload
         val forcedOpenOnFocus = if (openOnFocus) true else tsOptions?.openOnFocus
-        this.tsOptions = tsOptions?.copy(preload = forcedPreload, openOnFocus = forcedOpenOnFocus, searchField = emptyList())
-            ?: TomSelectOptions(
-                preload = forcedPreload,
-                openOnFocus = forcedOpenOnFocus,
-                searchField = emptyList()
-            )
+        this.tsOptions =
+            tsOptions?.copy(preload = forcedPreload, openOnFocus = forcedOpenOnFocus, searchField = emptyList())
+                ?: TomSelectOptions(
+                    preload = forcedPreload,
+                    openOnFocus = forcedOpenOnFocus,
+                    searchField = emptyList()
+                )
         this.tsRenders = tsRenders?.copy(option = ::renderOption, item = ::renderItem) ?: TomSelectRenders(
             option = ::renderOption,
             item = ::renderItem
@@ -160,7 +161,8 @@ open class TomSelectRemoteInput<out T : Any>(
         } else if (data.content != null) {
             "<div${className}>${data.content}</div>"
         } else {
-            val subtext = if (data.subtext) " <small class=\"text-body-secondary\">${escape(data.subtext)}</small> " else ""
+            val subtext =
+                if (data.subtext) " <small class=\"text-body-secondary\">${escape(data.subtext)}</small> " else ""
             val icon = if (data.icon) "<i class=\"${escape(data.icon)}\"></i> " else ""
             "<div${className}>${icon}${text}${subtext}</div>"
         }
@@ -182,15 +184,21 @@ open class TomSelectRemoteInput<out T : Any>(
         val queryParam = query?.let { JSON.stringify(it) }
         val initialParam = initial?.let { JSON.stringify(it) }
         val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
-        callAgent.remoteCall(
-            url,
-            Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(queryParam, initialParam, state))),
-            method,
-            requestFilter = requestFilter
-        ).then { response: dynamic ->
-            val result = Serialization.plain.decodeFromString(
+        KVScope.launch {
+            val result = callAgent.jsonRpcCall(
+                url,
+                listOf(queryParam, initialParam, state),
+                method,
+                requestFilter = requestFilter?.let { requestFilterParam ->
+                    {
+                        val self = this.unsafeCast<RequestInit>()
+                        self.requestFilterParam()
+                    }
+                }
+            )
+            val options = Serialization.plain.decodeFromString(
                 ListSerializer(RemoteOption.serializer()),
-                response.result.unsafeCast<String>()
+                result
             ).mapIndexed { index, option ->
                 obj {
                     if (option.divider) {
@@ -208,7 +216,7 @@ open class TomSelectRemoteInput<out T : Any>(
                     }
                 }
             }.toTypedArray()
-            callback(result)
+            callback(options)
         }
     }
 }
@@ -219,7 +227,7 @@ open class TomSelectRemoteInput<out T : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T : Any> Container.tomSelectRemoteInput(
-    serviceManager: KVServiceMgr<T>,
+    serviceManager: RpcServiceMgr<T>,
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>,
     stateFunction: (() -> String)? = null,
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,

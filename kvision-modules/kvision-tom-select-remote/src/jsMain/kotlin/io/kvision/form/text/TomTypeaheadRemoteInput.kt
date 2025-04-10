@@ -21,18 +21,18 @@
  */
 package io.kvision.form.text
 
+import dev.kilua.rpc.CallAgent
+import dev.kilua.rpc.HttpMethod
+import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.Container
+import io.kvision.core.KVScope
 import io.kvision.form.select.TomSelectCallbacks
 import io.kvision.html.InputType
-import io.kvision.remote.CallAgent
-import io.kvision.remote.HttpMethod
-import io.kvision.remote.JsonRpcRequest
-import io.kvision.remote.KVServiceMgr
 import io.kvision.utils.Serialization
+import kotlinx.coroutines.launch
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.encodeToString
-import org.w3c.fetch.RequestInit
+import web.http.RequestInit
 
 /**
  * The TomTypeaheadInput control connected to the fullstack service.
@@ -49,7 +49,7 @@ import org.w3c.fetch.RequestInit
  * @param init an initializer extension function
  */
 open class TomTypeaheadRemoteInput<out T : Any>(
-    private val serviceManager: KVServiceMgr<T>,
+    private val serviceManager: RpcServiceMgr<T>,
     private val function: suspend T.(String?, String?) -> List<String>,
     protected val stateFunction: (() -> String)? = null,
     type: InputType = InputType.TEXT, value: String? = null, tsCallbacks: TomSelectCallbacks? = null,
@@ -79,17 +79,23 @@ open class TomTypeaheadRemoteInput<out T : Any>(
     ) {
         val queryParam = query?.let { JSON.stringify(it) }
         val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
-        callAgent.remoteCall(
-            url,
-            Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(queryParam, state))),
-            method,
-            requestFilter = requestFilter
-        ).then { response: dynamic ->
-            val result = Serialization.plain.decodeFromString(
+        KVScope.launch {
+            val result = callAgent.jsonRpcCall(
+                url,
+                listOf(queryParam, state),
+                method,
+                requestFilter = requestFilter?.let { requestFilterParam ->
+                    {
+                        val self = this.unsafeCast<RequestInit>()
+                        self.requestFilterParam()
+                    }
+                }
+            )
+            val options = Serialization.plain.decodeFromString(
                 ListSerializer(String.serializer()),
-                response.result.unsafeCast<String>()
+                result
             ).toTypedArray()
-            callback(result)
+            callback(options)
         }
     }
 }
@@ -100,7 +106,7 @@ open class TomTypeaheadRemoteInput<out T : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T : Any> Container.tomTypeaheadRemoteInput(
-    serviceManager: KVServiceMgr<T>,
+    serviceManager: RpcServiceMgr<T>,
     function: suspend T.(String?, String?) -> List<String>,
     stateFunction: (() -> String)? = null,
     type: InputType = InputType.TEXT, value: String? = null, tsCallbacks: TomSelectCallbacks? = null,

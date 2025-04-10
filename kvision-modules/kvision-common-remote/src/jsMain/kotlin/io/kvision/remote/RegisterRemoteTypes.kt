@@ -19,21 +19,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package io.kvision.remote
 
-import kotlinx.serialization.Serializable
+import dev.kilua.rpc.RpcSerialization
+import io.kvision.types.JsonDateSerializer
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
+import kotlin.js.Date
 
-@Serializable
-data class JsonRpcRequest(val id: Int, val method: String, val params: List<String?>, val jsonrpc: String = "2.0") {
-    constructor() : this(0, "", listOf())
+actual fun registerRemoteTypes() {
+    RpcSerialization.customConfiguration = Json {
+        serializersModule = SerializersModule {
+            contextual(Date::class, JsonDateSerializer)
+        }
+    }
 }
-
-@Serializable
-data class JsonRpcResponse(
-    val id: Int? = null,
-    val result: String? = null,
-    val error: String? = null,
-    val exceptionType: String? = null,
-    val exceptionJson: String? = null,
-    val jsonrpc: String = "2.0"
-)

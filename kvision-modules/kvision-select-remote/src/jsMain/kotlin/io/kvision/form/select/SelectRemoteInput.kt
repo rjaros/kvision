@@ -21,21 +21,18 @@
  */
 package io.kvision.form.select
 
+import dev.kilua.rpc.CallAgent
+import dev.kilua.rpc.HttpMethod
+import dev.kilua.rpc.RpcSerialization
+import dev.kilua.rpc.RpcServiceMgr
+import dev.kilua.rpc.SimpleRemoteOption
 import io.kvision.core.Container
-import io.kvision.remote.CallAgent
-import io.kvision.remote.HttpMethod
-import io.kvision.remote.JsonRpcRequest
-import io.kvision.remote.KVServiceMgr
-import io.kvision.remote.SimpleRemoteOption
-import io.kvision.utils.Serialization
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.encodeToString
-import org.w3c.fetch.RequestInit
+import web.http.RequestInit
 
 /**
  * The Select control connected to the fullstack service.
@@ -53,7 +50,7 @@ import org.w3c.fetch.RequestInit
  * @param init an initializer extension function
  */
 open class SelectRemoteInput<out T : Any>(
-    serviceManager: KVServiceMgr<T>,
+    serviceManager: RpcServiceMgr<T>,
     function: suspend T.(String?) -> List<SimpleRemoteOption>,
     stateFunction: (() -> String)? = null,
     value: String? = null,
@@ -71,16 +68,21 @@ open class SelectRemoteInput<out T : Any>(
         scope.launch {
             val callAgent = CallAgent()
             val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
-            val values = callAgent.remoteCall(
+            val result = callAgent.jsonRpcCall(
                 url,
-                Serialization.plain.encodeToString(JsonRpcRequest(0, url, listOf(state))),
-                HttpMethod.POST, requestFilter = requestFilter
-            ).await()
-            options =
-                Serialization.plain.decodeFromString(ListSerializer(SimpleRemoteOption.serializer()), values.result as String)
-                    .map {
-                        it.value to (it.text ?: it.value)
+                listOf(state),
+                HttpMethod.POST, requestFilter = requestFilter?.let { requestFilterParam ->
+                    {
+                        val self = this.unsafeCast<RequestInit>()
+                        self.requestFilterParam()
                     }
+                }
+            )
+            options = RpcSerialization.plain.decodeFromString(
+                ListSerializer(SimpleRemoteOption.serializer()), result
+            ).map {
+                it.value to (it.text ?: it.value)
+            }
         }
         @Suppress("LeakingThis")
         init?.invoke(this)
@@ -93,7 +95,7 @@ open class SelectRemoteInput<out T : Any>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T : Any> Container.selectRemoteInput(
-    serviceManager: KVServiceMgr<T>,
+    serviceManager: RpcServiceMgr<T>,
     function: suspend T.(String?) -> List<SimpleRemoteOption>,
     stateFunction: (() -> String)? = null,
     value: String? = null,
