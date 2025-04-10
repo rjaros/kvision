@@ -19,7 +19,7 @@ which can be used as builder blocks for the application UI.
 
 KVision fully supports both reactive and imperative programming models. It gives you everything you may need for the state management of your apps.
 
-KVision contains innovative connectivity interface for [Ktor](https://ktor.io/), [Jooby](https://jooby.io), [Spring Boot](https://spring.io/projects/spring-boot),
+KVision integrates with [Kilua RPC](https://github.com/rjaros/kilua-rpc) library for [Ktor](https://ktor.io/), [Jooby](https://jooby.io), [Spring Boot](https://spring.io/projects/spring-boot),
 [Javalin](https://javalin.io), [Vert.x](https://vertx.io) and [Micronaut](https://micronaut.io) frameworks on the server side, which
 allows to build fullstack applications with shared code for data model and business logic.
 
@@ -62,7 +62,6 @@ class App : Application() {
     - [Handlebars](http://handlebarsjs.com/)
     - [Chart.js](https://www.chartjs.org/)
     - [Tabulator](http://tabulator.info/)
-    - [Redux](https://redux.js.org/)
     - [ReduxKotlin](https://reduxkotlin.org/)
     - [Ballast](https://copper-leaf.github.io/ballast/)
     - [Navigo](https://github.com/krasimir/navigo)
@@ -77,20 +76,13 @@ class App : Application() {
 - Includes convenient forms implementation, with support for many different input components and easy to use validation.
 - Support for observer pattern, data binding, event Flows and StateFlow for observables.
 - Supports [React](https://reactjs.org/) components with KVision DSL and built-in state management.
-- Full support for [Onsen UI](https://onsen.io/) mobile web components with type-safe Kotlin API and DSL builders.
 - Internationalization support based on [gettext](https://www.gnu.org/software/gettext/) translations and [gettext.js](https://github.com/guillaumepotier/gettext.js) library.
 - Easy to use Drag & Drop support.
 - Support for jQuery animations and effects.
 - Type-safe REST connectivity.
 - Dark mode support.
-- Innovative integration interface for [Ktor](https://ktor.io), [Jooby](https://jooby.io), [Spring Boot](https://spring.io/projects/spring-boot),
- [Javalin](https://javalin.io), [Vert.x](https://vertx.io) and [Micronaut](https://micronaut.io) frameworks on the server side,
-including support for type-safe websockets connections.
-- Support for building hybrid mobile applications with [Apache Cordova](https://cordova.apache.org/).
-- Support for building cross-platform, desktop applications with [Electron](https://electronjs.org).
 - KVision applications are built with [Gradle](https://gradle.org/) with support for Webpack's [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/) and
-[Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html). Kotlin compiler plugin for Gradle is available to automatically generate
-boilerplate code for server-side interfaces.
+[Kotlin JavaScript DCE (dead code elimination)](https://kotlinlang.org/docs/reference/javascript-dce.html).
 - [Karma](https://karma-runner.github.io/) testing framework support.
 - IDE support (IntelliJ IDEA). The [KVision Project Wizard](https://github.com/JakubNeukirch/kvision-project-wizard) is being developed as a separate project (thanks to [@JakubNeukirch](https://github.com/JakubNeukirch)).
 

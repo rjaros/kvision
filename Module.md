@@ -6,10 +6,6 @@ KVision - object oriented web framework for Kotlin/JS.
 
 KVision main Application class and some helper interfaces necessary to support Hot Module Replacement (HMR).
 
-# Package io.kvision.annotations
-
-Annotations for use with KVision compiler plugin.
-
 # Package io.kvision.core
 
 KVision core classes. This includes base interfaces for all components, CSS enums (for colors, borders,
@@ -23,29 +19,9 @@ Full-featured chart component based on chart.js library.
 
 Kotlin bindings for chart.js API.
 
-# Package io.kvision.cordova
-
-Kotlin bindings for core Apache Cordova API.
-
-# Package io.kvision.data
-
-Base component and container class with data binding support for observable data model.
-
 # Package io.kvision.dropdown
 
 Bootstrap dropdown component with support for navigation bars and context menus.
-
-# Package io.kvision.electron
-
-Globals for Electron API.
-
-# Package io.kvision.electron.electron
-
-Kotlin bindings for Electron API.
-
-# Package io.kvision.electron.nodejs
-
-Kotlin bindings for NodeJS API within Electron.
 
 # Package io.kvision.event
 
@@ -96,10 +72,6 @@ A maps component based on Leaflet library.
 # Package io.kvision.modal
 
 Classes supporting general purpose Bootstrap modals with convenient helpers for alert and confirm popup dialogs.
-
-# Package io.kvision.moment
-
-A set of tools for parsing, validating, manipulating, and formatting dates based on Moment Library.
 
 # Package io.kvision.navbar
 
@@ -181,54 +153,6 @@ Material web tabs components (tabs, primary tab, secondary tab).
 
 Material web text field component (filled, outlined).
 
-# Package io.kvision.onsenui
-
-Onsen UI helper utility functions.
-
-# Package io.kvision.onsenui.carousel
-
-Onsen UI carousel component.
-
-# Package io.kvision.onsenui.control
-
-Onsen UI control components (action button, speed dial, segment).
-
-# Package io.kvision.onsenui.core
-
-Onsen UI main structural components (page, navigator).
-
-# Package io.kvision.onsenui.dialog
-
-Onsen UI dialogs, toasts, popovers and notifications.
-
-# Package io.kvision.onsenui.form
-
-Onsen UI form components.
-
-# Package io.kvision.onsenui.grid
-
-Onsen UI grid layout components.
-
-# Package io.kvision.onsenui.list
-
-Onsen UI list component.
-
-# Package io.kvision.onsenui.splitter
-
-Onsen UI splitter component.
-
-# Package io.kvision.onsenui.tabbar
-
-Onsen UI tabbar component.
-
-# Package io.kvision.onsenui.toolbar
-
-Onsen UI toolbar component.
-
-# Package io.kvision.onsenui.visual
-
-Onsen UI visual components (card, icon, progress bars and ripple).
-
 # Package io.kvision.pace
 
 Automatic progress bar module.
@@ -256,7 +180,7 @@ Predictable state container based on Redux library.
 
 # Package io.kvision.remote
 
-A set of components for creating multiplatform automatic JSON-RPC connectivity with a backend server.
+KVision compatibility functions for Kilua RPC library.
 
 # Package io.kvision.state
 
