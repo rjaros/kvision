@@ -40,8 +40,6 @@ val bootstrapIconsVersion: String by project
 val bootstrapFileinputVersion: String by project
 val chartjsVersion: String by project
 val tempusDominusVersion: String by project
-val electronVersion: String by project
-val electronRemoteVersion: String by project
 val fontawesomeFreeVersion: String by project
 val handlebarsVersion: String by project
 val handlebarsLoaderVersion: String by project
@@ -51,7 +49,6 @@ val leafletVersion: String by project
 val geojsonVersion: String by project
 val geojsonTypesVersion: String by project
 val materialVersion: String by project
-val onsenuiVersion: String by project
 val paceProgressbarVersion: String by project
 val printjsVersion: String by project
 val reactVersion: String by project
@@ -80,8 +77,6 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("bootstrap-fileinput", bootstrapFileinputVersion)
         resolution("chart.js", chartjsVersion)
         resolution("@eonasdan/tempus-dominus", tempusDominusVersion)
-        resolution("electron", electronVersion)
-        resolution("@electron/remote", electronRemoteVersion)
         resolution("@fortawesome/fontawesome-free", fontawesomeFreeVersion)
         resolution("handlebars", handlebarsVersion)
         resolution("handlebars-loader", handlebarsLoaderVersion)
@@ -91,7 +86,6 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("geojson", geojsonVersion)
         resolution("@types/geojson", geojsonTypesVersion)
         resolution("@material/web", materialVersion)
-        resolution("onsenui", onsenuiVersion)
         resolution("pace-progressbar", paceProgressbarVersion)
         resolution("print-js", printjsVersion)
         resolution("react", reactVersion)
@@ -152,12 +146,9 @@ dependencies {
     dokka(project(":kvision-modules:kvision-bootstrap-icons"))
     dokka(project(":kvision-modules:kvision-bootstrap-upload"))
     dokka(project(":kvision-modules:kvision-chart"))
-    dokka(project(":kvision-modules:kvision-common-annotations"))
     dokka(project(":kvision-modules:kvision-common-remote"))
     dokka(project(":kvision-modules:kvision-common-types"))
-    dokka(project(":kvision-modules:kvision-cordova"))
     dokka(project(":kvision-modules:kvision-datetime"))
-    dokka(project(":kvision-modules:kvision-electron"))
     dokka(project(":kvision-modules:kvision-fontawesome"))
     dokka(project(":kvision-modules:kvision-handlebars"))
     dokka(project(":kvision-modules:kvision-i18n"))
@@ -165,7 +156,6 @@ dependencies {
     dokka(project(":kvision-modules:kvision-jquery"))
     dokka(project(":kvision-modules:kvision-maps"))
     dokka(project(":kvision-modules:kvision-material"))
-    dokka(project(":kvision-modules:kvision-onsenui"))
     dokka(project(":kvision-modules:kvision-pace"))
     dokka(project(":kvision-modules:kvision-print"))
     dokka(project(":kvision-modules:kvision-react"))
@@ -176,13 +166,6 @@ dependencies {
     dokka(project(":kvision-modules:kvision-routing-navigo"))
     dokka(project(":kvision-modules:kvision-routing-navigo-ng"))
     dokka(project(":kvision-modules:kvision-select-remote"))
-    dokka(project(":kvision-modules:kvision-server-javalin"))
-    dokka(project(":kvision-modules:kvision-server-jooby"))
-    dokka(project(":kvision-modules:kvision-server-ktor"))
-    dokka(project(":kvision-modules:kvision-server-ktor-koin"))
-    dokka(project(":kvision-modules:kvision-server-micronaut"))
-    dokka(project(":kvision-modules:kvision-server-spring-boot"))
-    dokka(project(":kvision-modules:kvision-server-vertx"))
     dokka(project(":kvision-modules:kvision-state"))
     dokka(project(":kvision-modules:kvision-state-flow"))
     dokka(project(":kvision-modules:kvision-tabulator"))
