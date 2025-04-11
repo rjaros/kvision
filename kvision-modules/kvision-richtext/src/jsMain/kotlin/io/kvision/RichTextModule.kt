@@ -23,7 +23,17 @@ package io.kvision
 
 import io.kvision.i18n.I18n
 import io.kvision.utils.obj
+import io.kvision.utils.useModule
 import kotlinx.browser.window
+
+@JsModule("trix/dist/trix.esm.js")
+internal external val trixModule: dynamic
+
+@JsModule("trix/dist/trix.css")
+internal external val trixCss: dynamic
+
+@JsModule("zzz-kvision-assets/css/kv-trix.css")
+internal external val kvTrixCss: dynamic
 
 /**
  * Initializer for KVision RichText module.
@@ -31,12 +41,10 @@ import kotlinx.browser.window
 object RichTextModule : ModuleInitializer {
 
     init {
-        val trix = require("trix/dist/trix.esm.js").default
+        val trix = trixModule
         val trixLocales = obj {}
-        trixLocales["en"] = obj {}
-        for (key in js("Object").keys(trix.config.lang)) {
-            trixLocales["en"][key] = trix.config.lang[key]
-        }
+        trixLocales["en"] = getTrixLocaleEn()
+        trixLocales["pl"] = getTrixLocalePl()
         val orig = trix.config.toolbar.getDefaultHTML
         trix.config.toolbar.getDefaultHTML = {
             val config = if (trixLocales[I18n.language] != undefined) {
@@ -54,10 +62,10 @@ object RichTextModule : ModuleInitializer {
                 languages = trixLocales
             }
         }
-        require("kvision-assets/js/locales/trix/trix.pl.js")
     }
 
     override fun initialize() {
-        require("trix/dist/trix.css")
+        useModule(trixCss)
+        useModule(kvTrixCss)
     }
 }

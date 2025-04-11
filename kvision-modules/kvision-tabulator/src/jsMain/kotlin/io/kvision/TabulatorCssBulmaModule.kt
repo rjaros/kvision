@@ -21,11 +21,16 @@
  */
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("tabulator-tables/dist/css/tabulator_bulma.min.css")
+internal external val tabulatorCssBulma: dynamic
+
 /**
  * Initializer for KVision Tabulator with Bulma CSS theme.
  */
 object TabulatorCssBulmaModule : ModuleInitializer {
     override fun initialize() {
-        require("tabulator-tables/dist/css/tabulator_bulma.min.css")
+        useModule(tabulatorCssBulma)
     }
 }

@@ -21,7 +21,9 @@
  */
 package io.kvision.i18n
 
-import io.kvision.require
+
+@JsModule("gettext.js")
+internal external val gettextJs: dynamic
 
 external interface Gettext {
     fun loadJSON(json: dynamic, key: String)
@@ -33,7 +35,7 @@ external interface Gettext {
 class DefaultI18nManager(translations: Map<String, dynamic>) : I18nManager {
 
     @Suppress("UnsafeCastFromDynamic")
-    private val i18n: Gettext = require("gettext.js").default()
+    private val i18n: Gettext = gettextJs()
 
     init {
         translations.forEach {

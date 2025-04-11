@@ -1,0 +1,44 @@
+.toastify {
+    background-image: unset;
+    background-color: blue;
+}
+
+.kv-toastify-primary {
+    color: #fff !important;
+    background-color: rgba(13,110,253) !important;
+}
+
+.kv-toastify-secondary {
+    color: #fff !important;
+    background-color: rgba(108,117,125) !important;
+}
+
+.kv-toastify-success {
+    color: #fff !important;
+    background-color: rgba(25,135,84) !important;
+}
+
+.kv-toastify-info {
+    color: #000 !important;
+    background-color: rgba(13,202,240) !important;
+}
+
+.kv-toastify-warning {
+    color: #000 !important;
+    background-color: rgba(255,193,7) !important;
+}
+
+.kv-toastify-danger {
+    color: #fff !important;
+    background-color: rgba(220,53,69) !important;
+}
+
+.kv-toastify-light {
+    color: #000 !important;
+    background-color: rgba(248,249,250) !important;
+}
+
+.kv-toastify-dark {
+    color: #fff !important;
+    background-color: rgba(33,37,41) !important;
+}

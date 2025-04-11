@@ -22,13 +22,22 @@
 
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("tom-select/dist/css/tom-select.bootstrap5.min.css")
+internal external val tomSelectBootstrap5Css: dynamic
+
+@JsModule("zzz-kvision-assets/css/kv-tom-select.css")
+internal external val kvTomSelectCss: dynamic
+
 /**
  * Initializer for KVision Tom Select module with Bootstrap CSS styling.
  */
 object TomSelectModule : ModuleInitializer {
 
     override fun initialize() {
-        require("tom-select/dist/css/tom-select.bootstrap5.min.css")
+        useModule(tomSelectBootstrap5Css)
+        useModule(kvTomSelectCss)
     }
 
 }

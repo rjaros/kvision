@@ -21,12 +21,17 @@
  */
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("handlebars/dist/handlebars.runtime.js")
+internal external val handlebars: dynamic
+
 /**
  * Initializer for KVision handlebars module.
  */
 object HandlebarsModule : ModuleInitializer {
 
     override fun initialize() {
-        require("handlebars/dist/handlebars.runtime.js")
+        useModule(handlebars)
     }
 }

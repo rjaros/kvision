@@ -21,11 +21,16 @@
  */
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("tabulator-tables/dist/css/tabulator.min.css")
+internal external val tabulatorCssStandard: dynamic
+
 /**
  * Initializer for KVision Tabulator module with standard CSS theme.
  */
 object TabulatorCssStandardModule : ModuleInitializer {
     override fun initialize() {
-        require("tabulator-tables/dist/css/tabulator.min.css")
+        useModule(tabulatorCssStandard)
     }
 }

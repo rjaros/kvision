@@ -1,0 +1,72 @@
+.select-parent.text-danger > .invalid-feedback {
+    display: block;
+}
+
+.select-parent.text-danger > div.form-control > button.form-control {
+    border-color: var(--bs-danger, #dc3545);
+}
+
+.ts-wrapper:not(.multi) .ts-control {
+    flex-wrap: nowrap;
+}
+
+.ts-control .item {
+    white-space: nowrap;
+}
+
+.ts-control input::placeholder {
+    color: var(--bs-secondary-color);
+    opacity: 1;
+}
+
+.disabled .ts-control {
+    background-color: var(--bs-secondary-bg);
+    opacity: 1;
+}
+
+.disabled .ts-control input::placeholder {
+    color: var(--bs-secondary-color);
+    opacity: 1;
+}
+
+.ts-wrapper.kv-typeahead .ts-control, .ts-wrapper.kv-typeahead .ts-control input {
+    cursor: inherit;
+}
+
+.ts-wrapper.is-invalid.kv-typeahead, .was-validated .invalid.kv-typeahead, .was-validated :invalid + .ts-wrapper.kv-typeahead {
+    padding-right: calc(1.5em + .75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 12 12%27 width=%2712%27 height=%2712%27 fill=%27none%27 stroke=%27%23dc3545%27%3e%3ccircle cx=%276%27 cy=%276%27 r=%274.5%27/%3e%3cpath stroke-linejoin=%27round%27 d=%27M5.8 3.6h.4L6 6.5z%27/%3e%3ccircle cx=%276%27 cy=%278.2%27 r=%27.6%27 fill=%27%23dc3545%27 stroke=%27none%27/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+
+.kv-tom-select-remote-divider {
+    height: 0;
+    margin: .5rem 0;
+    overflow: hidden;
+    border-top: 1px solid #888888;
+}
+
+.ts-wrapper.form-select-sm .ts-control, .ts-wrapper.form-control-sm .ts-control {
+    padding-left: 0.5rem;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+ul.typeahead > li.active > a {
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
+
+[data-bs-theme="dark"] .ts-control, [data-bs-theme="dark"] .ts-control input, [data-bs-theme="dark"] .ts-dropdown {
+    color: inherit;
+}
+
+[data-bs-theme="dark"] .ts-dropdown {
+    background-color: var(--bs-secondary-bg, #343a40);
+}
+
+[data-bs-theme="dark"] .ts-dropdown [data-selectable] .highlight {
+    background-color: #757575;
+}

@@ -25,9 +25,11 @@ import io.kvision.html.Image
 import io.kvision.html.ImageShape
 import io.kvision.panel.Root
 import io.kvision.test.DomSpec
-import io.kvision.test.require
 import kotlinx.browser.document
 import kotlin.test.Test
+
+@JsModule("zzz-kvision-assets/img/placeholder.png")
+external val placeholder: dynamic
 
 class ImageSpec : DomSpec {
 
@@ -35,7 +37,7 @@ class ImageSpec : DomSpec {
     fun render() {
         run {
             val root = Root("test", containerType = io.kvision.panel.ContainerType.FIXED)
-            val res = require("kvision-assets/img/placeholder.png")
+            val res = placeholder
             @Suppress("UnsafeCastFromDynamic")
             val image = Image(res, "Image", true, ImageShape.ROUNDED, true)
             root.add(image)

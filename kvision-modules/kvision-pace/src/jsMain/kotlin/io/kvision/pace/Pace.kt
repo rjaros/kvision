@@ -23,11 +23,17 @@
 
 package io.kvision.pace
 
-import io.kvision.require
 import io.kvision.utils.obj
+import io.kvision.utils.useModule
 import kotlinx.browser.window
 import org.w3c.dom.events.Event
 import org.w3c.dom.get
+
+@JsModule("pace-progressbar")
+internal external val paceProgressbar: dynamic
+
+@JsModule("pace-progressbar/themes/blue/pace-theme-flash.css")
+internal external val paceThemeFlash: dynamic
 
 class PaceAjaxOptions(
     trackMethods: Array<dynamic>? = null,
@@ -151,10 +157,9 @@ class PaceOptions(
 class Pace {
     companion object {
         fun init(
-            @Suppress("UNUSED_PARAMETER") req: dynamic =
-                require("pace-progressbar/themes/blue/pace-theme-flash.css")
+            @Suppress("UNUSED_PARAMETER") req: dynamic = useModule(paceThemeFlash)
         ) {
-            require("pace-progressbar").default
+            useModule(paceProgressbar)
         }
 
         fun setOptions(options: PaceOptions) {

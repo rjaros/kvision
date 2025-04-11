@@ -1,0 +1,21 @@
+.kv-preview-thumb .btn, .kv-zoom-actions .btn, .file-zoom-dialog .floating-buttons .btn {
+    padding: 5px 8px;
+}
+
+.file-drop-zone.clickable:hover {
+    border: 1px dashed #999;
+}
+
+.file-drop-zone.clickable:focus {
+    border: 1px solid #5acde2;
+}
+
+.kv-focus {
+    border-radius: 0.25rem;
+    outline-width: 0px;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
+
+.kv-focus .kv-fileinput-caption {
+    border-color: #80bdff;
+}

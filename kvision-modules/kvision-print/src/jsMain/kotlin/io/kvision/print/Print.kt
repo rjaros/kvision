@@ -25,6 +25,7 @@ package io.kvision.print
 import io.kvision.PrintModule
 import io.kvision.PrintModule.counter
 import io.kvision.core.Widget
+import io.kvision.printJS
 import io.kvision.utils.obj
 
 /**
@@ -106,9 +107,9 @@ fun Widget.print(options: PrintOptions? = null) {
     val id = "kv_print_js_id_${counter++}"
     this.id = id
     if (options != null) {
-        PrintModule.printjs(options.toJs(id, PrintType.HTML))
+        printJS(options.toJs(id, PrintType.HTML))
     } else {
-        PrintModule.printjs(id, "html")
+        printJS(id, "html")
     }
     this.id = previousId
 }
@@ -130,9 +131,9 @@ object Print {
      */
     fun print(data: dynamic, type: PrintType, options: PrintOptions? = null) {
         if (options != null) {
-            PrintModule.printjs(options.toJs(data, type))
+            printJS(options.toJs(data, type))
         } else {
-            PrintModule.printjs(data, type.type)
+            printJS(data, type.type)
         }
     }
 

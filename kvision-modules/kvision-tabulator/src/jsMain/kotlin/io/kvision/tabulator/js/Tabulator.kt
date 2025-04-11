@@ -7,6 +7,7 @@
     "NESTED_CLASS_IN_EXTERNAL_INTERFACE",
     "unused", "PropertyName", "TooManyFunctions", "VariableNaming", "MaxLineLength"
 )
+@file:JsModule("tabulator-tables")
 
 package io.kvision.tabulator.js
 
@@ -16,38 +17,6 @@ import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.MouseEvent
 import org.w3c.dom.events.UIEvent
 import kotlin.js.Promise
-
-typealias FilterFunction = (field: String, type: String /* "=" | "!=" | "like" | "<" | ">" | "<=" | ">=" | "in" | "regex" | "starts" | "ends" */, value: Any, filterParams: FilterParams) -> Unit
-
-typealias GroupValuesArg = Array<Array<Any>>
-
-typealias CustomMutator = (value: Any, data: Any, type: String /* "data" | "edit" */, mutatorParams: Any, cell: CellComponent) -> Any
-
-typealias CustomAccessor = (value: Any, data: Any, type: String /* "data" | "download" | "clipboard" */, AccessorParams: Any, column: ColumnComponent, row: RowComponent) -> Any
-
-typealias ColumnCalcParams = (values: Any, data: Any) -> Any
-
-typealias ValueStringCallback = (value: Any) -> String
-
-typealias ValueBooleanCallback = (value: Any) -> Boolean
-
-typealias ValueVoidCallback = (value: Any) -> Unit
-
-typealias EmptyCallback = (callback: () -> Unit) -> Unit
-
-typealias CellEventCallback = (e: UIEvent, cell: CellComponent) -> Unit
-
-typealias CellEditEventCallback = (cell: CellComponent) -> Unit
-
-typealias ColumnEventCallback = (e: UIEvent, column: ColumnComponent) -> Unit
-
-typealias RowEventCallback = (e: UIEvent, row: RowComponent) -> Unit
-
-typealias RowChangedCallback = (row: RowComponent) -> Unit
-
-typealias GroupEventCallback = (e: UIEvent, group: GroupComponent) -> Unit
-
-typealias ColumnSorterParamLookupFunction = (column: ColumnComponent, dir: String /* "asc" | "desc" */) -> Any
 
 external interface EventCallBackMethods {
     var validationFailed: (cell: CellComponent, value: Any, validators: Array<Validator>) -> Unit
@@ -143,6 +112,7 @@ external interface EventCallBackMethods {
     var dataProcessed: () -> Unit
 }
 
+@JsName("TabulatorFull")
 open external class Tabulator {
     constructor(selector: String, options: Options = definedExternally)
     constructor(selector: String)
@@ -2529,7 +2499,5 @@ open external class ResponsiveLayoutModule
 open external class SelectRowModule
 
 open external class SortModule
-
-open external class TabulatorFull
 
 open external class ValidateModule

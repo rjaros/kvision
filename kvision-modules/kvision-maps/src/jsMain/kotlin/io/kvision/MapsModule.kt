@@ -25,30 +25,41 @@ package io.kvision
 import io.kvision.maps.externals.leaflet.layer.marker.Icon
 import io.kvision.utils.delete
 import io.kvision.utils.obj
+import io.kvision.utils.useModule
+
+@JsModule("leaflet/dist/leaflet.css")
+internal external val leafletCss: dynamic
+
+@JsModule("leaflet/dist/images/marker-icon-2x.png")
+internal external val markerIcon2xUrl: dynamic
+
+@JsModule("leaflet/dist/images/marker-icon.png")
+internal external val markerIconUrl: dynamic
+
+@JsModule("leaflet/dist/images/marker-shadow.png")
+internal external val markerShadowUrl: dynamic
 
 /**
  * Initializer for KVision maps module.
  */
 object MapsModule : ModuleInitializer {
 
-    internal val leaflet = require("leaflet")
-
     init {
         setDefaultIcon()
     }
 
     private fun setDefaultIcon() {
-        leaflet.Icon.Default.imagePath = ""
-        delete(leaflet.Icon.Default.prototype._getIconUrl)
-        leaflet.Icon.Default.mergeOptions(obj<Icon.IconOptions> {
-            iconRetinaUrl = require("leaflet/dist/images/marker-icon-2x.png").unsafeCast<String>()
-            iconUrl = require("leaflet/dist/images/marker-icon.png").unsafeCast<String>()
-            shadowUrl = require("leaflet/dist/images/marker-shadow.png").unsafeCast<String>()
+        Icon.Default.imagePath = ""
+        delete(Icon.Default.asDynamic().prototype._getIconUrl)
+        Icon.Default.asDynamic().mergeOptions(obj<Icon.IconOptions> {
+            iconRetinaUrl = markerIcon2xUrl.unsafeCast<String>()
+            iconUrl = markerIconUrl.unsafeCast<String>()
+            shadowUrl = markerShadowUrl.unsafeCast<String>()
         })
     }
 
     override fun initialize() {
-        require("leaflet/dist/leaflet.css")
+        useModule(leafletCss)
     }
 
 }

@@ -25,14 +25,6 @@ package io.kvision
  * Initializer for KVision Tabulator module.
  */
 object TabulatorModule : ModuleInitializer {
-
-    private val tabulator = require("tabulator-tables")
-
-    @Suppress("UnsafeCastFromDynamic")
-    fun getConstructor(): Any {
-        return tabulator
-    }
-
     override fun initialize() {
     }
 }

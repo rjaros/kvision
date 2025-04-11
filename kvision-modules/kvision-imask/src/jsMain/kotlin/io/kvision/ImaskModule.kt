@@ -24,11 +24,14 @@ package io.kvision
 import io.kvision.form.text.ImaskFactory
 import io.kvision.form.text.MaskManager
 
+@JsModule("imask/esm/index.js")
+internal external val imaskJs: dynamic
+
 /**
  * Initializer for KVision imask module.
  */
 object ImaskModule : ModuleInitializer {
-    internal val imask = require("imask/esm/index.js").default
+    internal val imask = imaskJs
 
     override fun initialize() {
         MaskManager.factory = ImaskFactory(imask)

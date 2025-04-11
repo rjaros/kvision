@@ -36,8 +36,7 @@ import org.w3c.dom.HTMLElement
  *
  * See [`https://leafletjs.com/reference.html#control`](https://leafletjs.com/reference.html#control)
  */
-@JsModule("leaflet")
-@JsNonModule
+@JsModule("leaflet/dist/leaflet-src.esm.js")
 abstract external class Control<T : ControlOptions>(
     options: T = definedExternally
 ) : Class {

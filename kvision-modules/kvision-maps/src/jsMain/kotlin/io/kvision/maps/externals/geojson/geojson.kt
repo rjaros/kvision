@@ -21,7 +21,6 @@
  */
 
 @file:JsModule("geojson")
-@file:JsNonModule
 
 package io.kvision.maps.externals.geojson
 

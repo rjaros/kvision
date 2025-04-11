@@ -22,12 +22,17 @@
 
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("bootstrap-icons/font/bootstrap-icons.css")
+internal external val bootstrapIconsCss: dynamic
+
 /**
  * Initializer for Bootstrap Icons module.
  */
 object BootstrapIconsModule : ModuleInitializer {
 
     override fun initialize() {
-        require("bootstrap-icons/font/bootstrap-icons.css")
+        useModule(bootstrapIconsCss)
     }
 }

@@ -1,5 +1,4 @@
 @file:JsModule("tom-select")
-@file:JsNonModule
 /*
  * Copyright (c) 2017-present Robert Jaros
  *

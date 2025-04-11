@@ -21,11 +21,16 @@
  */
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("@fortawesome/fontawesome-free/css/all.min.css")
+internal external val fontAwesomeCss: dynamic
+
 /**
  * Initializer for KVision Font Awesome module.
  */
 object FontAwesomeModule : ModuleInitializer {
     override fun initialize() {
-        require("@fortawesome/fontawesome-free/css/all.min.css")
+        useModule(fontAwesomeCss)
     }
 }

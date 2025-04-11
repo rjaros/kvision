@@ -5,7 +5,6 @@
     "CONFLICTING_OVERLOADS"
 )
 @file:JsModule("chart.js/auto")
-@file:JsNonModule
 
 package io.kvision.chart.js
 

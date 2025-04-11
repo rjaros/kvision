@@ -1,0 +1,395 @@
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-block + .btn-block {
+    margin-top: 0.5rem;
+}
+
+label:not(.form-check-label).required-label::after {
+    content: " *";
+    color: var(--bs-danger, #dc3545);
+}
+
+label.form-check-label.required-label > span:last-child::after {
+    content: " *";
+    color: var(--bs-danger, #dc3545);
+}
+
+.kv-radiogroup-inline label.form-label {
+    vertical-align: top;
+    margin-right: .75rem;
+    margin-bottom: 0px;
+}
+
+.row.kv-radiogroup-inline label.form-label {
+    margin-right: 0px;
+}
+
+.row.kv-radiogroup-inline .kv-radiogroup-container, .row.kv-radiogroup .kv-radiogroup-container {
+    margin-left: -15px;
+}
+
+.kv-radiogroup-inline .kv-radiogroup-container {
+    display: inline-flex;
+}
+
+.kv-radiogroup-container.is-invalid ~ .invalid-feedback {
+    display: block;
+}
+
+.form-check-input.form-control-sm, .form-check-input.form-control-lg {
+    height: inherit;
+}
+
+.form-check-inline {
+    margin-left: 3px;
+}
+
+.form-horizontal .row .form-check {
+    padding-left: 2.2rem;
+}
+
+.form-horizontal .row .form-check.form-switch {
+    padding-left: 3.2rem;
+}
+
+.form-horizontal.container-fluid {
+    width: inherit;
+}
+
+.kv-control-horiz .invalid-feedback {
+    width: fit-content;
+}
+
+.kv-control-horiz.form-switch {
+    padding-left: 0;
+}
+
+.kv-control-horiz.form-switch .form-check-input {
+    margin-left: 0;
+}
+
+.form-inline {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.form-inline .form-check {
+    width: 100%;
+}
+
+@media (min-width: 576px) {
+    .form-inline .form-group label {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+
+    .form-inline .form-group {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    .form-inline .form-control, .form-inline .form-select {
+        display: inline-block;
+        width: auto;
+        vertical-align: middle;
+    }
+
+    .form-inline .form-control-plaintext {
+        display: inline-block;
+    }
+
+    .form-inline .input-group,
+    .form-inline .custom-select {
+        width: auto;
+    }
+
+    .form-inline .form-check {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: auto;
+        padding-left: 0;
+    }
+
+    .form-inline .form-check-input {
+        position: relative;
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+        margin-top: 0;
+        margin-right: 0.25rem;
+        margin-left: 0;
+    }
+
+    .form-inline .custom-control {
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    .form-inline .custom-control-label {
+        margin-bottom: 0;
+    }
+}
+
+.form-inline .form-group {
+    margin-right: 6px;
+}
+
+.form-inline .form-group .form-label {
+    margin-right: 6px;
+}
+
+.form-inline .mb-3 {
+    margin-bottom: 0 !important;
+}
+
+.form-inline .form-floating {
+    margin-right: 6px;
+}
+
+.kv-form-condensed .form-group {
+    margin-bottom: 0.5rem !important;
+}
+
+.kv-window.modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    border-radius: 0px;
+    width: initial;
+    height: initial;
+}
+
+.kv-window .modal-header {
+    height: 40px;
+    padding: 5px 15px 5px 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.kv-window .modal-header button.close {
+    width: 24px;
+    height: 24px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.kv-window .modal-header .modal-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kv-window .modal-header .window-icon {
+    margin-right: 6px;
+}
+
+.kv-window .kv-window-icons-container {
+    display: flex;
+}
+
+.kv-window .kv-window-icons-container button.kv-window-button {
+    background: transparent;
+    line-height: 1rem;
+    font-weight: bold;
+}
+
+.nav.tabs-top {
+    flex-wrap: nowrap;
+}
+
+ul.tabs-top {
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+}
+
+ul.tabs-top > li {
+    float: none;
+    flex-shrink: 0;
+}
+
+.kv-tab-close {
+    margin-left: 10px;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 0.2;
+}
+
+.kv-tab-close:hover, .kv-tab-close:focus {
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+
+.kv-tab-panel .nav-tabs .nav-link:focus, .kv-tab-panel .nav-tabs .nav-link:hover {
+    isolation: inherit;
+}
+
+select.form-select {
+    cursor: pointer;
+}
+
+select.form-select:invalid {
+    color: gray;
+}
+
+.form-check-input.is-invalid:indeterminate[type="checkbox"], .was-validated .form-check-input:invalid:indeterminate[type="checkbox"] {
+    background-color: var(--bs-danger, #dc3545);
+    border-color: var(--bs-danger, #dc3545);
+}
+
+.form-check .form-check-input.form-control-sm {
+    height: 14px;
+    min-height: 14px;
+    margin-left: -1.7em;
+    width: 14px;
+    padding: .25rem;
+    margin-top: 8px;
+}
+
+.form-check .form-check-input.form-control-lg {
+    height: 34px;
+    min-height: 34px;
+    margin-left: -1.2em;
+    margin-right: 0.3em;
+}
+
+.modal-dialog .modal-footer {
+    flex-wrap: wrap;
+}
+
+.modal-dialog .modal-footer > button {
+    margin-top: 5px;
+}
+
+form[class~="form-horizontal"] div.form-group {
+    align-items: center;
+}
+
+#toast-container .toast {
+    background-color: #030303;
+    max-width: inherit;
+}
+
+#toast-container .toast-success {
+    background-color: #51A351;
+}
+
+#toast-container .toast-error {
+    background-color: #BD362F;
+}
+
+#toast-container .toast-info {
+    background-color: #2F96B4;
+}
+
+#toast-container .toast-warning {
+    background-color: #F89406;
+}
+
+#toast-container .toast-progress {
+    background-color: #000000;
+}
+
+.dropdown-toggle.kv-dropdown-no-arrow::after {
+    content: none;
+}
+
+.btn-group-xsm > .btn, .btn-xsm {
+    --bs-btn-padding-y: 0.1rem;
+    --bs-btn-padding-x: 0.4rem;
+    --bs-btn-font-size: 0.8rem;
+    --bs-btn-border-radius: 0.25rem;
+    padding-top: 3px;
+}
+
+.form-check-input:not(:checked):disabled {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+.form-check-input:disabled ~ .form-check-label, .form-check-input[disabled] ~ .form-check-label {
+    opacity: unset;
+}
+
+/*!
+ * bootstrap-vertical-tabs - v1.2.2
+ * https://dbtek.github.io/bootstrap-vertical-tabs
+ * 2016-12-02
+ * Copyright (c) 2016 İsmail Demirbilek
+ * License: MIT
+ */
+.nav-tabs.tabs-left, .nav-tabs.tabs-right {
+    border-bottom: none;
+    padding-top: 2px;
+}
+
+.nav-tabs.tabs-left {
+    border-right: 1px solid #dee2e6;
+}
+
+.nav-tabs.tabs-right {
+    border-left: 1px solid #dee2e6;
+}
+
+.nav-tabs.tabs-left > li.nav-item, .nav-tabs.tabs-right > li.nav-item {
+    float: none;
+    margin-bottom: 2px;
+}
+
+.nav-tabs.tabs-left > li.nav-item {
+    margin-right: -1px;
+}
+
+.nav-tabs.tabs-right > li.nav-item {
+    margin-left: -1px;
+}
+
+.nav-tabs.tabs-left > li.nav-item > a.nav-link.active,
+.nav-tabs.tabs-left > li.nav-item > a.nav-link.active:hover,
+.nav-tabs.tabs-left > li.nav-item > a.nav-link.active:focus {
+    border-bottom-color: #dee2e6;
+    border-right-color: transparent;
+}
+
+.nav-tabs.tabs-right > li.nav-item > a.nav-link.active,
+.nav-tabs.tabs-right > li.nav-item > a.nav-link.active:hover,
+.nav-tabs.tabs-right > li.nav-item > a.nav-link.active:focus {
+    border-bottom: 1px solid #dee2e6;
+    border-left-color: transparent;
+}
+
+.nav-tabs.tabs-left > li.nav-item > a.nav-link {
+    border-radius: 4px 0 0 4px;
+    margin-right: 0;
+    display: block;
+}
+
+.nav-tabs.tabs-right > li.nav-item > a.nav-link {
+    border-radius: 0 4px 4px 0;
+    margin-right: 0;
+}

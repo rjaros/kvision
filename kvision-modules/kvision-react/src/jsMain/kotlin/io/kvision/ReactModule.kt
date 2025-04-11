@@ -21,12 +21,15 @@
  */
 package io.kvision
 
+@JsModule("react-dom")
+internal external val reactDomModule: dynamic
+
 /**
  * Initializer for KVision React module.
  */
 object ReactModule : ModuleInitializer {
 
-    internal val reactDom = require("react-dom")
+    internal val reactDom = reactDomModule
 
     override fun initialize() {}
 }

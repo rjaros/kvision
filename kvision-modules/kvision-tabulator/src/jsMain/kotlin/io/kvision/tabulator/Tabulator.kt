@@ -32,7 +32,6 @@ import io.kvision.state.ObservableList
 import io.kvision.state.ObservableState
 import io.kvision.types.DateSerializer
 import io.kvision.utils.Serialization
-import io.kvision.utils.createInstance
 import io.kvision.utils.deepMerge
 import io.kvision.utils.obj
 import io.kvision.utils.syncWithList
@@ -197,9 +196,7 @@ open class Tabulator<T : Any>(
      */
     protected open fun createJsTabulator() {
         this.getElement()?.let {
-            jsTabulator =
-                TabulatorModule.getConstructor()
-                    .createInstance(it, options.toJs(this, this::translate, kClass))
+            jsTabulator = io.kvision.tabulator.js.Tabulator(it, options.toJs(this, this::translate, kClass))
             val allColumns = options.columns?.let { c -> c + c.mapNotNull { it.columns }.flatten() }
             allColumns?.find { it.editorComponentFunction != null }?.let {
                 jsTabulator?.on("cellEditCancelled") { cell: JsTabulator.CellComponent ->

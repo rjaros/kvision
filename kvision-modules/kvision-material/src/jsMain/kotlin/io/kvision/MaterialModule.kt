@@ -22,6 +22,7 @@
  */
 package io.kvision
 
+import io.kvision.utils.useModule
 import kotlinx.browser.document
 
 /**
@@ -30,8 +31,7 @@ import kotlinx.browser.document
 object MaterialModule : ModuleInitializer {
 
     override fun initialize() {
-        require("@material/web/all.js")
-        val typescaleStyles = require("@material/web/typography/md-typescale-styles.js")
-        document.asDynamic().adoptedStyleSheets.push(typescaleStyles.styles.styleSheet)
+        useModule(MdTextButton)
+        document.asDynamic().adoptedStyleSheets.push(styles.styleSheet)
     }
 }

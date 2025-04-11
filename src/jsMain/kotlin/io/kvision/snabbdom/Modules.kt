@@ -1,3 +1,4 @@
+@file:JsModule("snabbdom")
 /*
  * Copyright (c) 2017-present Robert Jaros
  *
@@ -20,20 +21,13 @@
  * SOFTWARE.
  */
 
-@file:Suppress("UnsafeCastFromDynamic")
-
 package io.kvision.snabbdom
 
-@JsModule("snabbdom")
-@JsNonModule
-
-external val modulesExt: dynamic = definedExternally
-
-val attributesModule: Module = modulesExt.attributesModule
-val classModule: Module = modulesExt.classModule
-val propsModule: Module = modulesExt.propsModule
-val styleModule: Module = modulesExt.styleModule
-val eventListenersModule: Module = modulesExt.eventListenersModule
+external val attributesModule: Module
+external val classModule: Module
+external val propsModule: Module
+external val styleModule: Module
+external val eventListenersModule: Module
 
 external interface Module {
     var pre: PreHook?

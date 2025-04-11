@@ -22,13 +22,18 @@
 
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("tom-select/dist/css/tom-select.default.min.css")
+internal external val tomSelectDefaultCss: dynamic
+
 /**
  * Initializer for KVision Tom Select module with default CSS styling.
  */
 object TomSelectDefaultModule : ModuleInitializer {
 
     override fun initialize() {
-        require("tom-select/dist/css/tom-select.default.min.css")
+        useModule(tomSelectDefaultCss)
     }
 
 }

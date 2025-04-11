@@ -21,11 +21,20 @@
  */
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("tabulator-tables/dist/css/tabulator_bootstrap5.min.css")
+internal external val tabulatorCssBootstrap: dynamic
+
+@JsModule("zzz-kvision-assets/css/kv-tabulator.css")
+internal external val kvTabulatorCss: dynamic
+
 /**
  * Initializer for KVision Tabulator with Bootstrap 5 CSS theme.
  */
 object TabulatorCssBootstrapModule : ModuleInitializer {
     override fun initialize() {
-        require("tabulator-tables/dist/css/tabulator_bootstrap5.min.css")
+        useModule(tabulatorCssBootstrap)
+        useModule(kvTabulatorCss)
     }
 }

@@ -21,16 +21,19 @@
  */
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("print-js/dist/print.css")
+internal external val printCss: dynamic
+
 /**
  * Initializer for KVision Print module.
  */
 object PrintModule : ModuleInitializer {
 
-    internal val printjs = require("print-js")
-
     internal var counter = 0
 
     override fun initialize() {
-        require("print-js/dist/print.css")
+        useModule(printCss)
     }
 }

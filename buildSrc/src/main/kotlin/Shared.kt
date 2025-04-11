@@ -36,12 +36,16 @@ fun KotlinMultiplatformExtension.compilerOptions() {
 
 fun KotlinMultiplatformExtension.kotlinJsTargets() {
     js(IR) {
+        useEsModules()
         browser {
             testTask {
                 useKarma {
                     useChromeHeadless()
                 }
             }
+        }
+        compilerOptions {
+            target.set("es2015")
         }
     }
 }

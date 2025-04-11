@@ -22,6 +22,11 @@
 
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("zzz-kvision-assets/css/kv-style.css")
+internal external val styleCss: dynamic
+
 /**
  * KVision Module initializer.
  */
@@ -37,6 +42,6 @@ interface ModuleInitializer {
  */
 object CoreModule : ModuleInitializer {
     override fun initialize() {
-        require("kvision-assets/css/style.css")
+        useModule(styleCss)
     }
 }

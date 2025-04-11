@@ -240,7 +240,7 @@ abstract class KVisionPlugin : Plugin<Project> {
             logger.info("configuring Yarn")
             if (kvExtension.enableResolutions.get() && kvVersions.isNotEmpty()) {
                 resolution("bootstrap", kvVersions["bootstrapVersion"]!!)
-                resolution("kvision-assets", kvVersions["kvisionAssetsVersion"]!!)
+                resolution("zzz-kvision-assets", kvVersions["kvisionAssetsVersion"]!!)
                 resolution("css-loader", kvVersions["cssLoaderVersion"]!!)
                 resolution("style-loader", kvVersions["styleLoaderVersion"]!!)
                 resolution("imports-loader", kvVersions["importsLoaderVersion"]!!)

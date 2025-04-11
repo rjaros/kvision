@@ -22,11 +22,6 @@
 package io.kvision
 
 /**
- * Helper variable for Hot Module Replacement (HMR).
- */
-external val module: Module
-
-/**
  * Helper interface for Hot Module Replacement (HMR).
  */
 external interface Module {

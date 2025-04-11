@@ -35,7 +35,7 @@ object BootstrapModule : ModuleInitializer {
     init {
         document.body?.setAttribute("data-bs-no-jquery", "true")
         @Suppress("UnsafeCastFromDynamic")
-        bootstrap = require("bootstrap")
+        bootstrap = Bootstrap
     }
 
     override fun initialize() {

@@ -21,11 +21,16 @@
  */
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("tabulator-tables/dist/css/tabulator_materialize.min.css")
+internal external val tabulatorCssMaterialize: dynamic
+
 /**
  * Initializer for KVision Tabulator with Materialize CSS theme.
  */
 object TabulatorCssMaterializeModule : ModuleInitializer {
     override fun initialize() {
-        require("tabulator-tables/dist/css/tabulator_materialize.min.css")
+        useModule(tabulatorCssMaterialize)
     }
 }

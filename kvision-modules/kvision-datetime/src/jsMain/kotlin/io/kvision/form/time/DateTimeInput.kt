@@ -22,6 +22,7 @@
 package io.kvision.form.time
 
 import io.kvision.DatetimeModule
+import io.kvision.TempusDominus
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Container
 import io.kvision.core.onEvent
@@ -39,7 +40,6 @@ import io.kvision.types.toDateF
 import io.kvision.types.toDateFOrNull
 import io.kvision.types.toStringF
 import io.kvision.utils.Intl
-import io.kvision.utils.createInstance
 import io.kvision.utils.obj
 import kotlinx.browser.document
 import kotlin.js.Date
@@ -441,7 +441,7 @@ open class DateTimeInput(
         }
         dateTimePicker = getElement()?.let { element ->
             input.value = input.value?.toDateFOrNull(inputFormat)?.toStringF(inputFormat)
-            DatetimeModule.tempusDominus.TempusDominus.unsafeCast<Any>().createInstance<Any>(element, obj {
+            TempusDominus(element, obj {
                 this.useCurrent = inline
                 this.defaultDate =
                     if (inline && this@DateTimeInput.value != null) this@DateTimeInput.value else undefined

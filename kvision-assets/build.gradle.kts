@@ -7,13 +7,14 @@ npmPublish {
     dry.set(System.getenv("NPM_AUTH_TOKEN") == null)
     readme.set(file("README.md"))
     packages {
-        register("kvision-assets") {
+        register("zzz-kvision-assets") {
+            packageName.set("zzz-kvision-assets")
             files {
                 from("$projectDir/src")
             }
             packageJson {
                 main.set("index.js")
-                version.set("8.0.14")
+                version.set("9.0.0")
                 description.set("The assets for the KVision framework")
                 keywords.set(listOf("kvision", "kotlin"))
                 homepage.set("https://kvision.io")

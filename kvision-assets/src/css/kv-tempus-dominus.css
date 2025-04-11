@@ -1,0 +1,8 @@
+.input-group.date.is-invalid ~ .invalid-feedback {
+    display: block;
+}
+
+.input-group.date {
+    padding-left: 0px;
+    padding-right: 0px;
+}

@@ -20,10 +20,6 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet")
-@file:JsNonModule
-@file:JsQualifier("TileLayer")
-
 package io.kvision.maps.externals.leaflet.layer.tile
 
 import io.kvision.maps.externals.leaflet.geo.CRS

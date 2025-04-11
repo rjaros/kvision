@@ -21,7 +21,6 @@
  */
 
 @file:JsModule("snabbdom")
-@file:JsNonModule
 
 package io.kvision.snabbdom
 

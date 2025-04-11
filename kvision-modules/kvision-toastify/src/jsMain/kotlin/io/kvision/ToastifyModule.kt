@@ -21,14 +21,26 @@
  */
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("toastify-js")
+internal external val toastifyJs: dynamic
+
+@JsModule("toastify-js/src/toastify.css")
+internal external val toastifyCss: dynamic
+
+@JsModule("zzz-kvision-assets/css/kv-toastify.css")
+internal external val kvToastifyCss: dynamic
+
 /**
  * Internal singleton object which initializes and configures KVision Toastify module.
  */
 object ToastifyModule : ModuleInitializer {
 
-    internal val toastify = require("toastify-js")
+    internal val toastify = toastifyJs
 
     override fun initialize() {
-        require("toastify-js/src/toastify.css")
+        useModule(toastifyCss)
+        useModule(kvToastifyCss)
     }
 }

@@ -33,8 +33,6 @@ import io.kvision.maps.externals.leaflet.control.Layers
 import io.kvision.maps.externals.leaflet.control.Layers.LayersOptions
 import io.kvision.maps.externals.leaflet.control.Scale
 import io.kvision.maps.externals.leaflet.control.Scale.ScaleOptions
-import io.kvision.maps.externals.leaflet.control.Zoom
-import io.kvision.maps.externals.leaflet.control.Zoom.ZoomControlOptions
 import io.kvision.maps.externals.leaflet.control.set
 import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
@@ -59,8 +57,6 @@ import io.kvision.maps.externals.leaflet.layer.overlay.VideoOverlay
 import io.kvision.maps.externals.leaflet.layer.overlay.VideoOverlay.VideoOverlayOptions
 import io.kvision.maps.externals.leaflet.layer.tile.TileLayer
 import io.kvision.maps.externals.leaflet.layer.tile.TileLayer.TileLayerOptions
-import io.kvision.maps.externals.leaflet.layer.tile.WMS
-import io.kvision.maps.externals.leaflet.layer.tile.WMS.WMSOptions
 import io.kvision.maps.externals.leaflet.layer.vector.Canvas
 import io.kvision.maps.externals.leaflet.layer.vector.Circle
 import io.kvision.maps.externals.leaflet.layer.vector.CircleMarker
@@ -158,10 +154,6 @@ object LeafletObjectFactory {
         configure: ScaleOptions.() -> Unit = {},
     ): Scale = Scale(options = obj<ScaleOptions>(configure))
 
-    fun zoom(
-        configure: ZoomControlOptions.() -> Unit = {},
-    ): Zoom = Zoom(options = obj<ZoomControlOptions>(configure))
-
     fun divIcon(
         configure: DivIconOptions.() -> Unit = {},
     ): DivIcon = DivIcon(options = obj<DivIconOptions>(configure))
@@ -214,11 +206,6 @@ object LeafletObjectFactory {
         configure: VideoOverlayOptions.() -> Unit = {},
     ): VideoOverlay =
         VideoOverlay(video = video, bounds = bounds, options = obj<VideoOverlayOptions>(configure))
-
-    fun wms(
-        baseUrl: String,
-        configure: WMSOptions.() -> Unit = {},
-    ): WMS = WMS(baseUrl = baseUrl, options = obj<WMSOptions>(configure))
 
     fun canvas(
         configure: Canvas.CanvasOptions.() -> Unit = {},

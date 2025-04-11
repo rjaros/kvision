@@ -1,3 +1,4 @@
+@file:JsModule("@material/web/typography/md-typescale-styles.js")
 /*
  * Copyright (c) 2017-present Robert Jaros
  *
@@ -20,13 +21,6 @@
  * SOFTWARE.
  */
 
-package io.kvision.imask
+package io.kvision
 
-import org.w3c.dom.HTMLElement
-
-@JsModule("imask/esm/index.js")
-@JsNonModule
-external object Imask {
-    @JsName("default")
-    val imask: (HTMLElement, dynamic) -> dynamic
-}
+internal external val styles: dynamic

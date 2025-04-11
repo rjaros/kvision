@@ -15,6 +15,7 @@ kotlin {
             dependencies {
                 api(project(":kvision-modules:kvision-common-types"))
                 api(project(":kvision-modules:kvision-jquery"))
+                api(project(":kvision-modules:kvision-bootstrap"))
                 api(rootProject)
                 implementation(npm("bootstrap-fileinput", bootstrapFileinputVersion))
             }

@@ -22,51 +22,90 @@
 
 package io.kvision
 
+import io.kvision.utils.useModule
+
+@JsModule("@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css")
+internal external val tempusDominusCss: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/ar.js")
+internal external val localeAr: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/ca.js")
+internal external val localeCa: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/de.js")
+internal external val localeDe: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/es.js")
+internal external val localeEs: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/fi.js")
+internal external val localeFi: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/fr.js")
+internal external val localeFr: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/it.js")
+internal external val localeIt: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/nl.js")
+internal external val localeNl: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/pl.js")
+internal external val localePl: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/pt-PT.js")
+internal external val localePt: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/ro.js")
+internal external val localeRo: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/ru.js")
+internal external val localeRu: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/sk.js")
+internal external val localeSk: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/sl.js")
+internal external val localeSl: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/tr.js")
+internal external val localeTr: dynamic
+
+@JsModule("@eonasdan/tempus-dominus/dist/locales/zh-CN.js")
+internal external val localeZh: dynamic
+
+@JsModule("zzz-kvision-assets/css/kv-tempus-dominus.css")
+internal external val kvTempusDominusCss: dynamic
+
 /**
  * Initializer for KVision datetime module.
  */
 object DatetimeModule : ModuleInitializer {
 
-    internal val tempusDominus: dynamic
     internal val locales = js("{}")
 
     init {
-        require("@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css")
-        tempusDominus = require("@eonasdan/tempus-dominus")
-        val localeAr = require("@eonasdan/tempus-dominus/dist/locales/ar.js")
+        useModule(tempusDominusCss)
         locales[localeAr.name] = localeAr.localization
-        val localeCa = require("@eonasdan/tempus-dominus/dist/locales/ca.js")
         locales[localeCa.name] = localeCa.localization
-        val localeDe = require("@eonasdan/tempus-dominus/dist/locales/de.js")
         locales[localeDe.name] = localeDe.localization
-        val localeEs = require("@eonasdan/tempus-dominus/dist/locales/es.js")
         locales[localeEs.name] = localeEs.localization
-        val localeFi = require("@eonasdan/tempus-dominus/dist/locales/fi.js")
         locales[localeFi.name] = localeFi.localization
-        val localeFr = require("@eonasdan/tempus-dominus/dist/locales/fr.js")
         locales[localeFr.name] = localeFr.localization
-        val localeIt = require("@eonasdan/tempus-dominus/dist/locales/it.js")
         locales[localeIt.name] = localeIt.localization
-        val localeNl = require("@eonasdan/tempus-dominus/dist/locales/nl.js")
         locales[localeNl.name] = localeNl.localization
-        val localePl = require("@eonasdan/tempus-dominus/dist/locales/pl.js")
         locales[localePl.name] = localePl.localization
-        val localePt = require("@eonasdan/tempus-dominus/dist/locales/pt-PT.js")
         locales[localePt.name] = localePt.localization
-        val localeRo = require("@eonasdan/tempus-dominus/dist/locales/ro.js")
         locales[localeRo.name] = localeRo.localization
-        val localeRu = require("@eonasdan/tempus-dominus/dist/locales/ru.js")
         locales[localeRu.name] = localeRu.localization
-        val localeSk = require("@eonasdan/tempus-dominus/dist/locales/sk.js")
         locales[localeSk.name] = localeSk.localization
-        val localeSl = require("@eonasdan/tempus-dominus/dist/locales/sl.js")
         locales[localeSl.name] = localeSl.localization
-        val localeTr = require("@eonasdan/tempus-dominus/dist/locales/tr.js")
         locales[localeTr.name] = localeTr.localization
-        val localeZh = require("@eonasdan/tempus-dominus/dist/locales/zh-CN.js")
         locales[localeZh.name] = localeZh.localization
     }
 
     override fun initialize() {
+        useModule(kvTempusDominusCss)
     }
 }

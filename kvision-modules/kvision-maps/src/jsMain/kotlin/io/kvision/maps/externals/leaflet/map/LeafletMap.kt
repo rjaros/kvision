@@ -20,8 +20,7 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet")
-@file:JsNonModule
+@file:JsModule("leaflet/dist/leaflet-src.esm.js")
 
 package io.kvision.maps.externals.leaflet.map
 

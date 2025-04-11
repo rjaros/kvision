@@ -22,7 +22,8 @@
 
 package io.kvision.core
 
-internal external object Bootstrap {
+@JsModule("bootstrap")
+external object Bootstrap {
     val Dropdown: dynamic
     val Tooltip: dynamic
     val Popover: dynamic

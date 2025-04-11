@@ -32,24 +32,27 @@ import kotlinx.browser.document
 import kotlinx.dom.clear
 import org.w3c.dom.HTMLElement
 
-/**
- * @suppress
- * External function for loading CommonJS modules.
- */
-external fun require(name: String): dynamic
+@JsModule("split.js")
+internal external val splitjsModule: dynamic
+
+@JsModule("fecha")
+internal external val fechaModule: dynamic
+
+@JsModule("@rjaros/snabbdom-virtualize/strings.js")
+internal external val snabbdomVirtualizeModule: dynamic
 
 /**
  * Singleton object which initializes and configures KVision framework.
  */
 object KVManager {
-    internal val splitjs = require("split.js").default
-    internal val fecha = require("fecha").default
+    internal val splitjs = splitjsModule
+    internal val fecha = fechaModule
     private val sdPatch = init(
         arrayOf(
             classModule, attributesModule, propsModule, styleModule, eventListenersModule
         )
     )
-    private val sdVirtualize = require("@rjaros/snabbdom-virtualize/strings").default
+    private val sdVirtualize = snabbdomVirtualizeModule.default
 
     internal fun patch(id: String, vnode: VNode): VNode {
         val container = document.getElementById(id)
