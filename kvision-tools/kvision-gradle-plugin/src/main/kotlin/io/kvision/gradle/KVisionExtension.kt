@@ -30,9 +30,6 @@ abstract class KVisionExtension @Inject constructor(
     val enableWorkerTasks: Property<Boolean> =
         kvisionGradleProperty("enableWorkerTasks", false)
 
-    /** The location of static resources that will be included in the packaged frontend. */
-    abstract val webDir: DirectoryProperty
-
     /** The location of generated resources that will be included in the packaged frontend. */
     abstract val generatedJsResources: DirectoryProperty
 

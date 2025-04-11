@@ -69,8 +69,6 @@ abstract class KVisionPlugin : Plugin<Project> {
 
             kotlinJsStoreDirectory.convention(project.layout.projectDirectory.dir(".kotlin-js-store"))
 
-            webDir.convention(project.layout.projectDirectory.dir("src/jsMain/web"))
-
             generatedJsResources.convention(project.layout.buildDirectory.dir("generated/kvision/jsResources"))
         }
     }
@@ -108,17 +106,17 @@ abstract class KVisionPlugin : Plugin<Project> {
                 inputs.files(kotlinMppExtension.sourceSets.jsMain.map { it.kotlin.files })
                 potFile.set(
                     layout.projectDirectory.file(
-                        "src/jsMain/resources/i18n/messages.pot"
+                        "src/jsMain/resources/modules/i18n/messages.pot"
                     )
                 )
             }
             val convertPoToJsonTask = registerConvertPoToJsonTask {
                 dependsOn(rootProject.tasks.all.kotlinNpmInstall)
                 sourceDirectory.set(
-                    layout.projectDirectory.dir("src/jsMain/resources/i18n")
+                    layout.projectDirectory.dir("src/jsMain/resources/modules/i18n")
                 )
                 destinationDirectory.set(
-                    kvExtension.generatedJsResources.dir("i18n")
+                    kvExtension.generatedJsResources.dir("modules/i18n")
                 )
             }
             tasks.all.jsProcessResources.configureEach {
@@ -132,7 +130,6 @@ abstract class KVisionPlugin : Plugin<Project> {
             }
 
             kotlinMppExtension.sourceSets.matching { it.name == "jsMain" }.configureEach {
-                resources.srcDir(kvExtension.webDir)
                 resources.srcDir(kvExtension.generatedJsResources)
             }
 
