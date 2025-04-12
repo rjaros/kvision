@@ -94,6 +94,29 @@ enum class YearHeaderFormat(internal val format: String) {
 }
 
 /**
+ * Day of the week.
+ */
+enum class WeekDay(internal val num: Int) {
+    SUNDAY(0),
+    MONDAY(1),
+    TUESDAY(2),
+    WEDNESDAY(3),
+    THURSDAY(4),
+    FRIDAY(5),
+    SATURDAY(6),
+}
+
+/**
+ * Time format hour cycle.
+ */
+enum class HourCycle(internal val hourCycle: String) {
+    H11("h11"),
+    H12("h12"),
+    H23("h23"),
+    H24("h24")
+}
+
+/**
  * Basic date/time chooser component.
  *
  * @constructor
@@ -323,6 +346,16 @@ open class DateTimeInput(
      */
     var yearHeaderFormat: YearHeaderFormat? by refreshOnUpdate { refreshDatePicker() }
 
+    /**
+     * Date/time chooser start of the week day.
+     */
+    var startOfTheWeek: WeekDay? by refreshOnUpdate { refreshDatePicker() }
+
+    /**
+     * Date/time chooser hour cycle.
+     */
+    var hourCycle: HourCycle? by refreshOnUpdate { refreshDatePicker() }
+
     init {
         id = idc
         useSnabbdomDistinctKey()
@@ -430,6 +463,12 @@ open class DateTimeInput(
                 this.month = if (monthHeaderFormat != null) monthHeaderFormat!!.format else "long"
                 this.year = if (yearHeaderFormat != null) yearHeaderFormat!!.format else "2-digit"
             }
+        }
+        if (startOfTheWeek != null) {
+            locale["startOfTheWeek"] = startOfTheWeek!!.num
+        }
+        if (hourCycle != null) {
+            locale["hourCycle"] = hourCycle!!.hourCycle
         }
         val initialViewMode = viewMode ?: if (calendarView) ViewMode.CALENDAR else ViewMode.CLOCK
         val currentTheme = if (theme == null || theme == Theme.AUTO) {
@@ -549,13 +588,6 @@ open class DateTimeInput(
 
         init {
             DatetimeModule.initialize()
-        }
-
-        /**
-         * Time format hour cycle.
-         */
-        enum class HourCycle {
-            H11, H12, H23, H24
         }
 
         /**

@@ -283,6 +283,24 @@ open class DateTime(
         }
 
     /**
+     * Date/time start of the week day.
+     */
+    var startOfTheWeek
+        get() = input.startOfTheWeek
+        set(value) {
+            input.startOfTheWeek = value
+        }
+
+    /**
+     * Date/time hour cycle.
+     */
+    var hourCycle
+        get() = input.hourCycle
+        set(value) {
+            input.hourCycle = value
+        }
+
+    /**
      * The label text bound to the input element.
      */
     var label
