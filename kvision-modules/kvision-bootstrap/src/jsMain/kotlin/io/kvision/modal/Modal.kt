@@ -300,6 +300,24 @@ open class Modal(
         super.dispose()
         removeModal(this)
     }
+
+    companion object {
+
+        /**
+         * Get the list of all modals.
+         */
+        fun getAllModals(): List<Modal> {
+            return Root.getModals().mapNotNull { it as? Modal }
+        }
+
+        /**
+         * Close all modals.
+         */
+        fun closeAllModals() {
+            getAllModals().forEach { it.hide() }
+        }
+
+    }
 }
 
 /**

@@ -331,6 +331,13 @@ class Root : SimplePanel {
         fun removeModal(modal: Widget) {
             modals.remove(modal)
         }
+
+        /**
+         * @suppress internal function
+         */
+        fun getModals(): List<Widget> {
+            return modals
+        }
     }
 }
 
