@@ -56,6 +56,10 @@ val trixVersion: String by project
 val tabulatorTablesVersion: String by project
 val toastifyjsVersion: String by project
 val tomSelectVersion: String by project
+val postcssVersion: String by project
+val postcssLoaderVersion: String by project
+val tailwindcssVersion: String by project
+val cssnanoVersion: String by project
 
 rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
@@ -94,6 +98,11 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("tabulator-tables", tabulatorTablesVersion)
         resolution("toastify-js", toastifyjsVersion)
         resolution("tom-select", tomSelectVersion)
+        resolution("postcss", postcssVersion)
+        resolution("postcss-loader", postcssLoaderVersion)
+        resolution("tailwindcss", tailwindcssVersion)
+        resolution("@tailwindcss/postcss", tailwindcssVersion)
+        resolution("cssnano", cssnanoVersion)
     }
 }
 
@@ -170,6 +179,7 @@ dependencies {
     dokka(project(":kvision-modules:kvision-state-flow"))
     dokka(project(":kvision-modules:kvision-tabulator"))
     dokka(project(":kvision-modules:kvision-tabulator-remote"))
+    dokka(project(":kvision-modules:kvision-tailwindcss"))
     dokka(project(":kvision-modules:kvision-testutils"))
     dokka(project(":kvision-modules:kvision-toastify"))
     dokka(project(":kvision-modules:kvision-tom-select"))

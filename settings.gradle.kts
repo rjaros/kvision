@@ -37,6 +37,7 @@ include(
     "kvision-modules:kvision-state-flow",
     "kvision-modules:kvision-tabulator",
     "kvision-modules:kvision-tabulator-remote",
+    "kvision-modules:kvision-tailwindcss",
     "kvision-modules:kvision-toastify",
     "kvision-modules:kvision-tom-select",
     "kvision-modules:kvision-tom-select-remote",

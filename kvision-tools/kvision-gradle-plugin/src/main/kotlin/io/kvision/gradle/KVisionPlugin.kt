@@ -93,7 +93,7 @@ abstract class KVisionPlugin : Plugin<Project> {
         tasks.withType<Sync>().matching {
             it.name == "jsBrowserDistribution"
         }.configureEach {
-            exclude("/modules/**")
+            exclude("/modules/**", "/tailwind/**")
         }
         val jvmMainExists = layout.projectDirectory.dir("src/jvmMain").asFile.exists()
         val jsMainExists = layout.projectDirectory.dir("src/jsMain").asFile.exists()
@@ -123,6 +123,16 @@ abstract class KVisionPlugin : Plugin<Project> {
                 exclude("**/*.pot")
                 exclude("**/*.po")
                 dependsOn(convertPoToJsonTask)
+                eachFile {
+                    if (this.name == "tailwind.config.js") {
+                        this.filter {
+                            it.replace(
+                                "SOURCES",
+                                project.layout.projectDirectory.dir("src").asFile.absolutePath + "/**/*.kt"
+                            )
+                        }
+                    }
+                }
             }
 
             registerZipTask {
@@ -270,6 +280,11 @@ abstract class KVisionPlugin : Plugin<Project> {
                 resolution("tabulator-tables", kvVersions["tabulatorTablesVersion"]!!)
                 resolution("toastify-js", kvVersions["toastifyjsVersion"]!!)
                 resolution("tom-select", kvVersions["tomSelectVersion"]!!)
+                resolution("postcss", kvVersions["postcssVersion"]!!)
+                resolution("postcss-loader", kvVersions["postcssLoaderVersion"]!!)
+                resolution("tailwindcss", kvVersions["tailwindcssVersion"]!!)
+                resolution("@tailwindcss/postcss", kvVersions["tailwindcssVersion"]!!)
+                resolution("cssnano", kvVersions["cssnanoVersion"]!!)
             }
 
             if (kvExtension.enableHiddenKotlinJsStore.get()) {
