@@ -21,10 +21,7 @@
  */
 package io.kvision.remote
 
-/**
- * A security exception.
- */
-class SecurityException(message: String) : Exception(message)
+import dev.kilua.rpc.SecurityException
 
 /**
  * Form login dispatcher.
