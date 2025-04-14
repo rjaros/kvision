@@ -32,9 +32,6 @@ import org.w3c.dom.get
 @JsModule("pace-progressbar")
 internal external val paceProgressbar: dynamic
 
-@JsModule("pace-progressbar/themes/blue/pace-theme-flash.css")
-internal external val paceThemeFlash: dynamic
-
 class PaceAjaxOptions(
     trackMethods: Array<dynamic>? = null,
     trackWebSockets: Boolean? = null,
@@ -157,7 +154,7 @@ class PaceOptions(
 class Pace {
     companion object {
         fun init(
-            @Suppress("UNUSED_PARAMETER") req: dynamic = useModule(paceThemeFlash)
+            @Suppress("UNUSED_PARAMETER") req: dynamic
         ) {
             useModule(paceProgressbar)
         }
