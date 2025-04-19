@@ -1,0 +1,812 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>io.kvision.maps.externals.leaflet.events</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.2.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-maps/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-maps/jsMain" data-filter=":kvision-modules:kvision-maps/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="kvision-maps::io.kvision.maps.externals.leaflet.events////PointingToDeclaration//-1002496885">
+  <div class="breadcrumbs"><a href="../index.html">kvision-maps</a><span class="delimiter">/</span><span class="current">io.kvision.maps.externals.leaflet.events</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="310901427%2FClasslikes%2F-1002496885" anchor-label="DragEndEvent" id="310901427%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-drag-end-event/index.html"><span>Drag</span><wbr><span>End</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="310901427%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-drag-end-event/index.html">DragEndEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1526278499%2FClasslikes%2F-1002496885" anchor-label="DragEndEventHandlerFn" id="-1526278499%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-drag-end-event-handler-fn/index.html"><span>Drag</span><wbr><span>End</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1526278499%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-drag-end-event-handler-fn/index.html">DragEndEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-drag-end-event/index.html">DragEndEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-776362188%2FClasslikes%2F-1002496885" anchor-label="ErrorEvent" id="-776362188%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-error-event/index.html"><span>Error</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-776362188%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-error-event/index.html">ErrorEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-570905796%2FClasslikes%2F-1002496885" anchor-label="ErrorEventHandlerFn" id="-570905796%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-error-event-handler-fn/index.html"><span>Error</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-570905796%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-error-event-handler-fn/index.html">ErrorEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-error-event/index.html">ErrorEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="750582147%2FClasslikes%2F-1002496885" anchor-label="Evented" id="750582147%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-evented/index.html"><span><span>Evented</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="750582147%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">external </span><span class="token keyword">class </span><a href="-evented/index.html">Evented</a> : <a href="../io.kvision.maps.externals.leaflet.core/-class/index.html">Class</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1317129243%2FClasslikes%2F-1002496885" anchor-label="GeoJSONEvent" id="-1317129243%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-geo-j-s-o-n-event/index.html"><span>Geo</span><wbr><span><span>JSONEvent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1317129243%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-geo-j-s-o-n-event/index.html">GeoJSONEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1316059971%2FClasslikes%2F-1002496885" anchor-label="LayerEvent" id="-1316059971%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-layer-event/index.html"><span>Layer</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1316059971%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-layer-event/index.html">LayerEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1365641261%2FClasslikes%2F-1002496885" anchor-label="LayerEventHandlerFn" id="-1365641261%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-layer-event-handler-fn/index.html"><span>Layer</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1365641261%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-layer-event-handler-fn/index.html">LayerEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-layer-event/index.html">LayerEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-400249177%2FClasslikes%2F-1002496885" anchor-label="LayersControlEvent" id="-400249177%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-layers-control-event/index.html"><span>Layers</span><wbr><span>Control</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-400249177%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-layers-control-event/index.html">LayersControlEvent</a> : <a href="-layer-event/index.html">LayerEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1895606999%2FClasslikes%2F-1002496885" anchor-label="LayersControlEventHandlerFn" id="-1895606999%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-layers-control-event-handler-fn/index.html"><span>Layers</span><wbr><span>Control</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1895606999%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-layers-control-event-handler-fn/index.html">LayersControlEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-layers-control-event/index.html">LayersControlEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2003896694%2FClasslikes%2F-1002496885" anchor-label="LeafletAnyEventId" id="2003896694%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-any-event-id/index.html"><span>Leaflet</span><wbr><span>Any</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2003896694%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-any-event-id/index.html">LeafletAnyEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">baselayerchange</code> | <code class="lang-kotlin">overlayadd</code> | <code class="lang-kotlin">overlayremove</code> | <code class="lang-kotlin">layeradd</code> | <code class="lang-kotlin">layerremove</code> | <code class="lang-kotlin">zoomlevelschange</code> | <code class="lang-kotlin">unload</code> | <code class="lang-kotlin">viewreset</code> | <code class="lang-kotlin">load</code> | <code class="lang-kotlin">zoomstart</code> | <code class="lang-kotlin">movestart</code> | <code class="lang-kotlin">zoom</code> | <code class="lang-kotlin">move</code> | <code class="lang-kotlin">zoomend</code> | <code class="lang-kotlin">moveend</code> | <code class="lang-kotlin">autopanstart</code> | <code class="lang-kotlin">dragstart</code> | <code class="lang-kotlin">drag</code> | <code class="lang-kotlin">add</code> | <code class="lang-kotlin">remove</code> | <code class="lang-kotlin">loading</code> | <code class="lang-kotlin">error</code> | <code class="lang-kotlin">update</code> | <code class="lang-kotlin">down</code> | <code class="lang-kotlin">predrag</code> | <code class="lang-kotlin">resize</code> | <code class="lang-kotlin">popupopen</code> | <code class="lang-kotlin">popupclose</code> | <code class="lang-kotlin">tooltipopen</code> | <code class="lang-kotlin">tooltipclose</code> | <code class="lang-kotlin">locationerror</code> | <code class="lang-kotlin">locationfound</code> | <code class="lang-kotlin">click</code> | <code class="lang-kotlin">dblclick</code> | <code class="lang-kotlin">mousedown</code> | <code class="lang-kotlin">mouseup</code> | <code class="lang-kotlin">mouseover</code> | <code class="lang-kotlin">mouseout</code> | <code class="lang-kotlin">mousemove</code> | <code class="lang-kotlin">contextmenu</code> | <code class="lang-kotlin">preclick</code> | <code class="lang-kotlin">keypress</code> | <code class="lang-kotlin">keydown</code> | <code class="lang-kotlin">keyup</code> | <code class="lang-kotlin">zoomanim</code> | <code class="lang-kotlin">dragend</code> | <code class="lang-kotlin">tileunload</code> | <code class="lang-kotlin">tileloadstart</code> | <code class="lang-kotlin">tileload</code> | <code class="lang-kotlin">tileerror</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-27604505%2FClasslikes%2F-1002496885" anchor-label="LeafletControlEventId" id="-27604505%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-control-event-id/index.html"><span>Leaflet</span><wbr><span>Control</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-27604505%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-control-event-id/index.html">LeafletControlEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">baselayerchange</code> | <code class="lang-kotlin">overlayadd</code> | <code class="lang-kotlin">overlayremove</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-996105327%2FClasslikes%2F-1002496885" anchor-label="LeafletDragEndEventId" id="-996105327%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-drag-end-event-id/index.html"><span>Leaflet</span><wbr><span>Drag</span><wbr><span>End</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-996105327%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-drag-end-event-id/index.html">LeafletDragEndEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">dragend</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1037463058%2FClasslikes%2F-1002496885" anchor-label="LeafletErrorEventId" id="1037463058%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-error-event-id/index.html"><span>Leaflet</span><wbr><span>Error</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1037463058%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-error-event-id/index.html">LeafletErrorEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">locationerror</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1009311529%2FClasslikes%2F-1002496885" anchor-label="LeafletEvent" id="1009311529%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-event/index.html"><span>Leaflet</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1009311529%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1375770343%2FClasslikes%2F-1002496885" anchor-label="LeafletEventHandlerFn" id="1375770343%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-event-handler-fn/index.html"><span>Leaflet</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1375770343%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-event-handler-fn/index.html">LeafletEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-leaflet-event/index.html">LeafletEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="623493119%2FClasslikes%2F-1002496885" anchor-label="LeafletEventHandlerFnMap" id="623493119%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-event-handler-fn-map/index.html"><span>Leaflet</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span>Fn</span><wbr><span><span>Map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="623493119%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-leaflet-event-handler-fn-map/index.html">LeafletEventHandlerFnMap</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1213415346%2FClasslikes%2F-1002496885" anchor-label="LeafletEventId" id="-1213415346%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-event-id/index.html"><span>Leaflet</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1213415346%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-event-id/index.html">LeafletEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">zoomlevelschange</code> | <code class="lang-kotlin">unload</code> | <code class="lang-kotlin">viewreset</code> | <code class="lang-kotlin">load</code> | <code class="lang-kotlin">zoomstart</code> | <code class="lang-kotlin">movestart</code> | <code class="lang-kotlin">zoom</code> | <code class="lang-kotlin">move</code> | <code class="lang-kotlin">zoomend</code> | <code class="lang-kotlin">moveend</code> | <code class="lang-kotlin">autopanstart</code> | <code class="lang-kotlin">dragstart</code> | <code class="lang-kotlin">drag</code> | <code class="lang-kotlin">add</code> | <code class="lang-kotlin">remove</code> | <code class="lang-kotlin">loading</code> | <code class="lang-kotlin">error</code> | <code class="lang-kotlin">update</code> | <code class="lang-kotlin">down</code> | <code class="lang-kotlin">predrag</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1487724272%2FClasslikes%2F-1002496885" anchor-label="LeafletKeyboardEvent" id="1487724272%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-keyboard-event/index.html"><span>Leaflet</span><wbr><span>Keyboard</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1487724272%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-leaflet-keyboard-event/index.html">LeafletKeyboardEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1516083456%2FClasslikes%2F-1002496885" anchor-label="LeafletKeyboardEventHandlerFn" id="-1516083456%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-keyboard-event-handler-fn/index.html"><span>Leaflet</span><wbr><span>Keyboard</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1516083456%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-keyboard-event-handler-fn/index.html">LeafletKeyboardEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-leaflet-keyboard-event/index.html">LeafletKeyboardEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1020269995%2FClasslikes%2F-1002496885" anchor-label="LeafletKeyboardEventId" id="-1020269995%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-keyboard-event-id/index.html"><span>Leaflet</span><wbr><span>Keyboard</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1020269995%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-keyboard-event-id/index.html">LeafletKeyboardEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">keypress</code> | <code class="lang-kotlin">keydown</code> | <code class="lang-kotlin">keyup</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2078936411%2FClasslikes%2F-1002496885" anchor-label="LeafletLayerEventId" id="2078936411%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-layer-event-id/index.html"><span>Leaflet</span><wbr><span>Layer</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2078936411%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-layer-event-id/index.html">LeafletLayerEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">layeradd</code> | <code class="lang-kotlin">layerremove</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="849763875%2FClasslikes%2F-1002496885" anchor-label="LeafletLocationEventId" id="849763875%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-location-event-id/index.html"><span>Leaflet</span><wbr><span>Location</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="849763875%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-location-event-id/index.html">LeafletLocationEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">locationfound</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="596109258%2FClasslikes%2F-1002496885" anchor-label="LeafletMouseEvent" id="596109258%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-mouse-event/index.html"><span>Leaflet</span><wbr><span>Mouse</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="596109258%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-leaflet-mouse-event/index.html">LeafletMouseEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="859485030%2FClasslikes%2F-1002496885" anchor-label="LeafletMouseEventHandlerFn" id="859485030%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-mouse-event-handler-fn/index.html"><span>Leaflet</span><wbr><span>Mouse</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="859485030%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-mouse-event-handler-fn/index.html">LeafletMouseEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-leaflet-mouse-event/index.html">LeafletMouseEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1131160751%2FClasslikes%2F-1002496885" anchor-label="LeafletMouseEventId" id="1131160751%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-mouse-event-id/index.html"><span>Leaflet</span><wbr><span>Mouse</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1131160751%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-mouse-event-id/index.html">LeafletMouseEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">click</code> | <code class="lang-kotlin">dblclick</code> | <code class="lang-kotlin">mousedown</code> | <code class="lang-kotlin">mouseup</code> | <code class="lang-kotlin">mouseover</code> | <code class="lang-kotlin">mouseout</code> | <code class="lang-kotlin">mousemove</code> | <code class="lang-kotlin">contextmenu</code> | <code class="lang-kotlin">preclick</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1588362422%2FClasslikes%2F-1002496885" anchor-label="LeafletPopupEventId" id="1588362422%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-popup-event-id/index.html"><span>Leaflet</span><wbr><span>Popup</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1588362422%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-popup-event-id/index.html">LeafletPopupEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">popupopen</code> | <code class="lang-kotlin">popupclose</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1190564958%2FClasslikes%2F-1002496885" anchor-label="LeafletResizeEventId" id="-1190564958%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-resize-event-id/index.html"><span>Leaflet</span><wbr><span>Resize</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1190564958%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-resize-event-id/index.html">LeafletResizeEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">resize</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1301615086%2FClasslikes%2F-1002496885" anchor-label="LeafletTileErrorId" id="1301615086%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-tile-error-id/index.html"><span>Leaflet</span><wbr><span>Tile</span><wbr><span>Error</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1301615086%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-tile-error-id/index.html">LeafletTileErrorId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">tileerror</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1355130396%2FClasslikes%2F-1002496885" anchor-label="LeafletTileEventId" id="1355130396%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-tile-event-id/index.html"><span>Leaflet</span><wbr><span>Tile</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1355130396%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-tile-event-id/index.html">LeafletTileEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">tileunload</code> | <code class="lang-kotlin">tileloadstart</code> | <code class="lang-kotlin">tileload</code> | <code class="lang-kotlin">tileerror</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="527113357%2FClasslikes%2F-1002496885" anchor-label="LeafletTooltipEventId" id="527113357%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-tooltip-event-id/index.html"><span>Leaflet</span><wbr><span>Tooltip</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="527113357%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-tooltip-event-id/index.html">LeafletTooltipEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">tooltipopen</code> | <code class="lang-kotlin">tooltipclose</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1595144946%2FClasslikes%2F-1002496885" anchor-label="LeafletZoomAnimEventId" id="1595144946%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-leaflet-zoom-anim-event-id/index.html"><span>Leaflet</span><wbr><span>Zoom</span><wbr><span>Anim</span><wbr><span>Event</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1595144946%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-leaflet-zoom-anim-event-id/index.html">LeafletZoomAnimEventId</a><span class="token operator"> = </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">zoomanim</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1333599127%2FClasslikes%2F-1002496885" anchor-label="LocationEvent" id="1333599127%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-location-event/index.html"><span>Location</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1333599127%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-location-event/index.html">LocationEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-348228039%2FClasslikes%2F-1002496885" anchor-label="LocationEventHandlerFn" id="-348228039%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-location-event-handler-fn/index.html"><span>Location</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-348228039%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-location-event-handler-fn/index.html">LocationEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-location-event/index.html">LocationEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1857351976%2FClasslikes%2F-1002496885" anchor-label="PopupEvent" id="-1857351976%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-popup-event/index.html"><span>Popup</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1857351976%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-popup-event/index.html">PopupEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="488086552%2FClasslikes%2F-1002496885" anchor-label="PopupEventHandlerFn" id="488086552%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-popup-event-handler-fn/index.html"><span>Popup</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="488086552%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-popup-event-handler-fn/index.html">PopupEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-popup-event/index.html">PopupEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="123797270%2FClasslikes%2F-1002496885" anchor-label="ResizeEvent" id="123797270%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-resize-event/index.html"><span>Resize</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="123797270%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-resize-event/index.html">ResizeEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1300688486%2FClasslikes%2F-1002496885" anchor-label="ResizeEventHandlerFn" id="-1300688486%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-resize-event-handler-fn/index.html"><span>Resize</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1300688486%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-resize-event-handler-fn/index.html">ResizeEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-resize-event/index.html">ResizeEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-535016666%2FClasslikes%2F-1002496885" anchor-label="TileErrorEvent" id="-535016666%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tile-error-event/index.html"><span>Tile</span><wbr><span>Error</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-535016666%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-tile-error-event/index.html">TileErrorEvent</a> : <a href="-tile-event/index.html">TileEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1907730550%2FClasslikes%2F-1002496885" anchor-label="TileErrorEventHandlerFn" id="-1907730550%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tile-error-event-handler-fn/index.html"><span>Tile</span><wbr><span>Error</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1907730550%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-tile-error-event-handler-fn/index.html">TileErrorEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-tile-error-event/index.html">TileErrorEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-144268720%2FClasslikes%2F-1002496885" anchor-label="TileEvent" id="-144268720%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tile-event/index.html"><span>Tile</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-144268720%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-tile-event/index.html">TileEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="331247520%2FClasslikes%2F-1002496885" anchor-label="TileEventHandlerFn" id="331247520%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tile-event-handler-fn/index.html"><span>Tile</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="331247520%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-tile-event-handler-fn/index.html">TileEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-tile-event/index.html">TileEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="777290415%2FClasslikes%2F-1002496885" anchor-label="TooltipEvent" id="777290415%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tooltip-event/index.html"><span>Tooltip</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="777290415%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-tooltip-event/index.html">TooltipEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1101892129%2FClasslikes%2F-1002496885" anchor-label="TooltipEventHandlerFn" id="1101892129%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tooltip-event-handler-fn/index.html"><span>Tooltip</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1101892129%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-tooltip-event-handler-fn/index.html">TooltipEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-tooltip-event/index.html">TooltipEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-386293722%2FClasslikes%2F-1002496885" anchor-label="ZoomAnimEvent" id="-386293722%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-zoom-anim-event/index.html"><span>Zoom</span><wbr><span>Anim</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-386293722%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-zoom-anim-event/index.html">ZoomAnimEvent</a> : <a href="-leaflet-event/index.html">LeafletEvent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1868782966%2FClasslikes%2F-1002496885" anchor-label="ZoomAnimEventHandlerFn" id="-1868782966%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-zoom-anim-event-handler-fn/index.html"><span>Zoom</span><wbr><span>Anim</span><wbr><span>Event</span><wbr><span>Handler</span><wbr><span><span>Fn</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1868782966%2FClasslikes%2F-1002496885"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-zoom-anim-event-handler-fn/index.html">ZoomAnimEventHandlerFn</a><span class="token operator"> = </span><span class="token punctuation">(</span>event<span class="token operator">: </span><a href="-zoom-anim-event/index.html">ZoomAnimEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

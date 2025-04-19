@@ -1,0 +1,776 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Cursor</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.2.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":/jsMain" data-filter=":/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kvision::io.kvision.core/Cursor///PointingToDeclaration//-649084563">
+  <div class="breadcrumbs"><a href="../../index.html">kvision</a><span class="delimiter">/</span><a href="../index.html">io.kvision.core</a><span class="delimiter">/</span><span class="current">Cursor</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Cursor</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="index.html">Cursor</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="index.html">Cursor</a><span class="token operator">&gt; </span><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/src/jsMain/kotlin/io/kvision/core/Css.kt#L540">source</a>)</span></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="ENTRY">Entries</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="ENTRY">
+        <h2 class="">Entries</h2>
+        <div class="table"><a data-name="704358922%2FClasslikes%2F-649084563" anchor-label="DEFAULT" id="704358922%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-d-e-f-a-u-l-t/index.html">DEFAULT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="704358922%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-d-e-f-a-u-l-t/index.html">DEFAULT</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="993870094%2FClasslikes%2F-649084563" anchor-label="AUTO" id="993870094%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-u-t-o/index.html">AUTO</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="993870094%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-a-u-t-o/index.html">AUTO</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1415991511%2FClasslikes%2F-649084563" anchor-label="NONE" id="1415991511%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-o-n-e/index.html">NONE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1415991511%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-n-o-n-e/index.html">NONE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1231138585%2FClasslikes%2F-649084563" anchor-label="ALIAS" id="1231138585%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-l-i-a-s/index.html">ALIAS</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1231138585%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-a-l-i-a-s/index.html">ALIAS</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="249508215%2FClasslikes%2F-649084563" anchor-label="ALLSCROLL" id="249508215%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-l-l-s-c-r-o-l-l/index.html">ALLSCROLL</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="249508215%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-a-l-l-s-c-r-o-l-l/index.html">ALLSCROLL</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1506872705%2FClasslikes%2F-649084563" anchor-label="CELL" id="1506872705%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-e-l-l/index.html">CELL</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1506872705%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-c-e-l-l/index.html">CELL</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1734949865%2FClasslikes%2F-649084563" anchor-label="CONTEXTMENU" id="-1734949865%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-o-n-t-e-x-t-m-e-n-u/index.html">CONTEXTMENU</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1734949865%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-c-o-n-t-e-x-t-m-e-n-u/index.html">CONTEXTMENU</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1289606525%2FClasslikes%2F-649084563" anchor-label="COLRESIZE" id="1289606525%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-o-l-r-e-s-i-z-e/index.html">COLRESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1289606525%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-c-o-l-r-e-s-i-z-e/index.html">COLRESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-784765868%2FClasslikes%2F-649084563" anchor-label="COPY" id="-784765868%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-o-p-y/index.html">COPY</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-784765868%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-c-o-p-y/index.html">COPY</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="111530731%2FClasslikes%2F-649084563" anchor-label="CROSSHAIR" id="111530731%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-r-o-s-s-h-a-i-r/index.html">CROSSHAIR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="111530731%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-c-r-o-s-s-h-a-i-r/index.html">CROSSHAIR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1066387678%2FClasslikes%2F-649084563" anchor-label="ERESIZE" id="-1066387678%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-r-e-s-i-z-e/index.html">ERESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1066387678%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-e-r-e-s-i-z-e/index.html">ERESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-283448443%2FClasslikes%2F-649084563" anchor-label="EWRESIZE" id="-283448443%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-w-r-e-s-i-z-e/index.html">EWRESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-283448443%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-e-w-r-e-s-i-z-e/index.html">EWRESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2083627243%2FClasslikes%2F-649084563" anchor-label="GRAB" id="2083627243%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-g-r-a-b/index.html">GRAB</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2083627243%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-g-r-a-b/index.html">GRAB</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-669496917%2FClasslikes%2F-649084563" anchor-label="GRABBING" id="-669496917%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-g-r-a-b-b-i-n-g/index.html">GRABBING</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-669496917%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-g-r-a-b-b-i-n-g/index.html">GRABBING</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="178278176%2FClasslikes%2F-649084563" anchor-label="HELP" id="178278176%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-h-e-l-p/index.html">HELP</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="178278176%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-h-e-l-p/index.html">HELP</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="886808496%2FClasslikes%2F-649084563" anchor-label="MOVE" id="886808496%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-o-v-e/index.html">MOVE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="886808496%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-m-o-v-e/index.html">MOVE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="569211563%2FClasslikes%2F-649084563" anchor-label="NRESIZE" id="569211563%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-r-e-s-i-z-e/index.html">NRESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="569211563%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-n-r-e-s-i-z-e/index.html">NRESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-95710710%2FClasslikes%2F-649084563" anchor-label="NERESIZE" id="-95710710%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-e-r-e-s-i-z-e/index.html">NERESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-95710710%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-n-e-r-e-s-i-z-e/index.html">NERESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2029559314%2FClasslikes%2F-649084563" anchor-label="NESWRESIZE" id="-2029559314%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-e-s-w-r-e-s-i-z-e/index.html">NESWRESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2029559314%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-n-e-s-w-r-e-s-i-z-e/index.html">NESWRESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1846412520%2FClasslikes%2F-649084563" anchor-label="NSRESIZE" id="-1846412520%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-s-r-e-s-i-z-e/index.html">NSRESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1846412520%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-n-s-r-e-s-i-z-e/index.html">NSRESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1119479524%2FClasslikes%2F-649084563" anchor-label="NWRESIZE" id="-1119479524%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-w-r-e-s-i-z-e/index.html">NWRESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1119479524%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-n-w-r-e-s-i-z-e/index.html">NWRESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1300109970%2FClasslikes%2F-649084563" anchor-label="NWSERESIZE" id="-1300109970%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-w-s-e-r-e-s-i-z-e/index.html">NWSERESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1300109970%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-n-w-s-e-r-e-s-i-z-e/index.html">NWSERESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1894422799%2FClasslikes%2F-649084563" anchor-label="NODROP" id="1894422799%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-o-d-r-o-p/index.html">NODROP</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1894422799%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-n-o-d-r-o-p/index.html">NODROP</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="50483220%2FClasslikes%2F-649084563" anchor-label="NOTALLOWED" id="50483220%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-o-t-a-l-l-o-w-e-d/index.html">NOTALLOWED</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="50483220%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-n-o-t-a-l-l-o-w-e-d/index.html">NOTALLOWED</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="118300934%2FClasslikes%2F-649084563" anchor-label="POINTER" id="118300934%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-o-i-n-t-e-r/index.html">POINTER</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="118300934%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-p-o-i-n-t-e-r/index.html">POINTER</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1912518772%2FClasslikes%2F-649084563" anchor-label="PROGRESS" id="-1912518772%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-r-o-g-r-e-s-s/index.html">PROGRESS</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1912518772%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-p-r-o-g-r-e-s-s/index.html">PROGRESS</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1251561257%2FClasslikes%2F-649084563" anchor-label="ROWRESIZE" id="-1251561257%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-r-o-w-r-e-s-i-z-e/index.html">ROWRESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1251561257%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-r-o-w-r-e-s-i-z-e/index.html">ROWRESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1477877808%2FClasslikes%2F-649084563" anchor-label="SRESIZE" id="1477877808%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-s-r-e-s-i-z-e/index.html">SRESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1477877808%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-s-r-e-s-i-z-e/index.html">SRESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1991828187%2FClasslikes%2F-649084563" anchor-label="SERESIZE" id="-1991828187%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-s-e-r-e-s-i-z-e/index.html">SERESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1991828187%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-s-e-r-e-s-i-z-e/index.html">SERESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1279370295%2FClasslikes%2F-649084563" anchor-label="SWRESIZE" id="1279370295%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-s-w-r-e-s-i-z-e/index.html">SWRESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1279370295%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-s-w-r-e-s-i-z-e/index.html">SWRESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-148402164%2FClasslikes%2F-649084563" anchor-label="TEXT" id="-148402164%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-e-x-t/index.html">TEXT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-148402164%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-t-e-x-t/index.html">TEXT</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="946947842%2FClasslikes%2F-649084563" anchor-label="VERTICALTEXT" id="946947842%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-v-e-r-t-i-c-a-l-t-e-x-t/index.html">VERTICALTEXT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="946947842%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-v-e-r-t-i-c-a-l-t-e-x-t/index.html">VERTICALTEXT</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2090156492%2FClasslikes%2F-649084563" anchor-label="WRESIZE" id="-2090156492%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-w-r-e-s-i-z-e/index.html">WRESIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2090156492%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-w-r-e-s-i-z-e/index.html">WRESIZE</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="703778388%2FClasslikes%2F-649084563" anchor-label="WAIT" id="703778388%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-w-a-i-t/index.html">WAIT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="703778388%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-w-a-i-t/index.html">WAIT</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1162252055%2FClasslikes%2F-649084563" anchor-label="ZOOMIN" id="1162252055%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-z-o-o-m-i-n/index.html">ZOOMIN</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1162252055%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-z-o-o-m-i-n/index.html">ZOOMIN</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-631629596%2FClasslikes%2F-649084563" anchor-label="ZOOMOUT" id="-631629596%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-z-o-o-m-o-u-t/index.html">ZOOMOUT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-631629596%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-z-o-o-m-o-u-t/index.html">ZOOMOUT</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-175349811%2FClasslikes%2F-649084563" anchor-label="INITIAL" id="-175349811%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-n-i-t-i-a-l/index.html">INITIAL</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-175349811%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-i-n-i-t-i-a-l/index.html">INITIAL</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1722428228%2FClasslikes%2F-649084563" anchor-label="INHERIT" id="1722428228%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-n-h-e-r-i-t/index.html">INHERIT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1722428228%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><div class="block"><a href="-i-n-h-e-r-i-t/index.html">INHERIT</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-2064653319%2FProperties%2F-649084563" anchor-label="entries" id="-2064653319%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="entries.html"><span><span>entries</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2064653319%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="entries.html">entries</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.enums/-enum-entries/index.html">EnumEntries</a><span class="token operator">&lt;</span><a href="index.html">Cursor</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns a representation of an immutable list of all enum entries, in the order they're declared.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-372974862%2FProperties%2F-649084563" anchor-label="name" id="-372974862%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../io.kvision.panel/-gutter-align/-e-n-d/index.html#-372974862%2FProperties%2F-649084563"><span><span>name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372974862%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../io.kvision.panel/-gutter-align/-e-n-d/index.html#-372974862%2FProperties%2F-649084563">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-739389684%2FProperties%2F-649084563" anchor-label="ordinal" id="-739389684%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../io.kvision.panel/-gutter-align/-e-n-d/index.html#-739389684%2FProperties%2F-649084563"><span><span>ordinal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739389684%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../io.kvision.panel/-gutter-align/-e-n-d/index.html#-739389684%2FProperties%2F-649084563">ordinal</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1883376061%2FFunctions%2F-649084563" anchor-label="valueOf" id="-1883376061%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="value-of.html"><span>value</span><wbr><span><span>Of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1883376061%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="value-of.html"><span class="token function">valueOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Cursor</a></div><div class="brief "><p class="paragraph">Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1805081457%2FFunctions%2F-649084563" anchor-label="values" id="-1805081457%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="values.html"><span><span>values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1805081457%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="values.html"><span class="token function">values</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="index.html">Cursor</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns an array containing the constants of this enum type, in the order they're declared.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

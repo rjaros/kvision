@@ -1,0 +1,986 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>io.kvision.utils</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.2.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":/jsMain" data-filter=":/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="kvision::io.kvision.utils////PointingToDeclaration//-649084563">
+  <div class="breadcrumbs"><a href="../index.html">kvision</a><span class="delimiter">/</span><span class="current">io.kvision.utils</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><p class="paragraph">Interfaces and helper functions for Snabbdom virtual dom implementation and a few useful extension functions.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button><button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">Properties</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="202355440%2FClasslikes%2F-649084563" anchor-label="Cache" id="202355440%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-cache/index.html"><span><span>Cache</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="202355440%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-cache/index.html">Cache</a><span class="token operator">&lt;</span><a href="-cache/index.html">K</a><span class="token punctuation">, </span><a href="-cache/index.html">V</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">capacity<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">50</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">This is a LRU cache that has no performance impact for cache insertions once the capacity of the cache has been reached. For cache hit, performance is O(1) and for cache eviction, it is O(1).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1500731309%2FClasslikes%2F-649084563" anchor-label="Intl" id="-1500731309%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-intl/index.html"><span><span>Intl</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1500731309%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">object </span><a href="-intl/index.html">Intl</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1237898525%2FClasslikes%2F-649084563" anchor-label="KvEvent" id="-1237898525%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-kv-event/index.html"><span>Kv</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1237898525%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-kv-event/index.html">KvEvent</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">eventInitDict<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-custom-event-init/index.html">CustomEventInit</a><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-custom-event/index.html">CustomEvent</a></div><div class="brief "><p class="paragraph">Helper class for defining custom events.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1796611495%2FClasslikes%2F-649084563" anchor-label="LinkedList" id="-1796611495%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-linked-list/index.html"><span>Linked</span><wbr><span><span>List</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1796611495%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-linked-list/index.html">LinkedList</a><span class="token operator">&lt;</span><a href="-linked-list/index.html">T</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1008020402%2FClasslikes%2F-649084563" anchor-label="Node" id="-1008020402%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-node/index.html"><span><span>Node</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1008020402%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-node/index.html">Node</a><span class="token operator">&lt;</span><a href="-node/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">var </span>value<span class="token operator">: </span><a href="-node/index.html">T</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Created by gazollajunior on 07/04/16.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1031428524%2FClasslikes%2F-649084563" anchor-label="NumberFormatOptions" id="-1031428524%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-number-format-options/index.html"><span>Number</span><wbr><span>Format</span><wbr><span><span>Options</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1031428524%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-number-format-options/index.html">NumberFormatOptions</a></div><div class="brief "><p class="paragraph">Options for Intl.NumberFormat</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1251627505%2FClasslikes%2F-649084563" anchor-label="Object" id="1251627505%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-object/index.html"><span><span>Object</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1251627505%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="-object/index.html">Object</a></div><div class="brief "><p class="paragraph">JavaScript Object type</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1115364674%2FClasslikes%2F-649084563" anchor-label="Serialization" id="1115364674%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-serialization/index.html"><span><span>Serialization</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1115364674%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-serialization/index.html">Serialization</a></div><div class="brief "><p class="paragraph">JSON serialization utility functions</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-545512192%2FProperties%2F-649084563" anchor-label="auto" id="-545512192%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="auto.html"><span><span>auto</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-545512192%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="auto.html">auto</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Helper property to describe CSS auto value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1083216376%2FProperties%2F-649084563" anchor-label="ch" id="-1083216376%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ch.html"><span><span>ch</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1083216376%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="ch.html">ch</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS ch units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1401666995%2FProperties%2F-649084563" anchor-label="cm" id="-1401666995%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cm.html"><span><span>cm</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1401666995%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="cm.html">cm</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS cm units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1521493003%2FProperties%2F-649084563" anchor-label="em" id="1521493003%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="em.html"><span><span>em</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1521493003%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="em.html">em</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS em units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1060756915%2FProperties%2F-649084563" anchor-label="ENTER_KEY" id="1060756915%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-n-t-e-r_-k-e-y.html"><span>ENTER_</span><wbr><span>KEY</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1060756915%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-e-n-t-e-r_-k-e-y.html">ENTER_KEY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">13</span></div><div class="brief "><p class="paragraph">Keycode of the ENTER key.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-824323146%2FProperties%2F-649084563" anchor-label="ESC_KEY" id="-824323146%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-s-c_-k-e-y.html"><span>ESC_</span><wbr><span>KEY</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-824323146%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-e-s-c_-k-e-y.html">ESC_KEY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">27</span></div><div class="brief "><p class="paragraph">Keycode of the ESC key.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2144805176%2FProperties%2F-649084563" anchor-label="in" id="-2144805176%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="in.html"><span><span>in</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2144805176%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="in.html">in</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS in units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="329231107%2FProperties%2F-649084563" anchor-label="mm" id="329231107%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="mm.html"><span><span>mm</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="329231107%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="mm.html">mm</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS mm units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1803163865%2FProperties%2F-649084563" anchor-label="mutableSet" id="1803163865%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="mutable-set.html"><span>mutable</span><wbr><span><span>Set</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1803163865%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">.</span><a href="mutable-set.html">mutableSet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-set/index.html">MutableSet</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">.</span><a href="mutable-set.html">mutableSet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-set/index.html">MutableSet</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Utility extension property to generate a mutable set of strings to simplify the notation when using classes parameter.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1598789704%2FProperties%2F-649084563" anchor-label="normal" id="1598789704%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="normal.html"><span><span>normal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1598789704%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="normal.html">normal</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Helper property to describe CSS normal value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1055905046%2FProperties%2F-649084563" anchor-label="pc" id="1055905046%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pc.html"><span><span>pc</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1055905046%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="pc.html">pc</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS pc units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1089042505%2FProperties%2F-649084563" anchor-label="perc" id="1089042505%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="perc.html"><span><span>perc</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1089042505%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="perc.html">perc</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS percent units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1960162797%2FProperties%2F-649084563" anchor-label="pt" id="1960162797%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pt.html"><span><span>pt</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1960162797%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">.</span><a href="pt.html">pt</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS pt units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1171429225%2FProperties%2F-649084563" anchor-label="px" id="1171429225%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="px.html"><span><span>px</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1171429225%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">.</span><a href="px.html">px</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS px units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-689604895%2FProperties%2F-649084563" anchor-label="rem" id="-689604895%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="rem.html"><span><span>rem</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-689604895%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="rem.html">rem</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS rem units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="127463535%2FProperties%2F-649084563" anchor-label="set" id="127463535%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set.html"><span><span>set</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="127463535%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">.</span><a href="set.html">set</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">.</span><a href="set.html">set</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Utility extension property to generate a set of strings to simplify the notation when using classes parameter.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="916999829%2FProperties%2F-649084563" anchor-label="vh" id="916999829%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="vh.html"><span><span>vh</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="916999829%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="vh.html">vh</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS vh units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2040440687%2FProperties%2F-649084563" anchor-label="vmax" id="-2040440687%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="vmax.html"><span><span>vmax</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2040440687%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="vmax.html">vmax</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS vmax units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1699165951%2FProperties%2F-649084563" anchor-label="vmin" id="1699165951%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="vmin.html"><span><span>vmin</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1699165951%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="vmin.html">vmin</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS vmin units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-38352028%2FProperties%2F-649084563" anchor-label="vw" id="-38352028%2FProperties%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="vw.html"><span><span>vw</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-38352028%2FProperties%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="vw.html">vw</a><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension property to convert Int to CSS vw units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1475147853%2FFunctions%2F-649084563" anchor-label="asString" id="-1475147853%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="as-string.html"><span>as</span><wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1475147853%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a><span class="token punctuation">.</span><a href="as-string.html"><span class="token function">asString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Extension function to convert CssSize to String.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2089132175%2FFunctions%2F-649084563" anchor-label="createInstance" id="2089132175%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-instance.html"><span>create</span><wbr><span><span>Instance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2089132175%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="create-instance.html">T</a><span class="token operator">&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">.</span><a href="create-instance.html"><span class="token function">createInstance</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>args<span class="token operator">: </span>dynamic</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="create-instance.html">T</a></div><div class="brief "><p class="paragraph">Helper function for creating JavaScript objects from dynamic constructors.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="174433472%2FFunctions%2F-649084563" anchor-label="deepMerge" id="174433472%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="deep-merge.html"><span>deep</span><wbr><span><span>Merge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="174433472%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="deep-merge.html"><span class="token function">deepMerge</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">target<span class="token operator">: </span>dynamic<span class="token punctuation">, </span></span><span class="parameter ">source<span class="token operator">: </span>dynamic</span></span><span class="token punctuation">)</span><span class="token operator">: </span>dynamic</div><div class="brief "><p class="paragraph">Helper function to deeply merge two JS objects.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-36757977%2FFunctions%2F-649084563" anchor-label="delete" id="-36757977%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete.html"><span><span>delete</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-36757977%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">fun </span><a href="delete.html"><span class="token function">delete</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p<span class="token operator">: </span>dynamic</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">JavaScript delete operator</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="delete.html"><span class="token function">delete</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">thing<span class="token operator">: </span>dynamic<span class="token punctuation">, </span></span><span class="parameter ">key<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A helper function for JavaScript delete operator</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1180647007%2FFunctions%2F-649084563" anchor-label="event" id="1180647007%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="event.html"><span><span>event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1180647007%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="event.html">T</a><span class="token operator">&gt; </span><a href="../../kvision/io.kvision.utils/-sn-on/index.html">SnOn</a><span class="token operator">&lt;</span><a href="event.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="event.html"><span class="token function">event</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>handler<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom.events/-event/index.html">Event</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Helper function for defining custom event types.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1786881290%2FFunctions%2F-649084563" anchor-label="flatMap" id="-1786881290%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="flat-map.html"><span>flat</span><wbr><span><span>Map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1786881290%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="flat-map.html">T</a><span class="token punctuation">, </span><a href="flat-map.html">R</a><span class="token operator">&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="flat-map.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="flat-map.html"><span class="token function">flatMap</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><a href="flat-map.html">T</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="flat-map.html">R</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><a href="flat-map.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Simple flatmap implementation for the <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-result/index.html">Result</a> type</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-230442512%2FFunctions%2F-649084563" anchor-label="getContent" id="-230442512%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-content.html"><span>get</span><wbr><span><span>Content</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-230442512%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.files/-file/index.html">File</a><span class="token punctuation">.</span><a href="get-content.html"><span class="token function">getContent</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Extension function to get file content.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1413433881%2FFunctions%2F-649084563" anchor-label="height" id="-1413433881%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="height.html"><span><span>height</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1413433881%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-node/index.html">Node</a><span class="token punctuation">.</span><a href="height.html"><span class="token function">height</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-405779827%2FFunctions%2F-649084563" anchor-label="listOfPairs" id="-405779827%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="list-of-pairs.html"><span>list</span><wbr><span>Of</span><wbr><span><span>Pairs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-405779827%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="list-of-pairs.html"><span class="token function">listOfPairs</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>params<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../io.kvision.core/-string-pair/index.html">StringPair</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Builds List<stringpair> out of given Strings.</stringpair></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-319534411%2FFunctions%2F-649084563" anchor-label="minus" id="-319534411%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="minus.html"><span><span>minus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-319534411%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a><span class="token operator">?</span><span class="token punctuation">.</span><a href="minus.html"><span class="token function">minus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">i<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension operator to decrease CssSize units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-415531641%2FFunctions%2F-649084563" anchor-label="numberFormat" id="-415531641%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="number-format.html"><span>number</span><wbr><span><span>Format</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-415531641%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="number-format.html"><span class="token function">numberFormat</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">optionsBuilder<span class="token operator">: </span><a href="-number-format-options/index.html">NumberFormatOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-intl/-number-format/index.html">Intl.NumberFormat</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="number-format.html"><span class="token function">numberFormat</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">locales<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">optionsBuilder<span class="token operator">: </span><a href="-number-format-options/index.html">NumberFormatOptions</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-intl/-number-format/index.html">Intl.NumberFormat</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="431855625%2FFunctions%2F-649084563" anchor-label="obj" id="431855625%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="obj.html"><span><span>obj</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="431855625%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="obj.html">T</a><span class="token operator">&gt; </span><a href="obj.html"><span class="token function">obj</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">init<span class="token operator">: </span><a href="obj.html">T</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="obj.html">T</a></div><div class="brief "><p class="paragraph">Helper function for creating JavaScript objects with given type.</p></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="obj.html"><span class="token function">obj</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">init<span class="token operator">: </span>dynamic<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span>dynamic</div><div class="brief "><p class="paragraph">Helper function for creating JavaScript objects.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="772048724%2FFunctions%2F-649084563" anchor-label="offsetHeight" id="772048724%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="offset-height.html"><span>offset</span><wbr><span><span>Height</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="772048724%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-node/index.html">Node</a><span class="token punctuation">.</span><a href="offset-height.html"><span class="token function">offsetHeight</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1873930292%2FFunctions%2F-649084563" anchor-label="offsetLeft" id="1873930292%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="offset-left.html"><span>offset</span><wbr><span><span>Left</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1873930292%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-node/index.html">Node</a><span class="token punctuation">.</span><a href="offset-left.html"><span class="token function">offsetLeft</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1265361224%2FFunctions%2F-649084563" anchor-label="offsetTop" id="1265361224%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="offset-top.html"><span>offset</span><wbr><span><span>Top</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1265361224%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-node/index.html">Node</a><span class="token punctuation">.</span><a href="offset-top.html"><span class="token function">offsetTop</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1089727561%2FFunctions%2F-649084563" anchor-label="offsetWidth" id="-1089727561%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="offset-width.html"><span>offset</span><wbr><span><span>Width</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1089727561%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-node/index.html">Node</a><span class="token punctuation">.</span><a href="offset-width.html"><span class="token function">offsetWidth</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1874318952%2FFunctions%2F-649084563" anchor-label="pairs" id="1874318952%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pairs.html"><span><span>pairs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1874318952%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="pairs.html"><span class="token function">pairs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../io.kvision.core/-string-pair/index.html">StringPair</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Utility extension function to convert List<string> into List<stringpair>.</stringpair></string></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-695748357%2FFunctions%2F-649084563" anchor-label="plus" id="-695748357%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="plus.html"><span><span>plus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-695748357%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a><span class="token operator">?</span><span class="token punctuation">.</span><a href="plus.html"><span class="token function">plus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">i<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../io.kvision.core/-css-size/index.html">CssSize</a></div><div class="brief "><p class="paragraph">Extension operator to increase CssSize units.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-104474977%2FFunctions%2F-649084563" anchor-label="snAttrs" id="-104474977%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sn-attrs.html"><span>sn</span><wbr><span><span>Attrs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-104474977%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="sn-attrs.html"><span class="token function">snAttrs</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../io.kvision.core/-string-pair/index.html">StringPair</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../io.kvision.snabbdom/-attrs/index.html">Attrs</a></div><div class="brief "><p class="paragraph">Helper function for creating attributes parameters for Snabbdom.</p></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="sn-attrs.html"><span class="token function">snAttrs</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../io.kvision.snabbdom/-attrs/index.html">Attrs</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="879807838%2FFunctions%2F-649084563" anchor-label="snClasses" id="879807838%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sn-classes.html"><span>sn</span><wbr><span><span>Classes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="879807838%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="sn-classes.html"><span class="token function">snClasses</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">classes<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../io.kvision.snabbdom/-classes/index.html">Classes</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="sn-classes.html"><span class="token function">snClasses</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../io.kvision.core/-string-bool-pair/index.html">StringBoolPair</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../io.kvision.snabbdom/-classes/index.html">Classes</a></div><div class="brief "><p class="paragraph">Helper function for creating classes parameters for Snabbdom.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1291358501%2FFunctions%2F-649084563" anchor-label="snOpt" id="-1291358501%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sn-opt.html"><span>sn</span><wbr><span><span>Opt</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1291358501%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="sn-opt.html"><span class="token function">snOpt</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><a href="../io.kvision.snabbdom/-v-node-data/index.html">VNodeData</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../io.kvision.snabbdom/-v-node-data/index.html">VNodeData</a></div><div class="brief "><p class="paragraph">Helper function for creating object parameters for Snabbdom.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-15064537%2FFunctions%2F-649084563" anchor-label="snProps" id="-15064537%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sn-props.html"><span>sn</span><wbr><span><span>Props</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-15064537%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="sn-props.html"><span class="token function">snProps</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../io.kvision.core/-string-pair/index.html">StringPair</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../io.kvision.snabbdom/-props/index.html">Props</a></div><div class="brief "><p class="paragraph">Helper function for creating properties parameters for Snabbdom.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1026633512%2FFunctions%2F-649084563" anchor-label="snStyle" id="1026633512%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sn-style.html"><span>sn</span><wbr><span><span>Style</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1026633512%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="sn-style.html"><span class="token function">snStyle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../io.kvision.core/-string-pair/index.html">StringPair</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../io.kvision.snabbdom/-v-node-style/index.html">VNodeStyle</a></div><div class="brief "><p class="paragraph">Helper function for creating style parameters for Snabbdom.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-261373070%2FFunctions%2F-649084563" anchor-label="syncWithList" id="-261373070%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sync-with-list.html"><span>sync</span><wbr><span>With</span><wbr><span><span>List</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-261373070%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="sync-with-list.html">T</a><span class="token operator">&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><a href="sync-with-list.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="sync-with-list.html"><span class="token function">syncWithList</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">list<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="sync-with-list.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Utility extension function to synchronise elements of the MutableList.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1207185690%2FFunctions%2F-649084563" anchor-label="toCamelCase" id="1207185690%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-camel-case.html"><span>to</span><wbr><span>Camel</span><wbr><span><span>Case</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1207185690%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">.</span><a href="to-camel-case.html"><span class="token function">toCamelCase</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Utility extension function to convert string from kebab-case to camelCase.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1956032149%2FFunctions%2F-649084563" anchor-label="toFixedNoRound" id="1956032149%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-fixed-no-round.html"><span>to</span><wbr><span>Fixed</span><wbr><span>No</span><wbr><span><span>Round</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1956032149%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="to-fixed-no-round.html"><span class="token function">toFixedNoRound</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">precision<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Formats a number to fixed decimal digits without rounding.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1560027738%2FFunctions%2F-649084563" anchor-label="toggle" id="1560027738%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="toggle.html"><span><span>toggle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1560027738%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-node/index.html">Node</a><span class="token punctuation">.</span><a href="toggle.html"><span class="token function">toggle</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-898425316%2FFunctions%2F-649084563" anchor-label="toHexString" id="-898425316%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-hex-string.html"><span>to</span><wbr><span>Hex</span><wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-898425316%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">.</span><a href="to-hex-string.html"><span class="token function">toHexString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Extension function to convert Int to hex format.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1298774332%2FFunctions%2F-649084563" anchor-label="width" id="-1298774332%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="width.html"><span><span>width</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1298774332%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-node/index.html">Node</a><span class="token punctuation">.</span><a href="width.html"><span class="token function">width</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

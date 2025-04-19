@@ -1,0 +1,562 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>io.kvision.form</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.2.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":/jsMain" data-filter=":/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="kvision::io.kvision.form////PointingToDeclaration//-649084563">
+  <div class="breadcrumbs"><a href="../index.html">kvision</a><span class="delimiter">/</span><span class="current">io.kvision.form</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><p class="paragraph">Convenient forms implementation, with support for many different input components and easy to define validation.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1974816266%2FClasslikes%2F-649084563" anchor-label="BoolFormControl" id="1974816266%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-bool-form-control/index.html"><span>Bool</span><wbr><span>Form</span><wbr><span><span>Control</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1974816266%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-bool-form-control/index.html">BoolFormControl</a> : <a href="-generic-non-nullable-form-control/index.html">GenericNonNullableFormControl</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Base interface of a form control with a boolean value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2098597682%2FClasslikes%2F-649084563" anchor-label="DateFormControl" id="-2098597682%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-date-form-control/index.html"><span>Date</span><wbr><span>Form</span><wbr><span><span>Control</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2098597682%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-date-form-control/index.html">DateFormControl</a> : <a href="-generic-form-control/index.html">GenericFormControl</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/-date/index.html">Date</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Base interface of a form control with a date value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="205151407%2FClasslikes%2F-649084563" anchor-label="FieldLabel" id="205151407%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-field-label/index.html"><span>Field</span><wbr><span><span>Label</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="205151407%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-field-label/index.html">FieldLabel</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">forId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">content<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">rich<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">className<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">init<span class="token operator">: </span><a href="-field-label/index.html">FieldLabel</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="../io.kvision.html/-tag/index.html">Tag</a></div><div class="brief "><p class="paragraph">Helper class for HTML label element.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1068130491%2FClasslikes%2F-649084563" anchor-label="Form" id="-1068130491%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-form/index.html"><span><span>Form</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1068130491%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-form/index.html">Form</a><span class="token operator">&lt;</span><a href="-form/index.html">K</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">panel<span class="token operator">: </span><a href="-form-panel/index.html">FormPanel</a><span class="token operator">&lt;</span><a href="-form/index.html">K</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">serializer<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-form/index.html">K</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">customSerializers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The form definition class. Can be used directly or indirectly inside a <a href="-form-panel/index.html">FormPanel</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1889411072%2FClasslikes%2F-649084563" anchor-label="FormControl" id="-1889411072%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-form-control/index.html"><span>Form</span><wbr><span><span>Control</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1889411072%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-form-control/index.html">FormControl</a> : <a href="../io.kvision.core/-component/index.html">Component</a></div><div class="brief "><p class="paragraph">Base interface of a form control.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1166358057%2FClasslikes%2F-649084563" anchor-label="FormEnctype" id="1166358057%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-form-enctype/index.html"><span>Form</span><wbr><span><span>Enctype</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1166358057%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-form-enctype/index.html">FormEnctype</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-form-enctype/index.html">FormEnctype</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Form encoding types.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-418993578%2FClasslikes%2F-649084563" anchor-label="FormHorizontalRatio" id="-418993578%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-form-horizontal-ratio/index.html"><span>Form</span><wbr><span>Horizontal</span><wbr><span><span>Ratio</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-418993578%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-form-horizontal-ratio/index.html">FormHorizontalRatio</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-form-horizontal-ratio/index.html">FormHorizontalRatio</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Proportions for horizontal form layout.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-137345741%2FClasslikes%2F-649084563" anchor-label="FormInput" id="-137345741%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-form-input/index.html"><span>Form</span><wbr><span><span>Input</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-137345741%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-form-input/index.html">FormInput</a> : <a href="../io.kvision.core/-component/index.html">Component</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2068100708%2FClasslikes%2F-649084563" anchor-label="FormMethod" id="2068100708%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-form-method/index.html"><span>Form</span><wbr><span><span>Method</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2068100708%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-form-method/index.html">FormMethod</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-form-method/index.html">FormMethod</a><span class="token operator">&gt; </span>, <a href="../io.kvision.core/-dom-attribute/index.html">DomAttribute</a></div><div class="brief "><p class="paragraph">Form methods.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1576839225%2FClasslikes%2F-649084563" anchor-label="FormPanel" id="1576839225%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-form-panel/index.html"><span>Form</span><wbr><span><span>Panel</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1576839225%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-form-panel/index.html">FormPanel</a><span class="token operator">&lt;</span><a href="-form-panel/index.html">K</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">method<span class="token operator">: </span><a href="-form-method/index.html">FormMethod</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">action<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">enctype<span class="token operator">: </span><a href="-form-enctype/index.html">FormEnctype</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><a href="-form-type/index.html">FormType</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">condensed<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">horizRatio<span class="token operator">: </span><a href="-form-horizontal-ratio/index.html">FormHorizontalRatio</a><span class="token operator"> = </span>FormHorizontalRatio.RATIO_2<span class="token punctuation">, </span></span><span class="parameter ">className<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">serializer<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-form-panel/index.html">K</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">customSerializers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="../io.kvision.panel/-simple-panel/index.html">SimplePanel</a></div><div class="brief "><p class="paragraph">Bootstrap form component.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1477887052%2FClasslikes%2F-649084563" anchor-label="FormTarget" id="-1477887052%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-form-target/index.html"><span>Form</span><wbr><span><span>Target</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1477887052%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-form-target/index.html">FormTarget</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-form-target/index.html">FormTarget</a><span class="token operator">&gt; </span>, <a href="../io.kvision.core/-dom-attribute/index.html">DomAttribute</a></div><div class="brief "><p class="paragraph">Form targets.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-941913301%2FClasslikes%2F-649084563" anchor-label="FormType" id="-941913301%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-form-type/index.html"><span>Form</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-941913301%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-form-type/index.html">FormType</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-form-type/index.html">FormType</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Bootstrap form layout options.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1931220423%2FClasslikes%2F-649084563" anchor-label="GenericFormComponent" id="1931220423%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-generic-form-component/index.html"><span>Generic</span><wbr><span>Form</span><wbr><span><span>Component</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1931220423%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-generic-form-component/index.html">GenericFormComponent</a><span class="token operator">&lt;</span><a href="-generic-form-component/index.html">T</a><span class="token operator">&gt;</span> : <a href="../io.kvision.core/-component/index.html">Component</a></div><div class="brief "><p class="paragraph">Base interface of a form component with a generic value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1145120217%2FClasslikes%2F-649084563" anchor-label="GenericFormControl" id="-1145120217%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-generic-form-control/index.html"><span>Generic</span><wbr><span>Form</span><wbr><span><span>Control</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1145120217%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-generic-form-control/index.html">GenericFormControl</a><span class="token operator">&lt;</span><a href="-generic-form-control/index.html">T</a><span class="token operator">&gt;</span> : <a href="-form-control/index.html">FormControl</a>, <a href="-generic-form-component/index.html">GenericFormComponent</a><span class="token operator">&lt;</span><a href="-generic-form-control/index.html">T</a><span class="token operator">?</span><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Base interface of a form control with a generic value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1774363241%2FClasslikes%2F-649084563" anchor-label="GenericNonNullableFormControl" id="-1774363241%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-generic-non-nullable-form-control/index.html"><span>Generic</span><wbr><span>Non</span><wbr><span>Nullable</span><wbr><span>Form</span><wbr><span><span>Control</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1774363241%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-generic-non-nullable-form-control/index.html">GenericNonNullableFormControl</a><span class="token operator">&lt;</span><a href="-generic-non-nullable-form-control/index.html">T</a><span class="token operator">&gt;</span> : <a href="-form-control/index.html">FormControl</a>, <a href="-generic-form-component/index.html">GenericFormComponent</a><span class="token operator">&lt;</span><a href="-generic-non-nullable-form-control/index.html">T</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Base interface of a form control with a generic, non-nullable value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="204056379%2FClasslikes%2F-649084563" anchor-label="HelpText" id="204056379%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-help-text/index.html"><span>Help</span><wbr><span><span>Text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="204056379%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-help-text/index.html">HelpText</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">content<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">rich<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span> : <a href="../io.kvision.html/-tag/index.html">Tag</a></div><div class="brief "><p class="paragraph">Helper class for Bootstrap help text element.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-151809202%2FClasslikes%2F-649084563" anchor-label="InputSize" id="-151809202%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-input-size/index.html"><span>Input</span><wbr><span><span>Size</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-151809202%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-input-size/index.html">InputSize</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-input-size/index.html">InputSize</a><span class="token operator">&gt; </span>, <a href="../io.kvision.core/-css-class/index.html">CssClass</a></div><div class="brief "><p class="paragraph">Input controls sizes.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-609097027%2FClasslikes%2F-649084563" anchor-label="InvalidFeedback" id="-609097027%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-invalid-feedback/index.html"><span>Invalid</span><wbr><span><span>Feedback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-609097027%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-invalid-feedback/index.html">InvalidFeedback</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">content<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">rich<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span> : <a href="../io.kvision.html/-tag/index.html">Tag</a></div><div class="brief "><p class="paragraph">Helper class for Bootstrap invalid feedback element.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1385583852%2FClasslikes%2F-649084563" anchor-label="KFilesFormControl" id="1385583852%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-files-form-control/index.html"><span>KFiles</span><wbr><span>Form</span><wbr><span><span>Control</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1385583852%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-k-files-form-control/index.html">KFilesFormControl</a> : <a href="-generic-form-control/index.html">GenericFormControl</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../kvision-modules/kvision-common-types/io.kvision.types/-k-file/index.html">KFile</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Base interface of a form control with a list of files value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1460395799%2FClasslikes%2F-649084563" anchor-label="NumberFormControl" id="-1460395799%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-number-form-control/index.html"><span>Number</span><wbr><span>Form</span><wbr><span><span>Control</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1460395799%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-number-form-control/index.html">NumberFormControl</a> : <a href="-generic-form-control/index.html">GenericFormControl</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Base interface of a form control with a numeric value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="127656369%2FClasslikes%2F-649084563" anchor-label="StringFormControl" id="127656369%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-string-form-control/index.html"><span>String</span><wbr><span>Form</span><wbr><span><span>Control</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="127656369%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-string-form-control/index.html">StringFormControl</a> : <a href="-generic-form-control/index.html">GenericFormControl</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Base interface of a form control with a text value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-396314938%2FClasslikes%2F-649084563" anchor-label="TriStateFormControl" id="-396314938%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tri-state-form-control/index.html"><span>Tri</span><wbr><span>State</span><wbr><span>Form</span><wbr><span><span>Control</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-396314938%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-tri-state-form-control/index.html">TriStateFormControl</a> : <a href="-generic-form-control/index.html">GenericFormControl</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Base interface of a form control with a nullable boolean value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1620850658%2FClasslikes%2F-649084563" anchor-label="ValidationStatus" id="-1620850658%2FClasslikes%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-validation-status/index.html"><span>Validation</span><wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1620850658%2FClasslikes%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-validation-status/index.html">ValidationStatus</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-validation-status/index.html">ValidationStatus</a><span class="token operator">&gt; </span>, <a href="../io.kvision.core/-css-class/index.html">CssClass</a></div><div class="brief "><p class="paragraph">Input controls validation status.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="2068988368%2FFunctions%2F-649084563" anchor-label="asJson" id="2068988368%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="as-json.html"><span>as</span><wbr><span><span>Json</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2068988368%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="as-json.html"><span class="token function">asJson</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/-json/index.html">Json</a></div><div class="brief "><p class="paragraph">Extension function to convert Map to JSON.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="605350970%2FFunctions%2F-649084563" anchor-label="asMap" id="605350970%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="as-map.html"><span>as</span><wbr><span><span>Map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="605350970%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/-json/index.html">Json</a><span class="token punctuation">.</span><a href="as-map.html"><span class="token function">asMap</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Extension function to convert JSON to Map.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-401505419%2FFunctions%2F-649084563" anchor-label="fieldLabel" id="-401505419%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="field-label.html"><span>field</span><wbr><span><span>Label</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-401505419%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../io.kvision.core/-container/index.html">Container</a><span class="token punctuation">.</span><a href="field-label.html"><span class="token function">fieldLabel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">forId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">content<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">rich<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">className<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">init<span class="token operator">: </span><a href="-field-label/index.html">FieldLabel</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-field-label/index.html">FieldLabel</a></div><div class="brief "><p class="paragraph">DSL builder extension function.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1972416117%2FFunctions%2F-649084563" anchor-label="form" id="1972416117%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="form.html"><span><span>form</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1972416117%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../io.kvision.core/-container/index.html">Container</a><span class="token punctuation">.</span><a href="form.html"><span class="token function">form</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">method<span class="token operator">: </span><a href="-form-method/index.html">FormMethod</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">action<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">enctype<span class="token operator">: </span><a href="-form-enctype/index.html">FormEnctype</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><a href="-form-type/index.html">FormType</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">condensed<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">horizRatio<span class="token operator">: </span><a href="-form-horizontal-ratio/index.html">FormHorizontalRatio</a><span class="token operator"> = </span>FormHorizontalRatio.RATIO_2<span class="token punctuation">, </span></span><span class="parameter ">className<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">init<span class="token operator">: </span><a href="-form-panel/index.html">FormPanel</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-form-panel/index.html">FormPanel</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">DSL builder extension function.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="516348885%2FFunctions%2F-649084563" anchor-label="formPanel" id="516348885%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="form-panel.html"><span>form</span><wbr><span><span>Panel</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="516348885%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="form-panel.html">K</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="../io.kvision.core/-container/index.html">Container</a><span class="token punctuation">.</span><a href="form-panel.html"><span class="token function">formPanel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">method<span class="token operator">: </span><a href="-form-method/index.html">FormMethod</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">action<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">enctype<span class="token operator">: </span><a href="-form-enctype/index.html">FormEnctype</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><a href="-form-type/index.html">FormType</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">condensed<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">horizRatio<span class="token operator">: </span><a href="-form-horizontal-ratio/index.html">FormHorizontalRatio</a><span class="token operator"> = </span>FormHorizontalRatio.RATIO_2<span class="token punctuation">, </span></span><span class="parameter ">className<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">customSerializers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>init<span class="token operator">: </span><a href="-form-panel/index.html">FormPanel</a><span class="token operator">&lt;</span><a href="form-panel.html">K</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-form-panel/index.html">FormPanel</a><span class="token operator">&lt;</span><a href="form-panel.html">K</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">DSL builder extension function.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-352291502%2FFunctions%2F-649084563" anchor-label="getDataWithFileContent" id="-352291502%2FFunctions%2F-649084563" data-filterable-set=":/jsMain"></a>
+          <div class="table-row" data-filterable-current=":/jsMain" data-filterable-set=":/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-data-with-file-content.html"><span>get</span><wbr><span>Data</span><wbr><span>With</span><wbr><span>File</span><wbr><span><span>Content</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-352291502%2FFunctions%2F-649084563"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="get-data-with-file-content.html">K</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="-form-panel/index.html">FormPanel</a><span class="token operator">&lt;</span><a href="get-data-with-file-content.html">K</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="get-data-with-file-content.html"><span class="token function">getDataWithFileContent</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get-data-with-file-content.html">K</a></div><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="get-data-with-file-content.html">K</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="-form/index.html">Form</a><span class="token operator">&lt;</span><a href="get-data-with-file-content.html">K</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="get-data-with-file-content.html"><span class="token function">getDataWithFileContent</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get-data-with-file-content.html">K</a></div><div class="brief "><p class="paragraph">Returns current data model with file content read for all KFiles controls.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

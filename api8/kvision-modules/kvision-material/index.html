@@ -1,0 +1,585 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>kvision-material</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../index.html">
+                    kvision
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.2.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-material/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-material/jsMain" data-filter=":kvision-modules:kvision-material/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    kvision
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" id="content" pageids="kvision-material::////PointingToDeclaration//-393221349">
+  <div class="breadcrumbs"></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>kvision-material</span></span></h1>
+  </div>
+  <h2 class="">Packages</h2>
+  <div class="table"><a data-name="136280173%2FPackages%2F-393221349" anchor-label="io.kvision" id="136280173%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision/index.html">io.kvision</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="136280173%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="136280173%2FPackages%2F-393221349" anchor-label="io.kvision" id="136280173%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">KVision main Application class and some helper interfaces necessary to support Hot Module Replacement (HMR).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-794284852%2FPackages%2F-393221349" anchor-label="io.kvision.material" id="-794284852%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material/index.html">io.kvision.material</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-794284852%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1321656680%2FPackages%2F-393221349" anchor-label="io.kvision.material.button" id="-1321656680%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.button/index.html">io.kvision.material.button</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1321656680%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-1321656680%2FPackages%2F-393221349" anchor-label="io.kvision.material.button" id="-1321656680%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web button components (elevated, filled, filled tonal, outlined, text).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="172056297%2FPackages%2F-393221349" anchor-label="io.kvision.material.checkbox" id="172056297%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.checkbox/index.html">io.kvision.material.checkbox</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="172056297%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="172056297%2FPackages%2F-393221349" anchor-label="io.kvision.material.checkbox" id="172056297%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web checkbox component.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1017564603%2FPackages%2F-393221349" anchor-label="io.kvision.material.chips" id="-1017564603%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.chips/index.html">io.kvision.material.chips</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1017564603%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-1017564603%2FPackages%2F-393221349" anchor-label="io.kvision.material.chips" id="-1017564603%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web chips components (chip set, chip).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="168275615%2FPackages%2F-393221349" anchor-label="io.kvision.material.container" id="168275615%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.container/index.html">io.kvision.material.container</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="168275615%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-567745234%2FPackages%2F-393221349" anchor-label="io.kvision.material.dialog" id="-567745234%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.dialog/index.html">io.kvision.material.dialog</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-567745234%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-567745234%2FPackages%2F-393221349" anchor-label="io.kvision.material.dialog" id="-567745234%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web dialog component.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="1906103863%2FPackages%2F-393221349" anchor-label="io.kvision.material.divider" id="1906103863%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.divider/index.html">io.kvision.material.divider</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1906103863%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1906103863%2FPackages%2F-393221349" anchor-label="io.kvision.material.divider" id="1906103863%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web divider component.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-157270363%2FPackages%2F-393221349" anchor-label="io.kvision.material.fab" id="-157270363%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.fab/index.html">io.kvision.material.fab</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-157270363%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-157270363%2FPackages%2F-393221349" anchor-label="io.kvision.material.fab" id="-157270363%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web fab components (fab, branded fab).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1947680086%2FPackages%2F-393221349" anchor-label="io.kvision.material.form" id="-1947680086%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.form/index.html">io.kvision.material.form</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1947680086%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="84806175%2FPackages%2F-393221349" anchor-label="io.kvision.material.icon" id="84806175%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.icon/index.html">io.kvision.material.icon</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="84806175%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="84806175%2FPackages%2F-393221349" anchor-label="io.kvision.material.icon" id="84806175%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web icon component.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="555095313%2FPackages%2F-393221349" anchor-label="io.kvision.material.iconbutton" id="555095313%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.iconbutton/index.html">io.kvision.material.iconbutton</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="555095313%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="555095313%2FPackages%2F-393221349" anchor-label="io.kvision.material.iconbutton" id="555095313%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web icon button components (filled, filled tonal, outlined, standard).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="438168068%2FPackages%2F-393221349" anchor-label="io.kvision.material.list" id="438168068%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.list/index.html">io.kvision.material.list</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="438168068%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="438168068%2FPackages%2F-393221349" anchor-label="io.kvision.material.list" id="438168068%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web list components (list, list item).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-87625851%2FPackages%2F-393221349" anchor-label="io.kvision.material.menu" id="-87625851%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.menu/index.html">io.kvision.material.menu</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-87625851%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-87625851%2FPackages%2F-393221349" anchor-label="io.kvision.material.menu" id="-87625851%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web menu components (menu, menu item, submenu).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-634882861%2FPackages%2F-393221349" anchor-label="io.kvision.material.progress" id="-634882861%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.progress/index.html">io.kvision.material.progress</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-634882861%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-634882861%2FPackages%2F-393221349" anchor-label="io.kvision.material.progress" id="-634882861%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web progress components (circular, linear).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1363587175%2FPackages%2F-393221349" anchor-label="io.kvision.material.radio" id="-1363587175%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.radio/index.html">io.kvision.material.radio</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1363587175%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-1363587175%2FPackages%2F-393221349" anchor-label="io.kvision.material.radio" id="-1363587175%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web radio component.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1156264938%2FPackages%2F-393221349" anchor-label="io.kvision.material.ripple" id="-1156264938%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.ripple/index.html">io.kvision.material.ripple</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1156264938%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-1156264938%2FPackages%2F-393221349" anchor-label="io.kvision.material.ripple" id="-1156264938%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web ripple component.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="182920162%2FPackages%2F-393221349" anchor-label="io.kvision.material.select" id="182920162%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.select/index.html">io.kvision.material.select</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="182920162%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="182920162%2FPackages%2F-393221349" anchor-label="io.kvision.material.select" id="182920162%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web select components (filled, outlined, select option).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-521231481%2FPackages%2F-393221349" anchor-label="io.kvision.material.slider" id="-521231481%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.slider/index.html">io.kvision.material.slider</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-521231481%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-521231481%2FPackages%2F-393221349" anchor-label="io.kvision.material.slider" id="-521231481%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web slider components (slider, range slider).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-679335068%2FPackages%2F-393221349" anchor-label="io.kvision.material.slot" id="-679335068%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.slot/index.html">io.kvision.material.slot</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-679335068%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1025560602%2FPackages%2F-393221349" anchor-label="io.kvision.material.switch" id="1025560602%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.switch/index.html">io.kvision.material.switch</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1025560602%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1025560602%2FPackages%2F-393221349" anchor-label="io.kvision.material.switch" id="1025560602%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web switch component.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1647209244%2FPackages%2F-393221349" anchor-label="io.kvision.material.tabs" id="-1647209244%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.tabs/index.html">io.kvision.material.tabs</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1647209244%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-1647209244%2FPackages%2F-393221349" anchor-label="io.kvision.material.tabs" id="-1647209244%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web tabs components (tabs, primary tab, secondary tab).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-845069557%2FPackages%2F-393221349" anchor-label="io.kvision.material.textfield" id="-845069557%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.textfield/index.html">io.kvision.material.textfield</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-845069557%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-845069557%2FPackages%2F-393221349" anchor-label="io.kvision.material.textfield" id="-845069557%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+            <p class="paragraph">Material web text field component (filled, outlined).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1373126870%2FPackages%2F-393221349" anchor-label="io.kvision.material.widget" id="-1373126870%2FPackages%2F-393221349" data-filterable-set=":kvision-modules:kvision-material/jsMain"></a>
+    <div class="table-row" data-filterable-current=":kvision-modules:kvision-material/jsMain" data-filterable-set=":kvision-modules:kvision-material/jsMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="io.kvision.material.widget/index.html">io.kvision.material.widget</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1373126870%2FPackages%2F-393221349"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag js-like">js</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
