@@ -421,16 +421,17 @@ class Form<K : Any>(
                 val required = fieldsParams?.required ?: false
                 val requiredError = control.getValue() == null && control.visible && required
                 if (requiredError) {
-                    if (markFields) control.validatorError = trans(fieldsParams?.requiredMessage) ?: "Value is required"
+                    if (markFields) control.validatorError = trans(fieldsParams.requiredMessage) ?: "Value is required"
                     true
                 } else {
                     val validatorPassed = !control.visible || (fieldsParams?.validator?.invoke(control) ?: true)
                     if (markFields) {
-                        control.validatorError = if (!validatorPassed) {
-                            trans(fieldsParams?.validatorMessage?.invoke(control)) ?: "Invalid value"
+                        val validatorError = if (!validatorPassed) {
+                            trans(fieldsParams.validatorMessage?.invoke(control)) ?: "Invalid value"
                         } else {
                             null
                         }
+                        if (control.validatorError != validatorError) control.validatorError = validatorError
                     }
                     !validatorPassed
                 }
