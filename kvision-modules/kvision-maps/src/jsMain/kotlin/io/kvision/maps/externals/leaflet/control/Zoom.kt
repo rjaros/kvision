@@ -20,7 +20,8 @@
  * SOFTWARE.
  */
 
-//@file:JsModule("leaflet/dist/leaflet-src.esm.js")
+@file:JsModule("leaflet/dist/leaflet-src.esm.js")
+@file:JsQualifier("Control")
 
 package io.kvision.maps.externals.leaflet.control
 

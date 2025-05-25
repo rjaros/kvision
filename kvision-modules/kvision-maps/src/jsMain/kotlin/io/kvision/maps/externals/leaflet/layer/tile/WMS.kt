@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@file:JsModule("leaflet/dist/leaflet-src.esm.js")
+@file:JsQualifier("TileLayer")
 
 package io.kvision.maps.externals.leaflet.layer.tile
 
