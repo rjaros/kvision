@@ -1186,7 +1186,7 @@ data class DataSets(
     val hoverBorderRadius: List<Number>? = null,
     val inflateAmount: List<Number>? = null,
     val maxBarThickness: Number? = null,
-    val minBarLegth: Number? = null,
+    val minBarLength: Number? = null,
     val skipNull: Boolean? = null,
     val circumference: Number? = null,
     val offset: List<Number>? = null,
@@ -1268,7 +1268,7 @@ fun DataSets.toJs(i18nTranslator: (String) -> (String)): dynamic {
         if (hoverBorderRadius != null) this.hoverBorderRadius = hoverBorderRadius.toTypedArray().checkSingleValue()
         if (inflateAmount != null) this.inflateAmount = inflateAmount.toTypedArray().checkSingleValue()
         if (maxBarThickness != null) this.maxBarThickness = maxBarThickness
-        if (minBarLegth != null) this.minBarLegth = minBarLegth
+        if (minBarLength != null) this.minBarLength = minBarLength
         if (skipNull != null) this.skipNull = skipNull
         if (circumference != null) this.circumference = circumference
         if (offset != null) this.offset = offset.toTypedArray().checkSingleValue()
