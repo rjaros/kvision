@@ -17,7 +17,6 @@ import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.TaskContainer
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.bundling.Zip
-import org.gradle.internal.os.OperatingSystem
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.getByType
@@ -25,7 +24,7 @@ import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsEnvSpec
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 import java.util.*
 
@@ -317,30 +316,13 @@ abstract class KVisionPlugin : Plugin<Project> {
 
     /**
      * [Provider] for the absolute path of the Node binary that the Kotlin plugin (JS or
-     * Multiplatform) installs into the root project.
-     *
-     * The current operating system is taken into account.
+     * Multiplatform) installs into the project.
      */
-    @Suppress("DEPRECATION")
     private fun Project.nodeJsBinaryProvider(): Provider<String> {
-        val nodeJsRootExtension = providers.provider {
-            rootProject.extensions.getByType(NodeJsRootExtension::class)
+        val nodeJsEnvSpec = providers.provider {
+            extensions.getByType(NodeJsEnvSpec::class)
         }
-        val nodeDirProvider = nodeJsRootExtension
-            .flatMap { it.nodeJsSetupTaskProvider }
-            .map { it.destination }
-        val isWindowsProvider = providers.provider {
-            OperatingSystem.current().isWindows
-        }
-        val nodeBinDirProvider = isWindowsProvider.zip(nodeDirProvider) { isWindows, nodeDir ->
-            if (isWindows) nodeDir else nodeDir.resolve("bin")
-        }
-        val nodeExecutableProvider = nodeJsRootExtension.zip(isWindowsProvider) { ext, isWindows ->
-            if (isWindows && ext.command == "node") "node.exe" else ext.command
-        }
-        return nodeExecutableProvider.zip(nodeBinDirProvider) { nodeExecutable, nodeBinDir ->
-            nodeBinDir.resolve(nodeExecutable).absolutePath
-        }
+        return nodeJsEnvSpec.flatMap { it.executable }
     }
 
     // source set provider helpers

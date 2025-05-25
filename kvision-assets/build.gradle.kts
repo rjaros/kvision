@@ -1,6 +1,6 @@
 plugins {
     val npmPublishVersion: String by System.getProperties()
-    id("dev.petuska.npm.publish") version npmPublishVersion
+    id("org.danilopianini.npm.publish") version npmPublishVersion
 }
 
 npmPublish {
