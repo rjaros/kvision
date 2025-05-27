@@ -1,5 +1,5 @@
 [versions]
-kvision = "9.0.1"
+kvision = "9.1.0"
 kotlin = "2.2.0-RC"
 dokka = "2.0.0"
 nmcp = "0.1.5"
