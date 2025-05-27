@@ -2,6 +2,9 @@
     "kvision": "9.1.0",
     "kotlin": "2.2.0-RC",
     "coroutines": "1.10.2",
+    "ksp": "2.2.0-RC-2.0.1",
+    "kilua-rpc": "0.0.34",
+    "logback": "1.5.18",
     "template-javalin": {
     },
     "template-jooby": {
