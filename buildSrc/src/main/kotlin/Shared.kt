@@ -1,25 +1,23 @@
-import io.github.gradlenexus.publishplugin.NexusPublishExtension
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.publish.maven.tasks.AbstractPublishToMaven
+import org.gradle.api.tasks.TaskProvider
+import org.gradle.api.tasks.bundling.Jar
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.invoke
-import org.gradle.kotlin.dsl.repositories
+import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
+import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
 import org.jetbrains.dokka.gradle.DokkaExtension
+import org.jetbrains.dokka.gradle.tasks.DokkaGeneratePublicationTask
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import java.net.URI
-
-fun Project.repositories() {
-    repositories {
-        mavenCentral()
-        mavenLocal()
-    }
-}
 
 fun KotlinMultiplatformExtension.compilerOptions() {
     targets.configureEach {
@@ -65,6 +63,12 @@ fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "21") {
     }
 }
 
+fun KotlinJvmProjectExtension.kotlinJvmTargets(target: String = "21") {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(target))
+    }
+}
+
 val kvisionProjectName = "KVision"
 val kvisionProjectDescription = "Object oriented web framework for Kotlin/JS"
 val kvisionProjectWebsite = "https://github.com/rjaros/kvision"
@@ -95,87 +99,41 @@ fun MavenPom.defaultPom() {
     }
 }
 
-fun Project.setupSigning() {
-    extensions.getByType<SigningExtension>().run {
-        isRequired = !project.hasProperty("SNAPSHOT")
-        if (isRequired) {
-            sign(extensions.getByType<PublishingExtension>().publications)
-        }
-    }
-}
-
-fun Project.setupPublication(withJvm: Boolean = false, withSigning: Boolean = false) {
+fun Project.setupPublication() {
+    val isSnapshot = hasProperty("SNAPSHOT")
     extensions.getByType<PublishingExtension>().run {
         publications.withType<MavenPublication>().all {
-            if (!hasProperty("SNAPSHOT")) artifact(tasks["javadocJar"])
+            if (!isSnapshot) artifact(tasks["javadocJar"])
             pom {
                 defaultPom()
             }
         }
-        if (withSigning) {
-            extensions.getByType<NexusPublishExtension>().run {
-                repositories {
-                    sonatype {
-                        username.set(findProperty("mavenCentralUsername")?.toString())
-                        password.set(findProperty("mavenCentralPassword")?.toString())
-                        nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
-                        snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
-                    }
-                }
-            }
+    }
+    extensions.getByType<SigningExtension>().run {
+        if (!isSnapshot) {
+            sign(extensions.getByType<PublishingExtension>().publications)
         }
     }
-    afterEvaluate {
-        if (withJvm) {
-            tasks.getByName("publishKotlinMultiplatformPublicationToSonatypeRepository") {
-                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
-            }
-            tasks.getByName("publishJsPublicationToSonatypeRepository") {
-                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
-            }
-            tasks.getByName("publishJvmPublicationToSonatypeRepository") {
-                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
-            }
-            // Only for publishing signed artifacts to local maven repository
-            /*
-            tasks.getByName("publishKotlinMultiplatformPublicationToMavenLocal") {
-                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
-            }
-            tasks.getByName("publishJsPublicationToMavenLocal") {
-                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
-            }
-            tasks.getByName("publishJvmPublicationToMavenLocal") {
-                dependsOn("signKotlinMultiplatformPublication", "signJsPublication", "signJvmPublication")
-            }
-             */
-        } else {
-            tasks.getByName("publishKotlinMultiplatformPublicationToSonatypeRepository") {
-                dependsOn("signKotlinMultiplatformPublication", "signJsPublication")
-            }
-            tasks.getByName("publishJsPublicationToSonatypeRepository") {
-                dependsOn("signKotlinMultiplatformPublication", "signJsPublication")
-            }
-            // Only for publishing signed artifacts to local maven repository
-            /*
-            tasks.getByName("publishKotlinMultiplatformPublicationToMavenLocal") {
-                dependsOn("signKotlinMultiplatformPublication", "signJsPublication")
-            }
-            tasks.getByName("publishJsPublicationToMavenLocal") {
-                dependsOn("signKotlinMultiplatformPublication", "signJsPublication")
-            }
-             */
-        }
+    // Workaround https://github.com/gradle/gradle/issues/26091
+    tasks.withType<AbstractPublishToMaven>().configureEach {
+        val signingTasks = tasks.withType<Sign>()
+        mustRunAfter(signingTasks)
     }
 }
 
-fun Project.setupDokka() {
+fun Project.setupDokka(provider: TaskProvider<DokkaGeneratePublicationTask>, mdPath: String = "../../", modulesPath: String = "kvision-modules/") {
+    tasks.register<Jar>("javadocJar") {
+        dependsOn(provider)
+        from(provider.flatMap { it.outputDirectory })
+        archiveClassifier.set("javadoc")
+    }
     extensions.getByType<DokkaExtension>().run {
         dokkaSourceSets.invoke {
             configureEach {
-                includes.from("../../Module.md")
+                includes.from("${mdPath}Module.md")
                 sourceLink {
                     localDirectory.set(projectDir.resolve("src"))
-                    remoteUrl.set(URI("https://github.com/rjaros/kvision/tree/master/kvision-modules/${project.name}/src"))
+                    remoteUrl.set(URI("https://github.com/rjaros/kvision/tree/master/${modulesPath}${project.name}/src"))
                     remoteLineSuffix.set("#L")
                 }
             }

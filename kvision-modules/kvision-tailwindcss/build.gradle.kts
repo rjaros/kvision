@@ -1,26 +1,24 @@
 plugins {
     kotlin("multiplatform")
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.nmcp)
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
 }
 
-val postcssVersion: String by project
-val postcssLoaderVersion: String by project
-val tailwindcssVersion: String by project
-val cssnanoVersion: String by project
-
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     sourceSets {
         val jsMain by getting {
             dependencies {
-                api(rootProject)
-                implementation(npm("postcss", postcssVersion))
-                implementation(npm("postcss-loader", postcssLoaderVersion))
-                implementation(npm("tailwindcss", tailwindcssVersion))
-                implementation(npm("@tailwindcss/postcss", tailwindcssVersion))
-                implementation(npm("cssnano", cssnanoVersion))
+                api(project(":kvision"))
+                implementation(npm("postcss", libs.versions.postcss.asProvider().get()))
+                implementation(npm("postcss-loader", libs.versions.postcss.loader.get()))
+                implementation(npm("tailwindcss", libs.versions.tailwindcss.get()))
+                implementation(npm("@tailwindcss/postcss", libs.versions.tailwindcss.get()))
+                implementation(npm("cssnano", libs.versions.cssnano.get()))
             }
         }
         val jsTest by getting {
@@ -32,13 +30,5 @@ kotlin {
     }
 }
 
-val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaGenerate")
-    archiveClassifier.set("javadoc")
-    from(layout.buildDirectory.dir("dokka/html"))
-
-}
-
-setupSigning()
+setupDokka(tasks.dokkaGeneratePublicationHtml)
 setupPublication()
-setupDokka()

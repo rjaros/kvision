@@ -1,16 +1,14 @@
 plugins {
     `kotlin-dsl`
     kotlin("jvm")
+    alias(libs.plugins.kotlinx.serialization)
     id("java-gradle-plugin")
+    alias(libs.plugins.nmcp)
+    id("org.jetbrains.dokka")
     id("maven-publish")
     id("signing")
-    id("org.jetbrains.dokka")
-    val gradlePluginPublishVersion: String by System.getProperties()
-    id("com.gradle.plugin-publish") version gradlePluginPublishVersion
+    alias(libs.plugins.gradle.plugin.publish)
 }
-
-val javaVersion: String by project
-val kotestVersion: String by project
 
 repositories {
     gradlePluginPortal()
@@ -31,42 +29,30 @@ gradlePlugin {
 }
 
 kotlin {
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(javaVersion))
-    }
+    kotlinJvmTargets()
 }
 
 dependencies {
     implementation(kotlin("gradle-plugin"))
+    implementation(libs.tomlj)
 
     testImplementation(gradleTestKit())
 
-    testImplementation(platform("io.kotest:kotest-bom:$kotestVersion"))
+    testImplementation(platform("io.kotest:kotest-bom:${libs.versions.kotest.get()}"))
     testImplementation("io.kotest:kotest-runner-junit5")
     testImplementation("io.kotest:kotest-assertions-core")
 }
 
-val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaGenerate")
-    archiveClassifier.set("javadoc")
-    from(layout.buildDirectory.dir("dokka/html"))
-    enabled = !rootProject.hasProperty("SNAPSHOT")
-}
-
-tasks.getByName("dokkaGenerate").apply {
-    enabled = !rootProject.hasProperty("SNAPSHOT")
-}
-
 tasks.getByName("jar", Jar::class) {
-    from(rootProject.layout.projectDirectory.file("gradle.properties")) {
-        rename { "io.kvision.versions.properties" }
-        filter { line -> line.replaceAfter("versionNumber=", version.toString() ) }
+    from(rootProject.layout.projectDirectory.file("gradle/libs.versions.toml")) {
+        rename { "io.kvision.versions.toml" }
+        filter { line -> line.replaceAfter("kvision = ", "\"${version}\"") }
     }
 }
 
 publishing {
     publications {
-        withType<MavenPublication>() {
+        withType<MavenPublication> {
             pom {
                 defaultPom()
             }
@@ -74,8 +60,16 @@ publishing {
     }
 }
 
-setupSigning()
-setupDokka()
+tasks.getByName("dokkaGeneratePublicationHtml").run {
+    enabled = !project.hasProperty("SNAPSHOT")
+}
+
+extensions.getByType<SigningExtension>().run {
+    isRequired = !project.hasProperty("SNAPSHOT")
+    sign(extensions.getByType<PublishingExtension>().publications)
+}
+
+setupDokka(tasks.dokkaGeneratePublicationHtml, modulesPath = "kvision-tools/")
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()

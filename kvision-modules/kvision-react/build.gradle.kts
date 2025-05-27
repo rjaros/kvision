@@ -1,23 +1,23 @@
 plugins {
     kotlin("multiplatform")
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.nmcp)
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
 }
 
-val kotlinReactVersion: String by project
-val reactVersion: String by project
-
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     sourceSets {
         val jsMain by getting {
             dependencies {
-                api(rootProject)
-                api("org.jetbrains.kotlin-wrappers:kotlin-react:$kotlinReactVersion")
-                api("org.jetbrains.kotlin-wrappers:kotlin-react-dom:$kotlinReactVersion")
-                implementation(npm("react", reactVersion))
-                implementation(npm("react-dom", reactVersion))
+                api(project(":kvision"))
+                api(libs.kotlin.react)
+                api(libs.kotlin.react.dom)
+                implementation(npm("react", libs.versions.react.get()))
+                implementation(npm("react-dom", libs.versions.react.get()))
             }
         }
         val jsTest by getting {
@@ -29,13 +29,5 @@ kotlin {
     }
 }
 
-val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaGenerate")
-    archiveClassifier.set("javadoc")
-    from(layout.buildDirectory.dir("dokka/html"))
-
-}
-
-setupSigning()
+setupDokka(tasks.dokkaGeneratePublicationHtml)
 setupPublication()
-setupDokka()

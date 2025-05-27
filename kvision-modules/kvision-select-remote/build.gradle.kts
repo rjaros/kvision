@@ -1,16 +1,19 @@
 plugins {
     kotlin("multiplatform")
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.nmcp)
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
 }
 
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     sourceSets {
         val jsMain by getting {
             dependencies {
-                api(rootProject)
+                api(project(":kvision"))
                 api(project(":kvision-modules:kvision-common-remote"))
             }
         }
@@ -22,13 +25,5 @@ kotlin {
     }
 }
 
-val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaGenerate")
-    archiveClassifier.set("javadoc")
-    from(layout.buildDirectory.dir("dokka/html"))
-
-}
-
-setupSigning()
+setupDokka(tasks.dokkaGeneratePublicationHtml)
 setupPublication()
-setupDokka()

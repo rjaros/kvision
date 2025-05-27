@@ -1,11 +1,11 @@
 plugins {
     kotlin("multiplatform")
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.nmcp)
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
 }
-
-val tabulatorTablesVersion: String by project
 
 kotlin {
     compilerOptions()
@@ -13,9 +13,9 @@ kotlin {
     sourceSets {
         val jsMain by getting {
             dependencies {
-                api(rootProject)
+                api(project(":kvision"))
                 api(project(":kvision-modules:kvision-state"))
-                implementation(npm("tabulator-tables", tabulatorTablesVersion))
+                implementation(npm("tabulator-tables", libs.versions.tabulator.get()))
             }
         }
         val jsTest by getting {
@@ -27,13 +27,5 @@ kotlin {
     }
 }
 
-val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaGenerate")
-    archiveClassifier.set("javadoc")
-    from(layout.buildDirectory.dir("dokka/html"))
-
-}
-
-setupSigning()
+setupDokka(tasks.dokkaGeneratePublicationHtml)
 setupPublication()
-setupDokka()

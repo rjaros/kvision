@@ -1,13 +1,11 @@
 plugins {
     kotlin("multiplatform")
-    id("kotlinx-serialization")
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.nmcp)
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
 }
-
-// Versions
-val serializationVersion: String by project
 
 kotlin {
     compilerOptions()
@@ -16,7 +14,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
+                api(libs.kotlinx.serialization.json)
             }
         }
         val jsMain by getting {
@@ -30,13 +28,5 @@ kotlin {
     }
 }
 
-val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaGenerate")
-    archiveClassifier.set("javadoc")
-    from(layout.buildDirectory.dir("dokka/html"))
-
-}
-
-setupSigning()
-setupPublication(true)
-setupDokka()
+setupDokka(tasks.dokkaGeneratePublicationHtml)
+setupPublication()

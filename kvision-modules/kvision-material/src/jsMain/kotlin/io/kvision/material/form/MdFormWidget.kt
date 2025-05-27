@@ -55,7 +55,7 @@ abstract class MdFormWidget<V> internal constructor(
     /**
      * The value that is submitted to the form.
      */
-    var value by syncOnUpdate(value)
+    var value: V by syncOnUpdate(value)
 
     /**
      * The name to use in form submission.

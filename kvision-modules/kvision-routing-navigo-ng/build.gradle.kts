@@ -1,19 +1,20 @@
 plugins {
     kotlin("multiplatform")
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.nmcp)
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
 }
 
-val navigoKotlinNgVersion: String by project
-
 kotlin {
+    compilerOptions()
     kotlinJsTargets()
     sourceSets {
         val jsMain by getting {
             dependencies {
-                api(rootProject)
-                api("io.kvision:navigo-kotlin-ng:$navigoKotlinNgVersion")
+                api(project(":kvision"))
+                api(libs.navigo.kotlin.ng)
             }
         }
         val jsTest by getting {
@@ -24,13 +25,5 @@ kotlin {
     }
 }
 
-val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaGenerate")
-    archiveClassifier.set("javadoc")
-    from(layout.buildDirectory.dir("dokka/html"))
-
-}
-
-setupSigning()
+setupDokka(tasks.dokkaGeneratePublicationHtml)
 setupPublication()
-setupDokka()

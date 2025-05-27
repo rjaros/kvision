@@ -1,0 +1,85 @@
+[versions]
+kvision = "9.0.1"
+kotlin = "2.2.0-RC"
+dokka = "2.0.0"
+nmcp = "0.1.5"
+npm-publish = "4.0.4"
+gradle-plugin-publish = "1.3.1"
+kilua-rpc = "0.0.34"
+kotlinx-coroutines = "1.10.2"
+kotlinx-serialization = "1.8.1"
+ballast = "4.2.1"
+jquery-kotlin = "1.0.0"
+navigo-kotlin = "1.0.0"
+navigo-kotlin-ng = "0.0.3"
+multiplatform-diff = "1.0.0"
+redux-kotlin = "0.6.1"
+redux-kotlin-thunk = "0.6.0"
+kotlin-react = "2025.5.8-19.1.0"
+tomlj = "1.1.1"
+kotest = "5.9.1"
+npm-kvision-assets = "9.0.0"
+css-loader = "7.1.2"
+style-loader = "4.0.0"
+imports-loader = "5.0.0"
+fecha = "4.2.3"
+snabbdom = "3.6.2"
+snabbdom-virtualize = "1.0.0-beta.5"
+splitjs = "1.6.5"
+gettext-js = "2.0.3"
+gettext-extract = "2.0.1"
+popperjs-core = "2.11.8"
+bootstrap = "5.3.6"
+bootstrap-icons = "1.13.1"
+fontawesome = "6.7.2"
+bootstrap-fileinput = "5.5.4"
+chartjs = "4.4.9"
+trix = "2.1.15"
+toastify = "1.12.0"
+tempus-dominus = "6.10.4"
+tom-select = "2.4.3"
+imask = "7.6.1"
+tabulator = "6.3.1"
+handlebars = "4.7.8"
+handlebars-loader = "1.7.3"
+jquery = "3.7.1"
+leaflet = "1.9.4"
+geojson = "0.5.0"
+material-web = "2.3.0"
+pace-progressbar = "1.0.10"
+printjs = "1.6.0"
+react = "^19.1.0"
+postcss = "8.5.3"
+postcss-loader = "8.1.1"
+tailwindcss = "4.1.7"
+cssnano = "7.0.7"
+karma-junit-reporter = "2.0.1"
+
+[libraries]
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-core-js = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js", version.ref = "kotlinx-coroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+kotlinx-serialization-json-js = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-js", version.ref = "kotlinx-serialization" }
+kotlin-react = { module = "org.jetbrains.kotlin-wrappers:kotlin-react", version.ref = "kotlin-react" }
+kotlin-react-dom = { module = "org.jetbrains.kotlin-wrappers:kotlin-react-dom", version.ref = "kotlin-react" }
+kilua-rpc-core = { module = "dev.kilua:kilua-rpc-core", version.ref = "kilua-rpc" }
+ballast-core = { module = "io.github.copper-leaf:ballast-core", version.ref = "ballast" }
+ballast-saved-state = { module = "io.github.copper-leaf:ballast-saved-state", version.ref = "ballast" }
+ballast-repository = { module = "io.github.copper-leaf:ballast-repository", version.ref = "ballast" }
+ballast-sync = { module = "io.github.copper-leaf:ballast-sync", version.ref = "ballast" }
+ballast-undo = { module = "io.github.copper-leaf:ballast-undo", version.ref = "ballast" }
+ballast-navigation = { module = "io.github.copper-leaf:ballast-navigation", version.ref = "ballast" }
+jquery-kotlin = { module = "io.kvision:jquery-kotlin", version.ref = "jquery-kotlin" }
+navigo-kotlin = { module = "io.kvision:navigo-kotlin", version.ref = "navigo-kotlin" }
+navigo-kotlin-ng = { module = "io.kvision:navigo-kotlin-ng", version.ref = "navigo-kotlin-ng" }
+multiplatform-diff = { module = "io.github.petertrr:kotlin-multiplatform-diff-js", version.ref = "multiplatform-diff" }
+redux-kotlin = { module = "org.reduxkotlin:redux-kotlin-js", version.ref = "redux-kotlin" }
+redux-kotlin-thunk = { module = "org.reduxkotlin:redux-kotlin-thunk-js", version.ref = "redux-kotlin-thunk" }
+tomlj = { module = "org.tomlj:tomlj", version.ref = "tomlj" }
+
+[plugins]
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+npm-publish = { id = "org.danilopianini.npm.publish", version.ref = "npm-publish" }
+nmcp = { id = "com.gradleup.nmcp", version.ref = "nmcp" }
+nmcp-aggregation = { id = "com.gradleup.nmcp.aggregation", version.ref = "nmcp" }
+gradle-plugin-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-plugin-publish" }

@@ -1,155 +1,115 @@
-import java.net.URI
-
 plugins {
-    val kotlinVersion: String by System.getProperties()
-    kotlin("plugin.serialization") version kotlinVersion
-    kotlin("multiplatform")
-    id("maven-publish")
-    id("signing")
-    id("io.github.gradle-nexus.publish-plugin")
+    kotlin("multiplatform") apply false
+    `kotlin-dsl` apply false
+    alias(libs.plugins.kotlinx.serialization) apply false
+    alias(libs.plugins.npm.publish) apply false
+    alias(libs.plugins.nmcp) apply false
+    alias(libs.plugins.nmcp.aggregation)
     id("org.jetbrains.dokka")
+    id("maven-publish")
 }
+
+val versionVal = libs.versions.kvision.get()
 
 allprojects {
-    repositories()
-    version = project.properties["versionNumber"]!!
+    group = "io.kvision"
     if (hasProperty("SNAPSHOT")) {
-        version = "$version-SNAPSHOT"
+        version = "$versionVal-SNAPSHOT"
+    } else {
+        version = versionVal
     }
 }
-
-// Versions
-val serializationVersion: String by project
-val coroutinesVersion: String by project
-
-val kvisionAssetsVersion: String by project
-val cssLoaderVersion: String by project
-val styleLoaderVersion: String by project
-val importsLoaderVersion: String by project
-val fechaVersion: String by project
-val snabbdomVersion: String by project
-val snabbdomVirtualizeVersion: String by project
-val splitjsVersion: String by project
-val gettextjsVersion: String by project
-val gettextExtractVersion: String by project
-val karmaJunitReporterVersion: String by project
-
-val popperjsCoreVersion: String by project
-val bootstrapVersion: String by project
-val bootstrapIconsVersion: String by project
-val bootstrapFileinputVersion: String by project
-val chartjsVersion: String by project
-val tempusDominusVersion: String by project
-val fontawesomeFreeVersion: String by project
-val handlebarsVersion: String by project
-val handlebarsLoaderVersion: String by project
-val imaskVersion: String by project
-val jqueryVersion: String by project
-val leafletVersion: String by project
-val geojsonVersion: String by project
-val geojsonTypesVersion: String by project
-val materialVersion: String by project
-val paceProgressbarVersion: String by project
-val printjsVersion: String by project
-val reactVersion: String by project
-val trixVersion: String by project
-val tabulatorTablesVersion: String by project
-val toastifyjsVersion: String by project
-val tomSelectVersion: String by project
-val postcssVersion: String by project
-val postcssLoaderVersion: String by project
-val tailwindcssVersion: String by project
-val cssnanoVersion: String by project
 
 rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin> {
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
         lockFileDirectory = project.rootDir.resolve(".kotlin-js-store")
-        resolution("zzz-kvision-assets", kvisionAssetsVersion)
-        resolution("css-loader", cssLoaderVersion)
-        resolution("style-loader", styleLoaderVersion)
-        resolution("imports-loader", importsLoaderVersion)
-        resolution("fecha", fechaVersion)
-        resolution("snabbdom", snabbdomVersion)
-        resolution("@rjaros/snabbdom-virtualize", snabbdomVirtualizeVersion)
-        resolution("split.js", splitjsVersion)
-        resolution("gettext.js", gettextjsVersion)
-        resolution("gettext-extract", gettextExtractVersion)
-        resolution("karma-junit-reporter", karmaJunitReporterVersion)
-        resolution("@popperjs/core", popperjsCoreVersion)
-        resolution("bootstrap", bootstrapVersion)
-        resolution("bootstrap-icons", bootstrapIconsVersion)
-        resolution("bootstrap-fileinput", bootstrapFileinputVersion)
-        resolution("chart.js", chartjsVersion)
-        resolution("@eonasdan/tempus-dominus", tempusDominusVersion)
-        resolution("@fortawesome/fontawesome-free", fontawesomeFreeVersion)
-        resolution("handlebars", handlebarsVersion)
-        resolution("handlebars-loader", handlebarsLoaderVersion)
-        resolution("imask", imaskVersion)
-        resolution("jquery", jqueryVersion)
-        resolution("leaflet", leafletVersion)
-        resolution("geojson", geojsonVersion)
-        resolution("@types/geojson", geojsonTypesVersion)
-        resolution("@material/web", materialVersion)
-        resolution("pace-progressbar", paceProgressbarVersion)
-        resolution("print-js", printjsVersion)
-        resolution("react", reactVersion)
-        resolution("react-dom", reactVersion)
-        resolution("trix", trixVersion)
-        resolution("tabulator-tables", tabulatorTablesVersion)
-        resolution("toastify-js", toastifyjsVersion)
-        resolution("tom-select", tomSelectVersion)
-        resolution("postcss", postcssVersion)
-        resolution("postcss-loader", postcssLoaderVersion)
-        resolution("tailwindcss", tailwindcssVersion)
-        resolution("@tailwindcss/postcss", tailwindcssVersion)
-        resolution("cssnano", cssnanoVersion)
+        resolution("zzz-kvision-assets", libs.versions.npm.kvision.assets.get())
+        resolution("css-loader", libs.versions.css.loader.get())
+        resolution("style-loader", libs.versions.style.loader.get())
+        resolution("imports-loader", libs.versions.imports.loader.get())
+        resolution("fecha", libs.versions.fecha.get())
+        resolution("snabbdom", libs.versions.snabbdom.asProvider().get())
+        resolution("@rjaros/snabbdom-virtualize", libs.versions.snabbdom.virtualize.get())
+        resolution("split.js", libs.versions.splitjs.get())
+        resolution("gettext.js", libs.versions.gettext.js.get())
+        resolution("gettext-extract", libs.versions.gettext.extract.get())
+        resolution("karma-junit-reporter", libs.versions.karma.junit.reporter.get())
+        resolution("@popperjs/core", libs.versions.popperjs.core.get())
+        resolution("bootstrap", libs.versions.bootstrap.asProvider().get())
+        resolution("bootstrap-icons", libs.versions.bootstrap.icons.get())
+        resolution("bootstrap-fileinput", libs.versions.bootstrap.fileinput.get())
+        resolution("chart.js", libs.versions.chartjs.get())
+        resolution("@eonasdan/tempus-dominus", libs.versions.tempus.dominus.get())
+        resolution("@fortawesome/fontawesome-free", libs.versions.fontawesome.get())
+        resolution("handlebars", libs.versions.handlebars.asProvider().get())
+        resolution("handlebars-loader", libs.versions.handlebars.loader.get())
+        resolution("imask", libs.versions.imask.get())
+        resolution("jquery", libs.versions.jquery.asProvider().get())
+        resolution("leaflet", libs.versions.leaflet.get())
+        resolution("geojson", libs.versions.geojson.get())
+        resolution("@material/web", libs.versions.material.web.get())
+        resolution("pace-progressbar", libs.versions.pace.progressbar.get())
+        resolution("print-js", libs.versions.printjs.get())
+        resolution("react", libs.versions.react.get())
+        resolution("react-dom", libs.versions.react.get())
+        resolution("trix", libs.versions.trix.get())
+        resolution("tabulator-tables", libs.versions.tabulator.get())
+        resolution("toastify-js", libs.versions.toastify.get())
+        resolution("tom-select", libs.versions.tom.select.get())
+        resolution("postcss", libs.versions.postcss.asProvider().get())
+        resolution("postcss-loader", libs.versions.postcss.loader.get())
+        resolution("tailwindcss", libs.versions.tailwindcss.get())
+        resolution("@tailwindcss/postcss", libs.versions.tailwindcss.get())
+        resolution("cssnano", libs.versions.cssnano.get())
     }
 }
 
-kotlin {
-    kotlinJsTargets()
-    sourceSets {
-        val jsMain by getting {
-            dependencies {
-                api(project(":kvision-modules:kvision-common-types"))
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion")
-                api("org.jetbrains.kotlinx:kotlinx-serialization-json-js:$serializationVersion")
-//    for local development
-//    implementation(npm("zzz-kvision-assets", "http://localhost:8001/kvision-assets-8.0.6.tgz"))
-                implementation(npm("zzz-kvision-assets", kvisionAssetsVersion))
-                implementation(npm("css-loader", cssLoaderVersion))
-                implementation(npm("style-loader", styleLoaderVersion))
-                implementation(npm("imports-loader", importsLoaderVersion))
-                implementation(npm("fecha", fechaVersion))
-                implementation(npm("snabbdom", snabbdomVersion))
-                implementation(npm("@rjaros/snabbdom-virtualize", snabbdomVirtualizeVersion))
-                implementation(npm("split.js", splitjsVersion))
-                implementation(npm("gettext.js", gettextjsVersion))
-                implementation(npm("gettext-extract", gettextExtractVersion))
-            }
-        }
-        val jsTest by getting {
-            dependencies {
-                implementation(devNpm("karma-junit-reporter", karmaJunitReporterVersion))
-                implementation(kotlin("test-js"))
-                implementation(project(":kvision-modules:kvision-testutils"))
-            }
-        }
+nmcpAggregation {
+    centralPortal {
+        username = findProperty("mavenCentralUsername")?.toString()
+        password = findProperty("mavenCentralPassword")?.toString()
+        publishingType = "USER_MANAGED"
     }
 }
-
-val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaGenerate")
-    archiveClassifier.set("javadoc")
-    from(layout.buildDirectory.dir("dokka/html"))
-
-}
-
-setupSigning()
-setupPublication(withSigning = true)
 
 dependencies {
-    dokka(rootProject)
+    nmcpAggregation(project(":kvision"))
+    nmcpAggregation(project(":kvision-modules:kvision-ballast"))
+    nmcpAggregation(project(":kvision-modules:kvision-bootstrap"))
+    nmcpAggregation(project(":kvision-modules:kvision-bootstrap-icons"))
+    nmcpAggregation(project(":kvision-modules:kvision-bootstrap-upload"))
+    nmcpAggregation(project(":kvision-modules:kvision-chart"))
+    nmcpAggregation(project(":kvision-modules:kvision-common-remote"))
+    nmcpAggregation(project(":kvision-modules:kvision-common-types"))
+    nmcpAggregation(project(":kvision-modules:kvision-datetime"))
+    nmcpAggregation(project(":kvision-modules:kvision-fontawesome"))
+    nmcpAggregation(project(":kvision-modules:kvision-handlebars"))
+    nmcpAggregation(project(":kvision-modules:kvision-i18n"))
+    nmcpAggregation(project(":kvision-modules:kvision-imask"))
+    nmcpAggregation(project(":kvision-modules:kvision-jquery"))
+    nmcpAggregation(project(":kvision-modules:kvision-maps"))
+    nmcpAggregation(project(":kvision-modules:kvision-material"))
+    nmcpAggregation(project(":kvision-modules:kvision-pace"))
+    nmcpAggregation(project(":kvision-modules:kvision-print"))
+    nmcpAggregation(project(":kvision-modules:kvision-react"))
+    nmcpAggregation(project(":kvision-modules:kvision-redux-kotlin"))
+    nmcpAggregation(project(":kvision-modules:kvision-rest"))
+    nmcpAggregation(project(":kvision-modules:kvision-richtext"))
+    nmcpAggregation(project(":kvision-modules:kvision-routing-ballast"))
+    nmcpAggregation(project(":kvision-modules:kvision-routing-navigo"))
+    nmcpAggregation(project(":kvision-modules:kvision-routing-navigo-ng"))
+    nmcpAggregation(project(":kvision-modules:kvision-select-remote"))
+    nmcpAggregation(project(":kvision-modules:kvision-state"))
+    nmcpAggregation(project(":kvision-modules:kvision-state-flow"))
+    nmcpAggregation(project(":kvision-modules:kvision-tabulator"))
+    nmcpAggregation(project(":kvision-modules:kvision-tabulator-remote"))
+    nmcpAggregation(project(":kvision-modules:kvision-tailwindcss"))
+    nmcpAggregation(project(":kvision-modules:kvision-testutils"))
+    nmcpAggregation(project(":kvision-modules:kvision-toastify"))
+    nmcpAggregation(project(":kvision-modules:kvision-tom-select"))
+    nmcpAggregation(project(":kvision-modules:kvision-tom-select-remote"))
+    nmcpAggregation(project(":kvision-tools:kvision-gradle-plugin"))
+    dokka(project(":kvision"))
     dokka(project(":kvision-modules:kvision-ballast"))
     dokka(project(":kvision-modules:kvision-bootstrap"))
     dokka(project(":kvision-modules:kvision-bootstrap-icons"))
@@ -184,21 +144,4 @@ dependencies {
     dokka(project(":kvision-modules:kvision-toastify"))
     dokka(project(":kvision-modules:kvision-tom-select"))
     dokka(project(":kvision-modules:kvision-tom-select-remote"))
-}
-
-dokka {
-    modulePath = "kvision"
-    dokkaSourceSets {
-        configureEach {
-            includes.from("Module.md")
-            sourceLink {
-                localDirectory.set(projectDir.resolve("src"))
-                remoteUrl.set(URI("https://github.com/rjaros/kvision/tree/master/src"))
-                remoteLineSuffix.set("#L")
-            }
-        }
-    }
-    dokkaGeneratorIsolation = ProcessIsolation {
-        maxHeapSize = "6g"
-    }
 }

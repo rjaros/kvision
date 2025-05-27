@@ -1,15 +1,11 @@
 plugins {
     kotlin("multiplatform")
-    id("kotlinx-serialization")
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.nmcp)
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
 }
-
-// Versions
-val serializationVersion: String by project
-val coroutinesVersion: String by project
-val kiluaRpcVersion: String by project
 
 kotlin {
     compilerOptions()
@@ -18,10 +14,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+                api(libs.kotlinx.coroutines.core)
+                api(libs.kotlinx.serialization.json)
                 api(project(":kvision-modules:kvision-common-types"))
-                api("dev.kilua:kilua-rpc-core:$kiluaRpcVersion")
+                api(libs.kilua.rpc.core)
             }
         }
         val jsMain by getting {
@@ -45,13 +41,5 @@ kotlin {
     }
 }
 
-val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokkaGenerate")
-    archiveClassifier.set("javadoc")
-    from(layout.buildDirectory.dir("dokka/html"))
-
-}
-
-setupSigning()
-setupPublication(true)
-setupDokka()
+setupDokka(tasks.dokkaGeneratePublicationHtml)
+setupPublication()
