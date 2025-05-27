@@ -215,7 +215,7 @@
         },
         {
             "name": "kvision-tailwindcss",
-            "description": "Tailwind CSS styles",
+            "description": "Tailwind CSS support",
             "excludes": [
                 "kvision-bootstrap",
                 "kvision-bootstrap-upload",
