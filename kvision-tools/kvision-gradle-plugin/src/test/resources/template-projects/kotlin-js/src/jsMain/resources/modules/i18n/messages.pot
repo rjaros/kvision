@@ -3,6 +3,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: \n"
 
-#: src/main/kotlin/com/example/App.kt:31
+#: src/jsMain/kotlin/com/example/App.kt:40
 msgid "This is a localized message."
 msgstr ""

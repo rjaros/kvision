@@ -36,9 +36,13 @@ abstract class KVisionPlugin : Plugin<Project> {
 
         val kvExtension = createKVisionExtension()
 
-        val versions =
-            Toml.parse(this@KVisionPlugin.javaClass.classLoader.getResourceAsStream("io.kvision.versions.toml"))
-        val kvVersions = versions.toMap().mapNotNull { (k, v) -> if (v is String) k to v else null }.toMap()
+        val kvVersions = try {
+            val versions = Toml.parse(this@KVisionPlugin.javaClass.classLoader.getResourceAsStream("io.kvision.versions.toml"))
+            versions.toMap().mapNotNull { (k, v) -> if (v is String) k to v else null }.toMap()
+        } catch (e: Exception) {
+            logger.warn("Failed to load versions from io.kvision.versions.toml, using empty versions map", e)
+            emptyMap<String, String>()
+        }
 
         with(KVPluginContext(project, kvExtension, kvVersions)) {
 

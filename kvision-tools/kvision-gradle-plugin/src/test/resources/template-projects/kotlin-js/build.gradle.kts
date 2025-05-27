@@ -23,25 +23,21 @@ val kvisionVersion: String by System.getProperties()
 kotlin {
     js(IR) {
         browser {
-            runTask(Action {
-                mainOutputFileName = "main.bundle.js"
+            useEsModules()
+            commonWebpackConfig {
+                outputFileName = "main.bundle.js"
                 sourceMaps = false
-                devServer = KotlinWebpackConfig.DevServer(
-                    open = false,
-                    port = 3000,
-                    static = mutableListOf("${layout.buildDirectory.asFile.get()}/processedResources/js/main")
-                )
-            })
-            webpackTask(Action {
-                mainOutputFileName = "main.bundle.js"
-            })
-            testTask(Action {
+            }
+            testTask {
                 useKarma {
                     useChromeHeadless()
                 }
-            })
+            }
         }
         binaries.executable()
+        compilerOptions {
+            target.set("es2015")
+        }
     }
     sourceSets["jsMain"].dependencies {
         implementation("io.kvision:kvision:$kvisionVersion")
