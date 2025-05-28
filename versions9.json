@@ -11,8 +11,7 @@
         "jooby": "3.8.1"
     },
     "template-ktor": {
-        "ktor": "3.1.3",
-        "koin-annotations": "2.0.1-Beta1"
+        "ktor": "3.1.3"
     },
     "template-micronaut": {
         "micronaut": "4.8.2",
