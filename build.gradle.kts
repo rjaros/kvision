@@ -69,6 +69,7 @@ nmcpAggregation {
         username = findProperty("mavenCentralUsername")?.toString()
         password = findProperty("mavenCentralPassword")?.toString()
         publishingType = "USER_MANAGED"
+        publicationName = "io.kvision:kvision:$version"
     }
 }
 
