@@ -43,10 +43,14 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core")
 }
 
-tasks.getByName("jar", Jar::class) {
-    from(rootProject.layout.projectDirectory.file("gradle/libs.versions.toml")) {
-        rename { "io.kvision.versions.toml" }
-        filter { line -> line.replaceAfter("kvision = ", "\"${version}\"") }
+tasks {
+    val versionsFile = rootProject.layout.projectDirectory.file("gradle/libs.versions.toml")
+    val version = project.version
+    getByName("jar", Jar::class) {
+        from(versionsFile) {
+            rename { "io.kvision.versions.toml" }
+            filter { line -> line.replaceAfter("kvision = ", "\"${version}\"") }
+        }
     }
 }
 
