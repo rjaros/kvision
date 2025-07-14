@@ -121,6 +121,7 @@ abstract class KVisionPlugin : Plugin<Project> {
                     kvExtension.generatedJsResources.dir("modules/i18n")
                 )
             }
+            val srcDir = project.layout.projectDirectory.dir("src").asFile.absolutePath + "/**/*.kt"
             tasks.all.jsProcessResources.configureEach {
                 exclude("**/*.pot")
                 exclude("**/*.po")
@@ -130,7 +131,7 @@ abstract class KVisionPlugin : Plugin<Project> {
                         this.filter {
                             it.replace(
                                 "SOURCES",
-                                project.layout.projectDirectory.dir("src").asFile.absolutePath + "/**/*.kt"
+                                srcDir
                             )
                         }
                     }
