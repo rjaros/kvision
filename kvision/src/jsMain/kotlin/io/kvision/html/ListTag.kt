@@ -116,7 +116,7 @@ open class ListTag(
                 }
             }
             ListType.DL, ListType.DL_HORIZ -> childrenElements.mapIndexed { index, v ->
-                if (v is Tag && ((v.type == TAG.LI || v.type == TAG.OL || v.type == TAG.UL) || v is ListTag)) {
+                if ((v is Tag && (v.type == TAG.LI || v.type == TAG.OL || v.type == TAG.UL)) || v is ListTag) {
                     v.renderVNode()
                 } else {
                     h(if (index % 2 == 0) "dt" else "dd", arrayOf(v.renderVNode()))
