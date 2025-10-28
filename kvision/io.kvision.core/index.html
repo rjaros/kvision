@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>io.kvision.core</title>
-<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
@@ -24,33 +24,31 @@
 <link href="../../styles/main.css" rel="Stylesheet">
 <link href="../../styles/prism.css" rel="Stylesheet">
 <link href="../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../index.html" tabindex="1">
                     kvision-project
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.1.0
+        <div class="library-version" id="library-version">9.2.0
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision/jsMain">js</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision/jsMain">js</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -64,32 +62,34 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     kvision-project
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="package" id="content" pageids="kvision::io.kvision.core////PointingToDeclaration//806426414">
   <div class="breadcrumbs"><a href="../index.html">kvision</a><span class="delimiter">/</span><span class="current">io.kvision.core</span></div>
   <div class="cover ">
@@ -100,9 +100,9 @@
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button><button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">Properties</button></div>
     <div class="tabs-section-body">
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
+        <h2 class="tableheader">Types</h2>
         <div class="table"><a data-name="1495937776%2FClasslikes%2F806426414" anchor-label="AlignContent" id="1495937776%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-align-content/index.html"><span>Align</span><wbr><span><span>Content</span></span></a></div>
@@ -117,7 +117,7 @@
             </div>
           </div>
 <a data-name="-148909175%2FClasslikes%2F806426414" anchor-label="AlignItems" id="-148909175%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-align-items/index.html"><span>Align</span><wbr><span><span>Items</span></span></a></div>
@@ -132,7 +132,7 @@
             </div>
           </div>
 <a data-name="1695146237%2FClasslikes%2F806426414" anchor-label="AttributeDelegate" id="1695146237%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-attribute-delegate/index.html"><span>Attribute</span><wbr><span><span>Delegate</span></span></a></div>
@@ -147,7 +147,7 @@
             </div>
           </div>
 <a data-name="-792886295%2FClasslikes%2F806426414" anchor-label="AttributeSetBuilder" id="-792886295%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-attribute-set-builder/index.html"><span>Attribute</span><wbr><span>Set</span><wbr><span><span>Builder</span></span></a></div>
@@ -162,7 +162,7 @@
             </div>
           </div>
 <a data-name="-793906826%2FClasslikes%2F806426414" anchor-label="Background" id="-793906826%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-background/index.html"><span><span>Background</span></span></a></div>
@@ -177,7 +177,7 @@
             </div>
           </div>
 <a data-name="-348576774%2FClasslikes%2F806426414" anchor-label="BgAttach" id="-348576774%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-bg-attach/index.html"><span>Bg</span><wbr><span><span>Attach</span></span></a></div>
@@ -192,7 +192,7 @@
             </div>
           </div>
 <a data-name="-117709617%2FClasslikes%2F806426414" anchor-label="BgClip" id="-117709617%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-bg-clip/index.html"><span>Bg</span><wbr><span><span>Clip</span></span></a></div>
@@ -207,7 +207,7 @@
             </div>
           </div>
 <a data-name="1343255097%2FClasslikes%2F806426414" anchor-label="BgOrigin" id="1343255097%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-bg-origin/index.html"><span>Bg</span><wbr><span><span>Origin</span></span></a></div>
@@ -222,7 +222,7 @@
             </div>
           </div>
 <a data-name="102936932%2FClasslikes%2F806426414" anchor-label="BgRepeat" id="102936932%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-bg-repeat/index.html"><span>Bg</span><wbr><span><span>Repeat</span></span></a></div>
@@ -237,7 +237,7 @@
             </div>
           </div>
 <a data-name="1972543806%2FClasslikes%2F806426414" anchor-label="BgSize" id="1972543806%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-bg-size/index.html"><span>Bg</span><wbr><span><span>Size</span></span></a></div>
@@ -252,7 +252,7 @@
             </div>
           </div>
 <a data-name="737303992%2FClasslikes%2F806426414" anchor-label="Border" id="737303992%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-border/index.html"><span><span>Border</span></span></a></div>
@@ -267,7 +267,7 @@
             </div>
           </div>
 <a data-name="-1055296871%2FClasslikes%2F806426414" anchor-label="BorderStyle" id="-1055296871%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-border-style/index.html"><span>Border</span><wbr><span><span>Style</span></span></a></div>
@@ -282,7 +282,7 @@
             </div>
           </div>
 <a data-name="2005212851%2FClasslikes%2F806426414" anchor-label="BoxShadow" id="2005212851%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-box-shadow/index.html"><span>Box</span><wbr><span><span>Shadow</span></span></a></div>
@@ -297,7 +297,7 @@
             </div>
           </div>
 <a data-name="1835832845%2FClasslikes%2F806426414" anchor-label="ClassSetBuilder" id="1835832845%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-class-set-builder/index.html"><span>Class</span><wbr><span>Set</span><wbr><span><span>Builder</span></span></a></div>
@@ -312,7 +312,7 @@
             </div>
           </div>
 <a data-name="1698896881%2FClasslikes%2F806426414" anchor-label="Clear" id="1698896881%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-clear/index.html"><span><span>Clear</span></span></a></div>
@@ -327,7 +327,7 @@
             </div>
           </div>
 <a data-name="639579998%2FClasslikes%2F806426414" anchor-label="Col" id="639579998%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-col/index.html"><span><span>Col</span></span></a></div>
@@ -342,7 +342,7 @@
             </div>
           </div>
 <a data-name="-1722226789%2FClasslikes%2F806426414" anchor-label="Color" id="-1722226789%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-color/index.html"><span><span>Color</span></span></a></div>
@@ -357,7 +357,7 @@
             </div>
           </div>
 <a data-name="145497281%2FClasslikes%2F806426414" anchor-label="Component" id="145497281%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-component/index.html"><span><span>Component</span></span></a></div>
@@ -372,7 +372,7 @@
             </div>
           </div>
 <a data-name="2085333437%2FClasslikes%2F806426414" anchor-label="Container" id="2085333437%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-container/index.html"><span><span>Container</span></span></a></div>
@@ -387,7 +387,7 @@
             </div>
           </div>
 <a data-name="514235407%2FClasslikes%2F806426414" anchor-label="CssClass" id="514235407%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-css-class/index.html"><span>Css</span><wbr><span><span>Class</span></span></a></div>
@@ -402,7 +402,7 @@
             </div>
           </div>
 <a data-name="-543191494%2FClasslikes%2F806426414" anchor-label="CssSize" id="-543191494%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-css-size/index.html"><span>Css</span><wbr><span><span>Size</span></span></a></div>
@@ -417,7 +417,7 @@
             </div>
           </div>
 <a data-name="-1638841906%2FClasslikes%2F806426414" anchor-label="Cursor" id="-1638841906%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-cursor/index.html"><span><span>Cursor</span></span></a></div>
@@ -432,7 +432,7 @@
             </div>
           </div>
 <a data-name="-151869313%2FClasslikes%2F806426414" anchor-label="Direction" id="-151869313%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-direction/index.html"><span><span>Direction</span></span></a></div>
@@ -447,7 +447,7 @@
             </div>
           </div>
 <a data-name="-1555574820%2FClasslikes%2F806426414" anchor-label="Display" id="-1555574820%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-display/index.html"><span><span>Display</span></span></a></div>
@@ -462,7 +462,7 @@
             </div>
           </div>
 <a data-name="449692650%2FClasslikes%2F806426414" anchor-label="DomAttribute" id="449692650%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-dom-attribute/index.html"><span>Dom</span><wbr><span><span>Attribute</span></span></a></div>
@@ -477,7 +477,7 @@
             </div>
           </div>
 <a data-name="-1194678312%2FClasslikes%2F806426414" anchor-label="FlexDirection" id="-1194678312%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-flex-direction/index.html"><span>Flex</span><wbr><span><span>Direction</span></span></a></div>
@@ -492,7 +492,7 @@
             </div>
           </div>
 <a data-name="1794456865%2FClasslikes%2F806426414" anchor-label="FlexWrap" id="1794456865%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-flex-wrap/index.html"><span>Flex</span><wbr><span><span>Wrap</span></span></a></div>
@@ -507,7 +507,7 @@
             </div>
           </div>
 <a data-name="-1026428228%2FClasslikes%2F806426414" anchor-label="FontStyle" id="-1026428228%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-font-style/index.html"><span>Font</span><wbr><span><span>Style</span></span></a></div>
@@ -522,7 +522,7 @@
             </div>
           </div>
 <a data-name="1711882088%2FClasslikes%2F806426414" anchor-label="FontVariant" id="1711882088%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-font-variant/index.html"><span>Font</span><wbr><span><span>Variant</span></span></a></div>
@@ -537,7 +537,7 @@
             </div>
           </div>
 <a data-name="1087687965%2FClasslikes%2F806426414" anchor-label="FontWeight" id="1087687965%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-font-weight/index.html"><span>Font</span><wbr><span><span>Weight</span></span></a></div>
@@ -552,7 +552,7 @@
             </div>
           </div>
 <a data-name="489119393%2FClasslikes%2F806426414" anchor-label="GridAutoFlow" id="489119393%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-grid-auto-flow/index.html"><span>Grid</span><wbr><span>Auto</span><wbr><span><span>Flow</span></span></a></div>
@@ -567,7 +567,7 @@
             </div>
           </div>
 <a data-name="-390344780%2FClasslikes%2F806426414" anchor-label="InheritingStyle" id="-390344780%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-inheriting-style/index.html"><span>Inheriting</span><wbr><span><span>Style</span></span></a></div>
@@ -576,13 +576,13 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-inheriting-style/index.html">InheritingStyle</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">selector<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">pClass<span class="token operator">: </span><a href="-p-class/index.html">PClass</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">pElement<span class="token operator">: </span><a href="-p-element/index.html">PElement</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">mediaQuery<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>parentStyle<span class="token operator">: </span><a href="-style/index.html">Style</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">init<span class="token operator">: </span><a href="-inheriting-style/index.html">InheritingStyle</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="-style/index.html">Style</a></div><div class="brief "><p class="paragraph">CSS style object that inherits all properties from its parent.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-inheriting-style/index.html">InheritingStyle</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">selector<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">pClass<span class="token operator">: </span><a href="-p-class/index.html">PClass</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">pElement<span class="token operator">: </span><a href="-p-element/index.html">PElement</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">mediaQuery<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">parentStyle<span class="token operator">: </span><a href="-style/index.html">Style</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">init<span class="token operator">: </span><a href="-inheriting-style/index.html">InheritingStyle</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="-style/index.html">Style</a></div><div class="brief "><p class="paragraph">CSS style object that inherits all properties from its parent.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
 <a data-name="87943611%2FClasslikes%2F806426414" anchor-label="JustifyContent" id="87943611%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-justify-content/index.html"><span>Justify</span><wbr><span><span>Content</span></span></a></div>
@@ -597,7 +597,7 @@
             </div>
           </div>
 <a data-name="-440876780%2FClasslikes%2F806426414" anchor-label="JustifyItems" id="-440876780%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-justify-items/index.html"><span>Justify</span><wbr><span><span>Items</span></span></a></div>
@@ -612,7 +612,7 @@
             </div>
           </div>
 <a data-name="1738511984%2FClasslikes%2F806426414" anchor-label="LazyCache" id="1738511984%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-lazy-cache/index.html"><span>Lazy</span><wbr><span><span>Cache</span></span></a></div>
@@ -627,7 +627,7 @@
             </div>
           </div>
 <a data-name="1796136979%2FClasslikes%2F806426414" anchor-label="LineBreak" id="1796136979%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-line-break/index.html"><span>Line</span><wbr><span><span>Break</span></span></a></div>
@@ -642,7 +642,7 @@
             </div>
           </div>
 <a data-name="-411868469%2FClasslikes%2F806426414" anchor-label="ListStyle" id="-411868469%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-list-style/index.html"><span>List</span><wbr><span><span>Style</span></span></a></div>
@@ -657,7 +657,7 @@
             </div>
           </div>
 <a data-name="-469467230%2FClasslikes%2F806426414" anchor-label="ListStylePosition" id="-469467230%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-list-style-position/index.html"><span>List</span><wbr><span>Style</span><wbr><span><span>Position</span></span></a></div>
@@ -672,7 +672,7 @@
             </div>
           </div>
 <a data-name="-608166991%2FClasslikes%2F806426414" anchor-label="ListStyleType" id="-608166991%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-list-style-type/index.html"><span>List</span><wbr><span>Style</span><wbr><span><span>Type</span></span></a></div>
@@ -687,7 +687,7 @@
             </div>
           </div>
 <a data-name="-983478180%2FClasslikes%2F806426414" anchor-label="Outline" id="-983478180%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-outline/index.html"><span><span>Outline</span></span></a></div>
@@ -702,7 +702,7 @@
             </div>
           </div>
 <a data-name="-385055115%2FClasslikes%2F806426414" anchor-label="OutlineStyle" id="-385055115%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-outline-style/index.html"><span>Outline</span><wbr><span><span>Style</span></span></a></div>
@@ -717,7 +717,7 @@
             </div>
           </div>
 <a data-name="462010850%2FClasslikes%2F806426414" anchor-label="Overflow" id="462010850%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-overflow/index.html"><span><span>Overflow</span></span></a></div>
@@ -732,7 +732,7 @@
             </div>
           </div>
 <a data-name="2129010744%2FClasslikes%2F806426414" anchor-label="OverflowWrap" id="2129010744%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-overflow-wrap/index.html"><span>Overflow</span><wbr><span><span>Wrap</span></span></a></div>
@@ -747,7 +747,7 @@
             </div>
           </div>
 <a data-name="-1930060164%2FClasslikes%2F806426414" anchor-label="PClass" id="-1930060164%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-p-class/index.html"><span><span>PClass</span></span></a></div>
@@ -762,7 +762,7 @@
             </div>
           </div>
 <a data-name="1582891192%2FClasslikes%2F806426414" anchor-label="PElement" id="1582891192%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-p-element/index.html"><span><span>PElement</span></span></a></div>
@@ -777,7 +777,7 @@
             </div>
           </div>
 <a data-name="-1988839364%2FClasslikes%2F806426414" anchor-label="PosFloat" id="-1988839364%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-pos-float/index.html"><span>Pos</span><wbr><span><span>Float</span></span></a></div>
@@ -792,7 +792,7 @@
             </div>
           </div>
 <a data-name="1577066139%2FClasslikes%2F806426414" anchor-label="Position" id="1577066139%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-position/index.html"><span><span>Position</span></span></a></div>
@@ -807,7 +807,7 @@
             </div>
           </div>
 <a data-name="-322806224%2FClasslikes%2F806426414" anchor-label="Resize" id="-322806224%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-resize/index.html"><span><span>Resize</span></span></a></div>
@@ -822,7 +822,7 @@
             </div>
           </div>
 <a data-name="-642260115%2FClasslikes%2F806426414" anchor-label="ResString" id="-642260115%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-res-string/index.html"><span>Res</span><wbr><span><span>String</span></span></a></div>
@@ -837,7 +837,7 @@
             </div>
           </div>
 <a data-name="942794851%2FClasslikes%2F806426414" anchor-label="SingleObjectCache" id="942794851%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-single-object-cache/index.html"><span>Single</span><wbr><span>Object</span><wbr><span><span>Cache</span></span></a></div>
@@ -852,7 +852,7 @@
             </div>
           </div>
 <a data-name="-1967110417%2FClasslikes%2F806426414" anchor-label="StringBoolPair" id="-1967110417%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-string-bool-pair/index.html"><span>String</span><wbr><span>Bool</span><wbr><span><span>Pair</span></span></a></div>
@@ -867,7 +867,7 @@
             </div>
           </div>
 <a data-name="854577849%2FClasslikes%2F806426414" anchor-label="StringPair" id="854577849%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-string-pair/index.html"><span>String</span><wbr><span><span>Pair</span></span></a></div>
@@ -882,7 +882,7 @@
             </div>
           </div>
 <a data-name="-380367603%2FClasslikes%2F806426414" anchor-label="Style" id="-380367603%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-style/index.html"><span><span>Style</span></span></a></div>
@@ -897,7 +897,7 @@
             </div>
           </div>
 <a data-name="1771312948%2FClasslikes%2F806426414" anchor-label="StyledComponent" id="1771312948%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-styled-component/index.html"><span>Styled</span><wbr><span><span>Component</span></span></a></div>
@@ -912,7 +912,7 @@
             </div>
           </div>
 <a data-name="-1697884555%2FClasslikes%2F806426414" anchor-label="StyleRefreshDelegate" id="-1697884555%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-style-refresh-delegate/index.html"><span>Style</span><wbr><span>Refresh</span><wbr><span><span>Delegate</span></span></a></div>
@@ -927,7 +927,7 @@
             </div>
           </div>
 <a data-name="274645062%2FClasslikes%2F806426414" anchor-label="TextAlign" id="274645062%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-text-align/index.html"><span>Text</span><wbr><span><span>Align</span></span></a></div>
@@ -942,7 +942,7 @@
             </div>
           </div>
 <a data-name="-786096569%2FClasslikes%2F806426414" anchor-label="TextDecoration" id="-786096569%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-text-decoration/index.html"><span>Text</span><wbr><span><span>Decoration</span></span></a></div>
@@ -957,7 +957,7 @@
             </div>
           </div>
 <a data-name="213777843%2FClasslikes%2F806426414" anchor-label="TextDecorationLine" id="213777843%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-text-decoration-line/index.html"><span>Text</span><wbr><span>Decoration</span><wbr><span><span>Line</span></span></a></div>
@@ -972,7 +972,7 @@
             </div>
           </div>
 <a data-name="564376426%2FClasslikes%2F806426414" anchor-label="TextDecorationStyle" id="564376426%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-text-decoration-style/index.html"><span>Text</span><wbr><span>Decoration</span><wbr><span><span>Style</span></span></a></div>
@@ -987,7 +987,7 @@
             </div>
           </div>
 <a data-name="1786911925%2FClasslikes%2F806426414" anchor-label="TextOverflow" id="1786911925%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-text-overflow/index.html"><span>Text</span><wbr><span><span>Overflow</span></span></a></div>
@@ -1002,7 +1002,7 @@
             </div>
           </div>
 <a data-name="-1877799209%2FClasslikes%2F806426414" anchor-label="TextShadow" id="-1877799209%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-text-shadow/index.html"><span>Text</span><wbr><span><span>Shadow</span></span></a></div>
@@ -1017,7 +1017,7 @@
             </div>
           </div>
 <a data-name="-1912631105%2FClasslikes%2F806426414" anchor-label="TextTransform" id="-1912631105%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-text-transform/index.html"><span>Text</span><wbr><span><span>Transform</span></span></a></div>
@@ -1032,7 +1032,7 @@
             </div>
           </div>
 <a data-name="2102493999%2FClasslikes%2F806426414" anchor-label="Transition" id="2102493999%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-transition/index.html"><span><span>Transition</span></span></a></div>
@@ -1047,7 +1047,7 @@
             </div>
           </div>
 <a data-name="-1367765899%2FClasslikes%2F806426414" anchor-label="UnicodeBidi" id="-1367765899%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-unicode-bidi/index.html"><span>Unicode</span><wbr><span><span>Bidi</span></span></a></div>
@@ -1062,7 +1062,7 @@
             </div>
           </div>
 <a data-name="1714926656%2FClasslikes%2F806426414" anchor-label="UNIT" id="1714926656%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-u-n-i-t/index.html"><span><span>UNIT</span></span></a></div>
@@ -1077,7 +1077,7 @@
             </div>
           </div>
 <a data-name="-840155569%2FClasslikes%2F806426414" anchor-label="VerticalAlign" id="-840155569%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-vertical-align/index.html"><span>Vertical</span><wbr><span><span>Align</span></span></a></div>
@@ -1092,7 +1092,7 @@
             </div>
           </div>
 <a data-name="1320370983%2FClasslikes%2F806426414" anchor-label="WhiteSpace" id="1320370983%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-white-space/index.html"><span>White</span><wbr><span><span>Space</span></span></a></div>
@@ -1107,7 +1107,7 @@
             </div>
           </div>
 <a data-name="1925579424%2FClasslikes%2F806426414" anchor-label="Widget" id="1925579424%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-widget/index.html"><span><span>Widget</span></span></a></div>
@@ -1122,7 +1122,7 @@
             </div>
           </div>
 <a data-name="22292610%2FClasslikes%2F806426414" anchor-label="WidgetRefreshDelegate" id="22292610%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-widget-refresh-delegate/index.html"><span>Widget</span><wbr><span>Refresh</span><wbr><span><span>Delegate</span></span></a></div>
@@ -1137,7 +1137,7 @@
             </div>
           </div>
 <a data-name="1629313487%2FClasslikes%2F806426414" anchor-label="WidgetWrapper" id="1629313487%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-widget-wrapper/index.html"><span>Widget</span><wbr><span><span>Wrapper</span></span></a></div>
@@ -1152,7 +1152,7 @@
             </div>
           </div>
 <a data-name="173206697%2FClasslikes%2F806426414" anchor-label="WordBreak" id="173206697%2FClasslikes%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-word-break/index.html"><span>Word</span><wbr><span><span>Break</span></span></a></div>
@@ -1169,9 +1169,9 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
+        <h2 class="tableheader">Properties</h2>
         <div class="table"><a data-name="-798692874%2FProperties%2F806426414" anchor-label="KVScope" id="-798692874%2FProperties%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-k-v-scope.html"><span><span>KVScope</span></span></a></div>
@@ -1188,9 +1188,9 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
+        <h2 class="tableheader">Functions</h2>
         <div class="table"><a data-name="-112862055%2FFunctions%2F806426414" anchor-label="buildAttributeSet" id="-112862055%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="build-attribute-set.html"><span>build</span><wbr><span>Attribute</span><wbr><span><span>Set</span></span></a></div>
@@ -1205,7 +1205,7 @@
             </div>
           </div>
 <a data-name="-268026215%2FFunctions%2F806426414" anchor-label="buildClassSet" id="-268026215%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="build-class-set.html"><span>build</span><wbr><span>Class</span><wbr><span><span>Set</span></span></a></div>
@@ -1220,7 +1220,7 @@
             </div>
           </div>
 <a data-name="62460378%2FFunctions%2F806426414" anchor-label="inheritingStyle" id="62460378%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="inheriting-style.html"><span>inheriting</span><wbr><span><span>Style</span></span></a></div>
@@ -1235,7 +1235,7 @@
             </div>
           </div>
 <a data-name="-1556276376%2FFunctions%2F806426414" anchor-label="inheritingStyle" id="-1556276376%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="inheriting-style.html"><span>inheriting</span><wbr><span><span>Style</span></span></a></div>
@@ -1250,7 +1250,7 @@
             </div>
           </div>
 <a data-name="1206507190%2FFunctions%2F806426414" anchor-label="onChange" id="1206507190%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="on-change.html"><span>on</span><wbr><span><span>Change</span></span></a></div>
@@ -1265,7 +1265,7 @@
             </div>
           </div>
 <a data-name="-460835413%2FFunctions%2F806426414" anchor-label="onChangeLaunch" id="-460835413%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="on-change-launch.html"><span>on</span><wbr><span>Change</span><wbr><span><span>Launch</span></span></a></div>
@@ -1280,7 +1280,7 @@
             </div>
           </div>
 <a data-name="-453957387%2FFunctions%2F806426414" anchor-label="onClick" id="-453957387%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="on-click.html"><span>on</span><wbr><span><span>Click</span></span></a></div>
@@ -1295,7 +1295,7 @@
             </div>
           </div>
 <a data-name="-2110006624%2FFunctions%2F806426414" anchor-label="onClickLaunch" id="-2110006624%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="on-click-launch.html"><span>on</span><wbr><span>Click</span><wbr><span><span>Launch</span></span></a></div>
@@ -1310,7 +1310,7 @@
             </div>
           </div>
 <a data-name="2087729451%2FFunctions%2F806426414" anchor-label="onEvent" id="2087729451%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="on-event.html"><span>on</span><wbr><span><span>Event</span></span></a></div>
@@ -1325,7 +1325,7 @@
             </div>
           </div>
 <a data-name="1666743064%2FFunctions%2F806426414" anchor-label="onEventLaunch" id="1666743064%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="on-event-launch.html"><span>on</span><wbr><span>Event</span><wbr><span><span>Launch</span></span></a></div>
@@ -1340,7 +1340,7 @@
             </div>
           </div>
 <a data-name="-102709842%2FFunctions%2F806426414" anchor-label="onInput" id="-102709842%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="on-input.html"><span>on</span><wbr><span><span>Input</span></span></a></div>
@@ -1355,7 +1355,7 @@
             </div>
           </div>
 <a data-name="1266155171%2FFunctions%2F806426414" anchor-label="onInputLaunch" id="1266155171%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="on-input-launch.html"><span>on</span><wbr><span>Input</span><wbr><span><span>Launch</span></span></a></div>
@@ -1370,7 +1370,7 @@
             </div>
           </div>
 <a data-name="1372776101%2FFunctions%2F806426414" anchor-label="style" id="1372776101%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="style.html"><span><span>style</span></span></a></div>
@@ -1385,7 +1385,7 @@
             </div>
           </div>
 <a data-name="91086455%2FFunctions%2F806426414" anchor-label="style" id="91086455%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="style.html"><span><span>style</span></span></a></div>
@@ -1400,7 +1400,7 @@
             </div>
           </div>
 <a data-name="28772758%2FFunctions%2F806426414" anchor-label="widget" id="28772758%2FFunctions%2F806426414" data-filterable-set=":kvision/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision/jsMain" data-filterable-set=":kvision/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="widget.html"><span><span>widget</span></span></a></div>
@@ -1420,17 +1420,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>TickOptions</title>
-<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
@@ -24,33 +24,31 @@
 <link href="../../../../styles/main.css" rel="Stylesheet">
 <link href="../../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../../index.html" tabindex="1">
                     kvision-project
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.1.0
+        <div class="library-version" id="library-version">9.2.0
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-chart/jsMain">js</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision-modules:kvision-chart/jsMain">js</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -64,45 +62,47 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     kvision-project
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="classlike" id="content" pageids="kvision-chart::io.kvision.chart/TickOptions///PointingToDeclaration//2145854610">
   <div class="breadcrumbs"><a href="../../index.html">kvision-chart</a><span class="delimiter">/</span><a href="../index.html">io.kvision.chart</a><span class="delimiter">/</span><span class="current">TickOptions</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Tick</span><wbr><span><span>Options</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-chart/jsMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">TickOptions</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>callback<span class="token operator">: </span><span class="token punctuation">(</span>value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span>index<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span>values<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span>dynamic<span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>display<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>backdropColor<span class="token operator">: </span><a href="../../../../kvision/io.kvision.core/-color/index.html">Color</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>backdropPadding<span class="token operator">: </span><a href="../-layout-padding-object/index.html">LayoutPaddingObject</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>color<span class="token operator">: </span><a href="../../../../kvision/io.kvision.core/-color/index.html">Color</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>font<span class="token operator">: </span><a href="../-chart-font/index.html">ChartFont</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>major<span class="token operator">: </span>dynamic<span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>padding<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>showLabelBackdrop<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>textStrokeColor<span class="token operator">: </span><a href="../../../../kvision/io.kvision.core/-color/index.html">Color</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>textStrokeWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>z<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>align<span class="token operator">: </span><a href="../-title-align/index.html">TitleAlign</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>crossAlign<span class="token operator">: </span><a href="../-cross-align/index.html">CrossAlign</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sampleSize<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>autoSkip<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>autoSkipPadding<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>includeBounds<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>labelOffset<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>maxRotation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>minRotation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>mirror<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>count<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>format<span class="token operator">: </span>dynamic<span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>maxTicksLimit<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>precision<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>stepSize<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>source<span class="token operator">: </span>dynamic<span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-chart/src/jsMain/kotlin/io/kvision/chart/Configuration.kt#L844">source</a>)</span></span></div><p class="paragraph">Chart tick options.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-chart/jsMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">TickOptions</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>callback<span class="token operator">: </span><span class="token punctuation">(</span>value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span>index<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span>values<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span>dynamic<span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>display<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>backdropColor<span class="token operator">: </span><a href="../../../../kvision/io.kvision.core/-color/index.html">Color</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>backdropPadding<span class="token operator">: </span><a href="../-layout-padding-object/index.html">LayoutPaddingObject</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>color<span class="token operator">: </span><a href="../../../../kvision/io.kvision.core/-color/index.html">Color</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>font<span class="token operator">: </span><a href="../-chart-font/index.html">ChartFont</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>major<span class="token operator">: </span>dynamic<span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>padding<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>showLabelBackdrop<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>textStrokeColor<span class="token operator">: </span><a href="../../../../kvision/io.kvision.core/-color/index.html">Color</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>textStrokeWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>z<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>align<span class="token operator">: </span><a href="../-title-align/index.html">TitleAlign</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>crossAlign<span class="token operator">: </span><a href="../-cross-align/index.html">CrossAlign</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sampleSize<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>autoSkip<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>autoSkipPadding<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>includeBounds<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>labelOffset<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>maxRotation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>minRotation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>mirror<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>count<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>format<span class="token operator">: </span>dynamic<span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>maxTicksLimit<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>precision<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>stepSize<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>source<span class="token operator">: </span>dynamic<span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-chart/src/jsMain/kotlin/io/kvision/chart/Configuration.kt#L844">source</a>)</span></span></div><p class="paragraph">Chart tick options.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
-        <h2 class="">Constructors</h2>
+        <h2 class="tableheader">Constructors</h2>
         <div class="table"><a data-name="323021889%2FConstructors%2F2145854610" anchor-label="TickOptions" id="323021889%2FConstructors%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-tick-options.html"><span>Tick</span><wbr><span><span>Options</span></span></a></div>
@@ -119,9 +119,9 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
+        <h2 class="tableheader">Properties</h2>
         <div class="table"><a data-name="2028695834%2FProperties%2F2145854610" anchor-label="align" id="2028695834%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="align.html"><span><span>align</span></span></a></div>
@@ -136,7 +136,7 @@
             </div>
           </div>
 <a data-name="1033661357%2FProperties%2F2145854610" anchor-label="autoSkip" id="1033661357%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="auto-skip.html"><span>auto</span><wbr><span><span>Skip</span></span></a></div>
@@ -151,7 +151,7 @@
             </div>
           </div>
 <a data-name="-176104708%2FProperties%2F2145854610" anchor-label="autoSkipPadding" id="-176104708%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="auto-skip-padding.html"><span>auto</span><wbr><span>Skip</span><wbr><span><span>Padding</span></span></a></div>
@@ -166,7 +166,7 @@
             </div>
           </div>
 <a data-name="3651186%2FProperties%2F2145854610" anchor-label="backdropColor" id="3651186%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="backdrop-color.html"><span>backdrop</span><wbr><span><span>Color</span></span></a></div>
@@ -181,7 +181,7 @@
             </div>
           </div>
 <a data-name="-900834428%2FProperties%2F2145854610" anchor-label="backdropPadding" id="-900834428%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="backdrop-padding.html"><span>backdrop</span><wbr><span><span>Padding</span></span></a></div>
@@ -196,7 +196,7 @@
             </div>
           </div>
 <a data-name="-1902528746%2FProperties%2F2145854610" anchor-label="callback" id="-1902528746%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="callback.html"><span><span>callback</span></span></a></div>
@@ -211,7 +211,7 @@
             </div>
           </div>
 <a data-name="-1701486980%2FProperties%2F2145854610" anchor-label="color" id="-1701486980%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="color.html"><span><span>color</span></span></a></div>
@@ -226,7 +226,7 @@
             </div>
           </div>
 <a data-name="-598722992%2FProperties%2F2145854610" anchor-label="count" id="-598722992%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="count.html"><span><span>count</span></span></a></div>
@@ -241,7 +241,7 @@
             </div>
           </div>
 <a data-name="1667466550%2FProperties%2F2145854610" anchor-label="crossAlign" id="1667466550%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cross-align.html"><span>cross</span><wbr><span><span>Align</span></span></a></div>
@@ -256,7 +256,7 @@
             </div>
           </div>
 <a data-name="-1923136131%2FProperties%2F2145854610" anchor-label="display" id="-1923136131%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="display.html"><span><span>display</span></span></a></div>
@@ -271,7 +271,7 @@
             </div>
           </div>
 <a data-name="1836464460%2FProperties%2F2145854610" anchor-label="font" id="1836464460%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="font.html"><span><span>font</span></span></a></div>
@@ -286,7 +286,7 @@
             </div>
           </div>
 <a data-name="-1646234844%2FProperties%2F2145854610" anchor-label="format" id="-1646234844%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="format.html"><span><span>format</span></span></a></div>
@@ -301,7 +301,7 @@
             </div>
           </div>
 <a data-name="-1409399902%2FProperties%2F2145854610" anchor-label="includeBounds" id="-1409399902%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="include-bounds.html"><span>include</span><wbr><span><span>Bounds</span></span></a></div>
@@ -316,7 +316,7 @@
             </div>
           </div>
 <a data-name="-552804296%2FProperties%2F2145854610" anchor-label="labelOffset" id="-552804296%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="label-offset.html"><span>label</span><wbr><span><span>Offset</span></span></a></div>
@@ -331,7 +331,7 @@
             </div>
           </div>
 <a data-name="2102625510%2FProperties%2F2145854610" anchor-label="major" id="2102625510%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="major.html"><span><span>major</span></span></a></div>
@@ -346,7 +346,7 @@
             </div>
           </div>
 <a data-name="-467582915%2FProperties%2F2145854610" anchor-label="maxRotation" id="-467582915%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="max-rotation.html"><span>max</span><wbr><span><span>Rotation</span></span></a></div>
@@ -361,7 +361,7 @@
             </div>
           </div>
 <a data-name="356448054%2FProperties%2F2145854610" anchor-label="maxTicksLimit" id="356448054%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="max-ticks-limit.html"><span>max</span><wbr><span>Ticks</span><wbr><span><span>Limit</span></span></a></div>
@@ -376,7 +376,7 @@
             </div>
           </div>
 <a data-name="-1213623025%2FProperties%2F2145854610" anchor-label="minRotation" id="-1213623025%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="min-rotation.html"><span>min</span><wbr><span><span>Rotation</span></span></a></div>
@@ -391,7 +391,7 @@
             </div>
           </div>
 <a data-name="-16560036%2FProperties%2F2145854610" anchor-label="mirror" id="-16560036%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="mirror.html"><span><span>mirror</span></span></a></div>
@@ -406,7 +406,7 @@
             </div>
           </div>
 <a data-name="1138895118%2FProperties%2F2145854610" anchor-label="padding" id="1138895118%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="padding.html"><span><span>padding</span></span></a></div>
@@ -421,7 +421,7 @@
             </div>
           </div>
 <a data-name="262835393%2FProperties%2F2145854610" anchor-label="precision" id="262835393%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="precision.html"><span><span>precision</span></span></a></div>
@@ -436,7 +436,7 @@
             </div>
           </div>
 <a data-name="-619647536%2FProperties%2F2145854610" anchor-label="sampleSize" id="-619647536%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="sample-size.html"><span>sample</span><wbr><span><span>Size</span></span></a></div>
@@ -451,7 +451,7 @@
             </div>
           </div>
 <a data-name="-906835278%2FProperties%2F2145854610" anchor-label="showLabelBackdrop" id="-906835278%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="show-label-backdrop.html"><span>show</span><wbr><span>Label</span><wbr><span><span>Backdrop</span></span></a></div>
@@ -466,7 +466,7 @@
             </div>
           </div>
 <a data-name="882750336%2FProperties%2F2145854610" anchor-label="source" id="882750336%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="source.html"><span><span>source</span></span></a></div>
@@ -481,7 +481,7 @@
             </div>
           </div>
 <a data-name="772394862%2FProperties%2F2145854610" anchor-label="stepSize" id="772394862%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="step-size.html"><span>step</span><wbr><span><span>Size</span></span></a></div>
@@ -496,7 +496,7 @@
             </div>
           </div>
 <a data-name="-1960703199%2FProperties%2F2145854610" anchor-label="textStrokeColor" id="-1960703199%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="text-stroke-color.html"><span>text</span><wbr><span>Stroke</span><wbr><span><span>Color</span></span></a></div>
@@ -511,7 +511,7 @@
             </div>
           </div>
 <a data-name="642773534%2FProperties%2F2145854610" anchor-label="textStrokeWidth" id="642773534%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="text-stroke-width.html"><span>text</span><wbr><span>Stroke</span><wbr><span><span>Width</span></span></a></div>
@@ -526,7 +526,7 @@
             </div>
           </div>
 <a data-name="1908725317%2FProperties%2F2145854610" anchor-label="z" id="1908725317%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="z.html"><span><span>z</span></span></a></div>
@@ -543,9 +543,9 @@
         </div>
       </div>
       <div data-togglable="EXTENSION_FUNCTION">
-        <h2 class="">Functions</h2>
+        <h2 class="tableheader">Functions</h2>
         <div class="table"><a data-name="1326830732%2FFunctions%2F2145854610" anchor-label="toJs" id="1326830732%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../to-js.html"><span>to</span><wbr><span><span>Js</span></span></a></div>
@@ -565,17 +565,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

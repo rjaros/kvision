@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Chart</title>
-<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
@@ -24,33 +24,31 @@
 <link href="../../../../styles/main.css" rel="Stylesheet">
 <link href="../../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../../index.html" tabindex="1">
                     kvision-project
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.1.0
+        <div class="library-version" id="library-version">9.2.0
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-chart/jsMain">js</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision-modules:kvision-chart/jsMain">js</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -64,45 +62,47 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     kvision-project
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="classlike" id="content" pageids="kvision-chart::io.kvision.chart.js/Chart///PointingToDeclaration//2145854610">
   <div class="breadcrumbs"><a href="../../index.html">kvision-chart</a><span class="delimiter">/</span><a href="../index.html">io.kvision.chart.js</a><span class="delimiter">/</span><span class="current">Chart</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Chart</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-chart/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">external </span><span class="token keyword">class </span><a href="index.html">Chart</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-chart/src/jsMain/kotlin/io/kvision/chart/js/Chart.kt#L248">source</a>)</span></span></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-chart/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">external </span><span class="token keyword">class </span><a href="index.html">Chart</a><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-chart/src/jsMain/kotlin/io/kvision/chart/js/Chart.kt#L248">source</a>)</span></span></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
-        <h2 class="">Constructors</h2>
+        <h2 class="tableheader">Constructors</h2>
         <div class="table"><a data-name="-657393098%2FConstructors%2F2145854610" anchor-label="Chart" id="-657393098%2FConstructors%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-chart.html"><span><span>Chart</span></span></a></div>
@@ -119,9 +119,9 @@
         </div>
       </div>
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
+        <h2 class="tableheader">Types</h2>
         <div class="table"><a data-name="1501057288%2FClasslikes%2F2145854610" anchor-label="Companion" id="1501057288%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
@@ -138,9 +138,9 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
+        <h2 class="tableheader">Properties</h2>
         <div class="table"><a data-name="-1414248562%2FProperties%2F2145854610" anchor-label="aspectRatio" id="-1414248562%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="aspect-ratio.html"><span>aspect</span><wbr><span><span>Ratio</span></span></a></div>
@@ -155,7 +155,7 @@
             </div>
           </div>
 <a data-name="213490197%2FProperties%2F2145854610" anchor-label="attached" id="213490197%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="attached.html"><span><span>attached</span></span></a></div>
@@ -170,7 +170,7 @@
             </div>
           </div>
 <a data-name="495407144%2FProperties%2F2145854610" anchor-label="boxes" id="495407144%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="boxes.html"><span><span>boxes</span></span></a></div>
@@ -185,7 +185,7 @@
             </div>
           </div>
 <a data-name="1430561761%2FProperties%2F2145854610" anchor-label="canvas" id="1430561761%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="canvas.html"><span><span>canvas</span></span></a></div>
@@ -200,7 +200,7 @@
             </div>
           </div>
 <a data-name="-691387242%2FProperties%2F2145854610" anchor-label="chartArea" id="-691387242%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="chart-area.html"><span>chart</span><wbr><span><span>Area</span></span></a></div>
@@ -215,7 +215,7 @@
             </div>
           </div>
 <a data-name="100544823%2FProperties%2F2145854610" anchor-label="config" id="100544823%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="config.html"><span><span>config</span></span></a></div>
@@ -230,7 +230,7 @@
             </div>
           </div>
 <a data-name="2003974778%2FProperties%2F2145854610" anchor-label="ctx" id="2003974778%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="ctx.html"><span><span>ctx</span></span></a></div>
@@ -245,7 +245,7 @@
             </div>
           </div>
 <a data-name="489345933%2FProperties%2F2145854610" anchor-label="currentDevicePixelRatio" id="489345933%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="current-device-pixel-ratio.html"><span>current</span><wbr><span>Device</span><wbr><span>Pixel</span><wbr><span><span>Ratio</span></span></a></div>
@@ -260,7 +260,7 @@
             </div>
           </div>
 <a data-name="393246927%2FProperties%2F2145854610" anchor-label="data" id="393246927%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data.html"><span><span>data</span></span></a></div>
@@ -275,7 +275,7 @@
             </div>
           </div>
 <a data-name="1757748978%2FProperties%2F2145854610" anchor-label="height" id="1757748978%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="height.html"><span><span>height</span></span></a></div>
@@ -290,7 +290,7 @@
             </div>
           </div>
 <a data-name="17685374%2FProperties%2F2145854610" anchor-label="id" id="17685374%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="id.html"><span><span>id</span></span></a></div>
@@ -305,7 +305,7 @@
             </div>
           </div>
 <a data-name="1147680739%2FProperties%2F2145854610" anchor-label="options" id="1147680739%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="options.html"><span><span>options</span></span></a></div>
@@ -320,7 +320,7 @@
             </div>
           </div>
 <a data-name="-1244781018%2FProperties%2F2145854610" anchor-label="platform" id="-1244781018%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="platform.html"><span><span>platform</span></span></a></div>
@@ -335,7 +335,7 @@
             </div>
           </div>
 <a data-name="154525168%2FProperties%2F2145854610" anchor-label="scales" id="154525168%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="scales.html"><span><span>scales</span></span></a></div>
@@ -350,7 +350,7 @@
             </div>
           </div>
 <a data-name="-520824290%2FProperties%2F2145854610" anchor-label="tooltip" id="-520824290%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="tooltip.html"><span><span>tooltip</span></span></a></div>
@@ -365,7 +365,7 @@
             </div>
           </div>
 <a data-name="-1427710277%2FProperties%2F2145854610" anchor-label="width" id="-1427710277%2FProperties%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="width.html"><span><span>width</span></span></a></div>
@@ -382,9 +382,9 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
+        <h2 class="tableheader">Functions</h2>
         <div class="table"><a data-name="331559235%2FFunctions%2F2145854610" anchor-label="bindEvents" id="331559235%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="bind-events.html"><span>bind</span><wbr><span><span>Events</span></span></a></div>
@@ -399,7 +399,7 @@
             </div>
           </div>
 <a data-name="-1233602820%2FFunctions%2F2145854610" anchor-label="buildOrUpdateControllers" id="-1233602820%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="build-or-update-controllers.html"><span>build</span><wbr><span>Or</span><wbr><span>Update</span><wbr><span><span>Controllers</span></span></a></div>
@@ -414,7 +414,7 @@
             </div>
           </div>
 <a data-name="-1176453634%2FFunctions%2F2145854610" anchor-label="buildOrUpdateScales" id="-1176453634%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="build-or-update-scales.html"><span>build</span><wbr><span>Or</span><wbr><span>Update</span><wbr><span><span>Scales</span></span></a></div>
@@ -429,7 +429,7 @@
             </div>
           </div>
 <a data-name="-610063340%2FFunctions%2F2145854610" anchor-label="clear" id="-610063340%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="clear.html"><span><span>clear</span></span></a></div>
@@ -444,7 +444,7 @@
             </div>
           </div>
 <a data-name="1626545671%2FFunctions%2F2145854610" anchor-label="destroy" id="1626545671%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="destroy.html"><span><span>destroy</span></span></a></div>
@@ -459,7 +459,7 @@
             </div>
           </div>
 <a data-name="-50668427%2FFunctions%2F2145854610" anchor-label="draw" id="-50668427%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="draw.html"><span><span>draw</span></span></a></div>
@@ -474,7 +474,7 @@
             </div>
           </div>
 <a data-name="1146908376%2FFunctions%2F2145854610" anchor-label="ensureScalesHaveIDs" id="1146908376%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="ensure-scales-have-i-ds.html"><span>ensure</span><wbr><span>Scales</span><wbr><span>Have</span><wbr><span><span>IDs</span></span></a></div>
@@ -489,7 +489,7 @@
             </div>
           </div>
 <a data-name="1360444430%2FFunctions%2F2145854610" anchor-label="getActiveElements" id="1360444430%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-active-elements.html"><span>get</span><wbr><span>Active</span><wbr><span><span>Elements</span></span></a></div>
@@ -504,7 +504,7 @@
             </div>
           </div>
 <a data-name="1853961562%2FFunctions%2F2145854610" anchor-label="getDatasetMeta" id="1853961562%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-dataset-meta.html"><span>get</span><wbr><span>Dataset</span><wbr><span><span>Meta</span></span></a></div>
@@ -519,7 +519,7 @@
             </div>
           </div>
 <a data-name="205782653%2FFunctions%2F2145854610" anchor-label="getDataVisibility" id="205782653%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-data-visibility.html"><span>get</span><wbr><span>Data</span><wbr><span><span>Visibility</span></span></a></div>
@@ -534,7 +534,7 @@
             </div>
           </div>
 <a data-name="1927646101%2FFunctions%2F2145854610" anchor-label="getElementsAtEventForMode" id="1927646101%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-elements-at-event-for-mode.html"><span>get</span><wbr><span>Elements</span><wbr><span>At</span><wbr><span>Event</span><wbr><span>For</span><wbr><span><span>Mode</span></span></a></div>
@@ -549,7 +549,7 @@
             </div>
           </div>
 <a data-name="-930944892%2FFunctions%2F2145854610" anchor-label="getSortedVisibleDatasetMetas" id="-930944892%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-sorted-visible-dataset-metas.html"><span>get</span><wbr><span>Sorted</span><wbr><span>Visible</span><wbr><span>Dataset</span><wbr><span><span>Metas</span></span></a></div>
@@ -564,7 +564,7 @@
             </div>
           </div>
 <a data-name="-163851322%2FFunctions%2F2145854610" anchor-label="getVisibleDatasetCount" id="-163851322%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-visible-dataset-count.html"><span>get</span><wbr><span>Visible</span><wbr><span>Dataset</span><wbr><span><span>Count</span></span></a></div>
@@ -579,7 +579,7 @@
             </div>
           </div>
 <a data-name="-1997621278%2FFunctions%2F2145854610" anchor-label="hide" id="-1997621278%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="hide.html"><span><span>hide</span></span></a></div>
@@ -594,7 +594,7 @@
             </div>
           </div>
 <a data-name="-748910121%2FFunctions%2F2145854610" anchor-label="isDatasetVisible" id="-748910121%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-dataset-visible.html"><span>is</span><wbr><span>Dataset</span><wbr><span><span>Visible</span></span></a></div>
@@ -609,7 +609,7 @@
             </div>
           </div>
 <a data-name="2052800446%2FFunctions%2F2145854610" anchor-label="notifyPlugins" id="2052800446%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="notify-plugins.html"><span>notify</span><wbr><span><span>Plugins</span></span></a></div>
@@ -624,7 +624,7 @@
             </div>
           </div>
 <a data-name="-2041349789%2FFunctions%2F2145854610" anchor-label="render" id="-2041349789%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="render.html"><span><span>render</span></span></a></div>
@@ -639,7 +639,7 @@
             </div>
           </div>
 <a data-name="-654881966%2FFunctions%2F2145854610" anchor-label="reset" id="-654881966%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="reset.html"><span><span>reset</span></span></a></div>
@@ -654,7 +654,7 @@
             </div>
           </div>
 <a data-name="122736980%2FFunctions%2F2145854610" anchor-label="resize" id="122736980%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="resize.html"><span><span>resize</span></span></a></div>
@@ -669,7 +669,7 @@
             </div>
           </div>
 <a data-name="-752902718%2FFunctions%2F2145854610" anchor-label="setActiveElements" id="-752902718%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-active-elements.html"><span>set</span><wbr><span>Active</span><wbr><span><span>Elements</span></span></a></div>
@@ -684,7 +684,7 @@
             </div>
           </div>
 <a data-name="-17880951%2FFunctions%2F2145854610" anchor-label="setDatasetVisibility" id="-17880951%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-dataset-visibility.html"><span>set</span><wbr><span>Dataset</span><wbr><span><span>Visibility</span></span></a></div>
@@ -699,7 +699,7 @@
             </div>
           </div>
 <a data-name="2050940445%2FFunctions%2F2145854610" anchor-label="show" id="2050940445%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="show.html"><span><span>show</span></span></a></div>
@@ -714,7 +714,7 @@
             </div>
           </div>
 <a data-name="1607005047%2FFunctions%2F2145854610" anchor-label="stop" id="1607005047%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="stop.html"><span><span>stop</span></span></a></div>
@@ -729,7 +729,7 @@
             </div>
           </div>
 <a data-name="1388264012%2FFunctions%2F2145854610" anchor-label="toBase64Image" id="1388264012%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="to-base64-image.html"><span>to</span><wbr><span><span>Base64Image</span></span></a></div>
@@ -744,7 +744,7 @@
             </div>
           </div>
 <a data-name="770328835%2FFunctions%2F2145854610" anchor-label="toggleDataVisibility" id="770328835%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="toggle-data-visibility.html"><span>toggle</span><wbr><span>Data</span><wbr><span><span>Visibility</span></span></a></div>
@@ -759,7 +759,7 @@
             </div>
           </div>
 <a data-name="189392138%2FFunctions%2F2145854610" anchor-label="unbindEvents" id="189392138%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unbind-events.html"><span>unbind</span><wbr><span><span>Events</span></span></a></div>
@@ -774,7 +774,7 @@
             </div>
           </div>
 <a data-name="-1989558158%2FFunctions%2F2145854610" anchor-label="update" id="-1989558158%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="update.html"><span><span>update</span></span></a></div>
@@ -789,7 +789,7 @@
             </div>
           </div>
 <a data-name="-96030846%2FFunctions%2F2145854610" anchor-label="updateHoverStyle" id="-96030846%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="update-hover-style.html"><span>update</span><wbr><span>Hover</span><wbr><span><span>Style</span></span></a></div>
@@ -809,17 +809,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

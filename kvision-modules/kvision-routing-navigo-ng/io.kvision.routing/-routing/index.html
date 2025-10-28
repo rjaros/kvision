@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Routing</title>
-<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
@@ -24,33 +24,31 @@
 <link href="../../../../styles/main.css" rel="Stylesheet">
 <link href="../../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../../index.html" tabindex="1">
                     kvision-project
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.1.0
+        <div class="library-version" id="library-version">9.2.0
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-routing-navigo-ng/jsMain">js</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision-modules:kvision-routing-navigo-ng/jsMain">js</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -64,45 +62,47 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     kvision-project
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="classlike" id="content" pageids="kvision-routing-navigo-ng::io.kvision.routing/Routing///PointingToDeclaration//1797828933">
   <div class="breadcrumbs"><a href="../../index.html">kvision-routing-navigo-ng</a><span class="delimiter">/</span><a href="../index.html">io.kvision.routing</a><span class="delimiter">/</span><span class="current">Routing</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Routing</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">Routing</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">root<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">useHash<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">strategy<span class="token operator">: </span><a href="../-strategy/index.html">Strategy</a><span class="token operator"> = </span>Strategy.ONE<span class="token punctuation">, </span></span><span class="parameter ">noMatchWarning<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">linksSelector<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span>, <a href="../../../../kvision/io.kvision.routing/-k-v-router/index.html">KVRouter</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-routing-navigo-ng/src/jsMain/kotlin/io/kvision/routing/Routing.kt#L70">source</a>)</span></span></div><p class="paragraph">A helper class for Navigo 8+ JavaScript router.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>root</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the root path of the application</p></div></div></div></div><div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>use</span><wbr><span><span>Hash</span></span></u></div></span></div><div><div class="title"><p class="paragraph">whether to use hash based routing</p></div></div></div></div><div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>strategy</span></span></u></div></span></div><div><div class="title"><p class="paragraph">a routing strategy</p></div></div></div></div><div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>no</span><wbr><span>Match</span><wbr><span><span>Warning</span></span></u></div></span></div><div><div class="title"><p class="paragraph">do not show warnings when there is no matching route</p></div></div></div></div><div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>links</span><wbr><span><span>Selector</span></span></u></div></span></div><div><div class="title"><p class="paragraph">CSS links selector</p></div></div></div></div></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">Routing</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">root<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">useHash<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">strategy<span class="token operator">: </span><a href="../-strategy/index.html">Strategy</a><span class="token operator"> = </span>Strategy.ONE<span class="token punctuation">, </span></span><span class="parameter ">noMatchWarning<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">linksSelector<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <span data-unresolved-link="io.kvision.navigo/Navigo///PointingToDeclaration/">Navigo</span>, <a href="../../../../kvision/io.kvision.routing/-k-v-router/index.html">KVRouter</a><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-routing-navigo-ng/src/jsMain/kotlin/io/kvision/routing/Routing.kt#L70">source</a>)</span></span></div><p class="paragraph">A helper class for Navigo 8+ JavaScript router.</p><h4 class="tableheader">Parameters</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>root</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the root path of the application</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>use</span><wbr><span><span>Hash</span></span></u></div></span></div><div><div class="title"><p class="paragraph">whether to use hash based routing</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>strategy</span></span></u></div></span></div><div><div class="title"><p class="paragraph">a routing strategy</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>no</span><wbr><span>Match</span><wbr><span><span>Warning</span></span></u></div></span></div><div><div class="title"><p class="paragraph">do not show warnings when there is no matching route</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>links</span><wbr><span><span>Selector</span></span></u></div></span></div><div><div class="title"><p class="paragraph">CSS links selector</p></div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
-        <h2 class="">Constructors</h2>
+        <h2 class="tableheader">Constructors</h2>
         <div class="table"><a data-name="-1158362376%2FConstructors%2F1797828933" anchor-label="Routing" id="-1158362376%2FConstructors%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-routing.html"><span><span>Routing</span></span></a></div>
@@ -119,9 +119,9 @@
         </div>
       </div>
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
+        <h2 class="tableheader">Types</h2>
         <div class="table"><a data-name="1775120249%2FClasslikes%2F1797828933" anchor-label="Companion" id="1775120249%2FClasslikes%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
@@ -138,9 +138,9 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
+        <h2 class="tableheader">Properties</h2>
         <div class="table"><a data-name="468667943%2FProperties%2F1797828933" anchor-label="current" id="468667943%2FProperties%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#468667943%2FProperties%2F1797828933"><span><span>current</span></span></a></div>
@@ -155,7 +155,7 @@
             </div>
           </div>
 <a data-name="1113457863%2FProperties%2F1797828933" anchor-label="destroyed" id="1113457863%2FProperties%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#1113457863%2FProperties%2F1797828933"><span><span>destroyed</span></span></a></div>
@@ -170,7 +170,7 @@
             </div>
           </div>
 <a data-name="1003001400%2FProperties%2F1797828933" anchor-label="root" id="1003001400%2FProperties%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#1003001400%2FProperties%2F1797828933"><span><span>root</span></span></a></div>
@@ -185,7 +185,7 @@
             </div>
           </div>
 <a data-name="-321834608%2FProperties%2F1797828933" anchor-label="routes" id="-321834608%2FProperties%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#-321834608%2FProperties%2F1797828933"><span><span>routes</span></span></a></div>
@@ -202,9 +202,9 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
+        <h2 class="tableheader">Functions</h2>
         <div class="table"><a data-name="580418362%2FFunctions%2F1797828933" anchor-label="addAfterHook" id="580418362%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#754760001%2FFunctions%2F1797828933"><span>add</span><wbr><span>After</span><wbr><span><span>Hook</span></span></a></div>
@@ -219,7 +219,7 @@
             </div>
           </div>
 <a data-name="-470109958%2FFunctions%2F1797828933" anchor-label="addAlreadyHook" id="-470109958%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#1583701053%2FFunctions%2F1797828933"><span>add</span><wbr><span>Already</span><wbr><span><span>Hook</span></span></a></div>
@@ -234,7 +234,7 @@
             </div>
           </div>
 <a data-name="-323807426%2FFunctions%2F1797828933" anchor-label="addBeforeHook" id="-323807426%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#1783046164%2FFunctions%2F1797828933"><span>add</span><wbr><span>Before</span><wbr><span><span>Hook</span></span></a></div>
@@ -249,7 +249,7 @@
             </div>
           </div>
 <a data-name="-1128835626%2FFunctions%2F1797828933" anchor-label="addLeaveHook" id="-1128835626%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#1322311512%2FFunctions%2F1797828933"><span>add</span><wbr><span>Leave</span><wbr><span><span>Hook</span></span></a></div>
@@ -264,7 +264,7 @@
             </div>
           </div>
 <a data-name="638357190%2FFunctions%2F1797828933" anchor-label="destroy" id="638357190%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#638357190%2FFunctions%2F1797828933"><span><span>destroy</span></span></a></div>
@@ -279,7 +279,7 @@
             </div>
           </div>
 <a data-name="-767752712%2FFunctions%2F1797828933" anchor-label="generate" id="-767752712%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#-767752712%2FFunctions%2F1797828933"><span><span>generate</span></span></a></div>
@@ -294,7 +294,7 @@
             </div>
           </div>
 <a data-name="915930882%2FFunctions%2F1797828933" anchor-label="getCurrentLocation" id="915930882%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#915930882%2FFunctions%2F1797828933"><span>get</span><wbr><span>Current</span><wbr><span><span>Location</span></span></a></div>
@@ -309,7 +309,7 @@
             </div>
           </div>
 <a data-name="-1321970132%2FFunctions%2F1797828933" anchor-label="getLinkPath" id="-1321970132%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#-1321970132%2FFunctions%2F1797828933"><span>get</span><wbr><span>Link</span><wbr><span><span>Path</span></span></a></div>
@@ -324,7 +324,7 @@
             </div>
           </div>
 <a data-name="-815476883%2FFunctions%2F1797828933" anchor-label="getRoute" id="-815476883%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#-2109272228%2FFunctions%2F1797828933"><span>get</span><wbr><span><span>Route</span></span></a></div>
@@ -339,7 +339,7 @@
             </div>
           </div>
 <a data-name="490481036%2FFunctions%2F1797828933" anchor-label="hooks" id="490481036%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#490481036%2FFunctions%2F1797828933"><span><span>hooks</span></span></a></div>
@@ -354,7 +354,7 @@
             </div>
           </div>
 <a data-name="-664178429%2FFunctions%2F1797828933" anchor-label="kvDestroy" id="-664178429%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="kv-destroy.html"><span>kv</span><wbr><span><span>Destroy</span></span></a></div>
@@ -369,7 +369,7 @@
             </div>
           </div>
 <a data-name="1752658200%2FFunctions%2F1797828933" anchor-label="kvNavigate" id="1752658200%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="kv-navigate.html"><span>kv</span><wbr><span><span>Navigate</span></span></a></div>
@@ -384,7 +384,7 @@
             </div>
           </div>
 <a data-name="1447119844%2FFunctions%2F1797828933" anchor-label="kvOff" id="1447119844%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="kv-off.html"><span>kv</span><wbr><span><span>Off</span></span></a></div>
@@ -399,7 +399,7 @@
             </div>
           </div>
 <a data-name="164840431%2FFunctions%2F1797828933" anchor-label="kvOn" id="164840431%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="kv-on.html"><span>kv</span><wbr><span><span>On</span></span></a></div>
@@ -414,7 +414,7 @@
             </div>
           </div>
 <a data-name="1137984337%2FFunctions%2F1797828933" anchor-label="kvResolve" id="1137984337%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="kv-resolve.html"><span>kv</span><wbr><span><span>Resolve</span></span></a></div>
@@ -429,7 +429,7 @@
             </div>
           </div>
 <a data-name="-2129098004%2FFunctions%2F1797828933" anchor-label="lastResolved" id="-2129098004%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#-2129098004%2FFunctions%2F1797828933"><span>last</span><wbr><span><span>Resolved</span></span></a></div>
@@ -444,7 +444,7 @@
             </div>
           </div>
 <a data-name="1018458852%2FFunctions%2F1797828933" anchor-label="link" id="1018458852%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#1018458852%2FFunctions%2F1797828933"><span><span>link</span></span></a></div>
@@ -459,7 +459,7 @@
             </div>
           </div>
 <a data-name="742973641%2FFunctions%2F1797828933" anchor-label="match" id="742973641%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#742973641%2FFunctions%2F1797828933"><span><span>match</span></span></a></div>
@@ -474,7 +474,7 @@
             </div>
           </div>
 <a data-name="1713152399%2FFunctions%2F1797828933" anchor-label="matchLocation" id="1713152399%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#1524164065%2FFunctions%2F1797828933"><span>match</span><wbr><span><span>Location</span></span></a></div>
@@ -489,7 +489,7 @@
             </div>
           </div>
 <a data-name="-105725618%2FFunctions%2F1797828933" anchor-label="navigate" id="-105725618%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#-105725618%2FFunctions%2F1797828933"><span><span>navigate</span></span></a></div>
@@ -504,7 +504,7 @@
             </div>
           </div>
 <a data-name="1753200534%2FFunctions%2F1797828933" anchor-label="navigateByName" id="1753200534%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#1753200534%2FFunctions%2F1797828933"><span>navigate</span><wbr><span>By</span><wbr><span><span>Name</span></span></a></div>
@@ -519,7 +519,7 @@
             </div>
           </div>
 <a data-name="-553189437%2FFunctions%2F1797828933" anchor-label="notFound" id="-553189437%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#-553189437%2FFunctions%2F1797828933"><span>not</span><wbr><span><span>Found</span></span></a></div>
@@ -534,7 +534,7 @@
             </div>
           </div>
 <a data-name="1569773987%2FFunctions%2F1797828933" anchor-label="off" id="1569773987%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#-1791962542%2FFunctions%2F1797828933"><span><span>off</span></span></a></div>
@@ -549,7 +549,7 @@
             </div>
           </div>
 <a data-name="1406687553%2FFunctions%2F1797828933" anchor-label="on" id="1406687553%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#-1442613217%2FFunctions%2F1797828933"><span><span>on</span></span></a></div>
@@ -564,7 +564,7 @@
             </div>
           </div>
 <a data-name="-183691392%2FFunctions%2F1797828933" anchor-label="resolve" id="-183691392%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#-183691392%2FFunctions%2F1797828933"><span><span>resolve</span></span></a></div>
@@ -579,7 +579,7 @@
             </div>
           </div>
 <a data-name="962584063%2FFunctions%2F1797828933" anchor-label="updatePageLinks" id="962584063%2FFunctions%2F1797828933" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-routing-navigo-ng/jsMain" data-filterable-set=":kvision-modules:kvision-routing-navigo-ng/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#962584063%2FFunctions%2F1797828933"><span>update</span><wbr><span>Page</span><wbr><span><span>Links</span></span></a></div>
@@ -599,17 +599,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

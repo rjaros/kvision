@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>LeafletMap</title>
-<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
@@ -24,33 +24,31 @@
 <link href="../../../../styles/main.css" rel="Stylesheet">
 <link href="../../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../../index.html" tabindex="1">
                     kvision-project
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.1.0
+        <div class="library-version" id="library-version">9.2.0
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-maps/jsMain">js</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision-modules:kvision-maps/jsMain">js</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -64,45 +62,47 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     kvision-project
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="classlike" id="content" pageids="kvision-maps::io.kvision.maps.externals.leaflet.map/LeafletMap///PointingToDeclaration//-1002496885">
   <div class="breadcrumbs"><a href="../../index.html">kvision-maps</a><span class="delimiter">/</span><a href="../index.html">io.kvision.maps.externals.leaflet.map</a><span class="delimiter">/</span><span class="current">LeafletMap</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Leaflet</span><wbr><span><span>Map</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">external </span><span class="token keyword">class </span><a href="index.html">LeafletMap</a> : <a href="../../io.kvision.maps.externals.leaflet.events/-evented/index.html">Evented</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-maps/src/jsMain/kotlin/io/kvision/maps/externals/leaflet/map/LeafletMap.kt#L54">source</a>)</span></span></div><p class="paragraph">The central class of the API — it is used to create a map on a page and manipulate it.</p><p class="paragraph">https://leafletjs.com/reference.html#map-example</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-maps/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">external </span><span class="token keyword">class </span><a href="index.html">LeafletMap</a> : <a href="../../io.kvision.maps.externals.leaflet.events/-evented/index.html">Evented</a><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-maps/src/jsMain/kotlin/io/kvision/maps/externals/leaflet/map/LeafletMap.kt#L54">source</a>)</span></span></div><p class="paragraph">The central class of the API — it is used to create a map on a page and manipulate it.</p><p class="paragraph">https://leafletjs.com/reference.html#map-example</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
-        <h2 class="">Constructors</h2>
+        <h2 class="tableheader">Constructors</h2>
         <div class="table"><a data-name="-333829410%2FConstructors%2F-1002496885" anchor-label="LeafletMap" id="-333829410%2FConstructors%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-leaflet-map.html"><span>Leaflet</span><wbr><span><span>Map</span></span></a></div>
@@ -119,9 +119,9 @@
         </div>
       </div>
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
+        <h2 class="tableheader">Types</h2>
         <div class="table"><a data-name="-1220103224%2FClasslikes%2F-1002496885" anchor-label="AnimatedOption" id="-1220103224%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-animated-option/index.html"><span>Animated</span><wbr><span><span>Option</span></span></a></div>
@@ -136,7 +136,7 @@
             </div>
           </div>
 <a data-name="-1833677208%2FClasslikes%2F-1002496885" anchor-label="FitBoundsOptions" id="-1833677208%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-fit-bounds-options/index.html"><span>Fit</span><wbr><span>Bounds</span><wbr><span><span>Options</span></span></a></div>
@@ -151,7 +151,7 @@
             </div>
           </div>
 <a data-name="-2073975840%2FClasslikes%2F-1002496885" anchor-label="InvalidateSizeOptions" id="-2073975840%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-invalidate-size-options/index.html"><span>Invalidate</span><wbr><span>Size</span><wbr><span><span>Options</span></span></a></div>
@@ -166,7 +166,7 @@
             </div>
           </div>
 <a data-name="-1881863517%2FClasslikes%2F-1002496885" anchor-label="LeafletMapOptions" id="-1881863517%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-leaflet-map-options/index.html"><span>Leaflet</span><wbr><span>Map</span><wbr><span><span>Options</span></span></a></div>
@@ -181,7 +181,7 @@
             </div>
           </div>
 <a data-name="1564871766%2FClasslikes%2F-1002496885" anchor-label="LocateOptions" id="1564871766%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-locate-options/index.html"><span>Locate</span><wbr><span><span>Options</span></span></a></div>
@@ -196,7 +196,7 @@
             </div>
           </div>
 <a data-name="1796515643%2FClasslikes%2F-1002496885" anchor-label="PanInsideOptions" id="1796515643%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-pan-inside-options/index.html"><span>Pan</span><wbr><span>Inside</span><wbr><span><span>Options</span></span></a></div>
@@ -211,7 +211,7 @@
             </div>
           </div>
 <a data-name="-1532097505%2FClasslikes%2F-1002496885" anchor-label="PanOptions" id="-1532097505%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-pan-options/index.html"><span>Pan</span><wbr><span><span>Options</span></span></a></div>
@@ -226,7 +226,7 @@
             </div>
           </div>
 <a data-name="316968215%2FClasslikes%2F-1002496885" anchor-label="ZoomOptions" id="316968215%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-zoom-options/index.html"><span>Zoom</span><wbr><span><span>Options</span></span></a></div>
@@ -241,7 +241,7 @@
             </div>
           </div>
 <a data-name="1973020620%2FClasslikes%2F-1002496885" anchor-label="ZoomPanOptions" id="1973020620%2FClasslikes%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-zoom-pan-options/index.html"><span>Zoom</span><wbr><span>Pan</span><wbr><span><span>Options</span></span></a></div>
@@ -258,9 +258,9 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
+        <h2 class="tableheader">Properties</h2>
         <div class="table"><a data-name="-428746195%2FProperties%2F-1002496885" anchor-label="attributionControl" id="-428746195%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="attribution-control.html"><span>attribution</span><wbr><span><span>Control</span></span></a></div>
@@ -275,7 +275,7 @@
             </div>
           </div>
 <a data-name="1897556337%2FProperties%2F-1002496885" anchor-label="boxZoom" id="1897556337%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="box-zoom.html"><span>box</span><wbr><span><span>Zoom</span></span></a></div>
@@ -290,7 +290,7 @@
             </div>
           </div>
 <a data-name="-1658804091%2FProperties%2F-1002496885" anchor-label="doubleClickZoom" id="-1658804091%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="double-click-zoom.html"><span>double</span><wbr><span>Click</span><wbr><span><span>Zoom</span></span></a></div>
@@ -305,7 +305,7 @@
             </div>
           </div>
 <a data-name="-10176676%2FProperties%2F-1002496885" anchor-label="dragging" id="-10176676%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="dragging.html"><span><span>dragging</span></span></a></div>
@@ -320,7 +320,7 @@
             </div>
           </div>
 <a data-name="469384132%2FProperties%2F-1002496885" anchor-label="keyboard" id="469384132%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="keyboard.html"><span><span>keyboard</span></span></a></div>
@@ -335,7 +335,7 @@
             </div>
           </div>
 <a data-name="-1422325999%2FProperties%2F-1002496885" anchor-label="options" id="-1422325999%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="options.html"><span><span>options</span></span></a></div>
@@ -350,7 +350,7 @@
             </div>
           </div>
 <a data-name="-802491506%2FProperties%2F-1002496885" anchor-label="scrollWheelZoom" id="-802491506%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="scroll-wheel-zoom.html"><span>scroll</span><wbr><span>Wheel</span><wbr><span><span>Zoom</span></span></a></div>
@@ -365,7 +365,7 @@
             </div>
           </div>
 <a data-name="25720492%2FProperties%2F-1002496885" anchor-label="tap" id="25720492%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="tap.html"><span><span>tap</span></span></a></div>
@@ -380,7 +380,7 @@
             </div>
           </div>
 <a data-name="946087933%2FProperties%2F-1002496885" anchor-label="touchZoom" id="946087933%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="touch-zoom.html"><span>touch</span><wbr><span><span>Zoom</span></span></a></div>
@@ -395,7 +395,7 @@
             </div>
           </div>
 <a data-name="678076453%2FProperties%2F-1002496885" anchor-label="zoomControl" id="678076453%2FProperties%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="zoom-control.html"><span>zoom</span><wbr><span><span>Control</span></span></a></div>
@@ -412,9 +412,9 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
+        <h2 class="tableheader">Functions</h2>
         <div class="table"><a data-name="1555649410%2FFunctions%2F-1002496885" anchor-label="addControl" id="1555649410%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="add-control.html"><span>add</span><wbr><span><span>Control</span></span></a></div>
@@ -429,7 +429,7 @@
             </div>
           </div>
 <a data-name="866730476%2FFunctions%2F-1002496885" anchor-label="addEventListener" id="866730476%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/add-event-listener.html"><span>add</span><wbr><span>Event</span><wbr><span><span>Listener</span></span></a></div>
@@ -444,7 +444,7 @@
             </div>
           </div>
 <a data-name="-1206038646%2FFunctions%2F-1002496885" anchor-label="addEventParent" id="-1206038646%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/add-event-parent.html"><span>add</span><wbr><span>Event</span><wbr><span><span>Parent</span></span></a></div>
@@ -459,7 +459,7 @@
             </div>
           </div>
 <a data-name="2028574782%2FFunctions%2F-1002496885" anchor-label="addHandler" id="2028574782%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="add-handler.html"><span>add</span><wbr><span><span>Handler</span></span></a></div>
@@ -474,7 +474,7 @@
             </div>
           </div>
 <a data-name="797695478%2FFunctions%2F-1002496885" anchor-label="addLayer" id="797695478%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="add-layer.html"><span>add</span><wbr><span><span>Layer</span></span></a></div>
@@ -489,7 +489,7 @@
             </div>
           </div>
 <a data-name="-1401824357%2FFunctions%2F-1002496885" anchor-label="addOneTimeEventListener" id="-1401824357%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/add-one-time-event-listener.html"><span>add</span><wbr><span>One</span><wbr><span>Time</span><wbr><span>Event</span><wbr><span><span>Listener</span></span></a></div>
@@ -504,7 +504,7 @@
             </div>
           </div>
 <a data-name="1724752963%2FFunctions%2F-1002496885" anchor-label="clearAllEventListeners" id="1724752963%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/clear-all-event-listeners.html"><span>clear</span><wbr><span>All</span><wbr><span>Event</span><wbr><span><span>Listeners</span></span></a></div>
@@ -519,7 +519,7 @@
             </div>
           </div>
 <a data-name="-50664891%2FFunctions%2F-1002496885" anchor-label="closePopup" id="-50664891%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="close-popup.html"><span>close</span><wbr><span><span>Popup</span></span></a></div>
@@ -534,7 +534,7 @@
             </div>
           </div>
 <a data-name="-681378843%2FFunctions%2F-1002496885" anchor-label="closeTooltip" id="-681378843%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="close-tooltip.html"><span>close</span><wbr><span><span>Tooltip</span></span></a></div>
@@ -549,7 +549,7 @@
             </div>
           </div>
 <a data-name="1426570908%2FFunctions%2F-1002496885" anchor-label="containerPointToLatLng" id="1426570908%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="container-point-to-lat-lng.html"><span>container</span><wbr><span>Point</span><wbr><span>To</span><wbr><span>Lat</span><wbr><span><span>Lng</span></span></a></div>
@@ -564,7 +564,7 @@
             </div>
           </div>
 <a data-name="-1569498365%2FFunctions%2F-1002496885" anchor-label="containerPointToLayerPoint" id="-1569498365%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="container-point-to-layer-point.html"><span>container</span><wbr><span>Point</span><wbr><span>To</span><wbr><span>Layer</span><wbr><span><span>Point</span></span></a></div>
@@ -579,7 +579,7 @@
             </div>
           </div>
 <a data-name="-633789684%2FFunctions%2F-1002496885" anchor-label="createPane" id="-633789684%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="create-pane.html"><span>create</span><wbr><span><span>Pane</span></span></a></div>
@@ -594,7 +594,7 @@
             </div>
           </div>
 <a data-name="-1389397367%2FFunctions%2F-1002496885" anchor-label="distance" id="-1389397367%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="distance.html"><span><span>distance</span></span></a></div>
@@ -609,7 +609,7 @@
             </div>
           </div>
 <a data-name="-539227%2FFunctions%2F-1002496885" anchor-label="eachLayer" id="-539227%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="each-layer.html"><span>each</span><wbr><span><span>Layer</span></span></a></div>
@@ -624,7 +624,7 @@
             </div>
           </div>
 <a data-name="1964466594%2FFunctions%2F-1002496885" anchor-label="fire" id="1964466594%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/fire.html"><span><span>fire</span></span></a></div>
@@ -639,7 +639,7 @@
             </div>
           </div>
 <a data-name="820764686%2FFunctions%2F-1002496885" anchor-label="fireEvent" id="820764686%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/fire-event.html"><span>fire</span><wbr><span><span>Event</span></span></a></div>
@@ -654,7 +654,7 @@
             </div>
           </div>
 <a data-name="450687423%2FFunctions%2F-1002496885" anchor-label="fitBounds" id="450687423%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="fit-bounds.html"><span>fit</span><wbr><span><span>Bounds</span></span></a></div>
@@ -669,7 +669,7 @@
             </div>
           </div>
 <a data-name="-1541263218%2FFunctions%2F-1002496885" anchor-label="fitWorld" id="-1541263218%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="fit-world.html"><span>fit</span><wbr><span><span>World</span></span></a></div>
@@ -684,7 +684,7 @@
             </div>
           </div>
 <a data-name="1057288989%2FFunctions%2F-1002496885" anchor-label="flyTo" id="1057288989%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="fly-to.html"><span>fly</span><wbr><span><span>To</span></span></a></div>
@@ -699,7 +699,7 @@
             </div>
           </div>
 <a data-name="-1272907806%2FFunctions%2F-1002496885" anchor-label="flyToBounds" id="-1272907806%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="fly-to-bounds.html"><span>fly</span><wbr><span>To</span><wbr><span><span>Bounds</span></span></a></div>
@@ -714,7 +714,7 @@
             </div>
           </div>
 <a data-name="-48707548%2FFunctions%2F-1002496885" anchor-label="getBounds" id="-48707548%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-bounds.html"><span>get</span><wbr><span><span>Bounds</span></span></a></div>
@@ -729,7 +729,7 @@
             </div>
           </div>
 <a data-name="1159922314%2FFunctions%2F-1002496885" anchor-label="getBoundsZoom" id="1159922314%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-bounds-zoom.html"><span>get</span><wbr><span>Bounds</span><wbr><span><span>Zoom</span></span></a></div>
@@ -744,7 +744,7 @@
             </div>
           </div>
 <a data-name="-965638524%2FFunctions%2F-1002496885" anchor-label="getCenter" id="-965638524%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-center.html"><span>get</span><wbr><span><span>Center</span></span></a></div>
@@ -759,7 +759,7 @@
             </div>
           </div>
 <a data-name="-818650272%2FFunctions%2F-1002496885" anchor-label="getContainer" id="-818650272%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-container.html"><span>get</span><wbr><span><span>Container</span></span></a></div>
@@ -774,7 +774,7 @@
             </div>
           </div>
 <a data-name="-384142774%2FFunctions%2F-1002496885" anchor-label="getMaxZoom" id="-384142774%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-max-zoom.html"><span>get</span><wbr><span>Max</span><wbr><span><span>Zoom</span></span></a></div>
@@ -789,7 +789,7 @@
             </div>
           </div>
 <a data-name="-1985871844%2FFunctions%2F-1002496885" anchor-label="getMinZoom" id="-1985871844%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-min-zoom.html"><span>get</span><wbr><span>Min</span><wbr><span><span>Zoom</span></span></a></div>
@@ -804,7 +804,7 @@
             </div>
           </div>
 <a data-name="-49817884%2FFunctions%2F-1002496885" anchor-label="getPane" id="-49817884%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-pane.html"><span>get</span><wbr><span><span>Pane</span></span></a></div>
@@ -819,7 +819,7 @@
             </div>
           </div>
 <a data-name="-624412906%2FFunctions%2F-1002496885" anchor-label="getPanes" id="-624412906%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-panes.html"><span>get</span><wbr><span><span>Panes</span></span></a></div>
@@ -834,7 +834,7 @@
             </div>
           </div>
 <a data-name="571211590%2FFunctions%2F-1002496885" anchor-label="getPixelBounds" id="571211590%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-pixel-bounds.html"><span>get</span><wbr><span>Pixel</span><wbr><span><span>Bounds</span></span></a></div>
@@ -849,7 +849,7 @@
             </div>
           </div>
 <a data-name="-1010501643%2FFunctions%2F-1002496885" anchor-label="getPixelOrigin" id="-1010501643%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-pixel-origin.html"><span>get</span><wbr><span>Pixel</span><wbr><span><span>Origin</span></span></a></div>
@@ -864,7 +864,7 @@
             </div>
           </div>
 <a data-name="-532786444%2FFunctions%2F-1002496885" anchor-label="getPixelWorldBounds" id="-532786444%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-pixel-world-bounds.html"><span>get</span><wbr><span>Pixel</span><wbr><span>World</span><wbr><span><span>Bounds</span></span></a></div>
@@ -879,7 +879,7 @@
             </div>
           </div>
 <a data-name="1008377488%2FFunctions%2F-1002496885" anchor-label="getRenderer" id="1008377488%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-renderer.html"><span>get</span><wbr><span><span>Renderer</span></span></a></div>
@@ -894,7 +894,7 @@
             </div>
           </div>
 <a data-name="-1297456427%2FFunctions%2F-1002496885" anchor-label="getScaleZoom" id="-1297456427%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-scale-zoom.html"><span>get</span><wbr><span>Scale</span><wbr><span><span>Zoom</span></span></a></div>
@@ -909,7 +909,7 @@
             </div>
           </div>
 <a data-name="-404956328%2FFunctions%2F-1002496885" anchor-label="getSize" id="-404956328%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-size.html"><span>get</span><wbr><span><span>Size</span></span></a></div>
@@ -924,7 +924,7 @@
             </div>
           </div>
 <a data-name="1178675142%2FFunctions%2F-1002496885" anchor-label="getZoom" id="1178675142%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-zoom.html"><span>get</span><wbr><span><span>Zoom</span></span></a></div>
@@ -939,7 +939,7 @@
             </div>
           </div>
 <a data-name="-156684593%2FFunctions%2F-1002496885" anchor-label="getZoomScale" id="-156684593%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-zoom-scale.html"><span>get</span><wbr><span>Zoom</span><wbr><span><span>Scale</span></span></a></div>
@@ -954,7 +954,7 @@
             </div>
           </div>
 <a data-name="-1088622459%2FFunctions%2F-1002496885" anchor-label="hasEventListeners" id="-1088622459%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/has-event-listeners.html"><span>has</span><wbr><span>Event</span><wbr><span><span>Listeners</span></span></a></div>
@@ -969,7 +969,7 @@
             </div>
           </div>
 <a data-name="610813999%2FFunctions%2F-1002496885" anchor-label="hasLayer" id="610813999%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="has-layer.html"><span>has</span><wbr><span><span>Layer</span></span></a></div>
@@ -984,7 +984,7 @@
             </div>
           </div>
 <a data-name="2050260277%2FFunctions%2F-1002496885" anchor-label="invalidateSize" id="2050260277%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="invalidate-size.html"><span>invalidate</span><wbr><span><span>Size</span></span></a></div>
@@ -999,7 +999,7 @@
             </div>
           </div>
 <a data-name="-1630201907%2FFunctions%2F-1002496885" anchor-label="latLngToContainerPoint" id="-1630201907%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="lat-lng-to-container-point.html"><span>lat</span><wbr><span>Lng</span><wbr><span>To</span><wbr><span>Container</span><wbr><span><span>Point</span></span></a></div>
@@ -1014,7 +1014,7 @@
             </div>
           </div>
 <a data-name="-1235764451%2FFunctions%2F-1002496885" anchor-label="latLngToLayerPoint" id="-1235764451%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="lat-lng-to-layer-point.html"><span>lat</span><wbr><span>Lng</span><wbr><span>To</span><wbr><span>Layer</span><wbr><span><span>Point</span></span></a></div>
@@ -1029,7 +1029,7 @@
             </div>
           </div>
 <a data-name="855977987%2FFunctions%2F-1002496885" anchor-label="layerPointToContainerPoint" id="855977987%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="layer-point-to-container-point.html"><span>layer</span><wbr><span>Point</span><wbr><span>To</span><wbr><span>Container</span><wbr><span><span>Point</span></span></a></div>
@@ -1044,7 +1044,7 @@
             </div>
           </div>
 <a data-name="-1614069140%2FFunctions%2F-1002496885" anchor-label="layerPointToLatLng" id="-1614069140%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="layer-point-to-lat-lng.html"><span>layer</span><wbr><span>Point</span><wbr><span>To</span><wbr><span>Lat</span><wbr><span><span>Lng</span></span></a></div>
@@ -1059,7 +1059,7 @@
             </div>
           </div>
 <a data-name="-2091593966%2FFunctions%2F-1002496885" anchor-label="listens" id="-2091593966%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/listens.html"><span><span>listens</span></span></a></div>
@@ -1074,7 +1074,7 @@
             </div>
           </div>
 <a data-name="-1507365441%2FFunctions%2F-1002496885" anchor-label="locate" id="-1507365441%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="locate.html"><span><span>locate</span></span></a></div>
@@ -1089,7 +1089,7 @@
             </div>
           </div>
 <a data-name="2119048393%2FFunctions%2F-1002496885" anchor-label="mouseEventToContainerPoint" id="2119048393%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="mouse-event-to-container-point.html"><span>mouse</span><wbr><span>Event</span><wbr><span>To</span><wbr><span>Container</span><wbr><span><span>Point</span></span></a></div>
@@ -1104,7 +1104,7 @@
             </div>
           </div>
 <a data-name="-480530688%2FFunctions%2F-1002496885" anchor-label="mouseEventToLatLng" id="-480530688%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="mouse-event-to-lat-lng.html"><span>mouse</span><wbr><span>Event</span><wbr><span>To</span><wbr><span>Lat</span><wbr><span><span>Lng</span></span></a></div>
@@ -1119,7 +1119,7 @@
             </div>
           </div>
 <a data-name="-707890439%2FFunctions%2F-1002496885" anchor-label="mouseEventToLayerPoint" id="-707890439%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="mouse-event-to-layer-point.html"><span>mouse</span><wbr><span>Event</span><wbr><span>To</span><wbr><span>Layer</span><wbr><span><span>Point</span></span></a></div>
@@ -1134,7 +1134,7 @@
             </div>
           </div>
 <a data-name="1179653032%2FFunctions%2F-1002496885" anchor-label="off" id="1179653032%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/off.html"><span><span>off</span></span></a></div>
@@ -1149,7 +1149,7 @@
             </div>
           </div>
 <a data-name="-251165846%2FFunctions%2F-1002496885" anchor-label="on" id="-251165846%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/on.html"><span><span>on</span></span></a></div>
@@ -1164,7 +1164,7 @@
             </div>
           </div>
 <a data-name="1845342035%2FFunctions%2F-1002496885" anchor-label="once" id="1845342035%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/once.html"><span><span>once</span></span></a></div>
@@ -1179,7 +1179,7 @@
             </div>
           </div>
 <a data-name="-1139013545%2FFunctions%2F-1002496885" anchor-label="openPopup" id="-1139013545%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="open-popup.html"><span>open</span><wbr><span><span>Popup</span></span></a></div>
@@ -1194,7 +1194,7 @@
             </div>
           </div>
 <a data-name="-932798783%2FFunctions%2F-1002496885" anchor-label="openTooltip" id="-932798783%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="open-tooltip.html"><span>open</span><wbr><span><span>Tooltip</span></span></a></div>
@@ -1209,7 +1209,7 @@
             </div>
           </div>
 <a data-name="1703051340%2FFunctions%2F-1002496885" anchor-label="panBy" id="1703051340%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="pan-by.html"><span>pan</span><wbr><span><span>By</span></span></a></div>
@@ -1224,7 +1224,7 @@
             </div>
           </div>
 <a data-name="716958676%2FFunctions%2F-1002496885" anchor-label="panInside" id="716958676%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="pan-inside.html"><span>pan</span><wbr><span><span>Inside</span></span></a></div>
@@ -1239,7 +1239,7 @@
             </div>
           </div>
 <a data-name="-1533748466%2FFunctions%2F-1002496885" anchor-label="panInsideBounds" id="-1533748466%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="pan-inside-bounds.html"><span>pan</span><wbr><span>Inside</span><wbr><span><span>Bounds</span></span></a></div>
@@ -1254,7 +1254,7 @@
             </div>
           </div>
 <a data-name="-1832645543%2FFunctions%2F-1002496885" anchor-label="panTo" id="-1832645543%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="pan-to.html"><span>pan</span><wbr><span><span>To</span></span></a></div>
@@ -1269,7 +1269,7 @@
             </div>
           </div>
 <a data-name="86145461%2FFunctions%2F-1002496885" anchor-label="project" id="86145461%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="project.html"><span><span>project</span></span></a></div>
@@ -1284,7 +1284,7 @@
             </div>
           </div>
 <a data-name="-1313252025%2FFunctions%2F-1002496885" anchor-label="remove" id="-1313252025%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="remove.html"><span><span>remove</span></span></a></div>
@@ -1299,7 +1299,7 @@
             </div>
           </div>
 <a data-name="-574328311%2FFunctions%2F-1002496885" anchor-label="removeControl" id="-574328311%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="remove-control.html"><span>remove</span><wbr><span><span>Control</span></span></a></div>
@@ -1314,7 +1314,7 @@
             </div>
           </div>
 <a data-name="-511751915%2FFunctions%2F-1002496885" anchor-label="removeEventListener" id="-511751915%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/remove-event-listener.html"><span>remove</span><wbr><span>Event</span><wbr><span><span>Listener</span></span></a></div>
@@ -1329,7 +1329,7 @@
             </div>
           </div>
 <a data-name="-829186865%2FFunctions%2F-1002496885" anchor-label="removeEventParent" id="-829186865%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.maps.externals.leaflet.events/-evented/remove-event-parent.html"><span>remove</span><wbr><span>Event</span><wbr><span><span>Parent</span></span></a></div>
@@ -1344,7 +1344,7 @@
             </div>
           </div>
 <a data-name="618016189%2FFunctions%2F-1002496885" anchor-label="removeLayer" id="618016189%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="remove-layer.html"><span>remove</span><wbr><span><span>Layer</span></span></a></div>
@@ -1359,7 +1359,7 @@
             </div>
           </div>
 <a data-name="376493713%2FFunctions%2F-1002496885" anchor-label="setMaxBounds" id="376493713%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-max-bounds.html"><span>set</span><wbr><span>Max</span><wbr><span><span>Bounds</span></span></a></div>
@@ -1374,7 +1374,7 @@
             </div>
           </div>
 <a data-name="-1329585354%2FFunctions%2F-1002496885" anchor-label="setMaxZoom" id="-1329585354%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-max-zoom.html"><span>set</span><wbr><span>Max</span><wbr><span><span>Zoom</span></span></a></div>
@@ -1389,7 +1389,7 @@
             </div>
           </div>
 <a data-name="-745203036%2FFunctions%2F-1002496885" anchor-label="setMinZoom" id="-745203036%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-min-zoom.html"><span>set</span><wbr><span>Min</span><wbr><span><span>Zoom</span></span></a></div>
@@ -1404,7 +1404,7 @@
             </div>
           </div>
 <a data-name="-1118342620%2FFunctions%2F-1002496885" anchor-label="setView" id="-1118342620%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-view.html"><span>set</span><wbr><span><span>View</span></span></a></div>
@@ -1419,7 +1419,7 @@
             </div>
           </div>
 <a data-name="763573519%2FFunctions%2F-1002496885" anchor-label="setZoom" id="763573519%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-zoom.html"><span>set</span><wbr><span><span>Zoom</span></span></a></div>
@@ -1434,7 +1434,7 @@
             </div>
           </div>
 <a data-name="207192953%2FFunctions%2F-1002496885" anchor-label="setZoomAround" id="207192953%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-zoom-around.html"><span>set</span><wbr><span>Zoom</span><wbr><span><span>Around</span></span></a></div>
@@ -1449,7 +1449,7 @@
             </div>
           </div>
 <a data-name="70787849%2FFunctions%2F-1002496885" anchor-label="stop" id="70787849%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="stop.html"><span><span>stop</span></span></a></div>
@@ -1464,7 +1464,7 @@
             </div>
           </div>
 <a data-name="344122071%2FFunctions%2F-1002496885" anchor-label="stopLocate" id="344122071%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="stop-locate.html"><span>stop</span><wbr><span><span>Locate</span></span></a></div>
@@ -1479,7 +1479,7 @@
             </div>
           </div>
 <a data-name="-55698147%2FFunctions%2F-1002496885" anchor-label="unproject" id="-55698147%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unproject.html"><span><span>unproject</span></span></a></div>
@@ -1494,7 +1494,7 @@
             </div>
           </div>
 <a data-name="2033738304%2FFunctions%2F-1002496885" anchor-label="whenReady" id="2033738304%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="when-ready.html"><span>when</span><wbr><span><span>Ready</span></span></a></div>
@@ -1509,7 +1509,7 @@
             </div>
           </div>
 <a data-name="953625837%2FFunctions%2F-1002496885" anchor-label="wrapLatLng" id="953625837%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="wrap-lat-lng.html"><span>wrap</span><wbr><span>Lat</span><wbr><span><span>Lng</span></span></a></div>
@@ -1524,7 +1524,7 @@
             </div>
           </div>
 <a data-name="-790813437%2FFunctions%2F-1002496885" anchor-label="wrapLatLngBounds" id="-790813437%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="wrap-lat-lng-bounds.html"><span>wrap</span><wbr><span>Lat</span><wbr><span>Lng</span><wbr><span><span>Bounds</span></span></a></div>
@@ -1539,7 +1539,7 @@
             </div>
           </div>
 <a data-name="2096345389%2FFunctions%2F-1002496885" anchor-label="zoomIn" id="2096345389%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="zoom-in.html"><span>zoom</span><wbr><span><span>In</span></span></a></div>
@@ -1554,7 +1554,7 @@
             </div>
           </div>
 <a data-name="-1311044146%2FFunctions%2F-1002496885" anchor-label="zoomOut" id="-1311044146%2FFunctions%2F-1002496885" data-filterable-set=":kvision-modules:kvision-maps/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-maps/jsMain" data-filterable-set=":kvision-modules:kvision-maps/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="zoom-out.html"><span>zoom</span><wbr><span><span>Out</span></span></a></div>
@@ -1574,17 +1574,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

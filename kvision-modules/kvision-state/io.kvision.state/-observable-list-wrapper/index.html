@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>ObservableListWrapper</title>
-<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
@@ -24,33 +24,31 @@
 <link href="../../../../styles/main.css" rel="Stylesheet">
 <link href="../../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../../index.html" tabindex="1">
                     kvision-project
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.1.0
+        <div class="library-version" id="library-version">9.2.0
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-state/jsMain">js</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision-modules:kvision-state/jsMain">js</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -64,45 +62,47 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     kvision-project
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="classlike" id="content" pageids="kvision-state::io.kvision.state/ObservableListWrapper///PointingToDeclaration//1207338309">
   <div class="breadcrumbs"><a href="../../index.html">kvision-state</a><span class="delimiter">/</span><a href="../index.html">io.kvision.state</a><span class="delimiter">/</span><span class="current">ObservableListWrapper</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Observable</span><wbr><span>List</span><wbr><span><span>Wrapper</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-state/jsMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">ObservableListWrapper</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>mutableList<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="token operator"> = </span>mutableListOf()</span></span><span class="token punctuation">)</span> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt; </span>, <a href="../-observable-list/index.html">ObservableList</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt; </span>, <a href="../../../../kvision/io.kvision.state/-observable-state/index.html">ObservableState</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-state/src/jsMain/kotlin/io/kvision/state/ObservableList.kt#L35">source</a>)</span></span></div><p class="paragraph">Simple observable list implementation.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-state/jsMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">ObservableListWrapper</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>mutableList<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="token operator"> = </span>mutableListOf()</span></span><span class="token punctuation">)</span> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt; </span>, <a href="../-observable-list/index.html">ObservableList</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt; </span>, <a href="../../../../kvision/io.kvision.state/-observable-state/index.html">ObservableState</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-state/src/jsMain/kotlin/io/kvision/state/ObservableList.kt#L35">source</a>)</span></span></div><p class="paragraph">Simple observable list implementation.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
-        <h2 class="">Constructors</h2>
+        <h2 class="tableheader">Constructors</h2>
         <div class="table"><a data-name="1678183331%2FConstructors%2F1207338309" anchor-label="ObservableListWrapper" id="1678183331%2FConstructors%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-observable-list-wrapper.html"><span>Observable</span><wbr><span>List</span><wbr><span><span>Wrapper</span></span></a></div>
@@ -119,9 +119,9 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
+        <h2 class="tableheader">Properties</h2>
         <div class="table"><a data-name="-406739689%2FProperties%2F1207338309" anchor-label="mutableList" id="-406739689%2FProperties%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="mutable-list.html"><span>mutable</span><wbr><span><span>List</span></span></a></div>
@@ -136,7 +136,7 @@
             </div>
           </div>
 <a data-name="-505965513%2FProperties%2F1207338309" anchor-label="onUpdate" id="-505965513%2FProperties%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="on-update.html"><span>on</span><wbr><span><span>Update</span></span></a></div>
@@ -151,7 +151,7 @@
             </div>
           </div>
 <a data-name="65068766%2FProperties%2F1207338309" anchor-label="size" id="65068766%2FProperties%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="size.html"><span><span>size</span></span></a></div>
@@ -168,9 +168,9 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
+        <h2 class="tableheader">Functions</h2>
         <div class="table"><a data-name="-1510089601%2FFunctions%2F1207338309" anchor-label="add" id="-1510089601%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="add.html"><span><span>add</span></span></a></div>
@@ -185,7 +185,7 @@
             </div>
           </div>
 <a data-name="-234760811%2FFunctions%2F1207338309" anchor-label="addAll" id="-234760811%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="add-all.html"><span>add</span><wbr><span><span>All</span></span></a></div>
@@ -200,7 +200,7 @@
             </div>
           </div>
 <a data-name="-710831028%2FFunctions%2F1207338309" anchor-label="asJsArrayView" id="-710831028%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#-710831028%2FFunctions%2F1207338309"><span>as</span><wbr><span>Js</span><wbr><span>Array</span><wbr><span><span>View</span></span></a></div>
@@ -215,7 +215,7 @@
             </div>
           </div>
 <a data-name="1548877638%2FFunctions%2F1207338309" anchor-label="asJsReadonlyArrayView" id="1548877638%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index.html#1548877638%2FFunctions%2F1207338309"><span>as</span><wbr><span>Js</span><wbr><span>Readonly</span><wbr><span>Array</span><wbr><span><span>View</span></span></a></div>
@@ -230,7 +230,7 @@
             </div>
           </div>
 <a data-name="-1636309426%2FFunctions%2F1207338309" anchor-label="clear" id="-1636309426%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="clear.html"><span><span>clear</span></span></a></div>
@@ -245,7 +245,7 @@
             </div>
           </div>
 <a data-name="1900312702%2FFunctions%2F1207338309" anchor-label="contains" id="1900312702%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="contains.html"><span><span>contains</span></span></a></div>
@@ -260,7 +260,7 @@
             </div>
           </div>
 <a data-name="1680700169%2FFunctions%2F1207338309" anchor-label="containsAll" id="1680700169%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="contains-all.html"><span>contains</span><wbr><span><span>All</span></span></a></div>
@@ -275,7 +275,7 @@
             </div>
           </div>
 <a data-name="1644752963%2FFunctions%2F1207338309" anchor-label="get" id="1644752963%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get.html"><span><span>get</span></span></a></div>
@@ -290,7 +290,7 @@
             </div>
           </div>
 <a data-name="856067140%2FFunctions%2F1207338309" anchor-label="getState" id="856067140%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-state.html"><span>get</span><wbr><span><span>State</span></span></a></div>
@@ -305,7 +305,7 @@
             </div>
           </div>
 <a data-name="737042796%2FFunctions%2F1207338309" anchor-label="indexOf" id="737042796%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="index-of.html"><span>index</span><wbr><span><span>Of</span></span></a></div>
@@ -320,7 +320,7 @@
             </div>
           </div>
 <a data-name="-1947495528%2FFunctions%2F1207338309" anchor-label="isEmpty" id="-1947495528%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-empty.html"><span>is</span><wbr><span><span>Empty</span></span></a></div>
@@ -335,7 +335,7 @@
             </div>
           </div>
 <a data-name="-858240495%2FFunctions%2F1207338309" anchor-label="iterator" id="-858240495%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="iterator.html"><span><span>iterator</span></span></a></div>
@@ -350,7 +350,7 @@
             </div>
           </div>
 <a data-name="-3818762%2FFunctions%2F1207338309" anchor-label="lastIndexOf" id="-3818762%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="last-index-of.html"><span>last</span><wbr><span>Index</span><wbr><span><span>Of</span></span></a></div>
@@ -365,7 +365,7 @@
             </div>
           </div>
 <a data-name="49781624%2FFunctions%2F1207338309" anchor-label="listIterator" id="49781624%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="list-iterator.html"><span>list</span><wbr><span><span>Iterator</span></span></a></div>
@@ -380,7 +380,7 @@
             </div>
           </div>
 <a data-name="-922050717%2FFunctions%2F1207338309" anchor-label="remove" id="-922050717%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="remove.html"><span><span>remove</span></span></a></div>
@@ -395,7 +395,7 @@
             </div>
           </div>
 <a data-name="1993187502%2FFunctions%2F1207338309" anchor-label="removeAll" id="1993187502%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="remove-all.html"><span>remove</span><wbr><span><span>All</span></span></a></div>
@@ -410,7 +410,7 @@
             </div>
           </div>
 <a data-name="-2039252378%2FFunctions%2F1207338309" anchor-label="removeAt" id="-2039252378%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="remove-at.html"><span>remove</span><wbr><span><span>At</span></span></a></div>
@@ -425,7 +425,7 @@
             </div>
           </div>
 <a data-name="-1741061649%2FFunctions%2F1207338309" anchor-label="retainAll" id="-1741061649%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="retain-all.html"><span>retain</span><wbr><span><span>All</span></span></a></div>
@@ -440,7 +440,7 @@
             </div>
           </div>
 <a data-name="-667401386%2FFunctions%2F1207338309" anchor-label="set" id="-667401386%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set.html"><span><span>set</span></span></a></div>
@@ -455,7 +455,7 @@
             </div>
           </div>
 <a data-name="1239733519%2FFunctions%2F1207338309" anchor-label="sub" id="1239733519%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../sub.html"><span><span>sub</span></span></a></div>
@@ -470,7 +470,7 @@
             </div>
           </div>
 <a data-name="-506875422%2FFunctions%2F1207338309" anchor-label="subList" id="-506875422%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="sub-list.html"><span>sub</span><wbr><span><span>List</span></span></a></div>
@@ -485,7 +485,7 @@
             </div>
           </div>
 <a data-name="1649691576%2FFunctions%2F1207338309" anchor-label="subscribe" id="1649691576%2FFunctions%2F1207338309" data-filterable-set=":kvision-modules:kvision-state/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-state/jsMain" data-filterable-set=":kvision-modules:kvision-state/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="subscribe.html"><span><span>subscribe</span></span></a></div>
@@ -505,17 +505,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

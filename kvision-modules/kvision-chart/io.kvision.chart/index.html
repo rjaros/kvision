@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>io.kvision.chart</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
@@ -24,33 +24,31 @@
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
                     kvision-project
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.1.0
+        <div class="library-version" id="library-version">9.2.0
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-chart/jsMain">js</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision-modules:kvision-chart/jsMain">js</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -64,32 +62,34 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     kvision-project
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="package" id="content" pageids="kvision-chart::io.kvision.chart////PointingToDeclaration//2145854610">
   <div class="breadcrumbs"><a href="../index.html">kvision-chart</a><span class="delimiter">/</span><span class="current">io.kvision.chart</span></div>
   <div class="cover ">
@@ -100,9 +100,9 @@
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
     <div class="tabs-section-body">
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
+        <h2 class="tableheader">Types</h2>
         <div class="table"><a data-name="-1638573245%2FClasslikes%2F2145854610" anchor-label="AnimationOptions" id="-1638573245%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-animation-options/index.html"><span>Animation</span><wbr><span><span>Options</span></span></a></div>
@@ -117,7 +117,7 @@
             </div>
           </div>
 <a data-name="1080077073%2FClasslikes%2F2145854610" anchor-label="ArcOptions" id="1080077073%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-arc-options/index.html"><span>Arc</span><wbr><span><span>Options</span></span></a></div>
@@ -132,7 +132,7 @@
             </div>
           </div>
 <a data-name="-138319662%2FClasslikes%2F2145854610" anchor-label="BarOptions" id="-138319662%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-bar-options/index.html"><span>Bar</span><wbr><span><span>Options</span></span></a></div>
@@ -147,7 +147,7 @@
             </div>
           </div>
 <a data-name="-432833460%2FClasslikes%2F2145854610" anchor-label="BorderAlign" id="-432833460%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-border-align/index.html"><span>Border</span><wbr><span><span>Align</span></span></a></div>
@@ -162,7 +162,7 @@
             </div>
           </div>
 <a data-name="2132458195%2FClasslikes%2F2145854610" anchor-label="BorderOptions" id="2132458195%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-border-options/index.html"><span>Border</span><wbr><span><span>Options</span></span></a></div>
@@ -177,7 +177,7 @@
             </div>
           </div>
 <a data-name="942210375%2FClasslikes%2F2145854610" anchor-label="Chart" id="942210375%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-chart/index.html"><span><span>Chart</span></span></a></div>
@@ -192,7 +192,7 @@
             </div>
           </div>
 <a data-name="1232932024%2FClasslikes%2F2145854610" anchor-label="ChartFont" id="1232932024%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-chart-font/index.html"><span>Chart</span><wbr><span><span>Font</span></span></a></div>
@@ -207,7 +207,7 @@
             </div>
           </div>
 <a data-name="1751201181%2FClasslikes%2F2145854610" anchor-label="ChartOptions" id="1751201181%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-chart-options/index.html"><span>Chart</span><wbr><span><span>Options</span></span></a></div>
@@ -222,7 +222,7 @@
             </div>
           </div>
 <a data-name="-1989622690%2FClasslikes%2F2145854610" anchor-label="ChartScales" id="-1989622690%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-chart-scales/index.html"><span>Chart</span><wbr><span><span>Scales</span></span></a></div>
@@ -237,7 +237,7 @@
             </div>
           </div>
 <a data-name="1256986669%2FClasslikes%2F2145854610" anchor-label="ChartType" id="1256986669%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-chart-type/index.html"><span>Chart</span><wbr><span><span>Type</span></span></a></div>
@@ -252,7 +252,7 @@
             </div>
           </div>
 <a data-name="253843247%2FClasslikes%2F2145854610" anchor-label="Configuration" id="253843247%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-configuration/index.html"><span><span>Configuration</span></span></a></div>
@@ -267,7 +267,7 @@
             </div>
           </div>
 <a data-name="1944029816%2FClasslikes%2F2145854610" anchor-label="CrossAlign" id="1944029816%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-cross-align/index.html"><span>Cross</span><wbr><span><span>Align</span></span></a></div>
@@ -282,7 +282,7 @@
             </div>
           </div>
 <a data-name="-1447221822%2FClasslikes%2F2145854610" anchor-label="DataSets" id="-1447221822%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-data-sets/index.html"><span>Data</span><wbr><span><span>Sets</span></span></a></div>
@@ -297,7 +297,7 @@
             </div>
           </div>
 <a data-name="-1537479019%2FClasslikes%2F2145854610" anchor-label="Eeasing" id="-1537479019%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-eeasing/index.html"><span><span>Eeasing</span></span></a></div>
@@ -312,7 +312,7 @@
             </div>
           </div>
 <a data-name="-591356258%2FClasslikes%2F2145854610" anchor-label="ElementsOptions" id="-591356258%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-elements-options/index.html"><span>Elements</span><wbr><span><span>Options</span></span></a></div>
@@ -327,7 +327,7 @@
             </div>
           </div>
 <a data-name="1752378881%2FClasslikes%2F2145854610" anchor-label="GridLineOptions" id="1752378881%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-grid-line-options/index.html"><span>Grid</span><wbr><span>Line</span><wbr><span><span>Options</span></span></a></div>
@@ -342,7 +342,7 @@
             </div>
           </div>
 <a data-name="-555076304%2FClasslikes%2F2145854610" anchor-label="InteractionMode" id="-555076304%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-interaction-mode/index.html"><span>Interaction</span><wbr><span><span>Mode</span></span></a></div>
@@ -357,7 +357,7 @@
             </div>
           </div>
 <a data-name="190116561%2FClasslikes%2F2145854610" anchor-label="InteractionOptions" id="190116561%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-interaction-options/index.html"><span>Interaction</span><wbr><span><span>Options</span></span></a></div>
@@ -372,7 +372,7 @@
             </div>
           </div>
 <a data-name="2069810654%2FClasslikes%2F2145854610" anchor-label="InterpolationMode" id="2069810654%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-interpolation-mode/index.html"><span>Interpolation</span><wbr><span><span>Mode</span></span></a></div>
@@ -387,7 +387,7 @@
             </div>
           </div>
 <a data-name="-1612854831%2FClasslikes%2F2145854610" anchor-label="LayoutOptions" id="-1612854831%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-layout-options/index.html"><span>Layout</span><wbr><span><span>Options</span></span></a></div>
@@ -402,7 +402,7 @@
             </div>
           </div>
 <a data-name="-1849944193%2FClasslikes%2F2145854610" anchor-label="LayoutPaddingObject" id="-1849944193%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-layout-padding-object/index.html"><span>Layout</span><wbr><span>Padding</span><wbr><span><span>Object</span></span></a></div>
@@ -417,7 +417,7 @@
             </div>
           </div>
 <a data-name="-291124115%2FClasslikes%2F2145854610" anchor-label="LegendAlign" id="-291124115%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-legend-align/index.html"><span>Legend</span><wbr><span><span>Align</span></span></a></div>
@@ -432,7 +432,7 @@
             </div>
           </div>
 <a data-name="1315796447%2FClasslikes%2F2145854610" anchor-label="LegendLabelAlign" id="1315796447%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-legend-label-align/index.html"><span>Legend</span><wbr><span>Label</span><wbr><span><span>Align</span></span></a></div>
@@ -447,7 +447,7 @@
             </div>
           </div>
 <a data-name="-1061381210%2FClasslikes%2F2145854610" anchor-label="LegendLabelOptions" id="-1061381210%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-legend-label-options/index.html"><span>Legend</span><wbr><span>Label</span><wbr><span><span>Options</span></span></a></div>
@@ -462,7 +462,7 @@
             </div>
           </div>
 <a data-name="876185268%2FClasslikes%2F2145854610" anchor-label="LegendOptions" id="876185268%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-legend-options/index.html"><span>Legend</span><wbr><span><span>Options</span></span></a></div>
@@ -477,7 +477,7 @@
             </div>
           </div>
 <a data-name="1982508810%2FClasslikes%2F2145854610" anchor-label="LegendTitleOptions" id="1982508810%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-legend-title-options/index.html"><span>Legend</span><wbr><span>Title</span><wbr><span><span>Options</span></span></a></div>
@@ -492,7 +492,7 @@
             </div>
           </div>
 <a data-name="-533331737%2FClasslikes%2F2145854610" anchor-label="LineCap" id="-533331737%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-line-cap/index.html"><span>Line</span><wbr><span><span>Cap</span></span></a></div>
@@ -507,7 +507,7 @@
             </div>
           </div>
 <a data-name="-740562177%2FClasslikes%2F2145854610" anchor-label="LineJoin" id="-740562177%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-line-join/index.html"><span>Line</span><wbr><span><span>Join</span></span></a></div>
@@ -522,7 +522,7 @@
             </div>
           </div>
 <a data-name="-1731488869%2FClasslikes%2F2145854610" anchor-label="LineOptions" id="-1731488869%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-line-options/index.html"><span>Line</span><wbr><span><span>Options</span></span></a></div>
@@ -537,7 +537,7 @@
             </div>
           </div>
 <a data-name="710437471%2FClasslikes%2F2145854610" anchor-label="PluginsOptions" id="710437471%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-plugins-options/index.html"><span>Plugins</span><wbr><span><span>Options</span></span></a></div>
@@ -552,7 +552,7 @@
             </div>
           </div>
 <a data-name="-672634033%2FClasslikes%2F2145854610" anchor-label="PointOptions" id="-672634033%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-point-options/index.html"><span>Point</span><wbr><span><span>Options</span></span></a></div>
@@ -567,7 +567,7 @@
             </div>
           </div>
 <a data-name="-535810404%2FClasslikes%2F2145854610" anchor-label="PointStyle" id="-535810404%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-point-style/index.html"><span>Point</span><wbr><span><span>Style</span></span></a></div>
@@ -582,7 +582,7 @@
             </div>
           </div>
 <a data-name="-508123276%2FClasslikes%2F2145854610" anchor-label="Position" id="-508123276%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-position/index.html"><span><span>Position</span></span></a></div>
@@ -597,7 +597,7 @@
             </div>
           </div>
 <a data-name="1685060774%2FClasslikes%2F2145854610" anchor-label="ScaleBounds" id="1685060774%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-scale-bounds/index.html"><span>Scale</span><wbr><span><span>Bounds</span></span></a></div>
@@ -612,7 +612,7 @@
             </div>
           </div>
 <a data-name="-818395238%2FClasslikes%2F2145854610" anchor-label="ScalesType" id="-818395238%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-scales-type/index.html"><span>Scales</span><wbr><span><span>Type</span></span></a></div>
@@ -627,7 +627,7 @@
             </div>
           </div>
 <a data-name="-2003932203%2FClasslikes%2F2145854610" anchor-label="ScaleTitleOptions" id="-2003932203%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-scale-title-options/index.html"><span>Scale</span><wbr><span>Title</span><wbr><span><span>Options</span></span></a></div>
@@ -642,7 +642,7 @@
             </div>
           </div>
 <a data-name="1085829883%2FClasslikes%2F2145854610" anchor-label="SkipMode" id="1085829883%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-skip-mode/index.html"><span>Skip</span><wbr><span><span>Mode</span></span></a></div>
@@ -657,7 +657,7 @@
             </div>
           </div>
 <a data-name="1785771731%2FClasslikes%2F2145854610" anchor-label="TextDirection" id="1785771731%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-text-direction/index.html"><span>Text</span><wbr><span><span>Direction</span></span></a></div>
@@ -672,7 +672,7 @@
             </div>
           </div>
 <a data-name="-1921625788%2FClasslikes%2F2145854610" anchor-label="TickOptions" id="-1921625788%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-tick-options/index.html"><span>Tick</span><wbr><span><span>Options</span></span></a></div>
@@ -687,7 +687,7 @@
             </div>
           </div>
 <a data-name="-1185916272%2FClasslikes%2F2145854610" anchor-label="TitleAlign" id="-1185916272%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-title-align/index.html"><span>Title</span><wbr><span><span>Align</span></span></a></div>
@@ -702,7 +702,7 @@
             </div>
           </div>
 <a data-name="-25618409%2FClasslikes%2F2145854610" anchor-label="TitleOptions" id="-25618409%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-title-options/index.html"><span>Title</span><wbr><span><span>Options</span></span></a></div>
@@ -717,7 +717,7 @@
             </div>
           </div>
 <a data-name="74475515%2FClasslikes%2F2145854610" anchor-label="TooltipAlign" id="74475515%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-tooltip-align/index.html"><span>Tooltip</span><wbr><span><span>Align</span></span></a></div>
@@ -732,7 +732,7 @@
             </div>
           </div>
 <a data-name="-1256902147%2FClasslikes%2F2145854610" anchor-label="TooltipCallback" id="-1256902147%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-tooltip-callback/index.html"><span>Tooltip</span><wbr><span><span>Callback</span></span></a></div>
@@ -747,7 +747,7 @@
             </div>
           </div>
 <a data-name="30111426%2FClasslikes%2F2145854610" anchor-label="TooltipOptions" id="30111426%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-tooltip-options/index.html"><span>Tooltip</span><wbr><span><span>Options</span></span></a></div>
@@ -762,7 +762,7 @@
             </div>
           </div>
 <a data-name="1065599385%2FClasslikes%2F2145854610" anchor-label="TooltipPosition" id="1065599385%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-tooltip-position/index.html"><span>Tooltip</span><wbr><span><span>Position</span></span></a></div>
@@ -777,7 +777,7 @@
             </div>
           </div>
 <a data-name="1309096177%2FClasslikes%2F2145854610" anchor-label="UpdateMode" id="1309096177%2FClasslikes%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-update-mode/index.html"><span>Update</span><wbr><span><span>Mode</span></span></a></div>
@@ -794,9 +794,9 @@
         </div>
       </div>
       <div data-togglable="EXTENSION_FUNCTION">
-        <h2 class="">Functions</h2>
+        <h2 class="tableheader">Functions</h2>
         <div class="table"><a data-name="1775316480%2FFunctions%2F2145854610" anchor-label="chart" id="1775316480%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="chart.html"><span><span>chart</span></span></a></div>
@@ -811,7 +811,7 @@
             </div>
           </div>
 <a data-name="-446296577%2FFunctions%2F2145854610" anchor-label="toJs" id="-446296577%2FFunctions%2F2145854610" data-filterable-set=":kvision-modules:kvision-chart/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-chart/jsMain" data-filterable-set=":kvision-modules:kvision-chart/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="to-js.html"><span>to</span><wbr><span><span>Js</span></span></a></div>
@@ -831,17 +831,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>EventCallBackMethods</title>
-<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
@@ -24,33 +24,31 @@
 <link href="../../../../styles/main.css" rel="Stylesheet">
 <link href="../../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../../index.html" tabindex="1">
                     kvision-project
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.1.0
+        <div class="library-version" id="library-version">9.2.0
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-tabulator/jsMain">js</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision-modules:kvision-tabulator/jsMain">js</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -64,45 +62,47 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     kvision-project
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="classlike" id="content" pageids="kvision-tabulator::io.kvision.tabulator.js/EventCallBackMethods///PointingToDeclaration//-777138954">
   <div class="breadcrumbs"><a href="../../index.html">kvision-tabulator</a><span class="delimiter">/</span><a href="../index.html">io.kvision.tabulator.js</a><span class="delimiter">/</span><span class="current">EventCallBackMethods</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Event</span><wbr><span>Call</span><wbr><span>Back</span><wbr><span><span>Methods</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="index.html">EventCallBackMethods</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-tabulator/src/jsMain/kotlin/io/kvision/tabulator/js/Tabulator.kt#L21">source</a>)</span></span></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-tabulator/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="index.html">EventCallBackMethods</a><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-tabulator/src/jsMain/kotlin/io/kvision/tabulator/js/Tabulator.kt#L21">source</a>)</span></span></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
+        <h2 class="tableheader">Properties</h2>
         <div class="table"><a data-name="-1529492998%2FProperties%2F-777138954" anchor-label="ajaxError" id="-1529492998%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="ajax-error.html"><span>ajax</span><wbr><span><span>Error</span></span></a></div>
@@ -117,7 +117,7 @@
             </div>
           </div>
 <a data-name="1538784828%2FProperties%2F-777138954" anchor-label="cellClick" id="1538784828%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-click.html"><span>cell</span><wbr><span><span>Click</span></span></a></div>
@@ -132,7 +132,7 @@
             </div>
           </div>
 <a data-name="1963364917%2FProperties%2F-777138954" anchor-label="cellContext" id="1963364917%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-context.html"><span>cell</span><wbr><span><span>Context</span></span></a></div>
@@ -147,7 +147,7 @@
             </div>
           </div>
 <a data-name="-110097892%2FProperties%2F-777138954" anchor-label="cellDblClick" id="-110097892%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-dbl-click.html"><span>cell</span><wbr><span>Dbl</span><wbr><span><span>Click</span></span></a></div>
@@ -162,7 +162,7 @@
             </div>
           </div>
 <a data-name="-1547263455%2FProperties%2F-777138954" anchor-label="cellDblTap" id="-1547263455%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-dbl-tap.html"><span>cell</span><wbr><span>Dbl</span><wbr><span><span>Tap</span></span></a></div>
@@ -177,7 +177,7 @@
             </div>
           </div>
 <a data-name="1860710205%2FProperties%2F-777138954" anchor-label="cellEditCancelled" id="1860710205%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-edit-cancelled.html"><span>cell</span><wbr><span>Edit</span><wbr><span><span>Cancelled</span></span></a></div>
@@ -192,7 +192,7 @@
             </div>
           </div>
 <a data-name="659447181%2FProperties%2F-777138954" anchor-label="cellEdited" id="659447181%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-edited.html"><span>cell</span><wbr><span><span>Edited</span></span></a></div>
@@ -207,7 +207,7 @@
             </div>
           </div>
 <a data-name="169302636%2FProperties%2F-777138954" anchor-label="cellEditing" id="169302636%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-editing.html"><span>cell</span><wbr><span><span>Editing</span></span></a></div>
@@ -222,7 +222,7 @@
             </div>
           </div>
 <a data-name="632442691%2FProperties%2F-777138954" anchor-label="cellMouseEnter" id="632442691%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-mouse-enter.html"><span>cell</span><wbr><span>Mouse</span><wbr><span><span>Enter</span></span></a></div>
@@ -237,7 +237,7 @@
             </div>
           </div>
 <a data-name="-1921953724%2FProperties%2F-777138954" anchor-label="cellMouseLeave" id="-1921953724%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-mouse-leave.html"><span>cell</span><wbr><span>Mouse</span><wbr><span><span>Leave</span></span></a></div>
@@ -252,7 +252,7 @@
             </div>
           </div>
 <a data-name="-297373202%2FProperties%2F-777138954" anchor-label="cellMouseMove" id="-297373202%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-mouse-move.html"><span>cell</span><wbr><span>Mouse</span><wbr><span><span>Move</span></span></a></div>
@@ -267,7 +267,7 @@
             </div>
           </div>
 <a data-name="-1359661299%2FProperties%2F-777138954" anchor-label="cellMouseOut" id="-1359661299%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-mouse-out.html"><span>cell</span><wbr><span>Mouse</span><wbr><span><span>Out</span></span></a></div>
@@ -282,7 +282,7 @@
             </div>
           </div>
 <a data-name="541362763%2FProperties%2F-777138954" anchor-label="cellMouseOver" id="541362763%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-mouse-over.html"><span>cell</span><wbr><span>Mouse</span><wbr><span><span>Over</span></span></a></div>
@@ -297,7 +297,7 @@
             </div>
           </div>
 <a data-name="-1447223743%2FProperties%2F-777138954" anchor-label="cellTap" id="-1447223743%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-tap.html"><span>cell</span><wbr><span><span>Tap</span></span></a></div>
@@ -312,7 +312,7 @@
             </div>
           </div>
 <a data-name="-572113854%2FProperties%2F-777138954" anchor-label="cellTapHold" id="-572113854%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="cell-tap-hold.html"><span>cell</span><wbr><span>Tap</span><wbr><span><span>Hold</span></span></a></div>
@@ -327,7 +327,7 @@
             </div>
           </div>
 <a data-name="1146305096%2FProperties%2F-777138954" anchor-label="clipboardCopied" id="1146305096%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="clipboard-copied.html"><span>clipboard</span><wbr><span><span>Copied</span></span></a></div>
@@ -342,7 +342,7 @@
             </div>
           </div>
 <a data-name="530514299%2FProperties%2F-777138954" anchor-label="clipboardPasted" id="530514299%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="clipboard-pasted.html"><span>clipboard</span><wbr><span><span>Pasted</span></span></a></div>
@@ -357,7 +357,7 @@
             </div>
           </div>
 <a data-name="1204517751%2FProperties%2F-777138954" anchor-label="clipboardPasteError" id="1204517751%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="clipboard-paste-error.html"><span>clipboard</span><wbr><span>Paste</span><wbr><span><span>Error</span></span></a></div>
@@ -372,7 +372,7 @@
             </div>
           </div>
 <a data-name="-477375195%2FProperties%2F-777138954" anchor-label="columnMoved" id="-477375195%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="column-moved.html"><span>column</span><wbr><span><span>Moved</span></span></a></div>
@@ -387,7 +387,7 @@
             </div>
           </div>
 <a data-name="-902902392%2FProperties%2F-777138954" anchor-label="columnResized" id="-902902392%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="column-resized.html"><span>column</span><wbr><span><span>Resized</span></span></a></div>
@@ -402,7 +402,7 @@
             </div>
           </div>
 <a data-name="633467110%2FProperties%2F-777138954" anchor-label="columnTitleChanged" id="633467110%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="column-title-changed.html"><span>column</span><wbr><span>Title</span><wbr><span><span>Changed</span></span></a></div>
@@ -417,7 +417,7 @@
             </div>
           </div>
 <a data-name="394912502%2FProperties%2F-777138954" anchor-label="columnVisibilityChanged" id="394912502%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="column-visibility-changed.html"><span>column</span><wbr><span>Visibility</span><wbr><span><span>Changed</span></span></a></div>
@@ -432,7 +432,7 @@
             </div>
           </div>
 <a data-name="-1096619240%2FProperties%2F-777138954" anchor-label="dataChanged" id="-1096619240%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-changed.html"><span>data</span><wbr><span><span>Changed</span></span></a></div>
@@ -447,7 +447,7 @@
             </div>
           </div>
 <a data-name="1684831191%2FProperties%2F-777138954" anchor-label="dataFiltered" id="1684831191%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-filtered.html"><span>data</span><wbr><span><span>Filtered</span></span></a></div>
@@ -462,7 +462,7 @@
             </div>
           </div>
 <a data-name="1891435874%2FProperties%2F-777138954" anchor-label="dataFiltering" id="1891435874%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-filtering.html"><span>data</span><wbr><span><span>Filtering</span></span></a></div>
@@ -477,7 +477,7 @@
             </div>
           </div>
 <a data-name="1383440814%2FProperties%2F-777138954" anchor-label="dataGrouped" id="1383440814%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-grouped.html"><span>data</span><wbr><span><span>Grouped</span></span></a></div>
@@ -492,7 +492,7 @@
             </div>
           </div>
 <a data-name="1138268779%2FProperties%2F-777138954" anchor-label="dataGrouping" id="1138268779%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-grouping.html"><span>data</span><wbr><span><span>Grouping</span></span></a></div>
@@ -507,7 +507,7 @@
             </div>
           </div>
 <a data-name="-259232279%2FProperties%2F-777138954" anchor-label="dataLoaded" id="-259232279%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-loaded.html"><span>data</span><wbr><span><span>Loaded</span></span></a></div>
@@ -522,7 +522,7 @@
             </div>
           </div>
 <a data-name="1498821898%2FProperties%2F-777138954" anchor-label="dataLoadError" id="1498821898%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-load-error.html"><span>data</span><wbr><span>Load</span><wbr><span><span>Error</span></span></a></div>
@@ -537,7 +537,7 @@
             </div>
           </div>
 <a data-name="1755010448%2FProperties%2F-777138954" anchor-label="dataLoading" id="1755010448%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-loading.html"><span>data</span><wbr><span><span>Loading</span></span></a></div>
@@ -552,7 +552,7 @@
             </div>
           </div>
 <a data-name="-37725186%2FProperties%2F-777138954" anchor-label="dataProcessed" id="-37725186%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-processed.html"><span>data</span><wbr><span><span>Processed</span></span></a></div>
@@ -567,7 +567,7 @@
             </div>
           </div>
 <a data-name="31795739%2FProperties%2F-777138954" anchor-label="dataProcessing" id="31795739%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-processing.html"><span>data</span><wbr><span><span>Processing</span></span></a></div>
@@ -582,7 +582,7 @@
             </div>
           </div>
 <a data-name="1313376817%2FProperties%2F-777138954" anchor-label="dataSorted" id="1313376817%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-sorted.html"><span>data</span><wbr><span><span>Sorted</span></span></a></div>
@@ -597,7 +597,7 @@
             </div>
           </div>
 <a data-name="-1033715128%2FProperties%2F-777138954" anchor-label="dataSorting" id="-1033715128%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-sorting.html"><span>data</span><wbr><span><span>Sorting</span></span></a></div>
@@ -612,7 +612,7 @@
             </div>
           </div>
 <a data-name="573427987%2FProperties%2F-777138954" anchor-label="dataTreeRowCollapsed" id="573427987%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-tree-row-collapsed.html"><span>data</span><wbr><span>Tree</span><wbr><span>Row</span><wbr><span><span>Collapsed</span></span></a></div>
@@ -627,7 +627,7 @@
             </div>
           </div>
 <a data-name="1068555191%2FProperties%2F-777138954" anchor-label="dataTreeRowExpanded" id="1068555191%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="data-tree-row-expanded.html"><span>data</span><wbr><span>Tree</span><wbr><span>Row</span><wbr><span><span>Expanded</span></span></a></div>
@@ -642,7 +642,7 @@
             </div>
           </div>
 <a data-name="-630496169%2FProperties%2F-777138954" anchor-label="downloadComplete" id="-630496169%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="download-complete.html"><span>download</span><wbr><span><span>Complete</span></span></a></div>
@@ -657,7 +657,7 @@
             </div>
           </div>
 <a data-name="1252182319%2FProperties%2F-777138954" anchor-label="groupClick" id="1252182319%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="group-click.html"><span>group</span><wbr><span><span>Click</span></span></a></div>
@@ -672,7 +672,7 @@
             </div>
           </div>
 <a data-name="1416260712%2FProperties%2F-777138954" anchor-label="groupContext" id="1416260712%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="group-context.html"><span>group</span><wbr><span><span>Context</span></span></a></div>
@@ -687,7 +687,7 @@
             </div>
           </div>
 <a data-name="109540937%2FProperties%2F-777138954" anchor-label="groupDblClick" id="109540937%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="group-dbl-click.html"><span>group</span><wbr><span>Dbl</span><wbr><span><span>Click</span></span></a></div>
@@ -702,7 +702,7 @@
             </div>
           </div>
 <a data-name="-1842006642%2FProperties%2F-777138954" anchor-label="groupDblTap" id="-1842006642%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="group-dbl-tap.html"><span>group</span><wbr><span>Dbl</span><wbr><span><span>Tap</span></span></a></div>
@@ -717,7 +717,7 @@
             </div>
           </div>
 <a data-name="-88864268%2FProperties%2F-777138954" anchor-label="groupTap" id="-88864268%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="group-tap.html"><span>group</span><wbr><span><span>Tap</span></span></a></div>
@@ -732,7 +732,7 @@
             </div>
           </div>
 <a data-name="-1119218059%2FProperties%2F-777138954" anchor-label="groupTapHold" id="-1119218059%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="group-tap-hold.html"><span>group</span><wbr><span>Tap</span><wbr><span><span>Hold</span></span></a></div>
@@ -747,7 +747,7 @@
             </div>
           </div>
 <a data-name="101354933%2FProperties%2F-777138954" anchor-label="groupVisibilityChanged" id="101354933%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="group-visibility-changed.html"><span>group</span><wbr><span>Visibility</span><wbr><span><span>Changed</span></span></a></div>
@@ -762,7 +762,7 @@
             </div>
           </div>
 <a data-name="398724327%2FProperties%2F-777138954" anchor-label="headerClick" id="398724327%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="header-click.html"><span>header</span><wbr><span><span>Click</span></span></a></div>
@@ -777,7 +777,7 @@
             </div>
           </div>
 <a data-name="1581883936%2FProperties%2F-777138954" anchor-label="headerContext" id="1581883936%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="header-context.html"><span>header</span><wbr><span><span>Context</span></span></a></div>
@@ -792,7 +792,7 @@
             </div>
           </div>
 <a data-name="948893585%2FProperties%2F-777138954" anchor-label="headerDblClick" id="948893585%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="header-dbl-click.html"><span>header</span><wbr><span>Dbl</span><wbr><span><span>Click</span></span></a></div>
@@ -807,7 +807,7 @@
             </div>
           </div>
 <a data-name="1765566678%2FProperties%2F-777138954" anchor-label="headerDblTap" id="1765566678%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="header-dbl-tap.html"><span>header</span><wbr><span>Dbl</span><wbr><span><span>Tap</span></span></a></div>
@@ -822,7 +822,7 @@
             </div>
           </div>
 <a data-name="-264053844%2FProperties%2F-777138954" anchor-label="headerTap" id="-264053844%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="header-tap.html"><span>header</span><wbr><span><span>Tap</span></span></a></div>
@@ -837,7 +837,7 @@
             </div>
           </div>
 <a data-name="-953594835%2FProperties%2F-777138954" anchor-label="headerTapHold" id="-953594835%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="header-tap-hold.html"><span>header</span><wbr><span>Tap</span><wbr><span><span>Hold</span></span></a></div>
@@ -852,7 +852,7 @@
             </div>
           </div>
 <a data-name="-1635626224%2FProperties%2F-777138954" anchor-label="historyRedo" id="-1635626224%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="history-redo.html"><span>history</span><wbr><span><span>Redo</span></span></a></div>
@@ -867,7 +867,7 @@
             </div>
           </div>
 <a data-name="-1848950038%2FProperties%2F-777138954" anchor-label="historyUndo" id="-1848950038%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="history-undo.html"><span>history</span><wbr><span><span>Undo</span></span></a></div>
@@ -882,7 +882,7 @@
             </div>
           </div>
 <a data-name="157928361%2FProperties%2F-777138954" anchor-label="htmlImported" id="157928361%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="html-imported.html"><span>html</span><wbr><span><span>Imported</span></span></a></div>
@@ -897,7 +897,7 @@
             </div>
           </div>
 <a data-name="1802088400%2FProperties%2F-777138954" anchor-label="htmlImporting" id="1802088400%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="html-importing.html"><span>html</span><wbr><span><span>Importing</span></span></a></div>
@@ -912,7 +912,7 @@
             </div>
           </div>
 <a data-name="-1076196953%2FProperties%2F-777138954" anchor-label="localized" id="-1076196953%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="localized.html"><span><span>localized</span></span></a></div>
@@ -927,7 +927,7 @@
             </div>
           </div>
 <a data-name="1180841780%2FProperties%2F-777138954" anchor-label="movableRowsElementDrop" id="1180841780%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="movable-rows-element-drop.html"><span>movable</span><wbr><span>Rows</span><wbr><span>Element</span><wbr><span><span>Drop</span></span></a></div>
@@ -942,7 +942,7 @@
             </div>
           </div>
 <a data-name="324757274%2FProperties%2F-777138954" anchor-label="movableRowsReceived" id="324757274%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="movable-rows-received.html"><span>movable</span><wbr><span>Rows</span><wbr><span><span>Received</span></span></a></div>
@@ -957,7 +957,7 @@
             </div>
           </div>
 <a data-name="348675997%2FProperties%2F-777138954" anchor-label="movableRowsReceivedFailed" id="348675997%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="movable-rows-received-failed.html"><span>movable</span><wbr><span>Rows</span><wbr><span>Received</span><wbr><span><span>Failed</span></span></a></div>
@@ -972,7 +972,7 @@
             </div>
           </div>
 <a data-name="2059454521%2FProperties%2F-777138954" anchor-label="movableRowsReceivingStart" id="2059454521%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="movable-rows-receiving-start.html"><span>movable</span><wbr><span>Rows</span><wbr><span>Receiving</span><wbr><span><span>Start</span></span></a></div>
@@ -987,7 +987,7 @@
             </div>
           </div>
 <a data-name="-300720227%2FProperties%2F-777138954" anchor-label="movableRowsReceivingStop" id="-300720227%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="movable-rows-receiving-stop.html"><span>movable</span><wbr><span>Rows</span><wbr><span>Receiving</span><wbr><span><span>Stop</span></span></a></div>
@@ -1002,7 +1002,7 @@
             </div>
           </div>
 <a data-name="-846504269%2FProperties%2F-777138954" anchor-label="movableRowsSendingStart" id="-846504269%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="movable-rows-sending-start.html"><span>movable</span><wbr><span>Rows</span><wbr><span>Sending</span><wbr><span><span>Start</span></span></a></div>
@@ -1017,7 +1017,7 @@
             </div>
           </div>
 <a data-name="-255913501%2FProperties%2F-777138954" anchor-label="movableRowsSendingStop" id="-255913501%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="movable-rows-sending-stop.html"><span>movable</span><wbr><span>Rows</span><wbr><span>Sending</span><wbr><span><span>Stop</span></span></a></div>
@@ -1032,7 +1032,7 @@
             </div>
           </div>
 <a data-name="-1576580029%2FProperties%2F-777138954" anchor-label="movableRowsSent" id="-1576580029%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="movable-rows-sent.html"><span>movable</span><wbr><span>Rows</span><wbr><span><span>Sent</span></span></a></div>
@@ -1047,7 +1047,7 @@
             </div>
           </div>
 <a data-name="588513798%2FProperties%2F-777138954" anchor-label="movableRowsSentFailed" id="588513798%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="movable-rows-sent-failed.html"><span>movable</span><wbr><span>Rows</span><wbr><span>Sent</span><wbr><span><span>Failed</span></span></a></div>
@@ -1062,7 +1062,7 @@
             </div>
           </div>
 <a data-name="2139217508%2FProperties%2F-777138954" anchor-label="pageLoaded" id="2139217508%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="page-loaded.html"><span>page</span><wbr><span><span>Loaded</span></span></a></div>
@@ -1077,7 +1077,7 @@
             </div>
           </div>
 <a data-name="-1308434487%2FProperties%2F-777138954" anchor-label="renderComplete" id="-1308434487%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="render-complete.html"><span>render</span><wbr><span><span>Complete</span></span></a></div>
@@ -1092,7 +1092,7 @@
             </div>
           </div>
 <a data-name="1619722903%2FProperties%2F-777138954" anchor-label="renderStarted" id="1619722903%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="render-started.html"><span>render</span><wbr><span><span>Started</span></span></a></div>
@@ -1107,7 +1107,7 @@
             </div>
           </div>
 <a data-name="989979026%2FProperties%2F-777138954" anchor-label="rowAdded" id="989979026%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-added.html"><span>row</span><wbr><span><span>Added</span></span></a></div>
@@ -1122,7 +1122,7 @@
             </div>
           </div>
 <a data-name="-717314550%2FProperties%2F-777138954" anchor-label="rowClick" id="-717314550%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-click.html"><span>row</span><wbr><span><span>Click</span></span></a></div>
@@ -1137,7 +1137,7 @@
             </div>
           </div>
 <a data-name="-1484620157%2FProperties%2F-777138954" anchor-label="rowContext" id="-1484620157%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-context.html"><span>row</span><wbr><span><span>Context</span></span></a></div>
@@ -1152,7 +1152,7 @@
             </div>
           </div>
 <a data-name="376547214%2FProperties%2F-777138954" anchor-label="rowDblClick" id="376547214%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-dbl-click.html"><span>row</span><wbr><span>Dbl</span><wbr><span><span>Click</span></span></a></div>
@@ -1167,7 +1167,7 @@
             </div>
           </div>
 <a data-name="1528099859%2FProperties%2F-777138954" anchor-label="rowDblTap" id="1528099859%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-dbl-tap.html"><span>row</span><wbr><span>Dbl</span><wbr><span><span>Tap</span></span></a></div>
@@ -1182,7 +1182,7 @@
             </div>
           </div>
 <a data-name="-1355206823%2FProperties%2F-777138954" anchor-label="rowDeleted" id="-1355206823%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-deleted.html"><span>row</span><wbr><span><span>Deleted</span></span></a></div>
@@ -1197,7 +1197,7 @@
             </div>
           </div>
 <a data-name="1630833516%2FProperties%2F-777138954" anchor-label="rowDeselected" id="1630833516%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-deselected.html"><span>row</span><wbr><span><span>Deselected</span></span></a></div>
@@ -1212,7 +1212,7 @@
             </div>
           </div>
 <a data-name="146954293%2FProperties%2F-777138954" anchor-label="rowMouseEnter" id="146954293%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-mouse-enter.html"><span>row</span><wbr><span>Mouse</span><wbr><span><span>Enter</span></span></a></div>
@@ -1227,7 +1227,7 @@
             </div>
           </div>
 <a data-name="1887525174%2FProperties%2F-777138954" anchor-label="rowMouseLeave" id="1887525174%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-mouse-leave.html"><span>row</span><wbr><span>Mouse</span><wbr><span><span>Leave</span></span></a></div>
@@ -1242,7 +1242,7 @@
             </div>
           </div>
 <a data-name="1903723196%2FProperties%2F-777138954" anchor-label="rowMouseMove" id="1903723196%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-mouse-move.html"><span>row</span><wbr><span>Mouse</span><wbr><span><span>Move</span></span></a></div>
@@ -1257,7 +1257,7 @@
             </div>
           </div>
 <a data-name="-873016193%2FProperties%2F-777138954" anchor-label="rowMouseOut" id="-873016193%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-mouse-out.html"><span>row</span><wbr><span>Mouse</span><wbr><span><span>Out</span></span></a></div>
@@ -1272,7 +1272,7 @@
             </div>
           </div>
 <a data-name="-1552508135%2FProperties%2F-777138954" anchor-label="rowMouseOver" id="-1552508135%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-mouse-over.html"><span>row</span><wbr><span>Mouse</span><wbr><span><span>Over</span></span></a></div>
@@ -1287,7 +1287,7 @@
             </div>
           </div>
 <a data-name="-130333889%2FProperties%2F-777138954" anchor-label="rowMoved" id="-130333889%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-moved.html"><span>row</span><wbr><span><span>Moved</span></span></a></div>
@@ -1302,7 +1302,7 @@
             </div>
           </div>
 <a data-name="1891310882%2FProperties%2F-777138954" anchor-label="rowResized" id="1891310882%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-resized.html"><span>row</span><wbr><span><span>Resized</span></span></a></div>
@@ -1317,7 +1317,7 @@
             </div>
           </div>
 <a data-name="1886542477%2FProperties%2F-777138954" anchor-label="rowSelected" id="1886542477%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-selected.html"><span>row</span><wbr><span><span>Selected</span></span></a></div>
@@ -1332,7 +1332,7 @@
             </div>
           </div>
 <a data-name="39260992%2FProperties%2F-777138954" anchor-label="rowSelectionChanged" id="39260992%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-selection-changed.html"><span>row</span><wbr><span>Selection</span><wbr><span><span>Changed</span></span></a></div>
@@ -1347,7 +1347,7 @@
             </div>
           </div>
 <a data-name="-1127784049%2FProperties%2F-777138954" anchor-label="rowTap" id="-1127784049%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-tap.html"><span>row</span><wbr><span><span>Tap</span></span></a></div>
@@ -1362,7 +1362,7 @@
             </div>
           </div>
 <a data-name="274868368%2FProperties%2F-777138954" anchor-label="rowTapHold" id="274868368%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-tap-hold.html"><span>row</span><wbr><span>Tap</span><wbr><span><span>Hold</span></span></a></div>
@@ -1377,7 +1377,7 @@
             </div>
           </div>
 <a data-name="-171370249%2FProperties%2F-777138954" anchor-label="rowUpdated" id="-171370249%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="row-updated.html"><span>row</span><wbr><span><span>Updated</span></span></a></div>
@@ -1392,7 +1392,7 @@
             </div>
           </div>
 <a data-name="-493537945%2FProperties%2F-777138954" anchor-label="scrollHorizontal" id="-493537945%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="scroll-horizontal.html"><span>scroll</span><wbr><span><span>Horizontal</span></span></a></div>
@@ -1407,7 +1407,7 @@
             </div>
           </div>
 <a data-name="1168004565%2FProperties%2F-777138954" anchor-label="scrollVertical" id="1168004565%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="scroll-vertical.html"><span>scroll</span><wbr><span><span>Vertical</span></span></a></div>
@@ -1422,7 +1422,7 @@
             </div>
           </div>
 <a data-name="-1513355296%2FProperties%2F-777138954" anchor-label="tableBuilding" id="-1513355296%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="table-building.html"><span>table</span><wbr><span><span>Building</span></span></a></div>
@@ -1437,7 +1437,7 @@
             </div>
           </div>
 <a data-name="-394200568%2FProperties%2F-777138954" anchor-label="tableBuilt" id="-394200568%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="table-built.html"><span>table</span><wbr><span><span>Built</span></span></a></div>
@@ -1452,7 +1452,7 @@
             </div>
           </div>
 <a data-name="-421354046%2FProperties%2F-777138954" anchor-label="validationFailed" id="-421354046%2FProperties%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="validation-failed.html"><span>validation</span><wbr><span><span>Failed</span></span></a></div>
@@ -1472,17 +1472,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

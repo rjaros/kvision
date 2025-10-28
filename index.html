@@ -1,43 +1,41 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>All modules</title>
     <link href="images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+        <script>var pathToRoot = "";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="scripts/sourceset_dependencies.js" async="async"></script>
 <link href="styles/style.css" rel="Stylesheet">
 <link href="styles/main.css" rel="Stylesheet">
 <link href="styles/prism.css" rel="Stylesheet">
 <link href="styles/logo-styles.css" rel="Stylesheet">
-<link href="styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="scripts/prism.js" async="async"></script>
 <script type="text/javascript" src="ui-kit/ui-kit.min.js" defer="defer"></script>
-<script type="text/javascript" src="scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-            <a class="library-name--link" href="index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="index.html" tabindex="1">
                     kvision-project
             </a>
         <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
@@ -45,7 +43,7 @@
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
         <div class="library-version" id="library-version">
-9.1.0        </div>
+9.2.0        </div>
         <div class="navigation-controls">
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
                     type="button">Switch theme
@@ -54,32 +52,34 @@
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
-                        data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     kvision-project
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" id="content" pageIds="kvision-project::.ext/allModules///PointingToDeclaration//0">
   <div class="breadcrumbs"></div>
   <div class="cover ">
     <h2 class="">All modules:</h2>
     <div class="table"><a data-name="1779360986%2FMain%2F0" anchor-label="kvision" id="1779360986%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision/index.html">kvision</a></div>
@@ -90,7 +90,7 @@
         </div>
       </div>
 <a data-name="-1777642172%2FMain%2F0" anchor-label="kvision-ballast" id="-1777642172%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-ballast/index.html">kvision-ballast</a></div>
@@ -101,7 +101,7 @@
         </div>
       </div>
 <a data-name="235455449%2FMain%2F0" anchor-label="kvision-bootstrap" id="235455449%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-bootstrap/index.html">kvision-bootstrap</a></div>
@@ -112,7 +112,7 @@
         </div>
       </div>
 <a data-name="-1953196180%2FMain%2F0" anchor-label="kvision-bootstrap-icons" id="-1953196180%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-bootstrap-icons/index.html">kvision-bootstrap-icons</a></div>
@@ -123,7 +123,7 @@
         </div>
       </div>
 <a data-name="927529691%2FMain%2F0" anchor-label="kvision-bootstrap-upload" id="927529691%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-bootstrap-upload/index.html">kvision-bootstrap-upload</a></div>
@@ -134,7 +134,7 @@
         </div>
       </div>
 <a data-name="-1277766807%2FMain%2F0" anchor-label="kvision-chart" id="-1277766807%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-chart/index.html">kvision-chart</a></div>
@@ -145,7 +145,7 @@
         </div>
       </div>
 <a data-name="-171197921%2FMain%2F0" anchor-label="kvision-common-remote" id="-171197921%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-common-remote/index.html">kvision-common-remote</a></div>
@@ -156,7 +156,7 @@
         </div>
       </div>
 <a data-name="-949114908%2FMain%2F0" anchor-label="kvision-common-types" id="-949114908%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-common-types/index.html">kvision-common-types</a></div>
@@ -167,7 +167,7 @@
         </div>
       </div>
 <a data-name="-1032829952%2FMain%2F0" anchor-label="kvision-datetime" id="-1032829952%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-datetime/index.html">kvision-datetime</a></div>
@@ -178,7 +178,7 @@
         </div>
       </div>
 <a data-name="-811519405%2FMain%2F0" anchor-label="kvision-fontawesome" id="-811519405%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-fontawesome/index.html">kvision-fontawesome</a></div>
@@ -189,7 +189,7 @@
         </div>
       </div>
 <a data-name="-2207565%2FMain%2F0" anchor-label="kvision-handlebars" id="-2207565%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-handlebars/index.html">kvision-handlebars</a></div>
@@ -200,7 +200,7 @@
         </div>
       </div>
 <a data-name="1578121149%2FMain%2F0" anchor-label="kvision-i18n" id="1578121149%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-i18n/index.html">kvision-i18n</a></div>
@@ -211,7 +211,7 @@
         </div>
       </div>
 <a data-name="-1356893102%2FMain%2F0" anchor-label="kvision-imask" id="-1356893102%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-imask/index.html">kvision-imask</a></div>
@@ -222,7 +222,7 @@
         </div>
       </div>
 <a data-name="-223107907%2FMain%2F0" anchor-label="kvision-jquery" id="-223107907%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-jquery/index.html">kvision-jquery</a></div>
@@ -233,7 +233,7 @@
         </div>
       </div>
 <a data-name="-1115982492%2FMain%2F0" anchor-label="kvision-maps" id="-1115982492%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-maps/index.html">kvision-maps</a></div>
@@ -244,7 +244,7 @@
         </div>
       </div>
 <a data-name="965383124%2FMain%2F0" anchor-label="kvision-material" id="965383124%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-material/index.html">kvision-material</a></div>
@@ -255,7 +255,7 @@
         </div>
       </div>
 <a data-name="912964968%2FMain%2F0" anchor-label="kvision-pace" id="912964968%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-pace/index.html">kvision-pace</a></div>
@@ -266,7 +266,7 @@
         </div>
       </div>
 <a data-name="-83988614%2FMain%2F0" anchor-label="kvision-print" id="-83988614%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-print/index.html">kvision-print</a></div>
@@ -277,7 +277,7 @@
         </div>
       </div>
 <a data-name="-431671064%2FMain%2F0" anchor-label="kvision-react" id="-431671064%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-react/index.html">kvision-react</a></div>
@@ -288,7 +288,7 @@
         </div>
       </div>
 <a data-name="-558705311%2FMain%2F0" anchor-label="kvision-redux-kotlin" id="-558705311%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-redux-kotlin/index.html">kvision-redux-kotlin</a></div>
@@ -299,7 +299,7 @@
         </div>
       </div>
 <a data-name="-48525625%2FMain%2F0" anchor-label="kvision-rest" id="-48525625%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-rest/index.html">kvision-rest</a></div>
@@ -310,7 +310,7 @@
         </div>
       </div>
 <a data-name="1396882226%2FMain%2F0" anchor-label="kvision-richtext" id="1396882226%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-richtext/index.html">kvision-richtext</a></div>
@@ -321,7 +321,7 @@
         </div>
       </div>
 <a data-name="1495366507%2FMain%2F0" anchor-label="kvision-routing-ballast" id="1495366507%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-routing-ballast/index.html">kvision-routing-ballast</a></div>
@@ -332,7 +332,7 @@
         </div>
       </div>
 <a data-name="-1657794746%2FMain%2F0" anchor-label="kvision-routing-navigo" id="-1657794746%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-routing-navigo/index.html">kvision-routing-navigo</a></div>
@@ -343,7 +343,7 @@
         </div>
       </div>
 <a data-name="1286306070%2FMain%2F0" anchor-label="kvision-routing-navigo-ng" id="1286306070%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-routing-navigo-ng/index.html">kvision-routing-navigo-ng</a></div>
@@ -354,7 +354,7 @@
         </div>
       </div>
 <a data-name="-1326235344%2FMain%2F0" anchor-label="kvision-select-remote" id="-1326235344%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-select-remote/index.html">kvision-select-remote</a></div>
@@ -365,7 +365,7 @@
         </div>
       </div>
 <a data-name="88507926%2FMain%2F0" anchor-label="kvision-state" id="88507926%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-state/index.html">kvision-state</a></div>
@@ -376,7 +376,7 @@
         </div>
       </div>
 <a data-name="-1255962895%2FMain%2F0" anchor-label="kvision-state-flow" id="-1255962895%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-state-flow/index.html">kvision-state-flow</a></div>
@@ -387,7 +387,7 @@
         </div>
       </div>
 <a data-name="-1794455419%2FMain%2F0" anchor-label="kvision-tabulator" id="-1794455419%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-tabulator/index.html">kvision-tabulator</a></div>
@@ -398,7 +398,7 @@
         </div>
       </div>
 <a data-name="-1609803254%2FMain%2F0" anchor-label="kvision-tabulator-remote" id="-1609803254%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-tabulator-remote/index.html">kvision-tabulator-remote</a></div>
@@ -409,7 +409,7 @@
         </div>
       </div>
 <a data-name="-1129718596%2FMain%2F0" anchor-label="kvision-tailwindcss" id="-1129718596%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-tailwindcss/index.html">kvision-tailwindcss</a></div>
@@ -420,7 +420,7 @@
         </div>
       </div>
 <a data-name="-1767900152%2FMain%2F0" anchor-label="kvision-testutils" id="-1767900152%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-testutils/index.html">kvision-testutils</a></div>
@@ -431,7 +431,7 @@
         </div>
       </div>
 <a data-name="578621766%2FMain%2F0" anchor-label="kvision-toastify" id="578621766%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-toastify/index.html">kvision-toastify</a></div>
@@ -442,7 +442,7 @@
         </div>
       </div>
 <a data-name="40398500%2FMain%2F0" anchor-label="kvision-tom-select" id="40398500%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-tom-select/index.html">kvision-tom-select</a></div>
@@ -453,7 +453,7 @@
         </div>
       </div>
 <a data-name="2003591947%2FMain%2F0" anchor-label="kvision-tom-select-remote" id="2003591947%2FMain%2F0" data-filterable-set=""></a>
-      <div class="table-row">
+      <div class="table-row table-row_multimodule">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
               <div><a href="kvision-modules/kvision-tom-select-remote/index.html">kvision-tom-select-remote</a></div>
@@ -467,17 +467,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

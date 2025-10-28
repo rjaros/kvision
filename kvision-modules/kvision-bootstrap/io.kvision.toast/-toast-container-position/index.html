@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>ToastContainerPosition</title>
-<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
@@ -24,33 +24,31 @@
 <link href="../../../../styles/main.css" rel="Stylesheet">
 <link href="../../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../../index.html" tabindex="1">
                     kvision-project
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.1.0
+        <div class="library-version" id="library-version">9.2.0
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-bootstrap/jsMain">js</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision-modules:kvision-bootstrap/jsMain">js</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -64,45 +62,47 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     kvision-project
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="classlike" id="content" pageids="kvision-bootstrap::io.kvision.toast/ToastContainerPosition///PointingToDeclaration//-1896731870">
   <div class="breadcrumbs"><a href="../../index.html">kvision-bootstrap</a><span class="delimiter">/</span><a href="../index.html">io.kvision.toast</a><span class="delimiter">/</span><span class="current">ToastContainerPosition</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Toast</span><wbr><span>Container</span><wbr><span><span>Position</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-bootstrap/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="index.html">ToastContainerPosition</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="index.html">ToastContainerPosition</a><span class="token operator">&gt; </span><span class="clearfix"><span class="floating-right">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-bootstrap/src/jsMain/kotlin/io/kvision/toast/ToastContainer.kt#L43">source</a>)</span></span></div><p class="paragraph">Bootstrap toast container positions.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-bootstrap/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="index.html">ToastContainerPosition</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="index.html">ToastContainerPosition</a><span class="token operator">&gt; </span><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-bootstrap/src/jsMain/kotlin/io/kvision/toast/ToastContainer.kt#L43">source</a>)</span></span></div><p class="paragraph">Bootstrap toast container positions.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="ENTRY">Entries</button></div>
     <div class="tabs-section-body">
       <div data-togglable="ENTRY">
-        <h2 class="">Entries</h2>
+        <h2 class="tableheader">Entries</h2>
         <div class="table"><a data-name="51363579%2FClasslikes%2F-1896731870" anchor-label="TOPRIGHT" id="51363579%2FClasslikes%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-t-o-p-r-i-g-h-t/index.html">TOPRIGHT</a></div>
@@ -117,7 +117,7 @@
             </div>
           </div>
 <a data-name="937794960%2FClasslikes%2F-1896731870" anchor-label="TOPLEFT" id="937794960%2FClasslikes%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-t-o-p-l-e-f-t/index.html">TOPLEFT</a></div>
@@ -132,7 +132,7 @@
             </div>
           </div>
 <a data-name="-1842386914%2FClasslikes%2F-1896731870" anchor-label="TOPCENTER" id="-1842386914%2FClasslikes%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-t-o-p-c-e-n-t-e-r/index.html">TOPCENTER</a></div>
@@ -147,7 +147,7 @@
             </div>
           </div>
 <a data-name="-1192441147%2FClasslikes%2F-1896731870" anchor-label="BOTTOMRIGHT" id="-1192441147%2FClasslikes%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-b-o-t-t-o-m-r-i-g-h-t/index.html">BOTTOMRIGHT</a></div>
@@ -162,7 +162,7 @@
             </div>
           </div>
 <a data-name="-72159098%2FClasslikes%2F-1896731870" anchor-label="BOTTOMLEFT" id="-72159098%2FClasslikes%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-b-o-t-t-o-m-l-e-f-t/index.html">BOTTOMLEFT</a></div>
@@ -177,7 +177,7 @@
             </div>
           </div>
 <a data-name="-1745627756%2FClasslikes%2F-1896731870" anchor-label="BOTTOMCENTER" id="-1745627756%2FClasslikes%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-b-o-t-t-o-m-c-e-n-t-e-r/index.html">BOTTOMCENTER</a></div>
@@ -192,7 +192,7 @@
             </div>
           </div>
 <a data-name="-2015626469%2FClasslikes%2F-1896731870" anchor-label="MIDDLERIGHT" id="-2015626469%2FClasslikes%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-m-i-d-d-l-e-r-i-g-h-t/index.html">MIDDLERIGHT</a></div>
@@ -207,7 +207,7 @@
             </div>
           </div>
 <a data-name="-929997456%2FClasslikes%2F-1896731870" anchor-label="MIDDLELEFT" id="-929997456%2FClasslikes%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-m-i-d-d-l-e-l-e-f-t/index.html">MIDDLELEFT</a></div>
@@ -222,7 +222,7 @@
             </div>
           </div>
 <a data-name="-1494568962%2FClasslikes%2F-1896731870" anchor-label="MIDDLECENTER" id="-1494568962%2FClasslikes%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-togglable="ENTRY" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-m-i-d-d-l-e-c-e-n-t-e-r/index.html">MIDDLECENTER</a></div>
@@ -239,9 +239,9 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
+        <h2 class="tableheader">Properties</h2>
         <div class="table"><a data-name="1380126958%2FProperties%2F-1896731870" anchor-label="entries" id="1380126958%2FProperties%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="entries.html"><span><span>entries</span></span></a></div>
@@ -256,7 +256,7 @@
             </div>
           </div>
 <a data-name="-372974862%2FProperties%2F-1896731870" anchor-label="name" id="-372974862%2FProperties%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.toolbar/-button-group-size/-x-s-m-a-l-l/index.html#-372974862%2FProperties%2F-1896731870"><span><span>name</span></span></a></div>
@@ -271,7 +271,7 @@
             </div>
           </div>
 <a data-name="-739389684%2FProperties%2F-1896731870" anchor-label="ordinal" id="-739389684%2FProperties%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../io.kvision.toolbar/-button-group-size/-x-s-m-a-l-l/index.html#-739389684%2FProperties%2F-1896731870"><span><span>ordinal</span></span></a></div>
@@ -288,9 +288,9 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
+        <h2 class="tableheader">Functions</h2>
         <div class="table"><a data-name="-1993064594%2FFunctions%2F-1896731870" anchor-label="valueOf" id="-1993064594%2FFunctions%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="value-of.html"><span>value</span><wbr><span><span>Of</span></span></a></div>
@@ -305,7 +305,7 @@
             </div>
           </div>
 <a data-name="1076987130%2FFunctions%2F-1896731870" anchor-label="values" id="1076987130%2FFunctions%2F-1896731870" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-bootstrap/jsMain" data-filterable-set=":kvision-modules:kvision-bootstrap/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="values.html"><span><span>values</span></span></a></div>
@@ -325,17 +325,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

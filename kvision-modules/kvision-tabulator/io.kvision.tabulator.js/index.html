@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>io.kvision.tabulator.js</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
@@ -24,33 +24,31 @@
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
                     kvision-project
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.1.0
+        <div class="library-version" id="library-version">9.2.0
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":kvision-modules:kvision-tabulator/jsMain">js</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision-modules:kvision-tabulator/jsMain">js</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -64,32 +62,34 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     kvision-project
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="package" id="content" pageids="kvision-tabulator::io.kvision.tabulator.js////PointingToDeclaration//-777138954">
   <div class="breadcrumbs"><a href="../index.html">kvision-tabulator</a><span class="delimiter">/</span><span class="current">io.kvision.tabulator.js</span></div>
   <div class="cover ">
@@ -100,9 +100,9 @@
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button></div>
     <div class="tabs-section-body">
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
+        <h2 class="tableheader">Types</h2>
         <div class="table"><a data-name="1515294471%2FClasslikes%2F-777138954" anchor-label="AccessorModule" id="1515294471%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-accessor-module/index.html"><span>Accessor</span><wbr><span><span>Module</span></span></a></div>
@@ -117,7 +117,7 @@
             </div>
           </div>
 <a data-name="1155729550%2FClasslikes%2F-777138954" anchor-label="AjaxModule" id="1155729550%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-ajax-module/index.html"><span>Ajax</span><wbr><span><span>Module</span></span></a></div>
@@ -132,7 +132,7 @@
             </div>
           </div>
 <a data-name="-139538795%2FClasslikes%2F-777138954" anchor-label="CellEditEventCallback" id="-139538795%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-cell-edit-event-callback/index.html"><span>Cell</span><wbr><span>Edit</span><wbr><span>Event</span><wbr><span><span>Callback</span></span></a></div>
@@ -147,7 +147,7 @@
             </div>
           </div>
 <a data-name="1389535339%2FClasslikes%2F-777138954" anchor-label="CellEventCallback" id="1389535339%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-cell-event-callback/index.html"><span>Cell</span><wbr><span>Event</span><wbr><span><span>Callback</span></span></a></div>
@@ -162,7 +162,7 @@
             </div>
           </div>
 <a data-name="-866586394%2FClasslikes%2F-777138954" anchor-label="ClipboardModule" id="-866586394%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-clipboard-module/index.html"><span>Clipboard</span><wbr><span><span>Module</span></span></a></div>
@@ -177,7 +177,7 @@
             </div>
           </div>
 <a data-name="1453863401%2FClasslikes%2F-777138954" anchor-label="ColumnCalcParams" id="1453863401%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-column-calc-params/index.html"><span>Column</span><wbr><span>Calc</span><wbr><span><span>Params</span></span></a></div>
@@ -192,7 +192,7 @@
             </div>
           </div>
 <a data-name="-884391052%2FClasslikes%2F-777138954" anchor-label="ColumnCalcsModule" id="-884391052%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-column-calcs-module/index.html"><span>Column</span><wbr><span>Calcs</span><wbr><span><span>Module</span></span></a></div>
@@ -207,7 +207,7 @@
             </div>
           </div>
 <a data-name="-1655596641%2FClasslikes%2F-777138954" anchor-label="ColumnEventCallback" id="-1655596641%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-column-event-callback/index.html"><span>Column</span><wbr><span>Event</span><wbr><span><span>Callback</span></span></a></div>
@@ -222,7 +222,7 @@
             </div>
           </div>
 <a data-name="910977066%2FClasslikes%2F-777138954" anchor-label="ColumnSorterParamLookupFunction" id="910977066%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-column-sorter-param-lookup-function/index.html"><span>Column</span><wbr><span>Sorter</span><wbr><span>Param</span><wbr><span>Lookup</span><wbr><span><span>Function</span></span></a></div>
@@ -237,7 +237,7 @@
             </div>
           </div>
 <a data-name="1072048482%2FClasslikes%2F-777138954" anchor-label="CustomAccessor" id="1072048482%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-custom-accessor/index.html"><span>Custom</span><wbr><span><span>Accessor</span></span></a></div>
@@ -252,7 +252,7 @@
             </div>
           </div>
 <a data-name="720253623%2FClasslikes%2F-777138954" anchor-label="CustomMutator" id="720253623%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-custom-mutator/index.html"><span>Custom</span><wbr><span><span>Mutator</span></span></a></div>
@@ -267,7 +267,7 @@
             </div>
           </div>
 <a data-name="-375926074%2FClasslikes%2F-777138954" anchor-label="DataTreeModule" id="-375926074%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-data-tree-module/index.html"><span>Data</span><wbr><span>Tree</span><wbr><span><span>Module</span></span></a></div>
@@ -282,7 +282,7 @@
             </div>
           </div>
 <a data-name="-877840218%2FClasslikes%2F-777138954" anchor-label="DownloadModule" id="-877840218%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-download-module/index.html"><span>Download</span><wbr><span><span>Module</span></span></a></div>
@@ -297,7 +297,7 @@
             </div>
           </div>
 <a data-name="1065635684%2FClasslikes%2F-777138954" anchor-label="EditModule" id="1065635684%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-edit-module/index.html"><span>Edit</span><wbr><span><span>Module</span></span></a></div>
@@ -312,7 +312,7 @@
             </div>
           </div>
 <a data-name="548329366%2FClasslikes%2F-777138954" anchor-label="EmptyCallback" id="548329366%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-empty-callback/index.html"><span>Empty</span><wbr><span><span>Callback</span></span></a></div>
@@ -327,7 +327,7 @@
             </div>
           </div>
 <a data-name="-819192249%2FClasslikes%2F-777138954" anchor-label="EventCallBackMethods" id="-819192249%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-event-call-back-methods/index.html"><span>Event</span><wbr><span>Call</span><wbr><span>Back</span><wbr><span><span>Methods</span></span></a></div>
@@ -342,7 +342,7 @@
             </div>
           </div>
 <a data-name="-1814743494%2FClasslikes%2F-777138954" anchor-label="ExportModule" id="-1814743494%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-export-module/index.html"><span>Export</span><wbr><span><span>Module</span></span></a></div>
@@ -357,7 +357,7 @@
             </div>
           </div>
 <a data-name="1436352970%2FClasslikes%2F-777138954" anchor-label="FilterFunction" id="1436352970%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-filter-function/index.html"><span>Filter</span><wbr><span><span>Function</span></span></a></div>
@@ -372,7 +372,7 @@
             </div>
           </div>
 <a data-name="-105937418%2FClasslikes%2F-777138954" anchor-label="FilterModule" id="-105937418%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-filter-module/index.html"><span>Filter</span><wbr><span><span>Module</span></span></a></div>
@@ -387,7 +387,7 @@
             </div>
           </div>
 <a data-name="-1990030953%2FClasslikes%2F-777138954" anchor-label="FormatModule" id="-1990030953%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-format-module/index.html"><span>Format</span><wbr><span><span>Module</span></span></a></div>
@@ -402,7 +402,7 @@
             </div>
           </div>
 <a data-name="66474239%2FClasslikes%2F-777138954" anchor-label="FrozenColumnsModule" id="66474239%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-frozen-columns-module/index.html"><span>Frozen</span><wbr><span>Columns</span><wbr><span><span>Module</span></span></a></div>
@@ -417,7 +417,7 @@
             </div>
           </div>
 <a data-name="-176789451%2FClasslikes%2F-777138954" anchor-label="FrozenRowsModule" id="-176789451%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-frozen-rows-module/index.html"><span>Frozen</span><wbr><span>Rows</span><wbr><span><span>Module</span></span></a></div>
@@ -432,7 +432,7 @@
             </div>
           </div>
 <a data-name="768040442%2FClasslikes%2F-777138954" anchor-label="GroupEventCallback" id="768040442%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-group-event-callback/index.html"><span>Group</span><wbr><span>Event</span><wbr><span><span>Callback</span></span></a></div>
@@ -447,7 +447,7 @@
             </div>
           </div>
 <a data-name="96193860%2FClasslikes%2F-777138954" anchor-label="GroupRowsModule" id="96193860%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-group-rows-module/index.html"><span>Group</span><wbr><span>Rows</span><wbr><span><span>Module</span></span></a></div>
@@ -462,7 +462,7 @@
             </div>
           </div>
 <a data-name="-631161147%2FClasslikes%2F-777138954" anchor-label="GroupValuesArg" id="-631161147%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-group-values-arg/index.html"><span>Group</span><wbr><span>Values</span><wbr><span><span>Arg</span></span></a></div>
@@ -477,7 +477,7 @@
             </div>
           </div>
 <a data-name="1681171432%2FClasslikes%2F-777138954" anchor-label="HistoryModule" id="1681171432%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-history-module/index.html"><span>History</span><wbr><span><span>Module</span></span></a></div>
@@ -492,7 +492,7 @@
             </div>
           </div>
 <a data-name="1210877588%2FClasslikes%2F-777138954" anchor-label="HtmlTableImportModule" id="1210877588%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-html-table-import-module/index.html"><span>Html</span><wbr><span>Table</span><wbr><span>Import</span><wbr><span><span>Module</span></span></a></div>
@@ -507,7 +507,7 @@
             </div>
           </div>
 <a data-name="717834026%2FClasslikes%2F-777138954" anchor-label="InteractionModule" id="717834026%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-interaction-module/index.html"><span>Interaction</span><wbr><span><span>Module</span></span></a></div>
@@ -522,7 +522,7 @@
             </div>
           </div>
 <a data-name="686057455%2FClasslikes%2F-777138954" anchor-label="KeybindingsModule" id="686057455%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-keybindings-module/index.html"><span>Keybindings</span><wbr><span><span>Module</span></span></a></div>
@@ -537,7 +537,7 @@
             </div>
           </div>
 <a data-name="-1328480913%2FClasslikes%2F-777138954" anchor-label="MenuModule" id="-1328480913%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-menu-module/index.html"><span>Menu</span><wbr><span><span>Module</span></span></a></div>
@@ -552,7 +552,7 @@
             </div>
           </div>
 <a data-name="-956157106%2FClasslikes%2F-777138954" anchor-label="Module" id="-956157106%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-module/index.html"><span><span>Module</span></span></a></div>
@@ -567,7 +567,7 @@
             </div>
           </div>
 <a data-name="1424443184%2FClasslikes%2F-777138954" anchor-label="MoveColumnsModule" id="1424443184%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-move-columns-module/index.html"><span>Move</span><wbr><span>Columns</span><wbr><span><span>Module</span></span></a></div>
@@ -582,7 +582,7 @@
             </div>
           </div>
 <a data-name="204441508%2FClasslikes%2F-777138954" anchor-label="MoveRowsModule" id="204441508%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-move-rows-module/index.html"><span>Move</span><wbr><span>Rows</span><wbr><span><span>Module</span></span></a></div>
@@ -597,7 +597,7 @@
             </div>
           </div>
 <a data-name="127826842%2FClasslikes%2F-777138954" anchor-label="MutatorModule" id="127826842%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-mutator-module/index.html"><span>Mutator</span><wbr><span><span>Module</span></span></a></div>
@@ -612,7 +612,7 @@
             </div>
           </div>
 <a data-name="-51246529%2FClasslikes%2F-777138954" anchor-label="PageModule" id="-51246529%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-page-module/index.html"><span>Page</span><wbr><span><span>Module</span></span></a></div>
@@ -627,7 +627,7 @@
             </div>
           </div>
 <a data-name="-437092099%2FClasslikes%2F-777138954" anchor-label="PersistenceModule" id="-437092099%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-persistence-module/index.html"><span>Persistence</span><wbr><span><span>Module</span></span></a></div>
@@ -642,7 +642,7 @@
             </div>
           </div>
 <a data-name="-2014454673%2FClasslikes%2F-777138954" anchor-label="PrintModule" id="-2014454673%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-print-module/index.html"><span>Print</span><wbr><span><span>Module</span></span></a></div>
@@ -657,7 +657,7 @@
             </div>
           </div>
 <a data-name="-37824564%2FClasslikes%2F-777138954" anchor-label="PseudoRow" id="-37824564%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-pseudo-row/index.html"><span>Pseudo</span><wbr><span><span>Row</span></span></a></div>
@@ -672,7 +672,7 @@
             </div>
           </div>
 <a data-name="-316423413%2FClasslikes%2F-777138954" anchor-label="ReactiveDataModule" id="-316423413%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-reactive-data-module/index.html"><span>Reactive</span><wbr><span>Data</span><wbr><span><span>Module</span></span></a></div>
@@ -687,7 +687,7 @@
             </div>
           </div>
 <a data-name="1386527383%2FClasslikes%2F-777138954" anchor-label="Renderer" id="1386527383%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-renderer/index.html"><span><span>Renderer</span></span></a></div>
@@ -702,7 +702,7 @@
             </div>
           </div>
 <a data-name="1578544147%2FClasslikes%2F-777138954" anchor-label="ResizeColumnsModule" id="1578544147%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-resize-columns-module/index.html"><span>Resize</span><wbr><span>Columns</span><wbr><span><span>Module</span></span></a></div>
@@ -717,7 +717,7 @@
             </div>
           </div>
 <a data-name="1418069409%2FClasslikes%2F-777138954" anchor-label="ResizeRowsModule" id="1418069409%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-resize-rows-module/index.html"><span>Resize</span><wbr><span>Rows</span><wbr><span><span>Module</span></span></a></div>
@@ -732,7 +732,7 @@
             </div>
           </div>
 <a data-name="1089366210%2FClasslikes%2F-777138954" anchor-label="ResizeTableModule" id="1089366210%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-resize-table-module/index.html"><span>Resize</span><wbr><span>Table</span><wbr><span><span>Module</span></span></a></div>
@@ -747,7 +747,7 @@
             </div>
           </div>
 <a data-name="-1660304528%2FClasslikes%2F-777138954" anchor-label="ResponsiveLayoutModule" id="-1660304528%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-responsive-layout-module/index.html"><span>Responsive</span><wbr><span>Layout</span><wbr><span><span>Module</span></span></a></div>
@@ -762,7 +762,7 @@
             </div>
           </div>
 <a data-name="-1959392837%2FClasslikes%2F-777138954" anchor-label="RowChangedCallback" id="-1959392837%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-row-changed-callback/index.html"><span>Row</span><wbr><span>Changed</span><wbr><span><span>Callback</span></span></a></div>
@@ -777,7 +777,7 @@
             </div>
           </div>
 <a data-name="-1710664875%2FClasslikes%2F-777138954" anchor-label="RowEventCallback" id="-1710664875%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-row-event-callback/index.html"><span>Row</span><wbr><span>Event</span><wbr><span><span>Callback</span></span></a></div>
@@ -792,7 +792,7 @@
             </div>
           </div>
 <a data-name="-1902182850%2FClasslikes%2F-777138954" anchor-label="SelectRowModule" id="-1902182850%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-select-row-module/index.html"><span>Select</span><wbr><span>Row</span><wbr><span><span>Module</span></span></a></div>
@@ -807,7 +807,7 @@
             </div>
           </div>
 <a data-name="-330181296%2FClasslikes%2F-777138954" anchor-label="SortModule" id="-330181296%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-sort-module/index.html"><span>Sort</span><wbr><span><span>Module</span></span></a></div>
@@ -822,7 +822,7 @@
             </div>
           </div>
 <a data-name="906832262%2FClasslikes%2F-777138954" anchor-label="Tabulator" id="906832262%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-tabulator/index.html"><span><span>Tabulator</span></span></a></div>
@@ -837,7 +837,7 @@
             </div>
           </div>
 <a data-name="-830974376%2FClasslikes%2F-777138954" anchor-label="ValidateModule" id="-830974376%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-validate-module/index.html"><span>Validate</span><wbr><span><span>Module</span></span></a></div>
@@ -852,7 +852,7 @@
             </div>
           </div>
 <a data-name="-1121438434%2FClasslikes%2F-777138954" anchor-label="ValueBooleanCallback" id="-1121438434%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-value-boolean-callback/index.html"><span>Value</span><wbr><span>Boolean</span><wbr><span><span>Callback</span></span></a></div>
@@ -867,7 +867,7 @@
             </div>
           </div>
 <a data-name="-450158239%2FClasslikes%2F-777138954" anchor-label="ValueStringCallback" id="-450158239%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-value-string-callback/index.html"><span>Value</span><wbr><span>String</span><wbr><span><span>Callback</span></span></a></div>
@@ -882,7 +882,7 @@
             </div>
           </div>
 <a data-name="695659966%2FClasslikes%2F-777138954" anchor-label="ValueVoidCallback" id="695659966%2FClasslikes%2F-777138954" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain"></a>
-          <div class="table-row" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-tabulator/jsMain" data-filterable-set=":kvision-modules:kvision-tabulator/jsMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-value-void-callback/index.html"><span>Value</span><wbr><span>Void</span><wbr><span><span>Callback</span></span></a></div>
@@ -902,17 +902,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
