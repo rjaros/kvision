@@ -21,7 +21,6 @@
  */
 package io.kvision.tabulator
 
-import dev.kilua.rpc.CallAgent
 import dev.kilua.rpc.RemoteData
 import dev.kilua.rpc.RemoteFilter
 import dev.kilua.rpc.RemoteSorter
@@ -29,6 +28,7 @@ import dev.kilua.rpc.RpcSerialization
 import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.Container
 import io.kvision.core.KVScope
+import io.kvision.remote.KVCallAgent
 import io.kvision.utils.Serialization
 import kotlinx.browser.window
 import kotlinx.coroutines.asPromise
@@ -89,7 +89,7 @@ open class TabulatorRemote<T : Any, out E : Any>(
     init {
         val (url, method) = serviceManager.requireCall(function)
 
-        val callAgent = CallAgent()
+        val callAgent = KVCallAgent()
 
         options.ajaxURL = urlPrefix + url.drop(1)
         options.ajaxRequestFunc = { _, _, params: dynamic ->

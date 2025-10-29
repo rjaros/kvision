@@ -21,12 +21,12 @@
  */
 package io.kvision.form.select
 
-import dev.kilua.rpc.CallAgent
 import dev.kilua.rpc.HttpMethod
 import dev.kilua.rpc.RpcSerialization
 import dev.kilua.rpc.RpcServiceMgr
 import dev.kilua.rpc.SimpleRemoteOption
 import io.kvision.core.Container
+import io.kvision.remote.KVCallAgent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -66,7 +66,7 @@ open class SelectRemoteInput<out T : Any>(
     init {
         val (url, _) = serviceManager.requireCall(function)
         scope.launch {
-            val callAgent = CallAgent()
+            val callAgent = KVCallAgent()
             val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
             val result = callAgent.jsonRpcCall(
                 url,

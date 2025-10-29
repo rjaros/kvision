@@ -21,13 +21,13 @@
  */
 package io.kvision.form.text
 
-import dev.kilua.rpc.CallAgent
 import dev.kilua.rpc.HttpMethod
 import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.Container
 import io.kvision.core.KVScope
 import io.kvision.form.select.TomSelectCallbacks
 import io.kvision.html.InputType
+import io.kvision.remote.KVCallAgent
 import io.kvision.utils.Serialization
 import kotlinx.coroutines.launch
 import kotlinx.serialization.builtins.ListSerializer
@@ -60,7 +60,7 @@ open class TomTypeaheadRemoteInput<out T : Any>(
 
     init {
         val (url, method) = serviceManager.requireCall(function)
-        val callAgent = CallAgent()
+        val callAgent = KVCallAgent()
         val loadCallback: (query: String, callback: (Array<dynamic>) -> Unit) -> Unit = { query, callback ->
             loadResults(callAgent, url, method, query, requestFilter, callback)
         }
@@ -70,7 +70,7 @@ open class TomTypeaheadRemoteInput<out T : Any>(
     }
 
     protected open fun loadResults(
-        callAgent: CallAgent,
+        callAgent: KVCallAgent,
         url: String,
         method: HttpMethod,
         query: String?,

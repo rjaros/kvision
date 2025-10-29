@@ -21,12 +21,12 @@
  */
 package io.kvision.form.select
 
-import dev.kilua.rpc.CallAgent
 import dev.kilua.rpc.HttpMethod
 import dev.kilua.rpc.RemoteOption
 import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.Container
 import io.kvision.core.KVScope
+import io.kvision.remote.KVCallAgent
 import io.kvision.snabbdom.VNode
 import io.kvision.utils.Serialization
 import io.kvision.utils.obj
@@ -70,7 +70,7 @@ open class TomSelectRemoteInput<out T : Any>(
 
     init {
         val (url, method) = serviceManager.requireCall(function)
-        val callAgent = CallAgent()
+        val callAgent = KVCallAgent()
         val loadCallback: ((query: String, callback: (Array<dynamic>) -> Unit) -> Unit)? = if (!preload) {
             { query, callback ->
                 tomSelectJs?.clearOptions()
@@ -117,7 +117,7 @@ open class TomSelectRemoteInput<out T : Any>(
     override fun refreshState() {
         if (initialized && value != null && tomSelectJs != null && tomSelectJs!!.asDynamic().options[value!!] == null) {
             val (url, method) = serviceManager.requireCall(function)
-            val callAgent = CallAgent()
+            val callAgent = KVCallAgent()
             loadResults(callAgent, url, method, null, value, requestFilter) { results ->
                 this.tomSelectJs?.addOptions(results)
                 super.refreshState()
@@ -173,7 +173,7 @@ open class TomSelectRemoteInput<out T : Any>(
     }
 
     protected open fun loadResults(
-        callAgent: CallAgent,
+        callAgent: KVCallAgent,
         url: String,
         method: HttpMethod,
         query: String?,
