@@ -29,7 +29,7 @@ import io.kvision.snabbdom.VNode
 import io.kvision.state.ObservableState
 import react.ChildrenBuilder
 import react.StateSetter
-import react.createElement
+import react.create
 import react.dom.client.Root
 import react.dom.client.createRoot
 import web.dom.Element
@@ -77,7 +77,7 @@ class React<S>(
             }
         }
         root = createRoot(node.elm.unsafeCast<Element>()).also {
-            it.render(createElement(element))
+            it.render(element.create())
         }
     }
 
