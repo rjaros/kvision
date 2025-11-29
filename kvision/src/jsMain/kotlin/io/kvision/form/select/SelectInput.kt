@@ -155,7 +155,7 @@ open class SelectInput(
         setChildrenFromOptions()
         this.setInternalEventListener<SelectInput> {
             change = {
-                val v: Any? = if (multiple) {
+                val v: Any? = if (this@SelectInput.multiple) {
                     getElementD()?.selectedOptions?.unsafeCast<HTMLCollection>()?.asList()?.map { it.asDynamic().value }
                         ?.toTypedArray()
                 } else {
