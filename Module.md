@@ -65,6 +65,10 @@ Support for Handlebars.js templates is included.
 
 Internationalization classes.
 
+# Package io.kvision.ktml
+
+KTML templates support.
+
 # Package io.kvision.maps
 
 A maps component based on Leaflet library.

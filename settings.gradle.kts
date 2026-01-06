@@ -33,6 +33,7 @@ include(
     ":kvision-modules:kvision-i18n",
     ":kvision-modules:kvision-imask",
     ":kvision-modules:kvision-jquery",
+    ":kvision-modules:kvision-ktml",
     ":kvision-modules:kvision-maps",
     ":kvision-modules:kvision-material",
     ":kvision-modules:kvision-pace",
