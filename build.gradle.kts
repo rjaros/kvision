@@ -26,7 +26,6 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("zzz-kvision-assets", libs.versions.npm.kvision.assets.get())
         resolution("css-loader", libs.versions.css.loader.get())
         resolution("style-loader", libs.versions.style.loader.get())
-        resolution("imports-loader", libs.versions.imports.loader.get())
         resolution("fecha", libs.versions.fecha.get())
         resolution("snabbdom", libs.versions.snabbdom.asProvider().get())
         resolution("@rjaros/snabbdom-virtualize", libs.versions.snabbdom.virtualize.get())

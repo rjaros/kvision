@@ -21,7 +21,6 @@ kotlin {
                 implementation(npm("zzz-kvision-assets", libs.versions.npm.kvision.assets.get()))
                 implementation(npm("css-loader", libs.versions.css.loader.get()))
                 implementation(npm("style-loader", libs.versions.style.loader.get()))
-                implementation(npm("imports-loader", libs.versions.imports.loader.get()))
                 implementation(npm("fecha", libs.versions.fecha.get()))
                 implementation(npm("snabbdom", libs.versions.snabbdom.asProvider().get()))
                 implementation(npm("@rjaros/snabbdom-virtualize", libs.versions.snabbdom.virtualize.get()))
