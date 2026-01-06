@@ -25,7 +25,7 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("zzz-kvision-assets/css/kv-style.css")
-internal external val styleCss: dynamic
+internal external object styleCss
 
 /**
  * KVision Module initializer.

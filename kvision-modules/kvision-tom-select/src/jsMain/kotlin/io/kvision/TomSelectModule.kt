@@ -25,10 +25,10 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("tom-select/dist/css/tom-select.bootstrap5.min.css")
-internal external val tomSelectBootstrap5Css: dynamic
+internal external object tomSelectBootstrap5Css
 
 @JsModule("zzz-kvision-assets/css/kv-tom-select.css")
-internal external val kvTomSelectCss: dynamic
+internal external object kvTomSelectCss
 
 /**
  * Initializer for KVision Tom Select module with Bootstrap CSS styling.

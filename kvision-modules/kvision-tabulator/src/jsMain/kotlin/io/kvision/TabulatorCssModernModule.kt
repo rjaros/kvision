@@ -24,7 +24,7 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("tabulator-tables/dist/css/tabulator_modern.min.css")
-internal external val tabulatorCssModern: dynamic
+internal external object tabulatorCssModern
 
 /**
  * Initializer for KVision Tabulator with Modern CSS theme.

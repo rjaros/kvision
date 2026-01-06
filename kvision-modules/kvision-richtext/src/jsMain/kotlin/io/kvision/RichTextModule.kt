@@ -30,10 +30,10 @@ import kotlinx.browser.window
 internal external val trixModule: dynamic
 
 @JsModule("trix/dist/trix.css")
-internal external val trixCss: dynamic
+internal external object trixCss
 
 @JsModule("zzz-kvision-assets/css/kv-trix.css")
-internal external val kvTrixCss: dynamic
+internal external object kvTrixCss
 
 /**
  * Initializer for KVision RichText module.

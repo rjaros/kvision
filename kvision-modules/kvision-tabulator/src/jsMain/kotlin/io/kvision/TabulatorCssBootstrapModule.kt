@@ -24,10 +24,10 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("tabulator-tables/dist/css/tabulator_bootstrap5.min.css")
-internal external val tabulatorCssBootstrap: dynamic
+internal external object tabulatorCssBootstrap
 
 @JsModule("zzz-kvision-assets/css/kv-tabulator.css")
-internal external val kvTabulatorCss: dynamic
+internal external object kvTabulatorCss
 
 /**
  * Initializer for KVision Tabulator with Bootstrap 5 CSS theme.

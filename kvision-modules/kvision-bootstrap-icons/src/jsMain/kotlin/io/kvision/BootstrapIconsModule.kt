@@ -25,7 +25,7 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("bootstrap-icons/font/bootstrap-icons.css")
-internal external val bootstrapIconsCss: dynamic
+internal external object bootstrapIconsCss
 
 /**
  * Initializer for Bootstrap Icons module.

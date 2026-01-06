@@ -25,7 +25,7 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("tom-select/dist/css/tom-select.default.min.css")
-internal external val tomSelectDefaultCss: dynamic
+internal external object tomSelectDefaultCss
 
 /**
  * Initializer for KVision Tom Select module with default CSS styling.

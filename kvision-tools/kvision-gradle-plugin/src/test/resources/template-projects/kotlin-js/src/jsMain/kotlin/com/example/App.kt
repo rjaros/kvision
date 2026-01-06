@@ -13,13 +13,13 @@ import io.kvision.panel.root
 import io.kvision.startApplication
 import io.kvision.utils.useModule
 
-@JsModule("/kotlin/modules/css/kvapp.css")
-external val kvappCss: dynamic
+@JsModule("./modules/css/kvapp.css")
+external object kvappCss
 
-@JsModule("/kotlin/modules/i18n/messages-en.json")
+@JsModule("./modules/i18n/messages-en.json")
 external val messagesEn: dynamic
 
-@JsModule("/kotlin/modules/i18n/messages-pl.json")
+@JsModule("./modules/i18n/messages-pl.json")
 external val messagesPl: dynamic
 
 class App : Application() {

@@ -24,8 +24,8 @@ package io.kvision
 
 import io.kvision.utils.useModule
 
-@JsModule("/kotlin/tailwind/tailwind.twcss")
-internal external val tailwindTwcss: dynamic
+@JsModule("./tailwind/tailwind.css")
+internal external object tailwindTwcss
 
 /**
  * Initializer for Tailwindcss module.

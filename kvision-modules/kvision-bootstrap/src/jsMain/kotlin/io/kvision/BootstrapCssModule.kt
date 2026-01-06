@@ -25,10 +25,10 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("bootstrap/dist/css/bootstrap.min.css")
-internal external val bootstrapCss: dynamic
+internal external object bootstrapCss
 
 @JsModule("zzz-kvision-assets/css/kv-bootstrap.css")
-internal external val kvBootstrapCss: dynamic
+internal external object kvBootstrapCss
 
 /**
  * Initializer for Bootstrap CSS module.

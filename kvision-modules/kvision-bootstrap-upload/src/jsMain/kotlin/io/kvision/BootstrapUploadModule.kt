@@ -29,10 +29,10 @@ import io.kvision.utils.useModule
 internal external val fileinputModule: dynamic
 
 @JsModule("bootstrap-fileinput/css/fileinput.min.css")
-internal external val fileinputCss: dynamic
+internal external object fileinputCss
 
 @JsModule("bootstrap-fileinput/themes/explorer-fa6/theme.min.css")
-internal external val fileinputExplorerFa6ThemeCss: dynamic
+internal external object fileinputExplorerFa6ThemeCss
 
 @JsModule("bootstrap-fileinput/js/locales/ar.js")
 internal external val fileinputLocaleAr: dynamic
@@ -164,7 +164,7 @@ internal external val fileinputExplorerFa6ThemeJs: dynamic
 internal external val fileinputFa6ThemeJs: dynamic
 
 @JsModule("zzz-kvision-assets/css/kv-bootstrap-upload.css")
-internal external val kvBootstrapUploadCss: dynamic
+internal external object kvBootstrapUploadCss
 
 /**
  * Initializer for KVision Bootstrap spinner module.

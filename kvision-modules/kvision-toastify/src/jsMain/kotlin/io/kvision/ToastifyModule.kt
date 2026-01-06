@@ -27,10 +27,10 @@ import io.kvision.utils.useModule
 internal external val toastifyJs: dynamic
 
 @JsModule("toastify-js/src/toastify.css")
-internal external val toastifyCss: dynamic
+internal external object toastifyCss
 
 @JsModule("zzz-kvision-assets/css/kv-toastify.css")
-internal external val kvToastifyCss: dynamic
+internal external object kvToastifyCss
 
 /**
  * Internal singleton object which initializes and configures KVision Toastify module.

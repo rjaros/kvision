@@ -24,7 +24,7 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("@fortawesome/fontawesome-free/css/all.min.css")
-internal external val fontAwesomeCss: dynamic
+internal external object fontAwesomeCss
 
 /**
  * Initializer for KVision Font Awesome module.

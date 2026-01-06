@@ -24,7 +24,7 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("tabulator-tables/dist/css/tabulator_site_dark.min.css")
-internal external val tabulatorCssSiteDark: dynamic
+internal external object tabulatorCssSiteDark
 
 /**
  * Initializer for KVision Tabulator with Site Dark CSS theme.

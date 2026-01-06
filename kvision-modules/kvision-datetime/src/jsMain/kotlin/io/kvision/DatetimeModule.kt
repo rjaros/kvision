@@ -25,7 +25,7 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css")
-internal external val tempusDominusCss: dynamic
+internal external object tempusDominusCss
 
 @JsModule("@eonasdan/tempus-dominus/dist/locales/ar.js")
 internal external val localeAr: dynamic
@@ -76,7 +76,7 @@ internal external val localeTr: dynamic
 internal external val localeZh: dynamic
 
 @JsModule("zzz-kvision-assets/css/kv-tempus-dominus.css")
-internal external val kvTempusDominusCss: dynamic
+internal external object kvTempusDominusCss
 
 /**
  * Initializer for KVision datetime module.

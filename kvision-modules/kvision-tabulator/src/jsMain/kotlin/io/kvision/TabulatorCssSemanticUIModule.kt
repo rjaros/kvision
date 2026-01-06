@@ -24,7 +24,7 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("tabulator-tables/dist/css/tabulator_semanticui.min.css")
-internal external val tabulatorCssSemanticUI: dynamic
+internal external object tabulatorCssSemanticUI
 
 /**
  * Initializer for KVision Tabulator with Semantic UI CSS theme.

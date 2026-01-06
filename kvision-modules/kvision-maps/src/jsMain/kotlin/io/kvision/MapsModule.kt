@@ -28,7 +28,7 @@ import io.kvision.utils.obj
 import io.kvision.utils.useModule
 
 @JsModule("leaflet/dist/leaflet.css")
-internal external val leafletCss: dynamic
+internal external object leafletCss
 
 @JsModule("leaflet/dist/images/marker-icon-2x.png")
 internal external val markerIcon2xUrl: dynamic

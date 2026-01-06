@@ -24,7 +24,7 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("tabulator-tables/dist/css/tabulator_bulma.min.css")
-internal external val tabulatorCssBulma: dynamic
+internal external object tabulatorCssBulma
 
 /**
  * Initializer for KVision Tabulator with Bulma CSS theme.

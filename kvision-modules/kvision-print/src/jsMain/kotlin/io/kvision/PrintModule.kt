@@ -24,7 +24,7 @@ package io.kvision
 import io.kvision.utils.useModule
 
 @JsModule("print-js/dist/print.css")
-internal external val printCss: dynamic
+internal external object printCss
 
 /**
  * Initializer for KVision Print module.
