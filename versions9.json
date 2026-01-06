@@ -1,24 +1,24 @@
 {
-    "kvision": "9.2.1",
-    "kotlin": "2.3.0-Beta2",
+    "kvision": "9.3.1",
+    "kotlin": "2.3.0",
     "coroutines": "1.10.2",
-    "ksp": "2.3.0",
-    "kilua-rpc": "0.0.39",
-    "logback": "1.5.20",
+    "ksp": "2.3.4",
+    "kilua-rpc": "0.0.41",
+    "logback": "1.5.23",
     "template-javalin": {
     },
     "template-jooby": {
-        "jooby": "4.0.10"
+        "jooby": "4.0.13"
     },
     "template-ktor": {
-        "ktor": "3.3.1"
+        "ktor": "3.3.3"
     },
     "template-micronaut": {
-        "micronaut": "4.10.0",
-        "micronaut-plugins": "4.6.0"
+        "micronaut": "4.10.6",
+        "micronaut-plugins": "4.6.1"
     },
     "template-spring-boot": {
-        "spring-boot": "4.0.0-RC1"
+        "spring-boot": "4.0.1"
     },
     "template-vertx": {
     },
@@ -143,6 +143,10 @@
         {
             "name": "kvision-jquery",
             "description": "jQuery bindings, events and animations"
+        },
+        {
+            "name": "kvision-ktml",
+            "description": "KTML templates"
         },
         {
             "name": "kvision-routing-navigo",
