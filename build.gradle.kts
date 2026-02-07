@@ -43,7 +43,7 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("handlebars", libs.versions.handlebars.asProvider().get())
         resolution("handlebars-loader", libs.versions.handlebars.loader.get())
         resolution("imask", libs.versions.imask.get())
-        resolution("jquery", libs.versions.jquery.asProvider().get())
+        resolution("jquery", libs.versions.jquery.get())
         resolution("leaflet", libs.versions.leaflet.get())
         resolution("geojson", libs.versions.geojson.get())
         resolution("@material/web", libs.versions.material.web.get())

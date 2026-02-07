@@ -14,7 +14,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(project(":kvision"))
-                api(libs.jquery.kotlin)
+                api(project(":kvision-modules:kvision-jquery"))
                 api(kotlin("test-js"))
 
                 implementation(project.dependencies.platform("io.kotest:kotest-bom:${libs.versions.kotest.get()}")) {

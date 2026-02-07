@@ -14,7 +14,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(project(":kvision"))
-                api(libs.jquery.kotlin)
+                implementation(npm("jquery", libs.versions.jquery.get()))
             }
         }
         val jsTest by getting {

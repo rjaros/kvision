@@ -9,7 +9,6 @@ kilua-rpc = "0.0.41"
 kotlinx-coroutines = "1.10.2"
 kotlinx-serialization = "1.10.0-RC"
 ballast = "5.0.1"
-jquery-kotlin = "1.0.0"
 navigo-kotlin = "1.0.0"
 navigo-kotlin-ng = "0.0.3"
 multiplatform-diff = "1.3.0"
@@ -69,7 +68,6 @@ ballast-repository = { module = "io.github.copper-leaf:ballast-repository", vers
 ballast-sync = { module = "io.github.copper-leaf:ballast-sync", version.ref = "ballast" }
 ballast-undo = { module = "io.github.copper-leaf:ballast-undo", version.ref = "ballast" }
 ballast-navigation = { module = "io.github.copper-leaf:ballast-navigation", version.ref = "ballast" }
-jquery-kotlin = { module = "io.kvision:jquery-kotlin", version.ref = "jquery-kotlin" }
 navigo-kotlin = { module = "io.kvision:navigo-kotlin", version.ref = "navigo-kotlin" }
 navigo-kotlin-ng = { module = "io.kvision:navigo-kotlin-ng", version.ref = "navigo-kotlin-ng" }
 multiplatform-diff = { module = "io.github.petertrr:kotlin-multiplatform-diff-js", version.ref = "multiplatform-diff" }
