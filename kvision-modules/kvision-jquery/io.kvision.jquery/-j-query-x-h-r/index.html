@@ -1,0 +1,715 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>JQueryXHR</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../../index.html" tabindex="1">
+                    kvision-project
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">9.3.1
+        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision-modules:kvision-jquery/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-jquery/jsMain" data-filter=":kvision-modules:kvision-jquery/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    kvision-project
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kvision-jquery::io.kvision.jquery/JQueryXHR///PointingToDeclaration//1156930706">
+  <div class="breadcrumbs"><a href="../../index.html">kvision-jquery</a><span class="delimiter">/</span><a href="../index.html">io.kvision.jquery</a><span class="delimiter">/</span><span class="current">JQueryXHR</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>JQuery</span><wbr><span><span>XHR</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="index.html">JQueryXHR</a> : <span data-unresolved-link="org.w3c.xhr/XMLHttpRequest///PointingToDeclaration/">XMLHttpRequest</span>, <a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-jquery/src/jsMain/kotlin/io/kvision/jquery/jQuery.kt#L53">source</a>)</span></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-1827486466%2FProperties%2F1156930706" anchor-label="onabort" id="-1827486466%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1827486466%2FProperties%2F1156930706"><span><span>onabort</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1827486466%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="index.html#-1827486466%2FProperties%2F1156930706">onabort</a><span class="token operator">: </span><span class="token punctuation">(</span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/Event.html">Event</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span>dynamic<span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1301346598%2FProperties%2F1156930706" anchor-label="onerror" id="1301346598%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1301346598%2FProperties%2F1156930706"><span><span>onerror</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1301346598%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="index.html#1301346598%2FProperties%2F1156930706">onerror</a><span class="token operator">: </span><span class="token punctuation">(</span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/Event.html">Event</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span>dynamic<span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1797608186%2FProperties%2F1156930706" anchor-label="onload" id="-1797608186%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1797608186%2FProperties%2F1156930706"><span><span>onload</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1797608186%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="index.html#-1797608186%2FProperties%2F1156930706">onload</a><span class="token operator">: </span><span class="token punctuation">(</span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/Event.html">Event</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span>dynamic<span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="207535449%2FProperties%2F1156930706" anchor-label="onloadend" id="207535449%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#207535449%2FProperties%2F1156930706"><span><span>onloadend</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="207535449%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="index.html#207535449%2FProperties%2F1156930706">onloadend</a><span class="token operator">: </span><span class="token punctuation">(</span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/Event.html">Event</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span>dynamic<span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="309300722%2FProperties%2F1156930706" anchor-label="onloadstart" id="309300722%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#309300722%2FProperties%2F1156930706"><span><span>onloadstart</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="309300722%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="index.html#309300722%2FProperties%2F1156930706">onloadstart</a><span class="token operator">: </span><span class="token punctuation">(</span><span data-unresolved-link="org.w3c.xhr/ProgressEvent///PointingToDeclaration/">ProgressEvent</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span>dynamic<span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1862660577%2FProperties%2F1156930706" anchor-label="onprogress" id="-1862660577%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1862660577%2FProperties%2F1156930706"><span><span>onprogress</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1862660577%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="index.html#-1862660577%2FProperties%2F1156930706">onprogress</a><span class="token operator">: </span><span class="token punctuation">(</span><span data-unresolved-link="org.w3c.xhr/ProgressEvent///PointingToDeclaration/">ProgressEvent</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span>dynamic<span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-959292193%2FProperties%2F1156930706" anchor-label="onreadystatechange" id="-959292193%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-959292193%2FProperties%2F1156930706"><span><span>onreadystatechange</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-959292193%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="index.html#-959292193%2FProperties%2F1156930706">onreadystatechange</a><span class="token operator">: </span><span class="token punctuation">(</span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/Event.html">Event</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span>dynamic<span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="415951789%2FProperties%2F1156930706" anchor-label="ontimeout" id="415951789%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#415951789%2FProperties%2F1156930706"><span><span>ontimeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="415951789%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="index.html#415951789%2FProperties%2F1156930706">ontimeout</a><span class="token operator">: </span><span class="token punctuation">(</span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/Event.html">Event</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span>dynamic<span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="95480366%2FProperties%2F1156930706" anchor-label="readyState" id="95480366%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#95480366%2FProperties%2F1156930706"><span>ready</span><wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="95480366%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="index.html#95480366%2FProperties%2F1156930706">readyState</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-short/index.html">Short</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1938242117%2FProperties%2F1156930706" anchor-label="response" id="-1938242117%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1938242117%2FProperties%2F1156930706"><span><span>response</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1938242117%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="index.html#-1938242117%2FProperties%2F1156930706">response</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-92773893%2FProperties%2F1156930706" anchor-label="responseJSON" id="-92773893%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="response-j-s-o-n.html"><span>response</span><wbr><span><span>JSON</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-92773893%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="response-j-s-o-n.html">responseJSON</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2015624718%2FProperties%2F1156930706" anchor-label="responseText" id="2015624718%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#2015624718%2FProperties%2F1156930706"><span>response</span><wbr><span><span>Text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2015624718%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="index.html#2015624718%2FProperties%2F1156930706">responseText</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1647586465%2FProperties%2F1156930706" anchor-label="responseType" id="1647586465%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1647586465%2FProperties%2F1156930706"><span>response</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1647586465%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="index.html#1647586465%2FProperties%2F1156930706">responseType</a><span class="token operator">: </span><span data-unresolved-link="org.w3c.xhr/XMLHttpRequestResponseType///PointingToDeclaration/">XMLHttpRequestResponseType</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="351131280%2FProperties%2F1156930706" anchor-label="responseURL" id="351131280%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#351131280%2FProperties%2F1156930706"><span>response</span><wbr><span><span>URL</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="351131280%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="index.html#351131280%2FProperties%2F1156930706">responseURL</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-926181144%2FProperties%2F1156930706" anchor-label="responseXML" id="-926181144%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-926181144%2FProperties%2F1156930706"><span>response</span><wbr><span><span>XML</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-926181144%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="index.html#-926181144%2FProperties%2F1156930706">responseXML</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-document/index.html">Document</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1690886422%2FProperties%2F1156930706" anchor-label="status" id="-1690886422%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1690886422%2FProperties%2F1156930706"><span><span>status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1690886422%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="index.html#-1690886422%2FProperties%2F1156930706">status</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-short/index.html">Short</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-526112835%2FProperties%2F1156930706" anchor-label="statusText" id="-526112835%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-526112835%2FProperties%2F1156930706"><span>status</span><wbr><span><span>Text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-526112835%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="index.html#-526112835%2FProperties%2F1156930706">statusText</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="926317181%2FProperties%2F1156930706" anchor-label="timeout" id="926317181%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#926317181%2FProperties%2F1156930706"><span><span>timeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="926317181%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="index.html#926317181%2FProperties%2F1156930706">timeout</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1050574779%2FProperties%2F1156930706" anchor-label="upload" id="1050574779%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1050574779%2FProperties%2F1156930706"><span><span>upload</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1050574779%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="index.html#1050574779%2FProperties%2F1156930706">upload</a><span class="token operator">: </span><span data-unresolved-link="org.w3c.xhr/XMLHttpRequestUpload///PointingToDeclaration/">XMLHttpRequestUpload</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-402570712%2FProperties%2F1156930706" anchor-label="withCredentials" id="-402570712%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-402570712%2FProperties%2F1156930706"><span>with</span><wbr><span><span>Credentials</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-402570712%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="index.html#-402570712%2FProperties%2F1156930706">withCredentials</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1613205451%2FFunctions%2F1156930706" anchor-label="abort" id="-1613205451%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="abort.html"><span><span>abort</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1613205451%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="abort.html"><span class="token function">abort</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">statusText<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#-709638194%2FFunctions%2F1156930706"><span class="token function">abort</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1570725211%2FFunctions%2F1156930706" anchor-label="addEventListener" id="1570725211%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1183875846%2FFunctions%2F1156930706"><span>add</span><wbr><span>Event</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1570725211%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#1183875846%2FFunctions%2F1156930706"><span class="token function">addEventListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/Event.html">Event</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span>dynamic</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#1818869013%2FFunctions%2F1156930706"><span class="token function">addEventListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/EventListener.html">EventListener</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span>dynamic</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1086630148%2FFunctions%2F1156930706" anchor-label="always" id="1086630148%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-promise/always.html"><span><span>always</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1086630148%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/always.html"><span class="token function">always</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">alwaysCallback1<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>alwaysCallbacksN<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/always.html"><span class="token function">always</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">alwaysCallback1<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>alwaysCallbacksN<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/always.html"><span class="token function">always</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">alwaysCallback1<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>alwaysCallbacksN<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/always.html"><span class="token function">always</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">alwaysCallback1<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>alwaysCallbacksN<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1935887080%2FFunctions%2F1156930706" anchor-label="dispatchEvent" id="-1935887080%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1935887080%2FFunctions%2F1156930706"><span>dispatch</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1935887080%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#-1935887080%2FFunctions%2F1156930706"><span class="token function">dispatchEvent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/Event.html">Event</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1392392236%2FFunctions%2F1156930706" anchor-label="done" id="1392392236%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-promise/done.html"><span><span>done</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1392392236%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/done.html"><span class="token function">done</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">doneCallback1<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>doneCallbackN<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/done.html"><span class="token function">done</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">doneCallback1<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>doneCallbackN<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/done.html"><span class="token function">done</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">doneCallback1<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>doneCallbackN<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/done.html"><span class="token function">done</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">doneCallback1<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>doneCallbackN<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-786353945%2FFunctions%2F1156930706" anchor-label="error" id="-786353945%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="error.html"><span><span>error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-786353945%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="error.html"><span class="token function">error</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">xhr<span class="token operator">: </span><a href="index.html">JQueryXHR</a><span class="token punctuation">, </span></span><span class="parameter ">textStatus<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">errorThrown<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1298456452%2FFunctions%2F1156930706" anchor-label="fail" id="1298456452%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-promise/fail.html"><span><span>fail</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1298456452%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/fail.html"><span class="token function">fail</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">failCallback1<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>failCallbacksN<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/fail.html"><span class="token function">fail</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">failCallback1<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>failCallbacksN<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/fail.html"><span class="token function">fail</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">failCallback1<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>failCallbacksN<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/fail.html"><span class="token function">fail</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">failCallback1<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>failCallbacksN<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1810882012%2FFunctions%2F1156930706" anchor-label="getAllResponseHeaders" id="-1810882012%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1810882012%2FFunctions%2F1156930706"><span>get</span><wbr><span>All</span><wbr><span>Response</span><wbr><span><span>Headers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1810882012%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#-1810882012%2FFunctions%2F1156930706"><span class="token function">getAllResponseHeaders</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1625861526%2FFunctions%2F1156930706" anchor-label="getResponseHeader" id="-1625861526%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1625861526%2FFunctions%2F1156930706"><span>get</span><wbr><span>Response</span><wbr><span><span>Header</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1625861526%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#-1625861526%2FFunctions%2F1156930706"><span class="token function">getResponseHeader</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="731239094%2FFunctions%2F1156930706" anchor-label="open" id="731239094%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#860164183%2FFunctions%2F1156930706"><span><span>open</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="731239094%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#860164183%2FFunctions%2F1156930706"><span class="token function">open</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">method<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#987715021%2FFunctions%2F1156930706"><span class="token function">open</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">method<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">async<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">username<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">password<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2118461830%2FFunctions%2F1156930706" anchor-label="overrideMimeType" id="-2118461830%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="override-mime-type.html"><span>override</span><wbr><span>Mime</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2118461830%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="override-mime-type.html"><span class="token function">overrideMimeType</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">mime<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1124632467%2FFunctions%2F1156930706" anchor-label="pipe" id="-1124632467%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-promise/pipe.html"><span><span>pipe</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1124632467%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/pipe.html"><span class="token function">pipe</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">doneFilter<span class="token operator">: </span><span class="token punctuation">(</span>x<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">failFilter<span class="token operator">: </span><span class="token punctuation">(</span>x<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">progressFilter<span class="token operator">: </span><span class="token punctuation">(</span>x<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-533845756%2FFunctions%2F1156930706" anchor-label="progress" id="-533845756%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-promise/progress.html"><span><span>progress</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-533845756%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/progress.html"><span class="token function">progress</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">progressCallback1<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>progressCallbackN<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/progress.html"><span class="token function">progress</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">progressCallback1<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>progressCallbackN<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/progress.html"><span class="token function">progress</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">progressCallback1<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>progressCallbackN<span class="token operator">: </span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/progress.html"><span class="token function">progress</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">progressCallback1<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>progressCallbackN<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../-j-query-promise-callback/index.html">JQueryPromiseCallback</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-773322912%2FFunctions%2F1156930706" anchor-label="promise" id="-773322912%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-promise/promise.html"><span><span>promise</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-773322912%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/promise.html"><span class="token function">promise</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">target<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1001945045%2FFunctions%2F1156930706" anchor-label="removeEventListener" id="1001945045%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-946883479%2FFunctions%2F1156930706"><span>remove</span><wbr><span>Event</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1001945045%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#-946883479%2FFunctions%2F1156930706"><span class="token function">removeEventListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/Event.html">Event</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span>dynamic</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#1302862520%2FFunctions%2F1156930706"><span class="token function">removeEventListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/EventListener.html">EventListener</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span>dynamic</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1820461621%2FFunctions%2F1156930706" anchor-label="send" id="1820461621%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1820461621%2FFunctions%2F1156930706"><span><span>send</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1820461621%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#1820461621%2FFunctions%2F1156930706"><span class="token function">send</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">body<span class="token operator">: </span>dynamic</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1640753849%2FFunctions%2F1156930706" anchor-label="setRequestHeader" id="-1640753849%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1640753849%2FFunctions%2F1156930706"><span>set</span><wbr><span>Request</span><wbr><span><span>Header</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1640753849%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html#-1640753849%2FFunctions%2F1156930706"><span class="token function">setRequestHeader</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-661000020%2FFunctions%2F1156930706" anchor-label="state" id="-661000020%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-promise/state.html"><span><span>state</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-661000020%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-promise/state.html"><span class="token function">state</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="239839712%2FFunctions%2F1156930706" anchor-label="then" id="239839712%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-generic-promise/then.html"><span><span>then</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="239839712%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="../-j-query-generic-promise/then.html">U</a><span class="token operator">&gt; </span><a href="../-j-query-generic-promise/then.html"><span class="token function">then</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">doneFilter<span class="token operator">: </span><span class="token punctuation">(</span>value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span>values<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span>dynamic<span class="token punctuation">, </span></span><span class="parameter ">failFilter<span class="token operator">: </span><span class="token punctuation">(</span>reasons<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">progressFilter<span class="token operator">: </span><span class="token punctuation">(</span>progression<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="../../../../kvision-modules/kvision-jquery/io.kvision.jquery/-j-query-x-h-r/then.html">U</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-j-query-generic-promise/then.html"><span class="token function">then</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">doneFilter<span class="token operator">: </span><span class="token punctuation">(</span>value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span>values<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token punctuation">, </span></span><span class="parameter ">failFilter<span class="token operator">: </span><span class="token punctuation">(</span>reasons<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">progressFilter<span class="token operator">: </span><span class="token punctuation">(</span>progression<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="then.html">R</a><span class="token operator">&gt; </span><a href="then.html"><span class="token function">then</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">doneCallback<span class="token operator">: </span><span class="token punctuation">(</span>data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span>textStatus<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span>jqXHR<span class="token operator">: </span><a href="index.html">JQueryXHR</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="then.html">R</a><span class="token punctuation">, </span></span><span class="parameter ">failCallback<span class="token operator">: </span><span class="token punctuation">(</span>jqXHR<span class="token operator">: </span><a href="index.html">JQueryXHR</a><span class="token punctuation">, </span>textStatus<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span>errorThrown<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-j-query-promise/index.html">JQueryPromise</a><span class="token operator">&lt;</span><a href="then.html">R</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

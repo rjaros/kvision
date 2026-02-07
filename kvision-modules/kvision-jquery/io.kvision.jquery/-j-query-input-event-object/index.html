@@ -1,0 +1,595 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>JQueryInputEventObject</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../../index.html" tabindex="1">
+                    kvision-project
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">9.3.1
+        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":kvision-modules:kvision-jquery/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":kvision-modules:kvision-jquery/jsMain" data-filter=":kvision-modules:kvision-jquery/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    kvision-project
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="kvision-jquery::io.kvision.jquery/JQueryInputEventObject///PointingToDeclaration//1156930706">
+  <div class="breadcrumbs"><a href="../../index.html">kvision-jquery</a><span class="delimiter">/</span><a href="../index.html">io.kvision.jquery</a><span class="delimiter">/</span><span class="current">JQueryInputEventObject</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>JQuery</span><wbr><span>Input</span><wbr><span>Event</span><wbr><span><span>Object</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="index.html">JQueryInputEventObject</a> : <a href="../-base-j-query-event-object/index.html">BaseJQueryEventObject</a><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/rjaros/kvision/tree/master/kvision-modules/kvision-jquery/src/jsMain/kotlin/io/kvision/jquery/jQuery.kt#L348">source</a>)</span></span></div><h4 class="tableheader">Inheritors</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-j-query-mouse-event-object/index.html">JQueryMouseEventObject</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-j-query-key-event-object/index.html">JQueryKeyEventObject</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-j-query-event-object/index.html">JQueryEventObject</a></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-1153076045%2FProperties%2F1156930706" anchor-label="altKey" id="-1153076045%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="alt-key.html"><span>alt</span><wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1153076045%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="alt-key.html">altKey</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1171917508%2FProperties%2F1156930706" anchor-label="bubbles" id="1171917508%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-event-object/index.html#1171917508%2FProperties%2F1156930706"><span><span>bubbles</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1171917508%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="../-j-query-event-object/index.html#1171917508%2FProperties%2F1156930706">bubbles</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-943170021%2FProperties%2F1156930706" anchor-label="cancelable" id="-943170021%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-event-object/index.html#-943170021%2FProperties%2F1156930706"><span><span>cancelable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-943170021%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="../-j-query-event-object/index.html#-943170021%2FProperties%2F1156930706">cancelable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2015230493%2FProperties%2F1156930706" anchor-label="composed" id="2015230493%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-event-object/index.html#2015230493%2FProperties%2F1156930706"><span><span>composed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2015230493%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="../-j-query-event-object/index.html#2015230493%2FProperties%2F1156930706">composed</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="803605405%2FProperties%2F1156930706" anchor-label="ctrlKey" id="803605405%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ctrl-key.html"><span>ctrl</span><wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="803605405%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="ctrl-key.html">ctrlKey</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="139840198%2FProperties%2F1156930706" anchor-label="currentTarget" id="139840198%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/current-target.html"><span>current</span><wbr><span><span>Target</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="139840198%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="../-base-j-query-event-object/current-target.html">currentTarget</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-element/index.html">Element</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-182150720%2FProperties%2F1156930706" anchor-label="data" id="-182150720%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/data.html"><span><span>data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-182150720%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-base-j-query-event-object/data.html">data</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-980989319%2FProperties%2F1156930706" anchor-label="defaultPrevented" id="-980989319%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-event-object/index.html#-980989319%2FProperties%2F1156930706"><span>default</span><wbr><span><span>Prevented</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-980989319%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="../-j-query-event-object/index.html#-980989319%2FProperties%2F1156930706">defaultPrevented</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1483047116%2FProperties%2F1156930706" anchor-label="delegateTarget" id="-1483047116%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/delegate-target.html"><span>delegate</span><wbr><span><span>Target</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1483047116%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-base-j-query-event-object/delegate-target.html">delegateTarget</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-element/index.html">Element</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-286737778%2FProperties%2F1156930706" anchor-label="eventPhase" id="-286737778%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-event-object/index.html#-286737778%2FProperties%2F1156930706"><span>event</span><wbr><span><span>Phase</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-286737778%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="../-j-query-event-object/index.html#-286737778%2FProperties%2F1156930706">eventPhase</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-short/index.html">Short</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1779823358%2FProperties%2F1156930706" anchor-label="isTrusted" id="1779823358%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-event-object/index.html#1779823358%2FProperties%2F1156930706"><span>is</span><wbr><span><span>Trusted</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1779823358%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="../-j-query-event-object/index.html#1779823358%2FProperties%2F1156930706">isTrusted</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2096147401%2FProperties%2F1156930706" anchor-label="metaKey" id="-2096147401%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="meta-key.html"><span>meta</span><wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2096147401%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="meta-key.html">metaKey</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1303520373%2FProperties%2F1156930706" anchor-label="namespace" id="1303520373%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/namespace.html"><span><span>namespace</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1303520373%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-base-j-query-event-object/namespace.html">namespace</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1594219719%2FProperties%2F1156930706" anchor-label="originalEvent" id="1594219719%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/original-event.html"><span>original</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1594219719%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-base-j-query-event-object/original-event.html">originalEvent</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/Event.html">Event</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1919094937%2FProperties%2F1156930706" anchor-label="pageX" id="-1919094937%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/page-x.html"><span>page</span><wbr><span><span>X</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1919094937%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-base-j-query-event-object/page-x.html">pageX</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1888075130%2FProperties%2F1156930706" anchor-label="pageY" id="-1888075130%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/page-y.html"><span>page</span><wbr><span><span>Y</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1888075130%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-base-j-query-event-object/page-y.html">pageY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1726835244%2FProperties%2F1156930706" anchor-label="relatedTarget" id="-1726835244%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/related-target.html"><span>related</span><wbr><span><span>Target</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1726835244%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-base-j-query-event-object/related-target.html">relatedTarget</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-element/index.html">Element</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="685650285%2FProperties%2F1156930706" anchor-label="result" id="685650285%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/result.html"><span><span>result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="685650285%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-base-j-query-event-object/result.html">result</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1635271412%2FProperties%2F1156930706" anchor-label="shiftKey" id="-1635271412%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="shift-key.html"><span>shift</span><wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1635271412%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="shift-key.html">shiftKey</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1778864761%2FProperties%2F1156930706" anchor-label="target" id="1778864761%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/target.html"><span><span>target</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1778864761%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="../-base-j-query-event-object/target.html">target</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/-element/index.html">Element</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1887441557%2FProperties%2F1156930706" anchor-label="timeStamp" id="1887441557%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-event-object/index.html#1887441557%2FProperties%2F1156930706"><span>time</span><wbr><span><span>Stamp</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1887441557%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="../-j-query-event-object/index.html#1887441557%2FProperties%2F1156930706">timeStamp</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1361727989%2FProperties%2F1156930706" anchor-label="type" id="1361727989%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-event-object/index.html#1361727989%2FProperties%2F1156930706"><span><span>type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1361727989%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="../-j-query-event-object/index.html#1361727989%2FProperties%2F1156930706">type</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1075445619%2FProperties%2F1156930706" anchor-label="which" id="1075445619%2FProperties%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/which.html"><span><span>which</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1075445619%2FProperties%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">var </span><a href="../-base-j-query-event-object/which.html">which</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-2021893768%2FFunctions%2F1156930706" anchor-label="composedPath" id="-2021893768%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-event-object/index.html#-2021893768%2FFunctions%2F1156930706"><span>composed</span><wbr><span><span>Path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2021893768%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-j-query-event-object/index.html#-2021893768%2FFunctions%2F1156930706"><span class="token function">composedPath</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.xml/org/w3c/dom/events/EventTarget.html">EventTarget</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1276506045%2FFunctions%2F1156930706" anchor-label="initEvent" id="-1276506045%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-j-query-event-object/index.html#-1276506045%2FFunctions%2F1156930706"><span>init</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1276506045%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-j-query-event-object/index.html#-1276506045%2FFunctions%2F1156930706"><span class="token function">initEvent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">bubbles<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">cancelable<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1236601110%2FFunctions%2F1156930706" anchor-label="isDefaultPrevented" id="-1236601110%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/is-default-prevented.html"><span>is</span><wbr><span>Default</span><wbr><span><span>Prevented</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1236601110%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-base-j-query-event-object/is-default-prevented.html"><span class="token function">isDefaultPrevented</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1073865352%2FFunctions%2F1156930706" anchor-label="isImmediatePropagationStopped" id="1073865352%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/is-immediate-propagation-stopped.html"><span>is</span><wbr><span>Immediate</span><wbr><span>Propagation</span><wbr><span><span>Stopped</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1073865352%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-base-j-query-event-object/is-immediate-propagation-stopped.html"><span class="token function">isImmediatePropagationStopped</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-20553377%2FFunctions%2F1156930706" anchor-label="isPropagationStopped" id="-20553377%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/is-propagation-stopped.html"><span>is</span><wbr><span>Propagation</span><wbr><span><span>Stopped</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-20553377%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../-base-j-query-event-object/is-propagation-stopped.html"><span class="token function">isPropagationStopped</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1465094337%2FFunctions%2F1156930706" anchor-label="preventDefault" id="1465094337%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/prevent-default.html"><span>prevent</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1465094337%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-base-j-query-event-object/prevent-default.html"><span class="token function">preventDefault</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1292118067%2FFunctions%2F1156930706" anchor-label="stopImmediatePropagation" id="-1292118067%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/stop-immediate-propagation.html"><span>stop</span><wbr><span>Immediate</span><wbr><span><span>Propagation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1292118067%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-base-j-query-event-object/stop-immediate-propagation.html"><span class="token function">stopImmediatePropagation</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="828001798%2FFunctions%2F1156930706" anchor-label="stopPropagation" id="828001798%2FFunctions%2F1156930706" data-filterable-set=":kvision-modules:kvision-jquery/jsMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":kvision-modules:kvision-jquery/jsMain" data-filterable-set=":kvision-modules:kvision-jquery/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-base-j-query-event-object/stop-propagation.html"><span>stop</span><wbr><span><span>Propagation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="828001798%2FFunctions%2F1156930706"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kvision-modules:kvision-jquery/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-base-j-query-event-object/stop-propagation.html"><span class="token function">stopPropagation</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

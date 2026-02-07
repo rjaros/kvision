@@ -66,6 +66,7 @@ io.kvision.form.number
 io.kvision.form.text
 module:kvision-jquery
 io.kvision.core
+io.kvision.jquery
 module:kvision-ktml
 io.kvision.ktml
 module:kvision-maps
