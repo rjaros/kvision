@@ -31,7 +31,7 @@ import react.FC
 import react.Props
 import react.StateSetter
 import react.dom.html.ReactHTML.div
-import react.useEffectWithCleanup
+import react.useEffect
 import react.useRef
 import react.useState
 import web.dom.document
@@ -52,7 +52,7 @@ fun <S> reactWrapper(builder: ChildrenBuilder.(refresh: StateSetter<S>) -> Unit)
  */
 fun kvisionWrapper(builder: Container.() -> Unit) = FC<Props> {
     val elRef = useRef<HTMLDivElement>()
-    useEffectWithCleanup {
+    useEffect {
         var root: Root? = null
         var el: HTMLElement? = null
         elRef.current?.let {
@@ -60,7 +60,7 @@ fun kvisionWrapper(builder: Container.() -> Unit) = FC<Props> {
             it.appendChild(el)
             root = Root(el.unsafeCast<org.w3c.dom.HTMLElement>(), ContainerType.NONE, false, init = builder)
         }
-        onCleanup {
+        awaitCleanup {
             root?.dispose()
             el?.let { it.parentNode?.removeChild(it) }
         }
