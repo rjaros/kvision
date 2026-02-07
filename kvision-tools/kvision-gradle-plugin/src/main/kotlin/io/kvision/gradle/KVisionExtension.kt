@@ -4,7 +4,6 @@ import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.ProviderFactory
-import org.gradle.kotlin.dsl.property
 import javax.inject.Inject
 
 
@@ -40,7 +39,7 @@ abstract class KVisionExtension @Inject constructor(
         val convention = providers.gradleProperty("io.kvision.plugin.$property")
             .map { it.toBoolean() }
             .orElse(default)
-        return objects.property<Boolean>().convention(convention)
+        return objects.property(Boolean::class.java).convention(convention)
     }
 
     abstract val kotlinJsStoreDirectory: DirectoryProperty

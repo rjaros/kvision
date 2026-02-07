@@ -17,11 +17,6 @@ import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.TaskContainer
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.bundling.Zip
-import org.gradle.kotlin.dsl.create
-import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.getByType
-import org.gradle.kotlin.dsl.register
-import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsEnvSpec
@@ -37,7 +32,8 @@ abstract class KVisionPlugin : Plugin<Project> {
         val kvExtension = createKVisionExtension()
 
         val kvVersions = try {
-            val versions = Toml.parse(this@KVisionPlugin.javaClass.classLoader.getResourceAsStream("io.kvision.versions.toml"))
+            val versions =
+                Toml.parse(this@KVisionPlugin.javaClass.classLoader.getResourceAsStream("io.kvision.versions.toml"))
             versions.toMap().mapNotNull { (k, v) -> if (v is String) k to v else null }.toMap()
         } catch (e: Exception) {
             logger.warn("Failed to load versions from io.kvision.versions.toml, using empty versions map", e)
@@ -66,7 +62,7 @@ abstract class KVisionPlugin : Plugin<Project> {
      * Additionally, set default values for properties that require a [Project] instance.
      */
     private fun Project.createKVisionExtension(): KVisionExtension {
-        return extensions.create("kvision", KVisionExtension::class).apply {
+        return extensions.create("kvision", KVisionExtension::class.java).apply {
             nodeBinaryPath.convention(nodeJsBinaryProvider())
 
             kotlinJsStoreDirectory.convention(project.layout.projectDirectory.dir(".kotlin-js-store"))
@@ -92,15 +88,15 @@ abstract class KVisionPlugin : Plugin<Project> {
     private fun KVPluginContext.configureProject() {
         logger.debug("configuring Kotlin/MPP plugin")
 
-        tasks.withType<Sync>().matching {
+        tasks.withType(Sync::class.java).matching {
             it.name == "jsBrowserDistribution"
         }.configureEach {
-            exclude("/modules/**", "/tailwind/**")
+            it.exclude("/modules/**", "/tailwind/**")
         }
         val jvmMainExists = layout.projectDirectory.dir("src/jvmMain").asFile.exists()
         val jsMainExists = layout.projectDirectory.dir("src/jsMain").asFile.exists()
 
-        val kotlinMppExtension = extensions.getByType<KotlinMultiplatformExtension>()
+        val kotlinMppExtension = project.extensions.getByType(KotlinMultiplatformExtension::class.java)
 
         if (jsMainExists && kvExtension.enableGradleTasks.get()) {
             registerGeneratePotFileTask {
@@ -123,12 +119,12 @@ abstract class KVisionPlugin : Plugin<Project> {
             }
             val srcDir = project.layout.projectDirectory.dir("src").asFile.absolutePath + "/**/*.kt"
             tasks.all.jsProcessResources.configureEach {
-                exclude("**/*.pot")
-                exclude("**/*.po")
-                dependsOn(convertPoToJsonTask)
-                eachFile {
-                    if (this.name == "tailwind.config.js") {
-                        this.filter {
+                it.exclude("**/*.pot")
+                it.exclude("**/*.po")
+                it.dependsOn(convertPoToJsonTask)
+                it.eachFile { file ->
+                    if (file.name == "tailwind.config.js") {
+                        file.filter {
                             it.replace(
                                 "SOURCES",
                                 srcDir
@@ -143,14 +139,14 @@ abstract class KVisionPlugin : Plugin<Project> {
             }
 
             kotlinMppExtension.sourceSets.matching { it.name == "jsMain" }.configureEach {
-                resources.srcDir(kvExtension.generatedJsResources)
+                it.resources.srcDir(kvExtension.generatedJsResources)
             }
 
             if (!jvmMainExists) {
                 tasks.register("run") {
-                    group = "run"
-                    description = "Runs the application"
-                    dependsOn("jsBrowserDevelopmentRun")
+                    it.group = "run"
+                    it.description = "Runs the application"
+                    it.dependsOn("jsBrowserDevelopmentRun")
                 }
             }
         }
@@ -167,14 +163,14 @@ abstract class KVisionPlugin : Plugin<Project> {
         configuration: KVGeneratePotTask.() -> Unit = {}
     ) {
         logger.debug("registering KVGeneratePotTask")
-        tasks.withType<KVGeneratePotTask>().configureEach {
-            nodeJsBinary.set(kvExtension.nodeBinaryPath)
-            getTextExtractBin.set(
+        tasks.withType(KVGeneratePotTask::class.java).configureEach {
+            it.nodeJsBinary.set(kvExtension.nodeBinaryPath)
+            it.getTextExtractBin.set(
                 rootNodeModulesDir.file("gettext-extract/bin/gettext-extract")
             )
-            configuration()
+            it.configuration()
         }
-        tasks.register<KVGeneratePotTask>("generatePotFile")
+        tasks.register("generatePotFile", KVGeneratePotTask::class.java)
     }
 
 
@@ -183,70 +179,70 @@ abstract class KVisionPlugin : Plugin<Project> {
         configuration: KVConvertPoTask.() -> Unit = {}
     ): TaskProvider<KVConvertPoTask> {
         logger.debug("registering KVConvertPoTask")
-        tasks.withType<KVConvertPoTask>().configureEach {
-            enabled = kvExtension.enableGradleTasks.get()
-            description = "Processes po files and converts them to JSON format"
-            po2jsonBinDir.set(
+        tasks.withType(KVConvertPoTask::class.java).configureEach {
+            it.enabled = kvExtension.enableGradleTasks.get()
+            it.description = "Processes po files and converts them to JSON format"
+            it.po2jsonBinDir.set(
                 rootNodeModulesDir.file("gettext.js/bin/po2json")
             )
-            nodeJsBinary.set(nodeJsBinaryProvider())
-            configuration()
+            it.nodeJsBinary.set(nodeJsBinaryProvider())
+            it.configuration()
         }
-        return tasks.register<KVConvertPoTask>("convertPoToJson")
+        return tasks.register("convertPoToJson", KVConvertPoTask::class.java)
     }
 
     /** Applied to Kotlin Multiplatform project */
     private fun KVPluginContext.registerZipTask(configuration: Zip.() -> Unit = {}) {
         logger.debug("registering KVision zip task")
-        tasks.register<Zip>("zip") {
-            group = PACKAGE_TASK_GROUP
-            description = "Builds ZIP archive with the application"
-            destinationDirectory.set(layout.buildDirectory.dir("libs"))
+        tasks.register("zip", Zip::class.java) {
+            it.group = PACKAGE_TASK_GROUP
+            it.description = "Builds ZIP archive with the application"
+            it.destinationDirectory.set(layout.buildDirectory.dir("libs"))
             val distribution =
                 project.tasks.getByName(
                     "jsBrowserDistribution"
                 ).outputs
-            from(distribution)
-            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-            configuration()
+            it.from(distribution)
+            it.duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+            it.configuration()
         }
     }
 
     /** Requires Kotlin MPP project */
     private fun KVPluginContext.registerWorkerBundleTask(configuration: KVWorkerBundleTask.() -> Unit = {}) {
         logger.debug("registering KVWorkerBundleTask")
-        tasks.withType<KVWorkerBundleTask>().configureEach {
-            nodeJsBin.set(nodeJsBinaryProvider())
-            webpackJs.set(
+        tasks.withType(KVWorkerBundleTask::class.java).configureEach {
+            it.nodeJsBin.set(nodeJsBinaryProvider())
+            it.webpackJs.set(
                 rootNodeModulesDir.file("webpack/bin/webpack.js")
             )
-            webpackConfigJs.set(
+            it.webpackConfigJs.set(
                 rootProject.layout.buildDirectory.file("js/packages/${rootProject.name}-worker/webpack.config.js")
             )
-            workerMainSrcDir.set(
+            it.workerMainSrcDir.set(
                 layout.projectDirectory.dir("src/workerMain/kotlin")
             )
-            workerJsFile.set(
+            it.workerJsFile.set(
                 layout.buildDirectory.file("processedResources/frontend/main/worker.js")
             )
-            executable(nodeJsBin.get())
-            workingDir(
+            it.executable(it.nodeJsBin.get())
+            it.workingDir(
                 rootProject.layout.buildDirectory.dir("js/packages/${rootProject.name}-worker")
             )
-            args(
-                webpackJs.get(),
+            it.args(
+                it.webpackJs.get(),
                 "--config",
-                webpackConfigJs.get(),
+                it.webpackConfigJs.get(),
             )
-            configuration()
+            it.configuration()
         }
-        tasks.register<KVWorkerBundleTask>("workerBundle")
+        tasks.register("workerBundle", KVWorkerBundleTask::class.java)
     }
 
     private fun KVPluginContext.configureNodeEcosystem() {
         logger.info("configuring Node")
 
-        rootProject.extensions.findByType<YarnRootExtension>()?.apply {
+        rootProject.extensions.findByType(YarnRootExtension::class.java)?.apply {
             logger.info("configuring Yarn")
             if (kvExtension.enableResolutions.get() && kvVersions.isNotEmpty()) {
                 resolution("zzz-kvision-assets", kvVersions["npm-kvision-assets"]!!)
@@ -291,7 +287,7 @@ abstract class KVisionPlugin : Plugin<Project> {
                 logger.info("[configureNodeEcosystem.configureYarn] set lockFileDirectory: $lockFileDirectory")
             }
         }
-        rootProject.extensions.findByType<org.jetbrains.kotlin.gradle.targets.js.npm.NpmExtension>()?.apply {
+        rootProject.extensions.findByType(org.jetbrains.kotlin.gradle.targets.js.npm.NpmExtension::class.java)?.apply {
             logger.debug("configuring Npm")
             if (kvExtension.enableResolutions.get() && kvVersions.isNotEmpty()) {
                 override("zzz-kvision-assets", kvVersions["npm-kvision-assets"]!!)
@@ -341,7 +337,7 @@ abstract class KVisionPlugin : Plugin<Project> {
     private val TaskContainer.all: TaskCollections get() = TaskCollections(this)
 
     /** Lazy task collections */
-    private inner class TaskCollections(private val tasks: TaskContainer) {
+    private class TaskCollections(private val tasks: TaskContainer) {
 
         val jsProcessResources: TaskCollection<Copy>
             get() = collection("jsProcessResources")
@@ -356,7 +352,7 @@ abstract class KVisionPlugin : Plugin<Project> {
             get() = collection("kotlinNpmInstall")
 
         private inline fun <reified T : Task> collection(taskName: String): TaskCollection<T> =
-            tasks.withType<T>().matching { it.name == taskName }
+            tasks.withType(T::class.java).matching { it.name == taskName }
     }
 
     /**
@@ -365,7 +361,7 @@ abstract class KVisionPlugin : Plugin<Project> {
      */
     private fun Project.nodeJsBinaryProvider(): Provider<String> {
         val nodeJsEnvSpec = providers.provider {
-            extensions.getByType(NodeJsEnvSpec::class)
+            extensions.getByType(NodeJsEnvSpec::class.java)
         }
         return nodeJsEnvSpec.flatMap { it.executable }
     }

@@ -1,5 +1,4 @@
 plugins {
-    `kotlin-dsl`
     kotlin("jvm")
     alias(libs.plugins.kotlinx.serialization)
     id("java-gradle-plugin")

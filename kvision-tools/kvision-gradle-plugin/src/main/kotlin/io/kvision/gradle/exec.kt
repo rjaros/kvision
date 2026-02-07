@@ -17,12 +17,12 @@ internal fun ExecOperations.execCapture(
 ): ExecCaptureResult {
     val (execResult, output) = ByteArrayOutputStream().use { output ->
         exec {
-            isIgnoreExitValue = true
+            it.isIgnoreExitValue = true
 
-            standardOutput = output
-            errorOutput = output
+            it.standardOutput = output
+            it.errorOutput = output
 
-            configure()
+            it.configure()
         } to output.toString()
     }
 
