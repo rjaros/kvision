@@ -134,6 +134,8 @@ module:kvision-routing-navigo-ng
 io.kvision.routing
 module:kvision-select-remote
 io.kvision.form.select
+module:kvision-signal
+io.kvision.state
 module:kvision-state
 io.kvision.state
 module:kvision-state-flow
