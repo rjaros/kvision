@@ -72,6 +72,21 @@ class Form<K : Any>(
     internal val fieldsParams: MutableMap<String, Any> = mutableMapOf()
     internal var validatorMessage: ((Form<K>) -> String?)? = null
     internal var validator: ((Form<K>) -> Boolean?)? = null
+    private val fieldConverters: MutableMap<String, FormFieldConverter> = mutableMapOf()
+
+    /**
+     * Optional provider for additional data to merge into [getData] results.
+     * Allows external components (e.g. tabulators, custom editors) to participate
+     * in form data collection without being [FormControl] instances.
+     * Overlay values take precedence over field values on key conflicts.
+     *
+     * **Note:** Overlay values are not subject to form validation. They are injected
+     * directly into the data model during [getData], after [validate] has been called.
+     * Null overlay values are skipped (consistent with field null handling).
+     * All overlay keys must correspond to properties in the `@Serializable` model class;
+     * unknown keys will cause a deserialization error.
+     */
+    var dataOverlayProvider: (() -> Map<String, Any?>)? = null
 
     @OptIn(ExperimentalSerializationApi::class)
     private val JsonInstance = serializer?.let {
@@ -94,19 +109,30 @@ class Form<K : Any>(
             {
                 val json = js("{}")
                 it.forEach { (key, value) ->
-                    val v = when (value) {
-                        is Date -> {
-                            value.toStringF()
-                        }
+                    val converter = fieldConverters[key]
+                    val v = if (converter != null) {
+                        converter.toJson(value)
+                    } else {
+                        when (value) {
+                            is Date -> {
+                                value.toStringF()
+                            }
 
-                        is List<*> -> {
-                            @Suppress("UNCHECKED_CAST")
-                            ((value as? List<KFile>)?.toObj(ListSerializer(KFile.serializer())))
-                        }
+                            is List<*> -> {
+                                @Suppress("UNCHECKED_CAST")
+                                ((value as? List<KFile>)?.toObj(ListSerializer(KFile.serializer())))
+                            }
 
-                        else -> value
+                            else -> value
+                        }
                     }
                     if (v != null) json[key] = v
+                }
+                // Merge overlay values directly into the JSON object, bypassing converter/type dispatch.
+                // Overlay values are already in the correct format for serialization.
+                // Null overlay values are skipped (consistent with field null handling above).
+                dataOverlayProvider?.invoke()?.forEach { (key, value) ->
+                    if (value != null) json[key] = value
                 }
                 JsonInstance!!.decodeFromString(serializer, JSON.stringify(json))
             }
@@ -119,21 +145,26 @@ class Form<K : Any>(
     }
 
     /**
-     * Adds a form control to the form with a dynamic keys.
+     * Adds a form control to the form with a dynamic key.
      * @param key key identifier of the control
      * @param control the form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     fun <C : FormControl> add(
         key: String, control: C, required: Boolean = false, requiredMessage: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
         this.fields[key] = control
         this.fieldsParams[key] = FieldParams(required, requiredMessage, validatorMessage, validator)
+        if (converter != null) {
+            this.fieldConverters[key] = converter
+        }
     }
 
     /**
@@ -142,15 +173,17 @@ class Form<K : Any>(
      * @param control the string form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     fun <C : StringFormControl> add(
         key: KProperty1<K, String?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, converter, validatorMessage, validator)
     }
 
     /**
@@ -159,15 +192,17 @@ class Form<K : Any>(
      * @param control the string form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     fun <C : StringFormControl> addCustom(
         key: KProperty1<K, Any?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, converter, validatorMessage, validator)
     }
 
     /**
@@ -176,15 +211,17 @@ class Form<K : Any>(
      * @param control the boolean form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     fun <C : BoolFormControl> add(
         key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, converter, validatorMessage, validator)
     }
 
     /**
@@ -193,15 +230,17 @@ class Form<K : Any>(
      * @param control the boolean form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     fun <C : TriStateFormControl> add(
         key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, converter, validatorMessage, validator)
     }
 
     /**
@@ -210,15 +249,17 @@ class Form<K : Any>(
      * @param control the number form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     fun <C : NumberFormControl> add(
         key: KProperty1<K, Number?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, converter, validatorMessage, validator)
     }
 
     /**
@@ -227,15 +268,17 @@ class Form<K : Any>(
      * @param control the date form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     fun <C : DateFormControl> add(
         key: KProperty1<K, Date?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, converter, validatorMessage, validator)
     }
 
     /**
@@ -244,15 +287,51 @@ class Form<K : Any>(
      * @param control the files form control
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     fun <C : KFilesFormControl> add(
         key: KProperty1<K, List<KFile>?>, control: C, required: Boolean = false, requiredMessage: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, converter, validatorMessage, validator)
+    }
+
+    /**
+     * Registers a field converter for the given key.
+     * @param key key identifier of the control
+     * @param converter the field converter
+     */
+    fun registerConverter(key: String, converter: FormFieldConverter) {
+        fieldConverters[key] = converter
+    }
+
+    /**
+     * Registers a field converter for the given property.
+     * @param key property reference used as the control identifier
+     * @param converter the field converter
+     */
+    fun registerConverter(key: KProperty1<K, *>, converter: FormFieldConverter) {
+        fieldConverters[key.name] = converter
+    }
+
+    /**
+     * Removes a field converter for the given key.
+     * @param key key identifier of the control
+     */
+    fun removeConverter(key: String) {
+        fieldConverters.remove(key)
+    }
+
+    /**
+     * Removes a field converter for the given property.
+     * @param key property reference used as the control identifier
+     */
+    fun removeConverter(key: KProperty1<K, *>) {
+        fieldConverters.remove(key.name)
     }
 
     /**
@@ -261,14 +340,16 @@ class Form<K : Any>(
      */
     fun remove(key: KProperty1<K, *>) {
         this.fields.remove(key.name)
+        this.fieldConverters.remove(key.name)
     }
 
     /**
-     * Removes a control from the form with a dynamic keys.
+     * Removes a control from the form with a dynamic key.
      * @param key key identifier of the control
      */
     fun remove(key: String) {
         this.fields.remove(key)
+        this.fieldConverters.remove(key)
     }
 
     /**
@@ -276,6 +357,7 @@ class Form<K : Any>(
      */
     fun removeAll() {
         this.fields.clear()
+        this.fieldConverters.clear()
     }
 
     /**
@@ -334,20 +416,28 @@ class Form<K : Any>(
             for (key in keys) {
                 val jsonValue = json[key]
                 if (jsonValue != null) {
-                    when (val formField = fields[key]) {
-                        is DateFormControl -> formField.value = (jsonValue.unsafeCast<String>()).toDateF()
-                        is KFilesFormControl -> {
-                            formField.value = Serialization.plain.decodeFromString(
-                                ListSerializer(KFile.serializer()),
-                                JSON.stringify(jsonValue)
-                            )
-                        }
+                    val formField = fields[key]
+                    val converter = fieldConverters[key]
+                    if (converter != null && formField != null) {
+                        formField.setValue(converter.fromJson(jsonValue))
+                    } else {
+                        when (formField) {
+                            is DateFormControl -> formField.value =
+                                (jsonValue.unsafeCast<String>()).toDateF()
 
-                        else -> {
-                            if (formField != null) {
-                                formField.setValue(jsonValue)
-                            } else {
-                                dataMap[key] = jsonValue
+                            is KFilesFormControl -> {
+                                formField.value = Serialization.plain.decodeFromString(
+                                    ListSerializer(KFile.serializer()),
+                                    JSON.stringify(jsonValue)
+                                )
+                            }
+
+                            else -> {
+                                if (formField != null) {
+                                    formField.setValue(jsonValue)
+                                } else {
+                                    dataMap[key] = jsonValue
+                                }
                             }
                         }
                     }
@@ -357,11 +447,15 @@ class Form<K : Any>(
             }
             fields.forEach { if (!keys.contains(it.key)) it.value.setValue(null) }
         } else {
+            // Non-serializer path: check converters before falling back to default setValue
             val map = model.unsafeCast<Map<String, Any?>>()
             map.forEach { (key, value) ->
                 if (value != null) {
                     val formField = fields[key]
-                    if (formField != null) {
+                    val converter = fieldConverters[key]
+                    if (converter != null && formField != null) {
+                        formField.setValue(converter.fromJson(value))
+                    } else if (formField != null) {
                         formField.setValue(value)
                     } else {
                         dataMap[key] = value
@@ -384,11 +478,27 @@ class Form<K : Any>(
 
     /**
      * Returns current data model.
+     *
+     * Field values are collected from form controls, with converters applied where registered.
+     * If a [dataOverlayProvider] is set, overlay values are merged after field processing
+     * and bypass converter/type dispatch (they must already be in the correct format).
+     *
      * @return data model
      */
     fun getData(): K {
-        val map = dataMap + fields.entries.associateBy({ it.key }, { it.value.getValue() })
-        return modelFactory?.invoke(map.withDefault { null }) ?: map.unsafeCast<K>()
+        val fieldValues = fields.entries.associateBy({ it.key }, { it.value.getValue() })
+        val map = dataMap + fieldValues
+        return modelFactory?.invoke(map.withDefault { null }) ?: run {
+            // Non-serializer path: apply converters and merge overlay
+            val converted = fieldValues.entries.associate { (key, value) ->
+                val converter = fieldConverters[key]
+                key to if (converter != null) converter.toJson(value) else value
+            }
+            val base = dataMap + converted
+            val overlay = dataOverlayProvider?.invoke()?.filterValues { it != null } ?: emptyMap()
+            val merged = if (overlay.isEmpty()) base else base + overlay
+            merged.unsafeCast<K>()
+        }
     }
 
     /**

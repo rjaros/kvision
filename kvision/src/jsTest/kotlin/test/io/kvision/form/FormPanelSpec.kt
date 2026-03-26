@@ -21,6 +21,7 @@
  */
 package test.io.kvision.form
 
+import io.kvision.form.FormFieldConverter
 import io.kvision.form.FormPanel
 import io.kvision.form.check.CheckBox
 import io.kvision.form.form
@@ -164,4 +165,43 @@ class FormPanelSpec : SimpleSpec {
         }
     }
 
+    @Test
+    fun formPanelWithConverter() {
+        run {
+            val formPanel = FormPanel.create<DataFormWithCustom>()
+            val converter = object : FormFieldConverter {
+                override fun fromJson(jsonValue: dynamic): Any? =
+                    (jsonValue as? String)?.uppercase()
+
+                override fun toJson(controlValue: Any?): dynamic =
+                    (controlValue as? String)?.lowercase()
+            }
+            val textField = Text()
+            formPanel.add(DataFormWithCustom::score, textField, converter = converter)
+            formPanel.add(DataFormWithCustom::name, Text())
+            formPanel.setData(DataFormWithCustom(name = "Test", score = "hello"))
+            assertEquals("HELLO", textField.value, "FormPanel converter should transform on setData")
+            val result = formPanel.getData()
+            assertEquals("hello", result.score, "FormPanel converter should reverse-transform on getData")
+            assertEquals("Test", result.name, "Non-converter fields should work normally")
+        }
+    }
+
+    @Test
+    fun formPanelGetDataJsonWithConverter() {
+        run {
+            val formPanel = FormPanel.create<DataFormWithCustom>()
+            val converter = object : FormFieldConverter {
+                override fun fromJson(jsonValue: dynamic): Any? =
+                    (jsonValue as? String)?.uppercase()
+
+                override fun toJson(controlValue: Any?): dynamic =
+                    (controlValue as? String)?.lowercase()
+            }
+            formPanel.add(DataFormWithCustom::score, Text(), converter = converter)
+            formPanel.setData(DataFormWithCustom(score = "HELLO"))
+            val json = formPanel.getDataJson()
+            assertEquals("hello", json["score"], "getDataJson should apply converter")
+        }
+    }
 }
