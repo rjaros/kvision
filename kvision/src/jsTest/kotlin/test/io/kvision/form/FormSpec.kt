@@ -23,6 +23,7 @@ package test.io.kvision.form
 
 import kotlinx.serialization.Serializable
 import io.kvision.form.Form
+import io.kvision.form.FormFieldConverter
 import io.kvision.form.check.CheckBox
 import io.kvision.form.text.Text
 import io.kvision.test.SimpleSpec
@@ -42,6 +43,13 @@ data class DataForm(
 data class DataForm2(
     val s: String? = null,
     val d: String? = null
+)
+
+@Serializable
+data class DataFormWithCustom(
+    val name: String? = null,
+    val score: String? = null,
+    val extra: String? = null
 )
 
 class FormSpec : SimpleSpec {
@@ -170,8 +178,191 @@ class FormSpec : SimpleSpec {
             textField.value = "Test value 2"
             check.value = false
             val result3 = form.getData()
-            assertEquals(mapOf("a" to "Test value 2", "b" to false, "c" to 5), result3, "Dynamic form should return changed value")
+            assertEquals(
+                mapOf("a" to "Test value 2", "b" to false, "c" to 5),
+                result3,
+                "Dynamic form should return changed value"
+            )
+        }
+    }
+
+    // --- Converter tests ---
+
+    @Test
+    fun converterAdd() {
+        run {
+            val form = Form.create<DataFormWithCustom>()
+            val converter = object : FormFieldConverter {
+                override fun fromJson(jsonValue: dynamic): Any? {
+                    return (jsonValue as? String)?.uppercase()
+                }
+
+                override fun toJson(controlValue: Any?): dynamic {
+                    return (controlValue as? String)?.lowercase()
+                }
+            }
+            val textField = Text()
+            form.add("score", textField, converter = converter)
+            form.add(DataFormWithCustom::name, Text())
+            form.setData(DataFormWithCustom(name = "Test", score = "hello"))
+            assertEquals("HELLO", textField.value, "Converter should transform value on setData")
+            val result = form.getData()
+            assertEquals("hello", result.score, "Converter should reverse-transform on getData")
+            assertEquals("Test", result.name, "Non-converter fields should work normally")
+        }
+    }
+
+    @Test
+    fun converterOnTypedAdd() {
+        run {
+            val form = Form.create<DataFormWithCustom>()
+            val converter = object : FormFieldConverter {
+                override fun fromJson(jsonValue: dynamic): Any? =
+                    (jsonValue as? String)?.uppercase()
+
+                override fun toJson(controlValue: Any?): dynamic =
+                    (controlValue as? String)?.lowercase()
+            }
+            val textField = Text()
+            // Use typed add() overload with converter parameter
+            form.add(DataFormWithCustom::score, textField, converter = converter)
+            form.setData(DataFormWithCustom(score = "hello"))
+            assertEquals("HELLO", textField.value, "Typed add() with converter should transform on setData")
+            val result = form.getData()
+            assertEquals("hello", result.score, "Typed add() with converter should reverse-transform on getData")
+        }
+    }
+
+    @Test
+    fun registerConverter() {
+        run {
+            val form = Form.create<DataFormWithCustom>()
+            val converter = object : FormFieldConverter {
+                override fun fromJson(jsonValue: dynamic): Any? {
+                    return (jsonValue as? String)?.uppercase()
+                }
+
+                override fun toJson(controlValue: Any?): dynamic {
+                    return (controlValue as? String)?.lowercase()
+                }
+            }
+            val textField = Text()
+            form.add(DataFormWithCustom::score, textField)
+            form.registerConverter(DataFormWithCustom::score, converter)
+            form.setData(DataFormWithCustom(score = "hello"))
+            assertEquals("HELLO", textField.value, "Registered converter should transform value on setData")
+            val result = form.getData()
+            assertEquals("hello", result.score, "Registered converter should reverse-transform on getData")
+        }
+    }
+
+    @Test
+    fun removeConverterFallsBack() {
+        run {
+            val form = Form.create<DataFormWithCustom>()
+            val converter = object : FormFieldConverter {
+                override fun fromJson(jsonValue: dynamic): Any? =
+                    (jsonValue as? String)?.uppercase()
+
+                override fun toJson(controlValue: Any?): dynamic =
+                    (controlValue as? String)?.lowercase()
+            }
+            val textField = Text()
+            form.add(DataFormWithCustom::score, textField, converter = converter)
+            form.setData(DataFormWithCustom(score = "hello"))
+            assertEquals("HELLO", textField.value, "Converter active")
+            // Remove converter
+            form.removeConverter("score")
+            form.setData(DataFormWithCustom(score = "world"))
+            assertEquals("world", textField.value, "After removeConverter, value should pass through unchanged")
+        }
+    }
+
+    // --- Dynamic form + converter test (non-serializer path) ---
+
+    @Test
+    fun dynamicFormWithConverter() {
+        run {
+            val form = Form<Map<String, Any?>>()
+            val converter = object : FormFieldConverter {
+                override fun fromJson(jsonValue: dynamic): Any? =
+                    (jsonValue as? String)?.uppercase()
+
+                override fun toJson(controlValue: Any?): dynamic =
+                    (controlValue as? String)?.lowercase()
+            }
+            val textField = Text()
+            form.add("a", textField, converter = converter)
+            form.setData(mapOf("a" to "hello", "b" to 42))
+            assertEquals("HELLO", textField.value, "Converter should work in non-serializer setData path")
+            val result = form.getData()
+            assertEquals("hello", result["a"], "Converter should work in non-serializer getData path")
+            assertEquals(42, result["b"], "Non-converter fields should pass through")
+        }
+    }
+
+    // --- Overlay tests ---
+
+    @Test
+    fun dataOverlayProvider() {
+        run {
+            val form = Form.create<DataFormWithCustom>()
+            form.add(DataFormWithCustom::name, Text())
+            form.dataOverlayProvider = { mapOf("extra" to "injected") }
+            form.setData(DataFormWithCustom(name = "Test"))
+            val result = form.getData()
+            assertEquals("Test", result.name, "Standard fields should work")
+            assertEquals("injected", result.extra, "Overlay data should be included")
+        }
+    }
+
+    @Test
+    fun overlayOverridesField() {
+        run {
+            val form = Form.create<DataFormWithCustom>()
+            form.add(DataFormWithCustom::name, Text())
+            form.dataOverlayProvider = { mapOf("name" to "overridden") }
+            form.setData(DataFormWithCustom(name = "Original"))
+            val result = form.getData()
+            assertEquals("overridden", result.name, "Overlay should take precedence over field value")
+        }
+    }
+
+    @Test
+    fun dynamicFormWithOverlay() {
+        run {
+            val form = Form<Map<String, Any?>>()
+            form.add("a", Text())
+            form.dataOverlayProvider = { mapOf("b" to "overlaid") }
+            form.setData(mapOf("a" to "hello"))
+            val result = form.getData()
+            assertEquals("hello", result["a"], "Standard field should work")
+            assertEquals("overlaid", result["b"], "Overlay should be included in dynamic form")
+        }
+    }
+
+    @Test
+    fun clearDataPreservesConverter() {
+        run {
+            val form = Form.create<DataFormWithCustom>()
+            val converter = object : FormFieldConverter {
+                override fun fromJson(jsonValue: dynamic): Any? =
+                    (jsonValue as? String)?.uppercase()
+
+                override fun toJson(controlValue: Any?): dynamic =
+                    (controlValue as? String)?.lowercase()
+            }
+            val textField = Text()
+            form.add(DataFormWithCustom::score, textField, converter = converter)
+            form.setData(DataFormWithCustom(score = "hello"))
+            assertEquals("HELLO", textField.value, "Converter active before clearData")
+            form.clearData()
+            assertNull(textField.value, "clearData should null out the field")
+            // Re-set data — converter should still be active
+            form.setData(DataFormWithCustom(score = "world"))
+            assertEquals("WORLD", textField.value, "Converter should survive clearData")
         }
     }
 
 }
+

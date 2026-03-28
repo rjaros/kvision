@@ -193,6 +193,24 @@ open class FormPanel<K : Any>(
         }
 
     /**
+     * Optional provider for additional data to merge into [getData] results.
+     * Allows external components (e.g. tabulators, custom editors) to participate
+     * in form data collection without being [FormControl] instances.
+     * Overlay values take precedence over field values on key conflicts.
+     *
+     * **Note:** Overlay values are not subject to form validation. They are injected
+     * directly into the data model during [getData], after [validate] has been called.
+     * Null overlay values are skipped (consistent with field null handling).
+     * All overlay keys must correspond to properties in the `@Serializable` model class;
+     * unknown keys will cause a deserialization error.
+     */
+    var dataOverlayProvider
+        get() = form.dataOverlayProvider
+        set(value) {
+            form.dataOverlayProvider = value
+        }
+
+    /**
      * @suppress
      * Internal property.
      */
@@ -255,12 +273,14 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param legend put this control inside a fieldset with given legend
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     open fun <C : FormControl> add(
         key: String, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
@@ -280,7 +300,7 @@ open class FormPanel<K : Any>(
         } else {
             currentFieldset?.add(control)
         }
-        form.add(key, control, required, requiredMessage, validatorMessage, validator)
+        form.add(key, control, required, requiredMessage, converter, validatorMessage, validator)
     }
 
     override fun add(child: Component) {
@@ -301,16 +321,18 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param legend put this control inside a fieldset with given legend
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     open fun <C : StringFormControl> add(
         key: KProperty1<K, String?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, legend, converter, validatorMessage, validator)
     }
 
     /**
@@ -320,16 +342,18 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param legend put this control inside a fieldset with given legend
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     open fun <C : StringFormControl> addCustom(
         key: KProperty1<K, Any?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, legend, converter, validatorMessage, validator)
     }
 
     /**
@@ -339,16 +363,18 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param legend put this control inside a fieldset with given legend
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     open fun <C : BoolFormControl> add(
         key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, legend, converter, validatorMessage, validator)
     }
 
     /**
@@ -358,16 +384,18 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param legend put this control inside a fieldset with given legend
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     open fun <C : TriStateFormControl> add(
         key: KProperty1<K, Boolean?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, legend, converter, validatorMessage, validator)
     }
 
     /**
@@ -377,16 +405,18 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param legend put this control inside a fieldset with given legend
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     open fun <C : NumberFormControl> add(
         key: KProperty1<K, Number?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, legend, converter, validatorMessage, validator)
     }
 
     /**
@@ -396,16 +426,18 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param legend put this control inside a fieldset with given legend
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     open fun <C : DateFormControl> add(
         key: KProperty1<K, Date?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, legend, converter, validatorMessage, validator)
     }
 
     /**
@@ -415,16 +447,18 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param legend put this control inside a fieldset with given legend
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      */
     open fun <C : KFilesFormControl> add(
         key: KProperty1<K, List<KFile>?>, control: C, required: Boolean = false, requiredMessage: String? = null,
         legend: String? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ) {
-        add(key.name, control, required, requiredMessage, legend, validatorMessage, validator)
+        add(key.name, control, required, requiredMessage, legend, converter, validatorMessage, validator)
     }
 
     /**
@@ -433,6 +467,7 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param layoutType style control for given form layout
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
@@ -440,6 +475,7 @@ open class FormPanel<K : Any>(
     open fun <C : FormControl> C.bind(
         key: String, required: Boolean = false, requiredMessage: String? = null,
         layoutType: FormType? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
@@ -449,7 +485,7 @@ open class FormPanel<K : Any>(
             else -> this.styleForVerticalFormPanel()
         }
         if (required) this.flabel.addCssClass("required-label")
-        form.add(key, this, required, requiredMessage, validatorMessage, validator)
+        form.add(key, this, required, requiredMessage, converter, validatorMessage, validator)
         return this
     }
 
@@ -459,6 +495,7 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param layoutType style control for given form layout
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
@@ -466,10 +503,11 @@ open class FormPanel<K : Any>(
     open fun <C : StringFormControl> C.bind(
         key: KProperty1<K, String?>, required: Boolean = false, requiredMessage: String? = null,
         layoutType: FormType? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, converter, validatorMessage, validator)
     }
 
     /**
@@ -478,6 +516,7 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param layoutType style control for given form layout
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
@@ -485,10 +524,11 @@ open class FormPanel<K : Any>(
     open fun <C : StringFormControl> C.bindCustom(
         key: KProperty1<K, Any?>, required: Boolean = false, requiredMessage: String? = null,
         layoutType: FormType? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, converter, validatorMessage, validator)
     }
 
 
@@ -498,6 +538,7 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param layoutType style control for given form layout
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
@@ -505,10 +546,11 @@ open class FormPanel<K : Any>(
     open fun <C : BoolFormControl> C.bind(
         key: KProperty1<K, Boolean?>, required: Boolean = false, requiredMessage: String? = null,
         layoutType: FormType? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, converter, validatorMessage, validator)
     }
 
     /**
@@ -517,6 +559,7 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param layoutType style control for given form layout
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
@@ -524,10 +567,11 @@ open class FormPanel<K : Any>(
     open fun <C : TriStateFormControl> C.bind(
         key: KProperty1<K, Boolean?>, required: Boolean = false, requiredMessage: String? = null,
         layoutType: FormType? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, converter, validatorMessage, validator)
     }
 
     /**
@@ -536,6 +580,7 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param layoutType style control for given form layout
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
@@ -543,10 +588,11 @@ open class FormPanel<K : Any>(
     open fun <C : NumberFormControl> C.bind(
         key: KProperty1<K, Number?>, required: Boolean = false, requiredMessage: String? = null,
         layoutType: FormType? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, converter, validatorMessage, validator)
     }
 
     /**
@@ -555,6 +601,7 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param layoutType style control for given form layout
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
@@ -562,10 +609,11 @@ open class FormPanel<K : Any>(
     open fun <C : DateFormControl> C.bind(
         key: KProperty1<K, Date?>, required: Boolean = false, requiredMessage: String? = null,
         layoutType: FormType? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, converter, validatorMessage, validator)
     }
 
     /**
@@ -574,6 +622,7 @@ open class FormPanel<K : Any>(
      * @param required determines if the control is required
      * @param requiredMessage optional required validation message
      * @param layoutType style control for given form layout
+     * @param converter optional field converter for custom type handling
      * @param validatorMessage optional function returning validation message
      * @param validator optional validation function
      * @return the control itself
@@ -581,10 +630,11 @@ open class FormPanel<K : Any>(
     open fun <C : KFilesFormControl> C.bind(
         key: KProperty1<K, List<KFile>?>, required: Boolean = false, requiredMessage: String? = null,
         layoutType: FormType? = null,
+        converter: FormFieldConverter? = null,
         validatorMessage: ((C) -> String?)? = null,
         validator: ((C) -> Boolean?)? = null
     ): C {
-        return bind(key.name, required, requiredMessage, layoutType, validatorMessage, validator)
+        return bind(key.name, required, requiredMessage, layoutType, converter, validatorMessage, validator)
     }
 
     /**
@@ -630,6 +680,40 @@ open class FormPanel<K : Any>(
      */
     open fun unbind(key: String) {
         form.remove(key)
+    }
+
+    /**
+     * Registers a field converter for the given key.
+     * @param key key identifier of the control
+     * @param converter the field converter
+     */
+    open fun registerConverter(key: String, converter: FormFieldConverter) {
+        form.registerConverter(key, converter)
+    }
+
+    /**
+     * Registers a field converter for the given property.
+     * @param key property reference used as the control identifier
+     * @param converter the field converter
+     */
+    open fun registerConverter(key: KProperty1<K, *>, converter: FormFieldConverter) {
+        form.registerConverter(key, converter)
+    }
+
+    /**
+     * Removes a field converter for the given key.
+     * @param key key identifier of the control
+     */
+    open fun removeConverter(key: String) {
+        form.removeConverter(key)
+    }
+
+    /**
+     * Removes a field converter for the given property.
+     * @param key property reference used as the control identifier
+     */
+    open fun removeConverter(key: KProperty1<K, *>) {
+        form.removeConverter(key)
     }
 
     /**
