@@ -40,14 +40,16 @@ import io.kvision.utils.event
  * @param size modal window size
  * @param animation determines if animations are used
  * @param centered determines if modal dialog is vertically centered
+ * @param backdrop the backdrop behavior, if TRUE then the backdrop is included and modal can be closed by clicking on it, if FALSE then no backdrop is added, if STATIC then the backdrop is included but modal cannot be closed by clicking on it
  * @param okTitle "OK" button text
  * @param callback a function called after closing window with OK button
  */
 open class Alert(
     caption: String? = null, text: String? = null, rich: Boolean = false,
     align: Align? = null, size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false,
+    backdrop: ModalBackdrop? = null,
     okTitle: String = "OK", private val callback: (() -> Unit)? = null
-) : Modal(caption, true, size, animation, centered) {
+) : Modal(caption, true, size, animation, centered, false, true, backdrop) {
 
     /**
      * Window content text.
@@ -114,6 +116,7 @@ open class Alert(
          * @param size modal window size
          * @param animation determines if animations are used
          * @param centered determines if modal dialog is vertically centered
+         * @param backdrop the backdrop behavior, if TRUE then the backdrop is included and modal can be closed by clicking on it, if FALSE then no backdrop is added, if STATIC then the backdrop is included but modal cannot be closed by clicking on it
          * @param okTitle "OK" button text
          * @param callback a function called after closing window with OK button
          */
@@ -121,10 +124,11 @@ open class Alert(
         fun show(
             caption: String? = null, text: String? = null, rich: Boolean = false,
             align: Align? = null, size: ModalSize? = null, animation: Boolean = true,
-            centered: Boolean = false, okTitle: String = "OK",
+            centered: Boolean = false, backdrop: ModalBackdrop? = null,
+            okTitle: String = "OK",
             callback: (() -> Unit)? = null
         ) {
-            Alert(caption, text, rich, align, size, animation, centered, okTitle, callback).show()
+            Alert(caption, text, rich, align, size, animation, centered, backdrop, okTitle, callback).show()
         }
     }
 }

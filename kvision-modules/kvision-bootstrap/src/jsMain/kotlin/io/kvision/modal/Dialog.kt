@@ -35,15 +35,16 @@ import kotlin.coroutines.resume
  * @param centered determines if modal dialog is vertically centered
  * @param scrollable determines if modal dialog content is scrollable
  * @param escape determines if dialog can be closed with Esc key
+ * @param backdrop the backdrop behavior, if TRUE then the backdrop is included and modal can be closed by clicking on it, if FALSE then no backdrop is added, if STATIC then the backdrop is included but modal cannot be closed by clicking on it
  * @param className CSS class names
  * @param init an initializer extension function
  */
 open class Dialog<R>(
     caption: String? = null, closeButton: Boolean = true,
     size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false,
-    scrollable: Boolean = false, escape: Boolean = true,
+    scrollable: Boolean = false, escape: Boolean = true, backdrop: ModalBackdrop? = null,
     className: String? = null, init: (Dialog<R>.() -> Unit)? = null
-) : Modal(caption, closeButton, size, animation, centered, scrollable, escape, className) {
+) : Modal(caption, closeButton, size, animation, centered, scrollable, escape, backdrop, className) {
 
     internal var resultCallback: ((R?) -> Unit)? = null
 

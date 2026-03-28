@@ -47,6 +47,15 @@ enum class ModalSize(override val className: String) : CssClass {
 }
 
 /**
+ * Modal backdrop.
+ */
+enum class ModalBackdrop {
+    TRUE,
+    FALSE,
+    STATIC
+}
+
+/**
  * Configurable modal window based on Bootstrap modal.
  *
  * @constructor
@@ -57,6 +66,7 @@ enum class ModalSize(override val className: String) : CssClass {
  * @param centered determines if modal dialog is vertically centered
  * @param scrollable determines if modal dialog content is scrollable
  * @param escape determines if dialog can be closed with Esc key
+ * @param backdrop the backdrop behavior, if TRUE then the backdrop is included and modal can be closed by clicking on it, if FALSE then no backdrop is added, if STATIC then the backdrop is included but modal cannot be closed by clicking on it
  * @param className CSS class names
  * @param init an initializer extension function
  */
@@ -64,7 +74,7 @@ enum class ModalSize(override val className: String) : CssClass {
 open class Modal(
     caption: String? = null, closeButton: Boolean = true,
     size: ModalSize? = null, animation: Boolean = true, centered: Boolean = false,
-    scrollable: Boolean = false, private val escape: Boolean = true,
+    scrollable: Boolean = false, private val escape: Boolean = true, private val backdrop: ModalBackdrop? = null,
     className: String? = null, init: (Modal.() -> Unit)? = null
 ) : SimplePanel(className) {
 
@@ -246,9 +256,15 @@ open class Modal(
     }
 
     override fun afterInsert(node: VNode) {
+        val backdropValue = when(backdrop) {
+            ModalBackdrop.STATIC -> "static"
+            ModalBackdrop.TRUE -> true
+            ModalBackdrop.FALSE -> false
+            else -> if (escape) true else "static"
+        }
         createBsInstance({ Modal }, obj {
-            keyboard = escape
-            backdrop = if (escape) "true" else "static"
+            this.keyboard = escape
+            this.backdrop = backdropValue
         })
         this.getElement()?.addEventListener("hidden.bs.modal", { _ ->
             if (this.visible) {
