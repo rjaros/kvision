@@ -35,7 +35,7 @@ class ReactSpec : DomSpec {
 
     @Test
     fun react() {
-        runAsync { resolve, _ ->
+        runAsync { resolve, reject ->
             val root = Root("test", containerType = ContainerType.FIXED)
             var callback: RefCallback<HTMLInputElement>? = null
             val react = root.react("initial") { getState, changeState ->
@@ -51,19 +51,23 @@ class ReactSpec : DomSpec {
                 }
             }
             callback = RefCallback {
-                val element = document.getElementById("test")
-                assertEqualsHtml(
-                    "<div><input value=\"initial\"></div>",
-                    element?.innerHTML,
-                    "Should render React input component"
-                )
-                react.state = "changed"
-                assertEqualsHtml(
-                    "<div><input value=\"changed\"></div>",
-                    element?.innerHTML,
-                    "Should render React input component with changed state"
-                )
-                resolve()
+                try {
+                    val element = document.getElementById("test")
+                    assertEqualsHtml(
+                        "<div><input value=\"initial\"></div>",
+                        element?.innerHTML,
+                        "Should render React input component"
+                    )
+                    react.state = "changed"
+                    assertEqualsHtml(
+                        "<div><input value=\"changed\"></div>",
+                        element?.innerHTML,
+                        "Should render React input component with changed state"
+                    )
+                    resolve()
+                } catch (e: Throwable) {
+                    reject(e)
+                }
             }
         }
     }

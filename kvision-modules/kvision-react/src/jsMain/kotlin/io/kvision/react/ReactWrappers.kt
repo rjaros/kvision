@@ -26,6 +26,7 @@ import io.kvision.core.Container
 import io.kvision.panel.ContainerType
 import io.kvision.panel.Root
 import io.kvision.utils.obj
+import js.coroutines.awaitCancellation
 import react.ChildrenBuilder
 import react.FC
 import react.Props
@@ -60,7 +61,7 @@ fun kvisionWrapper(builder: Container.() -> Unit) = FC<Props> {
             it.appendChild(el)
             root = Root(el.unsafeCast<org.w3c.dom.HTMLElement>(), ContainerType.NONE, false, init = builder)
         }
-        awaitCleanup {
+        awaitCancellation {
             root?.dispose()
             el?.let { it.parentNode?.removeChild(it) }
         }

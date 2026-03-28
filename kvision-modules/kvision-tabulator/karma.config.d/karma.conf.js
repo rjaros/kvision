@@ -7,5 +7,10 @@ config.set({
     },
     captureTimeout: 360000,
     browserDisconnectTimeout: 360000,
-    browserNoActivityTimeout: 360000
+    browserNoActivityTimeout: 360000,
+    client: {
+        mocha: {
+            timeout: 5000
+        }
+    }
 });

@@ -384,6 +384,7 @@ open external class Tabulator {
     open fun activeSheet(sheet: dynamic): Unit = definedExternally
     open fun removeSheet(sheet: dynamic): Unit = definedExternally
 
+    open fun setMaxHeight(maxHeight: Number): Unit = definedExternally
 
     interface Options : OptionsGeneral, OptionsMenu, OptionsHistory, OptionsLocale, OptionsDownload, OptionsColumns,
         OptionsRows, OptionsData, OptionsSorting, OptionsFiltering, OptionsRowGrouping, OptionsPagination,

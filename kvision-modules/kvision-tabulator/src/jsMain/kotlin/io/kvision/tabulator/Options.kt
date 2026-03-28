@@ -1081,6 +1081,7 @@ data class TabulatorOptions<T : Any>(
     val groupClosedShowCalcs: Boolean? = null,
     val columnCalcs: dynamic = null,
     val downloadEncoder: dynamic = null,
+    val selectableRangeBlurEditOnNavigate: Boolean? = null,
 )
 
 /**
@@ -1298,5 +1299,6 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (groupClosedShowCalcs != null) this.groupClosedShowCalcs = groupClosedShowCalcs
         if (columnCalcs != null) this.columnCalcs = columnCalcs
         if (downloadEncoder != null) this.downloadEncoder = downloadEncoder
+        if (selectableRangeBlurEditOnNavigate != null) this.selectableRangeBlurEditOnNavigate = selectableRangeBlurEditOnNavigate
     } as Tabulator.Options
 }

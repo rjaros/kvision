@@ -32,11 +32,11 @@ import io.kvision.jquery.invoke
 import io.kvision.jquery.jQuery
 import io.kvision.panel.Root
 import io.kvision.test.Formatting.normalizeHtml
-import kotlin.js.Promise
 import kotlinx.browser.document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import org.w3c.dom.asList
+import kotlin.js.Promise
 
 interface TestSpec {
     fun beforeTest()
@@ -53,8 +53,12 @@ interface TestSpec {
         beforeTest()
         @Suppress("UnsafeCastFromDynamic")
         return Promise { resolve, reject ->
-            code({ resolve(Unit) }, reject)
-        }.asDynamic().finally {
+            try {
+                code({ resolve(Unit) }, reject)
+            } catch (e: Throwable) {
+                reject(e)
+            }
+        }.finally {
             afterTest()
         }
     }

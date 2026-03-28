@@ -559,10 +559,18 @@ open class Tabulator<T : Any>(
 
     /**
      * Change the height of the table.
-     * @param height new heigth of the table
+     * @param height new height of the table
      */
     open fun setHeight(height: Int) {
         jsTabulator?.setHeight(height)
+    }
+
+    /**
+     * Change the max height of the table.
+     * @param maxHeight new max height of the table
+     */
+    open fun setMaxHeight(maxHeight: Int) {
+        jsTabulator?.setMaxHeight(maxHeight)
     }
 
     /**
