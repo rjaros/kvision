@@ -33,7 +33,7 @@ import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
-import web.http.RequestInit
+import web.http.Request
 
 /**
  * The form field component for SelectRemote control.
@@ -62,7 +62,7 @@ open class SelectRemote<out T : Any>(
     emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    requestFilter: (suspend Request.() -> Unit)? = null,
     label: String? = null,
     rich: Boolean = false,
     init: (SelectRemote<T>.() -> Unit)? = null
@@ -248,7 +248,7 @@ fun <T : Any> Container.selectRemote(
     emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    requestFilter: (suspend Request.() -> Unit)? = null,
     label: String? = null, rich: Boolean = false, init: (SelectRemote<T>.() -> Unit)? = null
 ): SelectRemote<T> {
     val selectRemote =

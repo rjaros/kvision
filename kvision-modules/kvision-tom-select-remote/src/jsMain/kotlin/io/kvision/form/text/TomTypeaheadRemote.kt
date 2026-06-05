@@ -25,7 +25,7 @@ import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.Container
 import io.kvision.form.select.TomSelectCallbacks
 import io.kvision.html.InputType
-import web.http.RequestInit
+import web.http.Request
 
 /**
  * The form field component for TomTypeaheadRemote control.
@@ -49,7 +49,7 @@ open class TomTypeaheadRemote<out T : Any>(
     function: suspend T.(String?, String?) -> List<String>,
     stateFunction: (() -> String)? = null,
     type: InputType = InputType.TEXT, value: String? = null, tsCallbacks: TomSelectCallbacks? = null,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    requestFilter: (suspend Request.() -> Unit)? = null,
     name: String? = null, label: String? = null, rich: Boolean = false,
     init: (TomTypeaheadRemote<T>.() -> Unit)? = null
 ) : AbstractText(label, rich, false) {
@@ -109,7 +109,7 @@ fun <T : Any> Container.tomTypeaheadRemote(
     function: suspend T.(String?, String?) -> List<String>,
     stateFunction: (() -> String)? = null,
     type: InputType = InputType.TEXT, value: String? = null, tsCallbacks: TomSelectCallbacks? = null,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    requestFilter: (suspend Request.() -> Unit)? = null,
     name: String? = null, label: String? = null, rich: Boolean = false, init: (TomTypeaheadRemote<T>.() -> Unit)? = null
 ): TomTypeaheadRemote<T> {
     val tomTypeaheadRemote =

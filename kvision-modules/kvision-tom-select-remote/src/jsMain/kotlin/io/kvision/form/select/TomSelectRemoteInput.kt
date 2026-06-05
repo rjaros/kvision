@@ -21,18 +21,18 @@
  */
 package io.kvision.form.select
 
+import dev.kilua.rpc.CallAgent
 import dev.kilua.rpc.HttpMethod
 import dev.kilua.rpc.RemoteOption
 import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.Container
 import io.kvision.core.KVScope
-import io.kvision.remote.KVCallAgent
 import io.kvision.snabbdom.VNode
 import io.kvision.utils.Serialization
 import io.kvision.utils.obj
 import kotlinx.coroutines.launch
 import kotlinx.serialization.builtins.ListSerializer
-import web.http.RequestInit
+import web.http.Request
 
 /**
  * The TomSelectInput control connected to the fullstack service.
@@ -61,7 +61,7 @@ open class TomSelectRemoteInput<out T : Any>(
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
     protected val preload: Boolean = false, protected val openOnFocus: Boolean = false,
-    protected val requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    protected val requestFilter: (suspend Request.() -> Unit)? = null,
     className: String? = null,
     init: (TomSelectRemoteInput<T>.() -> Unit)? = null
 ) : TomSelectInput(null, value, emptyOption, multiple, maxOptions, tsOptions, tsCallbacks, tsRenders, className) {
@@ -70,7 +70,7 @@ open class TomSelectRemoteInput<out T : Any>(
 
     init {
         val (url, method) = serviceManager.requireCall(function)
-        val callAgent = KVCallAgent()
+        val callAgent = CallAgent()
         val loadCallback: ((query: String, callback: (Array<dynamic>) -> Unit) -> Unit)? = if (!preload) {
             { query, callback ->
                 tomSelectJs?.clearOptions()
@@ -117,7 +117,7 @@ open class TomSelectRemoteInput<out T : Any>(
     override fun refreshState() {
         if (initialized && value != null && tomSelectJs != null && tomSelectJs!!.asDynamic().options[value!!] == null) {
             val (url, method) = serviceManager.requireCall(function)
-            val callAgent = KVCallAgent()
+            val callAgent = CallAgent()
             loadResults(callAgent, url, method, null, value, requestFilter) { results ->
                 this.tomSelectJs?.addOptions(results)
                 super.refreshState()
@@ -173,12 +173,12 @@ open class TomSelectRemoteInput<out T : Any>(
     }
 
     protected open fun loadResults(
-        callAgent: KVCallAgent,
+        callAgent: CallAgent,
         url: String,
         method: HttpMethod,
         query: String?,
         initial: String?,
-        requestFilter: (suspend RequestInit.() -> Unit)?,
+        requestFilter: (suspend Request.() -> Unit)?,
         callback: (Array<dynamic>) -> Unit
     ) {
         val queryParam = query?.let { JSON.stringify(it) }
@@ -189,12 +189,7 @@ open class TomSelectRemoteInput<out T : Any>(
                 url,
                 listOf(queryParam, initialParam, state),
                 method,
-                requestFilter = requestFilter?.let { requestFilterParam ->
-                    {
-                        val self = this.unsafeCast<RequestInit>()
-                        self.requestFilterParam()
-                    }
-                }
+                requestFilter = requestFilter
             )
             val options = Serialization.plain.decodeFromString(
                 ListSerializer(RemoteOption.serializer()),
@@ -233,7 +228,7 @@ fun <T : Any> Container.tomSelectRemoteInput(
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
     preload: Boolean = false, openOnFocus: Boolean = false,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    requestFilter: (suspend Request.() -> Unit)? = null,
     className: String? = null,
     init: (TomSelectRemoteInput<T>.() -> Unit)? = null
 ): TomSelectRemoteInput<T> {

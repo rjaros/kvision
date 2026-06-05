@@ -21,18 +21,18 @@
  */
 package io.kvision.form.text
 
+import dev.kilua.rpc.CallAgent
 import dev.kilua.rpc.HttpMethod
 import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.Container
 import io.kvision.core.KVScope
 import io.kvision.form.select.TomSelectCallbacks
 import io.kvision.html.InputType
-import io.kvision.remote.KVCallAgent
 import io.kvision.utils.Serialization
 import kotlinx.coroutines.launch
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
-import web.http.RequestInit
+import web.http.Request
 
 /**
  * The TomTypeaheadInput control connected to the fullstack service.
@@ -53,14 +53,14 @@ open class TomTypeaheadRemoteInput<out T : Any>(
     private val function: suspend T.(String?, String?) -> List<String>,
     protected val stateFunction: (() -> String)? = null,
     type: InputType = InputType.TEXT, value: String? = null, tsCallbacks: TomSelectCallbacks? = null,
-    protected val requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    protected val requestFilter: (suspend Request.() -> Unit)? = null,
     className: String? = null,
     init: (TomTypeaheadRemoteInput<T>.() -> Unit)? = null
 ) : TomTypeaheadInput(null, type, value, tsCallbacks, className) {
 
     init {
         val (url, method) = serviceManager.requireCall(function)
-        val callAgent = KVCallAgent()
+        val callAgent = CallAgent()
         val loadCallback: (query: String, callback: (Array<dynamic>) -> Unit) -> Unit = { query, callback ->
             loadResults(callAgent, url, method, query, requestFilter, callback)
         }
@@ -70,11 +70,11 @@ open class TomTypeaheadRemoteInput<out T : Any>(
     }
 
     protected open fun loadResults(
-        callAgent: KVCallAgent,
+        callAgent: CallAgent,
         url: String,
         method: HttpMethod,
         query: String?,
-        requestFilter: (suspend RequestInit.() -> Unit)?,
+        requestFilter: (suspend Request.() -> Unit)?,
         callback: (Array<dynamic>) -> Unit
     ) {
         val queryParam = query?.let { JSON.stringify(it) }
@@ -84,12 +84,7 @@ open class TomTypeaheadRemoteInput<out T : Any>(
                 url,
                 listOf(queryParam, state),
                 method,
-                requestFilter = requestFilter?.let { requestFilterParam ->
-                    {
-                        val self = this.unsafeCast<RequestInit>()
-                        self.requestFilterParam()
-                    }
-                }
+                requestFilter = requestFilter
             )
             val options = Serialization.plain.decodeFromString(
                 ListSerializer(String.serializer()),
@@ -110,7 +105,7 @@ fun <T : Any> Container.tomTypeaheadRemoteInput(
     function: suspend T.(String?, String?) -> List<String>,
     stateFunction: (() -> String)? = null,
     type: InputType = InputType.TEXT, value: String? = null, tsCallbacks: TomSelectCallbacks? = null,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    requestFilter: (suspend Request.() -> Unit)? = null,
     className: String? = null,
     init: (TomTypeaheadRemoteInput<T>.() -> Unit)? = null
 ): TomTypeaheadRemoteInput<T> {

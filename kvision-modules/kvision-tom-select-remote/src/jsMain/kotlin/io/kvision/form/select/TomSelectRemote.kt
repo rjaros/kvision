@@ -33,7 +33,7 @@ import io.kvision.form.StringFormControl
 import io.kvision.panel.SimplePanel
 import io.kvision.state.MutableState
 import io.kvision.utils.SnOn
-import web.http.RequestInit
+import web.http.Request
 
 /**
  * The form field component for TomSelectRemote control.
@@ -64,7 +64,7 @@ open class TomSelectRemote<out T : Any>(
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
     private val preload: Boolean = false, private val openOnFocus: Boolean = false,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    requestFilter: (suspend Request.() -> Unit)? = null,
     name: String? = null, label: String? = null, rich: Boolean = false,
     init: (TomSelectRemote<T>.() -> Unit)? = null
 ) : SimplePanel("form-group kv-mb-3"), StringFormControl, MutableState<String?> {
@@ -297,7 +297,7 @@ fun <T : Any> Container.tomSelectRemote(
     function: suspend T.(String?, String?, String?) -> List<RemoteOption>, stateFunction: (() -> String)? = null,
     value: String? = null, emptyOption: Boolean = false, multiple: Boolean = false, maxOptions: Int? = null,
     tsOptions: TomSelectOptions? = null, tsCallbacks: TomSelectCallbacks? = null, tsRenders: TomSelectRenders? = null,
-    preload: Boolean = false, openOnFocus: Boolean = false, requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    preload: Boolean = false, openOnFocus: Boolean = false, requestFilter: (suspend Request.() -> Unit)? = null,
     name: String? = null, label: String? = null, rich: Boolean = false, init: (TomSelectRemote<T>.() -> Unit)? = null
 ): TomSelectRemote<T> {
     val tomSelectRemote =

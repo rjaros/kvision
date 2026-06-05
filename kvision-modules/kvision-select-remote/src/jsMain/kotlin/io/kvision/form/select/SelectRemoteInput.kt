@@ -21,18 +21,18 @@
  */
 package io.kvision.form.select
 
+import dev.kilua.rpc.CallAgent
 import dev.kilua.rpc.HttpMethod
 import dev.kilua.rpc.RpcSerialization
 import dev.kilua.rpc.RpcServiceMgr
 import dev.kilua.rpc.SimpleRemoteOption
 import io.kvision.core.Container
-import io.kvision.remote.KVCallAgent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.serialization.builtins.ListSerializer
-import web.http.RequestInit
+import web.http.Request
 
 /**
  * The Select control connected to the fullstack service.
@@ -57,7 +57,7 @@ open class SelectRemoteInput<out T : Any>(
     emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    requestFilter: (suspend Request.() -> Unit)? = null,
     className: String? = null,
     init: (SelectRemoteInput<T>.() -> Unit)? = null
 ) : SelectInput(null, value, emptyOption, multiple, selectSize, className) {
@@ -66,17 +66,13 @@ open class SelectRemoteInput<out T : Any>(
     init {
         val (url, _) = serviceManager.requireCall(function)
         scope.launch {
-            val callAgent = KVCallAgent()
+            val callAgent = CallAgent()
             val state = stateFunction?.invoke()?.let { JSON.stringify(it) }
             val result = callAgent.jsonRpcCall(
                 url,
                 listOf(state),
-                HttpMethod.POST, requestFilter = requestFilter?.let { requestFilterParam ->
-                    {
-                        val self = this.unsafeCast<RequestInit>()
-                        self.requestFilterParam()
-                    }
-                }
+                HttpMethod.POST,
+                requestFilter = requestFilter
             )
             options = RpcSerialization.plain.decodeFromString(
                 ListSerializer(SimpleRemoteOption.serializer()), result
@@ -102,7 +98,7 @@ fun <T : Any> Container.selectRemoteInput(
     emptyOption: Boolean = false,
     multiple: Boolean = false,
     selectSize: Int? = null,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    requestFilter: (suspend Request.() -> Unit)? = null,
     className: String? = null,
     init: (SelectRemoteInput<T>.() -> Unit)? = null
 ): SelectRemoteInput<T> {

@@ -21,6 +21,7 @@
  */
 package io.kvision.tabulator
 
+import dev.kilua.rpc.CallAgent
 import dev.kilua.rpc.RemoteData
 import dev.kilua.rpc.RemoteFilter
 import dev.kilua.rpc.RemoteSorter
@@ -28,7 +29,6 @@ import dev.kilua.rpc.RpcSerialization
 import dev.kilua.rpc.RpcServiceMgr
 import io.kvision.core.Container
 import io.kvision.core.KVScope
-import io.kvision.remote.KVCallAgent
 import io.kvision.utils.Serialization
 import kotlinx.browser.window
 import kotlinx.coroutines.asPromise
@@ -38,7 +38,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.overwriteWith
 import org.w3c.dom.get
-import web.http.RequestInit
+import web.http.Request
 import kotlin.reflect.KClass
 
 /**
@@ -68,7 +68,7 @@ open class TabulatorRemote<T : Any, out E : Any>(
     kClass: KClass<T>? = null,
     serializer: KSerializer<T>? = null,
     module: SerializersModule? = null,
-    requestFilter: (suspend RequestInit.() -> Unit)? = null
+    requestFilter: (suspend Request.() -> Unit)? = null
 ) : Tabulator<T>(null, false, options, types, className, kClass, serializer, module) {
 
     override val jsonHelper = if (serializer != null) Json(
@@ -89,7 +89,7 @@ open class TabulatorRemote<T : Any, out E : Any>(
     init {
         val (url, method) = serviceManager.requireCall(function)
 
-        val callAgent = KVCallAgent()
+        val callAgent = CallAgent()
 
         options.ajaxURL = urlPrefix + url.drop(1)
         options.ajaxRequestFunc = { _, _, params: dynamic ->
@@ -113,12 +113,8 @@ open class TabulatorRemote<T : Any, out E : Any>(
                     url,
                     listOf(page, size, filters, sorters, state),
                     method = method,
-                    requestFilter = requestFilter?.let { requestFilterParam ->
-                        {
-                            val self = this.unsafeCast<RequestInit>()
-                            self.requestFilterParam()
-                        }
-                    })
+                    requestFilter = requestFilter
+                )
                 val result = JSON.parse<dynamic>(r)
                 if (page != null) {
                     if (result.data == undefined) {
@@ -149,7 +145,7 @@ inline fun <reified T : Any, E : Any> Container.tabulatorRemote(
     className: String? = null,
     serializer: KSerializer<T>? = null,
     module: SerializersModule? = null,
-    noinline requestFilter: (suspend RequestInit.() -> Unit)? = null,
+    noinline requestFilter: (suspend Request.() -> Unit)? = null,
     noinline init: (TabulatorRemote<T, E>.() -> Unit)? = null
 ): TabulatorRemote<T, E> {
     val tabulatorRemote =
