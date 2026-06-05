@@ -28,7 +28,7 @@ fun KotlinMultiplatformExtension.compilerOptions() {
 }
 
 fun KotlinMultiplatformExtension.kotlinJsTargets() {
-    js(IR) {
+    js {
         useEsModules()
         browser {
             testTask {
@@ -43,7 +43,7 @@ fun KotlinMultiplatformExtension.kotlinJsTargets() {
     }
 }
 
-fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "21") {
+fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "25") {
     jvmToolchain {
         it.languageVersion.set(JavaLanguageVersion.of(target))
     }
@@ -58,7 +58,7 @@ fun KotlinMultiplatformExtension.kotlinJvmTargets(target: String = "21") {
     }
 }
 
-fun KotlinJvmProjectExtension.kotlinJvmTargets(target: String = "21") {
+fun KotlinJvmProjectExtension.kotlinJvmTargets(target: String = "25") {
     jvmToolchain {
         it.languageVersion.set(JavaLanguageVersion.of(target))
     }
