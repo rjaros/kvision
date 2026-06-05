@@ -325,6 +325,37 @@ enum class EditTriggerEvent(internal val event: String) {
     DBLCLICK("dblclick"),
 }
 
+
+/**
+ * Validation modes.
+ */
+enum class ValidationMode(internal val mode: String) {
+    BLOCKING("blocking"),
+    HIGHLIGHT("highlight"),
+    MANUAL("manual")
+}
+
+/**
+ * Clipboard modes.
+ */
+enum class Clipboard(internal val mode: String) {
+    TRUE("true"),
+    FALSE("false"),
+    COPY("copy"),
+    PASTE("paste")
+}
+
+/**
+ * Possible row ranges.
+ */
+enum class RowRange(internal val range: String) {
+    VISIBLE("visible"),
+    ACTIVE("active"),
+    SELECTED("selected"),
+    RANGE("range"),
+    ALL("all")
+}
+
 /**
  * Download config options.
  */
@@ -349,6 +380,35 @@ fun DownloadConfig.toJs(): Tabulator.AddditionalExportOptions {
         if (rowHeaders != null) this.rowHeaders = rowHeaders
         if (columnHeaders != null) this.columnHeaders = columnHeaders
         if (dataTree != null) this.dataTree = dataTree
+    } as Tabulator.AddditionalExportOptions
+}
+
+/**
+ * Clipboard copy options.
+ */
+data class ClipboardCopyConfig(
+    val columnHeaders: Boolean? = null,
+    val columnGroups: Boolean? = null,
+    val rowHeaders: Boolean? = null,
+    val rowGroups: Boolean? = null,
+    val columnCalcs: Boolean? = null,
+    val dataTree: Boolean? = null,
+    val formatCells: Boolean? = null,
+)
+
+/**
+ * An extension function to convert clipboard copy config class to JS object.
+ */
+@Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+fun ClipboardCopyConfig.toJs(): Tabulator.AddditionalExportOptions {
+    return obj {
+        if (columnGroups != null) this.columnGroups = columnGroups
+        if (rowGroups != null) this.rowGroups = rowGroups
+        if (columnCalcs != null) this.columnCalcs = columnCalcs
+        if (rowHeaders != null) this.rowHeaders = rowHeaders
+        if (columnHeaders != null) this.columnHeaders = columnHeaders
+        if (dataTree != null) this.dataTree = dataTree
+        if (formatCells != null) this.formatCells = formatCells
     } as Tabulator.AddditionalExportOptions
 }
 
@@ -512,6 +572,7 @@ data class ColumnDefinition<T : Any>(
     val mutatorImportParams: dynamic = null,
     val accessorDownload: dynamic = null,
     val accessorDownloadParams: dynamic = null,
+    val clipboard: Boolean? = null,
 )
 
 internal object EditorRoot {
@@ -905,6 +966,7 @@ fun <T : Any> ColumnDefinition<T>.toJs(
         if (mutatorImportParams != null) this.mutatorImportParams = mutatorImportParams
         if (accessorDownload != null) this.accessorDownload = accessorDownload
         if (accessorDownloadParams != null) this.accessorDownloadParams = accessorDownloadParams
+        if (clipboard != null) this.clipboard = clipboard
     } as Tabulator.ColumnDefinition
 }
 
@@ -1082,6 +1144,13 @@ data class TabulatorOptions<T : Any>(
     val columnCalcs: dynamic = null,
     val downloadEncoder: dynamic = null,
     val selectableRangeBlurEditOnNavigate: Boolean? = null,
+    val validationMode: ValidationMode? = null,
+    val clipboard: Clipboard? = null,
+    val clipboardCopyConfig: ClipboardCopyConfig? = null,
+    val clipboardCopyRowRange: RowRange? = null,
+    val clipboardCopyStyled: Boolean? = null,
+    val clipboardPasteParser: dynamic = null,
+    val clipboardPasteAction: dynamic = null,
 )
 
 /**
@@ -1115,6 +1184,13 @@ fun <T : Any> TabulatorOptions<T>.toJs(
                 }
             }
         } else null
+    }
+    val clipboardDyn: dynamic = when(clipboard) {
+        Clipboard.TRUE -> true
+        Clipboard.FALSE -> false
+        Clipboard.COPY -> "copy"
+        Clipboard.PASTE -> "paste"
+        null -> null
     }
 
     return obj {
@@ -1299,6 +1375,14 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (groupClosedShowCalcs != null) this.groupClosedShowCalcs = groupClosedShowCalcs
         if (columnCalcs != null) this.columnCalcs = columnCalcs
         if (downloadEncoder != null) this.downloadEncoder = downloadEncoder
-        if (selectableRangeBlurEditOnNavigate != null) this.selectableRangeBlurEditOnNavigate = selectableRangeBlurEditOnNavigate
+        if (selectableRangeBlurEditOnNavigate != null) this.selectableRangeBlurEditOnNavigate =
+            selectableRangeBlurEditOnNavigate
+        if (validationMode != null) this.validationMode = validationMode.mode
+        if (clipboardDyn != null) this.clipboard = clipboardDyn
+        if (clipboardCopyConfig != null) this.clipboardCopyConfig = clipboardCopyConfig.toJs()
+        if (clipboardCopyRowRange != null) this.clipboardCopyRowRange = clipboardCopyRowRange.range
+        if (clipboardCopyStyled != null) this.clipboardCopyStyled = clipboardCopyStyled
+        if (clipboardPasteParser != null) this.clipboardPasteParser = clipboardPasteParser
+        if (clipboardPasteAction != null) this.clipboardPasteAction = clipboardPasteAction
     } as Tabulator.Options
 }
