@@ -113,6 +113,11 @@ open class TomTypeaheadInput(
                 }
                 this.no_results = null
             }
+            this.sortField = arrayOf(obj {
+                this.field = $$"$order"
+            }, obj {
+                this.field = $$"$score"
+            })
             this.plugins = arrayOf("restore_on_backspace", "change_listener")
             if (tsCallbacks != null) {
                 val callbackObj = tsCallbacks!!.toJs()
