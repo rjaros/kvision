@@ -100,10 +100,11 @@ open class TomTypeaheadInput(
             this.openOnFocus = true
             this.duplicates = true
             if (options != null) {
-                this.options = options!!.map {
+                this.options = options!!.mapIndexed { index, string ->
                     obj {
-                        this.value = it
-                        this.text = translate(it)
+                        this.value = string
+                        this.text = translate(string)
+                        this.score = options!!.size - index
                     }
                 }.toTypedArray()
             }
@@ -113,11 +114,12 @@ open class TomTypeaheadInput(
                 }
                 this.no_results = null
             }
-            this.sortField = arrayOf(obj {
-                this.field = $$"$order"
-            }, obj {
-                this.field = $$"$score"
-            })
+            this.score = { _: dynamic ->
+                val result = { item: dynamic ->
+                    item.score
+                }
+                result
+            }
             this.plugins = arrayOf("restore_on_backspace", "change_listener")
             if (tsCallbacks != null) {
                 val callbackObj = tsCallbacks!!.toJs()
@@ -125,12 +127,14 @@ open class TomTypeaheadInput(
                 if (tsCallbacks!!.load != null) {
                     this.load = { query: String, callback: (dynamic) -> Unit ->
                         tsCallbacks!!.load!!(query) { options ->
-                            callback(options.map {
+                            this@TomTypeaheadInput.tomSelectJs?.clearOptions()
+                            callback(options.mapIndexed { index, string ->
                                 obj {
-                                    this.value = it
-                                    this.text = it
+                                    this.value = string
+                                    this.text = string
+                                    this.score = options.size - index
                                 }
-                            })
+                            }.toTypedArray())
                         }
                     }
                 }
