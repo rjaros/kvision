@@ -1,24 +1,24 @@
 {
-    "kvision": "9.4.0",
-    "kotlin": "2.3.10",
-    "coroutines": "1.10.2",
-    "ksp": "2.3.5",
-    "kilua-rpc": "0.0.42",
-    "logback": "1.5.32",
+    "kvision": "9.6.0",
+    "kotlin": "2.4.0",
+    "coroutines": "1.11.0",
+    "ksp": "2.3.9",
+    "kilua-rpc": "0.0.45",
+    "logback": "1.5.34",
     "template-javalin": {
     },
     "template-jooby": {
-        "jooby": "4.0.15"
+        "jooby": "4.5.2"
     },
     "template-ktor": {
-        "ktor": "3.4.0"
+        "ktor": "3.5.0"
     },
     "template-micronaut": {
-        "micronaut": "4.10.7",
-        "micronaut-plugins": "4.6.1"
+        "micronaut": "5.0.2",
+        "micronaut-plugins": "5.0.0"
     },
     "template-spring-boot": {
-        "spring-boot": "4.0.2"
+        "spring-boot": "4.1.0"
     },
     "template-vertx": {
     },
