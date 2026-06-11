@@ -24,6 +24,7 @@ package io.kvision.form.check
 import io.kvision.core.ClassSetBuilder
 import io.kvision.core.Component
 import io.kvision.core.Container
+import io.kvision.core.Display
 import io.kvision.form.FieldLabel
 import io.kvision.form.FormHorizontalRatio
 import io.kvision.form.GenericFormControl
@@ -45,6 +46,7 @@ import io.kvision.utils.obj
  * @param value selected option
  * @param name the name attribute of the generated HTML input element
  * @param inline determines if the options are rendered inline
+ * @param horizontal determines if the options of the group are rendered horizontally
  * @param label label text of the options group
  * @param rich determines if [label] can contain HTML code
  * @param toStr converter from T to String (defaults to toString())
@@ -53,7 +55,8 @@ import io.kvision.utils.obj
  */
 @Suppress("TooManyFunctions")
 open class GenericRadioGroup<T>(
-    options: List<Pair<T, String>>? = null, value: T? = null, name: String? = null, inline: Boolean = false,
+    options: List<Pair<T, String>>? = null, value: T? = null, name: String? = null,
+    inline: Boolean = false, horizontal: Boolean = false,
     label: String? = null,
     rich: Boolean = false,
     val toStr: (T) -> String = {
@@ -144,6 +147,10 @@ open class GenericRadioGroup<T>(
 
     internal val container = SimplePanel("kv-radiogroup-container") {
         id = this@GenericRadioGroup.idc
+        if (horizontal) {
+            display = Display.FLEX
+            setStyle("column-gap", "10px")
+        }
     }
 
     init {
@@ -327,7 +334,8 @@ open class GenericRadioGroup<T>(
  * It takes the same parameters as the constructor of the built component.
  */
 fun <T> Container.genericRadioGroup(
-    options: List<Pair<T, String>>? = null, value: T? = null, name: String? = null, inline: Boolean = false,
+    options: List<Pair<T, String>>? = null, value: T? = null, name: String? = null,
+    inline: Boolean = false, horizontal: Boolean = false,
     label: String? = null, rich: Boolean = false,
     toStr: (T) -> String = {
         it.toString()
@@ -338,7 +346,8 @@ fun <T> Container.genericRadioGroup(
     },
     init: (GenericRadioGroup<T>.() -> Unit)? = null
 ): GenericRadioGroup<T> {
-    val genericRadioGroup = GenericRadioGroup(options, value, name, inline, label, rich, toStr, fromStr, init)
+    val genericRadioGroup =
+        GenericRadioGroup(options, value, name, inline, horizontal, label, rich, toStr, fromStr, init)
     this.add(genericRadioGroup)
     return genericRadioGroup
 }

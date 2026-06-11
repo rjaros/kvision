@@ -36,16 +36,18 @@ import io.kvision.form.StringFormControl
  * @param value selected option
  * @param name the name attribute of the generated HTML input element
  * @param inline determines if the options are rendered inline
+ * @param horizontal determines if the options of the group are rendered horizontally
  * @param label label text of the options group
  * @param rich determines if [label] can contain HTML code
  * @param init an initializer extension function
  */
 open class RadioGroup(
-    options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
+    options: List<StringPair>? = null, value: String? = null, name: String? = null,
+    inline: Boolean = false, horizontal: Boolean = false,
     label: String? = null,
     rich: Boolean = false,
     init: (RadioGroup.() -> Unit)? = null
-) : GenericRadioGroup<String>(options, value, name, inline, label, rich), StringFormControl {
+) : GenericRadioGroup<String>(options, value, name, inline, horizontal, label, rich), StringFormControl {
 
     init {
         @Suppress("LeakingThis")
@@ -66,10 +68,16 @@ open class RadioGroup(
  * It takes the same parameters as the constructor of the built component.
  */
 fun Container.radioGroup(
-    options: List<StringPair>? = null, value: String? = null, name: String? = null, inline: Boolean = false,
-    label: String? = null, rich: Boolean = false, init: (RadioGroup.() -> Unit)? = null
+    options: List<StringPair>? = null,
+    value: String? = null,
+    name: String? = null,
+    inline: Boolean = false,
+    horizontal: Boolean = false,
+    label: String? = null,
+    rich: Boolean = false,
+    init: (RadioGroup.() -> Unit)? = null
 ): RadioGroup {
-    val radioGroup = RadioGroup(options, value, name, inline, label, rich, init)
+    val radioGroup = RadioGroup(options, value, name, inline, horizontal, label, rich, init)
     this.add(radioGroup)
     return radioGroup
 }
