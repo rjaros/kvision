@@ -610,6 +610,27 @@ class Form<K : Any>(
         panel?.validatorError = null
     }
 
+    fun getFirstInvalidControl(): FormControl? {
+        return fieldsParams.mapNotNull { entry ->
+            fields[entry.key]?.let { control ->
+                @Suppress("UNCHECKED_CAST")
+                val fieldsParams = (entry.value as? FieldParams<FormControl>)
+                val required = fieldsParams?.required ?: false
+                val requiredError = control.getValue() == null && control.visible && required
+                if (requiredError) {
+                    control
+                } else {
+                    val validatorPassed = !control.visible || (fieldsParams?.validator?.invoke(control) ?: true)
+                    if (!validatorPassed) {
+                        control
+                    } else {
+                        null
+                    }
+                }
+            }
+        }.firstOrNull()
+    }
+
     companion object {
         inline fun <reified K : Any> create(
             panel: FormPanel<K>? = null,

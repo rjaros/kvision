@@ -861,6 +861,13 @@ open class FormPanel<K : Any>(
         form.getFirstControl()?.focus()
     }
 
+    /**
+     * Makes the first invalid control focused.
+     */
+    open fun focusFirstInvalid() {
+        form.getFirstInvalidControl()?.focus()
+    }
+
     companion object {
 
         inline fun <reified K : Any> create(
