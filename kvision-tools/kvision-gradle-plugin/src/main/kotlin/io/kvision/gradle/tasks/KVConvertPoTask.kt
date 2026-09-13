@@ -14,15 +14,21 @@ import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.SkipWhenEmpty
 import org.gradle.api.tasks.TaskAction
 import org.gradle.process.ExecOperations
+import org.gradle.api.tasks.CacheableTask
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
 
+@CacheableTask
 abstract class KVConvertPoTask @Inject constructor(
     private val executor: ExecOperations,
 ) : DefaultTask(), KVisionTask {
 
+    @get:PathSensitive(PathSensitivity.NONE)
     @get:InputDirectory
     @get:SkipWhenEmpty
     abstract val sourceDirectory: DirectoryProperty
 
+    @get:PathSensitive(PathSensitivity.NONE)
     @get:InputFile
     abstract val po2jsonBinDir: RegularFileProperty
 

@@ -7,13 +7,17 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.logging.LogLevel
 import org.gradle.api.provider.Property
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
 import org.gradle.process.ExecOperations
 
+@CacheableTask
 abstract class KVGeneratePotTask @Inject constructor(
     private val executor: ExecOperations
 ) : DefaultTask(), KVisionTask {
@@ -21,9 +25,11 @@ abstract class KVGeneratePotTask @Inject constructor(
     @get:Input
     abstract val nodeJsBinary: Property<String>
 
+    @get:PathSensitive(PathSensitivity.NONE)
     @get:InputFile
     abstract val getTextExtractBin: RegularFileProperty
 
+    @get:PathSensitive(PathSensitivity.NONE)
     @get:InputFile
     @get:Optional
     abstract val getTextConfigJson: RegularFileProperty
