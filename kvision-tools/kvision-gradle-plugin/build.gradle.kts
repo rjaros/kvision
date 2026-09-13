@@ -28,7 +28,7 @@ gradlePlugin {
 }
 
 kotlin {
-    kotlinJvmTargets()
+    kotlinJvmTargets("21")
 }
 
 dependencies {
