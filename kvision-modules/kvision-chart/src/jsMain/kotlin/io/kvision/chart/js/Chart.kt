@@ -74,7 +74,7 @@ external interface BarControllerChartOptions {
         set(value) = definedExternally
 }
 
-external var BarController: ChartComponent /* ChartComponent & `T$1` */
+external val BarController: ChartComponent /* ChartComponent & `T$1` */
 
 external interface BubbleControllerDatasetOptions : ControllerDatasetOptions
 
@@ -85,7 +85,7 @@ external interface BubbleDataPoint {
     var r: Number
 }
 
-external var BubbleController: ChartComponent /* ChartComponent & `T$2` */
+external val BubbleController: ChartComponent /* ChartComponent & `T$2` */
 
 external interface LineControllerDatasetOptions : ControllerDatasetOptions,
     AnimationOptions {
@@ -104,14 +104,14 @@ external interface LineControllerChartOptions {
     var showLine: Boolean
 }
 
-external var LineController: ChartComponent /* ChartComponent & `T$3` */
+external val LineController: ChartComponent /* ChartComponent & `T$3` */
 
 external interface ScatterDataPoint {
     var x: Number
     var y: Number
 }
 
-external var ScatterController: ChartComponent /* ChartComponent & `T$4` */
+external val ScatterController: ChartComponent /* ChartComponent & `T$4` */
 
 external interface DoughnutControllerDatasetOptions : ControllerDatasetOptions,
     AnimationOptions {
@@ -157,7 +157,7 @@ external interface DoughnutMetaExtensions {
     var total: Number
 }
 
-external var PieController: ChartComponent /* ChartComponent & `T$6` */
+external val PieController: ChartComponent /* ChartComponent & `T$6` */
 
 external interface PolarAreaControllerDatasetOptions : DoughnutControllerDatasetOptions {
     var angle: Number
@@ -187,7 +187,7 @@ external interface RadarControllerDatasetOptions : ControllerDatasetOptions,
     var showLine: Boolean
 }
 
-external var RadarController: ChartComponent /* ChartComponent & `T$8` */
+external val RadarController: ChartComponent /* ChartComponent & `T$8` */
 
 external interface ChartMetaCommon<TElement : Element, TDatasetElement : Element> {
     var type: String
@@ -318,7 +318,7 @@ open external class Chart {
     }
 }
 
-external var registerables: Array<dynamic /* ChartComponent | Array<ChartComponent> | `T$77` | Plugin__0 | Array<Plugin__0> */>
+external val registerables: Array<dynamic /* ChartComponent | Array<ChartComponent> | `T$77` | Plugin__0 | Array<Plugin__0> */>
 
 external interface `T$76` {
     var canvas: HTMLCanvasElement
@@ -423,7 +423,7 @@ external interface Defaults :
     fun route(scope: String, name: String, targetScope: String, targetName: String)
 }
 
-external var defaults: Defaults
+external val defaults: Defaults
 
 external interface InteractionOptions {
     var axis: String?
@@ -582,7 +582,7 @@ external interface Registry {
     fun getScale(id: String): Scale?
 }
 
-external var registry: Registry
+external val registry: Registry
 
 external interface Tick {
     var value: Number
@@ -1148,7 +1148,7 @@ open external class BasicPlatform : BasePlatform
 
 open external class DomPlatform : BasePlatform
 
-external var Decimation: Plugin<AnyObject>
+external val Decimation: Plugin<AnyObject>
 
 external sealed class DecimationAlgorithm {
     object lttb: DecimationAlgorithm /* = 'lttb' */
@@ -1177,7 +1177,7 @@ external interface MinMaxDecimationOptions : BaseDecimationOptions {
         set(value) = definedExternally
 }
 
-external var Filler: Plugin<AnyObject>
+external val Filler: Plugin<AnyObject>
 
 external interface FillerOptions {
     var drawTime: String /* "beforeDatasetDraw" | "beforeDatasetsDraw" */
@@ -1202,7 +1202,7 @@ external interface FillerControllerDatasetOptions {
         set(value) = definedExternally
 }
 
-external var Legend: Plugin<AnyObject>
+external val Legend: Plugin<AnyObject>
 
 external interface LegendItem {
     var text: String
@@ -1310,9 +1310,9 @@ external interface LegendOptions {
     var title: `T$40`
 }
 
-external var SubTitle: Plugin<AnyObject>
+external val SubTitle: Plugin<AnyObject>
 
-external var Title: Plugin<AnyObject>
+external val Title: Plugin<AnyObject>
 
 external interface TitleOptions {
     var align: String /* "start" | "center" | "end" */
@@ -1389,7 +1389,7 @@ external interface TooltipModel {
     fun setActiveElements(active: Array<ActiveDataPoint>, eventPosition: `T$32`)
 }
 
-external var Tooltip: Plugin<AnyObject> /* Plugin__0 & `T$45` */
+external val Tooltip: Plugin<AnyObject> /* Plugin__0 & `T$45` */
 
 external interface TooltipCallbacks<Model, Item> {
     fun beforeTitle(tooltipItems: Array<Item>): dynamic /* String | Array<String> */
@@ -1672,7 +1672,7 @@ external interface CartesianScaleOptions : CoreScaleOptions {
     var ticks: TickOptions /* TickOptions & `T$51` */
 }
 
-external var CategoryScale: ChartComponent /* ChartComponent & `T$52` */
+external val CategoryScale: ChartComponent /* ChartComponent & `T$52` */
 
 external interface `T$79` {
     var format: NumberFormatOptions
@@ -1682,13 +1682,13 @@ external interface `T$79` {
     var count: Number
 }
 
-external var LinearScale: ChartComponent /* ChartComponent & `T$53` */
+external val LinearScale: ChartComponent /* ChartComponent & `T$53` */
 
 external interface `T$81` {
     var format: NumberFormatOptions
 }
 
-external var LogarithmicScale: ChartComponent /* ChartComponent & `T$54` */
+external val LogarithmicScale: ChartComponent /* ChartComponent & `T$54` */
 
 external interface `T$83` {
     var date: Any
@@ -1726,7 +1726,7 @@ external interface TimeScale : Scale {
     companion object : ChartComponent by definedExternally
 }
 
-external var TimeSeriesScale: ChartComponent /* ChartComponent & `T$56` */
+external val TimeSeriesScale: ChartComponent /* ChartComponent & `T$56` */
 
 external interface `T$87` {
     var display: Boolean

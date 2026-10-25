@@ -14,8 +14,8 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("@popperjs/core", libs.versions.popperjs.core.get()))
-                implementation(npm("bootstrap", libs.versions.bootstrap.asProvider().get()))
+                npm("@popperjs/core", libs.versions.popperjs.core.get())
+                npm("bootstrap", libs.versions.bootstrap.asProvider().get())
             }
         }
         getByName("jsTest") {

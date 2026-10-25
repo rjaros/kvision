@@ -17,7 +17,7 @@ kotlin {
                 api(project(":kvision-modules:kvision-jquery"))
                 api(project(":kvision-modules:kvision-bootstrap"))
                 api(project(":kvision"))
-                implementation(npm("bootstrap-fileinput", libs.versions.bootstrap.fileinput.get()))
+                npm("bootstrap-fileinput", libs.versions.bootstrap.fileinput.get())
             }
         }
         getByName("jsTest") {

@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("jquery", libs.versions.jquery.get()))
+                npm("jquery", libs.versions.jquery.get())
             }
         }
         getByName("jsTest") {

@@ -15,7 +15,7 @@ kotlin {
             dependencies {
                 api(project(":kvision"))
                 api(project(":kvision-modules:kvision-state"))
-                implementation(npm("tabulator-tables", libs.versions.tabulator.get()))
+                npm("tabulator-tables", libs.versions.tabulator.get())
             }
         }
         getByName("jsTest") {

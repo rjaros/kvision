@@ -17,21 +17,21 @@ kotlin {
                 api(libs.kotlinx.coroutines.core.js)
                 api(libs.kotlinx.serialization.json.js)
 //    for local development
-//    implementation(npm("zzz-kvision-assets", "http://localhost:8001/kvision-assets-8.0.6.tgz"))
-                implementation(npm("zzz-kvision-assets", libs.versions.npm.kvision.assets.get()))
-                implementation(npm("css-loader", libs.versions.css.loader.get()))
-                implementation(npm("style-loader", libs.versions.style.loader.get()))
-                implementation(npm("fecha", libs.versions.fecha.get()))
-                implementation(npm("snabbdom", libs.versions.snabbdom.asProvider().get()))
-                implementation(npm("@appcues/snabbdom-virtualize", libs.versions.snabbdom.virtualize.get()))
-                implementation(npm("split.js", libs.versions.splitjs.get()))
-                implementation(npm("gettext.js", libs.versions.gettext.js.get()))
-                implementation(npm("gettext-extract", libs.versions.gettext.extract.get()))
+//    npm("zzz-kvision-assets", "http://localhost:8001/kvision-assets-8.0.6.tgz")
+                npm("zzz-kvision-assets", libs.versions.npm.kvision.assets.get())
+                npm("css-loader", libs.versions.css.loader.get())
+                npm("style-loader", libs.versions.style.loader.get())
+                npm("fecha", libs.versions.fecha.get())
+                npm("snabbdom", libs.versions.snabbdom.asProvider().get())
+                npm("@appcues/snabbdom-virtualize", libs.versions.snabbdom.virtualize.get())
+                npm("split.js", libs.versions.splitjs.get())
+                npm("gettext.js", libs.versions.gettext.js.get())
+                npm("gettext-extract", libs.versions.gettext.extract.get())
             }
         }
         getByName("jsTest") {
             dependencies {
-                implementation(devNpm("karma-junit-reporter", libs.versions.karma.junit.reporter.get()))
+                npmDev("karma-junit-reporter", libs.versions.karma.junit.reporter.get())
                 implementation(kotlin("test-js"))
                 implementation(project(":kvision-modules:kvision-testutils"))
             }

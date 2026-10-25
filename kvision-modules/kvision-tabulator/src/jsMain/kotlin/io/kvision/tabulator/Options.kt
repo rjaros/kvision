@@ -1153,7 +1153,9 @@ data class TabulatorOptions<T : Any>(
     val clipboardCopyStyled: Boolean? = null,
     val clipboardPasteParser: dynamic = null,
     val clipboardPasteAction: dynamic = null,
-    val selectableRangeInitializeDefault: Boolean? = null
+    val selectableRangeInitializeDefault: Boolean? = null,
+    val selectableRangeFill: Boolean? = null,
+    val selectableRangeCommitEditOnNavigate: Boolean? = null
 )
 
 /**
@@ -1389,5 +1391,7 @@ fun <T : Any> TabulatorOptions<T>.toJs(
         if (clipboardPasteAction != null) this.clipboardPasteAction = clipboardPasteAction
         if (selectableRangeInitializeDefault != null) this.selectableRangeInitializeDefault =
             selectableRangeInitializeDefault
+        if (selectableRangeFill != null) this.selectableRangeFill = selectableRangeFill
+        if (selectableRangeCommitEditOnNavigate != null) this.selectableRangeCommitEditOnNavigate = selectableRangeCommitEditOnNavigate
     } as Tabulator.Options
 }

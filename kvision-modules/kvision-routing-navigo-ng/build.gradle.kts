@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                api(libs.navigo.kotlin.ng)
+                npm("navigo", libs.versions.navigo8.get())
             }
         }
         getByName("jsTest") {

@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("imask", libs.versions.imask.get()))
+                npm("imask", libs.versions.imask.get())
             }
         }
         getByName("jsTest") {

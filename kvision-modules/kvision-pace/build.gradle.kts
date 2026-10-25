@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("pace-progressbar", libs.versions.pace.progressbar.get()))
+                npm("pace-progressbar", libs.versions.pace.progressbar.get())
             }
         }
         getByName("jsTest") {

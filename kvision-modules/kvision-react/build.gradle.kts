@@ -16,8 +16,8 @@ kotlin {
                 api(project(":kvision"))
                 api(libs.kotlin.react)
                 api(libs.kotlin.react.dom)
-                implementation(npm("react", libs.versions.react.get()))
-                implementation(npm("react-dom", libs.versions.react.get()))
+                npm("react", libs.versions.react.get())
+                npm("react-dom", libs.versions.react.get())
             }
         }
         getByName("jsTest") {

@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("toastify-js", libs.versions.toastify.get()))
+                npm("toastify-js", libs.versions.toastify.get())
             }
         }
         getByName("jsTest") {

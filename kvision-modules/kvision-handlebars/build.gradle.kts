@@ -14,8 +14,8 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("handlebars", libs.versions.handlebars.asProvider().get()))
-                implementation(npm("handlebars-loader", libs.versions.handlebars.loader.get()))
+                npm("handlebars", libs.versions.handlebars.asProvider().get())
+                npm("handlebars-loader", libs.versions.handlebars.loader.get())
             }
         }
         getByName("jsTest") {

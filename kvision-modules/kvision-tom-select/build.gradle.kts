@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("tom-select", libs.versions.tom.select.get()))
+                npm("tom-select", libs.versions.tom.select.get())
             }
         }
         getByName("jsTest") {

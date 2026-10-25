@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("@fortawesome/fontawesome-free", libs.versions.fontawesome.get()))
+                npm("@fortawesome/fontawesome-free", libs.versions.fontawesome.get())
             }
         }
         getByName("jsTest") {

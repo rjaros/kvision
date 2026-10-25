@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("@material/web", libs.versions.material.web.get()))
+                npm("@material/web", libs.versions.material.web.get())
             }
         }
         getByName("jsTest") {

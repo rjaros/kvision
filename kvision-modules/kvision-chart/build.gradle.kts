@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("chart.js", libs.versions.chartjs.get()))
+                npm("chart.js", libs.versions.chartjs.get())
             }
         }
         getByName("jsTest") {

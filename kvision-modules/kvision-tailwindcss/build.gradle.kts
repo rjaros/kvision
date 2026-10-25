@@ -14,8 +14,8 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("tailwindcss", libs.versions.tailwindcss.get()))
-                implementation(npm("@tailwindcss/webpack", libs.versions.tailwindcss.get()))
+                npm("tailwindcss", libs.versions.tailwindcss.get())
+                npm("@tailwindcss/webpack", libs.versions.tailwindcss.get())
             }
         }
         getByName("jsTest") {

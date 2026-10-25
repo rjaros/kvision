@@ -14,8 +14,8 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("leaflet", libs.versions.leaflet.get()))
-                implementation(npm("geojson", libs.versions.geojson.get()))
+                npm("leaflet", libs.versions.leaflet.get())
+                npm("geojson", libs.versions.geojson.get())
             }
         }
         getByName("jsTest") {

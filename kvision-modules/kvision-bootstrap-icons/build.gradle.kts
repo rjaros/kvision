@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("bootstrap-icons", libs.versions.bootstrap.icons.get()))
+                npm("bootstrap-icons", libs.versions.bootstrap.icons.get())
             }
         }
         getByName("jsTest") {

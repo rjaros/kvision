@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("print-js", libs.versions.printjs.get()))
+                npm("print-js", libs.versions.printjs.get())
             }
         }
         getByName("jsTest") {

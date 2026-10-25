@@ -14,7 +14,7 @@ kotlin {
         getByName("jsMain") {
             dependencies {
                 api(project(":kvision"))
-                implementation(npm("trix", libs.versions.trix.get()))
+                npm("trix", libs.versions.trix.get())
             }
         }
         getByName("jsTest") {
