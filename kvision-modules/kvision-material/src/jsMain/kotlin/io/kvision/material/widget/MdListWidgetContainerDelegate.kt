@@ -108,7 +108,7 @@ internal class MdListWidgetContainerDelegate<T : MdItemWidget>(
     }
 
     override fun disposeAll() {
-        items.onEach { it.dispose() }
+        items.forEach { it.dispose() }
         removeAll()
     }
 }

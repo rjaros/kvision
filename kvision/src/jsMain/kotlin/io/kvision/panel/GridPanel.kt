@@ -195,7 +195,7 @@ open class GridPanel(
     }
 
     override fun removeAll() {
-        children?.map {
+        children?.forEach {
             it.clearParent()
             (it as? WidgetWrapper)?.dispose()
         }
@@ -205,7 +205,7 @@ open class GridPanel(
     }
 
     override fun disposeAll() {
-        children?.map {
+        children?.forEach {
             (it as? WidgetWrapper)?.let {
                 it.wrapped?.dispose()
             }
@@ -214,7 +214,7 @@ open class GridPanel(
     }
 
     override fun dispose() {
-        children?.map {
+        children?.forEach {
             (it as? WidgetWrapper)?.let {
                 it.wrapped?.dispose()
             }

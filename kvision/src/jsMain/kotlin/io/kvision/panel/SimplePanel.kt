@@ -90,7 +90,7 @@ open class SimplePanel(className: String? = null, init: (SimplePanel.() -> Unit)
      * Protected method to remove all private children.
      */
     protected open fun removeAllPrivate() {
-        privateChildren?.map { it.clearParent() }
+        privateChildren?.forEach { it.clearParent() }
         privateChildren = null
         refresh()
     }
@@ -139,7 +139,7 @@ open class SimplePanel(className: String? = null, init: (SimplePanel.() -> Unit)
     override fun addAll(children: List<Component>) {
         if (this.children == null) this.children = mutableListOf()
         this.children!!.addAll(children)
-        children.map {
+        children.forEach {
             it.parent?.remove(it)
             it.parent = this
         }
@@ -163,7 +163,7 @@ open class SimplePanel(className: String? = null, init: (SimplePanel.() -> Unit)
     }
 
     override fun removeAll() {
-        children?.map { it.clearParent() }
+        children?.forEach { it.clearParent() }
         children = null
         refresh()
     }
@@ -181,10 +181,10 @@ open class SimplePanel(className: String? = null, init: (SimplePanel.() -> Unit)
         super.dispose()
         children?.forEach { it.dispose() }
         privateChildren?.forEach { it.dispose() }
-        children?.map { it.clearParent() }
+        children?.forEach { it.clearParent() }
         children?.clear()
         children = null
-        privateChildren?.map { it.clearParent() }
+        privateChildren?.forEach { it.clearParent() }
         privateChildren?.clear()
         privateChildren = null
     }

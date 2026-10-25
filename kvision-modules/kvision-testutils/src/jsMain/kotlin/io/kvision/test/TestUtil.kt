@@ -188,7 +188,7 @@ fun toKeyValuePairString(obj: dynamic) =
         .entries(obj)
         .unsafeCast<Array<Array<Any?>>>()
         .map { pair -> pair.map { it.toString() } }
-        .apply { sortedBy { it[0] } }
+        .sortedBy { it[0] }
         .joinToString(",") { it.joinToString("=") }
 
 external fun require(name: String): dynamic

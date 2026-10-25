@@ -212,7 +212,7 @@ open class FlexPanel(
     }
 
     override fun removeAll() {
-        children?.map {
+        children?.forEach {
             it.clearParent()
             (it as? WidgetWrapper)?.dispose()
         }
@@ -222,7 +222,7 @@ open class FlexPanel(
     }
 
     override fun disposeAll() {
-        children?.map {
+        children?.forEach {
             (it as? WidgetWrapper)?.let {
                 it.wrapped?.dispose()
             }
@@ -231,7 +231,7 @@ open class FlexPanel(
     }
 
     override fun dispose() {
-        children?.map {
+        children?.forEach {
             (it as? WidgetWrapper)?.let {
                 it.wrapped?.dispose()
             }
