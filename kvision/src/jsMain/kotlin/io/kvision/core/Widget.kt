@@ -438,7 +438,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
         val handlerCounter = listenerCounter++
         val blockAsWidget = block as SnOn<Widget>.() -> Unit
         val handlers = on(this)
-        (handlers::apply)(blockAsWidget)
+        val _ = (handlers::apply)(blockAsWidget)
         for (key: String in js("Object").keys(handlers)) {
             if (key != "self") {
                 val handler = handlers.asDynamic()[key]
@@ -477,7 +477,7 @@ open class Widget(internal val className: String? = null, init: (Widget.() -> Un
         val handlerCounter = listenerCounter++
         val blockAsWidget = block as SnOn<Widget>.() -> Unit
         val handlers = on(eventTarget ?: this)
-        (handlers::apply)(blockAsWidget)
+        val _ = (handlers::apply)(blockAsWidget)
         for (key: String in js("Object").keys(handlers)) {
             if (key != "self") {
                 val handler = handlers.asDynamic()[key]

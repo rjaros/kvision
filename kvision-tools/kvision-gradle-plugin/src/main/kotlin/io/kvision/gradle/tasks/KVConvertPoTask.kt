@@ -49,7 +49,7 @@ abstract class KVConvertPoTask @Inject constructor(
 
         sourceDirectory.asFileTree.filter {
             it.isFile && it.extension == "po"
-        }.onEach { poFile ->
+        }.forEach { poFile ->
             val result = executor.execCapture {
                 executable(nodeJsBinary)
                 args(

@@ -78,7 +78,7 @@ open class TypedReduxStore<S : Any, A : RAction>(
      * Dispatches a synchronous action object.
      */
     fun dispatch(action: A) {
-        store.dispatch(action)
+        val _ = store.dispatch(action)
     }
 
     /**
@@ -87,7 +87,7 @@ open class TypedReduxStore<S : Any, A : RAction>(
     fun dispatch(actionCreator: ActionCreator<A, S>) {
         @Suppress("UNCHECKED_CAST")
         val thunk: Thunk<S> = { dispatch, getState, _ -> actionCreator(dispatch as ((A) -> Unit), getState) }
-        store.store.dispatch(thunk)
+        val _ = store.store.dispatch(thunk)
     }
 
     override fun subscribe(observer: (S) -> Unit): () -> Unit {

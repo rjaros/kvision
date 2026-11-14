@@ -63,7 +63,7 @@ open class Routing(
                     route.handler?.let { handler -> handler(route) }
                 },
                 notFound = {
-                    notFoundHandler?.let { handler -> handler(it) }
+                    notFoundHandler?.let { handler -> val _ = handler(it) }
                 },
             )
         }.launchIn(coroutineScope)

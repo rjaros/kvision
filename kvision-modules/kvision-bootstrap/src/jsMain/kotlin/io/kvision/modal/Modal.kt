@@ -41,6 +41,7 @@ import io.kvision.utils.obj
  * Modal window sizes.
  */
 enum class ModalSize(override val className: String) : CssClass {
+    XXLARGE("modal-xxl"),
     XLARGE("modal-xl"),
     LARGE("modal-lg"),
     SMALL("modal-sm")

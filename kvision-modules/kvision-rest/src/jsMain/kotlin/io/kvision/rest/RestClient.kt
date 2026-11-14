@@ -308,7 +308,7 @@ open class RestClient(block: (RestClientConfig.() -> Unit) = {}) {
         restRequestConfig.requestFilter?.invoke(requestInit)
         removeNulls(requestInit)
         return Promise { resolve, reject ->
-            window.fetch(fetchUrl, requestInit).then { response ->
+            val _ = window.fetch(fetchUrl, requestInit).then { response ->
                 if (response.ok) {
                     val statusText = response.statusText
                     if (response.status != HTTP_NO_CONTENT) {
