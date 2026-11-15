@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +22,8 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer.vector
 
-import io.kvision.maps.externals.geojson.Feature
-import io.kvision.maps.externals.geojson.GeoJsonCoordinatedGeometry
-import io.kvision.maps.externals.geojson.GeoJsonSingleOrMultiLineString
 import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
 import io.kvision.maps.externals.leaflet.geometry.Point
@@ -35,10 +32,8 @@ import io.kvision.maps.externals.leaflet.geometry.Point
  * A class for drawing polyline overlays on a map. Extends [Path].
  *
  * See [`https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/layer/vector/Polyline.js`](https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/layer/vector/Polyline.js)
- *
- * @param T [io.kvision.maps.externals.geojson.LineString] or [io.kvision.maps.externals.geojson.MultiLineString]
  */
-open external class Polyline<T : GeoJsonSingleOrMultiLineString> : Path<Polyline.PolylineOptions> {
+open external class Polyline : Path<Polyline.PolylineOptions> {
 
     /** Create a polyline from an array of [LatLng] points */
     constructor(
@@ -52,25 +47,25 @@ open external class Polyline<T : GeoJsonSingleOrMultiLineString> : Path<Polyline
         options: PolylineOptions = definedExternally
     )
 
-    open var feature: Feature<GeoJsonCoordinatedGeometry>?
+    open var feature: dynamic
 
-    open fun toGeoJSON(precision: Number = definedExternally): Feature<T>
+    open fun toGeoJSON(precision: Double = definedExternally): dynamic
 
     open fun getLatLngs(): dynamic /* Array<LatLng> | Array<Array<LatLng>> | Array<Array<Array<LatLng>>> */
 
-    open fun setLatLngs(latlngs: Array<LatLng>): Polyline<T> /* this */
-    open fun setLatLngs(latlngs: Array<Array<LatLng>>): Polyline<T> /* this */
-    open fun setLatLngs(latlngs: Array<Array<Array<LatLng>>>): Polyline<T> /* this */
+    open fun setLatLngs(latlngs: Array<LatLng>): Polyline /* this */
+    open fun setLatLngs(latlngs: Array<Array<LatLng>>): Polyline /* this */
+    open fun setLatLngs(latlngs: Array<Array<Array<LatLng>>>): Polyline /* this */
 
     open fun addLatLng(
         latlng: LatLng,
         latlngs: Array<LatLng> = definedExternally
-    ): Polyline<T> /* this */
+    ): Polyline /* this */
 
     open fun addLatLng(
         latlng: Array<LatLng>,
         latlngs: Array<LatLng> = definedExternally
-    ): Polyline<T> /* this */
+    ): Polyline /* this */
 
     open fun isEmpty(): Boolean
     open fun getCenter(): LatLng
@@ -83,7 +78,8 @@ open external class Polyline<T : GeoJsonSingleOrMultiLineString> : Path<Polyline
          * How much to simplify the polyline on each zoom level. More means better performance and
          * smoother look, and less means more accurate representation.
          */
-        var smoothFactor: Number?
+        var smoothFactor: Double?
+
         /** Disable polyline clipping. */
         var noClip: Boolean?
     }

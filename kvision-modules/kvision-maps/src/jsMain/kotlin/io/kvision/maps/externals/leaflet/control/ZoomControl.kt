@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,32 +22,32 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-@file:JsQualifier("Control")
-
 package io.kvision.maps.externals.leaflet.control
 
+import io.kvision.maps.externals.leaflet.control.ZoomControl.ZoomControlOptions
+import io.kvision.maps.externals.leaflet.map.LeafletMap
 
-open external class Attribution(
-    options: AttributionOptions = definedExternally
-) : Control<Attribution.AttributionOptions> {
+/**
+ * A basic zoom control with two buttons (zoom in and zoom out). It is put on the map by default
+ * unless you set its [LeafletMap.zoomControl] option to `false`.
+ */
+open external class ZoomControl(options: ZoomControlOptions = definedExternally) : Control<ZoomControlOptions> {
 
-    /** The HTML text shown before the attributions. Pass `false` to disable. */
-    open fun setPrefix(prefix: String): Attribution /* this */
-    /** The HTML text shown before the attributions. Pass `false` to disable. */
-    open fun setPrefix(prefix: Boolean): Attribution /* this */
-    /** Adds an attribution text (e.g. `Vector data &copy; Mapbox`).*/
-    open fun addAttribution(text: String): Attribution /* this */
-    /** Removes an attribution text. */
-    open fun removeAttribution(text: String): Attribution /* this */
+    /** Disables the zoom buttons. */
+    open fun disable(): ZoomControl /* this */
 
-    interface AttributionOptions : ControlOptions {
-        /**
-         * The HTML text shown before the attributions. Pass false to disable.
-         *
-         * Type: `String` or `false`
-         */
-        var prefix: dynamic
+    /** Enables the zoom buttons again after [disable]. */
+    open fun enable(): ZoomControl /* this */
+
+    interface ZoomControlOptions : ControlOptions {
+        /** The text set on the 'zoom in' button. */
+        var zoomInText: String?
+        /** The title  set on the 'zoom in' button. */
+        var zoomInTitle: String?
+        /** The text set on the 'zoom out' button. */
+        var zoomOutText: String?
+        /** The title set on the 'zoom out' button. */
+        var zoomOutTitle: String?
     }
 
 }

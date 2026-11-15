@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +22,13 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer.overlay
 
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
-import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
 import org.w3c.dom.HTMLVideoElement
 
-open external class VideoOverlay : Layer<VideoOverlay.VideoOverlayOptions>, MediaOverlay {
+open external class VideoOverlay : ImageOverlay<VideoOverlay.VideoOverlayOptions> {
 
     constructor(
         video: String,
@@ -49,16 +48,17 @@ open external class VideoOverlay : Layer<VideoOverlay.VideoOverlayOptions>, Medi
         options: VideoOverlayOptions = definedExternally
     )
 
-    override fun setOpacity(opacity: Number): VideoOverlay /* this */
+    override fun setOpacity(opacity: Double): VideoOverlay /* this */
     override fun bringToFront(): VideoOverlay /* this */
     override fun bringToBack(): VideoOverlay /* this */
     override fun setUrl(url: String): VideoOverlay /* this */
     override fun setBounds(bounds: LatLngBounds): VideoOverlay /* this */
-    override fun setZIndex(value: Number): VideoOverlay /* this */
-    override fun getElement(): HTMLVideoElement?
+    override fun setZIndex(value: Int): VideoOverlay /* this */
+    override fun getElement(): HTMLVideoElement
 
     interface VideoOverlayOptions : ImageOverlayOptions {
         var autoplay: Boolean?
+        var controls: Boolean?
         var loop: Boolean?
         var keepAspectRatio: Boolean?
         var playsInline: Boolean?

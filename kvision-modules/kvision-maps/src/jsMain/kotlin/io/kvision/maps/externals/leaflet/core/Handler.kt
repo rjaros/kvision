@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +22,6 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.core
 
 import io.kvision.maps.externals.leaflet.map.LeafletMap
@@ -34,12 +34,21 @@ import io.kvision.maps.externals.leaflet.map.LeafletMap
 open external class Handler(map: LeafletMap) : Class {
     /** Enables the handler */
     open fun enable(): Handler /* this */
+
     /** Disables the handler */
     open fun disable(): Handler /* this */
+
     /** Returns `true` if the handler is enabled */
     open fun enabled(): Boolean
+
     /** Called when the handler is enabled, should add event hooks. */
-    open val addHooks: (() -> Unit)?
+    fun addHooks()
+
     /** Called when the handler is disabled, should remove the event hooks added previously. */
-    open val removeHooks: (() -> Unit)?
+    fun removeHooks()
+
+    companion object {
+        /** Adds a new handler to the given map with the given name. */
+        fun addTo(map: LeafletMap, name: String): dynamic
+    }
 }

@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,43 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-@file:JsQualifier("TileLayer")
 
-package io.kvision.maps.externals.leaflet.layer.tile
+package io.kvision.maps.externals.leaflet.control
 
-import io.kvision.maps.externals.leaflet.geo.CRS
+import io.kvision.maps.externals.leaflet.control.ScaleControl.ScaleControlOptions
 
 /**
- * Used to display WMS services as tile layers on the map.
+ * A simple scale control that shows the scale of the current center of screen in metric (m/km) and
+ * imperial (mi/ft) systems.
  */
-open external class WMS(
-    baseUrl: String,
-    options: WMSOptions,
-) : TileLayer<WMS.WMSOptions> {
+open external class ScaleControl(options: ScaleControlOptions = definedExternally) : Control<ScaleControlOptions> {
 
-    open fun setParams(params: WMSParams, noRedraw: Boolean = definedExternally): WMS /* this */
-
-    interface WMSOptions : TileLayerOptions {
-        var layers: String?
-        var styles: String?
-        var format: String?
-        var transparent: Boolean?
-        var version: String?
-        var crs: CRS?
-        var uppercase: Boolean?
-    }
-
-    interface WMSParams {
-        var format: String?
-        var layers: String
-        var request: String?
-        var service: String?
-        var styles: String?
-        var version: String?
-        var transparent: Boolean?
-        var width: Number?
-        var height: Number?
+    interface ScaleControlOptions : ControlOptions {
+        /**
+         * Maximum width of the control in pixels. The width is set dynamically to show round
+         * values (e.g. 100, 200, 500).
+         */
+        var maxWidth: Int?
+        /** Whether to show the metric scale line (m/km). */
+        var metric: Boolean?
+        /** Whether to show the imperial scale line (mi/ft). */
+        var imperial: Boolean?
+        /**
+         * If `true`, the control is updated on `moveend`, otherwise it's
+         * always up-to-date (updated on `move`).
+         */
+        var updateWhenIdle: Boolean?
     }
 
 }

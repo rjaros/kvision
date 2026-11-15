@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +22,9 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer.vector
 
-import io.kvision.maps.externals.leaflet.layer.Layer
+import io.kvision.maps.externals.leaflet.layer.BlanketOverlay
 import io.kvision.maps.externals.leaflet.layer.vector.Renderer.RendererOptions
 
 /**
@@ -38,12 +38,12 @@ import io.kvision.maps.externals.leaflet.layer.vector.Renderer.RendererOptions
  *
  * Do not use this class directly, use [SVG] and [Canvas] instead.
  */
-abstract external class Renderer<T: RendererOptions>(
+abstract external class Renderer<T : RendererOptions>(
     options: RendererOptions = definedExternally
-) : Layer<T> {
+) : BlanketOverlay<T> {
 
-    interface RendererOptions : LayerOptions {
-        var padding: Number?
+    interface RendererOptions : BlanketOverlayOptions {
+        override var padding: Double?
     }
 
 }

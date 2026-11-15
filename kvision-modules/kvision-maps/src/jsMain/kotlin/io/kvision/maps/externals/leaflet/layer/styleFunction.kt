@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +23,6 @@
 
 package io.kvision.maps.externals.leaflet.layer
 
-import io.kvision.maps.externals.geojson.Feature
-import io.kvision.maps.externals.geojson.GeoJsonGeometry
 import io.kvision.maps.externals.leaflet.layer.vector.Path
 
-typealias StyleFunction = (feature: Feature<GeoJsonGeometry>) -> Path.PathOptions
+typealias StyleFunction = (feature: dynamic) -> Path.PathOptions

@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,35 +22,31 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-@file:JsQualifier("Control")
-
 package io.kvision.maps.externals.leaflet.control
 
-import io.kvision.maps.externals.leaflet.control.Scale.ScaleOptions
-import io.kvision.maps.externals.leaflet.events.LeafletEventHandlerFnMap
+open external class AttributionControl(
+    options: AttributionControlOptions = definedExternally
+) : Control<AttributionControl.AttributionControlOptions> {
 
-/**
- * A simple scale control that shows the scale of the current center of screen in metric (m/km) and
- * imperial (mi/ft) systems.
- */
-open external class Scale(options: ScaleOptions = definedExternally) : Control<ScaleOptions> {
+    /** The HTML text shown before the attributions. Pass `false` to disable. */
+    open fun setPrefix(prefix: String): AttributionControl /* this */
 
-    interface ScaleOptions : ControlOptions {
+    /** The HTML text shown before the attributions. Pass `false` to disable. */
+    open fun setPrefix(prefix: Boolean): AttributionControl /* this */
+
+    /** Adds an attribution text (e.g. `Vector data &copy; Mapbox`).*/
+    open fun addAttribution(text: String): AttributionControl /* this */
+
+    /** Removes an attribution text. */
+    open fun removeAttribution(text: String): AttributionControl /* this */
+
+    interface AttributionControlOptions : ControlOptions {
         /**
-         * Maximum width of the control in pixels. The width is set dynamically to show round
-         * values (e.g. 100, 200, 500).
+         * The HTML text shown before the attributions. Pass false to disable.
+         *
+         * Type: `String` or `false`
          */
-        var maxWidth: Number?
-        /** Whether to show the metric scale line (m/km). */
-        var metric: Boolean?
-        /** Whether to show the imperial scale line (mi/ft). */
-        var imperial: Boolean?
-        /**
-         * If `true`, the control is updated on [LeafletEventHandlerFnMap.moveend], otherwise it's
-         * always up-to-date (updated on [LeafletEventHandlerFnMap.move]).
-         */
-        var updateWhenIdle: Boolean?
+        var prefix: dynamic
     }
 
 }

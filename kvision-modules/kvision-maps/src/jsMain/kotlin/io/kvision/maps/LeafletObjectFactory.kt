@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,18 +23,12 @@
 
 package io.kvision.maps
 
-import io.kvision.maps.externals.geojson.LineString
-import io.kvision.maps.externals.geojson.MultiLineString
-import io.kvision.maps.externals.geojson.MultiPolygon
-import io.kvision.maps.externals.geojson.Polygon
-import io.kvision.maps.externals.leaflet.control.Attribution
-import io.kvision.maps.externals.leaflet.control.Attribution.AttributionOptions
-import io.kvision.maps.externals.leaflet.control.Control.LayersObject
-import io.kvision.maps.externals.leaflet.control.Layers
-import io.kvision.maps.externals.leaflet.control.Layers.LayersOptions
-import io.kvision.maps.externals.leaflet.control.Scale
-import io.kvision.maps.externals.leaflet.control.Scale.ScaleOptions
-import io.kvision.maps.externals.leaflet.control.set
+import io.kvision.maps.externals.leaflet.control.AttributionControl
+import io.kvision.maps.externals.leaflet.control.AttributionControl.AttributionControlOptions
+import io.kvision.maps.externals.leaflet.control.LayersControl
+import io.kvision.maps.externals.leaflet.control.LayersControl.LayersControlOptions
+import io.kvision.maps.externals.leaflet.control.ScaleControl
+import io.kvision.maps.externals.leaflet.control.ScaleControl.ScaleControlOptions
 import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
 import io.kvision.maps.externals.leaflet.layer.FeatureGroup
@@ -70,6 +65,7 @@ import io.kvision.maps.externals.leaflet.map.LeafletMap
 import io.kvision.maps.externals.leaflet.map.LeafletMap.LeafletMapOptions
 import io.kvision.utils.obj
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLImageElement
 import org.w3c.dom.HTMLVideoElement
 
 /**
@@ -83,27 +79,36 @@ object LeafletObjectFactory {
 
     fun map(
         element: HTMLElement,
+        options: LeafletMapOptions?,
+    ): LeafletMap =
+        LeafletMap(
+            element = element,
+            options = options ?: obj {}
+        )
+
+    fun map(
+        element: HTMLElement,
         configure: LeafletMapOptions.() -> Unit = {},
     ): LeafletMap =
         LeafletMap(
             element = element,
-            options = obj<LeafletMapOptions>(configure)
+            options = obj(configure)
         )
 
     fun polyline(
-        latLngs: Collection<LatLng>,
+        latLngs: List<LatLng>,
         configure: PolylineOptions.() -> Unit = {},
-    ): Polyline<LineString> = Polyline(
+    ): Polyline = Polyline(
         latLngs.toTypedArray(),
-        options = obj<PolylineOptions>(configure),
+        options = obj(configure),
     )
 
     fun multiPolyline(
-        latLngs: Collection<Collection<LatLng>>,
+        latLngs: List<List<LatLng>>,
         configure: PolylineOptions.() -> Unit = {},
-    ): Polyline<MultiLineString> = Polyline(
+    ): Polyline = Polyline(
         latLngs.map { it.toTypedArray() }.toTypedArray(),
-        options = obj<PolylineOptions>(configure),
+        options = obj(configure),
     )
 
     fun tileLayer(
@@ -111,27 +116,27 @@ object LeafletObjectFactory {
         configure: TileLayerOptions.() -> Unit = {}
     ): TileLayer<TileLayerOptions> = TileLayer(
         urlTemplate = urlTemplate,
-        options = obj<TileLayerOptions>(configure),
+        options = obj(configure),
     )
 
     fun layers(
-        baseLayers: LayersObject = layersObject(emptyMap()),
-        overlays: LayersObject = layersObject(emptyMap()),
-        configure: LayersOptions.() -> Unit = {},
-    ): Layers = Layers(
+        baseLayers: dynamic = layersObject(emptyMap()),
+        overlays: dynamic = layersObject(emptyMap()),
+        configure: LayersControlOptions.() -> Unit = {},
+    ): LayersControl = LayersControl(
         baseLayers = baseLayers,
         overlays = overlays,
-        options = obj<LayersOptions>(configure),
+        options = obj(configure),
     )
 
     /**
      * @param[tileLayers] Map display names to tile layers. The names can contain HTML, which
      * allows you to add additional styling to the items.
      */
-    fun layersObject(tileLayers: Map<String, TileLayer<*>>): LayersObject =
+    fun layersObject(tileLayers: Map<String, TileLayer<*>>): dynamic =
         tileLayers
             .entries
-            .fold(obj<LayersObject> {}) { acc, (name, layer) ->
+            .fold(obj {}) { acc, (name, layer) ->
                 acc[name] = layer
                 acc
             }
@@ -140,50 +145,50 @@ object LeafletObjectFactory {
         imageUrl: String,
         bounds: LatLngBounds,
         configure: ImageOverlayOptions.() -> Unit = {},
-    ): ImageOverlay = ImageOverlay(
+    ): ImageOverlay<ImageOverlayOptions> = ImageOverlay(
         imageUrl = imageUrl,
         bounds = bounds,
-        options = obj<ImageOverlayOptions>(configure),
+        options = obj(configure),
     )
 
     fun attribution(
-        configure: AttributionOptions.() -> Unit = {},
-    ): Attribution = Attribution(options = obj<AttributionOptions>(configure))
+        configure: AttributionControlOptions.() -> Unit = {},
+    ): AttributionControl = AttributionControl(options = obj(configure))
 
     fun scale(
-        configure: ScaleOptions.() -> Unit = {},
-    ): Scale = Scale(options = obj<ScaleOptions>(configure))
+        configure: ScaleControlOptions.() -> Unit = {},
+    ): ScaleControl = ScaleControl(options = obj(configure))
 
     fun divIcon(
         configure: DivIconOptions.() -> Unit = {},
-    ): DivIcon = DivIcon(options = obj<DivIconOptions>(configure))
+    ): DivIcon = DivIcon(options = obj(configure))
 
     fun icon(
         configure: IconOptions.() -> Unit = {},
-    ): Icon<IconOptions> = Icon(options = obj<IconOptions>(configure))
+    ): Icon<IconOptions> = Icon(options = obj(configure))
 
     fun marker(
         latlng: LatLng,
         configure: MarkerOptions.() -> Unit = {},
-    ): Marker = Marker(latlng, options = obj<MarkerOptions>(configure))
+    ): Marker = Marker(latlng, options = obj(configure))
 
     fun divOverlay(
         source: Layer<*>,
         configure: DivOverlayOptions.() -> Unit = {},
     ): DivOverlay<DivOverlayOptions> =
-        DivOverlay(source = source, options = obj<DivOverlayOptions>(configure))
+        DivOverlay(source = source, options = obj(configure))
 
     fun popup(
         source: Layer<*>,
         configure: PopupOptions.() -> Unit = {},
-    ): Popup = Popup(source = source, options = obj<PopupOptions>(configure))
+    ): Popup = Popup(source = source, options = obj(configure))
 
     fun tooltip(
         source: Layer<*>? = null,
         configure: TooltipOptions.() -> Unit = {},
     ): Tooltip = when (source) {
-        null -> Tooltip(options = obj<TooltipOptions>(configure))
-        else -> Tooltip(options = obj<TooltipOptions>(configure), source = source)
+        null -> Tooltip(options = obj(configure))
+        else -> Tooltip(options = obj(configure), source = source)
     }
 
     fun videoOverlay(
@@ -191,86 +196,89 @@ object LeafletObjectFactory {
         bounds: LatLngBounds,
         configure: VideoOverlayOptions.() -> Unit = {},
     ): VideoOverlay =
-        VideoOverlay(video = video, bounds = bounds, options = obj<VideoOverlayOptions>(configure))
+        VideoOverlay(video = video, bounds = bounds, options = obj(configure))
 
     fun videoOverlay(
-        video: Array<String>,
+        video: List<String>,
         bounds: LatLngBounds,
         configure: VideoOverlayOptions.() -> Unit = {},
     ): VideoOverlay =
-        VideoOverlay(video = video, bounds = bounds, options = obj<VideoOverlayOptions>(configure))
+        VideoOverlay(
+            video = video.map { it }.toTypedArray(),
+            bounds = bounds,
+            options = obj(configure)
+        )
 
     fun videoOverlay(
         video: HTMLVideoElement,
         bounds: LatLngBounds,
         configure: VideoOverlayOptions.() -> Unit = {},
     ): VideoOverlay =
-        VideoOverlay(video = video, bounds = bounds, options = obj<VideoOverlayOptions>(configure))
+        VideoOverlay(video = video, bounds = bounds, options = obj(configure))
 
     fun canvas(
         configure: Canvas.CanvasOptions.() -> Unit = {},
-    ): Canvas = Canvas(options = obj<Canvas.CanvasOptions>(configure))
+    ): Canvas = Canvas(options = obj(configure))
 
     fun circleMarker(
         latlng: LatLng,
         configure: CircleMarkerOptions.() -> Unit = {},
-    ): CircleMarker = CircleMarker(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
+    ): CircleMarker = CircleMarker(latlng = latlng, options = obj(configure))
 
     fun circle(
         latlng: LatLng,
         configure: CircleMarkerOptions.() -> Unit = {},
-    ): Circle = Circle(latlng = latlng, options = obj<CircleMarkerOptions>(configure))
+    ): Circle = Circle(latlng = latlng, options = obj(configure))
 
     /** See [`https://leafletjs.com/reference.html#polygon`](https://leafletjs.com/reference.html#polygon) */
     fun polygon(
-        latlngs: Collection<LatLng>,
+        latlngs: List<LatLng>,
         configure: PolylineOptions.() -> Unit = {},
-    ): io.kvision.maps.externals.leaflet.layer.vector.Polygon<Polygon> =
+    ): io.kvision.maps.externals.leaflet.layer.vector.Polygon =
         io.kvision.maps.externals.leaflet.layer.vector.Polygon(
             latlngs = latlngs.toTypedArray(),
-            options = obj<PolylineOptions>(configure)
+            options = obj(configure)
         )
 
     /** See [`https://leafletjs.com/reference.html#polygon`](https://leafletjs.com/reference.html#polygon) */
     fun multiPolygon(
-        latlngs: Collection<Collection<Collection<LatLng>>>,
+        latlngs: List<List<List<LatLng>>>,
         configure: PolylineOptions.() -> Unit = {},
-    ): io.kvision.maps.externals.leaflet.layer.vector.Polygon<MultiPolygon> =
+    ): io.kvision.maps.externals.leaflet.layer.vector.Polygon =
         io.kvision.maps.externals.leaflet.layer.vector.Polygon(
             latlngs = latlngs
                 .map {
-                    it.map(Collection<LatLng>::toTypedArray).toTypedArray()
-                }
-                .toTypedArray(),
-            options = obj<PolylineOptions>(configure)
+                    it.map { it.toTypedArray() }.toTypedArray()
+                }.toTypedArray(),
+            options = obj(configure)
         )
 
     fun rectangle(
         latLngBounds: LatLngBounds,
         configure: PolylineOptions.() -> Unit = {},
-    ): Rectangle = Rectangle(latLngBounds = latLngBounds, options = obj<PolylineOptions>(configure))
+    ): Rectangle = Rectangle(latLngBounds = latLngBounds, options = obj(configure))
 
     fun svg(
         configure: RendererOptions.() -> Unit = {},
-    ): SVG = SVG(options = obj<RendererOptions>(configure))
+    ): SVG = SVG(options = obj(configure))
 
     fun featureGroup(
         layers: Array<Layer<*>>,
         configure: LayerOptions.() -> Unit = {},
-    ): FeatureGroup = FeatureGroup(layers = layers, options = obj<LayerOptions>(configure))
+    ): FeatureGroup = FeatureGroup(layers = layers, options = obj(configure))
 
     fun latLng(
-        latitude: Number,
-        longitude: Number
+        latitude: Double,
+        longitude: Double
     ): LatLng = LatLng(latitude, longitude)
 
     fun latLng(
-        latitude: Number,
-        longitude: Number,
-        altitude: Number,
+        latitude: Double,
+        longitude: Double,
+        altitude: Double,
     ): LatLng = LatLng(latitude, longitude, altitude)
 
-    fun latLng(latLng: Pair<Number, Number>, altitude: Number? = null): LatLng =
+    fun latLng(latLng: Pair<Double, Double>, altitude: Double? = null): LatLng =
         when (altitude) {
             null -> LatLng(latLng.first, latLng.second)
             else -> LatLng(latLng.first, latLng.second, altitude)

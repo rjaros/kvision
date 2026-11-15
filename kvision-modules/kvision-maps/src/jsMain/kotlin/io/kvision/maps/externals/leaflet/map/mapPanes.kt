@@ -1,5 +1,7 @@
+@file:Suppress("INTERFACE_WITH_SUPERCLASS")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,47 +27,28 @@
 
 package io.kvision.maps.externals.leaflet.map
 
-import io.kvision.maps.externals.leaflet.layer.marker.Icon
-import io.kvision.maps.externals.leaflet.layer.marker.Marker
-import io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay
-import io.kvision.maps.externals.leaflet.layer.overlay.Popup
-import io.kvision.maps.externals.leaflet.layer.overlay.Tooltip
-import io.kvision.maps.externals.leaflet.layer.overlay.VideoOverlay
-import io.kvision.maps.externals.leaflet.layer.tile.GridLayer
-import io.kvision.maps.externals.leaflet.layer.tile.TileLayer
-import io.kvision.maps.externals.leaflet.layer.vector.Polygon
-import io.kvision.maps.externals.leaflet.layer.vector.Polyline
 import org.w3c.dom.HTMLElement
 
-/**
- * See [`Map.js#L1124`](https://github.com/Leaflet/Leaflet/blob/v1.8.0/src/map/Map.js#L1124)
- */
-external interface DefaultMapPanes {
-    /** Pane that contains all other map panes */
+/** Map panes available on a Leaflet map. */
+external interface MapPanes {
+    /** Pane that contains all other map panes. */
     var mapPane: HTMLElement
-    /** Pane for [GridLayer]s and [TileLayer]s */
+
+    /** Pane for [GridLayer][io.kvision.maps.externals.leaflet.layer.tile.GridLayer]s and [TileLayer][io.kvision.maps.externals.leaflet.layer.tile.TileLayer]s. */
     var tilePane: HTMLElement
-    /** Pane for vectors (`Path`s, like [Polyline]s and [Polygon]s), [ImageOverlay]s and [VideoOverlay]s */
+
+    /** Pane for vectors, [ImageOverlay][io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay]s and [VideoOverlay][io.kvision.maps.externals.leaflet.layer.overlay.VideoOverlay]s. */
     var overlayPane: HTMLElement
-    /** Pane for overlay shadows (e.g. [Marker] shadows) */
+
+    /** Pane for overlay shadows. */
     var shadowPane: HTMLElement
-    /** Pane for [Icon]s of [Marker]s */
+
+    /** Pane for [Icon][io.kvision.maps.externals.leaflet.layer.marker.Icon]s of [Marker][io.kvision.maps.externals.leaflet.layer.marker.Marker]s. */
     var markerPane: HTMLElement
-    /** Pane for [Tooltip]s. */
+
+    /** Pane for [Tooltip][io.kvision.maps.externals.leaflet.layer.overlay.Tooltip]s. */
     var tooltipPane: HTMLElement
-    /** Pane for [Popup]s. */
+
+    /** Pane for [Popup][io.kvision.maps.externals.leaflet.layer.overlay.Popup]s. */
     var popupPane: HTMLElement
 }
-
-external interface HTMLElementsObject
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun HTMLElementsObject.get(name: String): HTMLElement? =
-    asDynamic()[name] as HTMLElement?
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun HTMLElementsObject.set(name: String, value: HTMLElement) {
-    asDynamic()[name] = value
-}
-
-external interface MapPanes : HTMLElementsObject, DefaultMapPanes

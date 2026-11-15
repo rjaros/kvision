@@ -1,5 +1,6 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +23,7 @@
 
 package io.kvision.maps.externals.leaflet
 
+import kotlin.js.JsModule
 
-/** `topleft` | `topright` | `bottomleft` | `bottomright` */
-typealias PositionsUnion = String
-
-/** `right` | `left` | `top` | `bottom` | `center` | `auto` */
-typealias DirectionsUnion = String
+/** The Leaflet version. */
+external val version: String

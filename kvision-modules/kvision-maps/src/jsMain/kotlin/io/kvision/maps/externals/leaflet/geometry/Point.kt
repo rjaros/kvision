@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +22,6 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.geometry
 
 /**
@@ -30,27 +30,29 @@ package io.kvision.maps.externals.leaflet.geometry
  * https://leafletjs.com/SlavaUkraini/reference.html#point
  */
 open external class Point(
-    x: Number,
-    y: Number,
+    x: Double,
+    y: Double,
     round: Boolean? = definedExternally
 ) {
-    var x: Number
-    var y: Number
+    var x: Double
+    var y: Double
 
     fun clone(): Point
+
     /** non-destructive, returns a new point */
     fun add(otherPoint: Point): Point
     fun subtract(otherPoint: Point): Point
-    fun divideBy(num: Number): Point
-    fun multiplyBy(num: Number): Point
+    fun divideBy(num: Double): Point
+    fun multiplyBy(num: Double): Point
     fun scaleBy(scale: Point): Point
     fun unscaleBy(scale: Point): Point
     fun round(): Point
     fun floor(): Point
     fun ceil(): Point
     fun trunc(): Point
-    fun distanceTo(otherPoint: Point): Number
+    fun distanceTo(otherPoint: Point): Double
     fun contains(otherPoint: Point): Boolean
+
     @Suppress("CovariantEquals") // 'equals' is external, we can't change it, so the warning isn't useful
     fun equals(otherPoint: Point): Boolean
 }

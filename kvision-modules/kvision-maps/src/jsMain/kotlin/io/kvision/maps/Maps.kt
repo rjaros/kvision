@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2017-present Robert Jaros
- * Copyright (c) 2020-present Jörg Rade
+ * Copyright (c) 2025 Robert Jaros
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +19,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package io.kvision.maps
 
-import io.kvision.MapsModule
 import io.kvision.core.Container
 import io.kvision.core.Widget
 import io.kvision.maps.externals.leaflet.map.LeafletMap
@@ -33,16 +32,15 @@ import org.w3c.dom.HTMLElement
  * Maps component.
  */
 open class Maps(
-    private val optionsConfigure: (dynamic.() -> Unit)? = null,
+    val options: MapsOptions? = null,
     className: String? = null,
     init: (Maps.() -> Unit)? = null
 ) : Widget(className) {
 
     /** private backing field - use [configureLeafletMap] or [leafletMap] for accessing */
-    private var _leafletMap: LeafletMap? = null
+    private var leafletMap: LeafletMap? = null
 
-    /** @see [configureLeafletMap] */
-    private var leafletMapConfigurer: LeafletMap.() -> Unit = { }
+    protected var leafletMapConfigurer: LeafletMap.() -> Unit = {}
 
     init {
         useSnabbdomDistinctKey()
@@ -64,7 +62,7 @@ open class Maps(
      */
     fun configureLeafletMap(configure: LeafletMap.() -> Unit) {
         leafletMapConfigurer = configure
-        _leafletMap?.leafletMapConfigurer()
+        leafletMap?.leafletMapConfigurer()
     }
 
     /**
@@ -76,8 +74,8 @@ open class Maps(
      * @throws IllegalArgumentException if the `LeafletMap` is not yet initialized - it must first
      * be added as a component.
      */
-    fun <T : Any?> leafletMap(action: LeafletMap.() -> T): T {
-        return requireNotNull(_leafletMap) {
+    fun <T> leafletMap(action: LeafletMap.() -> T): T {
+        return requireNotNull(leafletMap) {
             "LeafletMap is not initialised - the KVision Maps widget must be added to the DOM"
         }.action()
     }
@@ -87,27 +85,16 @@ open class Maps(
         val thisElement: HTMLElement = requireNotNull(this.getElement()) {
             "$this - Unable to get HTMLElement"
         }
-
-        _leafletMap = L.map(thisElement, optionsConfigure ?: { })
-        _leafletMap!!.leafletMapConfigurer()
+        leafletMap = LeafletObjectFactory.map(thisElement, options?.toJs())
+        leafletMap!!.leafletMapConfigurer()
     }
 
     override fun afterDestroy() {
-        if (_leafletMap != null) {
-            _leafletMap!!.remove()
-            _leafletMap = null
+        if (leafletMap != null) {
+            leafletMap!!.remove()
+            leafletMap = null
         }
     }
-
-    companion object {
-        init {
-            MapsModule.initialize()
-        }
-
-        /** Equivalent to Leaflet's `L` shortcut. */
-        val L: LeafletObjectFactory = LeafletObjectFactory
-    }
-
 }
 
 /**
@@ -116,11 +103,11 @@ open class Maps(
  * It takes the same parameters as the constructor of the [Maps] component.
  */
 fun Container.maps(
-    optionsConfigure: (dynamic.() -> Unit)? = null,
+    options: MapsOptions? = null,
     className: String? = null,
     init: (Maps.() -> Unit)? = null
 ): Maps {
-    val maps = Maps(optionsConfigure, className, init)
+    val maps = Maps(options, className, init)
     this.add(maps)
     return maps
 }

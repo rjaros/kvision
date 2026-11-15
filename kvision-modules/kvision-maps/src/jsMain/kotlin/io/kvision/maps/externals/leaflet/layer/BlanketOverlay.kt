@@ -1,5 +1,6 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +21,20 @@
  * SOFTWARE.
  */
 
-package io.kvision.maps.externals.geojson
+package io.kvision.maps.externals.leaflet.layer
 
-typealias Position = Array<Number>
+/**
+ * Represents an HTML element that covers the entire surface of the map.
+ */
+open external class BlanketOverlay<T : BlanketOverlay.BlanketOverlayOptions>(
+    options: T = definedExternally
+) : Layer<T> {
+
+    interface BlanketOverlayOptions : Layer.LayerOptions {
+        /** How much to extend the clip area around the map view. */
+        var padding: Double?
+
+        /** Whether to update the blanket during pan/zoom animations. */
+        var continuous: Boolean?
+    }
+}

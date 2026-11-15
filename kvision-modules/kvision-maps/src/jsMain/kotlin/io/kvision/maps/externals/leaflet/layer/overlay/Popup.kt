@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +22,9 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer.overlay
 
+import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geometry.Point
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.Popup.PopupOptions
@@ -36,21 +37,26 @@ import io.kvision.maps.externals.leaflet.map.LeafletMap
  *
  * https://leafletjs.com/SlavaUkraini/reference.html#popup
  */
-open external class Popup(
-    source: Layer<*> = definedExternally,
+external class Popup(
     options: PopupOptions = definedExternally,
+    source: Layer<*> = definedExternally,
 ) : DivOverlay<PopupOptions> {
+
+    constructor(
+        latlng: LatLng,
+        options: PopupOptions = definedExternally,
+    )
 
     interface PopupOptions : DivOverlayOptions {
         /** Max width of the popup, in pixels.*/
-        var maxWidth: Number?
+        var maxWidth: Int?
         /** Min width of the popup, in pixels.*/
-        var minWidth: Number?
+        var minWidth: Int?
         /**
          * If set, creates a scrollable container of the given height inside a popup if its content
          * exceeds it.
          */
-        var maxHeight: Number?
+        var maxHeight: Int?
         /**
          * Set it to false if you don't want the map to do panning animation to fit the opened
          * popup.
@@ -93,5 +99,11 @@ open external class Popup(
          * [`closePopupOnClick`][LeafletMap.LeafletMapOptions.closePopupOnClick] option.
          */
         var closeOnClick: Boolean?
+
+        /** Specifies the `aria-label` attribute of the close button. */
+        var closeButtonLabel: String?
+
+        /** Whether the popup shall react to changes in the size of its contents. */
+        var trackResize: Boolean?
     }
 }

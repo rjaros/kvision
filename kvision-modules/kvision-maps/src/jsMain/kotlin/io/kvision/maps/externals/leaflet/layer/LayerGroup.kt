@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,8 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer
 
-import io.kvision.maps.externals.geojson.Feature
-import io.kvision.maps.externals.geojson.GeometryCollection
 import io.kvision.maps.externals.leaflet.layer.Layer.LayerOptions
 
 /**
@@ -39,17 +37,15 @@ open external class LayerGroup(
     options: LayerOptions = definedExternally
 ) : Layer<LayerOptions> {
     /**
-     * Returns a GeoJSON representation of the layer group (as a GeoJSON [GeometryCollection],
-     * [Feature<MultiPoint>][Feature] or [GeometryCollection]).
+     * Returns a GeoJSON representation of the layer group.
      */
-    open fun toGeoJSON(precision: Number = definedExternally): dynamic
-    /* geojson.FeatureCollection<GeoJsonGeometry, P> | geojson.Feature<geojson.MultiPoint, P> | geojson.GeometryCollection */
+    open fun toGeoJSON(precision: Double = definedExternally): dynamic
 
     /** Adds the given layer to the group. */
     open fun addLayer(layer: Layer<*>): LayerGroup /* this */
 
     /** Removes the layer with the given internal ID from the group. */
-    open fun removeLayer(layer: Number): LayerGroup /* this */
+    open fun removeLayer(layer: Int): LayerGroup /* this */
 
     /** Removes the given layer from the group. */
     open fun removeLayer(layer: Layer<*>): LayerGroup /* this */
@@ -64,26 +60,20 @@ open external class LayerGroup(
      * Calls [methodName] on every layer contained in this group, passing any additional parameters.
      * Has no effect if the layers contained do not implement methodName.
      */
-    open fun invoke(methodName: String, vararg params: Any): LayerGroup /* this */
+    open fun invoke(methodName: String, vararg params: dynamic): LayerGroup /* this */
 
     /**
      * Iterates over the layers of the group, optionally specifying context of the iterator function.
      */
     open fun eachLayer(
         fn: (layer: Layer<*>) -> Unit,
-        context: Any = definedExternally
+        context: dynamic = definedExternally
     ): LayerGroup /* this */
 
-    open fun getLayer(id: Number): Layer<*>?
+    open fun getLayer(id: Int): Layer<*>?
     open fun getLayers(): Array<Layer<*>>
-    open fun setZIndex(zIndex: Number): LayerGroup /* this */
-    open fun getLayerId(layer: Layer<*>): Number
-    /**
-     * Type is one of:
-     * * [`FeatureCollection<geojson.GeometryObject, P>`][io.kvision.maps.externals.geojson.FeatureCollection]
-     * * [`Feature<geojson.MultiPoint, P>`][io.kvision.maps.externals.geojson.Feature]
-     * * [`GeometryCollection`][io.kvision.maps.externals.geojson.GeometryCollection]`
-     * * `undefined`
-     */
+    open fun setZIndex(zIndex: Int): LayerGroup /* this */
+    open fun getLayerId(layer: Layer<*>): Int
+
     open var feature: dynamic
 }

@@ -1,5 +1,8 @@
+@file:JsModule("leaflet")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +23,11 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.map
 
-import io.kvision.maps.externals.leaflet.control.Attribution
+import io.kvision.maps.externals.leaflet.control.AttributionControl
 import io.kvision.maps.externals.leaflet.control.Control
-import io.kvision.maps.externals.leaflet.control.Zoom
-import io.kvision.maps.externals.leaflet.core.Handler
+import io.kvision.maps.externals.leaflet.control.ZoomControl
 import io.kvision.maps.externals.leaflet.events.Evented
 import io.kvision.maps.externals.leaflet.geo.CRS
 import io.kvision.maps.externals.leaflet.geo.LatLng
@@ -41,30 +41,37 @@ import io.kvision.maps.externals.leaflet.layer.overlay.Tooltip
 import io.kvision.maps.externals.leaflet.layer.overlay.Tooltip.TooltipOptions
 import io.kvision.maps.externals.leaflet.layer.vector.Path
 import io.kvision.maps.externals.leaflet.layer.vector.Renderer
+import io.kvision.maps.externals.leaflet.map.handler.BoxZoomHandler
+import io.kvision.maps.externals.leaflet.map.handler.DoubleClickZoomHandler
+import io.kvision.maps.externals.leaflet.map.handler.DragHandler
+import io.kvision.maps.externals.leaflet.map.handler.KeyboardHandler
+import io.kvision.maps.externals.leaflet.map.handler.PinchZoomHandler
+import io.kvision.maps.externals.leaflet.map.handler.ScrollWheelZoomHandler
+import io.kvision.maps.externals.leaflet.map.handler.TapHoldHandler
 import org.w3c.dom.HTMLElement
-import org.w3c.dom.events.MouseEvent
+import org.w3c.dom.pointerevents.PointerEvent
 
 /**
  * The central class of the API — it is used to create a map on a page and manipulate it.
  *
  * https://leafletjs.com/reference.html#map-example
  */
-@JsName("Map")
-// rename the implemented class to `LeafletMap` to avoid name confusion with Kotlin's Map<K, V>
 open external class LeafletMap : Evented {
 
     constructor(element: String, options: LeafletMapOptions = definedExternally)
     constructor(element: HTMLElement, options: LeafletMapOptions = definedExternally)
 
-    open var attributionControl: Attribution
-    open var boxZoom: Handler
-    open var doubleClickZoom: Handler
-    open var dragging: Handler
-    open var keyboard: Handler
-    open var scrollWheelZoom: Handler
-    open var tap: Handler
-    open var touchZoom: Handler
-    open var zoomControl: Zoom
+    open var attributionControl: AttributionControl?
+    open var boxZoom: BoxZoomHandler
+    open var doubleClickZoom: DoubleClickZoomHandler
+    open var dragging: DragHandler
+    open var keyboard: KeyboardHandler
+    open var scrollWheelZoom: ScrollWheelZoomHandler
+    open var tapHold: TapHoldHandler
+    open var pinchZoom: PinchZoomHandler
+    @Deprecated("Use pinchZoom")
+    open var touchZoom: PinchZoomHandler
+    open var zoomControl: ZoomControl?
     open var options: LeafletMapOptions
 
     //<editor-fold desc="Methods">
@@ -77,7 +84,7 @@ open external class LeafletMap : Evented {
     open fun addLayer(layer: Layer<*>): LeafletMap
     open fun removeLayer(layer: Layer<*>): LeafletMap
     open fun hasLayer(layer: Layer<*>): Boolean
-    open fun eachLayer(fn: (layer: Layer<*>) -> Unit, context: Any = definedExternally): LeafletMap
+    open fun eachLayer(fn: (layer: Layer<*>) -> Unit, context: dynamic = definedExternally): LeafletMap
 
     open fun openPopup(popup: Popup): LeafletMap
     open fun openPopup(
@@ -107,36 +114,36 @@ open external class LeafletMap : Evented {
         options: TooltipOptions = definedExternally
     ): LeafletMap
 
-    open fun closeTooltip(tooltip: Tooltip = definedExternally): LeafletMap
+    open fun closeTooltip(tooltip: Tooltip): LeafletMap
     //</editor-fold>
 
     //<editor-fold desc="Methods for modifying map state">
     open fun setView(
         center: LatLng,
-        zoom: Number = definedExternally,
+        zoom: Int = definedExternally,
         options: ZoomPanOptions = definedExternally
     ): LeafletMap
 
-    open fun setZoom(zoom: Number, options: ZoomPanOptions = definedExternally): LeafletMap
+    open fun setZoom(zoom: Int, options: ZoomOptions = definedExternally): LeafletMap
     open fun zoomIn(
-        delta: Number = definedExternally,
+        delta: Double = definedExternally,
         options: ZoomOptions = definedExternally
     ): LeafletMap
 
     open fun zoomOut(
-        delta: Number = definedExternally,
+        delta: Double = definedExternally,
         options: ZoomOptions = definedExternally
     ): LeafletMap
 
     open fun setZoomAround(
         position: Point,
-        zoom: Number,
+        zoom: Int,
         options: ZoomOptions = definedExternally
     ): LeafletMap
 
     open fun setZoomAround(
         position: LatLng,
-        zoom: Number,
+        zoom: Int,
         options: ZoomOptions = definedExternally
     ): LeafletMap
 
@@ -152,7 +159,7 @@ open external class LeafletMap : Evented {
 
     open fun flyTo(
         latlng: LatLng,
-        zoom: Number = definedExternally,
+        zoom: Int = definedExternally,
         options: ZoomPanOptions = definedExternally
     ): LeafletMap
 
@@ -161,9 +168,9 @@ open external class LeafletMap : Evented {
         options: FitBoundsOptions = definedExternally
     ): LeafletMap
 
-    open fun setMaxBounds(bounds: LatLngBounds): LeafletMap
-    open fun setMinZoom(zoom: Number): LeafletMap
-    open fun setMaxZoom(zoom: Number): LeafletMap
+    open fun setMaxBounds(bounds: LatLngBounds = definedExternally): LeafletMap
+    open fun setMinZoom(zoom: Int): LeafletMap
+    open fun setMaxZoom(zoom: Int): LeafletMap
 
     open fun panInside(latLng: LatLng, options: PanInsideOptions = definedExternally): LeafletMap
     open fun panInsideBounds(
@@ -177,6 +184,7 @@ open external class LeafletMap : Evented {
      * changed the map size dynamically, also animating pan by default.
      */
     open fun invalidateSize(options: Boolean = definedExternally): LeafletMap
+
     /**
      * Checks if the map container size changed and updates the map if so — call it after you've
      * changed the map size dynamically, also animating pan by default. If
@@ -184,7 +192,7 @@ open external class LeafletMap : Evented {
      * [InvalidateSizeOptions.debounceMoveend] is true, it will delay `moveend event` so that it
      * doesn't happen often even if the method is called many times in a row.
      */
-    open fun invalidateSize(options: ZoomPanOptions = definedExternally): LeafletMap
+    open fun invalidateSize(options: InvalidateSizeOptions = definedExternally): LeafletMap
 
     /** Stops the currently running [panTo] or [flyTo] animation, if any. */
     open fun stop(): LeafletMap
@@ -196,61 +204,61 @@ open external class LeafletMap : Evented {
     //</editor-fold>
 
     //<editor-fold desc="Other methods">
-    open fun addHandler(name: String, HandlerClass: Any): LeafletMap
+    open fun addHandler(name: String, HandlerClass: dynamic): LeafletMap
     open fun remove(): LeafletMap
     open fun createPane(name: String, container: HTMLElement = definedExternally): HTMLElement
-    open fun getPane(pane: String): HTMLElement?
-    open fun getPane(pane: HTMLElement): HTMLElement?
+    open fun getPane(pane: String): HTMLElement
+    open fun getPane(pane: HTMLElement): HTMLElement
     open fun getPanes(): MapPanes
     open fun getContainer(): HTMLElement
-    open fun whenReady(fn: () -> Unit, context: Any = definedExternally): LeafletMap
+    open fun translate(text: String): String
+    open fun whenReady(fn: () -> Unit, context: dynamic = definedExternally): LeafletMap
     //</editor-fold>
 
     //<editor-fold desc="Methods for Getting Map State">
     open fun getCenter(): LatLng
-    open fun getZoom(): Number
+    open fun getZoom(): Int
     open fun getBounds(): LatLngBounds
-    open fun getMinZoom(): Number
-    open fun getMaxZoom(): Number
+    open fun getMinZoom(): Int
+    open fun getMaxZoom(): Int
     open fun getBoundsZoom(
         bounds: LatLngBounds,
         inside: Boolean = definedExternally,
         padding: Point = definedExternally
-    ): Number
+    ): Int
 
     open fun getSize(): Point
-    open fun getPixelBounds(): Bounds
+    open fun getPixelBounds(
+        center: LatLng = definedExternally,
+        zoom: Int = definedExternally
+    ): Bounds
     open fun getPixelOrigin(): Point
-    open fun getPixelWorldBounds(zoom: Number = definedExternally): Bounds
+    open fun getPixelWorldBounds(zoom: Int = definedExternally): Bounds?
     //</editor-fold>
 
     //<editor-fold desc="Conversion Methods">
-    open fun getZoomScale(toZoom: Number, fromZoom: Number = definedExternally): Number
-    open fun getScaleZoom(scale: Number, fromZoom: Number = definedExternally): Number
-    open fun project(latlng: LatLng, zoom: Number = definedExternally): Point
-    open fun unproject(point: Point, zoom: Number = definedExternally): LatLng
+    open fun getZoomScale(toZoom: Int, fromZoom: Int = definedExternally): Double
+    open fun getScaleZoom(scale: Double, fromZoom: Int = definedExternally): Double
+    open fun project(latlng: LatLng, zoom: Int = definedExternally): Point
+    open fun unproject(point: Point, zoom: Int = definedExternally): LatLng
     open fun layerPointToLatLng(point: Point): LatLng
     open fun latLngToLayerPoint(latlng: LatLng): Point
     open fun wrapLatLng(latlng: LatLng): LatLng
     open fun wrapLatLngBounds(bounds: LatLngBounds): LatLngBounds
-    open fun distance(latlng1: LatLng, latlng2: LatLng): Number
+    open fun distance(latlng1: LatLng, latlng2: LatLng): Double
     open fun containerPointToLayerPoint(point: Point): Point
     open fun layerPointToContainerPoint(point: Point): Point
     open fun containerPointToLatLng(point: Point): LatLng
     open fun latLngToContainerPoint(latlng: LatLng): Point
-    open fun mouseEventToContainerPoint(ev: MouseEvent): Point
-    open fun mouseEventToLayerPoint(ev: MouseEvent): Point
-    open fun mouseEventToLatLng(ev: MouseEvent): LatLng
+    open fun pointerEventToContainerPoint(ev: PointerEvent): Point
+    open fun pointerEventToLayerPoint(ev: PointerEvent): Point
+    open fun pointerEventToLatLng(ev: PointerEvent): LatLng
     //</editor-fold>
 
     //</editor-fold>
-
 
     /** Constructor parameters for [LeafletMap] */
     interface LeafletMapOptions {
-
-        // Options
-        var preferCanvas: Boolean?
 
         // Control options
         var attributionControl: Boolean?
@@ -258,8 +266,8 @@ open external class LeafletMap : Evented {
 
         // Interaction options
         var closePopupOnClick: Boolean?
-        var zoomSnap: Number?
-        var zoomDelta: Number?
+        var zoomSnap: Int?
+        var zoomDelta: Double?
         var trackResize: Boolean?
         var boxZoom: Boolean?
         var doubleClickZoom: dynamic /* Boolean? | "center" */
@@ -268,41 +276,43 @@ open external class LeafletMap : Evented {
         // Map State options
         var crs: CRS?
         var center: LatLng?
-        var zoom: Number?
-        var maxZoom: Number?
-        var minZoom: Number?
+        var zoom: Int?
+        var maxZoom: Int?
+        var minZoom: Int?
         var layers: Array<Layer<*>>?
-        var maxBounds: LatLngBounds /* LatLngBounds? | LatLngBoundsLiteral? */
+        var maxBounds: LatLngBounds? /* LatLngBounds? | LatLngBoundsLiteral? */
         var renderer: Renderer<Renderer.RendererOptions>?
 
         // Animation options
         var zoomAnimation: Boolean?
-        var zoomAnimationThreshold: Number?
+        var zoomAnimationThreshold: Double?
         var fadeAnimation: Boolean?
         var markerZoomAnimation: Boolean?
-        var transform3DLimit: Number?
+        var transform3DLimit: Double?
 
         // Panning Inertia options
         var inertia: Boolean?
-        var inertiaDeceleration: Number?
-        var inertiaMaxSpeed: Number?
-        var easeLinearity: Number?
+        var inertiaDeceleration: Double?
+        var inertiaMaxSpeed: Double?
+        var easeLinearity: Double?
         var worldCopyJump: Boolean?
-        var maxBoundsViscosity: Number?
+        var maxBoundsViscosity: Double?
 
         // Keyboard Navigation options
         var keyboard: Boolean?
-        var keyboardPanDelta: Number?
+        var keyboardPanDelta: Double?
+        var ariaKeyShortcuts: dynamic /* Boolean? | String? */
+        var translate: ((text: String) -> String?)?
 
         // Mouse wheel options
         var scrollWheelZoom: dynamic /* Boolean? | "center" */
-        var wheelDebounceTime: Number?
-        var wheelPxPerZoomLevel: Number?
+        var wheelDebounceTime: Double?
+        var wheelPxPerZoomLevel: Double?
 
         // Touch interaction options
-        var tap: Boolean?
-        var tapTolerance: Number?
-        var touchZoom: dynamic /* Boolean? | "center" */
+        var tapHold: Boolean?
+        var tapTolerance: Double?
+        var pinchZoom: dynamic /* Boolean? | "center" */
         var bounceAtZoomLimits: Boolean?
     }
 
@@ -312,8 +322,8 @@ open external class LeafletMap : Evented {
      * @see panInsideBounds
      */
     interface PanOptions : AnimatedOption {
-        var duration: Number?
-        var easeLinearity: Number?
+        var duration: Double?
+        var easeLinearity: Double?
         var noMoveStart: Boolean?
     }
 
@@ -326,7 +336,7 @@ open external class LeafletMap : Evented {
         var paddingTopLeft: Point
         var paddingBottomRight: Point
         var padding: Point
-        var maxZoom: Number?
+        var maxZoom: Int?
     }
 
     /** @see invalidateSize */
@@ -347,9 +357,9 @@ open external class LeafletMap : Evented {
     interface LocateOptions {
         var watch: Boolean?
         var setView: Boolean?
-        var maxZoom: Number?
-        var timeout: Number?
-        var maximumAge: Number?
+        var maxZoom: Int?
+        var timeout: Int?
+        var maximumAge: Int?
         var enableHighAccuracy: Boolean?
     }
 

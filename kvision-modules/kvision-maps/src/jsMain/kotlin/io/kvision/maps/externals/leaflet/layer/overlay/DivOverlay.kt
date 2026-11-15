@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +22,6 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer.overlay
 
 import io.kvision.maps.externals.leaflet.geo.LatLng
@@ -29,33 +29,48 @@ import io.kvision.maps.externals.leaflet.geometry.Point
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.DivOverlay.DivOverlayOptions
 import io.kvision.maps.externals.leaflet.map.LeafletMap
+import org.w3c.dom.DocumentFragment
 import org.w3c.dom.HTMLElement
 
 open external class DivOverlay<T : DivOverlayOptions>(
     options: DivOverlayOptions = definedExternally,
     source: Layer<*> = definedExternally,
-) : Layer<Layer.LayerOptions> {
+) : Layer<T> {
 
-    open fun openOn(map: LeafletMap)
-    open fun close()
-    open fun toggle(): DivOverlay<T>?
+    constructor(
+        latlng: LatLng,
+        options: DivOverlayOptions = definedExternally
+    )
+
+    open fun openOn(map: LeafletMap): DivOverlay<T> /* this */
+    open fun close(): DivOverlay<T> /* this */
+    open fun toggle(layer: Layer<*> = definedExternally): DivOverlay<T> /* this */
     open fun getLatLng(): LatLng?
     open fun setLatLng(latlng: LatLng): DivOverlay<T> /* this */
     open fun getContent(): dynamic /* String? | HTMLElement? */
-    open fun setContent(htmlContent: (source: Layer<*>) -> Any): DivOverlay<T> /* this */
+    open fun setContent(htmlContent: (source: Layer<*>) -> dynamic): DivOverlay<T> /* this */
     open fun setContent(htmlContent: String): DivOverlay<T> /* this */
     open fun setContent(htmlContent: HTMLElement): DivOverlay<T> /* this */
-    open fun getElement(): dynamic /* String? | HTMLElement? */
+    open fun setContent(htmlContent: DocumentFragment): DivOverlay<T> /* this */
+    open fun getElement(): HTMLElement?
     open fun update()
     open fun isOpen(): Boolean
     open fun bringToFront(): DivOverlay<T> /* this */
     open fun bringToBack(): DivOverlay<T> /* this */
 
+    override fun remove(): DivOverlay<T> /* this */
+    override fun removeFrom(map: LeafletMap): DivOverlay<T> /* this */
+    override fun getPane(name: String): HTMLElement
+
     interface DivOverlayOptions : InteractiveLayerOptions {
         /** The offset of the overlay position. */
         var offset: Point
+
         /** A custom CSS class name to assign to the overlay. */
         var className: String?
+
+        /** Initial overlay content. */
+        var content: dynamic /* String? | HTMLElement? | DocumentFragment? | ((Layer<*>) -> dynamic)? */
     }
 
 }

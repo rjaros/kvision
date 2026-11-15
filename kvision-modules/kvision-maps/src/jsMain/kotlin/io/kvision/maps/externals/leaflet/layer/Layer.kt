@@ -1,5 +1,8 @@
+@file:JsModule("leaflet")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +23,6 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer
 
 import io.kvision.maps.externals.leaflet.events.Evented
@@ -33,13 +34,14 @@ import io.kvision.maps.externals.leaflet.layer.overlay.Popup.PopupOptions
 import io.kvision.maps.externals.leaflet.layer.overlay.Tooltip
 import io.kvision.maps.externals.leaflet.layer.overlay.Tooltip.TooltipOptions
 import io.kvision.maps.externals.leaflet.map.LeafletMap
+import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
 /**
  * A set of methods from the Layer base class that all Leaflet layers use.
  * Inherits all methods, options and events from [Evented].
  */
-abstract external class Layer<T : LayerOptions>(
+abstract external class  Layer<T : LayerOptions>(
     options: T = definedExternally
 ) : Evented {
 
@@ -53,10 +55,12 @@ abstract external class Layer<T : LayerOptions>(
     open fun getAttribution(): String?
     open fun beforeAdd(map: LeafletMap): Layer<T>? /* this */
 
-    open fun getPane(name: String = definedExternally): HTMLElement?
+    open fun getPane(name: String = definedExternally): HTMLElement
+    open fun addInteractiveTarget(targetEl: Element): Layer<T> /* this */
+    open fun removeInteractiveTarget(targetEl: Element): Layer<T> /* this */
 
     open fun bindPopup(
-        content: (layer: Layer<T>) -> Any,
+        content: (layer: Layer<T>) -> dynamic,
         options: PopupOptions = definedExternally
     ): Layer<T> /* this */
 
@@ -87,7 +91,7 @@ abstract external class Layer<T : LayerOptions>(
     open fun getPopup(): Popup?
 
     open fun bindTooltip(
-        content: (layer: Layer<T>) -> Any,
+        content: (layer: Layer<T>) -> dynamic,
         options: TooltipOptions = definedExternally
     ): Layer<T> /* this */
 
@@ -123,10 +127,11 @@ abstract external class Layer<T : LayerOptions>(
     interface LayerOptions {
         /**
          * By default, the layer will be added to the map's
-         * [overlay pane][io.kvision.maps.externals.leaflet.map.DefaultMapPanes.overlayPane].
+         * [overlay pane][io.kvision.maps.externals.leaflet.map.MapPanes.overlayPane].
          * Overriding this option will cause the layer to be placed on another pane by default.
          */
         var pane: String?
+
         /**
          * String to be shown in the attribution control, e.g. "© OpenStreetMap contributors".
          * It describes the layer data and is often a legal obligation towards copyright holders
@@ -137,14 +142,14 @@ abstract external class Layer<T : LayerOptions>(
 
     /**
      * Some [Layer]s can be made interactive - when the user interacts with such a layer, mouse
-     * events like `click` and `mouseover` can be handled. Use the
+     * events like `click` and `pointerover` can be handled. Use the
      * [event handling methods](https://leafletjs.com/reference.html#evented-method) to handle
      * these events.
      */
     interface InteractiveLayerOptions : LayerOptions {
         /** If true, the popup/tooltip will listen to the mouse events. */
         var interactive: Boolean?
-        var bubblingMouseEvents: Boolean?
+        var bubblingPointerEvents: Boolean?
     }
 
 }

@@ -45,7 +45,6 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
         resolution("imask", libs.versions.imask.get())
         resolution("jquery", libs.versions.jquery.get())
         resolution("leaflet", libs.versions.leaflet.get())
-        resolution("geojson", libs.versions.geojson.get())
         resolution("@material/web", libs.versions.material.web.get())
         resolution("pace-progressbar", libs.versions.pace.progressbar.get())
         resolution("print-js", libs.versions.printjs.get())

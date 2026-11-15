@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,8 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer.vector
 
-import io.kvision.maps.externals.geojson.Feature
-import io.kvision.maps.externals.geojson.Point
 import io.kvision.maps.externals.leaflet.geo.LatLng
 
 open external class CircleMarker(
@@ -33,16 +31,16 @@ open external class CircleMarker(
     options: CircleMarkerOptions = definedExternally,
 ) : Path<CircleMarker.CircleMarkerOptions> {
 
-    open var feature: Feature<Point>?
+    open var feature: dynamic
 
-    open fun toGeoJSON(precision: Number = definedExternally): Feature<Point>
+    open fun toGeoJSON(precision: Double = definedExternally): dynamic
     open fun setLatLng(latLng: LatLng): CircleMarker /* this */
     open fun getLatLng(): LatLng
-    open fun setRadius(radius: Number): CircleMarker /* this */
-    open fun getRadius(): Number
+    open fun setRadius(radius: Int): CircleMarker /* this */
+    open fun getRadius(): Int
 
     interface CircleMarkerOptions : PathOptions {
-        var radius: Number?
+        var radius: Int?
     }
 
 }

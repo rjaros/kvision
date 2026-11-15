@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,99 +22,61 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.geo
 
-import io.kvision.maps.externals.leaflet.core.Class
 import io.kvision.maps.externals.leaflet.geometry.Bounds
 import io.kvision.maps.externals.leaflet.geometry.Point
+import io.kvision.maps.externals.leaflet.geometry.Transformation
 
 /**
- * ### Coordinate Reference System
- *
  * Object that defines coordinate reference systems for projecting geographical points into pixel
- * (screen) coordinates and back (and to coordinates in other units for
- * [WMS][io.kvision.maps.externals.leaflet.layer.tile.WMS] services).
- *
- * Leaflet defines the most usual CRSs by default. If you want to use a CRS not defined by default,
- * take a look at the [Proj4Leaflet plugin](https://github.com/kartena/Proj4Leaflet).
- *
- * Note that the CRS instances do not inherit from Leaflet's [Class] object, and can't be
- * instantiated. Also, new classes can't inherit from them, and methods can't be added to them
- * with the `include` function.
- *
- * See: [`https://leafletjs.com/reference.html#crs-l-crs-base`](https://leafletjs.com/reference.html#crs-l-crs-base)
+ * coordinates and back.
  */
-abstract external class CRS {
-
-    /** Standard code name of the CRS passed into WMS services (e.g. 'EPSG:3857') */
+external interface CRS {
+    /** Standard code name of the CRS passed into WMS services (e.g. `EPSG:3857`). */
     var code: String?
 
-    /**
-     * A pair of two numbers defining whether the longitude (horizontal) coordinate axis wraps
-     * around a given range and how. Defaults to `[-180, 180]` in most geographical CRSs.
-     *
-     * If undefined, the longitude axis does not wrap around.
-     * @see [wrapLat]
-     */
-    var wrapLng: Pair<Number, Number>? /* JsTuple<Number, Number> */
-    /**
-     * Like [wrapLng], but for the latitude (vertical) axis.
-     * @see [wrapLng]
-     */
-    var wrapLat: Pair<Number, Number>? /* JsTuple<Number, Number> */
-    /** If true, the coordinate space will be unbounded (infinite in both axes) */
+    /** The projection the CRS uses to turn geographical coordinates into projected ones. */
+    var projection: Projection
+
+    /** The transformation the CRS uses to turn projected coordinates into pixels at zoom 0. */
+    var transformation: Transformation?
+
+    /** The longitude wrapping range. */
+    var wrapLng: Pair<Number, Number>?
+
+    /** The latitude wrapping range. */
+    var wrapLat: Pair<Number, Number>?
+
+    /** If true, the coordinate space is unbounded in both axes. */
     var infinite: Boolean?
 
-    fun latLngToPoint(latlng: LatLng, zoom: Number): Point
-    fun pointToLatLng(point: Point, zoom: Number): LatLng
+    fun latLngToPoint(latlng: LatLng, zoom: Int): Point
+    fun pointToLatLng(point: Point, zoom: Int): LatLng
     fun project(latlng: LatLng): Point
     fun unproject(point: Point): LatLng
-    fun scale(zoom: Number): Number
-    fun zoom(scale: Number): Number
-    fun getProjectedBounds(zoom: Number): Bounds
+    fun scale(zoom: Int): Double
+    fun zoom(scale: Double): Double
+    fun getProjectedBounds(zoom: Int): Bounds?
     fun distance(latlng1: LatLng, latlng2: LatLng): Number
     fun wrapLatLng(latlng: LatLng): LatLng
-
-    companion object {
-        /**
-         * Rarely used by some commercial tile providers. Uses Elliptical Mercator projection.
-         *
-         * See: [`https://leafletjs.com/reference.html#crs-l-crs-epsg3395`](https://leafletjs.com/reference.html#crs-l-crs-epsg3395)
-         */
-        val EPSG3395: CRS
-        /**
-         * The most common [CRS] for online maps, used by almost all free and commercial tile
-         * providers. Uses Spherical Mercator projection. Set in by default in Map's
-         * [`crs` option][io.kvision.maps.externals.leaflet.map.LeafletMap.LeafletMapOptions.crs].
-         */
-        val EPSG3857: CRS
-        /** A common CRS among GIS enthusiasts. Uses simple equirectangular projection. */
-        val EPSG4326: CRS
-        /**
-         * Serves as the base for [CRS] that are global such that they cover the earth. Can only be
-         * used as the base for other CRS and cannot be used directly, since it does not have a
-         * [code], `projection` or `transformation`.
-         *
-         * [CRS.distance] returns meters.
-         */
-        val Earth: CRS
-        /**
-         * A simple CRS that maps longitude and latitude into x and y directly. May be used for
-         * maps of flat surfaces (e.g. game maps). Note that the y-axis should still be inverted
-         * (going from bottom to top). `distance()` returns simple euclidean distance.
-         *
-         * See: [`https://leafletjs.com/reference.html#crs-l-crs-simple`](https://leafletjs.com/reference.html#crs-l-crs-simple)
-         */
-        val Simple: CRS
-        /**
-         * Object that defines coordinate reference systems for projecting geographical points
-         * into pixel (screen) coordinates and back (and to coordinates in other units for
-         * [WMS][io.kvision.maps.externals.leaflet.layer.tile.WMS] services).
-         */
-        val Base: CRS
-
-        // val EPSG900913: CRS // defined in DefinitelyTyped, but undocumented
-    }
+    fun wrapLatLngBounds(bounds: Bounds): LatLngBounds
 }
+
+/** Rarely used by some commercial tile providers. Uses Elliptical Mercator projection. */
+external val EPSG3395: CRS
+
+/** The most common CRS for online maps. Uses Spherical Mercator projection. */
+external val EPSG3857: CRS
+
+/** The same CRS as [EPSG3857], with the legacy `EPSG:900913` code. */
+external val EPSG900913: CRS
+
+/** A common CRS among GIS enthusiasts. Uses simple equirectangular projection. */
+external val EPSG4326: CRS
+
+/** Serves as the base for CRS that cover the earth. */
+external val EarthCRS: CRS
+
+/** A simple CRS that maps longitude and latitude into x and y directly. */
+external val SimpleCRS: CRS

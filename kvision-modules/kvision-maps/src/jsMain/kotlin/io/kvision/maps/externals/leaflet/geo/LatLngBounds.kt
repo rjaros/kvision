@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +22,7 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.geo
-
 
 /**
  * Represents a rectangular geographical area on a map.
@@ -35,7 +34,7 @@ open external class LatLngBounds(southWest: LatLng, northEast: LatLng) {
     open fun extend(latLng: LatLng): LatLngBounds /* this */
     open fun extend(latLngBounds: LatLngBounds): LatLngBounds /* this */
 
-    open fun pad(bufferRatio: Number): LatLngBounds
+    open fun pad(bufferRatio: Double): LatLngBounds
 
     open fun getCenter(): LatLng
     open fun getSouthWest(): LatLng
@@ -43,10 +42,10 @@ open external class LatLngBounds(southWest: LatLng, northEast: LatLng) {
     open fun getNorthWest(): LatLng
     open fun getSouthEast(): LatLng
 
-    open fun getWest(): Number
-    open fun getSouth(): Number
-    open fun getEast(): Number
-    open fun getNorth(): Number
+    open fun getWest(): Double
+    open fun getSouth(): Double
+    open fun getEast(): Double
+    open fun getNorth(): Double
 
     open fun contains(otherBounds: LatLngBounds): Boolean
     open fun contains(latlng: LatLng): Boolean

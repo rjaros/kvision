@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +22,8 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer
 
-import io.kvision.maps.externals.geojson.Feature
-import io.kvision.maps.externals.geojson.GeoJsonGeometry
-import io.kvision.maps.externals.geojson.GeoJsonObject
-import io.kvision.maps.externals.geojson.Point
 import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.layer.vector.Path.PathOptions
 
@@ -36,20 +32,20 @@ import io.kvision.maps.externals.leaflet.layer.vector.Path.PathOptions
  * Allows you to parse GeoJSON data and display it on the map.
  */
 open external class GeoJSON(
-    geojson: GeoJsonObject = definedExternally,
+    geojson: dynamic = definedExternally,
     options: GeoJSONOptions = definedExternally
 ) : FeatureGroup {
 
-    open fun addData(data: GeoJsonObject): GeoJSON /* this */
+    open fun addData(data: dynamic): GeoJSON /* this */
     open fun resetStyle(layer: Layer<*> = definedExternally): GeoJSON /* this */
     override fun setStyle(style: PathOptions): GeoJSON /* this */
     fun setStyle(style: StyleFunction): GeoJSON /* this */
 
     companion object {
         fun geometryToLayer(
-            featureData: Feature<GeoJsonGeometry>,
+            featureData: dynamic,
             options: GeoJSONOptions = definedExternally
-        ): Layer<*>
+        ): Layer<*>?
 
         /**
          * Creates a LatLng object from 2 numbers (longitude, latitude) used in GeoJSON for points.
@@ -63,37 +59,42 @@ open external class GeoJSON(
         fun coordsToLatLng(coords: Triple<Number, Number, Number>): LatLng
 
         fun coordsToLatLngs(
-            coords: Array<Any>,
-            levelsDeep: Number = definedExternally,
+            coords: Array<dynamic>,
+            levelsDeep: Int = definedExternally,
             coordsToLatLng: (coords: Pair<Number, Number>) -> LatLng = definedExternally
-        ): Array<Any>
+        ): Array<dynamic>
+
         fun coordsToLatLngs(
-            coords: Array<Any>,
-            levelsDeep: Number = definedExternally,
+            coords: Array<dynamic>,
+            levelsDeep: Int = definedExternally,
             coordsToLatLng: (coords: Triple<Number, Number, Number>) -> LatLng = definedExternally
-        ): Array<Any>
+        ): Array<dynamic>
 
-        fun latLngToCoords(latlng: LatLng): Array<Number>
+        fun latLngToCoords(
+            latlng: LatLng,
+            precision: Double = definedExternally
+        ): Array<Number>
+
         fun latLngsToCoords(
-            latlngs: Array<Any>,
-            levelsDeep: Number = definedExternally,
-            closed: Boolean = definedExternally
-        ): Array<Any>
+            latlngs: Array<dynamic>,
+            levelsDeep: Int = definedExternally,
+            closed: Boolean = definedExternally,
+            precision: Double = definedExternally
+        ): Array<dynamic>
 
-        fun asFeature(geojson: Feature<GeoJsonGeometry>): Feature<GeoJsonGeometry>
-        fun asFeature(geojson: GeoJsonGeometry): Feature<GeoJsonGeometry>
+        fun getFeature(layer: dynamic, newGeometry: dynamic): dynamic
+        fun asFeature(geojson: dynamic): dynamic
     }
 
     interface GeoJSONOptions : InteractiveLayerOptions {
 
         /**
          * A Function defining how GeoJSON points spawn Leaflet layers. It is internally called
-         * when data is added, passing the GeoJSON [Feature<Point>][io.kvision.maps.externals.geojson.Feature]
-         * and its [LatLng].
+         * when data is added, passing the GeoJSON and its [LatLng].
          *
          * The default is to spawn a default Marker:
          */
-        var pointToLayer: ((geoJsonPoint: Feature<Point>, latlng: LatLng) -> Layer<*>)?
+        var pointToLayer: ((geoJsonPoint: dynamic, latlng: LatLng) -> Layer<*>)?
 
         /**
          * 	A Function defining the [PathOptions] for styling GeoJSON lines and polygons, called
@@ -103,9 +104,9 @@ open external class GeoJSON(
          */
         var style: StyleFunction /* PathOptions? | StyleFunction<P>? */
 
-        var onEachFeature: ((feature: Feature<GeoJsonGeometry>, layer: Layer<*>) -> Unit)?
+        var onEachFeature: ((feature: dynamic, layer: Layer<*>) -> Unit)?
 
-        var filter: ((geoJsonFeature: Feature<GeoJsonGeometry>) -> Boolean)?
+        var filter: ((geoJsonFeature: dynamic) -> Boolean)?
 
         /**
          * A Function that will be used for converting GeoJSON coordinates to [LatLng]s.

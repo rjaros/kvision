@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +23,7 @@
 
 package io.kvision.maps.externals.leaflet.events
 
-/** `baselayerchange` | `overlayadd` | `overlayremove` | `layeradd` | `layerremove` | `zoomlevelschange` | `unload` | `viewreset` | `load` | `zoomstart` | `movestart` | `zoom` | `move` | `zoomend` | `moveend` | `autopanstart` | `dragstart` | `drag` | `add` | `remove` | `loading` | `error` | `update` | `down` | `predrag` | `resize` | `popupopen` | `popupclose` | `tooltipopen` | `tooltipclose` | `locationerror` | `locationfound` | `click` | `dblclick` | `mousedown` | `mouseup` | `mouseover` | `mouseout` | `mousemove` | `contextmenu` | `preclick` | `keypress` | `keydown` | `keyup` | `zoomanim` | `dragend` | `tileunload` | `tileloadstart` | `tileload` | `tileerror` */
+/** `baselayerchange` | `overlayadd` | `overlayremove` | `layeradd` | `layerremove` | `zoomlevelschange` | `unload` | `viewreset` | `load` | `zoomstart` | `movestart` | `zoom` | `move` | `zoomend` | `moveend` | `autopanstart` | `dragstart` | `drag` | `add` | `remove` | `loading` | `error` | `update` | `down` | `predrag` | `resize` | `popupopen` | `popupclose` | `tooltipopen` | `tooltipclose` | `locationerror` | `locationfound` | `click` | `dblclick` | `contextmenu` | `pointerdown` | `pointerup` | `pointerover` | `pointerout` | `pointermove` | `preclick` | `keypress` | `keydown` | `keyup` | `zoomanim` | `dragend` | `tileunload` | `tileloadstart` | `tileload` | `tileerror` */
 typealias LeafletAnyEventId = String
 
 
@@ -66,9 +67,9 @@ typealias LeafletLocationEventId = String
 typealias LocationEventHandlerFn = (event: LocationEvent) -> Unit
 
 
-/** `click` | `dblclick` | `mousedown` | `mouseup` | `mouseover` | `mouseout` | `mousemove` | `contextmenu` | `preclick` */
-typealias LeafletMouseEventId = String
-typealias LeafletMouseEventHandlerFn = (event: LeafletMouseEvent) -> Unit
+/** `click` | `dblclick` | `contextmenu` | `pointerdown` | `pointerup` | `pointerover` | `pointerout` | `pointermove` | `preclick` */
+typealias LeafletPointerEventId = String
+typealias LeafletPointerEventHandlerFn = (event: LeafletPointerEvent) -> Unit
 
 
 /** `keypress` | `keydown` | `keyup` */

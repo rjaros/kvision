@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +22,6 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.core
 
 /**
@@ -32,21 +32,22 @@ package io.kvision.maps.externals.leaflet.core
  * In addition to implementing a simple classical inheritance model, it introduces several special
  * properties for convenient code organization — options, includes and statics.
  */
-abstract external class Class {
+open external class Class {
+    /** Runs all constructor hooks of the class chain once. */
+    fun callInitHooks()
 
     companion object {
-        /**
-         * [Extends the current class](https://leafletjs.com/SlavaUkraini/reference.html#class-inheritance)
-         * given the properties to be included. Returns a Javascript function that is a class
-         * constructor (to be called with `new`).
-         */
-        fun extend(props: Any): Any
         /** Includes a mixin into the current class. */
-        fun include(props: Any): Any
+        fun include(props: dynamic): dynamic
+
         /** Merges options into the defaults of the class. */
-        fun mergeOptions(props: Any): Any
+        fun mergeOptions(props: dynamic): dynamic
+
+        /** Deprecated alias of [mergeOptions]. */
+        fun setDefaultOptions(props: dynamic): dynamic
+
         /** Adds a constructor hook to the class. */
-        fun addInitHook(initHookFn: () -> Unit): Any
-        fun addInitHook(methodName: String, vararg args: Any): Any
+        fun addInitHook(initHookFn: () -> Unit): dynamic
+        fun addInitHook(methodName: String, vararg args: dynamic): dynamic
     }
 }

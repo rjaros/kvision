@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +22,11 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer.vector
 
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.vector.Path.PathOptions
 import org.w3c.dom.Element
-
 
 /**
  * An abstract class that contains options and constants shared between vector overlays
@@ -49,42 +48,55 @@ abstract external class Path<T : PathOptions>(
          * or circles.
          */
         var stroke: Boolean?
+
         /** Stroke color */
         var color: String?
+
         /** Stroke width in pixels */
-        var weight: Number?
+        var weight: Int?
+
         /** Stroke opacity */
-        var opacity: Number?
+        var opacity: Double?
+
         /** A string that defines shape to be used at the end of the stroke. */
         var lineCap: String? /* "butt" | "round" | "square" | "inherit" */
+
         /** A string that defines shape to be used at the corners of the stroke.*/
         var lineJoin: String? /* "miter" | "round" | "bevel" | "inherit" */
+
         /**
          * A string that defines the stroke dash pattern. Doesn't work on Canvas-powered layers in
          * some old browsers.
          */
         var dashArray: dynamic /* String? | Array<Number>? */
+
         /**
          * A string that defines the distance into the dash pattern to start the dash. Doesn't
          * work on Canvas-powered layers in some old browsers.
          */
         var dashOffset: String?
+
         /**
          * Whether to fill the path with color. Set it to `false` to disable filling on polygons or
          * circles.
          */
         var fill: Boolean?
+
         /** Fill color. Defaults to the value of the [color] option */
         var fillColor: String?
+
         /** Fill opacity. */
-        var fillOpacity: Number?
+        var fillOpacity: Double?
+
         /** A string that defines how the inside of a shape is determined. */
         var fillRule: String? /* "nonzero" | "evenodd" | "inherit" */
+
         /**
          * When `true`, a mouse event on this path will trigger the same event on the map
          * (unless `L.DomEvent.stopPropagation` is used).
          */
         var renderer: Renderer<Renderer.RendererOptions>?
+
         /** Custom class name set on an element. Only for SVG renderer. */
         var className: String?
     }

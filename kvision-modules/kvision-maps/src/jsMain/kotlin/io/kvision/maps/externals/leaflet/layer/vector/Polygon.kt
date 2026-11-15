@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,8 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer.vector
 
-import io.kvision.maps.externals.geojson.GeoJsonSingleOrMultiLineString
-import io.kvision.maps.externals.geojson.GeoJsonSingleOrMultiPolygon
 import io.kvision.maps.externals.leaflet.geo.LatLng
 
 /**
@@ -33,11 +31,9 @@ import io.kvision.maps.externals.leaflet.geo.LatLng
  *
  * Note that points you pass when creating a polygon shouldn't have an additional last point equal
  * to the first one — it's better to filter out such points.
- *
- * @param T [io.kvision.maps.externals.geojson.Polygon] or [io.kvision.maps.externals.geojson.MultiPolygon]
  */
-open external class Polygon<T : GeoJsonSingleOrMultiPolygon> :
-    Polyline<GeoJsonSingleOrMultiLineString> {
+open external class Polygon :
+    Polyline {
 
     /** Create a polygon from an array of LatLng points. */
     constructor(

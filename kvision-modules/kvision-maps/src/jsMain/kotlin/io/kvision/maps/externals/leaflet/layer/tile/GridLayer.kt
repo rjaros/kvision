@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,8 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
 
 
 package io.kvision.maps.externals.leaflet.layer.tile
@@ -49,8 +49,8 @@ abstract external class GridLayer<T : GridLayerOptions>(
     open fun bringToFront(): GridLayer<*> /* this */
     open fun bringToBack(): GridLayer<*> /* this */
     open fun getContainer(): HTMLElement?
-    open fun setOpacity(opacity: Number): GridLayer<*> /* this */
-    open fun setZIndex(zIndex: Number): GridLayer<*> /* this */
+    open fun setOpacity(opacity: Double): GridLayer<*> /* this */
+    open fun setZIndex(zIndex: Int): GridLayer<*> /* this */
     open fun isLoading(): Boolean
     open fun redraw(): GridLayer<*> /* this */
     open fun getTileSize(): Point
@@ -62,31 +62,35 @@ abstract external class GridLayer<T : GridLayerOptions>(
          * [`Point(width, height)`][Point] otherwise.
          */
         var tileSize: dynamic /* Number? | Point? */
-        var opacity: Number?
+        var opacity: Double?
         var updateWhenIdle: Boolean?
         var updateWhenZooming: Boolean?
-        var updateInterval: Number?
-        var zIndex: Number?
+        var updateInterval: Int?
+        var zIndex: Int?
         var bounds: LatLngBounds?
+
         /** The minimum zoom level down to which this layer will be displayed (inclusive). */
-        var minZoom: Number?
+        var minZoom: Int?
+
         /** The maximum zoom level up to which this layer will be displayed (inclusive). */
-        var maxZoom: Number?
+        var maxZoom: Int?
+
         /**
          * 	Maximum zoom number the tile source has available. If it is specified, the tiles on
          * 	all zoom levels higher than maxNativeZoom will be loaded from maxNativeZoom level and
          * 	auto-scaled.
          */
-        var maxNativeZoom: Number?
+        var maxNativeZoom: Int?
+
         /**
          * 	Minimum zoom number the tile source has available. If it is specified, the tiles on
          * 	all zoom levels lower than minNativeZoom will be loaded from minNativeZoom level and
          * 	auto-scaled.
          */
-        var minNativeZoom: Number?
+        var minNativeZoom: Int?
         var noWrap: Boolean?
         var className: String?
-        var keepBuffer: Number?
+        var keepBuffer: Int?
     }
 
 }

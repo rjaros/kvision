@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +22,10 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.dom
 
 import io.kvision.maps.externals.leaflet.geometry.Point
+import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 
 /**
@@ -38,22 +39,12 @@ import org.w3c.dom.HTMLElement
  */
 external object DomUtil {
 
-    /** Vendor-prefixed transform style name (e.g. 'webkitTransform' for WebKit). */
-    val TRANSFORM: String
-    /** Vendor-prefixed transition style name. */
-    val TRANSITION: String
-    /** Vendor-prefixed transitionend event name. */
-    val TRANSITION_END: String
-
     /** Get Element by the given HTML-Element */
     fun get(element: HTMLElement): HTMLElement?
+
     /** Get Element by its ID */
     fun get(element: String): HTMLElement?
-    /**
-     * Returns the value for a certain style attribute on an element, including computed values or
-     * values set through CSS.
-     */
-    fun getStyle(el: HTMLElement, styleAttrib: String): String?
+
     /**
      * Creates an HTML element with `tagName`, sets its class to `className`, and optionally
      * appends it to `container` element.
@@ -68,38 +59,29 @@ external object DomUtil {
         container: HTMLElement = definedExternally
     ): HTMLElement
 
-    fun remove(el: HTMLElement)
-    fun empty(el: HTMLElement)
-    fun toFront(el: HTMLElement)
-    fun toBack(el: HTMLElement)
-    fun hasClass(el: HTMLElement, name: String): Boolean
-    fun addClass(el: HTMLElement, name: String)
-    fun removeClass(el: HTMLElement, name: String)
-    fun setClass(el: HTMLElement, name: String)
-    fun getClass(el: HTMLElement): String
-    fun setOpacity(el: HTMLElement, opacity: Number)
-    fun testProp(props: Array<String>): dynamic // string | false
-    fun setTransform(el: HTMLElement, offset: Point, scale: Number = definedExternally)
+    fun toFront(el: Element)
+    fun toBack(el: Element)
+    fun setTransform(el: Element, offset: Point, scale: Number = definedExternally)
+
     /**
      * Sets the position of el to coordinates specified by position, using CSS translate or
      * top/left positioning depending on the browser (used by Leaflet internally to position its
      * layers).
      */
-    fun setPosition(el: HTMLElement, position: Point)
+    fun setPosition(el: Element, position: Point, flat: Boolean = definedExternally)
+
     /** Returns the coordinates of an element previously positioned with [setPosition]. */
-    fun getPosition(el: HTMLElement): Point
-    fun disableTextSelection()
-    fun enableTextSelection()
+    fun getPosition(el: Element): Point
     fun disableImageDrag()
     fun enableImageDrag()
+
     /**
-     * Makes the outline of the element `el` invisible. Used internally by Leaflet to prevent
-     * focusable elements from displaying an outline when the user performs a drag interaction on
-     * them.
+     * Finds the closest parent node which size (width and height) is not null.
      */
-    fun preventOutline(el: HTMLElement)
+    fun getSizedParentNode(element: HTMLElement): HTMLElement
+
     /**
-     * Cancels the effects of a previous [preventOutline].
+     * Computes the CSS scale currently applied on the element.
      */
-    fun restoreOutline()
+    fun getScale(el: HTMLElement): Point
 }

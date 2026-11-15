@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,9 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-@file:JsQualifier("Control")
-
 package io.kvision.maps.externals.leaflet.control
 
-import io.kvision.maps.externals.leaflet.control.Layers.LayersOptions
+import io.kvision.maps.externals.leaflet.control.LayersControl.LayersControlOptions
 import io.kvision.maps.externals.leaflet.layer.Layer
 
 /**
@@ -38,22 +37,26 @@ import io.kvision.maps.externals.leaflet.layer.Layer
  * Note that all base layers should be passed in the base layers object, but only one should be
  * added to the map during map instantiation.
  */
-open external class Layers(
-    baseLayers: LayersObject = definedExternally,
-    overlays: LayersObject = definedExternally,
-    options: LayersOptions = definedExternally
-) : Control<LayersOptions> {
+open external class LayersControl(
+    baseLayers: dynamic = definedExternally,
+    overlays: dynamic = definedExternally,
+    options: LayersControlOptions = definedExternally
+) : Control<LayersControlOptions> {
 
     /** Adds a base layer (radio button entry) with the given name to the control. */
-    open fun addBaseLayer(layer: Layer<*>, name: String): Layers /* this */
+    open fun addBaseLayer(layer: Layer<*>, name: String): LayersControl /* this */
+
     /** Adds an overlay (checkbox entry) with the given name to the control. */
-    open fun addOverlay(layer: Layer<*>, name: String): Layers /* this */
+    open fun addOverlay(layer: Layer<*>, name: String): LayersControl /* this */
+
     /** Remove the given layer from the control. */
-    open fun removeLayer(layer: Layer<*>): Layers /* this */
+    open fun removeLayer(layer: Layer<*>): LayersControl /* this */
+
     /** Expand the control container if collapsed. */
-    open fun expand(): Layers /* this */
+    open fun expand(): LayersControl /* this */
+
     /** Collapse the control container if expanded. */
-    open fun collapse(): Layers /* this */
+    open fun collapse(): LayersControl /* this */
 
     /**
      * The layers control gives users the ability to switch between different base layers and switch
@@ -61,23 +64,31 @@ open external class Layers(
      *
      * See: [`https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/control/Control.Layers.js`](https://github.com/Leaflet/Leaflet/blob/v1.7.1/src/control/Control.Layers.js)
      *
-     * @see [Control.LayersObject]
      */
-    interface LayersOptions : ControlOptions {
+    interface LayersControlOptions : ControlOptions {
 
         /**
          * If `true`, the control will be collapsed into an icon and expanded on mouse hover or touch.
          */
         var collapsed: Boolean?
+
+        /** Collapse delay in milliseconds. */
+        var collapseDelay: Int?
+
         /**
          * If `true`, the control will assign zIndexes in increasing order to all of its layers so
          * that the order is preserved when switching them on/off.
          */
         var autoZIndex: Boolean?
+
+        /** The title of the toggle button and the accessible label of the layers list. */
+        var title: String?
+
         /**
          * If `true`, the base layers in the control will be hidden when there is only one.
          */
         var hideSingleBase: Boolean?
+
         /**
          * Whether to sort the layers. When `false`, layers will keep the order in which they were
          * added to the control.

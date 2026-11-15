@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +22,6 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.geo
 
 /**
@@ -30,19 +30,22 @@ package io.kvision.maps.externals.leaflet.geo
  * See [`https://leafletjs.com/reference.html#latlng`](https://leafletjs.com/reference.html#latlng)
  */
 open external class LatLng(
-    latitude: Number,
-    longitude: Number,
-    altitude: Number = definedExternally
+    latitude: Double,
+    longitude: Double,
+    altitude: Double = definedExternally
 ) {
 
     /** Latitude in degrees */
-    open var lat: Number
-    /** Longitude in degrees */
-    open var lng: Number
-    /** Altitude in meters */
-    open var alt: Number?
+    open var lat: Double
 
-    open fun equals(otherLatLng: LatLng, maxMargin: Number = definedExternally): Boolean
+    /** Longitude in degrees */
+    open var lng: Double
+
+    /** Altitude in meters */
+    open var alt: Double?
+
+    open fun equals(otherLatLng: LatLng, maxMargin: Double = definedExternally): Boolean
+
     @Suppress("CovariantEquals") // 'equals' is external, we can't change it, so the warning isn't useful
     open fun equals(otherLatLng: LatLng): Boolean
 
@@ -50,15 +53,17 @@ open external class LatLng(
      * Returns the distance (in meters) to the given [LatLng] calculated using the
      * [Spherical Law of Cosines](https://en.wikipedia.org/wiki/Spherical_law_of_cosines).
      */
-    open fun distanceTo(otherLatLng: LatLng): Number
+    open fun distanceTo(otherLatLng: LatLng): Double
+
     /**
      * Returns a new LatLng object with the longitude wrapped, so it's always between `-180` and
      * `+180` degrees.
      */
     open fun wrap(): LatLng
+
     /**
      * Returns a new [LatLngBounds] object in which each boundary is `sizeInMeters/2` meters apart
      * from the [LatLng].
      */
-    open fun toBounds(sizeInMeters: Number): LatLngBounds
+    open fun toBounds(sizeInMeters: Double): LatLngBounds
 }

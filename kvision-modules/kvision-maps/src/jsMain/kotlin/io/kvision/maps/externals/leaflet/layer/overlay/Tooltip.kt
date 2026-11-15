@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +22,23 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer.overlay
 
-import io.kvision.maps.externals.leaflet.DirectionsUnion
+import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.Tooltip.TooltipOptions
 
 open external class Tooltip(
+    options: TooltipOptions = definedExternally,
     source: Layer<*> = definedExternally,
-    options: TooltipOptions? = definedExternally,
 ) : DivOverlay<TooltipOptions> {
 
-    open fun setOpacity(param_val: Number)
+    constructor(
+        latlng: LatLng,
+        options: TooltipOptions = definedExternally,
+    )
+
+    open fun setOpacity(opacity: Double)
 
     interface TooltipOptions : DivOverlayOptions {
         /**
@@ -43,12 +48,15 @@ open external class Tooltip(
          * `auto` will dynamically switch between `right` and `left` according to the tooltip
          * position on the map.
          */
-        var direction: DirectionsUnion?
+        var direction: String?
+
         /** Whether to open the tooltip permanently or only on mouseover. */
         var permanent: Boolean?
+
         /** If true, the tooltip will follow the mouse instead of being fixed at the feature center. */
         var sticky: Boolean?
+
         /** Tooltip container opacity. */
-        var opacity: Number?
+        var opacity: Double?
     }
 }

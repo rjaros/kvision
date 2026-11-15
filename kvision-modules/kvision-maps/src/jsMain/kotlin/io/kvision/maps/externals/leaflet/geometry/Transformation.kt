@@ -1,5 +1,6 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,29 +21,20 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-@file:JsQualifier("Control")
+package io.kvision.maps.externals.leaflet.geometry
 
-package io.kvision.maps.externals.leaflet.control
+/** Represents an affine transformation: a set of coefficients `a`, `b`, `c`, `d`. */
+open external class Transformation(
+    a: Double,
+    b: Double,
+    c: Double,
+    d: Double,
+) {
+    constructor(coefficients: Array<Number>)
 
-import io.kvision.maps.externals.leaflet.control.Zoom.ZoomControlOptions
-import io.kvision.maps.externals.leaflet.map.LeafletMap
+    /** Returns a transformed point, optionally multiplied by [scale]. */
+    fun transform(point: Point, scale: Double = definedExternally): Point
 
-/**
- * A basic zoom control with two buttons (zoom in and zoom out). It is put on the map by default
- * unless you set its [LeafletMap.zoomControl] option to `false`.
- */
-open external class Zoom(options: ZoomControlOptions = definedExternally) : Control<ZoomControlOptions> {
-
-    interface ZoomControlOptions : ControlOptions {
-        /** The text set on the 'zoom in' button. */
-        var zoomInText: String?
-        /** The title  set on the 'zoom in' button. */
-        var zoomInTitle: String?
-        /** The text set on the 'zoom out' button. */
-        var zoomOutText: String?
-        /** The title set on the 'zoom out' button. */
-        var zoomOutTitle: String?
-    }
-
+    /** Returns the transformation of the given point with the inverse transformation. */
+    fun untransform(point: Point, scale: Double = definedExternally): Point
 }

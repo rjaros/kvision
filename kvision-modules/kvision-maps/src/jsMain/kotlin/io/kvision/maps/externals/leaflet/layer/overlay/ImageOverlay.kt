@@ -1,5 +1,7 @@
+@file:JsModule("leaflet")
 /*
- * Copyright (c) 2017-present Robert Jaros
+ * Copyright (c) 2025 Robert Jaros
+ * Copyright (c) 2022 Adam S.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,38 +22,37 @@
  * SOFTWARE.
  */
 
-@file:JsModule("leaflet/dist/leaflet-src.esm.js")
-
 package io.kvision.maps.externals.leaflet.layer.overlay
 
 import io.kvision.maps.externals.leaflet.geo.LatLng
 import io.kvision.maps.externals.leaflet.geo.LatLngBounds
 import io.kvision.maps.externals.leaflet.layer.Layer
 import io.kvision.maps.externals.leaflet.layer.overlay.ImageOverlay.ImageOverlayOptions
-import org.w3c.dom.HTMLImageElement
 
 /**
  * Used to load and display a single image over specific bounds of the map.
  */
-open external class ImageOverlay(
+open external class ImageOverlay<T : ImageOverlayOptions>(
     imageUrl: String,
     bounds: LatLngBounds,
-    options: ImageOverlayOptions = definedExternally
-) : Layer<ImageOverlayOptions>, MediaOverlay {
+    options: T = definedExternally
+) : Layer<T> {
 
-    override fun setOpacity(opacity: Number): ImageOverlay /* this */
-    override fun bringToFront(): ImageOverlay /* this */
-    override fun bringToBack(): ImageOverlay /* this */
-    override fun setUrl(url: String): ImageOverlay /* this */
-    override fun setBounds(bounds: LatLngBounds): ImageOverlay /* this */
-    override fun setZIndex(value: Number): ImageOverlay /* this */
+    open fun setOpacity(opacity: Double): ImageOverlay<T> /* this */
+    open fun setStyle(styleOpts: dynamic): ImageOverlay<T> /* this */
+    open fun bringToFront(): ImageOverlay<T> /* this */
+    open fun bringToBack(): ImageOverlay<T> /* this */
+    open fun setUrl(url: String): ImageOverlay<T> /* this */
+    open fun setBounds(bounds: LatLngBounds): ImageOverlay<T> /* this */
+    open fun setZIndex(value: Int): ImageOverlay<T> /* this */
     fun getBounds(): LatLngBounds
-    override fun getElement(): HTMLImageElement?
-    fun getCenter(): LatLng?
+    open fun getElement(): dynamic
+    fun getCenter(): LatLng
 
     interface ImageOverlayOptions : InteractiveLayerOptions {
-        var opacity: Number?
+        var opacity: Double?
         var alt: String?
+
         /**
          * Whether the crossOrigin attribute will be added to the image. If a String is provided, the
          * image will have its `crossOrigin` attribute set to the String provided. This is needed if
@@ -62,8 +63,11 @@ open external class ImageOverlay(
          */
         var crossOrigin: dynamic /* Boolean? | String? */
         var errorOverlayUrl: String?
-        var zIndex: Number?
+        var zIndex: Int?
         var className: String?
+
+        /** Tells the browser how to decode the image. */
+        var decoding: String?
     }
 
 }
